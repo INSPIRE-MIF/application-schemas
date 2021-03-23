@@ -1,0 +1,1806 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<schema xmlns="http://www.w3.org/2001/XMLSchema" xmlns:ad="urn:x-inspire:specification:gmlas:Addresses:3.0" xmlns:base="urn:x-inspire:specification:gmlas:BaseTypes:3.2" xmlns:bu-core2d="http://inspire.jrc.ec.europa.eu/schemas/bu-core2d/2.0" xmlns:gml="http://www.opengis.net/gml/3.2" xmlns:pf-core="http://inspire.jrc.ec.europa.eu/schemas/pf-core/2.0" xmlns:pf-ext="http://inspire.jrc.ec.europa.eu/schemas/pf-ext/2.0" targetNamespace="http://inspire.jrc.ec.europa.eu/schemas/pf-core/2.0" elementFormDefault="qualified" version="2.0">
+	<import namespace="http://inspire.jrc.ec.europa.eu/schemas/bu-core2d/2.0" schemaLocation="https://inspire.ec.europa.eu/draft-schemas/bu-core2d/2.0/BuildingCore2D.xsd"/>
+	<import namespace="http://inspire.jrc.ec.europa.eu/schemas/pf-ext/2.0" schemaLocation="https://inspire.ec.europa.eu/draft-schemas/pf-ext/2.0/ProductionAndIndustrialFacilitiesExt.xsd"/>
+	<import namespace="http://www.opengis.net/gml/3.2" schemaLocation="http://schemas.opengis.net/gml/3.2.1/gml.xsd"/>
+	<import namespace="urn:x-inspire:specification:gmlas:Addresses:3.0" schemaLocation="https://inspire.ec.europa.eu/schemas/ad/3.0/Addresses.xsd"/>
+	<import namespace="urn:x-inspire:specification:gmlas:BaseTypes:3.2" schemaLocation="https://inspire.ec.europa.eu/schemas/base/3.2/BaseTypes.xsd"/>
+	<!--XML Schema document created by ShapeChange-->
+	<element name="Operator" type="pf-core:OperatorType" substitutionGroup="gml:AbstractFeature">
+		<annotation>
+			<documentation>-- Name --
+operator
+
+-- Definition --
+A person or company that runs a business or enterprise and which is the legal responsible of the facility. 
+
+-- Description --
+Means any natural or legal person who operates to manage and control the facility or, where this is provided by the national legislation, to whom decisive economic power over the technical functioning of the facility has been delegated.
+This information is required in all the templates proposed by the legislation. All the facilities must be linked to.</documentation>
+		</annotation>
+	</element>
+	<complexType name="OperatorType">
+		<complexContent>
+			<extension base="gml:AbstractFeatureType">
+				<sequence>
+					<element name="inspireId" type="base:IdentifierPropertyType">
+						<annotation>
+							<documentation>-- Definition --
+External object identifier of the object.
+
+-- Description --
+NOTE  An external object identifier is a unique object identifier published by the responsible body, which may be used by external applications to reference the object. The identifier is an identifier of the object, not an identifier of the real-world phenomenon.</documentation>
+						</annotation>
+					</element>
+					<element name="thematicId" type="string" minOccurs="0">
+						<annotation>
+							<documentation>-- Definition --
+Thematic object identifier (e.g. ICAO location identifiers for airports or NUTS codes for administrative areas).
+
+-- Description --
+It may be the identification code provided by the Member States to identify the object on their own databases.</documentation>
+						</annotation>
+					</element>
+					<element name="tradeName" type="string">
+						<annotation>
+							<documentation>-- Definition --
+Corporate name officially assigned to the operator.</documentation>
+						</annotation>
+					</element>
+					<element name="tradeDescription" nillable="true">
+						<annotation>
+							<documentation>-- Definition --
+Descriptive statement about the operator.</documentation>
+						</annotation>
+						<complexType>
+							<simpleContent>
+								<extension base="string">
+									<attribute name="nilReason" type="gml:NilReasonType"/>
+								</extension>
+							</simpleContent>
+						</complexType>
+					</element>
+					<element name="delegateName" nillable="true">
+						<annotation>
+							<documentation>-- Definition --
+Name and surname of the managing director for the operator.</documentation>
+						</annotation>
+						<complexType>
+							<simpleContent>
+								<extension base="string">
+									<attribute name="nilReason" type="gml:NilReasonType"/>
+								</extension>
+							</simpleContent>
+						</complexType>
+					</element>
+					<element name="pertinentTo" type="ad:AddressPropertyType">
+						<annotation>
+							<documentation>An Address may be pertinent to one or more Operators (this means an Address may be shared by different Operators)</documentation>
+						</annotation>
+					</element>
+					<element name="managedBy" type="pf-core:ProductionAndIndustrialFacilityPropertyType" minOccurs="0" maxOccurs="unbounded">
+						<annotation>
+							<documentation>A ProductionAndIndustrialFacility is managed by one Operator. The Operator may change over time, thus in a second time the same ProductionAndIndustrialFacility may be managed by a different Operator.</documentation>
+							<appinfo>
+								<reversePropertyName xmlns="http://www.opengis.net/gml/3.2">pf-core:holderOf</reversePropertyName>
+							</appinfo>
+						</annotation>
+					</element>
+				</sequence>
+			</extension>
+		</complexContent>
+	</complexType>
+	<complexType name="OperatorPropertyType">
+		<sequence minOccurs="0">
+			<element ref="pf-core:Operator"/>
+		</sequence>
+		<attributeGroup ref="gml:AssociationAttributeGroup"/>
+		<attributeGroup ref="gml:OwnershipAttributeGroup"/>
+	</complexType>
+	<simpleType name="NACECodeValueType">
+		<annotation>
+			<documentation>-- Definition --
+The NACECodeValue code list hosts the reference values for the NACEClassification data type.</documentation>
+		</annotation>
+		<union memberTypes="pf-core:NACECodeValueEnumerationType pf-core:NACECodeValueOtherType"/>
+	</simpleType>
+	<simpleType name="NACECodeValueEnumerationType">
+		<annotation>
+			<documentation>-- Definition --
+The NACECodeValue code list hosts the reference values for the NACEClassification data type.</documentation>
+		</annotation>
+		<restriction base="string"/>
+	</simpleType>
+	<simpleType name="NACECodeValueOtherType">
+		<restriction base="string">
+			<pattern value="other: \w{2,}"/>
+		</restriction>
+	</simpleType>
+	<element name="Plot" type="pf-core:PlotType" substitutionGroup="gml:AbstractFeature">
+		<annotation>
+			<documentation>-- Name --
+plot
+
+-- Definition --
+A piece of land part of a facility destined to functional purposes.
+
+-- Description --
+A potential sub-division of a major site as delimited extension of land in which are performed extensive operations related with the activity or one of the activities performed by a facility.</documentation>
+		</annotation>
+	</element>
+	<complexType name="PlotType">
+		<complexContent>
+			<extension base="gml:AbstractFeatureType">
+				<sequence>
+					<element name="inspireId" type="base:IdentifierPropertyType">
+						<annotation>
+							<documentation>-- Definition --
+External object identifier of the spatial object.
+
+-- Description --
+NOTE  An external object identifier is a unique object identifier published by the responsible body, which may be used by external applications to reference the spatial object. The identifier is an identifier of the spatial object, not an identifier of the real-world phenomenon.</documentation>
+						</annotation>
+					</element>
+					<element name="thematicId" type="string" minOccurs="0">
+						<annotation>
+							<documentation>-- Definition --
+Thematic object identifier (e.g. ICAO location identifiers for airports or NUTS codes for administrative areas).
+
+-- Description --
+It may be the identification code provided by the Member States to identify the object on their own databases.</documentation>
+						</annotation>
+					</element>
+					<element name="geometry" type="gml:SurfacePropertyType">
+						<annotation>
+							<documentation>-- Definition --
+Spatial property of the spatial object with a value that is a vector geometry type from ISO 19107.</documentation>
+						</annotation>
+					</element>
+					<element name="status" nillable="true" maxOccurs="unbounded">
+						<annotation>
+							<documentation>-- Definition --
+The state or condition of the plot, with regard to the functional and operational order, in which it is arranged for a limited or extended time period.</documentation>
+						</annotation>
+						<complexType>
+							<sequence>
+								<element ref="pf-core:StatusType"/>
+							</sequence>
+							<attribute name="nilReason" type="gml:NilReasonType"/>
+						</complexType>
+					</element>
+				</sequence>
+			</extension>
+		</complexContent>
+	</complexType>
+	<complexType name="PlotPropertyType">
+		<sequence minOccurs="0">
+			<element ref="pf-core:Plot"/>
+		</sequence>
+		<attributeGroup ref="gml:AssociationAttributeGroup"/>
+		<attributeGroup ref="gml:OwnershipAttributeGroup"/>
+	</complexType>
+	<simpleType name="CPACodeValueType">
+		<annotation>
+			<documentation>-- Definition --
+The CPACodeValue code list hosts the reference values for the CPAClassification data type.</documentation>
+		</annotation>
+		<union memberTypes="pf-core:CPACodeValueEnumerationType pf-core:CPACodeValueOtherType"/>
+	</simpleType>
+	<simpleType name="CPACodeValueEnumerationType">
+		<annotation>
+			<documentation>-- Definition --
+The CPACodeValue code list hosts the reference values for the CPAClassification data type.</documentation>
+		</annotation>
+		<restriction base="string"/>
+	</simpleType>
+	<simpleType name="CPACodeValueOtherType">
+		<restriction base="string">
+			<pattern value="other: \w{2,}"/>
+		</restriction>
+	</simpleType>
+	<simpleType name="StatusListValueType">
+		<annotation>
+			<documentation>-- Definition --
+The StatusListValue code list hosts the reference values for the StatusType data type.</documentation>
+		</annotation>
+		<union memberTypes="pf-core:StatusListValueEnumerationType pf-core:StatusListValueOtherType"/>
+	</simpleType>
+	<simpleType name="StatusListValueEnumerationType">
+		<annotation>
+			<documentation>-- Definition --
+The StatusListValue code list hosts the reference values for the StatusType data type.</documentation>
+		</annotation>
+		<restriction base="string">
+			<enumeration value="abandoned"/>
+			<enumeration value="illegal"/>
+			<enumeration value="active"/>
+			<enumeration value="planned"/>
+			<enumeration value="underConstruction"/>
+			<enumeration value="afterCare"/>
+			<enumeration value="passive"/>
+			<enumeration value="underDemolition"/>
+			<enumeration value="inactive"/>
+			<enumeration value="notMonitored"/>
+		</restriction>
+	</simpleType>
+	<simpleType name="StatusListValueOtherType">
+		<restriction base="string">
+			<pattern value="other: \w{2,}"/>
+		</restriction>
+	</simpleType>
+	<simpleType name="PollutionAbatementTechniqueValueType">
+		<annotation>
+			<documentation>-- Definition --
+The PollutionAbatementTechniqueValue code list hosts the reference values for the attribute technique in the InstallationPart class.</documentation>
+		</annotation>
+		<union memberTypes="pf-core:PollutionAbatementTechniqueValueEnumerationType pf-core:PollutionAbatementTechniqueValueOtherType"/>
+	</simpleType>
+	<simpleType name="PollutionAbatementTechniqueValueEnumerationType">
+		<annotation>
+			<documentation>-- Definition --
+The PollutionAbatementTechniqueValue code list hosts the reference values for the attribute technique in the InstallationPart class.</documentation>
+		</annotation>
+		<restriction base="string">
+			<enumeration value="gravitation"/>
+			<enumeration value="dustScrubbers"/>
+			<enumeration value="filtration"/>
+			<enumeration value="condensation"/>
+			<enumeration value="adsorption"/>
+		</restriction>
+	</simpleType>
+	<simpleType name="PollutionAbatementTechniqueValueOtherType">
+		<restriction base="string">
+			<pattern value="other: \w{2,}"/>
+		</restriction>
+	</simpleType>
+	<element name="Site" type="pf-core:SiteType" substitutionGroup="gml:AbstractFeature">
+		<annotation>
+			<documentation>-- Name --
+site
+
+-- Definition --
+The geographical location of the facility or else a piece of land where the facility was, is, or is intended to be located.
+
+-- Description --
+Location with defined geographical boundaries and on which activities under the control of an organization may be carried out. The geographical boundaries may be on land and in water, and include above- and below-surface structures, both natural and man-made.</documentation>
+		</annotation>
+	</element>
+	<complexType name="SiteType">
+		<complexContent>
+			<extension base="gml:AbstractFeatureType">
+				<sequence>
+					<element name="inspireId" type="base:IdentifierPropertyType">
+						<annotation>
+							<documentation>-- Definition --
+External object identifier of the spatial object.
+
+-- Description --
+NOTE  An external object identifier is a unique object identifier published by the responsible body, which may be used by external applications to reference the spatial object. The identifier is an identifier of the spatial object, not an identifier of the real-world phenomenon.</documentation>
+						</annotation>
+					</element>
+					<element name="thematicId" type="string" minOccurs="0">
+						<annotation>
+							<documentation>-- Definition --
+Thematic object identifier (e.g. ICAO location identifiers for airports or NUTS codes for administrative areas).
+
+-- Description --
+It may be the identification code provided by the Member States to identify the object on their own databases.</documentation>
+						</annotation>
+					</element>
+					<element name="geometry" type="gml:MultiSurfacePropertyType" minOccurs="0">
+						<annotation>
+							<documentation>-- Definition --
+Spatial property of the spatial object with a value that is a vector geometry type from ISO 19107.</documentation>
+						</annotation>
+					</element>
+					<element name="name" nillable="true">
+						<annotation>
+							<documentation>-- Definition --
+Official denomination or proper name of the site.</documentation>
+						</annotation>
+						<complexType>
+							<simpleContent>
+								<extension base="string">
+									<attribute name="nilReason" type="gml:NilReasonType"/>
+								</extension>
+							</simpleContent>
+						</complexType>
+					</element>
+					<element name="description" nillable="true">
+						<annotation>
+							<documentation>-- Definition --
+Descriptive statement about the site.</documentation>
+						</annotation>
+						<complexType>
+							<simpleContent>
+								<extension base="string">
+									<attribute name="nilReason" type="gml:NilReasonType"/>
+								</extension>
+							</simpleContent>
+						</complexType>
+					</element>
+					<element name="status" nillable="true" maxOccurs="unbounded">
+						<annotation>
+							<documentation>-- Definition --
+The state or condition of the site, with regard to the functional and operational order, in which it is arranged for a limited or extended time period.</documentation>
+						</annotation>
+						<complexType>
+							<sequence>
+								<element ref="pf-core:StatusType"/>
+							</sequence>
+							<attribute name="nilReason" type="gml:NilReasonType"/>
+						</complexType>
+					</element>
+				</sequence>
+			</extension>
+		</complexContent>
+	</complexType>
+	<complexType name="SitePropertyType">
+		<sequence minOccurs="0">
+			<element ref="pf-core:Site"/>
+		</sequence>
+		<attributeGroup ref="gml:AssociationAttributeGroup"/>
+		<attributeGroup ref="gml:OwnershipAttributeGroup"/>
+	</complexType>
+	<element name="Energy" type="pf-core:EnergyType" substitutionGroup="pf-core:ProcessOutput">
+		<annotation>
+			<documentation>-- Name --
+energy
+
+-- Definition --
+Power derived from physical or chemical resources to provide light and heat or to work machines.</documentation>
+		</annotation>
+	</element>
+	<complexType name="EnergyType">
+		<complexContent>
+			<extension base="pf-core:ProcessOutputType">
+				<sequence>
+					<element name="type" type="string">
+						<annotation>
+							<documentation>-- Definition --
+Special kind of energy involved in the process, potentially as input or output item.</documentation>
+						</annotation>
+					</element>
+				</sequence>
+			</extension>
+		</complexContent>
+	</complexType>
+	<complexType name="EnergyPropertyType">
+		<sequence minOccurs="0">
+			<element ref="pf-core:Energy"/>
+		</sequence>
+		<attributeGroup ref="gml:AssociationAttributeGroup"/>
+		<attributeGroup ref="gml:OwnershipAttributeGroup"/>
+	</complexType>
+	<element name="CPAClassification" type="pf-core:CPAClassificationType" substitutionGroup="gml:AbstractObject">
+		<annotation>
+			<documentation>-- Definition --
+Classification of the product by activity according to the CPA guide lines.
+
+-- Description --
+CPA classification has a hierarchical structure funded on different levels.</documentation>
+		</annotation>
+	</element>
+	<complexType name="CPAClassificationType">
+		<sequence/>
+	</complexType>
+	<complexType name="CPAClassificationPropertyType">
+		<sequence>
+			<element ref="pf-core:CPAClassification"/>
+		</sequence>
+	</complexType>
+	<element name="ProductionAndIndustrialFacility" type="pf-core:ProductionAndIndustrialFacilityType" substitutionGroup="pf-core:Facility">
+		<annotation>
+			<documentation>-- Name --
+production and industrial facility
+
+-- Definition --
+Something designed, built, installed to serve a specific function with production purposes, comprehending the complete equipment or apparatus for a particular process or operation.
+
+-- Description --
+A production facility groups together single installation, set of installations or production processes (stationary or mobile), which can be defined within a single geographical boundary, organizational unit or production process. Means one or more installations located on the same site that are operated by the same natural or legal person and in which production activities are being carried out.</documentation>
+		</annotation>
+	</element>
+	<complexType name="ProductionAndIndustrialFacilityType">
+		<complexContent>
+			<extension base="pf-core:FacilityType">
+				<sequence>
+					<element name="responsiblePerson" nillable="true">
+						<annotation>
+							<documentation>-- Definition --
+Name and surname of the responsible or reference person for the facility.</documentation>
+						</annotation>
+						<complexType>
+							<simpleContent>
+								<extension base="string">
+									<attribute name="nilReason" type="gml:NilReasonType"/>
+								</extension>
+							</simpleContent>
+						</complexType>
+					</element>
+					<element name="numberOfEmployees" nillable="true">
+						<annotation>
+							<documentation>-- Definition --
+People working in the facility. 
+
+-- Description --
+This Information is required by the SEVESO Directive.</documentation>
+						</annotation>
+						<complexType>
+							<simpleContent>
+								<extension base="integer">
+									<attribute name="nilReason" type="gml:NilReasonType"/>
+								</extension>
+							</simpleContent>
+						</complexType>
+					</element>
+					<element name="numberOfInstallations" nillable="true">
+						<annotation>
+							<documentation>-- Definition --
+Number of installations grouped by the facility. 
+
+-- Description --
+This Information is required by the SEVESO Directive.</documentation>
+						</annotation>
+						<complexType>
+							<simpleContent>
+								<extension base="integer">
+									<attribute name="nilReason" type="gml:NilReasonType"/>
+								</extension>
+							</simpleContent>
+						</complexType>
+					</element>
+					<element name="holderOf" type="pf-core:OperatorPropertyType" maxOccurs="unbounded">
+						<annotation>
+							<documentation>An Operator may be declared as the holder of one to many ProductionAndIndustrialFacilities</documentation>
+							<appinfo>
+								<reversePropertyName xmlns="http://www.opengis.net/gml/3.2">pf-core:managedBy</reversePropertyName>
+							</appinfo>
+						</annotation>
+					</element>
+				</sequence>
+			</extension>
+		</complexContent>
+	</complexType>
+	<complexType name="ProductionAndIndustrialFacilityPropertyType">
+		<sequence minOccurs="0">
+			<element ref="pf-core:ProductionAndIndustrialFacility"/>
+		</sequence>
+		<attributeGroup ref="gml:AssociationAttributeGroup"/>
+		<attributeGroup ref="gml:OwnershipAttributeGroup"/>
+	</complexType>
+	<simpleType name="E-PRTRCodeValueType">
+		<annotation>
+			<documentation>-- Definition --
+The E-PRTRCodeValue code list hosts the reference values for the E-PRTRClassification data type.</documentation>
+		</annotation>
+		<union memberTypes="pf-core:E-PRTRCodeValueEnumerationType pf-core:E-PRTRCodeValueOtherType"/>
+	</simpleType>
+	<simpleType name="E-PRTRCodeValueEnumerationType">
+		<annotation>
+			<documentation>-- Definition --
+The E-PRTRCodeValue code list hosts the reference values for the E-PRTRClassification data type.</documentation>
+		</annotation>
+		<restriction base="string"/>
+	</simpleType>
+	<simpleType name="E-PRTRCodeValueOtherType">
+		<restriction base="string">
+			<pattern value="other: \w{2,}"/>
+		</restriction>
+	</simpleType>
+	<element name="TechnicalUnit" type="pf-core:TechnicalUnitType" abstract="true" substitutionGroup="gml:AbstractFeature">
+		<annotation>
+			<documentation>-- Name --
+technical unit
+
+-- Definition --
+Represents the common "abstract level" for production infrastructures: facilities, installations, installation parts. 
+
+
+-- Description --
+It applies where the production infrastructures (facility, installation, installation part) may have an equivalent behaviour.</documentation>
+		</annotation>
+	</element>
+	<complexType name="TechnicalUnitType" abstract="true">
+		<complexContent>
+			<extension base="gml:AbstractFeatureType">
+				<sequence>
+					<element name="performedBy" type="pf-core:ProductionProcessPropertyType" maxOccurs="unbounded">
+						<annotation>
+							<documentation>An Activity may be performed by one or more TechnicalUnits (this means an Activity may be shared by different TechnicalUnits)</documentation>
+						</annotation>
+					</element>
+				</sequence>
+			</extension>
+		</complexContent>
+	</complexType>
+	<complexType name="TechnicalUnitPropertyType">
+		<sequence minOccurs="0">
+			<element ref="pf-core:TechnicalUnit"/>
+		</sequence>
+		<attributeGroup ref="gml:AssociationAttributeGroup"/>
+		<attributeGroup ref="gml:OwnershipAttributeGroup"/>
+	</complexType>
+	<element name="Emission" type="pf-core:EmissionType" substitutionGroup="pf-core:ProcessOutput">
+		<annotation>
+			<documentation>-- Name --
+emission
+
+-- Definition --
+The direct or indirect release of substances, vibrations, heat or noise from individual or diffuse sources in the plant into the air, water or soil.</documentation>
+		</annotation>
+	</element>
+	<complexType name="EmissionType">
+		<complexContent>
+			<extension base="pf-core:ProcessOutputType">
+				<sequence>
+					<element name="heightOfEmissionPoint" type="gml:MeasureType">
+						<annotation>
+							<documentation>-- Definition --
+The spatial location of the emission fixed as the vertical distance from the ground level.</documentation>
+						</annotation>
+					</element>
+					<element name="areaOfEmission" type="gml:MeasureType">
+						<annotation>
+							<documentation>-- Definition --
+The surface extension related to the emission point, fixed as the area of the smokestack from where the emission comes out.</documentation>
+						</annotation>
+					</element>
+					<element name="type" type="pf-core:EmissionTypeValueType">
+						<annotation>
+							<documentation>-- Definition --
+Special kind of emission released into the environment, denoting the destination it is devoted to.</documentation>
+						</annotation>
+					</element>
+					<element name="flowAmount" type="gml:MeasureType">
+						<annotation>
+							<documentation>-- Definition --
+The flood related to the emission point, fixed as the flow amount coming out from the smokestack.
+
+-- Description --
+The unit of measure normally used is m3 /h and the reference parameters 0°C for temperature and 0,101MPa for pressure.</documentation>
+						</annotation>
+					</element>
+					<element name="flowDuration" type="gml:MeasureType">
+						<annotation>
+							<documentation>-- Definition --
+The flood period of time related to the emission point, fixed as the duration of the flow coming out from the smokestack.
+
+-- Description --
+The unit of measure normally used is hour/day.</documentation>
+						</annotation>
+					</element>
+					<element name="flowTemperature" type="gml:MeasureType">
+						<annotation>
+							<documentation>-- Definition --
+The warmth related to the emission point, fixed as the temperature of the flow coming out from the smokestack.
+
+-- Description --
+The unit of measure normally used is °C.</documentation>
+						</annotation>
+					</element>
+					<element name="ambientTemperature" type="gml:MeasureType">
+						<annotation>
+							<documentation>-- Definition --
+The external temperature in the surroundings of the emission point.
+
+-- Description --
+The unit of measure normally used is °C.</documentation>
+						</annotation>
+					</element>
+					<element name="pollutantSubstance" type="pf-core:CLPClassificationPropertyType" minOccurs="0" maxOccurs="unbounded">
+						<annotation>
+							<documentation>-- Definition --
+The pollution related to the emission point, fixed as the pollutant substance kind coming out from the smokestack.
+
+-- Description --
+The classification of pollutant substances is made according to the Council Directive 67/548/EEC  and the Council Directive 1999/45/EC.</documentation>
+						</annotation>
+					</element>
+					<element name="pollutantConcentration" type="gml:MeasureType" minOccurs="0" maxOccurs="unbounded">
+						<annotation>
+							<documentation>-- Definition --
+The pollution related to the emission point, fixed as the pollutant concentration coming out from the smokestack.
+
+-- Description --
+The unit of measure normally used is mg/m3.</documentation>
+						</annotation>
+					</element>
+					<element name="measurementRegistration" type="dateTime">
+						<annotation>
+							<documentation>-- Definition --
+The temporal reference related to the emission, fixed as the time the flow and temperature measurements were registered.</documentation>
+						</annotation>
+					</element>
+				</sequence>
+			</extension>
+		</complexContent>
+	</complexType>
+	<complexType name="EmissionPropertyType">
+		<sequence minOccurs="0">
+			<element ref="pf-core:Emission"/>
+		</sequence>
+		<attributeGroup ref="gml:AssociationAttributeGroup"/>
+		<attributeGroup ref="gml:OwnershipAttributeGroup"/>
+	</complexType>
+	<simpleType name="EmissionTypeValueType">
+		<annotation>
+			<documentation>-- Definition --
+The EmissionTypeValue enumeration hosts the reference values for the attribute type in the Emission class.</documentation>
+		</annotation>
+		<restriction base="string">
+			<enumeration value="airEmission"/>
+			<enumeration value="waterEmission"/>
+			<enumeration value="soilEmission"/>
+		</restriction>
+	</simpleType>
+	<element name="StatusType" type="pf-core:StatusTypeType" substitutionGroup="gml:AbstractObject">
+		<annotation>
+			<documentation>-- Definition --
+The state or condition of a technical component, with regard to the functional and operational order, in which it is arranged for a limited or extended time period.
+
+-- Description --
+It applies equally to the technical unit (facility, installation or installation part), to the site, to the plot and to the production and industrial building.</documentation>
+		</annotation>
+	</element>
+	<complexType name="StatusTypeType">
+		<sequence>
+			<element name="statusType" type="pf-core:StatusListValueType">
+				<annotation>
+					<documentation>-- Definition --
+The state or condition of a technical component referring to a list of predefined potential values.
+
+-- Description --
+The reference values are holded in the StatusList code list.</documentation>
+				</annotation>
+			</element>
+			<element name="description" type="string" minOccurs="0">
+				<annotation>
+					<documentation>-- Definition --
+Descriptive statement about the declared status.</documentation>
+				</annotation>
+			</element>
+			<element name="validFrom" nillable="true">
+				<annotation>
+					<documentation>-- Definition --
+The starting time of validity for a status type.
+
+-- Description --
+A date gives values for year, month and day.</documentation>
+				</annotation>
+				<complexType>
+					<simpleContent>
+						<extension base="date">
+							<attribute name="nilReason" type="gml:NilReasonType"/>
+						</extension>
+					</simpleContent>
+				</complexType>
+			</element>
+			<element name="validTo" nillable="true" minOccurs="0">
+				<annotation>
+					<documentation>-- Definition --
+The ending time of validity for a status type.
+
+-- Description --
+A date gives values for year, month and day.</documentation>
+				</annotation>
+				<complexType>
+					<simpleContent>
+						<extension base="date">
+							<attribute name="nilReason" type="gml:NilReasonType"/>
+						</extension>
+					</simpleContent>
+				</complexType>
+			</element>
+		</sequence>
+	</complexType>
+	<complexType name="StatusTypePropertyType">
+		<sequence>
+			<element ref="pf-core:StatusType"/>
+		</sequence>
+	</complexType>
+	<element name="ProcessOutput" type="pf-core:ProcessOutputType" substitutionGroup="gml:AbstractFeature">
+		<annotation>
+			<documentation>-- Name --
+process output
+
+-- Definition --
+Any kind of energy, waste, product, emission springing from a production cycle.</documentation>
+		</annotation>
+	</element>
+	<complexType name="ProcessOutputType">
+		<complexContent>
+			<extension base="gml:AbstractFeatureType">
+				<sequence>
+					<element name="inspireId" type="base:IdentifierPropertyType">
+						<annotation>
+							<documentation>-- Definition --
+External object identifier of the object.
+
+-- Description --
+NOTE  An external object identifier is a unique object identifier published by the responsible body, which may be used by external applications to reference the object. The identifier is an identifier of the object, not an identifier of the real-world phenomenon.</documentation>
+						</annotation>
+					</element>
+					<element name="amount" nillable="true">
+						<annotation>
+							<documentation>-- Definition --
+Declared or measured quantity of any kind of energy, waste, product, emission springing from a production cycle.</documentation>
+						</annotation>
+						<complexType>
+							<simpleContent>
+								<extension base="gml:MeasureType">
+									<attribute name="nilReason" type="gml:NilReasonType"/>
+								</extension>
+							</simpleContent>
+						</complexType>
+					</element>
+				</sequence>
+			</extension>
+		</complexContent>
+	</complexType>
+	<complexType name="ProcessOutputPropertyType">
+		<sequence minOccurs="0">
+			<element ref="pf-core:ProcessOutput"/>
+		</sequence>
+		<attributeGroup ref="gml:AssociationAttributeGroup"/>
+		<attributeGroup ref="gml:OwnershipAttributeGroup"/>
+	</complexType>
+	<element name="Waste" type="pf-core:WasteType" substitutionGroup="pf-core:ProcessOutput">
+		<annotation>
+			<documentation>-- Name --
+waste
+
+-- Definition --
+Any substance or object which the holder discards or intends or is required to discard.</documentation>
+		</annotation>
+	</element>
+	<complexType name="WasteType">
+		<complexContent>
+			<extension base="pf-core:ProcessOutputType">
+				<sequence>
+					<element name="EWC" type="pf-core:EWCClassificationPropertyType">
+						<annotation>
+							<documentation>-- Definition --
+Classification of waste according to the Council Directive 75/442/EEC and the Council Directive 91/689/EEC.</documentation>
+						</annotation>
+					</element>
+				</sequence>
+			</extension>
+		</complexContent>
+	</complexType>
+	<complexType name="WastePropertyType">
+		<sequence minOccurs="0">
+			<element ref="pf-core:Waste"/>
+		</sequence>
+		<attributeGroup ref="gml:AssociationAttributeGroup"/>
+		<attributeGroup ref="gml:OwnershipAttributeGroup"/>
+	</complexType>
+	<element name="Activity" type="pf-core:ActivityType" substitutionGroup="gml:AbstractFeature">
+		<annotation>
+			<documentation>-- Name --
+activity
+
+-- Definition --
+In the production context the individual or organized set of processes finalized with the production of consuming goods.
+
+-- Description --
+Processing typically describes the act of taking something through an established and usually routine set of procedures to convert it from one form to another, such as a manufacturing. One or more activities may be performed in the facility or smaller unit of the facility (that is an installation or an installation part).</documentation>
+		</annotation>
+	</element>
+	<complexType name="ActivityType">
+		<complexContent>
+			<extension base="gml:AbstractFeatureType">
+				<sequence>
+					<element name="inspireId" type="base:IdentifierPropertyType">
+						<annotation>
+							<documentation>-- Definition --
+External object identifier of the object.
+
+-- Description --
+NOTE  An external object identifier is a unique object identifier published by the responsible body, which may be used by external applications to reference the object. The identifier is an identifier of the object, not an identifier of the real-world phenomenon.</documentation>
+						</annotation>
+					</element>
+					<element name="NACE" type="pf-core:NACEClassificationPropertyType">
+						<annotation>
+							<documentation>-- Definition --
+Classification of the activity according to the Council Regulation 3037/90/EEC.</documentation>
+						</annotation>
+					</element>
+					<element name="IPPC" nillable="true">
+						<annotation>
+							<documentation>-- Definition --
+Classification of the activity according to the Council Regulation 96/61/EC.</documentation>
+						</annotation>
+						<complexType>
+							<sequence>
+								<element ref="pf-core:IPPCClassification"/>
+							</sequence>
+							<attribute name="nilReason" type="gml:NilReasonType"/>
+						</complexType>
+					</element>
+					<element name="E-PRTR" nillable="true">
+						<annotation>
+							<documentation>-- Definition --
+Classification of the activity according to the E-PRTR register.</documentation>
+						</annotation>
+						<complexType>
+							<sequence>
+								<element ref="pf-core:E-PRTRClassification"/>
+							</sequence>
+							<attribute name="nilReason" type="gml:NilReasonType"/>
+						</complexType>
+					</element>
+					<element name="description" nillable="true">
+						<annotation>
+							<documentation>-- Definition --
+Descriptive statement about the activity in line with the declared classification from legislation.</documentation>
+						</annotation>
+						<complexType>
+							<simpleContent>
+								<extension base="string">
+									<attribute name="nilReason" type="gml:NilReasonType"/>
+								</extension>
+							</simpleContent>
+						</complexType>
+					</element>
+					<element name="numberOfEmployees" nillable="true">
+						<annotation>
+							<documentation>-- Definition --
+People working in the facility and devoted to one specific activity performed in the facility or smaller unit of the facility (that is an installation or an installation part).</documentation>
+						</annotation>
+						<complexType>
+							<simpleContent>
+								<extension base="integer">
+									<attribute name="nilReason" type="gml:NilReasonType"/>
+								</extension>
+							</simpleContent>
+						</complexType>
+					</element>
+				</sequence>
+			</extension>
+		</complexContent>
+	</complexType>
+	<complexType name="ActivityPropertyType">
+		<sequence minOccurs="0">
+			<element ref="pf-core:Activity"/>
+		</sequence>
+		<attributeGroup ref="gml:AssociationAttributeGroup"/>
+		<attributeGroup ref="gml:OwnershipAttributeGroup"/>
+	</complexType>
+	<element name="Permission" type="pf-core:PermissionType" substitutionGroup="gml:AbstractObject">
+		<annotation>
+			<documentation>-- Definition --
+Permit obtained by the facility thanks to a an authorisation process regulated by a responsible authority.</documentation>
+		</annotation>
+	</element>
+	<complexType name="PermissionType">
+		<sequence>
+			<element name="description" type="string">
+				<annotation>
+					<documentation>-- Definition --
+Descriptive statement about the licenced permit.</documentation>
+				</annotation>
+			</element>
+			<element name="validFrom" type="date">
+				<annotation>
+					<documentation>-- Definition --
+The starting time of validity for the permit.
+
+-- Description --
+A date gives values for year, month and day.</documentation>
+				</annotation>
+			</element>
+			<element name="validTo" type="date" minOccurs="0">
+				<annotation>
+					<documentation>-- Definition --
+The ending time of validity for the permit.
+
+-- Description --
+A date gives values for year, month and day.</documentation>
+				</annotation>
+			</element>
+		</sequence>
+	</complexType>
+	<complexType name="PermissionPropertyType">
+		<sequence>
+			<element ref="pf-core:Permission"/>
+		</sequence>
+	</complexType>
+	<element name="E-PRTRClassification" type="pf-core:E-PRTRClassificationType" substitutionGroup="gml:AbstractObject">
+		<annotation>
+			<documentation>-- Definition --
+Classification of the activity according to the E-PRTR register.
+
+-- Description --
+E-PRTR classification has a hierarchical structure funded on different levels.</documentation>
+		</annotation>
+	</element>
+	<complexType name="E-PRTRClassificationType">
+		<sequence>
+			<element name="E-PRTRClassification" type="pf-core:E-PRTRCodeValueType">
+				<annotation>
+					<documentation>-- Definition --
+Classification of the activity according to the E-PRTR register referring to a list of predefined potential values.
+
+-- Description --
+The reference values are holded and listed in the E-PRTRCodeValue code list.</documentation>
+				</annotation>
+			</element>
+		</sequence>
+	</complexType>
+	<complexType name="E-PRTRClassificationPropertyType">
+		<sequence>
+			<element ref="pf-core:E-PRTRClassification"/>
+		</sequence>
+	</complexType>
+	<element name="Installation" type="pf-core:InstallationType" substitutionGroup="pf-core:TechnicalUnit">
+		<annotation>
+			<documentation>-- Name --
+installation
+
+-- Definition --
+Something installed, such as machinery, an apparatus, a device, a system, or a piece of equipment placed in position or connected for use.
+
+-- Description --
+Stationary technical unit part of a facility where one or more activities are carried out, and any other directly associated activities which have a technical connection to the activities carried out on that site and which could have an effect on emissions and pollution.
+May be a technical unit within an establishment in which dangerous substances are produced, used, handled or stored.</documentation>
+		</annotation>
+	</element>
+	<complexType name="InstallationType">
+		<complexContent>
+			<extension base="pf-core:TechnicalUnitType">
+				<sequence>
+					<element name="inspireId" type="base:IdentifierPropertyType">
+						<annotation>
+							<documentation>-- Definition --
+External object identifier of the spatial object.
+
+-- Description --
+NOTE  An external object identifier is a unique object identifier published by the responsible body, which may be used by external applications to reference the spatial object. The identifier is an identifier of the spatial object, not an identifier of the real-world phenomenon.</documentation>
+						</annotation>
+					</element>
+					<element name="thematicId" type="string" minOccurs="0">
+						<annotation>
+							<documentation>-- Definition --
+Thematic object identifier (e.g. ICAO location identifiers for airports or NUTS codes for administrative areas).
+
+-- Description --
+It may be the identification code provided by the Member States to identify the object on their own databases.</documentation>
+						</annotation>
+					</element>
+					<element name="geometry1" type="gml:PointPropertyType" minOccurs="0">
+						<annotation>
+							<documentation>-- Definition --
+Spatial property of the spatial object with a value that is a vector geometry type from ISO 19107.</documentation>
+						</annotation>
+					</element>
+					<element name="geometry2" type="gml:SurfacePropertyType" minOccurs="0">
+						<annotation>
+							<documentation>-- Definition --
+Spatial property of the spatial object with a value that is a vector geometry type from ISO 19107.</documentation>
+						</annotation>
+					</element>
+					<element name="name" nillable="true">
+						<annotation>
+							<documentation>-- Definition --
+Official denomination or proper name of the installation.</documentation>
+						</annotation>
+						<complexType>
+							<simpleContent>
+								<extension base="string">
+									<attribute name="nilReason" type="gml:NilReasonType"/>
+								</extension>
+							</simpleContent>
+						</complexType>
+					</element>
+					<element name="description" nillable="true">
+						<annotation>
+							<documentation>-- Definition --
+Descriptive statement about the installation.</documentation>
+						</annotation>
+						<complexType>
+							<simpleContent>
+								<extension base="string">
+									<attribute name="nilReason" type="gml:NilReasonType"/>
+								</extension>
+							</simpleContent>
+						</complexType>
+					</element>
+					<element name="status" nillable="true" maxOccurs="unbounded">
+						<annotation>
+							<documentation>-- Definition --
+The state or condition of the installation, with regard to the functional and operational order, in which it is arranged for a limited or extended time period.</documentation>
+						</annotation>
+						<complexType>
+							<sequence>
+								<element ref="pf-core:StatusType"/>
+							</sequence>
+							<attribute name="nilReason" type="gml:NilReasonType"/>
+						</complexType>
+					</element>
+					<element name="type" nillable="true">
+						<annotation>
+							<documentation>-- Definition --
+Special kind of an installation, denoting the operative function which has to be performed.
+
+-- Description --
+EXAMPLE  Radiological installation, containing radiological equipment.</documentation>
+						</annotation>
+						<complexType>
+							<simpleContent>
+								<extension base="string">
+									<attribute name="nilReason" type="gml:NilReasonType"/>
+								</extension>
+							</simpleContent>
+						</complexType>
+					</element>
+					<element name="isRealizedOn" type="pf-ext:OperationPropertyType" minOccurs="0" maxOccurs="unbounded">
+						<annotation>
+							<appinfo>
+								<reversePropertyName xmlns="http://www.opengis.net/gml/3.2">pf-ext:Realize</reversePropertyName>
+							</appinfo>
+						</annotation>
+					</element>
+					<element name="groupedBy" type="pf-core:InstallationPartPropertyType" minOccurs="0" maxOccurs="unbounded">
+						<annotation>
+							<documentation>An InstallationPart is grouped by one Installation</documentation>
+						</annotation>
+					</element>
+				</sequence>
+			</extension>
+		</complexContent>
+	</complexType>
+	<complexType name="InstallationPropertyType">
+		<sequence minOccurs="0">
+			<element ref="pf-core:Installation"/>
+		</sequence>
+		<attributeGroup ref="gml:AssociationAttributeGroup"/>
+		<attributeGroup ref="gml:OwnershipAttributeGroup"/>
+	</complexType>
+	<element name="Measure" type="pf-core:MeasureType" substitutionGroup="gml:AbstractObject">
+		<annotation>
+			<documentation>-- Definition --
+Declared or measured quantity of any kind of physical entity.</documentation>
+		</annotation>
+	</element>
+	<complexType name="MeasureType">
+		<sequence>
+			<element name="value" type="double">
+				<annotation>
+					<documentation>-- Definition --
+Declared or measured physical size expressed as a numerical quantity.
+
+-- Description --
+The data format is decimal. Decimal is a data type in which the number represents an exact value, as a finite representation of a decimal number.</documentation>
+				</annotation>
+			</element>
+			<element name="unitOfMeasure" type="string">
+				<annotation>
+					<documentation>-- Definition --
+Unit of measure accompanying the numerical quantity declared or measured for a physical entity.</documentation>
+				</annotation>
+			</element>
+		</sequence>
+	</complexType>
+	<complexType name="MeasurePropertyType">
+		<sequence>
+			<element ref="pf-core:Measure"/>
+		</sequence>
+	</complexType>
+	<simpleType name="CLPCodeValueType">
+		<annotation>
+			<documentation>-- Definition --
+The CLPCodeValue code list hosts the reference values for the CLPClassification data type.</documentation>
+		</annotation>
+		<union memberTypes="pf-core:CLPCodeValueEnumerationType pf-core:CLPCodeValueOtherType"/>
+	</simpleType>
+	<simpleType name="CLPCodeValueEnumerationType">
+		<annotation>
+			<documentation>-- Definition --
+The CLPCodeValue code list hosts the reference values for the CLPClassification data type.</documentation>
+		</annotation>
+		<restriction base="string"/>
+	</simpleType>
+	<simpleType name="CLPCodeValueOtherType">
+		<restriction base="string">
+			<pattern value="other: \w{2,}"/>
+		</restriction>
+	</simpleType>
+	<simpleType name="IPPCCodeValueType">
+		<annotation>
+			<documentation>-- Definition --
+The IPPCCodeValue code list hosts the reference values for the IPPCClassification data type.</documentation>
+		</annotation>
+		<union memberTypes="pf-core:IPPCCodeValueEnumerationType pf-core:IPPCCodeValueOtherType"/>
+	</simpleType>
+	<simpleType name="IPPCCodeValueEnumerationType">
+		<annotation>
+			<documentation>-- Definition --
+The IPPCCodeValue code list hosts the reference values for the IPPCClassification data type.</documentation>
+		</annotation>
+		<restriction base="string"/>
+	</simpleType>
+	<simpleType name="IPPCCodeValueOtherType">
+		<restriction base="string">
+			<pattern value="other: \w{2,}"/>
+		</restriction>
+	</simpleType>
+	<element name="ProductionAndIndustrialBuilding" type="pf-core:ProductionAndIndustrialBuildingType" substitutionGroup="bu-core2d:AbstractBuilding">
+		<annotation>
+			<documentation>-- Name --
+production and industrial building
+
+-- Definition --
+Artificial construction, part of the production facility that are useful to host or provide shelter to activity development.
+
+-- Description --
+Inside a facility, and in relation with the definition of building, this entity should represent a construction under responsibility of the facility, either as an independent unit or as a functional infrastructure for an installation.</documentation>
+		</annotation>
+	</element>
+	<complexType name="ProductionAndIndustrialBuildingType">
+		<complexContent>
+			<extension base="bu-core2d:AbstractBuildingType">
+				<sequence>
+					<element name="thematicId" type="string" minOccurs="0">
+						<annotation>
+							<documentation>-- Definition --
+Thematic object identifier (e.g. ICAO location identifiers for airports or NUTS codes for administrative areas).
+
+-- Description --
+It may be the identification code provided by the Member States to identify the object on their own databases.</documentation>
+						</annotation>
+					</element>
+					<element name="description" nillable="true">
+						<annotation>
+							<documentation>-- Definition -- 
+Descriptive statement about the production and industrial building.</documentation>
+						</annotation>
+						<complexType>
+							<simpleContent>
+								<extension base="string">
+									<attribute name="nilReason" type="gml:NilReasonType"/>
+								</extension>
+							</simpleContent>
+						</complexType>
+					</element>
+					<element name="status" nillable="true" maxOccurs="unbounded">
+						<annotation>
+							<documentation>-- Definition --
+The state or condition of the production and industrial building, with regard to the functional and operational order, in which it is arranged for a limited or extended time period.</documentation>
+						</annotation>
+						<complexType>
+							<sequence>
+								<element ref="pf-core:StatusType"/>
+							</sequence>
+							<attribute name="nilReason" type="gml:NilReasonType"/>
+						</complexType>
+					</element>
+					<element name="isRealisedOn" type="pf-ext:OperationPropertyType" minOccurs="0" maxOccurs="unbounded">
+						<annotation>
+							<appinfo>
+								<reversePropertyName xmlns="http://www.opengis.net/gml/3.2">pf-ext:Realize</reversePropertyName>
+							</appinfo>
+						</annotation>
+					</element>
+				</sequence>
+			</extension>
+		</complexContent>
+	</complexType>
+	<complexType name="ProductionAndIndustrialBuildingPropertyType">
+		<sequence minOccurs="0">
+			<element ref="pf-core:ProductionAndIndustrialBuilding"/>
+		</sequence>
+		<attributeGroup ref="gml:AssociationAttributeGroup"/>
+		<attributeGroup ref="gml:OwnershipAttributeGroup"/>
+	</complexType>
+	<element name="Product" type="pf-core:ProductType" substitutionGroup="pf-core:ProcessOutput">
+		<annotation>
+			<documentation>-- Name --
+product
+
+-- Definition -- 
+Something that is produced, result of manufacturing, a result of an action or a process.
+
+-- Description --
+SOURCE: Standard Classification of Economic Products, Annex Regulation (EC) n. 451/2008.</documentation>
+		</annotation>
+	</element>
+	<complexType name="ProductType">
+		<complexContent>
+			<extension base="pf-core:ProcessOutputType">
+				<sequence>
+					<element name="CPA" type="pf-core:CPAClassificationPropertyType">
+						<annotation>
+							<documentation>-- Definition --
+Classification of the product by activity according to the CPA guide lines.
+
+-- Description --
+Classification of Products by Activity (CPA) classifies products by activity in which they are produced. Products are transportable goods and services.</documentation>
+						</annotation>
+					</element>
+					<element name="description" nillable="true">
+						<annotation>
+							<documentation>-- Definition --
+Descriptive statement about the product in line with the declared classification.</documentation>
+						</annotation>
+						<complexType>
+							<simpleContent>
+								<extension base="string">
+									<attribute name="nilReason" type="gml:NilReasonType"/>
+								</extension>
+							</simpleContent>
+						</complexType>
+					</element>
+				</sequence>
+			</extension>
+		</complexContent>
+	</complexType>
+	<complexType name="ProductPropertyType">
+		<sequence minOccurs="0">
+			<element ref="pf-core:Product"/>
+		</sequence>
+		<attributeGroup ref="gml:AssociationAttributeGroup"/>
+		<attributeGroup ref="gml:OwnershipAttributeGroup"/>
+	</complexType>
+	<element name="IPPCClassification" type="pf-core:IPPCClassificationType" substitutionGroup="gml:AbstractObject">
+		<annotation>
+			<documentation>-- Definition --
+Classification of the activity according to the Council Regulation 96/61/EC.
+
+-- Description --
+IPPC classification has a hierarchical structure funded on different levels.</documentation>
+		</annotation>
+	</element>
+	<complexType name="IPPCClassificationType">
+		<sequence>
+			<element name="IPPCClassification" type="pf-core:IPPCCodeValueType">
+				<annotation>
+					<documentation>-- Definition --
+Classification of the activity according to the Council Regulation 96/61/EC referring to a list of predefined potential values.
+
+-- Description --
+The reference values are holded and listed in the IPPCCodeValue code list.</documentation>
+				</annotation>
+			</element>
+		</sequence>
+	</complexType>
+	<complexType name="IPPCClassificationPropertyType">
+		<sequence>
+			<element ref="pf-core:IPPCClassification"/>
+		</sequence>
+	</complexType>
+	<element name="InstallationPart" type="pf-core:InstallationPartType" substitutionGroup="pf-core:TechnicalUnit">
+		<annotation>
+			<documentation>-- Name --
+installation part
+
+-- Definition --
+Specific technical part of the installation which is developing a representative functionality that should be registered under the legislation.
+
+--Description --
+This level of description should be applied for specific parts of the facility which must be registered following the legislation. Points of certain kind of emission as chimneys (for pollutants) or tanks (for special products), would be included in this level.</documentation>
+		</annotation>
+	</element>
+	<complexType name="InstallationPartType">
+		<complexContent>
+			<extension base="pf-core:TechnicalUnitType">
+				<sequence>
+					<element name="inspireId" type="base:IdentifierPropertyType">
+						<annotation>
+							<documentation>-- Definition --
+External object identifier of the spatial object.
+
+-- Description --
+NOTE  An external object identifier is a unique object identifier published by the responsible body, which may be used by external applications to reference the spatial object. The identifier is an identifier of the spatial object, not an identifier of the real-world phenomenon.</documentation>
+						</annotation>
+					</element>
+					<element name="thematicId" type="string" minOccurs="0">
+						<annotation>
+							<documentation>-- Definition --
+Thematic object identifier (e.g. ICAO location identifiers for airports or NUTS codes for administrative areas).
+
+-- Description --
+It may be the identification code provided by the Member States to identify the object on their own databases.</documentation>
+						</annotation>
+					</element>
+					<element name="geometry" type="gml:PointPropertyType" minOccurs="0">
+						<annotation>
+							<documentation>-- Definition --
+Spatial property of the spatial object with a value that is a vector geometry type from ISO 19107.</documentation>
+						</annotation>
+					</element>
+					<element name="name" nillable="true">
+						<annotation>
+							<documentation>-- Definition --
+Official denomination or proper name of the installation part.</documentation>
+						</annotation>
+						<complexType>
+							<simpleContent>
+								<extension base="string">
+									<attribute name="nilReason" type="gml:NilReasonType"/>
+								</extension>
+							</simpleContent>
+						</complexType>
+					</element>
+					<element name="description" nillable="true">
+						<annotation>
+							<documentation>-- Definition --
+Descriptive statement about the installation part.</documentation>
+						</annotation>
+						<complexType>
+							<simpleContent>
+								<extension base="string">
+									<attribute name="nilReason" type="gml:NilReasonType"/>
+								</extension>
+							</simpleContent>
+						</complexType>
+					</element>
+					<element name="status" nillable="true" maxOccurs="unbounded">
+						<annotation>
+							<documentation>-- Definition --
+The state or condition of the installation part, with regard to the functional and operational order, in which it is arranged for a limited or extended time period.</documentation>
+						</annotation>
+						<complexType>
+							<sequence>
+								<element ref="pf-core:StatusType"/>
+							</sequence>
+							<attribute name="nilReason" type="gml:NilReasonType"/>
+						</complexType>
+					</element>
+					<element name="type" nillable="true">
+						<annotation>
+							<documentation>-- Definition --
+Special kind of an installation part, denoting the operative function which has to be performed.
+
+-- Description --
+EXAMPLE  Chimney, pump.</documentation>
+						</annotation>
+						<complexType>
+							<simpleContent>
+								<extension base="string">
+									<attribute name="nilReason" type="gml:NilReasonType"/>
+								</extension>
+							</simpleContent>
+						</complexType>
+					</element>
+					<element name="technique" nillable="true">
+						<annotation>
+							<documentation>-- Definition --
+Method to reduce pollutant concentration due to the emissions of a technical component, tipically a chimney.
+
+-- Description --
+This information is referring to a list of predefined potential values.
+The reference values are holded in the PollutionAbatementTechnique code list.</documentation>
+						</annotation>
+						<complexType>
+							<simpleContent>
+								<extension base="pf-core:PollutionAbatementTechniqueValueType">
+									<attribute name="nilReason" type="gml:NilReasonType"/>
+								</extension>
+							</simpleContent>
+						</complexType>
+					</element>
+					<element name="isRealisedOn" type="pf-ext:OperationPropertyType" minOccurs="0" maxOccurs="unbounded">
+						<annotation>
+							<appinfo>
+								<reversePropertyName xmlns="http://www.opengis.net/gml/3.2">pf-ext:realize</reversePropertyName>
+							</appinfo>
+						</annotation>
+					</element>
+				</sequence>
+			</extension>
+		</complexContent>
+	</complexType>
+	<complexType name="InstallationPartPropertyType">
+		<sequence minOccurs="0">
+			<element ref="pf-core:InstallationPart"/>
+		</sequence>
+		<attributeGroup ref="gml:AssociationAttributeGroup"/>
+		<attributeGroup ref="gml:OwnershipAttributeGroup"/>
+	</complexType>
+	<element name="Facility" type="pf-core:FacilityType" substitutionGroup="pf-core:TechnicalUnit">
+		<annotation>
+			<documentation>-- Name --
+facility
+
+-- Definition --
+Something designed, built, installed to serve a specific function, comprehending the complete equipment or apparatus for a particular process or operation.
+
+-- Description --
+A facility groups together one or more installations on the same site that are operated by the same natural or legal person and potentially the land, buildings, and equipment used in carrying on an industrial, business, or other undertaking or service.</documentation>
+		</annotation>
+	</element>
+	<complexType name="FacilityType">
+		<complexContent>
+			<extension base="pf-core:TechnicalUnitType">
+				<sequence>
+					<element name="inspireId" type="base:IdentifierPropertyType">
+						<annotation>
+							<documentation>-- Definition --
+External object identifier of the spatial object.
+
+-- Description --
+NOTE  An external object identifier is a unique object identifier published by the responsible body, which may be used by external applications to reference the spatial object. The identifier is an identifier of the spatial object, not an identifier of the real-world phenomenon.</documentation>
+						</annotation>
+					</element>
+					<element name="thematicId" type="string" minOccurs="0">
+						<annotation>
+							<documentation>-- Definition --
+Thematic object identifier (e.g. ICAO location identifiers for airports or NUTS codes for administrative areas).
+
+-- Description --
+It may be the identification code provided by the Member States to identify the object on their own databases.</documentation>
+						</annotation>
+					</element>
+					<element name="geometry1" type="gml:PointPropertyType">
+						<annotation>
+							<documentation>-- Definition --
+Spatial property of the spatial object with a value that is a vector geometry type from ISO 19107.</documentation>
+						</annotation>
+					</element>
+					<element name="geometry2" type="gml:SurfacePropertyType" minOccurs="0">
+						<annotation>
+							<documentation>-- Definition --
+Spatial property of the spatial object with a value that is a vector geometry type from ISO 19107.</documentation>
+						</annotation>
+					</element>
+					<element name="name" nillable="true">
+						<annotation>
+							<documentation>-- Definition --
+Official denomination or proper name of the facility.</documentation>
+						</annotation>
+						<complexType>
+							<simpleContent>
+								<extension base="string">
+									<attribute name="nilReason" type="gml:NilReasonType"/>
+								</extension>
+							</simpleContent>
+						</complexType>
+					</element>
+					<element name="description" nillable="true">
+						<annotation>
+							<documentation>-- Definition --
+Descriptive statement about the facility.</documentation>
+						</annotation>
+						<complexType>
+							<simpleContent>
+								<extension base="string">
+									<attribute name="nilReason" type="gml:NilReasonType"/>
+								</extension>
+							</simpleContent>
+						</complexType>
+					</element>
+					<element name="status" nillable="true" maxOccurs="unbounded">
+						<annotation>
+							<documentation>-- Definition --
+The state or condition of the facility, with regard to the functional and operational order, in which it is arranged for a limited or extended time period.</documentation>
+						</annotation>
+						<complexType>
+							<sequence>
+								<element ref="pf-core:StatusType"/>
+							</sequence>
+							<attribute name="nilReason" type="gml:NilReasonType"/>
+						</complexType>
+					</element>
+					<element name="licencedPermission" nillable="true" maxOccurs="unbounded">
+						<annotation>
+							<documentation>-- Definition --
+Permit obtained by the facility thanks to a an authorisation process regulated by a responsible authority.</documentation>
+						</annotation>
+						<complexType>
+							<sequence>
+								<element ref="pf-core:Permission"/>
+							</sequence>
+							<attribute name="nilReason" type="gml:NilReasonType"/>
+						</complexType>
+					</element>
+					<element name="riverBasinDistrictCode" nillable="true">
+						<annotation>
+							<documentation>-- Definition -- 
+Unique object identifier assigned to the basin district of a watercourse. 
+
+-- Description --
+NOTE  Information required by the SEVESO legislation not registered in the Hidrography Theme.</documentation>
+						</annotation>
+						<complexType>
+							<simpleContent>
+								<extension base="string">
+									<attribute name="nilReason" type="gml:NilReasonType"/>
+								</extension>
+							</simpleContent>
+						</complexType>
+					</element>
+					<element name="hosts" type="pf-core:SitePropertyType" minOccurs="0">
+						<annotation>
+							<documentation>A Site hosts one or more Facilities</documentation>
+						</annotation>
+					</element>
+					<element name="groupedByConstruction" type="bu-core2d:AbstractConstructionPropertyType" minOccurs="0" maxOccurs="unbounded">
+						<annotation>
+							<documentation>An AbstractConstruction may be grouped by one or more Facilities (this means an AbstractConstruction may be shared by different Facilities)</documentation>
+						</annotation>
+					</element>
+					<element name="isRealisedOn" type="pf-ext:OperationPropertyType" minOccurs="0" maxOccurs="unbounded">
+						<annotation>
+							<appinfo>
+								<reversePropertyName xmlns="http://www.opengis.net/gml/3.2">pf-ext:Realize</reversePropertyName>
+							</appinfo>
+						</annotation>
+					</element>
+					<element name="pertinentTo" type="ad:AddressPropertyType" maxOccurs="unbounded">
+						<annotation>
+							<documentation>An Address may be pertinent to one or more Facilities (this means an Address may be shared by different Facilities)</documentation>
+						</annotation>
+					</element>
+					<element name="groupedByPlot" type="pf-core:PlotPropertyType" minOccurs="0" maxOccurs="unbounded">
+						<annotation>
+							<documentation>A Plot is grouped by one or more Facilities (this means a Plot may be shared by different Facilities)</documentation>
+						</annotation>
+					</element>
+					<element name="groupedBy" type="pf-core:InstallationPropertyType" minOccurs="0" maxOccurs="unbounded">
+						<annotation>
+							<documentation>An Installation is grouped by one Facility</documentation>
+						</annotation>
+					</element>
+				</sequence>
+			</extension>
+		</complexContent>
+	</complexType>
+	<complexType name="FacilityPropertyType">
+		<sequence minOccurs="0">
+			<element ref="pf-core:Facility"/>
+		</sequence>
+		<attributeGroup ref="gml:AssociationAttributeGroup"/>
+		<attributeGroup ref="gml:OwnershipAttributeGroup"/>
+	</complexType>
+	<element name="ProcessInput" type="pf-core:ProcessInputType" substitutionGroup="gml:AbstractFeature">
+		<annotation>
+			<documentation>-- Name --
+process input
+
+-- Definition --
+Any kind of material, energy, waste, product entering a production cycle.</documentation>
+		</annotation>
+	</element>
+	<complexType name="ProcessInputType">
+		<complexContent>
+			<extension base="gml:AbstractFeatureType">
+				<sequence>
+					<element name="inspireId" type="base:IdentifierPropertyType">
+						<annotation>
+							<documentation>-- Definition --
+External object identifier of the object.
+
+-- Description --
+NOTE  An external object identifier is a unique object identifier published by the responsible body, which may be used by external applications to reference the object. The identifier is an identifier of the object, not an identifier of the real-world phenomenon.</documentation>
+						</annotation>
+					</element>
+					<element name="amount" nillable="true">
+						<annotation>
+							<documentation>-- Definition --
+Declared or measured quantity of any kind of material, energy, waste, product entering a production cycle.</documentation>
+						</annotation>
+						<complexType>
+							<simpleContent>
+								<extension base="gml:MeasureType">
+									<attribute name="nilReason" type="gml:NilReasonType"/>
+								</extension>
+							</simpleContent>
+						</complexType>
+					</element>
+				</sequence>
+			</extension>
+		</complexContent>
+	</complexType>
+	<complexType name="ProcessInputPropertyType">
+		<sequence minOccurs="0">
+			<element ref="pf-core:ProcessInput"/>
+		</sequence>
+		<attributeGroup ref="gml:AssociationAttributeGroup"/>
+		<attributeGroup ref="gml:OwnershipAttributeGroup"/>
+	</complexType>
+	<element name="ProductionProcess" type="pf-core:ProductionProcessType" substitutionGroup="gml:AbstractFeature">
+		<annotation>
+			<documentation>-- Name --
+production process
+
+-- Definition --
+Activity consisting of a series of actions or operations in a productive context.</documentation>
+		</annotation>
+	</element>
+	<complexType name="ProductionProcessType">
+		<complexContent>
+			<extension base="gml:AbstractFeatureType">
+				<sequence>
+					<element name="destinedTo" type="pf-core:ProcessInputPropertyType" minOccurs="0" maxOccurs="unbounded">
+						<annotation>
+							<documentation>A ProcessInput is destined to a ProductionProcess</documentation>
+						</annotation>
+					</element>
+					<element name="arisenFrom" type="pf-core:ProcessOutputPropertyType" minOccurs="0" maxOccurs="unbounded">
+						<annotation>
+							<documentation>A ProcessOutput is arisen from a ProductionProcess</documentation>
+						</annotation>
+					</element>
+					<element name="performedBy" type="pf-core:ActivityPropertyType">
+						<annotation>
+							<documentation>An Activity may be performed by one or more TechnicalUnits (this means an Activity may be shared by different TechnicalUnits)</documentation>
+						</annotation>
+					</element>
+				</sequence>
+			</extension>
+		</complexContent>
+	</complexType>
+	<complexType name="ProductionProcessPropertyType">
+		<sequence minOccurs="0">
+			<element ref="pf-core:ProductionProcess"/>
+		</sequence>
+		<attributeGroup ref="gml:AssociationAttributeGroup"/>
+		<attributeGroup ref="gml:OwnershipAttributeGroup"/>
+	</complexType>
+	<element name="NACEClassification" type="pf-core:NACEClassificationType" substitutionGroup="gml:AbstractObject">
+		<annotation>
+			<documentation>-- Definition --
+Classification of the activity according to the Council Regulation 3037/90/EEC.
+
+-- Description --
+NACE classification has a hierarchical structure funded on different levels.</documentation>
+		</annotation>
+	</element>
+	<complexType name="NACEClassificationType">
+		<sequence>
+			<element name="NACEClassification" type="pf-core:NACECodeValueType">
+				<annotation>
+					<documentation>-- Definition --
+Classification of the activity according to the Council Regulation 3037/90/EEC referring to a list of predefined potential values.
+
+-- Description --
+The reference values are holded and listed in the NACECodeValue code list.</documentation>
+				</annotation>
+			</element>
+		</sequence>
+	</complexType>
+	<complexType name="NACEClassificationPropertyType">
+		<sequence>
+			<element ref="pf-core:NACEClassification"/>
+		</sequence>
+	</complexType>
+	<simpleType name="EWCCodeValueType">
+		<annotation>
+			<documentation>-- Definition --
+The EWCCodeValue code list hosts the reference values for the EWCClassification data type.</documentation>
+		</annotation>
+		<union memberTypes="pf-core:EWCCodeValueEnumerationType pf-core:EWCCodeValueOtherType"/>
+	</simpleType>
+	<simpleType name="EWCCodeValueEnumerationType">
+		<annotation>
+			<documentation>-- Definition --
+The EWCCodeValue code list hosts the reference values for the EWCClassification data type.</documentation>
+		</annotation>
+		<restriction base="string"/>
+	</simpleType>
+	<simpleType name="EWCCodeValueOtherType">
+		<restriction base="string">
+			<pattern value="other: \w{2,}"/>
+		</restriction>
+	</simpleType>
+	<element name="ProductionAndIndustrialSite" type="pf-core:ProductionAndIndustrialSiteType" substitutionGroup="pf-core:Site">
+		<annotation>
+			<documentation>-- Name --
+production and industrial site
+
+-- Definition --
+The geographical location of the production facility or else a piece of land where the facility was, is, or is intended to be located.
+
+-- Description --
+An area of land or water that one or more process plants is or may be situated on, or else a single location, in which, if there is more than one manufacturer of (a) substance(s), certain infrastructure and facilities are shared.
+A continuous surface, maritime or terrestrial in which production facilities have been already implanted or urban and/or engineering activities have been developed for production purposes.</documentation>
+		</annotation>
+	</element>
+	<complexType name="ProductionAndIndustrialSiteType">
+		<complexContent>
+			<extension base="pf-core:SiteType">
+				<sequence>
+					<element name="sitePlan" type="string" minOccurs="0">
+						<annotation>
+							<documentation>-- Definition --
+Descriptive statement about the project concerning the configuration and organisation of the production site.</documentation>
+						</annotation>
+					</element>
+				</sequence>
+			</extension>
+		</complexContent>
+	</complexType>
+	<complexType name="ProductionAndIndustrialSitePropertyType">
+		<sequence minOccurs="0">
+			<element ref="pf-core:ProductionAndIndustrialSite"/>
+		</sequence>
+		<attributeGroup ref="gml:AssociationAttributeGroup"/>
+		<attributeGroup ref="gml:OwnershipAttributeGroup"/>
+	</complexType>
+	<element name="Substance" type="pf-core:SubstanceType" substitutionGroup="pf-core:ProcessInput">
+		<annotation>
+			<documentation>-- Name --
+substance
+
+-- Definition --
+Means any chemical element and its compounds, with the exception of some specific substances.
+
+-- Description --
+The exception deals with the following substances: radioactive substances as defined in Article 1 of Council Directive 96/29/Euratom of 13 May 1996 laying down basic safety standards for the protection of the health of workers and the general public against the dangers arising from ionising radiation(2); genetically modified micro-organisms as defined in Article 2(b) of Directive 2009/41/EC of the European Parliament and the Council of 6 May 2009 on the contained use of genetically modified micro-organisms; genetically modified organisms as defined in point 2 of Article 2 of Directive 2001/18/EC of the European Parliament and of the Council of 12 March 2001 on the deliberate release into the environment of genetically modified organisms.</documentation>
+		</annotation>
+	</element>
+	<complexType name="SubstanceType">
+		<complexContent>
+			<extension base="pf-core:ProcessInputType">
+				<sequence>
+					<element name="CLP" type="pf-core:CLPClassificationPropertyType">
+						<annotation>
+							<documentation>-- Definition --
+Classification of substance according to the Council Directive 67/548/EEC  and the Council Directive 1999/45/EC.</documentation>
+						</annotation>
+					</element>
+				</sequence>
+			</extension>
+		</complexContent>
+	</complexType>
+	<complexType name="SubstancePropertyType">
+		<sequence minOccurs="0">
+			<element ref="pf-core:Substance"/>
+		</sequence>
+		<attributeGroup ref="gml:AssociationAttributeGroup"/>
+		<attributeGroup ref="gml:OwnershipAttributeGroup"/>
+	</complexType>
+	<element name="EWCClassification" type="pf-core:EWCClassificationType" substitutionGroup="gml:AbstractObject">
+		<annotation>
+			<documentation>-- Definition --
+Classification of waste according to the Council Directive
+75/442/EEC and the Council Directive 91/689/EEC.
+
+-- Description --
+EWC classification has a hierarchical structure funded on different levels.</documentation>
+		</annotation>
+	</element>
+	<complexType name="EWCClassificationType">
+		<sequence>
+			<element name="EWCClassification" type="pf-core:EWCCodeValueType">
+				<annotation>
+					<documentation>-- Definition --
+Classification of the activity according to the Council Directive 75/442/EEC and the Council Directive 91/689/EEC referring to a list of predefined potential values.
+
+-- Description --
+The reference values are holded and listed in the EWCCodeValue code list.</documentation>
+				</annotation>
+			</element>
+		</sequence>
+	</complexType>
+	<complexType name="EWCClassificationPropertyType">
+		<sequence>
+			<element ref="pf-core:EWCClassification"/>
+		</sequence>
+	</complexType>
+	<element name="CLPClassification" type="pf-core:CLPClassificationType" substitutionGroup="gml:AbstractObject">
+		<annotation>
+			<documentation>-- Definition --
+Classification of substance according to the Council Directive 67/548/EEC  and the Council Directive 1999/45/EC.</documentation>
+		</annotation>
+	</element>
+	<complexType name="CLPClassificationType">
+		<sequence>
+			<element name="CLPClassification" type="pf-core:CLPCodeValueType">
+				<annotation>
+					<documentation>-- Definition --
+Classification of the activity according to the Council Directive 67/548/EEC  and the Council Directive 1999/45/EC referring to a list of predefined potential values.
+
+-- Description --
+The reference values are holded and listed in the CLPCodeValue code list.</documentation>
+				</annotation>
+			</element>
+		</sequence>
+	</complexType>
+	<complexType name="CLPClassificationPropertyType">
+		<sequence>
+			<element ref="pf-core:CLPClassification"/>
+		</sequence>
+	</complexType>
+</schema>

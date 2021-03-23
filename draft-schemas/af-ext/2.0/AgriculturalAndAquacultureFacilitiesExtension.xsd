@@ -1,0 +1,1401 @@
+<?xml version="1.0" encoding="UTF-8"?><schema xmlns="http://www.w3.org/2001/XMLSchema" xmlns:ad="urn:x-inspire:specification:gmlas:Addresses:3.0" xmlns:af-ext="http://inspire.jrc.ec.europa.eu/schemas/af-ext/2.0" xmlns:base="urn:x-inspire:specification:gmlas:BaseTypes:3.2" xmlns:gmd="http://www.isotc211.org/2005/gmd" xmlns:gml="http://www.opengis.net/gml/3.2" xmlns:gn="urn:x-inspire:specification:gmlas:GeographicalNames:3.0" xmlns:hy-n="urn:x-inspire:specification:gmlas:HydroNetwork:3.0" xmlns:hy-p="urn:x-inspire:specification:gmlas:HydroPhysicalWaters:3.0" xmlns:nz-f="http://inspire.jrc.ec.europa.eu/schemas/nz-f/2.0" xmlns:sr="http://inspire.jrc.ec.europa.eu/schemas/sr/2.0" xmlns:us-net-wa="http://inspire.jrc.ec.europa.eu/schemas/us-net-wa/2.0" xmlns:us-waste="http://inspire.jrc.ec.europa.eu/schemas/us-waste/2.0" xmlns:wfd="urn:x-inspire:specification:gmlas:WaterFrameworkDirective:0.0" elementFormDefault="qualified" targetNamespace="http://inspire.jrc.ec.europa.eu/schemas/af-ext/2.0" version="2.0">
+  <annotation>
+    <documentation>The Agriculural and Aquaculture  Facilities model  is to be the final model for the AF theme.
+it is harmonised towards the general facilitation model, and uses the concept of facility --&gt; installation --&gt; installation part.
+
+the concept of having a agri/aquacultural parcel  as a separate entity is not used.
+
+the key component is site - holding . 
+each holding can have buildings, installations and plots.
+plots are areas  where can be  one or more holdings, building  or installations.</documentation>
+  </annotation>
+  <import namespace="http://inspire.jrc.ec.europa.eu/schemas/nz-f/2.0" schemaLocation="https://inspire.ec.europa.eu/draft-schemas/nz-f/2.0/NaturalRiskZonesFloods.xsd"/>
+  <import namespace="http://inspire.jrc.ec.europa.eu/schemas/sr/2.0" schemaLocation="https://inspire.ec.europa.eu/draft-schemas/sr/2.0/SeaRegions.xsd"/>
+  <import namespace="http://inspire.jrc.ec.europa.eu/schemas/us-net-wa/2.0" schemaLocation="https://inspire.ec.europa.eu/draft-schemas/us-net-wa/2.0/WaterNetwork.xsd"/>
+  <import namespace="http://inspire.jrc.ec.europa.eu/schemas/us-waste/2.0" schemaLocation="https://inspire.ec.europa.eu/draft-schemas/us-waste/2.0/UtilitiesAndGovernmentalServicesWasteManagement.xsd"/>
+  <import namespace="http://www.isotc211.org/2005/gmd" schemaLocation="http://schemas.opengis.net/iso/19139/20070417/gmd/gmd.xsd"/>
+  <import namespace="http://www.opengis.net/gml/3.2" schemaLocation="http://schemas.opengis.net/gml/3.2.1/gml.xsd"/>
+  <import namespace="urn:x-inspire:specification:gmlas:Addresses:3.0" schemaLocation="https://inspire.ec.europa.eu/schemas/ad/3.0/Addresses.xsd"/>
+  <import namespace="urn:x-inspire:specification:gmlas:BaseTypes:3.2" schemaLocation="https://inspire.ec.europa.eu/schemas/base/3.2/BaseTypes.xsd"/>
+  <import namespace="urn:x-inspire:specification:gmlas:GeographicalNames:3.0" schemaLocation="https://inspire.ec.europa.eu/schemas/gn/3.0/GeographicalNames.xsd"/>
+  <import namespace="urn:x-inspire:specification:gmlas:HydroNetwork:3.0" schemaLocation="https://inspire.ec.europa.eu/schemas/hy-n/3.0/HydroNetwork.xsd"/>
+  <import namespace="urn:x-inspire:specification:gmlas:HydroPhysicalWaters:3.0" schemaLocation="https://inspire.ec.europa.eu/schemas/hy-p/3.0/HydroPhysicalWaters.xsd"/>
+  <import namespace="urn:x-inspire:specification:gmlas:WaterFrameworkDirective:0.0" schemaLocation="https://inspire.ec.europa.eu/schemas/wfd/0.0/WaterFrameworkDirective.xsd"/>
+  <!--XML Schema document created by ShapeChange-->
+  <element name="Installation" substitutionGroup="af-ext:AbstractInstallation" type="af-ext:InstallationType">
+    <annotation>
+      <documentation>-- Definition --
+Stationary technical unit part of a facility where one or more Agricultural and Aquacultural activities are carried out, and any other directly associated activities which have a technical connection with the activities carried out on that site.
+-- Description -- 
+Agricultural and Aquacultural Activities refers to the production of primary materials (animal and vegetal) for human use, or as base material for industrial processing (animal feed, human food or other industries).
+Depending on the scale, the installations would be represented by areas or points and always linked with a Facility (at less in a 1:1 relation).</documentation>
+    </annotation>
+  </element>
+  <complexType name="InstallationType">
+    <complexContent>
+      <extension base="af-ext:AbstractInstallationType">
+        <sequence/>
+      </extension>
+    </complexContent>
+  </complexType>
+  <complexType name="InstallationPropertyType">
+    <sequence minOccurs="0">
+      <element ref="af-ext:Installation"/>
+    </sequence>
+    <attributeGroup ref="gml:AssociationAttributeGroup"/>
+    <attributeGroup ref="gml:OwnershipAttributeGroup"/>
+  </complexType>
+  <element name="PermissionType" substitutionGroup="gml:AbstractObject" type="af-ext:PermissionTypeType">
+    <annotation>
+      <documentation>-- Definition --
+A formal consent, such as to the operation of the holding.</documentation>
+    </annotation>
+  </element>
+  <complexType name="PermissionTypeType">
+    <sequence>
+      <element maxOccurs="unbounded" minOccurs="0" name="id" type="us-waste:IdentifierTypePropertyType">
+        <annotation>
+          <documentation>-- Definition --
+Identifier of the permission,  using a specified identification scheme such as a national register.</documentation>
+        </annotation>
+      </element>
+      <element name="dateFrom" nillable="true">
+        <annotation>
+          <documentation>-- Definition --
+A date starting from which the permission applies.</documentation>
+        </annotation>
+        <complexType>
+          <simpleContent>
+            <extension base="date">
+              <attribute name="nilReason" type="gml:NilReasonType"/>
+            </extension>
+          </simpleContent>
+        </complexType>
+      </element>
+      <element name="dateTo" nillable="true">
+        <annotation>
+          <documentation>-- Definition --
+The date  up to which the permission applies.</documentation>
+        </annotation>
+        <complexType>
+          <simpleContent>
+            <extension base="date">
+              <attribute name="nilReason" type="gml:NilReasonType"/>
+            </extension>
+          </simpleContent>
+        </complexType>
+      </element>
+      <element name="relatedParty" nillable="true">
+        <annotation>
+          <documentation>-- Definition --
+Parties related to the permission, such as the authorities that granted the permission.</documentation>
+        </annotation>
+        <complexType>
+          <sequence>
+            <element ref="us-waste:PartyRoleType"/>
+          </sequence>
+          <attribute name="nilReason" type="gml:NilReasonType"/>
+        </complexType>
+      </element>
+      <element name="description" nillable="true" type="gmd:PT_FreeText_PropertyType">
+        <annotation>
+          <documentation>-- Definition --
+A description of the permission.</documentation>
+        </annotation>
+      </element>
+    </sequence>
+  </complexType>
+  <complexType name="PermissionTypePropertyType">
+    <sequence>
+      <element ref="af-ext:PermissionType"/>
+    </sequence>
+  </complexType>
+  <element name="FarmAnimal" substitutionGroup="gml:AbstractFeature" type="af-ext:FarmAnimalType">
+    <annotation>
+      <documentation>-- Definition --
+Identifies an animal or group of animals of the same species kept on the specific site.
+
+-- Description --
+The terrestic species are specified  according to  regulation (EC) No 1165/2008.
+The aquaculture species are according to the list in EU regulation (EC) No 1996/788, annex III.</documentation>
+    </annotation>
+  </element>
+  <complexType name="FarmAnimalType">
+    <complexContent>
+      <extension base="gml:AbstractFeatureType">
+        <sequence>
+          <element maxOccurs="unbounded" minOccurs="0" name="livestockSpecies" type="af-ext:LivestockSpeciesTypePropertyType">
+            <annotation>
+              <documentation>-- Definition --
+Express the livestock species name by using a codevalueand the number of animals of this species.
+-- Description --
+The terrestic species are coded specified  according to  regulation (EC) No 1165/2008.</documentation>
+            </annotation>
+          </element>
+          <element maxOccurs="unbounded" minOccurs="0" name="aquacultureSpecies" type="af-ext:AquacultureSpeciesTypePropertyType">
+            <annotation>
+              <documentation>-- Definition --
+Express the livestsock species name by using a codevalue and the amount of animals  of this species.
+-- Description --
+Aquaculture species  are listed in aquacultureSpecies attribute.
+The aquaculture species are according to the list in EU regulation (EC) No 1996/788, annex III.
+The amount of animals  of the species is expressed in number , volume or mass.</documentation>
+            </annotation>
+          </element>
+          <element name="validFrom" nillable="true">
+            <annotation>
+              <documentation>-- Definition --
+First time  at which this number of  animals of the specified species  exist on this site in the real world.</documentation>
+            </annotation>
+            <complexType>
+              <simpleContent>
+                <extension base="date">
+                  <attribute name="nilReason" type="gml:NilReasonType"/>
+                </extension>
+              </simpleContent>
+            </complexType>
+          </element>
+          <element minOccurs="0" name="validTo" nillable="true">
+            <annotation>
+              <documentation>-- Definition --
+The time from  at which this number of  animals of the specified species no longer exist on this site in real world.</documentation>
+            </annotation>
+            <complexType>
+              <simpleContent>
+                <extension base="date">
+                  <attribute name="nilReason" type="gml:NilReasonType"/>
+                </extension>
+              </simpleContent>
+            </complexType>
+          </element>
+          <element maxOccurs="unbounded" minOccurs="0" name="livingIn" type="af-ext:AquacultureInstallationPropertyType"/>
+        </sequence>
+      </extension>
+    </complexContent>
+  </complexType>
+  <complexType name="FarmAnimalPropertyType">
+    <sequence minOccurs="0">
+      <element ref="af-ext:FarmAnimal"/>
+    </sequence>
+    <attributeGroup ref="gml:AssociationAttributeGroup"/>
+    <attributeGroup ref="gml:OwnershipAttributeGroup"/>
+  </complexType>
+  <simpleType name="HealthStatusValueType">
+    <annotation>
+      <documentation>-- Definition --
+A code list with the possible status values indicating the granted health status.</documentation>
+    </annotation>
+    <union memberTypes="af-ext:HealthStatusValueEnumerationType af-ext:HealthStatusValueOtherType"/>
+  </simpleType>
+  <simpleType name="HealthStatusValueEnumerationType">
+    <annotation>
+      <documentation>-- Definition --
+A code list with the possible status values indicating the granted health status.</documentation>
+    </annotation>
+    <restriction base="string">
+      <enumeration value="declaredDeseaseFree"/>
+      <enumeration value="underSurveillanceProgramme"/>
+      <enumeration value="notKnownToBeInfected"/>
+      <enumeration value="others"/>
+    </restriction>
+  </simpleType>
+  <simpleType name="HealthStatusValueOtherType">
+    <restriction base="string">
+      <pattern value="other: \w{2,}"/>
+    </restriction>
+  </simpleType>
+  <simpleType name="EnvironmentValueType">
+    <annotation>
+      <documentation>-- Definition --
+The type of the environment  in which the aquaculture organisms are kept.  (a water type classification).</documentation>
+    </annotation>
+    <union memberTypes="af-ext:EnvironmentValueEnumerationType af-ext:EnvironmentValueOtherType"/>
+  </simpleType>
+  <simpleType name="EnvironmentValueEnumerationType">
+    <annotation>
+      <documentation>-- Definition --
+The type of the environment  in which the aquaculture organisms are kept.  (a water type classification).</documentation>
+    </annotation>
+    <restriction base="string">
+      <enumeration value="marine"/>
+      <enumeration value="freshWater"/>
+      <enumeration value="brackishWater"/>
+    </restriction>
+  </simpleType>
+  <simpleType name="EnvironmentValueOtherType">
+    <restriction base="string">
+      <pattern value="other: \w{2,}"/>
+    </restriction>
+  </simpleType>
+  <simpleType name="TypeOfAgriBuildingValueType">
+    <annotation>
+      <documentation>-- Definition --
+The type of building, expressed as a code.
+
+-- Description --
+animal housing according to EU regulation  (EC) 1200/2009  annex III chapter V, codes 5.01 - 5.03.99.</documentation>
+    </annotation>
+    <union memberTypes="af-ext:TypeOfAgriBuildingValueEnumerationType af-ext:TypeOfAgriBuildingValueOtherType"/>
+  </simpleType>
+  <simpleType name="TypeOfAgriBuildingValueEnumerationType">
+    <annotation>
+      <documentation>-- Definition --
+The type of building, expressed as a code.
+
+-- Description --
+animal housing according to EU regulation  (EC) 1200/2009  annex III chapter V, codes 5.01 - 5.03.99.</documentation>
+    </annotation>
+    <restriction base="string">
+      <enumeration value="1_animalHousing"/>
+      <enumeration value="2_storage"/>
+      <enumeration value="2_1_feedStorage"/>
+      <enumeration value="2_2_productStorage"/>
+      <enumeration value="2_3_supplyStorage"/>
+      <enumeration value="3_manureStorageAndTreatmentFacility"/>
+      <enumeration value="4_equipmentGarage"/>
+      <enumeration value="5_technicalInstallation"/>
+      <enumeration value="6_mushrooms"/>
+      <enumeration value="7_greenhouse"/>
+      <enumeration value="8_shed"/>
+      <enumeration value="9_other"/>
+      <enumeration value="1_2_animalHousingCattle"/>
+      <enumeration value="1_2_1_animalHousingCattleStancionTiedStable-WithSolidDungAndLiquidManure"/>
+      <enumeration value="1_2_2_animalHousingCattleStancionTiedStable-WithSlurry"/>
+      <enumeration value="1_2_3_animalHousingCattleLooseHousing-WithSolidDungAndLiquidManure"/>
+      <enumeration value="1_2_4_animalHousingCattleLooseHousing-WithSlurry"/>
+      <enumeration value="1_3_animalHousingPiggs"/>
+      <enumeration value="1_3_1_animalHousingPiggsOnPartiallySlattedFloors"/>
+      <enumeration value="1_3_1_animalHousingPiggsOnCompletelySlattedFloors"/>
+      <enumeration value="1_3_2_animalHousingPiggsOnStraw-Beds"/>
+      <enumeration value="1_3_3_animalHousingPiggsOther"/>
+      <enumeration value="1_4_animalHousingPoultry"/>
+      <enumeration value="1_4_1_animalHousingPoultryLayingHens"/>
+      <enumeration value="1_4_2_animalHousingPoultryLayingHensOnStrawBeds"/>
+      <enumeration value="1_4_3_animalHousingPoultryLayingHensBatteryCage"/>
+      <enumeration value="1_4_4_animalHousingPoultryLayingHensOther"/>
+      <enumeration value="1_4_5_animalHousingPoultryBroilers"/>
+      <enumeration value="1_4_6_animalHousingPoultryOther"/>
+      <enumeration value="1_5_animalHousingAquaticSpecies"/>
+      <enumeration value="1_6_animalHousingOtherSpecies"/>
+    </restriction>
+  </simpleType>
+  <simpleType name="TypeOfAgriBuildingValueOtherType">
+    <restriction base="string">
+      <pattern value="other: \w{2,}"/>
+    </restriction>
+  </simpleType>
+  <element name="AbstractInstallation" substitutionGroup="gml:AbstractFeature" type="af-ext:AbstractInstallationType">
+    <annotation>
+      <documentation>-- Definition --
+Stationary technical unit part of a facility where one or more Agricultural and Aquacultural activities are carried out, and any other directly associated activities which have a technical connection with the activities carried out on that site.
+-- Description -- 
+Agricultural and Aquacultural Activities refers to the production of primary materials (animal and vegetal) for human use, or as base material for industrial processing (animal feed, human food or other industries).
+Depending on the scale, the installations would be represented by areas or points and always linked with a Facility (at less in a 1:1 relation).</documentation>
+    </annotation>
+  </element>
+  <complexType name="AbstractInstallationType">
+    <complexContent>
+      <extension base="gml:AbstractFeatureType">
+        <sequence>
+          <element minOccurs="0" name="inspireId" type="base:IdentifierPropertyType">
+            <annotation>
+              <documentation>-- Definition --
+External object identifier of the spatial object.
+
+-- Description --
+NOTE  An external object identifier is a unique object identifier published by the responsible body, which may be used by external applications to reference the spatial object. The identifier is an identifier of the spatial object, not an identifier of the real-world phenomenon.</documentation>
+            </annotation>
+          </element>
+          <element name="thematicId" type="gmd:PT_FreeText_PropertyType">
+            <annotation>
+              <documentation>-- Definition --
+The  identifier for the installation  using a specified identification schema, such as a national register.</documentation>
+            </annotation>
+          </element>
+          <element name="geometry" nillable="true" type="gml:GeometryPropertyType">
+            <annotation>
+              <documentation>-- Definition --
+The geometry defining the extent or position of the installation part.</documentation>
+            </annotation>
+          </element>
+          <element name="name" nillable="true">
+            <annotation>
+              <documentation>-- Definition --
+The name of the facility.</documentation>
+            </annotation>
+            <complexType>
+              <sequence>
+                <element ref="gn:GeographicalName"/>
+              </sequence>
+              <attribute name="nilReason" type="gml:NilReasonType"/>
+            </complexType>
+          </element>
+          <element name="description" nillable="true" type="gmd:PT_FreeText_PropertyType">
+            <annotation>
+              <documentation>-- Definition --
+The description of the facility.</documentation>
+            </annotation>
+          </element>
+          <element name="validFrom" nillable="true">
+            <annotation>
+              <documentation>-- Definition --
+The time when the facility started to exists in the real world.</documentation>
+            </annotation>
+            <complexType>
+              <simpleContent>
+                <extension base="date">
+                  <attribute name="nilReason" type="gml:NilReasonType"/>
+                </extension>
+              </simpleContent>
+            </complexType>
+          </element>
+          <element minOccurs="0" name="validTo" nillable="true">
+            <annotation>
+              <documentation>-- Definition --
+The time when the facility no longer exists in the real world.</documentation>
+            </annotation>
+            <complexType>
+              <simpleContent>
+                <extension base="date">
+                  <attribute name="nilReason" type="gml:NilReasonType"/>
+                </extension>
+              </simpleContent>
+            </complexType>
+          </element>
+          <element minOccurs="0" name="agriWaterNetworkAccesspoint" type="us-net-wa:WaterAppurtenancePropertyType"/>
+          <element minOccurs="0" name="agriRelatedHydroObject">
+            <complexType>
+              <choice minOccurs="0">
+                <element ref="hy-p:DrainageBasin"/>
+                <element ref="hy-n:HydroNode"/>
+                <element ref="hy-p:HydroPointOfInterest"/>
+                <element ref="nz-f:InundatedLand"/>
+                <element ref="hy-p:ManMadeObject"/>
+                <element ref="sr:SeaArea"/>
+                <element ref="hy-p:SurfaceWater"/>
+                <element ref="wfd:WFDWaterBody"/>
+                <element ref="hy-n:WatercourseLink"/>
+                <element ref="hy-n:WatercourseLinkSequence"/>
+                <element ref="hy-n:WatercourseSeparatedCrossing"/>
+              </choice>
+              <attributeGroup ref="gml:AssociationAttributeGroup"/>
+              <attributeGroup ref="gml:OwnershipAttributeGroup"/>
+            </complexType>
+          </element>
+          <element maxOccurs="unbounded" minOccurs="0" name="proces" type="af-ext:ProductionUnitPropertyType"/>
+        </sequence>
+      </extension>
+    </complexContent>
+  </complexType>
+  <complexType name="AbstractInstallationPropertyType">
+    <sequence minOccurs="0">
+      <element ref="af-ext:AbstractInstallation"/>
+    </sequence>
+    <attributeGroup ref="gml:AssociationAttributeGroup"/>
+    <attributeGroup ref="gml:OwnershipAttributeGroup"/>
+  </complexType>
+  <element name="InstallationPart" substitutionGroup="af-ext:AbstractInstallation" type="af-ext:InstallationPartType">
+    <annotation>
+      <documentation>-- Definition --
+Specific technical part of the Installation which is developing a representative functionality that should be registered under the legislation.
+-- Description --
+This level of description should applied for specific parts of the installations which must be register following the legislation. Manure Storage, Tanks (Special or Raw Products) ,&amp;hellip; would be included under this definition. Independently the dimension this entity would be represented as points.</documentation>
+    </annotation>
+  </element>
+  <complexType name="InstallationPartType">
+    <complexContent>
+      <extension base="af-ext:AbstractInstallationType">
+        <sequence>
+          <element name="typecode" nillable="true">
+            <annotation>
+              <documentation>-- Definition --
+Describes the type of the installation part, according to a code list.</documentation>
+            </annotation>
+            <complexType>
+              <simpleContent>
+                <extension base="af-ext:InstallationPartValueType">
+                  <attribute name="nilReason" type="gml:NilReasonType"/>
+                </extension>
+              </simpleContent>
+            </complexType>
+          </element>
+        </sequence>
+      </extension>
+    </complexContent>
+  </complexType>
+  <complexType name="InstallationPartPropertyType">
+    <sequence minOccurs="0">
+      <element ref="af-ext:InstallationPart"/>
+    </sequence>
+    <attributeGroup ref="gml:AssociationAttributeGroup"/>
+    <attributeGroup ref="gml:OwnershipAttributeGroup"/>
+  </complexType>
+  <element name="ProductionUnit" substitutionGroup="gml:AbstractFeature" type="af-ext:ProductionUnitType">
+    <annotation>
+      <documentation>-- Definition --
+Represents the common "abstract level" for production infrastructures: holding, site, building, installations and installation parts. 
+Invokes a  production unit  for producing  agricultural or aquacultural products, with dedicated input and output.
+It applies where the production infrastructures may have an equivalent behaviour.
+
+-- Description --
+A production unit for a particilar product, with an associated input  and output.
+The output  part  can be described in parameters for the product, the  waste and the emissions to air, water and soil.</documentation>
+    </annotation>
+  </element>
+  <complexType name="ProductionUnitType">
+    <complexContent>
+      <extension base="gml:AbstractFeatureType">
+        <sequence>
+          <element name="activity" type="us-waste:ActivityTypePropertyType">
+            <annotation>
+              <documentation>-- Definition --
+An economic activity selected from a list of economic activities, such as Eurostat NACE.</documentation>
+            </annotation>
+          </element>
+        </sequence>
+      </extension>
+    </complexContent>
+  </complexType>
+  <complexType name="ProductionUnitPropertyType">
+    <sequence minOccurs="0">
+      <element ref="af-ext:ProductionUnit"/>
+    </sequence>
+    <attributeGroup ref="gml:AssociationAttributeGroup"/>
+    <attributeGroup ref="gml:OwnershipAttributeGroup"/>
+  </complexType>
+  <element name="Site" substitutionGroup="gml:AbstractFeature" type="af-ext:SiteType">
+    <annotation>
+      <documentation>-- Definition --
+All land  at a same or distinct geographic location under the management control of an organization covering activities, products and services. This includes all infrastructure, equipment and materials.</documentation>
+    </annotation>
+  </element>
+  <complexType name="SiteType">
+    <complexContent>
+      <extension base="gml:AbstractFeatureType">
+        <sequence>
+          <element maxOccurs="unbounded" name="activity" type="gml:CodeType">
+            <annotation>
+              <documentation>-- Definition --
+The classification of the economic activity of the site, according to the NACE rev. 2.0 coding.
+
+-- Description --
+Accessible at Eurostat repository from URL 
+http://ec.europa.eu/eurostat/ramon/nomenclatures/index.cfm?
+TargetUrl=LST_CLS_DLD&amp;StrNom=NACE_REV2
+&amp;StrLanguageCode=EN&amp;StrLayoutCode=HIERARCHIC.
+
+
+The valid nace codes are 
+first level
+01 and 03
+second level
+01.1 - 01.6  and 03.2
+third level 
+01.11 -  01.64  and 03.21 - 03.22</documentation>
+            </annotation>
+          </element>
+          <element name="geometry" type="gml:GeometryPropertyType">
+            <annotation>
+              <documentation>-- Definition --
+The geometry defining the extent or position of the holding.
+
+-- Description --
+The geometry must be a GM_polygon when it includes installations, plots or buildings with a polygon type geometry.
+In case the site only includes single object  with a point type geometry, the site can have a GM_point geometry.</documentation>
+            </annotation>
+          </element>
+          <element maxOccurs="unbounded" minOccurs="0" name="includesAnimal" type="af-ext:FarmAnimalPropertyType"/>
+          <element maxOccurs="unbounded" minOccurs="0" name="includesPlot" type="af-ext:PlotPropertyType"/>
+          <element maxOccurs="unbounded" minOccurs="0" name="parent" type="af-ext:SitePropertyType"/>
+          <element maxOccurs="unbounded" minOccurs="0" name="proces" type="af-ext:ProductionUnitPropertyType"/>
+          <element maxOccurs="unbounded" minOccurs="0" name="hosts" type="af-ext:AbstractInstallationPropertyType"/>
+          <element maxOccurs="unbounded" minOccurs="0" name="includesBuilding" type="af-ext:AgriBuildingPropertyType"/>
+        </sequence>
+      </extension>
+    </complexContent>
+  </complexType>
+  <complexType name="SitePropertyType">
+    <sequence minOccurs="0">
+      <element ref="af-ext:Site"/>
+    </sequence>
+    <attributeGroup ref="gml:AssociationAttributeGroup"/>
+    <attributeGroup ref="gml:OwnershipAttributeGroup"/>
+  </complexType>
+  <element name="AquacultureSpeciesType" substitutionGroup="gml:AbstractObject" type="af-ext:AquacultureSpeciesTypeType">
+    <annotation>
+      <documentation>-- Definition --
+Express the livestsock species name by using a codevalue and the amount of animals  of this species.
+-- Description --
+Aquaculture species  are listed in aquacultureSpecies attribute.
+The aquaculture species are according to the list in EU regulation (EC) No 1996/788, annex III.
+The amount of animal;s  of the species is expressed in number , volume or mass.</documentation>
+    </annotation>
+  </element>
+  <complexType name="AquacultureSpeciesTypeType">
+    <sequence>
+      <element name="aquacultureSpecies" nillable="true">
+        <annotation>
+          <documentation>-- Definition --
+The name of the species , coded according to the FAO ISCAAP 3 alfa code list.</documentation>
+        </annotation>
+        <complexType>
+          <simpleContent>
+            <extension base="af-ext:AquacultureSpeciesValueType">
+              <attribute name="nilReason" type="gml:NilReasonType"/>
+            </extension>
+          </simpleContent>
+        </complexType>
+      </element>
+      <element name="amount" nillable="true">
+        <annotation>
+          <documentation>-- Definition --
+The amount of the species expressed in a numeric value.
+-- Description --
+The amount is expressed  in a numeric  value. The type of value (mass, volume , number of animals)  is expressed by the measureUnit attribute.</documentation>
+        </annotation>
+        <complexType>
+          <simpleContent>
+            <extension base="double">
+              <attribute name="nilReason" type="gml:NilReasonType"/>
+            </extension>
+          </simpleContent>
+        </complexType>
+      </element>
+      <element name="measureUnit" nillable="true">
+        <annotation>
+          <documentation>-- Definition --
+Express the unit of measure.</documentation>
+        </annotation>
+        <complexType>
+          <simpleContent>
+            <extension base="gml:MeasureType">
+              <attribute name="nilReason" type="gml:NilReasonType"/>
+            </extension>
+          </simpleContent>
+        </complexType>
+      </element>
+    </sequence>
+  </complexType>
+  <complexType name="AquacultureSpeciesTypePropertyType">
+    <sequence>
+      <element ref="af-ext:AquacultureSpeciesType"/>
+    </sequence>
+  </complexType>
+  <element name="Plot" substitutionGroup="gml:AbstractFeature" type="af-ext:PlotType">
+    <annotation>
+      <documentation>-- Definition --
+Independent portion of the land or water surface, clearly  delimited, including or matching the limits of a Site, that is Holding.</documentation>
+    </annotation>
+  </element>
+  <complexType name="PlotType">
+    <complexContent>
+      <extension base="gml:AbstractFeatureType">
+        <sequence>
+          <element minOccurs="0" name="inspireId" type="base:IdentifierPropertyType">
+            <annotation>
+              <documentation>-- Definition --
+The identifier of the plot.</documentation>
+            </annotation>
+          </element>
+          <element name="geometry" nillable="true" type="gml:GeometryPropertyType">
+            <annotation>
+              <documentation>-- Definition -- 
+Representation of the geographical dimension/position  of the plot. (polygons).</documentation>
+            </annotation>
+          </element>
+          <element name="area" nillable="true">
+            <annotation>
+              <documentation>-- Definition --
+Express the size of the plot, expressed in M2.</documentation>
+            </annotation>
+            <complexType>
+              <simpleContent>
+                <extension base="gml:AreaType">
+                  <attribute name="nilReason" type="gml:NilReasonType"/>
+                </extension>
+              </simpleContent>
+            </complexType>
+          </element>
+          <element name="activity" nillable="true">
+            <annotation>
+              <documentation>-- Definition --
+The economic activity executed on the plot, as coded accoring to EU regulation (EC) 1200/2009, annexII, chapter 2. (codes 2.01 - 2.04.07  an 2.06.03 - 2.06.04).</documentation>
+            </annotation>
+            <complexType>
+              <sequence>
+                <element ref="us-waste:ActivityType"/>
+              </sequence>
+              <attribute name="nilReason" type="gml:NilReasonType"/>
+            </complexType>
+          </element>
+          <element maxOccurs="unbounded" minOccurs="0" name="irrigationMethode" nillable="true">
+            <annotation>
+              <documentation>-- Definition --
+Method of irrigation.
+
+-- Description --
+Source FAO Corporate document repositiory
+Source Plan4all.</documentation>
+            </annotation>
+            <complexType>
+              <simpleContent>
+                <extension base="af-ext:IrrigationMethodeValueType">
+                  <attribute name="nilReason" type="gml:NilReasonType"/>
+                </extension>
+              </simpleContent>
+            </complexType>
+          </element>
+          <element minOccurs="0" name="irrigationArea" nillable="true">
+            <annotation>
+              <documentation>-- Definition --
+The area of the plot which can be irrigated, expressed in m2.</documentation>
+            </annotation>
+            <complexType>
+              <simpleContent>
+                <extension base="gml:AreaType">
+                  <attribute name="nilReason" type="gml:NilReasonType"/>
+                </extension>
+              </simpleContent>
+            </complexType>
+          </element>
+          <element minOccurs="0" name="drainageArea" nillable="true">
+            <annotation>
+              <documentation>-- Definition --
+The area of the plot which is equipped with artificial subsurface drainage system(s), expressed in m2.</documentation>
+            </annotation>
+            <complexType>
+              <simpleContent>
+                <extension base="gml:AreaType">
+                  <attribute name="nilReason" type="gml:NilReasonType"/>
+                </extension>
+              </simpleContent>
+            </complexType>
+          </element>
+          <element name="validFrom" nillable="true">
+            <annotation>
+              <documentation>-- Definition --
+First time  at which this plot  exist on this site in reality.</documentation>
+            </annotation>
+            <complexType>
+              <simpleContent>
+                <extension base="date">
+                  <attribute name="nilReason" type="gml:NilReasonType"/>
+                </extension>
+              </simpleContent>
+            </complexType>
+          </element>
+          <element minOccurs="0" name="validTo" nillable="true">
+            <annotation>
+              <documentation>-- Definition --
+The time from which this plot no longer exist on this site in the real world.</documentation>
+            </annotation>
+            <complexType>
+              <simpleContent>
+                <extension base="date">
+                  <attribute name="nilReason" type="gml:NilReasonType"/>
+                </extension>
+              </simpleContent>
+            </complexType>
+          </element>
+          <element maxOccurs="unbounded" minOccurs="0" name="parent" nillable="true">
+            <complexType>
+              <sequence minOccurs="0">
+                <element ref="af-ext:Plot"/>
+              </sequence>
+              <attributeGroup ref="gml:AssociationAttributeGroup"/>
+              <attributeGroup ref="gml:OwnershipAttributeGroup"/>
+            </complexType>
+          </element>
+        </sequence>
+      </extension>
+    </complexContent>
+  </complexType>
+  <complexType name="PlotPropertyType">
+    <sequence minOccurs="0">
+      <element ref="af-ext:Plot"/>
+    </sequence>
+    <attributeGroup ref="gml:AssociationAttributeGroup"/>
+    <attributeGroup ref="gml:OwnershipAttributeGroup"/>
+  </complexType>
+  <element name="AgriBuilding" substitutionGroup="gml:AbstractFeature" type="af-ext:AgriBuildingType">
+    <annotation>
+      <documentation>-- Definition --
+A building used for agricultural or aquaculture activities.
+
+-- Description --
+A construction to store agricultural  and aquaculture commodities, harvested crops , keeping of animals or storing  equipment.</documentation>
+    </annotation>
+  </element>
+  <complexType name="AgriBuildingType">
+    <complexContent>
+      <extension base="gml:AbstractFeatureType">
+        <sequence>
+          <element name="geometry" nillable="true" type="gml:GeometryPropertyType">
+            <annotation>
+              <documentation>-- Definition --
+Representation of the geographical dimension/position of the &amp;ldquo;building&amp;rdquo;.  Can be GM_Polygon or GM_Point.</documentation>
+            </annotation>
+          </element>
+          <element maxOccurs="unbounded" minOccurs="0" name="typeOfBuilding" type="af-ext:TypeOfAgriBuildingValueType">
+            <annotation>
+              <documentation>-- Definition -- 
+The type of the building, expressed as a code.
+-- Description --
+A building can consists out of one or more building parts. each building part can be of an other type.</documentation>
+            </annotation>
+          </element>
+          <element maxOccurs="unbounded" name="proces" type="af-ext:ProductionUnitPropertyType"/>
+        </sequence>
+      </extension>
+    </complexContent>
+  </complexType>
+  <complexType name="AgriBuildingPropertyType">
+    <sequence minOccurs="0">
+      <element ref="af-ext:AgriBuilding"/>
+    </sequence>
+    <attributeGroup ref="gml:AssociationAttributeGroup"/>
+    <attributeGroup ref="gml:OwnershipAttributeGroup"/>
+  </complexType>
+  <simpleType name="AquacultureActivityValueType">
+    <annotation>
+      <documentation>-- Definition --
+Type of aquaculture activity.</documentation>
+    </annotation>
+    <union memberTypes="af-ext:AquacultureActivityValueEnumerationType af-ext:AquacultureActivityValueOtherType"/>
+  </simpleType>
+  <simpleType name="AquacultureActivityValueEnumerationType">
+    <annotation>
+      <documentation>-- Definition --
+Type of aquaculture activity.</documentation>
+    </annotation>
+    <restriction base="string">
+      <enumeration value="grownOut"/>
+      <enumeration value="nursery"/>
+      <enumeration value="hatchery"/>
+      <enumeration value="other"/>
+    </restriction>
+  </simpleType>
+  <simpleType name="AquacultureActivityValueOtherType">
+    <restriction base="string">
+      <pattern value="other: \w{2,}"/>
+    </restriction>
+  </simpleType>
+  <element name="LivestockSpeciesType" substitutionGroup="gml:AbstractObject" type="af-ext:LivestockSpeciesTypeType">
+    <annotation>
+      <documentation>-- Definition --
+Express the livestsock species name by using a codevalue and the number of animals of this species.
+-- Description --
+The terrestic species are coded according to the specification in  regulation (EC) No 1165/2008.</documentation>
+    </annotation>
+  </element>
+  <complexType name="LivestockSpeciesTypeType">
+    <sequence>
+      <element name="livestockSpecies" type="af-ext:LivestockSpeciesValueType">
+        <annotation>
+          <documentation>-- Definition --
+Identifies an animal or group of animals of the same livestock species kept on the specific site.
+
+-- Description --
+The livestock species are secified  according to  regulation (EC) No 1165/2008.</documentation>
+        </annotation>
+      </element>
+      <element name="quantity" type="double">
+        <annotation>
+          <documentation>-- Definition --
+Express the number  of animals in the group belonging to one specified livestock species hosted on the specified  site.</documentation>
+        </annotation>
+      </element>
+    </sequence>
+  </complexType>
+  <complexType name="LivestockSpeciesTypePropertyType">
+    <sequence>
+      <element ref="af-ext:LivestockSpeciesType"/>
+    </sequence>
+  </complexType>
+  <element name="WaterManagementInstallation" substitutionGroup="af-ext:AbstractInstallation" type="af-ext:WaterManagementInstallationType">
+    <annotation>
+      <documentation>-- Definition --
+The source of water useful for all kinds of activities of the facility site.</documentation>
+    </annotation>
+  </element>
+  <complexType name="WaterManagementInstallationType">
+    <complexContent>
+      <extension base="af-ext:AbstractInstallationType">
+        <sequence>
+          <element minOccurs="0" name="waterQuantity" nillable="true">
+            <annotation>
+              <documentation>-- Definition --
+The quantity of water given by the water source, in cubic metres per second.</documentation>
+            </annotation>
+            <complexType>
+              <simpleContent>
+                <extension base="gml:MeasureType">
+                  <attribute name="nilReason" type="gml:NilReasonType"/>
+                </extension>
+              </simpleContent>
+            </complexType>
+          </element>
+          <element name="waterSource" nillable="true">
+            <annotation>
+              <documentation>-- Definition --
+Type of water source, according to Regulation (EC) No 1200/2009.</documentation>
+            </annotation>
+            <complexType>
+              <simpleContent>
+                <extension base="af-ext:WaterSourceValueType">
+                  <attribute name="nilReason" type="gml:NilReasonType"/>
+                </extension>
+              </simpleContent>
+            </complexType>
+          </element>
+        </sequence>
+      </extension>
+    </complexContent>
+  </complexType>
+  <complexType name="WaterManagementInstallationPropertyType">
+    <sequence minOccurs="0">
+      <element ref="af-ext:WaterManagementInstallation"/>
+    </sequence>
+    <attributeGroup ref="gml:AssociationAttributeGroup"/>
+    <attributeGroup ref="gml:OwnershipAttributeGroup"/>
+  </complexType>
+  <element name="RecognisedHealthType" substitutionGroup="gml:AbstractObject" type="af-ext:RecognisedHealthTypeType">
+    <annotation>
+      <documentation>-- Definition --
+Indicator for the health status, expressed  per disease.</documentation>
+    </annotation>
+  </element>
+  <complexType name="RecognisedHealthTypeType">
+    <sequence>
+      <element name="aquaSpecies" type="af-ext:AquacultureSpeciesValueType">
+        <annotation>
+          <documentation>-- Definition --
+Express the species name  by using a code value.
+
+-- Description --
+The EU regulation 788/1996  uses theASFIS list of species for fishery statistics purposes.
+http://www.fao.org.fishery.collection.asfis.en .</documentation>
+        </annotation>
+      </element>
+      <element name="recognisedHealthStatus" type="af-ext:HealthStatusValueType">
+        <annotation>
+          <documentation>-- Definition --
+The  granted health status of the population of the particular species.
+
+-- Description --
+The healthstatus is granted  for a one species.
+The status can be declared desease free 
+under surveillance programma
+not known to be infected
+others</documentation>
+        </annotation>
+      </element>
+      <element name="dateFrom" nillable="true">
+        <annotation>
+          <documentation>-- Definition --
+The date from when  the healthstatus was granted.</documentation>
+        </annotation>
+        <complexType>
+          <simpleContent>
+            <extension base="date">
+              <attribute name="nilReason" type="gml:NilReasonType"/>
+            </extension>
+          </simpleContent>
+        </complexType>
+      </element>
+      <element minOccurs="0" name="dateTo" nillable="true">
+        <annotation>
+          <documentation>-- Definition --
+The date from when  the granted  healthstatus is no longer valid.</documentation>
+        </annotation>
+        <complexType>
+          <simpleContent>
+            <extension base="date">
+              <attribute name="nilReason" type="gml:NilReasonType"/>
+            </extension>
+          </simpleContent>
+        </complexType>
+      </element>
+    </sequence>
+  </complexType>
+  <complexType name="RecognisedHealthTypePropertyType">
+    <sequence>
+      <element ref="af-ext:RecognisedHealthType"/>
+    </sequence>
+  </complexType>
+  <element name="Holding" substitutionGroup="gml:AbstractFeature" type="af-ext:HoldingType">
+    <annotation>
+      <documentation>-- Definition --
+The whole area and all infrastructures included on it, covering the same or different  "sites", under the control  of an operator to perform  agricultural  or aquaculture activities.</documentation>
+    </annotation>
+  </element>
+  <complexType name="HoldingType">
+    <complexContent>
+      <extension base="gml:AbstractFeatureType">
+        <sequence>
+          <element minOccurs="0" name="inspireId" type="base:IdentifierPropertyType">
+            <annotation>
+              <documentation>-- Definition --
+INSPIRE identifier of the holding.
+
+-- Description --</documentation>
+            </annotation>
+          </element>
+          <element minOccurs="0" name="geometry" type="gml:GeometryPropertyType">
+            <annotation>
+              <documentation>-- Definition --
+The geometry defining the extent or position of the holding.</documentation>
+            </annotation>
+          </element>
+          <element maxOccurs="unbounded" name="address" type="ad:AddressRepresentationPropertyType">
+            <annotation>
+              <documentation>'-- Definition --
+the adress of the fysical location of the holding.</documentation>
+            </annotation>
+          </element>
+          <element maxOccurs="unbounded" name="activity" type="gml:CodeType">
+            <annotation>
+              <documentation>-- Definition --
+The classification of the economic activity of the holding, according to the NACE rev. 2.0 coding.
+
+-- Description --
+Accessible at Eurostat repository from URL  
+http://ec.europa.eu/eurostat/ramon/nomenclatures/index.cfm? 
+TargetUrl=LST_CLS_DLD&amp;StrNom=NACE_REV2 
+&amp;StrLanguageCode=EN&amp;StrLayoutCode=HIERARCHIC. 
+
+The valid nace codes are 
+first level
+01 and 03
+second level
+01.1 - 01.6  and 03.2
+third level 
+01.11 -  01.64  and 03.21 - 03.22
+
+
+01.7  hunting trapping an related services is exclude.
+02.    forestry and logging are excluded
+03.1  fishing is excluded.</documentation>
+            </annotation>
+          </element>
+          <element minOccurs="0" name="description" nillable="true" type="gmd:PT_FreeText_PropertyType">
+            <annotation>
+              <documentation>-- Definition --
+A general description of the holding and its characteristics.</documentation>
+            </annotation>
+          </element>
+          <element maxOccurs="unbounded" minOccurs="0" name="id" nillable="true" type="gmd:PT_FreeText_PropertyType">
+            <annotation>
+              <documentation>-- Definition --
+Identifiers of the holding  used by the  specified identification scheme, such as a national register.</documentation>
+            </annotation>
+          </element>
+          <element minOccurs="0" name="name" nillable="true">
+            <annotation>
+              <documentation>-- Definition --
+The name of the holding.</documentation>
+            </annotation>
+            <complexType>
+              <sequence>
+                <element ref="gn:GeographicalName"/>
+              </sequence>
+              <attribute name="nilReason" type="gml:NilReasonType"/>
+            </complexType>
+          </element>
+          <element maxOccurs="unbounded" minOccurs="0" name="permission" nillable="true">
+            <annotation>
+              <documentation>-- Definition --
+Permissions granted in relation to the holding.</documentation>
+            </annotation>
+            <complexType>
+              <sequence>
+                <element ref="us-waste:PermissionType"/>
+              </sequence>
+              <attribute name="nilReason" type="gml:NilReasonType"/>
+            </complexType>
+          </element>
+          <element maxOccurs="unbounded" minOccurs="0" name="relatedParty" nillable="true">
+            <annotation>
+              <documentation>-- Definition --
+Parties related to the holding, such as operators or owners.</documentation>
+            </annotation>
+            <complexType>
+              <sequence>
+                <element ref="us-waste:PartyRoleType"/>
+              </sequence>
+              <attribute name="nilReason" type="gml:NilReasonType"/>
+            </complexType>
+          </element>
+          <element name="validFrom" nillable="true">
+            <annotation>
+              <documentation>-- Definition --
+The time when the holding started to exist in the real world.</documentation>
+            </annotation>
+            <complexType>
+              <simpleContent>
+                <extension base="dateTime">
+                  <attribute name="nilReason" type="gml:NilReasonType"/>
+                </extension>
+              </simpleContent>
+            </complexType>
+          </element>
+          <element minOccurs="0" name="validTo" nillable="true">
+            <annotation>
+              <documentation>-- Definition --
+The time when the holding started to exist in the real world.</documentation>
+            </annotation>
+            <complexType>
+              <simpleContent>
+                <extension base="dateTime">
+                  <attribute name="nilReason" type="gml:NilReasonType"/>
+                </extension>
+              </simpleContent>
+            </complexType>
+          </element>
+          <element name="beginLifespanVersion" nillable="true">
+            <annotation>
+              <documentation>-- Definition --
+Date and time at which this version of the spatial object was inserted or changed in the spatial data set.</documentation>
+            </annotation>
+            <complexType>
+              <simpleContent>
+                <extension base="dateTime">
+                  <attribute name="nilReason" type="gml:NilReasonType"/>
+                </extension>
+              </simpleContent>
+            </complexType>
+          </element>
+          <element name="endLifespanVersion" nillable="true">
+            <annotation>
+              <documentation>-- Definition --
+Date and time at which this version of the spatial object was superseded or retired in the spatial data set.</documentation>
+            </annotation>
+            <complexType>
+              <simpleContent>
+                <extension base="dateTime">
+                  <attribute name="nilReason" type="gml:NilReasonType"/>
+                </extension>
+              </simpleContent>
+            </complexType>
+          </element>
+          <element maxOccurs="unbounded" name="contains" type="af-ext:SitePropertyType"/>
+          <element maxOccurs="unbounded" minOccurs="0" name="proces" type="af-ext:ProductionUnitPropertyType"/>
+        </sequence>
+      </extension>
+    </complexContent>
+  </complexType>
+  <complexType name="HoldingPropertyType">
+    <sequence minOccurs="0">
+      <element ref="af-ext:Holding"/>
+    </sequence>
+    <attributeGroup ref="gml:AssociationAttributeGroup"/>
+    <attributeGroup ref="gml:OwnershipAttributeGroup"/>
+  </complexType>
+  <simpleType name="AquacultureInstallationValueType">
+    <annotation>
+      <documentation>-- Definition --
+Type of aquaculture installation.</documentation>
+    </annotation>
+    <union memberTypes="af-ext:AquacultureInstallationValueEnumerationType af-ext:AquacultureInstallationValueOtherType"/>
+  </simpleType>
+  <simpleType name="AquacultureInstallationValueEnumerationType">
+    <annotation>
+      <documentation>-- Definition --
+Type of aquaculture installation.</documentation>
+    </annotation>
+    <restriction base="string">
+      <enumeration value="ponds"/>
+      <enumeration value="tanksAndRaceways"/>
+      <enumeration value="enclosuresAndPens"/>
+      <enumeration value="cages"/>
+      <enumeration value="recirculationSystem"/>
+      <enumeration value="onBottom(ForMolluscs)"/>
+      <enumeration value="offBottom(ForMolluscs)"/>
+      <enumeration value="otherMethodes"/>
+    </restriction>
+  </simpleType>
+  <simpleType name="AquacultureInstallationValueOtherType">
+    <restriction base="string">
+      <pattern value="other: \w{2,}"/>
+    </restriction>
+  </simpleType>
+  <simpleType name="IrrigationMethodeValueType">
+    <annotation>
+      <documentation>-- Definition --
+List de different methods of irrigation, according to EU regulation EC 1200/2009, annex III, chaper VIII.</documentation>
+    </annotation>
+    <union memberTypes="af-ext:IrrigationMethodeValueEnumerationType af-ext:IrrigationMethodeValueOtherType"/>
+  </simpleType>
+  <simpleType name="IrrigationMethodeValueEnumerationType">
+    <annotation>
+      <documentation>-- Definition --
+List de different methods of irrigation, according to EU regulation EC 1200/2009, annex III, chaper VIII.</documentation>
+    </annotation>
+    <restriction base="string">
+      <enumeration value="surfaceIrrigation">
+        <annotation>
+          <documentation>-- Definition --
+Leading the water along the ground, either by flooding the whole area or leading the water along small furrows between the crops, using gravity as a force.</documentation>
+        </annotation>
+      </enumeration>
+      <enumeration value="sprinklerIrrigation">
+        <annotation>
+          <documentation>-- Definition --
+Irrigation the plants  by propelling the water under high pressure as rain over the parcels.</documentation>
+        </annotation>
+      </enumeration>
+      <enumeration value="dropIrrigation">
+        <annotation>
+          <documentation>-- Definition --
+Irrigation the plants  by placing the water  low by the plants  drop by drop  or with micro sprinklers or by forming fog-like conditions.</documentation>
+        </annotation>
+      </enumeration>
+    </restriction>
+  </simpleType>
+  <simpleType name="IrrigationMethodeValueOtherType">
+    <restriction base="string">
+      <pattern value="other: \w{2,}"/>
+    </restriction>
+  </simpleType>
+  <simpleType name="InstallationPartValueType">
+    <annotation>
+      <documentation>-- Definition --
+Describes the type of the installation part, according to a code list.</documentation>
+    </annotation>
+    <union memberTypes="af-ext:InstallationPartValueEnumerationType af-ext:InstallationPartValueOtherType"/>
+  </simpleType>
+  <simpleType name="InstallationPartValueEnumerationType">
+    <annotation>
+      <documentation>-- Definition --
+Describes the type of the installation part, according to a code list.</documentation>
+    </annotation>
+    <restriction base="string">
+      <enumeration value="equipmentForRenewableEnergy"/>
+      <enumeration value="heatingInstallation"/>
+      <enumeration value="animalFeedSilo"/>
+      <enumeration value="manureSilo"/>
+      <enumeration value="manureSiloSolidDug"/>
+      <enumeration value="manureSiloLiquidManure"/>
+      <enumeration value="manureSiloSlurry"/>
+      <enumeration value="productSilo"/>
+      <enumeration value="waterPump"/>
+      <enumeration value="watersource"/>
+      <enumeration value="watersourceGroundwaterWell"/>
+      <enumeration value="watersourceSurfaceWaterInlet"/>
+      <enumeration value="watersourceCommonWaterSupplyNetworkTap"/>
+      <enumeration value="fuelTank"/>
+      <enumeration value="waterTank"/>
+      <enumeration value="pump"/>
+      <enumeration value="animalTreatmentUnit"/>
+      <enumeration value="packingAndProcessingUnit"/>
+      <enumeration value="others"/>
+    </restriction>
+  </simpleType>
+  <simpleType name="InstallationPartValueOtherType">
+    <restriction base="string">
+      <pattern value="other: \w{2,}"/>
+    </restriction>
+  </simpleType>
+  <simpleType name="AquacultureSpeciesValueType">
+    <annotation>
+      <documentation>-- Definition --
+
+The name of the species , coded according to the FAO ISCAAP 3 alfa code list.</documentation>
+    </annotation>
+    <union memberTypes="af-ext:AquacultureSpeciesValueEnumerationType af-ext:AquacultureSpeciesValueOtherType"/>
+  </simpleType>
+  <simpleType name="AquacultureSpeciesValueEnumerationType">
+    <annotation>
+      <documentation>-- Definition --
+
+The name of the species , coded according to the FAO ISCAAP 3 alfa code list.</documentation>
+    </annotation>
+    <restriction base="string">
+      <enumeration value="aquacultureSpeciesName">
+        <annotation>
+          <documentation>-- Definition --
+The name of the species , coded according to the FAO ISCAAP 3 alfa code list.</documentation>
+        </annotation>
+      </enumeration>
+    </restriction>
+  </simpleType>
+  <simpleType name="AquacultureSpeciesValueOtherType">
+    <restriction base="string">
+      <pattern value="other: \w{2,}"/>
+    </restriction>
+  </simpleType>
+  <simpleType name="LivestockSpeciesValueType">
+    <annotation>
+      <documentation>-- Definition --
+Express the species name by using a codevalue.</documentation>
+    </annotation>
+    <union memberTypes="af-ext:LivestockSpeciesValueEnumerationType af-ext:LivestockSpeciesValueOtherType"/>
+  </simpleType>
+  <simpleType name="LivestockSpeciesValueEnumerationType">
+    <annotation>
+      <documentation>-- Definition --
+Express the species name by using a codevalue.</documentation>
+    </annotation>
+    <restriction base="string">
+      <enumeration value="1_bovineAnimals"/>
+      <enumeration value="1_1_bovineAnimalsCalves"/>
+      <enumeration value="1_2_bovineAnimalsYoungCattle"/>
+      <enumeration value="1_3_bovineAnimalsHeifers"/>
+      <enumeration value="1_4_bovineAnimalsCows"/>
+      <enumeration value="1_5_bovineAnimalsBulls"/>
+      <enumeration value="1_6_bovineAnimalsBullocks"/>
+      <enumeration value="1_7_bovineAnimalsBuffalos"/>
+      <enumeration value="2_pigs"/>
+      <enumeration value="2_1_pigsPigglets&lt;20kg"/>
+      <enumeration value="2_2_pigsPigglets20-50kg"/>
+      <enumeration value="2_3_pigsFatteningPigs"/>
+      <enumeration value="2_4_pigsBreedingPigs&gt;50kg"/>
+      <enumeration value="3_sheep"/>
+      <enumeration value="3_1_sheepEwes"/>
+      <enumeration value="3_2_sheepOther"/>
+      <enumeration value="4_goats"/>
+      <enumeration value="4_1_goatsKiddedOrMated"/>
+      <enumeration value="4_2_goatsOthers"/>
+      <enumeration value="5_poultry"/>
+      <enumeration value="5_1_poultryChickens"/>
+      <enumeration value="5_2_poultryTurkeys"/>
+      <enumeration value="5_3_poultryDucks"/>
+      <enumeration value="6_others"/>
+    </restriction>
+  </simpleType>
+  <simpleType name="LivestockSpeciesValueOtherType">
+    <restriction base="string">
+      <pattern value="other: \w{2,}"/>
+    </restriction>
+  </simpleType>
+  <simpleType name="WaterSourceValueType">
+    <annotation>
+      <documentation>-- Definition --
+The type of water source, according to Regulation (EC) No 1200/2009.</documentation>
+    </annotation>
+    <union memberTypes="af-ext:WaterSourceValueEnumerationType af-ext:WaterSourceValueOtherType"/>
+  </simpleType>
+  <simpleType name="WaterSourceValueEnumerationType">
+    <annotation>
+      <documentation>-- Definition --
+The type of water source, according to Regulation (EC) No 1200/2009.</documentation>
+    </annotation>
+    <restriction base="string">
+      <enumeration value="onFarmGroundWater"/>
+      <enumeration value="onFarmSurfaceWater">
+        <annotation>
+          <documentation>-- Description --
+(Ponds or dams)</documentation>
+        </annotation>
+      </enumeration>
+      <enumeration value="offFarmSurfaceWater">
+        <annotation>
+          <documentation>-- Description --
+ from lakes, rivers or watercources.</documentation>
+        </annotation>
+      </enumeration>
+      <enumeration value="offFarmWaterFromCommonWaterSupplyNetworks"/>
+      <enumeration value="otherSources"/>
+    </restriction>
+  </simpleType>
+  <simpleType name="WaterSourceValueOtherType">
+    <restriction base="string">
+      <pattern value="other: \w{2,}"/>
+    </restriction>
+  </simpleType>
+  <element name="AquacultureInstallation" substitutionGroup="af-ext:AbstractInstallation" type="af-ext:AquacultureInstallationType">
+    <annotation>
+      <documentation>-- Definition --
+A technical unit or a delimited area  operated by the same owner of the (aquaculture) holding, where one or more activities listed in Annex I of Regulation (EC) No 1893/2006 are carried out. 
+
+-- Description --
+Source ( Plan4all - modified)</documentation>
+    </annotation>
+  </element>
+  <complexType name="AquacultureInstallationType">
+    <complexContent>
+      <extension base="af-ext:AbstractInstallationType">
+        <sequence>
+          <element name="aquacultureActivity" nillable="true">
+            <annotation>
+              <documentation>-- Definition --
+Type of aquaculture activity.
+
+-- Description --
+In the enumeration next values are possible:
+grow out
+nursery
+hatchery
+other.</documentation>
+            </annotation>
+            <complexType>
+              <simpleContent>
+                <extension base="af-ext:AquacultureActivityValueType">
+                  <attribute name="nilReason" type="gml:NilReasonType"/>
+                </extension>
+              </simpleContent>
+            </complexType>
+          </element>
+          <element name="installationType" nillable="true">
+            <annotation>
+              <documentation>-- Definition --
+Type of aquaculture installation.
+
+-- Description --
+In the enumeration fixed values  for the types of installation are listed, like:
+ponds
+tanks and raceways
+enclosures and pens
+etc.</documentation>
+            </annotation>
+            <complexType>
+              <simpleContent>
+                <extension base="af-ext:AquacultureInstallationValueType">
+                  <attribute name="nilReason" type="gml:NilReasonType"/>
+                </extension>
+              </simpleContent>
+            </complexType>
+          </element>
+          <element name="environment" nillable="true">
+            <annotation>
+              <documentation>-- Definition --
+The type of the environment  in which the aquaculture organisms are kept.  (a water classification).
+
+-- Description --
+The type of water   can be 
+marine, freshwater or brackish water. (enumeration).</documentation>
+            </annotation>
+            <complexType>
+              <simpleContent>
+                <extension base="af-ext:EnvironmentValueType">
+                  <attribute name="nilReason" type="gml:NilReasonType"/>
+                </extension>
+              </simpleContent>
+            </complexType>
+          </element>
+          <element maxOccurs="unbounded" minOccurs="0" name="recognisedHealthStatus" nillable="true">
+            <annotation>
+              <documentation>-- Definition --
+Indicator for the health status, expressed  per disease.
+
+-- Description --</documentation>
+            </annotation>
+            <complexType>
+              <sequence>
+                <element ref="af-ext:RecognisedHealthType"/>
+              </sequence>
+              <attribute name="nilReason" type="gml:NilReasonType"/>
+            </complexType>
+          </element>
+        </sequence>
+      </extension>
+    </complexContent>
+  </complexType>
+  <complexType name="AquacultureInstallationPropertyType">
+    <sequence minOccurs="0">
+      <element ref="af-ext:AquacultureInstallation"/>
+    </sequence>
+    <attributeGroup ref="gml:AssociationAttributeGroup"/>
+    <attributeGroup ref="gml:OwnershipAttributeGroup"/>
+  </complexType>
+</schema>

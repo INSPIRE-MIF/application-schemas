@@ -1,0 +1,156 @@
+<?xml version="1.0" encoding="UTF-8"?><schema xmlns="http://www.w3.org/2001/XMLSchema" xmlns:base="urn:x-inspire:specification:gmlas:BaseTypes:3.2" xmlns:el-bas="http://inspire.jrc.ec.europa.eu/schemas/el-bas/2.0" xmlns:el-tin="http://inspire.jrc.ec.europa.eu/schemas/el-tin/2.0" xmlns:gml="http://www.opengis.net/gml/3.2" elementFormDefault="qualified" targetNamespace="http://inspire.jrc.ec.europa.eu/schemas/el-tin/2.0" version="2.0">
+  <annotation>
+    <appinfo>
+      <gmlProfileSchema xmlns="http://www.opengis.net/gml/3.2">EMPTY</gmlProfileSchema>
+    </appinfo>
+  </annotation>
+  <import namespace="http://inspire.jrc.ec.europa.eu/schemas/el-bas/2.0" schemaLocation="https://inspire.ec.europa.eu/draft-schemas/el-bas/2.0/ElevationBase.xsd"/>
+  <import namespace="http://www.opengis.net/gml/3.2" schemaLocation="http://schemas.opengis.net/gml/3.2.1/gml.xsd"/>
+  <import namespace="urn:x-inspire:specification:gmlas:BaseTypes:3.2" schemaLocation="https://inspire.ec.europa.eu/schemas/base/3.2/BaseTypes.xsd"/>
+  <!--XML Schema document created by ShapeChange-->
+  <element name="ElevationTIN" substitutionGroup="gml:AbstractFeature" type="el-tin:ElevationTINType">
+    <annotation>
+      <documentation>-- Name --
+Elevation TIN.
+
+-- Definition --
+Elevation feature using a particular tessellation of the space based on a Triangulated Irregular Network according the type GM_Tin (from ISO 19107:2003) which describes a Delaunay triangulation, mainly composed of a set of control points whose elevation property values are known.
+
+-- Description --
+NOTE 1 A coverage is a feature type that acts as a function to return an elevation property value from its range for any direct position within its spatial, temporal or spatiotemporal domain (adapted from "Coverage" [ISO 19123:2005]).
+At conceptual level, an elevation TIN implicitly defines a coverage: a feature type which assigns elevation property values (coverage range) to the geometric elements forming part of the set of control points (coverage domain). Moreover, this coverage may be considered as a continuous coverage, since the elevation TIN provides a mathematical method to interpolate elevation values for any direct position within its domain extent from the elevation values known for the vertices forming the TIN network (domain elements).
+
+NOTE 2 The basic idea of a TIN is to partition the convex hull of the points in the domain of a discrete point coverage into a computationally unique set of non-overlapping triangles. Each triangle is formed by three of the points in the domain of the discrete point coverage. The Delaunay triangulation method is commonly used to produce TIN tessellations with triangles that are optimally equiangular in shape, and are generated in such a manner that the circumscribing circle containing each triangle contains no point of the discrete point coverage other than those at the vertices of the triangle [ISO 19123:2005].</documentation>
+    </annotation>
+  </element>
+  <complexType name="ElevationTINType">
+    <complexContent>
+      <extension base="gml:AbstractFeatureType">
+        <sequence>
+          <element name="beginLifespanVersion" nillable="true">
+            <annotation>
+              <documentation>-- Name --
+Begin lifespan version.
+
+-- Definition --
+Date and time at which this version of the spatial object was inserted or changed in the spatial data set.</documentation>
+            </annotation>
+            <complexType>
+              <simpleContent>
+                <extension base="dateTime">
+                  <attribute name="nilReason" type="gml:NilReasonType"/>
+                </extension>
+              </simpleContent>
+            </complexType>
+          </element>
+          <element minOccurs="0" name="endLifespanVersion" nillable="true">
+            <annotation>
+              <documentation>-- Name --
+End lifespan version.
+
+-- Definition --
+Date and time at which this version of the spatial object was superseded or retired in the spatial data set.</documentation>
+            </annotation>
+            <complexType>
+              <simpleContent>
+                <extension base="dateTime">
+                  <attribute name="nilReason" type="gml:NilReasonType"/>
+                </extension>
+              </simpleContent>
+            </complexType>
+          </element>
+          <element name="inspireId" type="base:IdentifierPropertyType">
+            <annotation>
+              <documentation>-- Name --
+Inspire ID.
+
+-- Definition --
+External object identifier of the spatial object.
+
+-- Description --
+NOTE An external object identifier is a unique object identifier published by the responsible body, which may be used by external applications to reference the spatial object. The identifier is an identifier of the spatial object, not an identifier of the real-world phenomenon.</documentation>
+            </annotation>
+          </element>
+          <element name="geometries">
+            <annotation>
+              <documentation>-- Name --
+Geometries.
+
+-- Definition --
+Represents the collection of geometric properties of the elevation TIN feature.</documentation>
+            </annotation>
+            <complexType>
+              <complexContent>
+                <extension base="gml:AbstractMemberType">
+                  <sequence minOccurs="0">
+                    <element ref="gml:Tin"/>
+                  </sequence>
+                  <attributeGroup ref="gml:AssociationAttributeGroup"/>
+                </extension>
+              </complexContent>
+            </complexType>
+          </element>
+          <element name="interpolationType" type="gml:CodeType">
+            <annotation>
+              <documentation>-- Name --
+Interpolation type.
+
+-- Definition --
+Mathematical method which shall be used to evaluate a continuous coverage, i.e. determine the values of the coverage at any direct position within the domain of the coverage.
+
+-- Description --
+EXAMPLE Evaluation of a triangulated irregular network in a certain location involves interpolation of values within a triangle (which contains this location) composed of three neighbouring point value pairs (triangle vertices).
+
+NOTE The list of possible values for interpolation methods is defined in ISO 19123:2005 - Annex C (Interpolation methods).
+Default value provided in this specification is "bilinear".</documentation>
+            </annotation>
+          </element>
+          <element name="propertyType" type="el-bas:ElevationPropertyTypeValueType">
+            <annotation>
+              <documentation>-- Name --
+Property type.
+
+-- Definition --
+An elevation property which has been measured or calculated.
+
+-- Description --
+NOTE 1 An elevation property is a vertically-constrained dimensional property of an element consisting of an absolute measure referenced to a well-defined surface which is commonly taken as origin (geoid, water level, etc.). It does not include relative elevations of the element referenced to other spatial objects.
+
+EXAMPLE  Height, depth.
+
+NOTE 2 It describes the type of property of the values provided within the elevation coverage.</documentation>
+            </annotation>
+          </element>
+          <element name="surfaceType" type="el-bas:SurfaceTypeValueType">
+            <annotation>
+              <documentation>-- Name --
+Surface type.
+
+-- Definition --
+Attribute indicating the type of elevation surface that the coverage describes in relation to the terrain.</documentation>
+            </annotation>
+          </element>
+          <element name="TINReference" type="gml:ReferenceType">
+            <annotation>
+              <documentation>-- Name --
+TIN Reference.
+
+-- Definition --
+The elevation reference to which the measured property values (heights or depths) of the elevation TIN are referenced to.</documentation>
+              <appinfo>
+                <targetElement xmlns="http://www.opengis.net/gml/3.2">el-bas:ElevationReference</targetElement>
+              </appinfo>
+            </annotation>
+          </element>
+        </sequence>
+      </extension>
+    </complexContent>
+  </complexType>
+  <complexType name="ElevationTINPropertyType">
+    <sequence minOccurs="0">
+      <element ref="el-tin:ElevationTIN"/>
+    </sequence>
+    <attributeGroup ref="gml:AssociationAttributeGroup"/>
+    <attributeGroup ref="gml:OwnershipAttributeGroup"/>
+  </complexType>
+</schema>

@@ -1,0 +1,734 @@
+<?xml version="1.0" encoding="UTF-8"?><schema xmlns="http://www.w3.org/2001/XMLSchema" xmlns:base="urn:x-inspire:specification:gmlas:BaseTypes:3.2" xmlns:el-bas="http://inspire.jrc.ec.europa.eu/schemas/el-bas/2.0" xmlns:el-vec="http://inspire.jrc.ec.europa.eu/schemas/el-vec/2.0" xmlns:gml="http://www.opengis.net/gml/3.2" xmlns:gn="urn:x-inspire:specification:gmlas:GeographicalNames:3.0" elementFormDefault="qualified" targetNamespace="http://inspire.jrc.ec.europa.eu/schemas/el-vec/2.0" version="2.0">
+  <annotation>
+    <appinfo>
+      <gmlProfileSchema xmlns="http://www.opengis.net/gml/3.2">EMPTY</gmlProfileSchema>
+    </appinfo>
+  </annotation>
+  <import namespace="http://inspire.jrc.ec.europa.eu/schemas/el-bas/2.0" schemaLocation="https://inspire.ec.europa.eu/draft-schemas/el-bas/2.0/ElevationBase.xsd"/>
+  <import namespace="http://www.opengis.net/gml/3.2" schemaLocation="http://schemas.opengis.net/gml/3.2.1/gml.xsd"/>
+  <import namespace="urn:x-inspire:specification:gmlas:BaseTypes:3.2" schemaLocation="https://inspire.ec.europa.eu/schemas/base/3.2/BaseTypes.xsd"/>
+  <import namespace="urn:x-inspire:specification:gmlas:GeographicalNames:3.0" schemaLocation="https://inspire.ec.europa.eu/schemas/gn/3.0/GeographicalNames.xsd"/>
+  <!--XML Schema document created by ShapeChange-->
+  <element name="BreakLine" substitutionGroup="el-vec:ElevationVectorObject" type="el-vec:BreakLineType">
+    <annotation>
+      <documentation>-- Name --
+Breakline.
+
+-- Definition --
+A line of a critical nature to describe the shape of an elevation surface which indicates a distinct interruption or discontinuity in this surface (i.e. an abrupt change in gradient), where differently sloped adjoining terrain surfaces intersects.
+
+-- Description --
+SOURCE Adapted from [ISO 19107:2003].
+
+EXAMPLE 
+Breaklines represent local ridges or depressions (streams or drainage lines) in the surface, man-made structures (e.g. roads), etc. 
+
+NOTE 1  A breakline connects points with different elevation and therefore its description using 3-D coordinates (using the 'geometry' attribute) is fully recommended.
+
+NOTE 2  No triangle in a TIN may cross a breakline (in other words, breakline segments are enforced as triangle edges), even if doing so violates the Delaunay criterion.
+
+NOTE 3  All breaklines are located on the ground surface or any of the artificial structures built on it. Any breaks present in a Digital Surface Model can not be described within this specification.
+
+NOTE 4  Breaklines act as auxiliary objects, which can be useful as input data for the generation of a more appropriate or accurate digital elevation model - in order to serve specific user needs - by using interpolation methods.</documentation>
+    </annotation>
+  </element>
+  <complexType name="BreakLineType">
+    <complexContent>
+      <extension base="el-vec:ElevationVectorObjectType">
+        <sequence>
+          <element name="breakLineType" type="gml:CodeType">
+            <annotation>
+              <documentation>-- Name --
+Break line type.
+
+-- Definition --
+The type of break line with regard the natural or man-made real world characteristic it represents, or the specific function it has in calculating a Digital Elevation Model (DEM).</documentation>
+            </annotation>
+          </element>
+          <element name="geometry" type="gml:CurvePropertyType">
+            <annotation>
+              <documentation>-- Name --
+Geometry.
+
+-- Definition --
+Represents the geometric properties of the break line, elevation auxiliary spatial object.</documentation>
+            </annotation>
+          </element>
+          <element name="manMadeBreak" nillable="true">
+            <annotation>
+              <documentation>-- Name --
+Man-made break.
+
+-- Definition --
+Line which represents an elevation break due to an artificial or man-made construction present on the terrain.</documentation>
+            </annotation>
+            <complexType>
+              <simpleContent>
+                <extension base="boolean">
+                  <attribute name="nilReason" type="gml:NilReasonType"/>
+                </extension>
+              </simpleContent>
+            </complexType>
+          </element>
+        </sequence>
+      </extension>
+    </complexContent>
+  </complexType>
+  <complexType name="BreakLinePropertyType">
+    <sequence minOccurs="0">
+      <element ref="el-vec:BreakLine"/>
+    </sequence>
+    <attributeGroup ref="gml:AssociationAttributeGroup"/>
+    <attributeGroup ref="gml:OwnershipAttributeGroup"/>
+  </complexType>
+  <element abstract="true" name="ElevationPoint" substitutionGroup="el-vec:ElevationVectorObject" type="el-vec:ElevationPointType">
+    <annotation>
+      <documentation>-- Name--
+Elevation point.
+
+-- Definition --
+A point spatial object that provides a single value of an elevation property. It describes the elevation of a real world surface at a specific location. 
+
+-- Description --
+NOTE It includes the elevation property value of the surface at a specific location, which often represents a singular point in the morphology of the surface.</documentation>
+    </annotation>
+  </element>
+  <complexType abstract="true" name="ElevationPointType">
+    <complexContent>
+      <extension base="el-vec:ElevationVectorObjectType">
+        <sequence>
+          <element name="classification" nillable="true">
+            <annotation>
+              <documentation>-- Name --
+Classification.
+
+-- Definition --
+Class of elevation point according the LAS specification v1.3 - R10, of the American Society for Photogrammetry &amp; Remote Sensing.
+
+-- Description --
+NOTE The classification proposed for every elevation point regardless of their adquisition method corresponds to the ASPRS Standard LIDAR Point Classes.</documentation>
+            </annotation>
+            <complexType>
+              <simpleContent>
+                <extension base="gml:CodeType">
+                  <attribute name="nilReason" type="gml:NilReasonType"/>
+                </extension>
+              </simpleContent>
+            </complexType>
+          </element>
+          <element name="geometry" type="gml:PointPropertyType">
+            <annotation>
+              <documentation>-- Name --
+Geometry.
+
+-- Definition --
+Represents the geometric properties of the elevation point spatial object.</documentation>
+            </annotation>
+          </element>
+          <element name="propertyType" type="el-bas:ElevationPropertyTypeValueType">
+            <annotation>
+              <documentation>-- Name --
+Property type.
+
+-- Definition --
+An elevation property which has been measured or calculated.
+
+-- Description --
+NOTE 1  An elevation property is a vertically-constrained dimensional property of an element consisting of an absolute measure referenced to a well-defined surface which is commonly taken as origin (geoid, water level, etc.). It does not include relative elevations of the element referenced to other spatial objects.
+
+EXAMPLE  Height, depth.</documentation>
+            </annotation>
+          </element>
+          <element name="propertyValue" type="gml:MeasureType">
+            <annotation>
+              <documentation>-- Name --
+Property value.
+
+-- Definition --
+Value of the elevation property which has been measured or calculated.
+
+-- Description --
+NOTE 1  An elevation property is a vertically-constrained dimensional property of an element consisting of an absolute measure referenced to a well-defined surface which is commonly taken as origin (geoid, water level, etc.). It does not include relative elevations of the element referenced to other spatial objects.</documentation>
+            </annotation>
+          </element>
+        </sequence>
+      </extension>
+    </complexContent>
+  </complexType>
+  <complexType name="ElevationPointPropertyType">
+    <sequence minOccurs="0">
+      <element ref="el-vec:ElevationPoint"/>
+    </sequence>
+    <attributeGroup ref="gml:AssociationAttributeGroup"/>
+    <attributeGroup ref="gml:OwnershipAttributeGroup"/>
+  </complexType>
+  <element name="IsolatedArea" substitutionGroup="el-vec:ElevationVectorObject" type="el-vec:IsolatedAreaType">
+    <annotation>
+      <documentation>-- Name --
+Isolated area.
+
+-- Definition --
+Area that delimits an isolated part of the territory where the elevation model exists. 
+
+-- Description --
+SOURCE Adapted from "IslandArea" [GIS4EU D3.5].
+
+NOTE 1 It includes an isolated part into the elevation model.
+
+NOTE 2 Isolated areas act as auxiliary objects, which can be useful as input data (mask) for a more appropriate or accurate digital elevation model - in order to serve specific user needs.</documentation>
+    </annotation>
+  </element>
+  <complexType name="IsolatedAreaType">
+    <complexContent>
+      <extension base="el-vec:ElevationVectorObjectType">
+        <sequence>
+          <element name="geometry" type="gml:SurfacePropertyType">
+            <annotation>
+              <documentation>-- Name --
+Geometry.
+
+-- Definition --
+Represents the geometric properties of the isolated area spatial object.</documentation>
+            </annotation>
+          </element>
+          <element name="container" nillable="true" type="gml:ReferenceType">
+            <annotation>
+              <documentation>-- Name --
+Container.
+
+-- Definition --
+Void area including zero or more isolated areas.</documentation>
+              <appinfo>
+                <targetElement xmlns="http://www.opengis.net/gml/3.2">el-vec:VoidArea</targetElement>
+                <reversePropertyName xmlns="http://www.opengis.net/gml/3.2">el-vec:content</reversePropertyName>
+              </appinfo>
+            </annotation>
+          </element>
+        </sequence>
+      </extension>
+    </complexContent>
+  </complexType>
+  <complexType name="IsolatedAreaPropertyType">
+    <sequence minOccurs="0">
+      <element ref="el-vec:IsolatedArea"/>
+    </sequence>
+    <attributeGroup ref="gml:AssociationAttributeGroup"/>
+    <attributeGroup ref="gml:OwnershipAttributeGroup"/>
+  </complexType>
+  <element abstract="true" name="ElevationVectorObject" substitutionGroup="gml:AbstractFeature" type="el-vec:ElevationVectorObjectType">
+    <annotation>
+      <documentation>-- Name--
+Elevation vector object.
+
+-- Definition --
+A spatial object forming part of a vector-format data set, which participates in the description of the elevation property of a real world surface. It consists of an identity base for all vector objects which can be included as part of an elevation data set.
+
+-- Description --
+It is an abstract feature type which generically describes every possible type of elevation vector object. It includes common attributes, properties and constraints for such spatial objects.</documentation>
+    </annotation>
+  </element>
+  <complexType abstract="true" name="ElevationVectorObjectType">
+    <complexContent>
+      <extension base="gml:AbstractFeatureType">
+        <sequence>
+          <element name="beginLifespanVersion" nillable="true">
+            <annotation>
+              <documentation>-- Name --
+Begin lifespan version.
+
+-- Definition --
+Date and time at which this version of the spatial object was inserted or changed in the spatial data set.</documentation>
+            </annotation>
+            <complexType>
+              <simpleContent>
+                <extension base="dateTime">
+                  <attribute name="nilReason" type="gml:NilReasonType"/>
+                </extension>
+              </simpleContent>
+            </complexType>
+          </element>
+          <element minOccurs="0" name="endLifespanVersion" nillable="true">
+            <annotation>
+              <documentation>-- Name --
+End lifespan version.
+
+-- Definition --
+Date and time at which this version of the spatial object was superseded or retired in the spatial data set.</documentation>
+            </annotation>
+            <complexType>
+              <simpleContent>
+                <extension base="dateTime">
+                  <attribute name="nilReason" type="gml:NilReasonType"/>
+                </extension>
+              </simpleContent>
+            </complexType>
+          </element>
+          <element name="inspireId" type="base:IdentifierPropertyType">
+            <annotation>
+              <documentation>-- Name --
+Inspire ID.
+
+-- Definition --
+External object identifier of the spatial object.
+
+-- Description --
+NOTE An external object identifier is a unique object identifier published by the responsible body, which may be used by external applications to reference the spatial object. The identifier is an identifier of the spatial object, not an identifier of the real-world phenomenon.</documentation>
+            </annotation>
+          </element>
+          <element name="nominalScale" type="integer">
+            <annotation>
+              <documentation>-- Name --
+Nominal scale.
+
+-- Definition --
+Number indicating the denominator of the nominal scale at which the vector object was captured or from which it was calculated or derived.</documentation>
+            </annotation>
+          </element>
+          <element name="vectorReference" type="gml:ReferenceType">
+            <annotation>
+              <documentation>-- Name --
+Vector reference.
+
+-- Definition --
+The elevation reference to which the measured property value (height or depth) of the vector object is referenced to.</documentation>
+              <appinfo>
+                <targetElement xmlns="http://www.opengis.net/gml/3.2">el-bas:ElevationReference</targetElement>
+              </appinfo>
+            </annotation>
+          </element>
+        </sequence>
+      </extension>
+    </complexContent>
+  </complexType>
+  <complexType name="ElevationVectorObjectPropertyType">
+    <sequence minOccurs="0">
+      <element ref="el-vec:ElevationVectorObject"/>
+    </sequence>
+    <attributeGroup ref="gml:AssociationAttributeGroup"/>
+    <attributeGroup ref="gml:OwnershipAttributeGroup"/>
+  </complexType>
+  <element name="VoidArea" substitutionGroup="el-vec:ElevationVectorObject" type="el-vec:VoidAreaType">
+    <annotation>
+      <documentation>-- Name --
+Void area.
+
+-- Definition --
+Area that delimits a part of the territory where the elevation model is unknown because of missing input data.
+
+-- Description --
+SOURCE "ObscureArea" [GIS4EU D3.5].
+
+NOTE 1 The portion of territory covered by the void area is excluded from an elevation model, except for the cases stated in note 2.
+
+NOTE 2 A void area may contain a number of isolated areas with elevation data. These areas are considered valid exceptions according note 1.
+
+NOTE 3  Void areas act as auxiliary objects, which can be useful as input data (mask) for a more appropriate or accurate digital elevation model - in order to serve specific user needs.</documentation>
+    </annotation>
+  </element>
+  <complexType name="VoidAreaType">
+    <complexContent>
+      <extension base="el-vec:ElevationVectorObjectType">
+        <sequence>
+          <element name="geometry" type="gml:SurfacePropertyType">
+            <annotation>
+              <documentation>-- Name --
+Geometry.
+
+-- Definition --
+Represents the geometric properties of the void area, elevation auxiliary spatial object.</documentation>
+            </annotation>
+          </element>
+          <element maxOccurs="unbounded" minOccurs="0" name="content" nillable="true" type="gml:ReferenceType">
+            <annotation>
+              <documentation>-- Name --
+Content.
+
+-- Definition --
+Isolated area included in a void area.</documentation>
+              <appinfo>
+                <targetElement xmlns="http://www.opengis.net/gml/3.2">el-vec:IsolatedArea</targetElement>
+                <reversePropertyName xmlns="http://www.opengis.net/gml/3.2">el-vec:container</reversePropertyName>
+              </appinfo>
+            </annotation>
+          </element>
+        </sequence>
+      </extension>
+    </complexContent>
+  </complexType>
+  <complexType name="VoidAreaPropertyType">
+    <sequence minOccurs="0">
+      <element ref="el-vec:VoidArea"/>
+    </sequence>
+    <attributeGroup ref="gml:AssociationAttributeGroup"/>
+    <attributeGroup ref="gml:OwnershipAttributeGroup"/>
+  </complexType>
+  <element name="DepthContour" substitutionGroup="el-vec:ElevationLine" type="el-vec:DepthContourType">
+    <annotation>
+      <documentation>-- Name --
+Depth contour line.
+
+-- Definition --
+A depth contour is a line that connects points that have the same depth value with respect to a specific vertical reference system. It describes the morphology of a surface coincident with the sea floor or the bottom of a lake.
+
+NOTE  The sea floor surface is often represented in vector elevation datasets as a set of depth contour lines, where the distance separating subsequent ones can not be a constant parameter for the whole set.
+In case this distance is constant for the whole set of depth contour lines, the equidistance parameter (normal contour vertical interval) can be used to specify it.</documentation>
+    </annotation>
+  </element>
+  <complexType name="DepthContourType">
+    <complexContent>
+      <extension base="el-vec:ElevationLineType">
+        <sequence>
+          <element name="depthContourType" nillable="true">
+            <annotation>
+              <documentation>-- Definition --
+The type of depth contour line.</documentation>
+            </annotation>
+            <complexType>
+              <simpleContent>
+                <extension base="el-vec:ContourTypeValueType">
+                  <attribute name="nilReason" type="gml:NilReasonType"/>
+                </extension>
+              </simpleContent>
+            </complexType>
+          </element>
+          <element name="elevationCase" nillable="true">
+            <annotation>
+              <documentation>-- Definition --
+Property indicating that the depth contour line surrounds an area with a depth lower than itself (the area represents an elevation of the sea-bottom surface).
+
+-- Description --
+NOTE  This case (elevation) is contrary to the more frequent case in cartographic representation, where a depth contour line surrounds an area with a depth higher than itself (the area represents a depression of the sea-bottom surface).</documentation>
+            </annotation>
+            <complexType>
+              <simpleContent>
+                <extension base="boolean">
+                  <attribute name="nilReason" type="gml:NilReasonType"/>
+                </extension>
+              </simpleContent>
+            </complexType>
+          </element>
+          <element name="equidistance" nillable="true">
+            <annotation>
+              <documentation>-- Definition --
+Property indicating the normal contour vertical interval between two subsequent contours expressed in meters.</documentation>
+            </annotation>
+            <complexType>
+              <simpleContent>
+                <extension base="integer">
+                  <attribute name="nilReason" type="gml:NilReasonType"/>
+                </extension>
+              </simpleContent>
+            </complexType>
+          </element>
+        </sequence>
+      </extension>
+    </complexContent>
+  </complexType>
+  <complexType name="DepthContourPropertyType">
+    <sequence minOccurs="0">
+      <element ref="el-vec:DepthContour"/>
+    </sequence>
+    <attributeGroup ref="gml:AssociationAttributeGroup"/>
+    <attributeGroup ref="gml:OwnershipAttributeGroup"/>
+  </complexType>
+  <element name="SpotDepth" substitutionGroup="el-vec:ElevationPoint" type="el-vec:SpotDepthType">
+    <annotation>
+      <documentation>-- Name --
+Spot depth.
+
+-- Definition --
+Permanent elevation point which describes the morphology of a surface coincident with the sea floor or the bottom of a lake by indicating its depth with respect a specific vertical reference system.</documentation>
+    </annotation>
+  </element>
+  <complexType name="SpotDepthType">
+    <complexContent>
+      <extension base="el-vec:ElevationPointType">
+        <sequence>
+          <element maxOccurs="unbounded" minOccurs="0" name="geographicalName" nillable="true">
+            <annotation>
+              <documentation>-- Definition --
+A geographical name that is used to identify a named sea-bottom location in the real world, represented by a spot depth object in the elevation model. It provides a 'key' for implicitly associating different representations of the object.</documentation>
+            </annotation>
+            <complexType>
+              <sequence>
+                <element ref="gn:GeographicalName"/>
+              </sequence>
+              <attribute name="nilReason" type="gml:NilReasonType"/>
+            </complexType>
+          </element>
+          <element name="spotDepthType" nillable="true">
+            <annotation>
+              <documentation>-- Definition --
+The type of spot depth.</documentation>
+            </annotation>
+            <complexType>
+              <simpleContent>
+                <extension base="gml:CodeType">
+                  <attribute name="nilReason" type="gml:NilReasonType"/>
+                </extension>
+              </simpleContent>
+            </complexType>
+          </element>
+        </sequence>
+      </extension>
+    </complexContent>
+  </complexType>
+  <complexType name="SpotDepthPropertyType">
+    <sequence minOccurs="0">
+      <element ref="el-vec:SpotDepth"/>
+    </sequence>
+    <attributeGroup ref="gml:AssociationAttributeGroup"/>
+    <attributeGroup ref="gml:OwnershipAttributeGroup"/>
+  </complexType>
+  <simpleType name="ContourTypeValueType">
+    <annotation>
+      <documentation>-- Name --
+Contour type value.
+
+-- Definition --
+List of possible type values for contour lines with regard the equidistance parameter. 
+
+-- Description --
+NOTE  This list of values applies to both, contourlines (where the measured property is altitude) and depth contours (where the measured property is depth).</documentation>
+    </annotation>
+    <restriction base="string">
+      <enumeration value="master">
+        <annotation>
+          <documentation>-- Name --
+Master.
+
+-- Definition --
+Contour at a vertical distance which is multiple to the equidistance parameter (corresponding to a certain multiple of the normal contour vertical interval) associated with the nominal scale.</documentation>
+        </annotation>
+      </enumeration>
+      <enumeration value="ordinary">
+        <annotation>
+          <documentation>-- Name --
+Ordinary.
+
+-- Definition --
+Contour at the equidistance parameter (corresponding to the normal contour vertical interval) associated with the nominal scale, and which is not a master contour.</documentation>
+        </annotation>
+      </enumeration>
+      <enumeration value="auxiliary">
+        <annotation>
+          <documentation>-- Name --
+Auxiliary.
+
+-- Definition --
+A supplementary contour &amp;ndash; not corresponding to the normal contour vertical interval &amp;ndash; estimated or interpolated from surrounding contours, used in areas where there is insufficient height information for elevation mapping purposes or to control the creation of a digital elevation model. 
+
+-- Description --
+NOTE This term is equivalent to the value 'intermediate' used in some Member States.</documentation>
+        </annotation>
+      </enumeration>
+    </restriction>
+  </simpleType>
+  <element abstract="true" name="ElevationLine" substitutionGroup="el-vec:ElevationVectorObject" type="el-vec:ElevationLineType">
+    <annotation>
+      <documentation>-- Name--
+Elevation line.
+
+-- Definition --
+A linear spatial object that provides a single value of an elevation property. It describes the elevation of a real world surface for a set of aligned adjoining locations characterized by having the same elevation. 
+
+-- Description --
+NOTE A set of elevation lines, each of them having a different value of the elevation property, is often used in topographic datasets to represent the global morphology of the surface.</documentation>
+    </annotation>
+  </element>
+  <complexType abstract="true" name="ElevationLineType">
+    <complexContent>
+      <extension base="el-vec:ElevationVectorObjectType">
+        <sequence>
+          <element name="geometry" type="gml:CurvePropertyType">
+            <annotation>
+              <documentation>-- Name --
+Geometry.
+
+-- Definition --
+Represents the geometric properties of the elevation line spatial object.</documentation>
+            </annotation>
+          </element>
+          <element name="propertyType" type="el-bas:ElevationPropertyTypeValueType">
+            <annotation>
+              <documentation>-- Name --
+Property type.
+
+-- Definition --
+An elevation property which has been measured or calculated.
+
+-- Description --
+NOTE 1  An elevation property is a vertically-constrained dimensional property of an element consisting of an absolute measure referenced to a well-defined surface which is commonly taken as origin (geoid, water level, etc.). It does not include relative elevations of the element referenced to other spatial objects.
+
+EXAMPLE  Height, depth.</documentation>
+            </annotation>
+          </element>
+          <element name="propertyValue" type="gml:MeasureType">
+            <annotation>
+              <documentation>-- Name --
+Property value.
+
+-- Definition --
+Value of the elevation property which has been measured or calculated.
+
+-- Description --
+NOTE 1  An elevation property is a vertically-constrained dimensional property of an element consisting of an absolute measure referenced to a well-defined surface which is commonly taken as origin (geoid, water level, etc.). It does not include relative elevations of the element referenced to other spatial objects.</documentation>
+            </annotation>
+          </element>
+        </sequence>
+      </extension>
+    </complexContent>
+  </complexType>
+  <complexType name="ElevationLinePropertyType">
+    <sequence minOccurs="0">
+      <element ref="el-vec:ElevationLine"/>
+    </sequence>
+    <attributeGroup ref="gml:AssociationAttributeGroup"/>
+    <attributeGroup ref="gml:OwnershipAttributeGroup"/>
+  </complexType>
+  <element name="SpotHeight" substitutionGroup="el-vec:ElevationPoint" type="el-vec:SpotHeightType">
+    <annotation>
+      <documentation>-- Name --
+Spot height.
+
+-- Definition --
+Permanent elevation point which describes the morphology of the land suface by indicating its altitude with respect a specific vertical reference system.
+
+-- Description --
+SOURCE Adapted from [GIS4EU D3.5].</documentation>
+    </annotation>
+  </element>
+  <complexType name="SpotHeightType">
+    <complexContent>
+      <extension base="el-vec:ElevationPointType">
+        <sequence>
+          <element maxOccurs="unbounded" minOccurs="0" name="geographicalName" nillable="true">
+            <annotation>
+              <documentation>-- Definition --
+A geographical name that is used to identify a named location in the real world, represented by a spot height object in the elevation model. It provides a 'key' for implicitly associating different representations of the object.</documentation>
+            </annotation>
+            <complexType>
+              <sequence>
+                <element ref="gn:GeographicalName"/>
+              </sequence>
+              <attribute name="nilReason" type="gml:NilReasonType"/>
+            </complexType>
+          </element>
+          <element name="spotHeightType" nillable="true">
+            <annotation>
+              <documentation>-- Definition --
+The type of spot height.</documentation>
+            </annotation>
+            <complexType>
+              <simpleContent>
+                <extension base="gml:CodeType">
+                  <attribute name="nilReason" type="gml:NilReasonType"/>
+                </extension>
+              </simpleContent>
+            </complexType>
+          </element>
+        </sequence>
+      </extension>
+    </complexContent>
+  </complexType>
+  <complexType name="SpotHeightPropertyType">
+    <sequence minOccurs="0">
+      <element ref="el-vec:SpotHeight"/>
+    </sequence>
+    <attributeGroup ref="gml:AssociationAttributeGroup"/>
+    <attributeGroup ref="gml:OwnershipAttributeGroup"/>
+  </complexType>
+  <element name="ContourLine" substitutionGroup="el-vec:ElevationLine" type="el-vec:ContourLineType">
+    <annotation>
+      <documentation>-- Name --
+Contourline.
+
+-- Definition --
+A contour line is a line that connects points that have the same altitude value with respect to a specific vertical reference system. It describes the morphology of the land surface.
+
+-- Description --
+SOURCE [GIS4EU D3.5]
+
+NOTE  The relief of the land surface is often represented in vector elevation datasets as a set of contourlines, where the subsequent ones are separated in the vertical component a distance equal to the equidistance parameter (normal contour vertical interval vertical).</documentation>
+    </annotation>
+  </element>
+  <complexType name="ContourLineType">
+    <complexContent>
+      <extension base="el-vec:ElevationLineType">
+        <sequence>
+          <element name="contourLineType" nillable="true">
+            <annotation>
+              <documentation>-- Definition --
+The type of contourline.</documentation>
+            </annotation>
+            <complexType>
+              <simpleContent>
+                <extension base="el-vec:ContourTypeValueType">
+                  <attribute name="nilReason" type="gml:NilReasonType"/>
+                </extension>
+              </simpleContent>
+            </complexType>
+          </element>
+          <element name="depressionCase" nillable="true">
+            <annotation>
+              <documentation>-- Definition --
+Property indicating that the contourline surrounds an area with an altitude lower than itself (the area represents a depression of the ground surface).
+
+-- Description --
+NOTE  This case (depression) is contrary to the more frequent case in cartographic representation, where a contourline surrounds an area with an altitude higher than itself (the area represents an elevation of the ground surface).</documentation>
+            </annotation>
+            <complexType>
+              <simpleContent>
+                <extension base="boolean">
+                  <attribute name="nilReason" type="gml:NilReasonType"/>
+                </extension>
+              </simpleContent>
+            </complexType>
+          </element>
+          <element name="equidistance" nillable="true">
+            <annotation>
+              <documentation>-- Definition --
+Property indicating the normal contour vertical interval between two subsequent contours expressed in meters.</documentation>
+            </annotation>
+            <complexType>
+              <simpleContent>
+                <extension base="integer">
+                  <attribute name="nilReason" type="gml:NilReasonType"/>
+                </extension>
+              </simpleContent>
+            </complexType>
+          </element>
+          <element name="lowReliability" nillable="true">
+            <annotation>
+              <documentation>-- Name &amp;ndash;
+Low reliability.
+
+-- Definition --
+Property indicating the existence of quality problems in the contour line section, due to the own limitations of the data capture process.
+
+-- Description --
+NOTE 1 It is a qualitative indicator of the accuracy of this spatial object.
+
+NOTE 2 Reliability of a contour line often depends on the grade of visibility of the ground surface during the data capture process (e.g. in forest areas when contours are obtained by stereoplotting).
+Such problems could have an impact on the elevation surface which is being mesured (e.g. the surface represented by data may differ from that of the real terrain in some areas).</documentation>
+            </annotation>
+            <complexType>
+              <simpleContent>
+                <extension base="boolean">
+                  <attribute name="nilReason" type="gml:NilReasonType"/>
+                </extension>
+              </simpleContent>
+            </complexType>
+          </element>
+        </sequence>
+      </extension>
+    </complexContent>
+  </complexType>
+  <complexType name="ContourLinePropertyType">
+    <sequence minOccurs="0">
+      <element ref="el-vec:ContourLine"/>
+    </sequence>
+    <attributeGroup ref="gml:AssociationAttributeGroup"/>
+    <attributeGroup ref="gml:OwnershipAttributeGroup"/>
+  </complexType>
+</schema>

@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Resource xmlns="http://inspire.ec.europa.eu/schemas/geoportal/1.0" xmlns:inspire_common="http://inspire.ec.europa.eu/schemas/common/1.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="https://inspire.ec.europa.eu/schemas/geoportal/1.0 file:///E:/schemas/inspire/geoportal/1.0/geoportal.xsd">
+<PullOperationReportResource>
+<AvailableRecordsCount>10</AvailableRecordsCount>
+</PullOperationReportResource>
+	<SourceMetadataLocator>
+		<inspire_common:URL/>
+	</SourceMetadataLocator>
+	<GeoportalMetadataLocator>
+		<inspire_common:URL/>
+	</GeoportalMetadataLocator>
+	<ParentResourceMetadataLocator>
+		<inspire_common:URL></inspire_common:URL>
+	</ParentResourceMetadataLocator>
+</Resource>

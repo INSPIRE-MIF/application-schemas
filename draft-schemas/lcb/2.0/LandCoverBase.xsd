@@ -1,0 +1,561 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<schema xmlns="http://www.w3.org/2001/XMLSchema" xmlns:base="urn:x-inspire:specification:gmlas:BaseTypes:3.2" xmlns:cvgvp="http://inspire.jrc.ec.europa.eu/schemas/cvgvp/0.1" xmlns:gmd="http://www.isotc211.org/2005/gmd" xmlns:gml="http://www.opengis.net/gml/3.2" xmlns:hy="urn:x-inspire:specification:gmlas:HydroBase:3.0" xmlns:lcb="http://inspire.jrc.ec.europa.eu/schemas/lcb/2.0" targetNamespace="http://inspire.jrc.ec.europa.eu/schemas/lcb/2.0" elementFormDefault="qualified" version="2.0">
+	<annotation>
+		<documentation>application schema for Land Cover - Base</documentation>
+	</annotation>
+	<import namespace="http://inspire.jrc.ec.europa.eu/schemas/cvgvp/0.1" schemaLocation="https://inspire.ec.europa.eu/draft-schemas/cvgvp/0.1/CoverageGVP.xsd"/>
+	<import namespace="http://www.isotc211.org/2005/gmd" schemaLocation="http://schemas.opengis.net/iso/19139/20070417/gmd/gmd.xsd"/>
+	<import namespace="http://www.opengis.net/gml/3.2" schemaLocation="http://schemas.opengis.net/gml/3.2.1/gml.xsd"/>
+	<import namespace="urn:x-inspire:specification:gmlas:BaseTypes:3.2" schemaLocation="https://inspire.ec.europa.eu/schemas/base/3.2/BaseTypes.xsd"/>
+	<import namespace="urn:x-inspire:specification:gmlas:HydroBase:3.0" schemaLocation="https://inspire.ec.europa.eu/schemas/hy/3.0/HydroBase.xsd"/>
+	<!--XML Schema document created by ShapeChange-->
+	<element name="LandCoverObject" type="lcb:LandCoverObjectType" substitutionGroup="gml:AbstractFeature">
+		<annotation>
+			<documentation>-- Definition --
+The informations about Land Cover.
+
+-- Description --
+This abstract class models what is Land Cover data.</documentation>
+		</annotation>
+	</element>
+	<complexType name="LandCoverObjectType">
+		<complexContent>
+			<extension base="gml:AbstractFeatureType">
+				<sequence>
+					<element name="inspireId" type="base:IdentifierPropertyType">
+						<annotation>
+							<documentation>-- Definition --
+An external object identifier is a unique object identifier published by the responsible body, which may be used by external applications to reference the spatial object. The identifier is an identifier of the spatial object, not an identifier of the real-world phenomenon.</documentation>
+						</annotation>
+					</element>
+					<element name="classificationValue" type="lcb:LandCoverClassPropertyType" maxOccurs="unbounded">
+						<annotation>
+							<documentation>-- Definition --
+A formal description of the object through a link to one or more classification systems.
+
+-- Description --
+Models the fact that land cover spatial objects through analysis by a set of rules are classified using a classification system.</documentation>
+						</annotation>
+					</element>
+					<element name="classificationMocaic" nillable="true">
+						<annotation>
+							<documentation>-- Definition --
+A formal description of the object by percentages of land cover classes.
+
+-- Description -- 
+Models the fact that land cover spatial objects can be characterized by a collection of LC classes, each one associated to a percentage.</documentation>
+						</annotation>
+						<complexType>
+							<sequence>
+								<element ref="lcb:LandCoverMosaic"/>
+							</sequence>
+							<attribute name="nilReason" type="gml:NilReasonType"/>
+						</complexType>
+					</element>
+					<element name="parameterDescription" nillable="true" maxOccurs="unbounded">
+						<annotation>
+							<documentation>-- Definition --
+A formal description of the object by parameters characterizing the LandCoverObject.
+
+-- Description -- 
+A parameter gives average, counts, percentages or presence information to describe LandCoverObject.</documentation>
+						</annotation>
+						<complexType>
+							<sequence>
+								<element ref="lcb:ParameterType"/>
+							</sequence>
+							<attribute name="nilReason" type="gml:NilReasonType"/>
+						</complexType>
+					</element>
+					<element name="beginLifespanVersion" nillable="true">
+						<annotation>
+							<documentation>-- Definition --
+Date and time at which this version of the spatial object was inserted or changed in the spatial data set.</documentation>
+						</annotation>
+						<complexType>
+							<simpleContent>
+								<extension base="dateTime">
+									<attribute name="nilReason" type="gml:NilReasonType"/>
+								</extension>
+							</simpleContent>
+						</complexType>
+					</element>
+					<element name="endLifespanVersion" nillable="true" minOccurs="0">
+						<annotation>
+							<documentation>-- Definition --
+Date and time at which this version of the spatial object was superseded or retired in the spatial data set.</documentation>
+						</annotation>
+						<complexType>
+							<simpleContent>
+								<extension base="dateTime">
+									<attribute name="nilReason" type="gml:NilReasonType"/>
+								</extension>
+							</simpleContent>
+						</complexType>
+					</element>
+				</sequence>
+			</extension>
+		</complexContent>
+	</complexType>
+	<complexType name="LandCoverObjectPropertyType">
+		<sequence minOccurs="0">
+			<element ref="lcb:LandCoverObject"/>
+		</sequence>
+		<attributeGroup ref="gml:AssociationAttributeGroup"/>
+		<attributeGroup ref="gml:OwnershipAttributeGroup"/>
+	</complexType>
+	<element name="PresenceParameter" type="lcb:PresenceParameterType" substitutionGroup="lcb:ParameterType">
+		<annotation>
+			<documentation>-- Name --
+PresenceParameter.
+
+-- Definition --
+Presence or absence of a parameter describing a Land Cover Object.
+
+-- Description --
+A parameter could be the presence of landscape elements (trees, buildings, sand, ...).</documentation>
+		</annotation>
+	</element>
+	<complexType name="PresenceParameterType">
+		<complexContent>
+			<extension base="lcb:ParameterTypeType">
+				<sequence>
+					<element name="present" type="boolean">
+						<annotation>
+							<documentation>-- Definition --
+The boolean value indicating the presence/absence of a specific caracteristic / landscape element within a Land Cover Object.</documentation>
+						</annotation>
+					</element>
+				</sequence>
+			</extension>
+		</complexContent>
+	</complexType>
+	<complexType name="PresenceParameterPropertyType">
+		<sequence>
+			<element ref="lcb:PresenceParameter"/>
+		</sequence>
+	</complexType>
+	<element name="LandCoverClassType" type="lcb:LandCoverClassTypeType" abstract="true" substitutionGroup="gml:AbstractObject">
+		<annotation>
+			<documentation>-- Name --
+Land Cover Class Type.
+
+-- Definition --
+Generic type carrying out classification value.</documentation>
+		</annotation>
+	</element>
+	<complexType name="LandCoverClassTypeType" abstract="true">
+		<sequence>
+			<element name="valueId" type="gml:CodeType">
+				<annotation>
+					<documentation>-- Definition --
+Assignment of a land cover spatial object to a land
+cover class through a classification code identifier.
+
+-- Description --
+The identifier, eg 1, 1.1.2, ... (for CORINE LC classes) allow to access to the value and the definition or narrative description of the corresponding class.</documentation>
+				</annotation>
+			</element>
+			<element name="value" nillable="true">
+				<annotation>
+					<documentation>-- Definition -- 
+The assignment of a land cover spatial object to a land
+cover class through a class legend.
+
+-- Description --
+The "narrative" class description found in the legend, eg "Built-up area" or "Forest" where the value also convey an immediately interpretable meaning.</documentation>
+				</annotation>
+				<complexType>
+					<simpleContent>
+						<extension base="gml:CodeType">
+							<attribute name="nilReason" type="gml:NilReasonType"/>
+						</extension>
+					</simpleContent>
+				</complexType>
+			</element>
+		</sequence>
+	</complexType>
+	<complexType name="LandCoverClassTypePropertyType">
+		<sequence>
+			<element ref="lcb:LandCoverClassType"/>
+		</sequence>
+	</complexType>
+	<element name="ClasssificationSystem" type="lcb:ClasssificationSystemType" substitutionGroup="gml:AbstractObject">
+		<annotation>
+			<documentation>-- Name --
+Land Cover Classification.
+
+-- Definition --
+Informations about reference national, intitutional or local classification system.
+
+-- Description --
+Land Cover Classification System allows to reference classification systems and to define them trough an online reference or included within the data according 19144-2.</documentation>
+		</annotation>
+	</element>
+	<complexType name="ClasssificationSystemType">
+		<sequence>
+			<element name="inspireId" type="base:IdentifierPropertyType">
+				<annotation>
+					<documentation>-- Definition --
+External object identifier of the spatial object.
+
+-- Description --
+NOTE An external object identifier is a unique object identifier published by the responsible body, which may be used by external applications to reference the spatial object. The identifier is an identifier of the spatial object, not an identifier of the real-world phenomenon.</documentation>
+				</annotation>
+			</element>
+			<element name="source">
+				<annotation>
+					<documentation>-- Definition --
+Information about the used classification system.
+
+-- Description --
+Allows to describe the source for classification system.</documentation>
+				</annotation>
+				<complexType>
+					<complexContent>
+						<extension base="gml:AbstractMetadataPropertyType">
+							<sequence>
+								<element ref="gmd:CI_Citation"/>
+							</sequence>
+						</extension>
+					</complexContent>
+				</complexType>
+			</element>
+			<element name="onlineDescription" nillable="true" minOccurs="0">
+				<annotation>
+					<documentation>-- Definition --
+An online link providing description of the classification systel used.</documentation>
+				</annotation>
+				<complexType>
+					<complexContent>
+						<extension base="gml:AbstractMetadataPropertyType">
+							<sequence>
+								<element ref="gmd:CI_OnlineResource"/>
+							</sequence>
+							<attribute name="nilReason" type="gml:NilReasonType"/>
+						</extension>
+					</complexContent>
+				</complexType>
+			</element>
+			<element name="embeddedDescription" nillable="true" minOccurs="0" type="anyType">
+				<annotation>
+					<documentation>-- Name --
+Embedded Description.
+
+-- Definition --
+An embedded encoding of the classification system according to ISO 19144-2.</documentation>
+				</annotation>
+			</element>
+		</sequence>
+	</complexType>
+	<complexType name="ClasssificationSystemPropertyType">
+		<sequence>
+			<element ref="lcb:ClasssificationSystem"/>
+		</sequence>
+	</complexType>
+	<element name="LandCoverClass" type="lcb:LandCoverClassType" substitutionGroup="lcb:LandCoverClassType">
+		<annotation>
+			<documentation>-- Name --
+Land Cover Classification Value Type.
+
+-- Definition --
+Value of the classification and an observation date. 
+
+-- Description --
+This class defines the structure for adressing on or more classification value on each polygon. 
+
+EXAMPLE Corine nomemclature:
+For an area classified as discontinuous urban fabric, the value will be "discontinuous urban fabric" and the valueId will be "112".</documentation>
+		</annotation>
+	</element>
+	<complexType name="LandCoverClassType">
+		<complexContent>
+			<extension base="lcb:LandCoverClassTypeType">
+				<sequence>
+					<element name="observationDate" nillable="true">
+						<annotation>
+							<documentation>-- Definition --
+The observation date associated to a classification value.
+
+-- Description --
+Defines the observation date of the classification value. It could be the date of an aerial/satellital acquisition or of an update on the field. The observation date allows the user to have accurate date of when each value was observed in the real word. In a database, not all polygon informations are necessarily updated at the same time.</documentation>
+						</annotation>
+						<complexType>
+							<simpleContent>
+								<extension base="date">
+									<attribute name="nilReason" type="gml:NilReasonType"/>
+								</extension>
+							</simpleContent>
+						</complexType>
+					</element>
+					<element name="linkedClassificationSystem" type="gml:ReferenceType">
+						<annotation>
+							<documentation>-- Name --
+Linked Classification System.
+
+-- Definition --
+The classification system linked to each classification value.</documentation>
+							<appinfo>
+								<targetElement xmlns="http://www.opengis.net/gml/3.2">lcb:ClasssificationSystem</targetElement>
+							</appinfo>
+						</annotation>
+					</element>
+				</sequence>
+			</extension>
+		</complexContent>
+	</complexType>
+	<complexType name="LandCoverClassPropertyType">
+		<sequence>
+			<element ref="lcb:LandCoverClass"/>
+		</sequence>
+	</complexType>
+	<element name="LandCoverCoverage" type="lcb:LandCoverCoverageType" abstract="true" substitutionGroup="cvgvp:DiscreteCoverageGeometryValuePairs">
+		<annotation>
+			<documentation>-- Name --
+Land Cover coverage
+
+-- Definition --
+A realization of a discrete coverage through the realization of CV_DiscreteCoverage (from ISO 19123).
+
+-- Description --
+This coverage is the representation used to support Land Cover information for INSPIRE.</documentation>
+		</annotation>
+	</element>
+	<complexType name="LandCoverCoverageType" abstract="true">
+		<complexContent>
+			<extension base="cvgvp:DiscreteCoverageGeometryValuePairsType">
+				<sequence>
+					<element name="inspireId" type="base:IdentifierPropertyType">
+						<annotation>
+							<documentation>-- Definition --
+External object identifier of the spatial object.
+
+-- Description --
+NOTE An external object identifier is a unique object identifier published by the responsible body, which may be used by external applications to reference the spatial object. The identifier is an identifier of the spatial object, not an identifier of the real-world phenomenon.</documentation>
+						</annotation>
+					</element>
+					<element name="beginLifespanVersion" nillable="true">
+						<annotation>
+							<documentation>-- Definition --
+Date and time at which this version of the spatial object was inserted or changed in the spatial data set.</documentation>
+						</annotation>
+						<complexType>
+							<simpleContent>
+								<extension base="dateTime">
+									<attribute name="nilReason" type="gml:NilReasonType"/>
+								</extension>
+							</simpleContent>
+						</complexType>
+					</element>
+					<element name="endLifespanVersion" nillable="true" minOccurs="0">
+						<annotation>
+							<documentation>-- Definition --
+Date and time at which this version of the spatial object was superseded or retired in the spatial data set.</documentation>
+						</annotation>
+						<complexType>
+							<simpleContent>
+								<extension base="dateTime">
+									<attribute name="nilReason" type="gml:NilReasonType"/>
+								</extension>
+							</simpleContent>
+						</complexType>
+					</element>
+					<element name="coverageName" nillable="true">
+						<annotation>
+							<documentation>-- Definition --
+The name of the coverage.</documentation>
+						</annotation>
+						<complexType>
+							<simpleContent>
+								<extension base="string">
+									<attribute name="nilReason" type="gml:NilReasonType"/>
+								</extension>
+							</simpleContent>
+						</complexType>
+					</element>
+					<element name="classificationSystem" type="lcb:ClasssificationSystemPropertyType" maxOccurs="unbounded">
+						<annotation>
+							<documentation>-- Definition --
+The Classification System used within the data set.</documentation>
+						</annotation>
+					</element>
+				</sequence>
+			</extension>
+		</complexContent>
+	</complexType>
+	<complexType name="LandCoverCoveragePropertyType">
+		<sequence minOccurs="0">
+			<element ref="lcb:LandCoverCoverage"/>
+		</sequence>
+		<attributeGroup ref="gml:AssociationAttributeGroup"/>
+		<attributeGroup ref="gml:OwnershipAttributeGroup"/>
+	</complexType>
+	<element name="PercentageParameter" type="lcb:PercentageParameterType" substitutionGroup="lcb:ParameterType">
+		<annotation>
+			<documentation>-- Name --
+PercentageParameter.
+
+-- Definition --
+Parameter describing a Land Cover Object which is described according a percent coverage.
+
+-- Description --
+A parameter  describing the Land Cover Object (i.e; percentage of soil sealing).</documentation>
+		</annotation>
+	</element>
+	<complexType name="PercentageParameterType">
+		<complexContent>
+			<extension base="lcb:ParameterTypeType">
+				<sequence>
+					<element name="coveredPercentage" type="double">
+						<annotation>
+							<documentation>-- Definition --
+The percent value used to descrive the area covered and associated to the parameter used to describe a Land Cover Object.</documentation>
+						</annotation>
+					</element>
+				</sequence>
+			</extension>
+		</complexContent>
+	</complexType>
+	<complexType name="PercentageParameterPropertyType">
+		<sequence>
+			<element ref="lcb:PercentageParameter"/>
+		</sequence>
+	</complexType>
+	<element name="LandCoverMosaicElement" type="lcb:LandCoverMosaicElementType" substitutionGroup="lcb:LandCoverClassType">
+		<annotation>
+			<documentation>-- Definition --
+Element composed of a classification code associated to a percentage being part of the mosaic and used to describe a LandCoverElement.</documentation>
+		</annotation>
+	</element>
+	<complexType name="LandCoverMosaicElementType">
+		<complexContent>
+			<extension base="lcb:LandCoverClassTypeType">
+				<sequence>
+					<element name="coveredPercentage" type="integer">
+						<annotation>
+							<documentation>-- Definition --
+Fraction of the LandCoverObject being concerned with the classification code (value and valueId).</documentation>
+						</annotation>
+					</element>
+				</sequence>
+			</extension>
+		</complexContent>
+	</complexType>
+	<complexType name="LandCoverMosaicElementPropertyType">
+		<sequence>
+			<element ref="lcb:LandCoverMosaicElement"/>
+		</sequence>
+	</complexType>
+	<element name="LandCoverMosaic" type="lcb:LandCoverMosaicType" substitutionGroup="gml:AbstractObject">
+		<annotation>
+			<documentation>-- Definition --
+Agregation of all elements describing the LandCoverObject by a list of classification codes associated with percentages.</documentation>
+		</annotation>
+	</element>
+	<complexType name="LandCoverMosaicType">
+		<sequence>
+			<element name="observationDate" nillable="true">
+				<annotation>
+					<documentation>-- Definition --
+The observation date associated to the mosaic of classification values.
+
+-- Description --
+Defines the observation date of the classification value. It could be the date of an aerial/satellital acquisition or of an update on the field. The observation date allows the user to have accurate date of when each value was observed in the real word. In a database, not all polygon informations are necessarily updated at the same time.</documentation>
+				</annotation>
+				<complexType>
+					<simpleContent>
+						<extension base="date">
+							<attribute name="nilReason" type="gml:NilReasonType"/>
+						</extension>
+					</simpleContent>
+				</complexType>
+			</element>
+			<element name="linkedClassificationSystem" type="lcb:ClasssificationSystemPropertyType">
+				<annotation>
+					<documentation>-- Name --
+Linked Classification System.
+
+-- Definition --
+The classification system linked to the mosaic of classification values.</documentation>
+				</annotation>
+			</element>
+			<element name="LandCoverMosaicElement" type="lcb:LandCoverMosaicElementPropertyType" maxOccurs="unbounded"/>
+		</sequence>
+	</complexType>
+	<complexType name="LandCoverMosaicPropertyType">
+		<sequence>
+			<element ref="lcb:LandCoverMosaic"/>
+		</sequence>
+	</complexType>
+	<element name="ParameterType" type="lcb:ParameterTypeType" abstract="true" substitutionGroup="gml:AbstractObject">
+		<annotation>
+			<documentation>-- Name --
+ParameterType.
+
+-- Definition --
+Parameter describing a Land Cover Object with landscape elements.
+
+-- Description --
+A parameter could be the presence of landscape elements (trees, buildings, sand, ...), their number or the percentage of a paramter describing the Land Cover Object (i.e; percentage of soil sealing).</documentation>
+		</annotation>
+	</element>
+	<complexType name="ParameterTypeType" abstract="true">
+		<sequence>
+			<element name="name" type="string">
+				<annotation>
+					<documentation>-- Definition --
+The name of the parameter used to describe a Land Cover Object.</documentation>
+				</annotation>
+			</element>
+			<element name="observationDate" nillable="true">
+				<annotation>
+					<documentation>-- Definition --
+The observation date associated to a description.</documentation>
+				</annotation>
+				<complexType>
+					<simpleContent>
+						<extension base="date">
+							<attribute name="nilReason" type="gml:NilReasonType"/>
+						</extension>
+					</simpleContent>
+				</complexType>
+			</element>
+		</sequence>
+	</complexType>
+	<complexType name="ParameterTypePropertyType">
+		<sequence>
+			<element ref="lcb:ParameterType"/>
+		</sequence>
+	</complexType>
+	<element name="CountableParameter" type="lcb:CountableParameterType" substitutionGroup="lcb:ParameterType">
+		<annotation>
+			<documentation>-- Name --
+CountableParameter.
+
+-- Definition --
+Parameter describing a Land Cover Object aspect that can be counted.
+
+-- Description --
+A countable parameter could be a number ( a number of landscape elements covering the land cover object  for example. ie number of trees, buildings, ...), a distance (average height of buildings, ...), ..</documentation>
+		</annotation>
+	</element>
+	<complexType name="CountableParameterType">
+		<complexContent>
+			<extension base="lcb:ParameterTypeType">
+				<sequence>
+					<element name="count" type="double">
+						<annotation>
+							<documentation>-- Definition --
+The number associated to the parameter used to describe a Land Cover Object.</documentation>
+						</annotation>
+					</element>
+				</sequence>
+			</extension>
+		</complexContent>
+	</complexType>
+	<complexType name="CountableParameterPropertyType">
+		<sequence>
+			<element ref="lcb:CountableParameter"/>
+		</sequence>
+	</complexType>
+</schema>

@@ -1,0 +1,835 @@
+<?xml version="1.0" encoding="UTF-8"?><schema xmlns="http://www.w3.org/2001/XMLSchema" xmlns:ad="urn:x-inspire:specification:gmlas:Addresses:3.0" xmlns:au="urn:x-inspire:specification:gmlas:AdministrativeUnits:3.0" xmlns:base="urn:x-inspire:specification:gmlas:BaseTypes:3.2" xmlns:bu="http://inspire.jrc.ec.europa.eu/schemas/bu/2.0" xmlns:cp="urn:x-inspire:specification:gmlas:CadastralParcels:3.0" xmlns:gmd="http://www.isotc211.org/2005/gmd" xmlns:gml="http://www.opengis.net/gml/3.2" xmlns:us-waste="http://inspire.jrc.ec.europa.eu/schemas/us-waste/2.0" elementFormDefault="qualified" targetNamespace="http://inspire.jrc.ec.europa.eu/schemas/us-waste/2.0" version="2.0">
+  <import namespace="http://inspire.jrc.ec.europa.eu/schemas/bu/2.0" schemaLocation="https://inspire.ec.europa.eu/draft-schemas/bu/2.0/Buildings.xsd"/>
+  <import namespace="http://www.isotc211.org/2005/gmd" schemaLocation="http://schemas.opengis.net/iso/19139/20070417/gmd/gmd.xsd"/>
+  <import namespace="http://www.opengis.net/gml/3.2" schemaLocation="http://schemas.opengis.net/gml/3.2.1/gml.xsd"/>
+  <import namespace="urn:x-inspire:specification:gmlas:Addresses:3.0" schemaLocation="https://inspire.ec.europa.eu/schemas/ad/3.0/Addresses.xsd"/>
+  <import namespace="urn:x-inspire:specification:gmlas:AdministrativeUnits:3.0" schemaLocation="https://inspire.ec.europa.eu/schemas/au/3.0/AdministrativeUnits.xsd"/>
+  <import namespace="urn:x-inspire:specification:gmlas:BaseTypes:3.2" schemaLocation="https://inspire.ec.europa.eu/schemas/base/3.2/BaseTypes.xsd"/>
+  <import namespace="urn:x-inspire:specification:gmlas:CadastralParcels:3.0" schemaLocation="https://inspire.ec.europa.eu/schemas/cp/3.0/CadastralParcels.xsd"/>
+  <!--XML Schema document created by ShapeChange-->
+  <simpleType name="DayListTypeType">
+    <annotation>
+      <documentation>-- Definition --
+Days of the week.</documentation>
+    </annotation>
+    <restriction base="string">
+      <enumeration value="monday">
+        <annotation>
+          <documentation>-- Definition --
+Day of the week between Sunday and Tuesday.</documentation>
+        </annotation>
+      </enumeration>
+      <enumeration value="tuesday">
+        <annotation>
+          <documentation>-- Definition --
+Day of the week between Monday and Wednesday.</documentation>
+        </annotation>
+      </enumeration>
+      <enumeration value="wednesday">
+        <annotation>
+          <documentation>-- Definition --
+Day of the week between Tuesday and Thursday.</documentation>
+        </annotation>
+      </enumeration>
+      <enumeration value="thursday">
+        <annotation>
+          <documentation>-- Definition --
+Day of the week between Wednesday and Friday.</documentation>
+        </annotation>
+      </enumeration>
+      <enumeration value="friday">
+        <annotation>
+          <documentation>-- Definition --
+Day of the week between Thursday and Saturday.</documentation>
+        </annotation>
+      </enumeration>
+      <enumeration value="saturday">
+        <annotation>
+          <documentation>-- Definition --
+Day of the week between Friday and Saturday.</documentation>
+        </annotation>
+      </enumeration>
+      <enumeration value="sunday">
+        <annotation>
+          <documentation>-- Definition --
+Day of the week between Saturday and Monday.</documentation>
+        </annotation>
+      </enumeration>
+    </restriction>
+  </simpleType>
+  <element name="IdentifierType" substitutionGroup="gml:AbstractObject" type="us-waste:IdentifierTypeType">
+    <annotation>
+      <documentation>-- Definition --
+An identifier from a specified identification scheme.</documentation>
+    </annotation>
+  </element>
+  <complexType name="IdentifierTypeType">
+    <sequence>
+      <element name="Id" type="base:IdentifierPropertyType">
+        <annotation>
+          <documentation>-- Definition --
+The identifier of the identified object.</documentation>
+        </annotation>
+      </element>
+      <element name="identificationSchemeDesignation" nillable="true" type="gmd:PT_FreeText_PropertyType">
+        <annotation>
+          <documentation>-- Definition --
+The designation of the identification scheme from which the object identifier originates.</documentation>
+        </annotation>
+      </element>
+      <element name="identificationSchemeId" nillable="true">
+        <annotation>
+          <documentation>-- Definition --
+The identifier of the identification scheme from which the object identifier originates.</documentation>
+        </annotation>
+        <complexType>
+          <sequence>
+            <element ref="base:Identifier"/>
+          </sequence>
+          <attribute name="nilReason" type="gml:NilReasonType"/>
+        </complexType>
+      </element>
+    </sequence>
+  </complexType>
+  <complexType name="IdentifierTypePropertyType">
+    <sequence>
+      <element ref="us-waste:IdentifierType"/>
+    </sequence>
+  </complexType>
+  <element name="ServiceHoursType" substitutionGroup="gml:AbstractObject" type="us-waste:ServiceHoursTypeType">
+    <annotation>
+      <documentation>-- Definition --
+Hours during which service is available.</documentation>
+    </annotation>
+  </element>
+  <complexType name="ServiceHoursTypeType">
+    <sequence>
+      <element name="dateFrom" nillable="true">
+        <annotation>
+          <documentation>-- Definition --
+A date starting from which the service hours apply.</documentation>
+        </annotation>
+        <complexType>
+          <simpleContent>
+            <extension base="dateTime">
+              <attribute name="nilReason" type="gml:NilReasonType"/>
+            </extension>
+          </simpleContent>
+        </complexType>
+      </element>
+      <element minOccurs="0" name="dateTo" nillable="true">
+        <annotation>
+          <documentation>-- Definition --
+A date up to which the service hours apply.</documentation>
+        </annotation>
+        <complexType>
+          <simpleContent>
+            <extension base="dateTime">
+              <attribute name="nilReason" type="gml:NilReasonType"/>
+            </extension>
+          </simpleContent>
+        </complexType>
+      </element>
+      <element maxOccurs="unbounded" name="hours" type="us-waste:DayTimeTypePropertyType">
+        <annotation>
+          <documentation>-- Definition --
+The hours of a day during which service is available.</documentation>
+        </annotation>
+      </element>
+      <element minOccurs="0" name="serviceDescription" nillable="true" type="gmd:PT_FreeText_PropertyType">
+        <annotation>
+          <documentation>-- Definition --
+A description of the service to which the service hours apply, such as being open to the public or operational.</documentation>
+        </annotation>
+      </element>
+    </sequence>
+  </complexType>
+  <complexType name="ServiceHoursTypePropertyType">
+    <sequence>
+      <element ref="us-waste:ServiceHoursType"/>
+    </sequence>
+  </complexType>
+  <element name="ActivityType" substitutionGroup="gml:AbstractObject" type="us-waste:ActivityTypeType">
+    <annotation>
+      <documentation>-- Definition --
+An economic activity selected from a list of economic activities, such as Eurostat NACE.</documentation>
+    </annotation>
+  </element>
+  <complexType name="ActivityTypeType">
+    <sequence>
+      <element name="activityType" type="us-waste:AbstractListTypeType">
+        <annotation>
+          <documentation>-- Definition --
+Identification of an entry from the list of activities.</documentation>
+        </annotation>
+      </element>
+      <element name="dateFrom" nillable="true">
+        <annotation>
+          <documentation>-- Definition --
+A date starting from which the activity takes places.</documentation>
+        </annotation>
+        <complexType>
+          <simpleContent>
+            <extension base="dateTime">
+              <attribute name="nilReason" type="gml:NilReasonType"/>
+            </extension>
+          </simpleContent>
+        </complexType>
+      </element>
+      <element minOccurs="0" name="dateTo" nillable="true">
+        <annotation>
+          <documentation>-- Definition --
+A date up to which the activity takes place.</documentation>
+        </annotation>
+        <complexType>
+          <simpleContent>
+            <extension base="dateTime">
+              <attribute name="nilReason" type="gml:NilReasonType"/>
+            </extension>
+          </simpleContent>
+        </complexType>
+      </element>
+      <element minOccurs="0" name="designation" nillable="true" type="gmd:PT_FreeText_PropertyType">
+        <annotation>
+          <documentation>-- Definition --
+A designation of the type of economic activity identified from the list.</documentation>
+        </annotation>
+      </element>
+      <element maxOccurs="unbounded" minOccurs="0" name="input" nillable="true">
+        <annotation>
+          <documentation>-- Definition --
+Inputs in connection with the activity.</documentation>
+        </annotation>
+        <complexType>
+          <sequence>
+            <element ref="us-waste:InputOutputType"/>
+          </sequence>
+          <attribute name="nilReason" type="gml:NilReasonType"/>
+        </complexType>
+      </element>
+      <element maxOccurs="unbounded" minOccurs="0" name="output" nillable="true">
+        <annotation>
+          <documentation>-- Definition --
+Outputs in connection with the activity.</documentation>
+        </annotation>
+        <complexType>
+          <sequence>
+            <element ref="us-waste:InputOutputType"/>
+          </sequence>
+          <attribute name="nilReason" type="gml:NilReasonType"/>
+        </complexType>
+      </element>
+    </sequence>
+  </complexType>
+  <complexType name="ActivityTypePropertyType">
+    <sequence>
+      <element ref="us-waste:ActivityType"/>
+    </sequence>
+  </complexType>
+  <element name="Facility" substitutionGroup="gml:AbstractFeature" type="us-waste:FacilityType">
+    <annotation>
+      <documentation>-- Definition --
+A physical structure designed, built or installed to serve specific functions, or a delimitable area of land or water used to serve specific functions.
+
+-- Description --
+EXAMPLE In the context of waste management the "specific function" will be a waste management related one. Typically, waste management sites and waste management installations (such as incineration plants, landfills or storages) get distinguished. Multiple waste management installations may be found at the same site. Waste management installations can be a part of other waste management installations.</documentation>
+    </annotation>
+  </element>
+  <complexType name="FacilityType">
+    <complexContent>
+      <extension base="gml:AbstractFeatureType">
+        <sequence>
+          <element maxOccurs="unbounded" name="activity" nillable="true">
+            <annotation>
+              <documentation>-- Definition --
+Activities taking place at the facility.</documentation>
+            </annotation>
+            <complexType>
+              <sequence>
+                <element ref="us-waste:ActivityType"/>
+              </sequence>
+              <attribute name="nilReason" type="gml:NilReasonType"/>
+            </complexType>
+          </element>
+          <element name="beginLifespanVersion" nillable="true">
+            <annotation>
+              <documentation>-- Definition --
+Date and time at which this version of the spatial object was inserted or changed in the spatial data set.</documentation>
+            </annotation>
+            <complexType>
+              <simpleContent>
+                <extension base="dateTime">
+                  <attribute name="nilReason" type="gml:NilReasonType"/>
+                </extension>
+              </simpleContent>
+            </complexType>
+          </element>
+          <element minOccurs="0" name="description" nillable="true" type="gmd:PT_FreeText_PropertyType">
+            <annotation>
+              <documentation>-- Definition --
+A general description of the facility and its characteristics.</documentation>
+            </annotation>
+          </element>
+          <element name="endLifeSpanVersion" nillable="true">
+            <annotation>
+              <documentation>-- Definition --
+Date and time at which this version of the spatial object was superseded or retired in the spatial data set.</documentation>
+            </annotation>
+            <complexType>
+              <simpleContent>
+                <extension base="dateTime">
+                  <attribute name="nilReason" type="gml:NilReasonType"/>
+                </extension>
+              </simpleContent>
+            </complexType>
+          </element>
+          <element minOccurs="0" name="geometry" nillable="true" type="gml:GeometryPropertyType">
+            <annotation>
+              <documentation>-- Definition --
+The geometry defining the extent or position of the facility.</documentation>
+            </annotation>
+          </element>
+          <element maxOccurs="unbounded" minOccurs="0" name="Id" nillable="true">
+            <annotation>
+              <documentation>-- Definition --
+Identifiers of the facility using a specified identification scheme, such as a national register.</documentation>
+            </annotation>
+            <complexType>
+              <sequence>
+                <element ref="us-waste:IdentifierType"/>
+              </sequence>
+              <attribute name="nilReason" type="gml:NilReasonType"/>
+            </complexType>
+          </element>
+          <element name="inspireId" type="base:IdentifierPropertyType">
+            <annotation>
+              <documentation>-- Definition --
+External object identifier of the facility.</documentation>
+            </annotation>
+          </element>
+          <element minOccurs="0" name="name" nillable="true" type="gmd:PT_FreeText_PropertyType">
+            <annotation>
+              <documentation>-- Definition --
+Name of the facility.</documentation>
+            </annotation>
+          </element>
+          <element maxOccurs="unbounded" minOccurs="0" name="permission" nillable="true">
+            <annotation>
+              <documentation>-- Definition --
+Permissions granted in relation to the facility.</documentation>
+            </annotation>
+            <complexType>
+              <sequence>
+                <element ref="us-waste:PermissionType"/>
+              </sequence>
+              <attribute name="nilReason" type="gml:NilReasonType"/>
+            </complexType>
+          </element>
+          <element maxOccurs="unbounded" minOccurs="0" name="relatedParty" nillable="true">
+            <annotation>
+              <documentation>-- Definition --
+Parties related to the facility, such as operators or owners.</documentation>
+            </annotation>
+            <complexType>
+              <sequence>
+                <element ref="us-waste:PartyRoleType"/>
+              </sequence>
+              <attribute name="nilReason" type="gml:NilReasonType"/>
+            </complexType>
+          </element>
+          <element maxOccurs="unbounded" minOccurs="0" name="serviceHours" nillable="true">
+            <annotation>
+              <documentation>-- Definition --
+Service hours of the facility.</documentation>
+            </annotation>
+            <complexType>
+              <sequence>
+                <element ref="us-waste:ServiceHoursType"/>
+              </sequence>
+              <attribute name="nilReason" type="gml:NilReasonType"/>
+            </complexType>
+          </element>
+          <element maxOccurs="unbounded" minOccurs="0" name="status" nillable="true">
+            <annotation>
+              <documentation>-- Definition --
+Statuses of the facility, such as conditions of being illegal or abandoned.</documentation>
+            </annotation>
+            <complexType>
+              <sequence>
+                <element ref="us-waste:FacilityStatusType"/>
+              </sequence>
+              <attribute name="nilReason" type="gml:NilReasonType"/>
+            </complexType>
+          </element>
+          <element maxOccurs="unbounded" minOccurs="0" name="type" nillable="true">
+            <annotation>
+              <documentation>-- Definition --
+The type or types of facility, such as installation or site.</documentation>
+            </annotation>
+            <complexType>
+              <simpleContent>
+                <extension base="gml:CodeType">
+                  <attribute name="nilReason" type="gml:NilReasonType"/>
+                </extension>
+              </simpleContent>
+            </complexType>
+          </element>
+          <element name="validFrom" nillable="true">
+            <annotation>
+              <documentation>-- Definition --
+The time when the facility started to exist in the real world.</documentation>
+            </annotation>
+            <complexType>
+              <simpleContent>
+                <extension base="dateTime">
+                  <attribute name="nilReason" type="gml:NilReasonType"/>
+                </extension>
+              </simpleContent>
+            </complexType>
+          </element>
+          <element minOccurs="0" name="validTo" nillable="true">
+            <annotation>
+              <documentation>-- Definition --
+The time when the facility no longer exists in the real world.</documentation>
+            </annotation>
+            <complexType>
+              <simpleContent>
+                <extension base="dateTime">
+                  <attribute name="nilReason" type="gml:NilReasonType"/>
+                </extension>
+              </simpleContent>
+            </complexType>
+          </element>
+          <element maxOccurs="unbounded" minOccurs="0" name="competentAdministrativeUnit" nillable="true">
+            <annotation>
+              <documentation>-- Definition --
+Identification of administrative units with competence for the facility.</documentation>
+              <appinfo>
+                <targetElement xmlns="http://www.opengis.net/gml/3.2">au:AdministrativeUnit</targetElement>
+              </appinfo>
+            </annotation>
+            <complexType>
+              <complexContent>
+                <extension base="gml:AbstractMemberType">
+                  <sequence/>
+                  <attributeGroup ref="gml:AssociationAttributeGroup"/>
+                </extension>
+              </complexContent>
+            </complexType>
+          </element>
+          <element maxOccurs="unbounded" minOccurs="0" name="parent" type="us-waste:FacilityPropertyType"/>
+          <element maxOccurs="unbounded" minOccurs="0" name="address" nillable="true">
+            <annotation>
+              <documentation>An address or addresses of the facility.</documentation>
+              <appinfo>
+                <targetElement xmlns="http://www.opengis.net/gml/3.2">ad:Address</targetElement>
+              </appinfo>
+            </annotation>
+            <complexType>
+              <complexContent>
+                <extension base="gml:AbstractMemberType">
+                  <sequence/>
+                  <attributeGroup ref="gml:AssociationAttributeGroup"/>
+                </extension>
+              </complexContent>
+            </complexType>
+          </element>
+          <element maxOccurs="unbounded" minOccurs="0" name="building" nillable="true">
+            <annotation>
+              <documentation>-- Definition --
+Buildings containing the facility or considered to be the facility.</documentation>
+              <appinfo>
+                <targetElement xmlns="http://www.opengis.net/gml/3.2">bu:Building</targetElement>
+              </appinfo>
+            </annotation>
+            <complexType>
+              <complexContent>
+                <extension base="gml:AbstractMemberType">
+                  <sequence/>
+                  <attributeGroup ref="gml:AssociationAttributeGroup"/>
+                </extension>
+              </complexContent>
+            </complexType>
+          </element>
+          <element maxOccurs="unbounded" minOccurs="0" name="cadastralParcel" nillable="true">
+            <annotation>
+              <documentation>-- Definition --
+Cadastral parcels covered by the facility.</documentation>
+              <appinfo>
+                <targetElement xmlns="http://www.opengis.net/gml/3.2">cp:CadastralParcel</targetElement>
+              </appinfo>
+            </annotation>
+            <complexType>
+              <complexContent>
+                <extension base="gml:AbstractMemberType">
+                  <sequence/>
+                  <attributeGroup ref="gml:AssociationAttributeGroup"/>
+                </extension>
+              </complexContent>
+            </complexType>
+          </element>
+        </sequence>
+      </extension>
+    </complexContent>
+  </complexType>
+  <complexType name="FacilityPropertyType">
+    <sequence minOccurs="0">
+      <element ref="us-waste:Facility"/>
+    </sequence>
+    <attributeGroup ref="gml:AssociationAttributeGroup"/>
+    <attributeGroup ref="gml:OwnershipAttributeGroup"/>
+  </complexType>
+  <element name="FacilityStatusType" substitutionGroup="gml:AbstractObject" type="us-waste:FacilityStatusTypeType">
+    <annotation>
+      <documentation>-- Definition --
+A state or condition of a facility.</documentation>
+    </annotation>
+  </element>
+  <complexType name="FacilityStatusTypeType">
+    <sequence>
+      <element name="dateFrom" nillable="true">
+        <annotation>
+          <documentation>-- Definition --
+A date starting from which the status applies.</documentation>
+        </annotation>
+        <complexType>
+          <simpleContent>
+            <extension base="dateTime">
+              <attribute name="nilReason" type="gml:NilReasonType"/>
+            </extension>
+          </simpleContent>
+        </complexType>
+      </element>
+      <element minOccurs="0" name="dateTo" nillable="true">
+        <annotation>
+          <documentation>-- Definition --
+A date up to which the status applies.</documentation>
+        </annotation>
+        <complexType>
+          <simpleContent>
+            <extension base="dateTime">
+              <attribute name="nilReason" type="gml:NilReasonType"/>
+            </extension>
+          </simpleContent>
+        </complexType>
+      </element>
+      <element minOccurs="0" name="description" nillable="true" type="gmd:PT_FreeText_PropertyType">
+        <annotation>
+          <documentation>-- Definition --
+The status description.</documentation>
+        </annotation>
+      </element>
+      <element minOccurs="0" name="statusType" type="gml:CodeType">
+        <annotation>
+          <documentation>-- Definition --
+The status.</documentation>
+        </annotation>
+      </element>
+    </sequence>
+  </complexType>
+  <complexType name="FacilityStatusTypePropertyType">
+    <sequence>
+      <element ref="us-waste:FacilityStatusType"/>
+    </sequence>
+  </complexType>
+  <simpleType name="AbstractListTypeType">
+    <annotation>
+      <documentation>-- Definition --
+Abstract code list. Used where codes from one of multiple codelists are allowed.
+
+-- Description --
+For activity types, the list of allowable codelists is ActivityListSelType.
+For input output types, the list of allowable codelists is InputOutputListSelType.</documentation>
+    </annotation>
+    <union memberTypes="us-waste:AbstractListTypeEnumerationType us-waste:AbstractListTypeOtherType"/>
+  </simpleType>
+  <simpleType name="AbstractListTypeEnumerationType">
+    <annotation>
+      <documentation>-- Definition --
+Abstract code list. Used where codes from one of multiple codelists are allowed.
+
+-- Description --
+For activity types, the list of allowable codelists is ActivityListSelType.
+For input output types, the list of allowable codelists is InputOutputListSelType.</documentation>
+    </annotation>
+    <restriction base="string"/>
+  </simpleType>
+  <simpleType name="AbstractListTypeOtherType">
+    <restriction base="string">
+      <pattern value="other: \w{2,}"/>
+    </restriction>
+  </simpleType>
+  <element name="InputOutputType" substitutionGroup="gml:AbstractObject" type="us-waste:InputOutputTypeType">
+    <annotation>
+      <documentation>-- Definition --
+Something that enters or leaves a process or facility that is susceptible to be measured.</documentation>
+    </annotation>
+  </element>
+  <complexType name="InputOutputTypeType">
+    <sequence>
+      <element maxOccurs="unbounded" minOccurs="0" name="capacity" nillable="true">
+        <annotation>
+          <documentation>-- Definition --
+Capacities related to the input or output.</documentation>
+        </annotation>
+        <complexType>
+          <sequence>
+            <element ref="us-waste:CapacityType"/>
+          </sequence>
+          <attribute name="nilReason" type="gml:NilReasonType"/>
+        </complexType>
+      </element>
+      <element minOccurs="0" name="designation" nillable="true" type="gmd:PT_FreeText_PropertyType">
+        <annotation>
+          <documentation>-- Definition --
+A designation of the type of input or output.</documentation>
+        </annotation>
+      </element>
+      <element name="inputOutputType" type="us-waste:AbstractListTypeType">
+        <annotation>
+          <documentation>-- Definition --
+Identification of an entry from the list of inputs and outputs.</documentation>
+        </annotation>
+      </element>
+    </sequence>
+  </complexType>
+  <complexType name="InputOutputTypePropertyType">
+    <sequence>
+      <element ref="us-waste:InputOutputType"/>
+    </sequence>
+  </complexType>
+  <element name="PermissionType" substitutionGroup="gml:AbstractObject" type="us-waste:PermissionTypeType">
+    <annotation>
+      <documentation>-- Definition --
+A formal consent, such as to the operation of a facility.</documentation>
+    </annotation>
+  </element>
+  <complexType name="PermissionTypeType">
+    <sequence>
+      <element name="dateFrom" nillable="true">
+        <annotation>
+          <documentation>-- Definition --
+A date starting from which the permission applies.</documentation>
+        </annotation>
+        <complexType>
+          <simpleContent>
+            <extension base="dateTime">
+              <attribute name="nilReason" type="gml:NilReasonType"/>
+            </extension>
+          </simpleContent>
+        </complexType>
+      </element>
+      <element minOccurs="0" name="dateTo" nillable="true">
+        <annotation>
+          <documentation>-- Definition --
+A date up to which the permission applies.</documentation>
+        </annotation>
+        <complexType>
+          <simpleContent>
+            <extension base="dateTime">
+              <attribute name="nilReason" type="gml:NilReasonType"/>
+            </extension>
+          </simpleContent>
+        </complexType>
+      </element>
+      <element minOccurs="0" name="description" nillable="true" type="gmd:PT_FreeText_PropertyType">
+        <annotation>
+          <documentation>-- Definition --
+A description of the permission.</documentation>
+        </annotation>
+      </element>
+      <element maxOccurs="unbounded" minOccurs="0" name="Id" nillable="true">
+        <annotation>
+          <documentation>-- Definition --
+Identifiers of the permission using a specified identification scheme, such as a national register.</documentation>
+        </annotation>
+        <complexType>
+          <sequence>
+            <element ref="us-waste:IdentifierType"/>
+          </sequence>
+          <attribute name="nilReason" type="gml:NilReasonType"/>
+        </complexType>
+      </element>
+      <element maxOccurs="unbounded" minOccurs="0" name="relatedParty" nillable="true">
+        <annotation>
+          <documentation>-- Definition --
+Parties related to the permission, such as the authorities that granted the permission.</documentation>
+        </annotation>
+        <complexType>
+          <sequence>
+            <element ref="us-waste:PartyRoleType"/>
+          </sequence>
+          <attribute name="nilReason" type="gml:NilReasonType"/>
+        </complexType>
+      </element>
+    </sequence>
+  </complexType>
+  <complexType name="PermissionTypePropertyType">
+    <sequence>
+      <element ref="us-waste:PermissionType"/>
+    </sequence>
+  </complexType>
+  <element name="CapacityType" substitutionGroup="gml:AbstractObject" type="us-waste:CapacityTypeType">
+    <annotation>
+      <documentation>-- Definition --
+An actual or potential ability to perform, yield, withstand, receive or contain, such as a remaining storage capacity.</documentation>
+    </annotation>
+  </element>
+  <complexType name="CapacityTypeType">
+    <sequence>
+      <element name="amount" type="gml:MeasureType">
+        <annotation>
+          <documentation>-- Definition --
+The capacity amount measure, such as a volume or mass.</documentation>
+        </annotation>
+      </element>
+      <element minOccurs="0" name="time" nillable="true">
+        <annotation>
+          <documentation>-- Definition --
+The duration of time to which the specified capacity refers, such as 1 year for an annual capacity.
+
+-- Description --
+For a total capacity, such as the total capacity of a landfill, no time reference is provided.</documentation>
+        </annotation>
+        <complexType>
+          <simpleContent>
+            <extension base="time">
+              <attribute name="nilReason" type="gml:NilReasonType"/>
+            </extension>
+          </simpleContent>
+        </complexType>
+      </element>
+    </sequence>
+  </complexType>
+  <complexType name="CapacityTypePropertyType">
+    <sequence>
+      <element ref="us-waste:CapacityType"/>
+    </sequence>
+  </complexType>
+  <simpleType name="ActivityRecoveryDisposalListTypeType">
+    <annotation>
+      <documentation>-- Definition --
+List of disposal and recovery operations according to Annex I and Annex II of Directive 2008/98/EC on waste.
+
+-- Description --
+Accessible at http://eur-lex.europa.eu/LexUriServ/LexUriServ.do?uri=CELEX:32008L0098:EN:NOT</documentation>
+    </annotation>
+    <union memberTypes="us-waste:ActivityRecoveryDisposalListTypeEnumerationType us-waste:ActivityRecoveryDisposalListTypeOtherType"/>
+  </simpleType>
+  <simpleType name="ActivityRecoveryDisposalListTypeEnumerationType">
+    <annotation>
+      <documentation>-- Definition --
+List of disposal and recovery operations according to Annex I and Annex II of Directive 2008/98/EC on waste.
+
+-- Description --
+Accessible at http://eur-lex.europa.eu/LexUriServ/LexUriServ.do?uri=CELEX:32008L0098:EN:NOT</documentation>
+    </annotation>
+    <restriction base="string"/>
+  </simpleType>
+  <simpleType name="ActivityRecoveryDisposalListTypeOtherType">
+    <restriction base="string">
+      <pattern value="other: \w{2,}"/>
+    </restriction>
+  </simpleType>
+  <element name="PartyRoleType" substitutionGroup="gml:AbstractObject" type="us-waste:PartyRoleTypeType">
+    <annotation>
+      <documentation>-- Definition --
+An organisation or person with its role in a specific context.</documentation>
+    </annotation>
+  </element>
+  <complexType name="PartyRoleTypeType">
+    <sequence>
+      <element name="dateFrom" nillable="true">
+        <annotation>
+          <documentation>-- Definition --
+A date starting from which the party is in the specified roles.</documentation>
+        </annotation>
+        <complexType>
+          <simpleContent>
+            <extension base="dateTime">
+              <attribute name="nilReason" type="gml:NilReasonType"/>
+            </extension>
+          </simpleContent>
+        </complexType>
+      </element>
+      <element minOccurs="0" name="dateTo" nillable="true">
+        <annotation>
+          <documentation>-- Definition --
+A date up to which the party is in the specified roles.</documentation>
+        </annotation>
+        <complexType>
+          <simpleContent>
+            <extension base="dateTime">
+              <attribute name="nilReason" type="gml:NilReasonType"/>
+            </extension>
+          </simpleContent>
+        </complexType>
+      </element>
+      <element minOccurs="0" name="party" nillable="true">
+        <annotation>
+          <documentation>-- Definition --</documentation>
+        </annotation>
+        <complexType>
+          <complexContent>
+            <extension base="gml:AbstractMetadataPropertyType">
+              <sequence>
+                <element ref="gmd:CI_ResponsibleParty"/>
+              </sequence>
+              <attribute name="nilReason" type="gml:NilReasonType"/>
+            </extension>
+          </complexContent>
+        </complexType>
+      </element>
+      <element minOccurs="0" name="partyId" type="us-waste:IdentifierTypePropertyType">
+        <annotation>
+          <documentation>-- Definition --
+The identifier of the party.</documentation>
+        </annotation>
+      </element>
+      <element maxOccurs="unbounded" name="roleType" type="gml:CodeType">
+        <annotation>
+          <documentation>-- Definition --
+Roles of the party in the respective context.</documentation>
+        </annotation>
+      </element>
+    </sequence>
+  </complexType>
+  <complexType name="PartyRoleTypePropertyType">
+    <sequence>
+      <element ref="us-waste:PartyRoleType"/>
+    </sequence>
+  </complexType>
+  <element name="DayTimeType" substitutionGroup="gml:AbstractObject" type="us-waste:DayTimeTypeType">
+    <annotation>
+      <documentation>-- Definition --
+A period of time at a particular day of any week, such as Monday 12:00 to 13:00.</documentation>
+    </annotation>
+  </element>
+  <complexType name="DayTimeTypeType">
+    <sequence>
+      <element name="day" type="us-waste:DayListTypeType">
+        <annotation>
+          <documentation>-- Definition --
+The day of the week, such as Monday.</documentation>
+        </annotation>
+      </element>
+      <element name="timeFrom" type="time">
+        <annotation>
+          <documentation>-- Definition --
+The start time.</documentation>
+        </annotation>
+      </element>
+      <element name="timeTo" type="time">
+        <annotation>
+          <documentation>-- Definition --
+The end time.</documentation>
+        </annotation>
+      </element>
+    </sequence>
+  </complexType>
+  <complexType name="DayTimeTypePropertyType">
+    <sequence>
+      <element ref="us-waste:DayTimeType"/>
+    </sequence>
+  </complexType>
+</schema>

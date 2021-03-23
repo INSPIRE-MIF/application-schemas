@@ -1,0 +1,672 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<schema xmlns="http://www.w3.org/2001/XMLSchema" xmlns:base="urn:x-inspire:specification:gmlas:BaseTypes:3.2" xmlns:gml="http://www.opengis.net/gml/3.2" xmlns:pf-core="http://inspire.jrc.ec.europa.eu/schemas/pf-core/2.0" xmlns:pf-ext="http://inspire.jrc.ec.europa.eu/schemas/pf-ext/2.0" targetNamespace="http://inspire.jrc.ec.europa.eu/schemas/pf-ext/2.0" elementFormDefault="qualified" version="2.0">
+	<import namespace="http://inspire.jrc.ec.europa.eu/schemas/pf-core/2.0" schemaLocation="https://inspire.ec.europa.eu/draft-schemas/pf-core/2.0/ProductionAndIndustrialFacilitiesCore.xsd"/>
+	<import namespace="http://www.opengis.net/gml/3.2" schemaLocation="http://schemas.opengis.net/gml/3.2.1/gml.xsd"/>
+	<import namespace="urn:x-inspire:specification:gmlas:BaseTypes:3.2" schemaLocation="https://inspire.ec.europa.eu/schemas/base/3.2/BaseTypes.xsd"/>
+	<!--XML Schema document created by ShapeChange-->
+	<element name="Release" type="pf-ext:ReleaseType" substitutionGroup="pf-ext:Operation">
+		<annotation>
+			<documentation>-- Name --
+release
+
+-- Definition --
+means any introduction of pollutants into the environment as a result of one activity, whetever deliberate or accidental, routine or non routine, including spilling, emitting, discharging, injecting, disposing or dumping, or throught sewer ysstems without final wate-water treatment.</documentation>
+		</annotation>
+	</element>
+	<complexType name="ReleaseType">
+		<complexContent>
+			<extension base="pf-ext:OperationType">
+				<sequence>
+					<element name="E_PRTR_code" type="base:IdentifierPropertyType">
+						<annotation>
+							<documentation>-- Definition --
+Annex II - Regulation (EC) 166/2006.</documentation>
+						</annotation>
+					</element>
+					<element name="Threshold" type="gml:MeasureType"/>
+					<element name="EnvironmentID" type="pf-ext:EnvironmentType"/>
+				</sequence>
+			</extension>
+		</complexContent>
+	</complexType>
+	<complexType name="ReleasePropertyType">
+		<sequence minOccurs="0">
+			<element ref="pf-ext:Release"/>
+		</sequence>
+		<attributeGroup ref="gml:AssociationAttributeGroup"/>
+		<attributeGroup ref="gml:OwnershipAttributeGroup"/>
+	</complexType>
+	<simpleType name="SEVESOCodeValueType">
+		<annotation>
+			<documentation>-- Definition --
+The SEVESOCodeValue code list hosts the reference values for the SEVESOClassification data type.</documentation>
+		</annotation>
+		<union memberTypes="pf-ext:SEVESOCodeValueEnumerationType pf-ext:SEVESOCodeValueOtherType"/>
+	</simpleType>
+	<simpleType name="SEVESOCodeValueEnumerationType">
+		<annotation>
+			<documentation>-- Definition --
+The SEVESOCodeValue code list hosts the reference values for the SEVESOClassification data type.</documentation>
+		</annotation>
+		<restriction base="string"/>
+	</simpleType>
+	<simpleType name="SEVESOCodeValueOtherType">
+		<restriction base="string">
+			<pattern value="other: \w{2,}"/>
+		</restriction>
+	</simpleType>
+	<simpleType name="ISICCodeValueType">
+		<annotation>
+			<documentation>-- Definition --
+The ISICCodeValue code list hosts the reference values for the ISICClassification data type.</documentation>
+		</annotation>
+		<union memberTypes="pf-ext:ISICCodeValueEnumerationType pf-ext:ISICCodeValueOtherType"/>
+	</simpleType>
+	<simpleType name="ISICCodeValueEnumerationType">
+		<annotation>
+			<documentation>-- Definition --
+The ISICCodeValue code list hosts the reference values for the ISICClassification data type.</documentation>
+		</annotation>
+		<restriction base="string"/>
+	</simpleType>
+	<simpleType name="ISICCodeValueOtherType">
+		<restriction base="string">
+			<pattern value="other: \w{2,}"/>
+		</restriction>
+	</simpleType>
+	<simpleType name="EnvironmentType">
+		<annotation>
+			<documentation>-- Definition --
+
+List of potential environments where operations can take place</documentation>
+		</annotation>
+		<restriction base="string">
+			<enumeration value="Water"/>
+			<enumeration value="Air"/>
+			<enumeration value="Soil"/>
+		</restriction>
+	</simpleType>
+	<element name="SEVESOClassification" type="pf-ext:SEVESOClassificationType" substitutionGroup="gml:AbstractObject">
+		<annotation>
+			<documentation>-- Definition --
+Classification of the activity according to the SEVESO legislation.</documentation>
+		</annotation>
+	</element>
+	<complexType name="SEVESOClassificationType">
+		<sequence>
+			<element name="SEVESOClassification" type="pf-ext:SEVESOCodeValueType">
+				<annotation>
+					<documentation>-- Definition --
+Classification of the activity according to the SEVESO legislation referring to a list of predefined potential values.
+
+-- Description --
+The reference values are holded and listed in the SEVESOCode enumeration.</documentation>
+				</annotation>
+			</element>
+		</sequence>
+	</complexType>
+	<complexType name="SEVESOClassificationPropertyType">
+		<sequence>
+			<element ref="pf-ext:SEVESOClassification"/>
+		</sequence>
+	</complexType>
+	<simpleType name="TimePeriodType">
+		<restriction base="string"/>
+	</simpleType>
+	<element name="Pollutant" type="pf-ext:PollutantType" substitutionGroup="gml:AbstractFeature">
+		<annotation>
+			<documentation>-- Name --
+pollutant
+
+-- Definition --
+A special kind of substance or a group of substances that may be harmful to the environment or to human health on account of its properties and of its introduction into the environment.</documentation>
+		</annotation>
+	</element>
+	<complexType name="PollutantType">
+		<complexContent>
+			<extension base="gml:AbstractFeatureType">
+				<sequence/>
+			</extension>
+		</complexContent>
+	</complexType>
+	<complexType name="PollutantPropertyType">
+		<sequence minOccurs="0">
+			<element ref="pf-ext:Pollutant"/>
+		</sequence>
+		<attributeGroup ref="gml:AssociationAttributeGroup"/>
+		<attributeGroup ref="gml:OwnershipAttributeGroup"/>
+	</complexType>
+	<element name="Storage" type="pf-ext:StorageType" substitutionGroup="pf-ext:Operation">
+		<annotation>
+			<documentation>-- Name --
+storage
+
+-- Definition --
+
+means the act of store elements in a certain place for a defined period of time, before their use or transfer.</documentation>
+		</annotation>
+	</element>
+	<complexType name="StorageType">
+		<complexContent>
+			<extension base="pf-ext:OperationType">
+				<sequence>
+					<element name="CPA_Code" type="base:IdentifierPropertyType">
+						<annotation>
+							<documentation>-- Definition --
+Annex Regulation (EC) 451/2008.</documentation>
+						</annotation>
+					</element>
+					<element name="ProductDescription" nillable="true">
+						<complexType>
+							<simpleContent>
+								<extension base="string">
+									<attribute name="nilReason" type="gml:NilReasonType"/>
+								</extension>
+							</simpleContent>
+						</complexType>
+					</element>
+				</sequence>
+			</extension>
+		</complexContent>
+	</complexType>
+	<complexType name="StoragePropertyType">
+		<sequence minOccurs="0">
+			<element ref="pf-ext:Storage"/>
+		</sequence>
+		<attributeGroup ref="gml:AssociationAttributeGroup"/>
+		<attributeGroup ref="gml:OwnershipAttributeGroup"/>
+	</complexType>
+	<simpleType name="SiteTypeType">
+		<annotation>
+			<documentation>-- Definition --
+Generic tipology of the different Site that can be described under the Scope.</documentation>
+		</annotation>
+		<union memberTypes="pf-ext:SiteTypeEnumerationType pf-ext:SiteTypeOtherType"/>
+	</simpleType>
+	<simpleType name="SiteTypeEnumerationType">
+		<annotation>
+			<documentation>-- Definition --
+Generic tipology of the different Site that can be described under the Scope.</documentation>
+		</annotation>
+		<restriction base="string">
+			<enumeration value="Industrial"/>
+			<enumeration value="Mine"/>
+		</restriction>
+	</simpleType>
+	<simpleType name="SiteTypeOtherType">
+		<restriction base="string">
+			<pattern value="other: \w{2,}"/>
+		</restriction>
+	</simpleType>
+	<element name="Production" type="pf-ext:ProductionType" substitutionGroup="pf-ext:Operation">
+		<annotation>
+			<documentation>-- Name --
+production
+
+-- Definition --
+
+Means the final good as result of the operation. In general is the end of the economic activity that is developed on the facility.</documentation>
+		</annotation>
+	</element>
+	<complexType name="ProductionType">
+		<complexContent>
+			<extension base="pf-ext:OperationType">
+				<sequence>
+					<element name="CPA_Code" type="base:IdentifierPropertyType">
+						<annotation>
+							<documentation>-- Definition --
+CPA Annex Regualtion (EC) 451/2008.</documentation>
+						</annotation>
+					</element>
+					<element name="ProductDescription" nillable="true">
+						<complexType>
+							<simpleContent>
+								<extension base="string">
+									<attribute name="nilReason" type="gml:NilReasonType"/>
+								</extension>
+							</simpleContent>
+						</complexType>
+					</element>
+				</sequence>
+			</extension>
+		</complexContent>
+	</complexType>
+	<complexType name="ProductionPropertyType">
+		<sequence minOccurs="0">
+			<element ref="pf-ext:Production"/>
+		</sequence>
+		<attributeGroup ref="gml:AssociationAttributeGroup"/>
+		<attributeGroup ref="gml:OwnershipAttributeGroup"/>
+	</complexType>
+	<simpleType name="OperationTypeType">
+		<annotation>
+			<documentation>-- Name --
+OpertationType.
+
+-- Definition --
+
+Classification of different types of Operations that can be registered on the model.
+It include aspects as Recovery, Disposal, Storage, ...</documentation>
+		</annotation>
+		<restriction base="string">
+			<enumeration value="Recovery"/>
+			<enumeration value="Transfer"/>
+			<enumeration value="Release"/>
+			<enumeration value="Produce"/>
+			<enumeration value="Storage"/>
+			<enumeration value="Consum"/>
+			<enumeration value="Disposal"/>
+			<enumeration value="Protect"/>
+		</restriction>
+	</simpleType>
+	<element name="Operation" type="pf-ext:OperationType" substitutionGroup="gml:AbstractFeature">
+		<annotation>
+			<documentation>-- Name --
+operation
+
+-- Definition --
+
+
+-- Description --</documentation>
+		</annotation>
+	</element>
+	<complexType name="OperationType">
+		<complexContent>
+			<extension base="gml:AbstractFeatureType">
+				<sequence>
+					<element name="inspireId" type="base:IdentifierPropertyType">
+						<annotation>
+							<documentation>-- Definition --
+External object identifier of the object.
+
+-- Description --
+NOTE  An external object identifier is a unique object identifier published by the responsible body, which may be used by external applications to reference the object. The identifier is an identifier of the object, not an identifier of the real-world phenomenon.</documentation>
+						</annotation>
+					</element>
+					<element name="realisesFacility" type="pf-core:FacilityPropertyType" minOccurs="0" maxOccurs="unbounded">
+						<annotation>
+							<appinfo>
+								<reversePropertyName xmlns="http://www.opengis.net/gml/3.2">pf-core:isRealisedOn</reversePropertyName>
+							</appinfo>
+						</annotation>
+					</element>
+					<element name="realisesInstallation" type="pf-core:InstallationPropertyType" minOccurs="0" maxOccurs="unbounded">
+						<annotation>
+							<appinfo>
+								<reversePropertyName xmlns="http://www.opengis.net/gml/3.2">pf-core:isRealisedOn</reversePropertyName>
+							</appinfo>
+						</annotation>
+					</element>
+					<element name="realisesBuilding" type="pf-core:ProductionAndIndustrialBuildingPropertyType" minOccurs="0" maxOccurs="unbounded">
+						<annotation>
+							<appinfo>
+								<reversePropertyName xmlns="http://www.opengis.net/gml/3.2">pf-core:isRealisedOn</reversePropertyName>
+							</appinfo>
+						</annotation>
+					</element>
+					<element name="realisesInstallationPart" type="pf-core:InstallationPartPropertyType" minOccurs="0" maxOccurs="unbounded">
+						<annotation>
+							<appinfo>
+								<reversePropertyName xmlns="http://www.opengis.net/gml/3.2">pf-core:isRealisedOn</reversePropertyName>
+							</appinfo>
+						</annotation>
+					</element>
+				</sequence>
+			</extension>
+		</complexContent>
+	</complexType>
+	<complexType name="OperationPropertyType">
+		<sequence minOccurs="0">
+			<element ref="pf-ext:Operation"/>
+		</sequence>
+		<attributeGroup ref="gml:AssociationAttributeGroup"/>
+		<attributeGroup ref="gml:OwnershipAttributeGroup"/>
+	</complexType>
+	<element name="Disposal" type="pf-ext:DisposalType" substitutionGroup="pf-ext:Operation">
+		<annotation>
+			<documentation>-- Name --
+disposal
+
+-- Definition --
+
+Means any of the operations provided for in AnnexIIA to Directive 75/442/EEC.</documentation>
+		</annotation>
+	</element>
+	<complexType name="DisposalType">
+		<complexContent>
+			<extension base="pf-ext:OperationType">
+				<sequence>
+					<element name="DisposalCode" type="base:IdentifierPropertyType">
+						<annotation>
+							<documentation>-- Description --
+Listed on the directive75/442/ecc.</documentation>
+						</annotation>
+					</element>
+					<element name="DisposalDescription" nillable="true">
+						<complexType>
+							<simpleContent>
+								<extension base="string">
+									<attribute name="nilReason" type="gml:NilReasonType"/>
+								</extension>
+							</simpleContent>
+						</complexType>
+					</element>
+					<element name="WasteCategory" type="pf-ext:WasteCategoryType">
+						<annotation>
+							<documentation>-- Definition --
+Code related on Annex.1 of DIRECTIVE 2006/12/EC.</documentation>
+						</annotation>
+					</element>
+					<element name="EnvironmentID" type="pf-ext:EnvironmentType"/>
+				</sequence>
+			</extension>
+		</complexContent>
+	</complexType>
+	<complexType name="DisposalPropertyType">
+		<sequence minOccurs="0">
+			<element ref="pf-ext:Disposal"/>
+		</sequence>
+		<attributeGroup ref="gml:AssociationAttributeGroup"/>
+		<attributeGroup ref="gml:OwnershipAttributeGroup"/>
+	</complexType>
+	<element name="ISICClassification" type="pf-ext:ISICClassificationType" substitutionGroup="gml:AbstractObject">
+		<annotation>
+			<documentation>-- Definition --
+Classification of the activity according to the ISIC legislation.</documentation>
+		</annotation>
+	</element>
+	<complexType name="ISICClassificationType">
+		<sequence>
+			<element name="ISICClassification" type="pf-ext:ISICCodeValueType">
+				<annotation>
+					<documentation>-- Definition --
+Classification of the activity according to the ISIC legislation referring to a list of predefined potential values.
+
+-- Description --
+The reference values are holded and listed in the ISICCode enumeration.</documentation>
+				</annotation>
+			</element>
+		</sequence>
+	</complexType>
+	<complexType name="ISICClassificationPropertyType">
+		<sequence>
+			<element ref="pf-ext:ISICClassification"/>
+		</sequence>
+	</complexType>
+	<element name="Recovery" type="pf-ext:RecoveryType" substitutionGroup="pf-ext:Operation">
+		<annotation>
+			<documentation>-- Name --
+recovery
+
+-- Definition -- 
+
+Means any of the operations provided by annex IIA to Directive 75/442/EEC.</documentation>
+		</annotation>
+	</element>
+	<complexType name="RecoveryType">
+		<complexContent>
+			<extension base="pf-ext:OperationType">
+				<sequence>
+					<element name="RecoveryCode" type="base:IdentifierPropertyType"/>
+					<element name="RecoveryDescription" nillable="true">
+						<complexType>
+							<simpleContent>
+								<extension base="string">
+									<attribute name="nilReason" type="gml:NilReasonType"/>
+								</extension>
+							</simpleContent>
+						</complexType>
+					</element>
+					<element name="WasteCategory" type="pf-ext:WasteCategoryType">
+						<annotation>
+							<documentation>-- Definition --
+Code List of diferent kind of waste.</documentation>
+						</annotation>
+					</element>
+					<element name="WasteCode" type="base:IdentifierPropertyType">
+						<annotation>
+							<documentation>-- Definition --
+Code related on Annex.1 of DIRECTIVE 2006/12/EC.</documentation>
+						</annotation>
+					</element>
+				</sequence>
+			</extension>
+		</complexContent>
+	</complexType>
+	<complexType name="RecoveryPropertyType">
+		<sequence minOccurs="0">
+			<element ref="pf-ext:Recovery"/>
+		</sequence>
+		<attributeGroup ref="gml:AssociationAttributeGroup"/>
+		<attributeGroup ref="gml:OwnershipAttributeGroup"/>
+	</complexType>
+	<element name="Permit" type="pf-ext:PermitType" substitutionGroup="gml:AbstractGML">
+		<annotation>
+			<documentation>-- Name --
+permit
+
+-- Definition --
+A written decision (or several such decisions) delivered by the competent authority granting authorisation to operate a plant or facility, subject to certain conditions which guarantee that the plant complies with all the requirements of the reference legislation or Directive. 
+
+-- Description --
+A permit may cover one or more plants or parts of a plant on the same site operated by the same operator.</documentation>
+		</annotation>
+	</element>
+	<complexType name="PermitType">
+		<complexContent>
+			<extension base="gml:AbstractGMLType">
+				<sequence>
+					<element name="description" type="string"/>
+					<element name="validFrom" type="date"/>
+					<element name="validTo" type="date" minOccurs="0"/>
+				</sequence>
+			</extension>
+		</complexContent>
+	</complexType>
+	<complexType name="PermitPropertyType">
+		<sequence minOccurs="0">
+			<element ref="pf-ext:Permit"/>
+		</sequence>
+		<attributeGroup ref="gml:AssociationAttributeGroup"/>
+		<attributeGroup ref="gml:OwnershipAttributeGroup"/>
+	</complexType>
+	<simpleType name="ActivityCodeListType">
+		<annotation>
+			<documentation>-- Name --
+ActivityCodeList.
+
+-- Definition --
+List of values that allow to insert into the model different list of activities classification (as NACE, ISIC or SEVESO).</documentation>
+		</annotation>
+		<restriction base="string">
+			<enumeration value="NACE">
+				<annotation>
+					<documentation>-- Definition --
+Classification based on the NACE list.</documentation>
+				</annotation>
+			</enumeration>
+			<enumeration value="SEVESO">
+				<annotation>
+					<documentation>-- Definition -- 
+Classification based on the list proposed by the SEVESO Directive (91/689/EEC - 96/61/ec).</documentation>
+				</annotation>
+			</enumeration>
+			<enumeration value="ISIC">
+				<annotation>
+					<documentation>-- Definition -- 
+Classification on ISIC list.</documentation>
+				</annotation>
+			</enumeration>
+		</restriction>
+	</simpleType>
+	<element name="AuthorisationAuthority" type="pf-ext:AuthorisationAuthorityType" substitutionGroup="gml:AbstractFeature"/>
+	<complexType name="AuthorisationAuthorityType">
+		<complexContent>
+			<extension base="gml:AbstractFeatureType">
+				<sequence>
+					<element name="inspireId" type="base:IdentifierPropertyType">
+						<annotation>
+							<documentation>-- Definition --
+External object identifier of the object.
+
+-- Description --
+NOTE  An external object identifier is a unique object identifier published by the responsible body, which may be used by external applications to reference the object. The identifier is an identifier of the object, not an identifier of the real-world phenomenon.</documentation>
+						</annotation>
+					</element>
+					<element name="thematicId" type="string" minOccurs="0">
+						<annotation>
+							<documentation>-- Definition --
+Thematic object identifier (e.g. ICAO location identifiers for airports or NUTS codes for administrative areas).
+
+-- Description --
+It may be the identification code provided by the Member States to identify the object on their own databases.</documentation>
+						</annotation>
+					</element>
+					<element name="name" type="string">
+						<annotation>
+							<documentation>-- Definition --
+Name of the responsible organisation.</documentation>
+						</annotation>
+					</element>
+				</sequence>
+			</extension>
+		</complexContent>
+	</complexType>
+	<complexType name="AuthorisationAuthorityPropertyType">
+		<sequence minOccurs="0">
+			<element ref="pf-ext:AuthorisationAuthority"/>
+		</sequence>
+		<attributeGroup ref="gml:AssociationAttributeGroup"/>
+		<attributeGroup ref="gml:OwnershipAttributeGroup"/>
+	</complexType>
+	<simpleType name="TechnologyTypeType">
+		<restriction base="string"/>
+	</simpleType>
+	<simpleType name="WasteCategoryType">
+		<annotation>
+			<documentation>-- Name --
+WasteCategory.
+
+-- Definition --
+List thats allow to define the kind of waste which the codification is related. 
+Could be: Waste: 75/442/EEC; Hazardous Waste: 91/689/EEC; Waste Water: 91/271/EEC.</documentation>
+		</annotation>
+		<restriction base="string">
+			<enumeration value="Waste">
+				<annotation>
+					<documentation>-- Definition --
+Any substance or object defined in Art.1 Directive 75/442/EEC.</documentation>
+				</annotation>
+			</enumeration>
+			<enumeration value="WasteWater">
+				<annotation>
+					<documentation>-- Definition --
+Industrial Waste Water: 91/271/EEC.</documentation>
+				</annotation>
+			</enumeration>
+			<enumeration value="HazardousWaste">
+				<annotation>
+					<documentation>-- Definition -- 
+Means any substance or object defined in Directive 91/689/EEC.</documentation>
+				</annotation>
+			</enumeration>
+		</restriction>
+	</simpleType>
+	<simpleType name="TransferTypeType">
+		<annotation>
+			<documentation>-- Name --
+TransferType.
+
+-- Definition --
+refers to the different kinds of transfers of waste between different places. This code list is based on the Geografical dimension.</documentation>
+		</annotation>
+		<union memberTypes="pf-ext:TransferTypeEnumerationType pf-ext:TransferTypeOtherType"/>
+	</simpleType>
+	<simpleType name="TransferTypeEnumerationType">
+		<annotation>
+			<documentation>-- Name --
+TransferType.
+
+-- Definition --
+refers to the different kinds of transfers of waste between different places. This code list is based on the Geografical dimension.</documentation>
+		</annotation>
+		<restriction base="string">
+			<enumeration value="Local"/>
+			<enumeration value="InterRegional"/>
+			<enumeration value="InterCountries"/>
+		</restriction>
+	</simpleType>
+	<simpleType name="TransferTypeOtherType">
+		<restriction base="string">
+			<pattern value="other: \w{2,}"/>
+		</restriction>
+	</simpleType>
+	<simpleType name="TimePeriodIDType">
+		<annotation>
+			<documentation>-- Name --
+TimePeriodID.
+
+-- Definition --
+
+Code list to define the period related to the information provided.</documentation>
+		</annotation>
+		<restriction base="string">
+			<enumeration value="Daily"/>
+			<enumeration value="Weekly"/>
+			<enumeration value="Yearly"/>
+			<enumeration value="Monthly"/>
+		</restriction>
+	</simpleType>
+	<element name="Transfer" type="pf-ext:TransferType" substitutionGroup="pf-ext:Operation">
+		<annotation>
+			<documentation>-- Name --
+transfer
+
+-- Definition --
+
+means the movement beyond the boundaries of a facility of waste destined for recovery or disposal and of pollutants in waste water destined for waste-water treatment.</documentation>
+		</annotation>
+	</element>
+	<complexType name="TransferType">
+		<complexContent>
+			<extension base="pf-ext:OperationType">
+				<sequence>
+					<element name="TransferType" type="pf-ext:TransferTypeType">
+						<annotation>
+							<documentation>-- Definition --
+Code List Value of transfer type. It refer to the geographical dimension.</documentation>
+						</annotation>
+					</element>
+					<element name="TransferDescription" nillable="true">
+						<complexType>
+							<simpleContent>
+								<extension base="string">
+									<attribute name="nilReason" type="gml:NilReasonType"/>
+								</extension>
+							</simpleContent>
+						</complexType>
+					</element>
+					<element name="WasteCategory" type="pf-ext:WasteCategoryType">
+						<annotation>
+							<documentation>-- Definition --
+Code related on Annex.1 of DIRECTIVE 2006/12/EC.</documentation>
+						</annotation>
+					</element>
+					<element name="WasteCode" type="base:IdentifierPropertyType">
+						<annotation>
+							<documentation>-- Definition --
+Relation with the waste list that is described on the Directive 75/442/EEC.</documentation>
+						</annotation>
+					</element>
+				</sequence>
+			</extension>
+		</complexContent>
+	</complexType>
+	<complexType name="TransferPropertyType">
+		<sequence minOccurs="0">
+			<element ref="pf-ext:Transfer"/>
+		</sequence>
+		<attributeGroup ref="gml:AssociationAttributeGroup"/>
+		<attributeGroup ref="gml:OwnershipAttributeGroup"/>
+	</complexType>
+</schema>

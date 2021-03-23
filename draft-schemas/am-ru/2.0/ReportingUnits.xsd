@@ -1,0 +1,254 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<schema xmlns="http://www.w3.org/2001/XMLSchema" xmlns:am="http://inspire.jrc.ec.europa.eu/schemas/am/2.0" xmlns:am-ru="http://inspire.jrc.ec.europa.eu/schemas/am-ru/2.0" xmlns:au="urn:x-inspire:specification:gmlas:AdministrativeUnits:3.0" xmlns:base="urn:x-inspire:specification:gmlas:BaseTypes:3.2" xmlns:base2="http://inspire.jrc.ec.europa.eu/schemas/base2/0.1" xmlns:br="http://inspire.jrc.ec.europa.eu/schemas/br/2.0" xmlns:ef="http://inspire.jrc.ec.europa.eu/schemas/ef/2.0" xmlns:gmd="http://www.isotc211.org/2005/gmd" xmlns:gml="http://www.opengis.net/gml/3.2" xmlns:gph-core="http://inspire.jrc.ec.europa.eu/schemas/gph-core/2.0" xmlns:hy-n="urn:x-inspire:specification:gmlas:HydroNetwork:3.0" xmlns:hy-p="urn:x-inspire:specification:gmlas:HydroPhysicalWaters:3.0" xmlns:hy-r="urn:x-inspire:specification:gmlas:HydroReporting:3.0" xmlns:hyge-core="http://inspire.jrc.ec.europa.eu/schemas/hyge-core/2.0" xmlns:of="http://inspire.jrc.ec.europa.eu/schemas/of/2.0" xmlns:ps="urn:x-inspire:specification:gmlas:ProtectedSites:3.0" xmlns:su-nuts="http://inspire.jrc.ec.europa.eu/schemas/su-nuts/2.0" xmlns:us-govserv="http://inspire.jrc.ec.europa.eu/schemas/us-govserv/2.0" xmlns:us-network="http://inspire.jrc.ec.europa.eu/schemas/us-network/2.0" xmlns:us-waste="http://inspire.jrc.ec.europa.eu/schemas/us-waste/2.0" targetNamespace="http://inspire.jrc.ec.europa.eu/schemas/am-ru/2.0" elementFormDefault="qualified" version="2.0">
+	<annotation>
+		<documentation>Application schema for Reporting Units</documentation>
+	</annotation>
+	<import namespace="http://inspire.jrc.ec.europa.eu/schemas/am/2.0" schemaLocation="https://inspire.ec.europa.eu/draft-schemas/am/2.0/AreaManagementRestrictionRegulationZone.xsd"/>
+	<import namespace="http://inspire.jrc.ec.europa.eu/schemas/base2/0.1" schemaLocation="https://inspire.ec.europa.eu/draft-schemas/base2/0.1/BaseTypes2.xsd"/>
+	<import namespace="http://www.isotc211.org/2005/gmd" schemaLocation="http://schemas.opengis.net/iso/19139/20070417/gmd/gmd.xsd"/>
+	<import namespace="http://www.opengis.net/gml/3.2" schemaLocation="http://schemas.opengis.net/gml/3.2.1/gml.xsd"/>
+	<import namespace="urn:x-inspire:specification:gmlas:BaseTypes:3.2" schemaLocation="https://inspire.ec.europa.eu/schemas/base/3.2/BaseTypes.xsd"/>
+	<!-- import namespace="http://inspire.jrc.ec.europa.eu/schemas/br/2.0" schemaLocation="https://inspire.ec.europa.eu/draft-schemas/br/2.0/BiogeographicalRegions.xsd"/>
+	<import namespace="http://inspire.jrc.ec.europa.eu/schemas/ef/2.0" schemaLocation="https://inspire.ec.europa.eu/draft-schemas/ef/2.0/EnvironmentalMonitoringFacilities.xsd"/>
+	<import namespace="http://inspire.jrc.ec.europa.eu/schemas/gph-core/2.0" schemaLocation="https://inspire.ec.europa.eu/draft-schemas/gph-core/2.0/GeophysicsCore.xsd"/>
+	<import namespace="http://inspire.jrc.ec.europa.eu/schemas/hyge-core/2.0" schemaLocation="https://inspire.ec.europa.eu/draft-schemas/hyge-core/2.0/HydrogeologyCore.xsd"/>
+	<import namespace="http://inspire.jrc.ec.europa.eu/schemas/of/2.0" schemaLocation="https://inspire.ec.europa.eu/draft-schemas/of/2.0/OceanFeatures.xsd"/>
+	<import namespace="http://inspire.jrc.ec.europa.eu/schemas/su-nuts/2.0" schemaLocation="https://inspire.ec.europa.eu/draft-schemas/su-nuts/2.0/StatisticalUnitNUTS.xsd"/>
+	<import namespace="http://inspire.jrc.ec.europa.eu/schemas/us-govserv/2.0" schemaLocation="https://inspire.ec.europa.eu/draft-schemas/us-govserv/2.0/UtilitiesAndGovernmentalServicesGovServ.xsd"/>
+	<import namespace="http://inspire.jrc.ec.europa.eu/schemas/us-network/2.0" schemaLocation="https://inspire.ec.europa.eu/draft-schemas/us-network/2.0/UtilitiesAndGovernmentalServicesNetworks.xsd"/>
+	<import namespace="http://inspire.jrc.ec.europa.eu/schemas/us-waste/2.0" schemaLocation="https://inspire.ec.europa.eu/draft-schemas/us-waste/2.0/UtilitiesAndGovernmentalServicesWasteManagement.xsd"/>
+	<import namespace="urn:x-inspire:specification:gmlas:AdministrativeUnits:3.0" schemaLocation="https://inspire.ec.europa.eu/schemas/FIXME/3.0/AdministrativeUnits.xsd"/>
+	<import namespace="urn:x-inspire:specification:gmlas:HydroNetwork:3.0" schemaLocation="https://inspire.ec.europa.eu/schemas/FIXME/3.0/HydroNetwork.xsd"/>
+	<import namespace="urn:x-inspire:specification:gmlas:HydroPhysicalWaters:3.0" schemaLocation="https://inspire.ec.europa.eu/schemas/FIXME/3.0/HydroPhysicalWaters.xsd"/>
+	<import namespace="urn:x-inspire:specification:gmlas:HydroReporting:3.0" schemaLocation="https://inspire.ec.europa.eu/schemas/FIXME/3.0/HydroReporting.xsd"/>
+	<import namespace="urn:x-inspire:specification:gmlas:ProtectedSites:3.0" schemaLocation="https://inspire.ec.europa.eu/schemas/FIXME/3.0/ProtectedSites.xsd"/-->
+	<!--XML Schema document created by ShapeChange-->
+	<element name="ReportingUnits" type="am-ru:ReportingUnitsType" substitutionGroup="gml:AbstractFeature">
+		<annotation>
+			<documentation>-- Definition --
+Collection of spatial objects to which reporting information can be associated or linked  to (i.e. statistics, indicators, observations and measurements or spatial data). 
+
+-- Description --
+The collection of spatial objects that form the Reporting Unit provide the spatial framework for the associated reported information. 
+The association or linkage between the spatial objects contained within the reporting unit and reporting information is used to join the data together for generate maps used to describe environmental state, identify long term trends or changes in state between reporting periods.</documentation>
+		</annotation>
+	</element>
+	<complexType name="ReportingUnitsType">
+		<complexContent>
+			<extension base="gml:AbstractFeatureType">
+				<sequence>
+					<element name="inspireId" type="base:IdentifierPropertyType" minOccurs="0">
+						<annotation>
+							<documentation>-- Definition --
+External object identifier of the spatial object.
+
+-- Description --
+An external object identifier is a unique object identifier published by the responsible body, which may be used by external application to reference the spatial object. The identifier is an identifier of the spatial object, not an identifier of the real-world phenomenon.
+
+NOTE This is not the same as the object identifier of the spatial object contained within the unit</documentation>
+						</annotation>
+					</element>
+					<element name="reportingUnitName" type="string">
+						<annotation>
+							<documentation>-- Definition --
+Name of the spatial object that forms the reporting unit.
+
+-- Description --
+This is required to enable discovery and selection of specific reporting units.
+
+EXAMPLE: riverBasinDistrict.
+
+EXAMPLE: bluetongueRestrictionZone.</documentation>
+						</annotation>
+					</element>
+					<element name="reportingPeriod">
+						<annotation>
+							<documentation>-- Definition --
+Date defining the reporting period.
+
+--Description --
+NOTE: The reporting period may be represented as either a time period (e.g. 2011-01-01 to 2011-12-31) or as a single date representing the reporting year (e.g. 2011).</documentation>
+						</annotation>
+						<complexType>
+							<complexContent>
+								<extension base="gml:AbstractMemberType">
+									<sequence minOccurs="0">
+										<element ref="gml:AbstractTimeObject"/>
+									</sequence>
+									<attributeGroup ref="gml:AssociationAttributeGroup"/>
+								</extension>
+							</complexContent>
+						</complexType>
+					</element>
+					<element name="reportingAuthority">
+						<annotation>
+							<documentation>-- Definition --
+Contact information for the Public Authority responsible for creating or collating the data that represents the Reporting Unit and submitting the data to relevant Authority.
+
+-- Description --
+NOTE: Contact information for the Public Authority responsible for generating and submitting the Reporting Unit data should be provided to enable traceability.</documentation>
+						</annotation>
+						<complexType>
+							<complexContent>
+								<extension base="gml:AbstractMetadataPropertyType">
+									<sequence>
+										<element ref="gmd:CI_ResponsibleParty"/>
+									</sequence>
+								</extension>
+							</complexContent>
+						</complexType>
+					</element>
+					<element name="reportingObligation" type="am-ru:ReportingObligationInformationPropertyType" minOccurs="0">
+						<annotation>
+							<documentation>-- Definition --
+Name of the reporting obligation that defines the requirement providing information about the Reporting Unit.</documentation>
+						</annotation>
+					</element>
+					<element name="beginLifespanVersion" nillable="true">
+						<annotation>
+							<documentation>-- Definition --
+Date and time at which this version of the spatial object was inserted or changed in the spatial dataset.</documentation>
+						</annotation>
+						<complexType>
+							<simpleContent>
+								<extension base="dateTime">
+									<attribute name="nilReason" type="gml:NilReasonType"/>
+								</extension>
+							</simpleContent>
+						</complexType>
+					</element>
+					<element name="endLifespanVersion" nillable="true" minOccurs="0">
+						<annotation>
+							<documentation>-- Definition --
+Date and time at which this version of the spatial object was superseded or retired in the spatial data set.</documentation>
+						</annotation>
+						<complexType>
+							<simpleContent>
+								<extension base="dateTime">
+									<attribute name="nilReason" type="gml:NilReasonType"/>
+								</extension>
+							</simpleContent>
+						</complexType>
+					</element>
+					<element name="unit" type="gml:FeaturePropertyType" maxOccurs="unbounded">
+						<annotation>
+							<documentation>-- Definition --
+A reporting unit is any spatial object used to represent the spatial extent to which the associated reporting information relates.
+
+-- Description --
+Reference to or inline encoding of the spatial objects that form the reporting unit.</documentation>
+						</annotation>
+					</element>
+					<element name="reportingInformation" minOccurs="0" maxOccurs="unbounded">
+						<annotation>
+							<documentation>-- Definition --
+Reference to the relevant reporting information for which the spatial object defined in the unit provide the spatial extent.
+
+-- Description --
+The optional reportingInformation property can be used to provide a bi-directional association between the reportingUnit and the related information reported for the same reporting period. 
+
+NOTE: it is assumed that the related information shall carry an association to the Reporting Unit.</documentation>
+						</annotation>
+						<complexType>
+							<sequence minOccurs="0">
+								<element ref="gml:AbstractObject"/>
+							</sequence>
+							<attributeGroup ref="gml:AssociationAttributeGroup"/>
+							<attributeGroup ref="gml:OwnershipAttributeGroup"/>
+						</complexType>
+					</element>
+				</sequence>
+			</extension>
+		</complexContent>
+	</complexType>
+	<complexType name="ReportingUnitsPropertyType">
+		<sequence minOccurs="0">
+			<element ref="am-ru:ReportingUnits"/>
+		</sequence>
+		<attributeGroup ref="gml:AssociationAttributeGroup"/>
+		<attributeGroup ref="gml:OwnershipAttributeGroup"/>
+	</complexType>
+	<element name="ReportingObligationInformation" type="am-ru:ReportingObligationInformationType" substitutionGroup="gml:AbstractObject">
+		<annotation>
+			<documentation>-- Definition --
+Information summarising the obligation that requires the exchange of information for the reporting.</documentation>
+		</annotation>
+	</element>
+	<complexType name="ReportingObligationInformationType">
+		<sequence>
+			<element name="title" nillable="true">
+				<annotation>
+					<documentation>-- Definition --
+Official title or commonly used name used to describe the reporting obligation.
+
+-- Description --
+NOTE: Where available, the title or name used to describe the reporting obligation should be derived from an official source. For example EIONET Reporting Obligations Database (ROD).
+
+EXAMPLE: Bathing Water Directive 2006/7/EC Report - Identification of bathing areas. 
+
+SOURCE: EIONET Reporting Obligations Database (ROD).</documentation>
+				</annotation>
+				<complexType>
+					<simpleContent>
+						<extension base="string">
+							<attribute name="nilReason" type="gml:NilReasonType"/>
+						</extension>
+					</simpleContent>
+				</complexType>
+			</element>
+			<element name="description" nillable="true" minOccurs="0">
+				<annotation>
+					<documentation>-- Definition -- 
+Summary description of reporting obligation.
+
+-- Description --
+
+EXAMPLE: Member States shall notify of all waters identified as bathing waters, including the reason for any change compared to the preceding year. (Bathing Water Directive 2006/7/EC Report - Identification of bathing areas).</documentation>
+				</annotation>
+				<complexType>
+					<simpleContent>
+						<extension base="string">
+							<attribute name="nilReason" type="gml:NilReasonType"/>
+						</extension>
+					</simpleContent>
+				</complexType>
+			</element>
+			<element name="legalBasis" nillable="true">
+				<annotation>
+					<documentation>-- Definition --
+Reference to the article(s) within the legislative instrument that defined the reporting obligation.
+
+-- Description --
+NOTE The latest legislative information should be recorded.</documentation>
+				</annotation>
+				<complexType>
+					<sequence>
+						<element ref="base2:LegislationReference"/>
+					</sequence>
+					<attribute name="nilReason" type="gml:NilReasonType"/>
+				</complexType>
+			</element>
+			<element name="reportsTo" nillable="true">
+				<annotation>
+					<documentation>-- Definition --
+Reference to the authority responsible for receiving or collecting the report.</documentation>
+				</annotation>
+				<complexType>
+					<complexContent>
+						<extension base="gml:AbstractMetadataPropertyType">
+							<sequence>
+								<element ref="gmd:CI_Citation"/>
+							</sequence>
+							<attribute name="nilReason" type="gml:NilReasonType"/>
+						</extension>
+					</complexContent>
+				</complexType>
+			</element>
+		</sequence>
+	</complexType>
+	<complexType name="ReportingObligationInformationPropertyType">
+		<sequence>
+			<element ref="am-ru:ReportingObligationInformation"/>
+		</sequence>
+	</complexType>
+</schema>

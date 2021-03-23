@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?><schema xmlns="http://www.w3.org/2001/XMLSchema" xmlns:er="http://inspire.ec.europa.eu/schemas/er/2.0" elementFormDefault="qualified" targetNamespace="http://inspire.ec.europa.eu/schemas/er/2.0" version="1.1.0">
+  <annotation>
+    <documentation>The Earth Resource model is a high-level data exchange standard for information on mineral occurrences, commodities, historical production, reserves and resources, deposit classification etc.
+
+Mineral Occurrence features are explicitly modelled, although the model could be extended to cover other Earth Resources. 
+
+The model is compatible with GeoSciML, the IUGS developed language for exchange of geological map features, and uses patterns and features common to GeoSciML. GeoSciML is based on ISO and Open Geospatial Consortium (OGC) standards using Geographic Mark-up Language (GML) as an encoding for geographic information.
+
+The EarthResourceML Model key points are:
+1) Describes Earth Resources independent of associated human activities (i.e. mining); 
+2) Caters for description of Earth Resource using mineral deposit models that describe the actual deposit type; mineral systems that describe the processes associated with deposit formation; and supergene processes; 
+3) Utilises GeoSciML Mapped Feature to describe spatial representation and Earth Material to describe host, raw and associated materials; 
+4) Describes a mine as made up of a number of Mining Activities, each producing some commodity; 
+5) Provides the ability to describe commodity resources formally or informally.
+
+For the latest release, please see http://www.earthresourceml.org/</documentation>
+  </annotation>
+  <include schemaLocation="mine.xsd"/>
+  <include schemaLocation="mineralOccurrence.xsd"/>
+  <!--XML Schema document created by ShapeChange-->
+</schema>

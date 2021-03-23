@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<schema xmlns="http://www.w3.org/2001/XMLSchema" xmlns:base-cl="http://inspire.ec.europa.eu/schemas/base-cl/1.0" xmlns:gmd="http://www.isotc211.org/2005/gmd" xmlns:gml="http://www.opengis.net/gml/3.2" targetNamespace="http://inspire.ec.europa.eu/schemas/base-cl/1.0" elementFormDefault="qualified" version="1.0rc1">
+	<annotation>
+		<documentation>-- Definition -- draft
+		Schema for INSPIRE code list types used by multiple themes</documentation>
+	</annotation>
+	<import namespace="http://www.isotc211.org/2005/gmd" schemaLocation="http://schemas.opengis.net/iso/19139/20070417/gmd/gmd.xsd"/>
+	<import namespace="http://www.opengis.net/gml/3.2" schemaLocation="http://schemas.opengis.net/gml/3.2.1/gml.xsd"/>
+	<complexType name="CodeListType">
+		<annotation>
+			<documentation>URI of the vocabulary/code list in the INSPIRE code list registry or in some external registry. The value has to be provided, if an online version of the vocabulary exists.</documentation>
+		</annotation>
+		<simpleContent>
+			<extension base="string">
+				<attribute name="codeSpace" type="anyURI"/>
+				<attributeGroup ref="gml:OwnershipAttributeGroup"/>
+				<attributeGroup ref="gml:AssociationAttributeGroup"/>
+			</extension>
+		</simpleContent>
+	</complexType>
+</schema>

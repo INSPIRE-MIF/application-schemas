@@ -1,0 +1,226 @@
+<?xml version="1.0" encoding="UTF-8"?><schema xmlns="http://www.w3.org/2001/XMLSchema" xmlns:base="urn:x-inspire:specification:gmlas:BaseTypes:3.2" xmlns:ef="http://inspire.jrc.ec.europa.eu/schemas/ef/2.0" xmlns:gmd="http://www.isotc211.org/2005/gmd" xmlns:gml="http://www.opengis.net/gml/3.2" xmlns:sd="http://inspire.jrc.ec.europa.eu/schemas/sd/2.0" xmlns:sdfc="http://inspire.jrc.ec.europa.eu/schemas/sdfc/2.0" elementFormDefault="qualified" targetNamespace="http://inspire.jrc.ec.europa.eu/schemas/sdfc/2.0" version="2.0">
+  <annotation>
+    <documentation>Application schema for Species Distribution made for implementation using feature collection pattern.</documentation>
+  </annotation>
+  <import namespace="http://inspire.jrc.ec.europa.eu/schemas/ef/2.0" schemaLocation="https://inspire.ec.europa.eu/draft-schemas/ef/2.0/EnvironmentalMonitoringFacilities.xsd"/>
+  <import namespace="http://inspire.jrc.ec.europa.eu/schemas/sd/2.0" schemaLocation="https://inspire.ec.europa.eu/draft-schemas/sd/2.0/SpeciesDistribution.xsd"/>
+  <import namespace="http://www.isotc211.org/2005/gmd" schemaLocation="http://schemas.opengis.net/iso/19139/20070417/gmd/gmd.xsd"/>
+  <import namespace="http://www.opengis.net/gml/3.2" schemaLocation="http://schemas.opengis.net/gml/3.2.1/gml.xsd"/>
+  <import namespace="urn:x-inspire:specification:gmlas:BaseTypes:3.2" schemaLocation="https://inspire.ec.europa.eu/schemas/base/3.2/BaseTypes.xsd"/>
+  <!--XML Schema document created by ShapeChange-->
+  <element name="SpeciesDistributionUnitFeature" substitutionGroup="gml:AbstractFeature" type="sdfc:SpeciesDistributionUnitFeatureType">
+    <annotation>
+      <documentation>-- Name --
+species distribution unit feature
+
+-- Definition --
+Represents individual features (units) in a distribution of species.
+
+-- Description --</documentation>
+    </annotation>
+  </element>
+  <complexType name="SpeciesDistributionUnitFeatureType">
+    <complexContent>
+      <extension base="gml:AbstractFeatureType">
+        <sequence>
+          <element name="geometry" type="gml:GeometryPropertyType">
+            <annotation>
+              <documentation>-- Name --
+geometry
+
+-- Definition --
+The geometry of each unit in a collection.
+
+-- Description --</documentation>
+            </annotation>
+          </element>
+          <element minOccurs="0" name="inspireId" nillable="true">
+            <annotation>
+              <documentation>-- Name --
+inspire id
+
+-- Definition --
+External object identifier of the spatial object.
+
+-- Description --
+An external object identifier is a unique object identifier published by the responsible body, which may be used by external applications to reference the spatial object. The identifier is an identifier of the spatial object, not an identifier of the real-world phenomenon.</documentation>
+            </annotation>
+            <complexType>
+              <sequence>
+                <element ref="base:Identifier"/>
+              </sequence>
+              <attribute name="nilReason" type="gml:NilReasonType"/>
+            </complexType>
+          </element>
+          <element maxOccurs="unbounded" minOccurs="0" name="distributionInfo" nillable="true">
+            <annotation>
+              <documentation>-- Name --
+distribution info
+
+-- Definition --
+The description of the subject of distribution (observations or population), the indication of the count of observations or populationsize of the particular species, species group or taxon rank and its distribution/isolation within the aggregation unit.</documentation>
+            </annotation>
+            <complexType>
+              <sequence>
+                <element ref="sd:DistributionInfoType"/>
+              </sequence>
+              <attribute name="nilReason" type="gml:NilReasonType"/>
+            </complexType>
+          </element>
+          <element name="beginLifespanVersion" nillable="true">
+            <annotation>
+              <documentation>-- Name --
+begin lifespan version
+
+-- Definition --
+Date and time at which this version of the spatial object was inserted or changed in the spatial data set.
+
+-- Description --
+NOTE This date is recorded to enable the generation of change only update files.</documentation>
+            </annotation>
+            <complexType>
+              <simpleContent>
+                <extension base="dateTime">
+                  <attribute name="nilReason" type="gml:NilReasonType"/>
+                </extension>
+              </simpleContent>
+            </complexType>
+          </element>
+          <element name="endLifespanVersion" nillable="true">
+            <annotation>
+              <documentation>-- Name --
+begin lifespan version
+
+-- Definition --
+Date and time at which this version of the spatial object was inserted or changed in the spatial data set.
+
+-- Description --
+NOTE This date is recorded to enable the generation of change only update files.</documentation>
+            </annotation>
+            <complexType>
+              <simpleContent>
+                <extension base="dateTime">
+                  <attribute name="nilReason" type="gml:NilReasonType"/>
+                </extension>
+              </simpleContent>
+            </complexType>
+          </element>
+          <element name="referenceSpeciesId" type="string">
+            <annotation>
+              <documentation>-- Name --
+reference species id
+
+-- Definition --
+ID of one of the reference lists given by the referenceSpeciesScheme.</documentation>
+            </annotation>
+          </element>
+          <element name="referenceSpeciesScheme" type="gml:CodeType">
+            <annotation>
+              <documentation>-- Name --
+reference species scheme
+
+-- Definition --
+Reference list defining a nomenclatural and taxonomical standard where all local names and taxonomic concepts have to be mapped to.
+
+-- Description --
+Closed codelist of accepted PAN-european taxonomical reference lists defining the nomenclature and taxonomical concept of a given species name. This must not be regarded as the ultimate taxonomic truth: this will always change. It serves as a definition of a taxonomic concept described by systematic and synonym relations where other names and there inherent taxonomic concepts can be mapped to. The code list comprises of Eu-Nomen, EUNIS and Natura2000. In these sources harmonized species GUIDs and names are maintained by institutions with an assignment outside INSPIRE and the species names are to be retrieved through webservices using GUIDs. Only one of these list must be used for one taxon. The priority is as follows: 1) EU-Nomen, 2) EUNIS, 3) Natura2000. This implies: if a taxon is listed in EU-Nomen, this reference must be used as first choice. If it is not listed in EU-Nomen, the second choice is EUNIS, if not in EUNIS, Natura2000 can be used.</documentation>
+            </annotation>
+          </element>
+          <element maxOccurs="unbounded" minOccurs="0" name="monitoringFacility" nillable="true">
+            <annotation>
+              <documentation>-- Name --
+monitoring facility
+
+-- Definition --
+A link to a monitoring facility and associated observations.
+
+-- Description --</documentation>
+            </annotation>
+            <complexType>
+              <sequence minOccurs="0">
+                <element ref="ef:EnvironmentalMonitoringFacility"/>
+              </sequence>
+              <attributeGroup ref="gml:AssociationAttributeGroup"/>
+              <attributeGroup ref="gml:OwnershipAttributeGroup"/>
+            </complexType>
+          </element>
+        </sequence>
+      </extension>
+    </complexContent>
+  </complexType>
+  <complexType name="SpeciesDistributionUnitFeaturePropertyType">
+    <sequence minOccurs="0">
+      <element ref="sdfc:SpeciesDistributionUnitFeature"/>
+    </sequence>
+    <attributeGroup ref="gml:AssociationAttributeGroup"/>
+    <attributeGroup ref="gml:OwnershipAttributeGroup"/>
+  </complexType>
+  <element name="SpeciesDistributionFeatureCollection" substitutionGroup="gml:AbstractFeature" type="sdfc:SpeciesDistributionFeatureCollectionType">
+    <annotation>
+      <documentation>-- Name --
+species  distribution feature collection
+
+-- Definition --
+Represents the collection of individual features (units) in a distribution of species.
+
+-- Description --</documentation>
+    </annotation>
+  </element>
+  <complexType name="SpeciesDistributionFeatureCollectionType">
+    <complexContent>
+      <extension base="gml:AbstractFeatureType">
+        <sequence>
+          <element name="inspireId" type="base:IdentifierPropertyType">
+            <annotation>
+              <documentation>-- Name --
+inspire id
+
+-- Definition --
+External object identifier of the spatial object.
+
+-- Description --
+An external object identifier is a unique object identifier published by the responsible body, which may be used by external applications to reference the spatial object. The identifier is an identifier of the spatial object, not an identifier of the real-world phenomenon.</documentation>
+            </annotation>
+          </element>
+          <element name="domainExtent" nillable="true">
+            <annotation>
+              <documentation>-- Name --
+domain extent
+
+-- Definition --
+The geographic extent of the domain of the feature collection.</documentation>
+            </annotation>
+            <complexType>
+              <complexContent>
+                <extension base="gml:AbstractMetadataPropertyType">
+                  <sequence minOccurs="0">
+                    <element ref="gmd:AbstractEX_GeographicExtent"/>
+                  </sequence>
+                  <attributeGroup ref="gml:AssociationAttributeGroup"/>
+                </extension>
+              </complexContent>
+            </complexType>
+          </element>
+          <element maxOccurs="unbounded" minOccurs="0" name="member" type="sdfc:SpeciesDistributionUnitFeaturePropertyType">
+            <annotation>
+              <documentation>-- Name --
+member
+
+-- Definition --
+Individual features in a feature collection.
+
+-- Description --</documentation>
+            </annotation>
+          </element>
+        </sequence>
+      </extension>
+    </complexContent>
+  </complexType>
+  <complexType name="SpeciesDistributionFeatureCollectionPropertyType">
+    <sequence minOccurs="0">
+      <element ref="sdfc:SpeciesDistributionFeatureCollection"/>
+    </sequence>
+    <attributeGroup ref="gml:AssociationAttributeGroup"/>
+    <attributeGroup ref="gml:OwnershipAttributeGroup"/>
+  </complexType>
+</schema>

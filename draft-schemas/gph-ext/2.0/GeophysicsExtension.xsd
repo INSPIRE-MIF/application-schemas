@@ -1,0 +1,1010 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<schema xmlns="http://www.w3.org/2001/XMLSchema" xmlns:base="urn:x-inspire:specification:gmlas:BaseTypes:3.2" xmlns:gmd="http://www.isotc211.org/2005/gmd" xmlns:gsml="http://xmlns.geosciml.org/GeoSciML-Core/3.0" xmlns:gml="http://www.opengis.net/gml/3.2" xmlns:gmlcov="http://www.opengis.net/gmlcov/1.0" xmlns:gph-ext="http://inspire.jrc.ec.europa.eu/schemas/gph-ext/2.0" xmlns:gph-core="http://inspire.jrc.ec.europa.eu/schemas/gph-core/2.0" xmlns:sams="http://www.opengis.net/samplingSpatial/2.0" targetNamespace="http://inspire.jrc.ec.europa.eu/schemas/gph-ext/2.0" elementFormDefault="qualified" version="2.0">
+	<import namespace="http://www.isotc211.org/2005/gmd" schemaLocation="http://schemas.opengis.net/iso/19139/20070417/gmd/gmd.xsd"/>
+	<import namespace="http://www.opengis.net/gml/3.2" schemaLocation="http://schemas.opengis.net/gml/3.2.1/gml.xsd"/>
+	<import namespace="http://www.opengis.net/gmlcov/1.0" schemaLocation="http://schemas.opengis.net/gmlcov/1.0/coverage.xsd"/>
+	<import namespace="http://www.opengis.net/samplingSpatial/2.0" schemaLocation="http://schemas.opengis.net/samplingSpatial/2.0/spatialSamplingFeature.xsd"/>
+	<import namespace="urn:x-inspire:specification:gmlas:BaseTypes:3.2" schemaLocation="https://inspire.ec.europa.eu/schemas/base/3.2/BaseTypes.xsd"/>
+	<import namespace="http://inspire.jrc.ec.europa.eu/schemas/gph-core/2.0" schemaLocation="https://inspire.ec.europa.eu/draft-schemas/gph-core/2.0/GeophysicsCore.xsd"/>
+	<import namespace="http://xmlns.geosciml.org/GeoSciML-Core/3.0" schemaLocation="http://inspire-twg.jrc.ec.europa.eu/annexII+III/schemas/geosciml-core/3.0/geosciml-core.xsd"/>
+
+	<!--XML Schema document created by ShapeChange-->
+	<element name="SpotModel" type="gph-ext:SpotModelType" substitutionGroup="gph-core:GeophModel">
+		<annotation>
+			<documentation>-- Definition --
+A model in which the location of calculated or simulated property values are referenced to a series of points.</documentation>
+		</annotation>
+	</element>
+	<complexType name="SpotModelType">
+		<complexContent>
+			<extension base="gph-core:GeophModelType">
+				<sequence>
+					<element name="modelType" type="gml:CodeType">
+						<annotation>
+							<documentation>-- Definition --
+Defines the model type category</documentation>
+						</annotation>
+					</element>
+					<element name="propertyName" type="gml:CodeType" maxOccurs="unbounded">
+						<annotation>
+							<documentation>-- Definition --
+Physical parameters of which distribution is represented by the model</documentation>
+						</annotation>
+					</element>
+					<element name="shape" type="gml:MultiPointPropertyType">
+						<annotation>
+							<documentation>-- Definition --
+Reference shape of the model</documentation>
+						</annotation>
+					</element>
+					<element name="pointCoverage" minOccurs="0">
+						<annotation>
+							<documentation>-- Definition --
+A MultiPointCoverage defined by geometry-value pairs</documentation>
+						</annotation>
+						<complexType>
+							<sequence minOccurs="0">
+								<element ref="gmlcov:MultiPointCoverage"/>
+							</sequence>
+							<attributeGroup ref="gml:AssociationAttributeGroup"/>
+							<attributeGroup ref="gml:OwnershipAttributeGroup"/>
+						</complexType>
+					</element>
+				</sequence>
+			</extension>
+		</complexContent>
+	</complexType>
+	<complexType name="SpotModelPropertyType">
+		<sequence minOccurs="0">
+			<element ref="gph-ext:SpotModel"/>
+		</sequence>
+		<attributeGroup ref="gml:AssociationAttributeGroup"/>
+		<attributeGroup ref="gml:OwnershipAttributeGroup"/>
+	</complexType>
+	<element name="XGeophProfile" type="gph-ext:XGeophProfileType" substitutionGroup="gph-core:AbstractGeophProfile">
+		<annotation>
+			<documentation>-- Definition --
+Extension to geophysical profile
+
+-- Description --
+The extended model provides access to the sampling feature.
+Geophysical profile is linked to Observation &amp; Measurement classes through its samplingFeature association
+
+NOTE 1. If profileType is boreholeLogging, samplingFeature links to the samplingCurve of the GeologyCore::Borehole object in which borehole logging  were carried out..</documentation>
+		</annotation>
+	</element>
+	<complexType name="XGeophProfileType">
+		<complexContent>
+			<extension base="gph-core:AbstractGeophProfileType">
+				<sequence>
+					<element name="profileType" type="gml:CodeType">
+						<annotation>
+							<documentation>-- Definition --
+The type of line based geophysical measurement</documentation>
+						</annotation>
+					</element>
+					<element name="samplingCurve" type="sams:SF_SpatialSamplingFeaturePropertyType" minOccurs="0">
+						<annotation>
+							<documentation>-- Definition --
+An SF_SamplingCurve enabling linking to any number of OM_Observations. In publishing data acquisition and processing results the O&amp;M schema definitions shall be followed. The geometry of the sam-pling curve is equivalent to the reference curve of the geophysical profile.</documentation>
+						</annotation>
+					</element>
+				</sequence>
+			</extension>
+		</complexContent>
+	</complexType>
+	<complexType name="XGeophProfilePropertyType">
+		<sequence minOccurs="0">
+			<element ref="gph-ext:XGeophProfile"/>
+		</sequence>
+		<attributeGroup ref="gml:AssociationAttributeGroup"/>
+		<attributeGroup ref="gml:OwnershipAttributeGroup"/>
+	</complexType>
+	<element name="Project" type="gph-ext:ProjectType" substitutionGroup="gph-core:AbstractGeophDataSet">
+		<annotation>
+			<documentation>-- Definition --
+Geophysical activity extending over a longer time range and larger area, containing any number of campaigns.
+
+-- Description --
+In the hierarchy of geophysical data sets projects are parents of geophysical campaigns, and usually cover  whole exploration programs.</documentation>
+		</annotation>
+	</element>
+	<complexType name="ProjectType">
+		<complexContent>
+			<extension base="gph-core:AbstractGeophDataSetType">
+				<sequence>
+					<element name="principalInverstigator">
+						<annotation>
+							<documentation>-- Definition --
+Key party responsible for conducting research</documentation>
+						</annotation>
+						<complexType>
+							<complexContent>
+								<extension base="gml:AbstractMetadataPropertyType">
+									<sequence>
+										<element ref="gmd:CI_ResponsibleParty"/>
+									</sequence>
+								</extension>
+							</complexContent>
+						</complexType>
+					</element>
+					<element name="parentProject" type="gph-ext:ProjectPropertyType" minOccurs="0" maxOccurs="unbounded">
+						<annotation>
+							<documentation>-- Definition --
+The parent project. A large investigation project may have several sub projects.</documentation>
+						</annotation>
+					</element>
+				</sequence>
+			</extension>
+		</complexContent>
+	</complexType>
+	<complexType name="ProjectPropertyType">
+		<sequence minOccurs="0">
+			<element ref="gph-ext:Project"/>
+		</sequence>
+		<attributeGroup ref="gml:AssociationAttributeGroup"/>
+		<attributeGroup ref="gml:OwnershipAttributeGroup"/>
+	</complexType>
+	<element name="XSurfaceGridModel" type="gph-ext:XSurfaceGridModelType" substitutionGroup="gph-core:AbstractSurfaceModel">
+		<annotation>
+			<documentation>-- Definition -- 
+Surface grid coverage of geophysical properties 
+
+-- Description -- 
+Horizontal or vertical cross section with grids of different geophysical properties. The extended model contains an association to the surface grid coverage. 
+Examples: seismic depth section, resistiviy section from 2D inversion. 
+
+NOTE 1. Grids restricted to a plain surface can be modelled by rectifiedGridCoverage. If grid data is projected to a 3D surface, referenceableGridCoverage can be used.
+
+NOTE 2. Coverage data access may also be provided through distribution metadata.</documentation>
+		</annotation>
+	</element>
+	<complexType name="XSurfaceGridModelType">
+		<complexContent>
+			<extension base="gph-core:AbstractSurfaceModelType">
+				<sequence>
+					<element name="modelType" type="gml:CodeType">
+						<annotation>
+							<documentation>-- Definition --
+Defines model type category</documentation>
+						</annotation>
+					</element>
+					<element name="propertyName" type="gml:CodeType" maxOccurs="unbounded">
+						<annotation>
+							<documentation>-- Definition --
+Physical parameters of which distribution is represented by the model</documentation>
+						</annotation>
+					</element>
+					<element name="rectifiedGrid" minOccurs="0">
+						<annotation>
+							<documentation>-- Definition --
+A 2D RectifiedGridCoverage. The nodes of a rectified grid are defined by the origin and the offset vectors of the grid axes. This grid type can be used for flat cross section in an arbitrary plain.</documentation>
+						</annotation>
+						<complexType>
+							<sequence minOccurs="0">
+								<element ref="gmlcov:RectifiedGridCoverage"/>
+							</sequence>
+							<attributeGroup ref="gml:AssociationAttributeGroup"/>
+							<attributeGroup ref="gml:OwnershipAttributeGroup"/>
+						</complexType>
+					</element>
+					<element name="referenceableGrid" minOccurs="0">
+						<annotation>
+							<documentation>-- Definition --
+A ReferenceableGridCoverage. The nodes of such a grid are located on a 3D surface. This grid type can be used to show parameter distribution over an arbitrary shaped surface (flying carpet, or hanging curtain). Examples: vertical cross section with a curved trace, seismic depth horizon</documentation>
+						</annotation>
+						<complexType>
+							<sequence minOccurs="0">
+								<element ref="gmlcov:ReferenceableGridCoverage"/>
+							</sequence>
+							<attributeGroup ref="gml:AssociationAttributeGroup"/>
+							<attributeGroup ref="gml:OwnershipAttributeGroup"/>
+						</complexType>
+					</element>
+				</sequence>
+			</extension>
+		</complexContent>
+	</complexType>
+	<complexType name="XSurfaceGridModelPropertyType">
+		<sequence minOccurs="0">
+			<element ref="gph-ext:XSurfaceGridModel"/>
+		</sequence>
+		<attributeGroup ref="gml:AssociationAttributeGroup"/>
+		<attributeGroup ref="gml:OwnershipAttributeGroup"/>
+	</complexType>
+	<element name="ModelledFeature" type="gph-ext:ModelledFeatureType" substitutionGroup="gsml:MappedFeature">
+		<annotation>
+			<documentation>-- Definition --
+Element of an interpretation model.
+
+-- Gescription --
+During interpretation underground bodies delineated by geophysical processing are identified as, or linked to geological objects. The shape of a modelledElement is linked to a geometry domain element of a coverage associated with the GeophModel.
+
+NOTE 1. Physical properties do not always respect geological boundaries, and for this reason geophysical units are not necessarily coincident with geological units. 
+
+NOTE 2. The GeologicUnitTypeTerm related to a ModelledFeature can be "geophysicalUnit".</documentation>
+		</annotation>
+	</element>
+	<complexType name="ModelledFeatureType">
+		<complexContent>
+			<extension base="gsml:MappedFeatureType">
+				<sequence/>
+			</extension>
+		</complexContent>
+	</complexType>
+	<complexType name="ModelledFeaturePropertyType">
+		<sequence minOccurs="0">
+			<element ref="gph-ext:ModelledFeature"/>
+		</sequence>
+		<attributeGroup ref="gml:AssociationAttributeGroup"/>
+		<attributeGroup ref="gml:OwnershipAttributeGroup"/>
+	</complexType>
+	<element name="XGeophStation" type="gph-ext:XGeophStationType" substitutionGroup="gph-core:AbstractGeophStation">
+		<annotation>
+			<documentation>-- Definition --
+Extension to geophysical station
+
+-- Description --
+The extended model provides access to the sampling feature.
+Geophysical station is linked to Observation &amp; Measurement classes through its samplingPoint association</documentation>
+		</annotation>
+	</element>
+	<complexType name="XGeophStationType">
+		<complexContent>
+			<extension base="gph-core:AbstractGeophStationType">
+				<sequence>
+					<element name="stationType" type="gml:CodeType">
+						<annotation>
+							<documentation>-- Definition --
+Type of geophysical measurement
+
+-- Description --
+provides access to the extended codelist</documentation>
+						</annotation>
+					</element>
+					<element name="samplingPoint" type="sams:SF_SpatialSamplingFeaturePropertyType" minOccurs="0">
+						<annotation>
+							<documentation>-- Definition --
+An SF_SamplingPoint enabling linking to any number of OM_Observations. In publishing data acquisition and processing results the O&amp;M schema definitions shall be followed. The geometry of the sam-pling point is equivalent to the reference location of the geophysical station.</documentation>
+						</annotation>
+					</element>
+				</sequence>
+			</extension>
+		</complexContent>
+	</complexType>
+	<complexType name="XGeophStationPropertyType">
+		<sequence minOccurs="0">
+			<element ref="gph-ext:XGeophStation"/>
+		</sequence>
+		<attributeGroup ref="gml:AssociationAttributeGroup"/>
+		<attributeGroup ref="gml:OwnershipAttributeGroup"/>
+	</complexType>
+	<element name="SolidGridModel" type="gph-ext:SolidGridModelType" substitutionGroup="gph-core:GeophModel">
+		<annotation>
+			<documentation>-- Definition -- 
+Solid grid coverage of geophysical properties
+
+-- Description -- 
+3D grid of different geophysical properties. The extended model contains an association to the coverage.
+Examples are seismic volume, or 3D resistivity grid from DC tomography. 
+
+NOTE 1. Coverage data access may also be provided through distribution metadata.</documentation>
+		</annotation>
+	</element>
+	<complexType name="SolidGridModelType">
+		<complexContent>
+			<extension base="gph-core:GeophModelType">
+				<sequence>
+					<element name="shape" type="gml:SolidPropertyType">
+						<annotation>
+							<documentation>-- Definition --
+Reference shape of the model</documentation>
+						</annotation>
+					</element>
+					<element name="modelType" type="gph-ext:SolidGridModelTypeValueType">
+						<annotation>
+							<documentation>-- Definition --
+Defines the model type category</documentation>
+						</annotation>
+					</element>
+					<element name="propertyName" type="gml:CodeType" maxOccurs="unbounded">
+						<annotation>
+							<documentation>-- Definition --
+Physical parameters of which distribution is represented by the model</documentation>
+						</annotation>
+					</element>
+					<element name="coverage" minOccurs="0">
+						<annotation>
+							<documentation>-- Definition --
+A 3D RectifiedGridCoverage. The nodes of a rectified grid are defined by the origin and the offset vectors of the grid axes.</documentation>
+						</annotation>
+						<complexType>
+							<sequence minOccurs="0">
+								<element ref="gmlcov:RectifiedGridCoverage"/>
+							</sequence>
+							<attributeGroup ref="gml:AssociationAttributeGroup"/>
+							<attributeGroup ref="gml:OwnershipAttributeGroup"/>
+						</complexType>
+					</element>
+				</sequence>
+			</extension>
+		</complexContent>
+	</complexType>
+	<complexType name="SolidGridModelPropertyType">
+		<sequence minOccurs="0">
+			<element ref="gph-ext:SolidGridModel"/>
+		</sequence>
+		<attributeGroup ref="gml:AssociationAttributeGroup"/>
+		<attributeGroup ref="gml:OwnershipAttributeGroup"/>
+	</complexType>
+	<element name="GeophProcedure" type="gph-ext:GeophProcedureType" substitutionGroup="gml:AbstractGML">
+		<annotation>
+			<documentation>-- Definition --
+Container for data about geophysical procedures 
+
+NOTE 1. Should be linked to  the procedure  association of OM_Observation</documentation>
+		</annotation>
+	</element>
+	<complexType name="GeophProcedureType">
+		<complexContent>
+			<extension base="gml:AbstractGMLType">
+				<sequence>
+					<element name="inspireId" type="base:IdentifierPropertyType">
+						<annotation>
+							<documentation>-- Definition --
+External object identifier of the model
+.
+
+-- Description --
+NOTE An external object identifier is a unique object identifier published by the responsible body, which may be used by external applications to reference the spatial object. The identifier is an identifier of the spatial object, not an identifier of the real-world phenomenon.</documentation>
+						</annotation>
+					</element>
+					<element name="documentation" minOccurs="0" maxOccurs="unbounded">
+						<annotation>
+							<documentation>-- Definition --
+Generic descriptive material about the applied procedure</documentation>
+						</annotation>
+						<complexType>
+							<complexContent>
+								<extension base="gml:AbstractMetadataPropertyType">
+									<sequence>
+										<element ref="gmd:CI_OnlineResource"/>
+									</sequence>
+								</extension>
+							</complexContent>
+						</complexType>
+					</element>
+					<element name="processParameter" type="gml:CodeType" minOccurs="0" maxOccurs="unbounded">
+						<annotation>
+							<documentation>-- Definition --
+Essential technical parameters that specify the exact conditions of the applied procedure. 
+
+-- Description --
+Process parameters make generic procedures more specific,  for example, by specifying instrument settings (sampling rate), or sensor setups (electrodeArrayType). 
+
+NOTE 1. Process parameter names are keys to parameter key value pairs of the related observation.</documentation>
+						</annotation>
+					</element>
+					<element name="procedure" minOccurs="0">
+						<annotation>
+							<documentation>-- Definition --
+geophysical process encoded in SensorML or other OGC standard</documentation>
+						</annotation>
+						<complexType>
+							<complexContent>
+								<extension base="gml:AbstractMetadataPropertyType">
+									<sequence minOccurs="0">
+										<element ref="gmd:MD_Distribution"/>
+									</sequence>
+									<attributeGroup ref="gml:AssociationAttributeGroup"/>
+								</extension>
+							</complexContent>
+						</complexType>
+					</element>
+					<element name="standardProcedure" minOccurs="0">
+						<annotation>
+							<documentation>-- Definition --
+Geophysical procedure in wellknown
+Industrial standard format
+
+-- Description --
+It can be any type of process description including 
+industry standard processing support files or other geophysical system description (pe.: SPS files, observers logs, instrument tests etc).</documentation>
+						</annotation>
+						<complexType>
+							<complexContent>
+								<extension base="gml:AbstractMetadataPropertyType">
+									<sequence minOccurs="0">
+										<element ref="gmd:MD_Distribution"/>
+									</sequence>
+									<attributeGroup ref="gml:AssociationAttributeGroup"/>
+								</extension>
+							</complexContent>
+						</complexType>
+					</element>
+				</sequence>
+			</extension>
+		</complexContent>
+	</complexType>
+	<complexType name="GeophProcedurePropertyType">
+		<sequence minOccurs="0">
+			<element ref="gph-ext:GeophProcedure"/>
+		</sequence>
+		<attributeGroup ref="gml:AssociationAttributeGroup"/>
+		<attributeGroup ref="gml:OwnershipAttributeGroup"/>
+	</complexType>
+	<element name="Campaign" type="gph-ext:CampaignType" substitutionGroup="gph-core:AbstractGeophDataSet">
+		<annotation>
+			<documentation>-- Definition --
+Geophysical activity extending over a limited time range and limited area for producing geophysical measurements, processing results or models.
+
+-- Description --
+Campaigns can be considered as parents of geophysical measurements or models. Children may refer to parent campaigns through MD_Identifier. Data ownership defined for a campaign is considered to be inherited by children.</documentation>
+		</annotation>
+	</element>
+	<complexType name="CampaignType">
+		<complexContent>
+			<extension base="gph-core:AbstractGeophDataSetType">
+				<sequence>
+					<element name="campaignType" type="gph-ext:CampaignTypeType">
+						<annotation>
+							<documentation>-- Definition --
+Type of activity to produce data</documentation>
+						</annotation>
+					</element>
+					<element name="surveyType" type="gml:CodeType">
+						<annotation>
+							<documentation>-- Definition --
+Type of  survey in terms of geophysical method used during the campaign</documentation>
+						</annotation>
+					</element>
+					<element name="dataOwner" nillable="true">
+						<annotation>
+							<documentation>-- Definition --
+Owner of geophysical data created during the campaign.</documentation>
+						</annotation>
+						<complexType>
+							<complexContent>
+								<extension base="gml:AbstractMetadataPropertyType">
+									<sequence>
+										<element ref="gmd:CI_ResponsibleParty"/>
+									</sequence>
+									<attribute name="nilReason" type="gml:NilReasonType"/>
+								</extension>
+							</complexContent>
+						</complexType>
+					</element>
+					<element name="client" nillable="true">
+						<annotation>
+							<documentation>-- Definition --
+Responsible party to which the campaign is carried out</documentation>
+						</annotation>
+						<complexType>
+							<complexContent>
+								<extension base="gml:AbstractMetadataPropertyType">
+									<sequence>
+										<element ref="gmd:CI_ResponsibleParty"/>
+									</sequence>
+									<attribute name="nilReason" type="gml:NilReasonType"/>
+								</extension>
+							</complexContent>
+						</complexType>
+					</element>
+					<element name="contractor" nillable="true">
+						<annotation>
+							<documentation>-- Definition --
+Party responsible to carry out the campaign</documentation>
+						</annotation>
+						<complexType>
+							<complexContent>
+								<extension base="gml:AbstractMetadataPropertyType">
+									<sequence>
+										<element ref="gmd:CI_ResponsibleParty"/>
+									</sequence>
+									<attribute name="nilReason" type="gml:NilReasonType"/>
+								</extension>
+							</complexContent>
+						</complexType>
+					</element>
+					<element name="custodian">
+						<annotation>
+							<documentation>-- Definition --
+Party responsible to maintain data related to the campaign</documentation>
+						</annotation>
+						<complexType>
+							<complexContent>
+								<extension base="gml:AbstractMetadataPropertyType">
+									<sequence>
+										<element ref="gmd:CI_ResponsibleParty"/>
+									</sequence>
+								</extension>
+							</complexContent>
+						</complexType>
+					</element>
+					<element name="project" type="gph-ext:ProjectPropertyType" minOccurs="0">
+						<annotation>
+							<documentation>-- Definition --
+The project responsible for a campaign</documentation>
+						</annotation>
+					</element>
+				</sequence>
+			</extension>
+		</complexContent>
+	</complexType>
+	<complexType name="CampaignPropertyType">
+		<sequence minOccurs="0">
+			<element ref="gph-ext:Campaign"/>
+		</sequence>
+		<attributeGroup ref="gml:AssociationAttributeGroup"/>
+		<attributeGroup ref="gml:OwnershipAttributeGroup"/>
+	</complexType>
+	<element name="AbstractSurfaceMeasurement" type="gph-ext:AbstractSurfaceMeasurementType" abstract="true" substitutionGroup="gph-core:GeophMeasurement">
+		<annotation>
+			<documentation>-- Definition --
+Abstract class for Geophysical measurements spatially referenced to a surface</documentation>
+		</annotation>
+	</element>
+	<complexType name="AbstractSurfaceMeasurementType" abstract="true">
+		<complexContent>
+			<extension base="gph-core:GeophMeasurementType">
+				<sequence>
+					<element name="shape" type="gml:SurfacePropertyType">
+						<annotation>
+							<documentation>-- Definition --
+The geometry of the surface</documentation>
+						</annotation>
+					</element>
+				</sequence>
+			</extension>
+		</complexContent>
+	</complexType>
+	<complexType name="AbstractSurfaceMeasurementPropertyType">
+		<sequence minOccurs="0">
+			<element ref="gph-ext:AbstractSurfaceMeasurement"/>
+		</sequence>
+		<attributeGroup ref="gml:AssociationAttributeGroup"/>
+		<attributeGroup ref="gml:OwnershipAttributeGroup"/>
+	</complexType>
+	<simpleType name="CampaignTypeType">
+		<annotation>
+			<documentation>-- Definition --
+The types of geophysical campaign</documentation>
+		</annotation>
+		<restriction base="string">
+			<enumeration value="measurement">
+				<annotation>
+					<documentation>-- Definition --
+A campaign of geophysical data measurement</documentation>
+				</annotation>
+			</enumeration>
+			<enumeration value="processing">
+				<annotation>
+					<documentation>-- Definition --
+A campaign of geophysical data processing</documentation>
+				</annotation>
+			</enumeration>
+			<enumeration value="interpretation">
+				<annotation>
+					<documentation>-- Definition --
+A campaign of geophysical data interpretation</documentation>
+				</annotation>
+			</enumeration>
+		</restriction>
+	</simpleType>
+	<simpleType name="SolidGridModelTypeValueType">
+		<annotation>
+			<documentation>-- Definition --
+Externally handled codelist 
+
+-- Description --
+To be developed. Provided items are examples.</documentation>
+		</annotation>
+		<union memberTypes="gph-ext:SolidGridModelTypeValueEnumerationType gph-ext:SolidGridModelTypeValueOtherType"/>
+	</simpleType>
+	<simpleType name="SolidGridModelTypeValueEnumerationType">
+		<annotation>
+			<documentation>-- Definition --
+Externally handled codelist 
+
+-- Description --
+To be developed. Provided items are examples.</documentation>
+		</annotation>
+		<restriction base="string"/>
+	</simpleType>
+	<simpleType name="SolidGridModelTypeValueOtherType">
+		<restriction base="string">
+			<pattern value="other: \w{2,}"/>
+		</restriction>
+	</simpleType>
+	<simpleType name="SurfaceModelTypeValueType">
+		<annotation>
+			<documentation>-- Definition --
+Surface model types
+
+-- Description -- 
+To be developed. Provided items are examples.</documentation>
+		</annotation>
+		<union memberTypes="gph-ext:SurfaceModelTypeValueEnumerationType gph-ext:SurfaceModelTypeValueOtherType"/>
+	</simpleType>
+	<simpleType name="SurfaceModelTypeValueEnumerationType">
+		<annotation>
+			<documentation>-- Definition --
+Surface model types
+
+-- Description -- 
+To be developed. Provided items are examples.</documentation>
+		</annotation>
+		<restriction base="string"/>
+	</simpleType>
+	<simpleType name="SurfaceModelTypeValueOtherType">
+		<restriction base="string">
+			<pattern value="other: \w{2,}"/>
+		</restriction>
+	</simpleType>
+	<element name="XGeoph3DMeasurement" type="gph-ext:XGeoph3DMeasurementType" substitutionGroup="gph-core:AbstractGeoph3DMeasurement">
+		<annotation>
+			<documentation>-- Definition -- 
+Geophysical measurement spatially referenced to a surface 
+
+-- Description -- 
+Used to collect data on a surface. The extended model provides access to the sampling feature.
+Examples: 3D seismic measurement, 3D DC tomography. 
+
+NOTE 1. Measured data access may be provided as explained in the metadata distribution options, or by the generic O&amp;M mechanism through the related sampling feature.
+NOTE 2. Processing results of 3D measurements are usually solid coverages</documentation>
+		</annotation>
+	</element>
+	<complexType name="XGeoph3DMeasurementType">
+		<complexContent>
+			<extension base="gph-core:AbstractGeoph3DMeasurementType">
+				<sequence>
+					<element name="measurementType" type="gml:CodeType">
+						<annotation>
+							<documentation>-- Definition --
+The type of 3D geophysical measurement</documentation>
+						</annotation>
+					</element>
+					<element name="samplingFeature" type="sams:SF_SpatialSamplingFeaturePropertyType" minOccurs="0">
+						<annotation>
+							<documentation>-- Definition --
+An SF_SpatialSamplingFeature enabling linking to any number of OM_Observations. In publishing data acquisition and processing results the O&amp;M schema definitions shall be followed. The sampling feature can be a surface, or a more complex geometry that is equivalent to the reference geometry of the 3D measurement.</documentation>
+						</annotation>
+					</element>
+				</sequence>
+			</extension>
+		</complexContent>
+	</complexType>
+	<complexType name="XGeoph3DMeasurementPropertyType">
+		<sequence minOccurs="0">
+			<element ref="gph-ext:XGeoph3DMeasurement"/>
+		</sequence>
+		<attributeGroup ref="gml:AssociationAttributeGroup"/>
+		<attributeGroup ref="gml:OwnershipAttributeGroup"/>
+	</complexType>
+	<element name="SolidModel" type="gph-ext:SolidModelType" substitutionGroup="gph-core:GeophModel">
+		<annotation>
+			<documentation>-- Definition -- 
+Solid coverage of geophysical properties 
+
+-- Description -- 
+Collection of solids that represent rock bodies delineated by different geophysical properties. The extended model contains an association to the coverage.
+
+NOTE 1. Coverage data access may also be provided  through distribution metadata .</documentation>
+		</annotation>
+	</element>
+	<complexType name="SolidModelType">
+		<complexContent>
+			<extension base="gph-core:GeophModelType">
+				<sequence>
+					<element name="shape" type="gml:MultiSolidPropertyType">
+						<annotation>
+							<documentation>-- Definition --
+Reference shape of the model</documentation>
+						</annotation>
+					</element>
+					<element name="modelType" type="gml:CodeType">
+						<annotation>
+							<documentation>-- Definition --
+Defines the model type category</documentation>
+						</annotation>
+					</element>
+					<element name="propertyName" type="gml:CodeType" maxOccurs="unbounded">
+						<annotation>
+							<documentation>-- Definition --
+Physical parameters of which distribution is represented by the model</documentation>
+						</annotation>
+					</element>
+					<element name="coverage" minOccurs="0">
+						<annotation>
+							<documentation>-- Definition --
+A MultiSolidCoverage. Can be used for 3D interpretation models.</documentation>
+						</annotation>
+						<complexType>
+							<sequence minOccurs="0">
+								<element ref="gmlcov:MultiSolidCoverage"/>
+							</sequence>
+							<attributeGroup ref="gml:AssociationAttributeGroup"/>
+							<attributeGroup ref="gml:OwnershipAttributeGroup"/>
+						</complexType>
+					</element>
+				</sequence>
+			</extension>
+		</complexContent>
+	</complexType>
+	<complexType name="SolidModelPropertyType">
+		<sequence minOccurs="0">
+			<element ref="gph-ext:SolidModel"/>
+		</sequence>
+		<attributeGroup ref="gml:AssociationAttributeGroup"/>
+		<attributeGroup ref="gml:OwnershipAttributeGroup"/>
+	</complexType>
+	<element name="SeismicLine" type="gph-ext:SeismicLineType" substitutionGroup="gph-ext:XGeophProfile">
+		<annotation>
+			<documentation>-- Definition --
+Seismic measurement along a line</documentation>
+		</annotation>
+	</element>
+	<complexType name="SeismicLineType">
+		<complexContent>
+			<extension base="gph-ext:XGeophProfileType">
+				<sequence>
+					<element name="seismicLineType" type="gph-core:SeismicLineTypeValueType">
+						<annotation>
+							<documentation>-- Definition --
+The type of seismic line (2D or 3D)</documentation>
+						</annotation>
+					</element>
+				</sequence>
+			</extension>
+		</complexContent>
+	</complexType>
+	<complexType name="SeismicLinePropertyType">
+		<sequence minOccurs="0">
+			<element ref="gph-ext:SeismicLine"/>
+		</sequence>
+		<attributeGroup ref="gml:AssociationAttributeGroup"/>
+		<attributeGroup ref="gml:OwnershipAttributeGroup"/>
+	</complexType>
+	<element name="GeophResult" type="gph-ext:GeophResultType" substitutionGroup="gml:AbstractGML">
+		<annotation>
+			<documentation>-- Definition --
+Container for geophysical measurement and processing results
+
+-- Description --
+Can be any type of geophysical result including
+data files in industry standard format (pe.: SEG-Y, LAS, WITSML, etc)
+
+NOTE 1. Should be linked to  the result association of OM_Observation
+
+NOTE 2. For a higher level of interoperability data providers are encouraged to publish geophysical processing results as coverages (see GeophModel).</documentation>
+		</annotation>
+	</element>
+	<complexType name="GeophResultType">
+		<complexContent>
+			<extension base="gml:AbstractGMLType">
+				<sequence>
+					<element name="result" minOccurs="0">
+						<annotation>
+							<documentation>-- Definition --
+Resource of geophysical result 
+
+-- Description --
+Provides access to any geophysical result encoded as SensorML or GeophModel.</documentation>
+						</annotation>
+						<complexType>
+							<complexContent>
+								<extension base="gml:AbstractMetadataPropertyType">
+									<sequence minOccurs="0">
+										<element ref="gmd:MD_Distribution"/>
+									</sequence>
+									<attributeGroup ref="gml:AssociationAttributeGroup"/>
+								</extension>
+							</complexContent>
+						</complexType>
+					</element>
+					<element name="standardResult" minOccurs="0">
+						<annotation>
+							<documentation>-- Definition --
+resource of geophysical results in wellknown
+Industrial standard format
+
+-- Description --
+Provide access to geophysical results in main geophysical standard formats (SEG-Y, ESSO-V2, SHELL-V5,  LAS, WITSML, etc)</documentation>
+						</annotation>
+						<complexType>
+							<complexContent>
+								<extension base="gml:AbstractMetadataPropertyType">
+									<sequence minOccurs="0">
+										<element ref="gmd:MD_Distribution"/>
+									</sequence>
+									<attributeGroup ref="gml:AssociationAttributeGroup"/>
+								</extension>
+							</complexContent>
+						</complexType>
+					</element>
+				</sequence>
+			</extension>
+		</complexContent>
+	</complexType>
+	<complexType name="GeophResultPropertyType">
+		<sequence minOccurs="0">
+			<element ref="gph-ext:GeophResult"/>
+		</sequence>
+		<attributeGroup ref="gml:AssociationAttributeGroup"/>
+		<attributeGroup ref="gml:OwnershipAttributeGroup"/>
+	</complexType>
+	<element name="GeophProcessing" type="gph-ext:GeophProcessingType" substitutionGroup="gml:AbstractGML"/>
+	<complexType name="GeophProcessingType">
+		<complexContent>
+			<extension base="gml:AbstractGMLType">
+				<sequence/>
+			</extension>
+		</complexContent>
+	</complexType>
+	<complexType name="GeophProcessingPropertyType">
+		<sequence minOccurs="0">
+			<element ref="gph-ext:GeophProcessing"/>
+		</sequence>
+		<attributeGroup ref="gml:AssociationAttributeGroup"/>
+		<attributeGroup ref="gml:OwnershipAttributeGroup"/>
+	</complexType>
+	<element name="CurveModel" type="gph-ext:CurveModelType" substitutionGroup="gph-core:GeophModel">
+		<annotation>
+			<documentation>-- Definition -- 
+Curve coverage of geophysical properties
+
+-- Description -- 
+Distribution of geophysical properties along a curve. The extended model contains an association to the curve coverage
+Examples: layer model from 1D inversion, interpreted borehole log. 
+
+NOTE 1. Model data access may also be provided through distribution metadata</documentation>
+		</annotation>
+	</element>
+	<complexType name="CurveModelType">
+		<complexContent>
+			<extension base="gph-core:GeophModelType">
+				<sequence>
+					<element name="modelType" type="gml:CodeType">
+						<annotation>
+							<documentation>-- Definition --
+Defines the model type category</documentation>
+						</annotation>
+					</element>
+					<element name="propertyName" type="gml:CodeType" maxOccurs="unbounded">
+						<annotation>
+							<documentation>-- Definition --
+Physical parameters of which distribution is represented by the model.</documentation>
+						</annotation>
+					</element>
+					<element name="shape" type="gml:CurvePropertyType">
+						<annotation>
+							<documentation>-- Definition --
+Reference shape of the model</documentation>
+						</annotation>
+					</element>
+					<element name="curveCoverage" minOccurs="0">
+						<annotation>
+							<documentation>-- Definition --
+A MultiCurveCoverage defined by geometry-value pairs</documentation>
+						</annotation>
+						<complexType>
+							<sequence minOccurs="0">
+								<element ref="gmlcov:MultiCurveCoverage"/>
+							</sequence>
+							<attributeGroup ref="gml:AssociationAttributeGroup"/>
+							<attributeGroup ref="gml:OwnershipAttributeGroup"/>
+						</complexType>
+					</element>
+				</sequence>
+			</extension>
+		</complexContent>
+	</complexType>
+	<complexType name="CurveModelPropertyType">
+		<sequence minOccurs="0">
+			<element ref="gph-ext:CurveModel"/>
+		</sequence>
+		<attributeGroup ref="gml:AssociationAttributeGroup"/>
+		<attributeGroup ref="gml:OwnershipAttributeGroup"/>
+	</complexType>
+	<element name="SurfaceModel" type="gph-ext:SurfaceModelType" substitutionGroup="gph-core:AbstractSurfaceModel">
+		<annotation>
+			<documentation>-- Definition --
+Surface coverage of geophysical properties
+
+
+-- Description --
+Horizontal or vertical cross section with polygons that represent rock bodies delineated by different geophysical properties. Examples: density section from 2D gravity modelling, geoelectric profile edited from a series of layer models.
+
+NOTE 1. Coverage data access may also be provided as explained in the metadata distribution options. .</documentation>
+		</annotation>
+	</element>
+	<complexType name="SurfaceModelType">
+		<complexContent>
+			<extension base="gph-core:AbstractSurfaceModelType">
+				<sequence>
+					<element name="modelType" type="gph-ext:SurfaceModelTypeValueType">
+						<annotation>
+							<documentation>-- Definition --
+Defines the model type category</documentation>
+						</annotation>
+					</element>
+					<element name="propertyName" type="gml:CodeType" maxOccurs="unbounded">
+						<annotation>
+							<documentation>-- Definition --
+Physical parameters of which distribution is represented by the model</documentation>
+						</annotation>
+					</element>
+					<element name="patches" minOccurs="0">
+						<annotation>
+							<documentation>-- Definition --
+Coverage of polygon patches on the surface</documentation>
+						</annotation>
+						<complexType>
+							<sequence minOccurs="0">
+								<element ref="gmlcov:MultiSurfaceCoverage"/>
+							</sequence>
+							<attributeGroup ref="gml:AssociationAttributeGroup"/>
+							<attributeGroup ref="gml:OwnershipAttributeGroup"/>
+						</complexType>
+					</element>
+					<element name="lineaments" minOccurs="0">
+						<annotation>
+							<documentation>-- Definition --
+Coverage of line structures identified on the surface</documentation>
+						</annotation>
+						<complexType>
+							<sequence minOccurs="0">
+								<element ref="gmlcov:MultiCurveCoverage"/>
+							</sequence>
+							<attributeGroup ref="gml:AssociationAttributeGroup"/>
+							<attributeGroup ref="gml:OwnershipAttributeGroup"/>
+						</complexType>
+					</element>
+				</sequence>
+			</extension>
+		</complexContent>
+	</complexType>
+	<complexType name="SurfaceModelPropertyType">
+		<sequence minOccurs="0">
+			<element ref="gph-ext:SurfaceModel"/>
+		</sequence>
+		<attributeGroup ref="gml:AssociationAttributeGroup"/>
+		<attributeGroup ref="gml:OwnershipAttributeGroup"/>
+	</complexType>
+	<element name="SurfaceMeasurement" type="gph-ext:SurfaceMeasurementType" substitutionGroup="gph-ext:AbstractSurfaceMeasurement">
+		<annotation>
+			<documentation>-- Definition --
+Geophysical measurement spatially referenced to a surface
+
+-- Description --
+Used to collect data on a surface, often by means of remote sensing</documentation>
+		</annotation>
+	</element>
+	<complexType name="SurfaceMeasurementType">
+		<complexContent>
+			<extension base="gph-ext:AbstractSurfaceMeasurementType">
+				<sequence>
+					<element name="measurementType" type="gml:CodeType">
+						<annotation>
+							<documentation>-- Definition --
+The type of surface measurement</documentation>
+						</annotation>
+					</element>
+					<element name="samplingSurface" type="sams:SF_SpatialSamplingFeaturePropertyType" minOccurs="0">
+						<annotation>
+							<documentation>-- Definition --
+An SF_SamplingCurve, which in turn can link to any number of OM_Observations. In publishing data acquisition and processing results the O&amp;M schema definitions shall be followed.</documentation>
+						</annotation>
+					</element>
+				</sequence>
+			</extension>
+		</complexContent>
+	</complexType>
+	<complexType name="SurfaceMeasurementPropertyType">
+		<sequence minOccurs="0">
+			<element ref="gph-ext:SurfaceMeasurement"/>
+		</sequence>
+		<attributeGroup ref="gml:AssociationAttributeGroup"/>
+		<attributeGroup ref="gml:OwnershipAttributeGroup"/>
+	</complexType>
+</schema>

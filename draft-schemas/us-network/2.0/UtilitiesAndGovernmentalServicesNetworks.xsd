@@ -1,0 +1,2504 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<schema xmlns="http://www.w3.org/2001/XMLSchema" xmlns:el-vec="http://inspire.jrc.ec.europa.eu/schemas/el-vec/2.0" xmlns:gmd="http://www.isotc211.org/2005/gmd" xmlns:gml="http://www.opengis.net/gml/3.2" xmlns:gn="urn:x-inspire:specification:gmlas:GeographicalNames:3.0" xmlns:us-net-el="http://inspire.jrc.ec.europa.eu/schemas/us-net-el/2.0" xmlns:us-net-og="http://inspire.jrc.ec.europa.eu/schemas/us-net-og/2.0" xmlns:us-net-sw="http://inspire.jrc.ec.europa.eu/schemas/us-net-sw/2.0" xmlns:us-net-tc="http://inspire.jrc.ec.europa.eu/schemas/us-net-tc/2.0" xmlns:us-net-wa="http://inspire.jrc.ec.europa.eu/schemas/us-net-wa/2.0" xmlns:us-network="http://inspire.jrc.ec.europa.eu/schemas/us-network/2.0" xmlns:us-waste="http://inspire.jrc.ec.europa.eu/schemas/us-waste/2.0" xmlns:net="urn:x-inspire:specification:gmlas:Network:3.2" xmlns:base="urn:x-inspire:specification:gmlas:BaseTypes:3.2" targetNamespace="http://inspire.jrc.ec.europa.eu/schemas/us-network/2.0" elementFormDefault="qualified" version="2.0">
+	<import namespace="http://inspire.jrc.ec.europa.eu/schemas/el-vec/2.0" schemaLocation="https://inspire.ec.europa.eu/draft-schemas/el-vec/2.0/ElevationVectorElements.xsd"/>
+	<import namespace="http://inspire.jrc.ec.europa.eu/schemas/us-net-el/2.0" schemaLocation="https://inspire.ec.europa.eu/draft-schemas/us-net-el/2.0/ElectricityNetwork.xsd"/>
+	<import namespace="http://inspire.jrc.ec.europa.eu/schemas/us-net-og/2.0" schemaLocation="https://inspire.ec.europa.eu/draft-schemas/us-net-og/2.0/OilGasNetwork.xsd"/>
+	<import namespace="http://inspire.jrc.ec.europa.eu/schemas/us-net-sw/2.0" schemaLocation="https://inspire.ec.europa.eu/draft-schemas/us-net-sw/2.0/SewerNetwork.xsd"/>
+	<import namespace="http://inspire.jrc.ec.europa.eu/schemas/us-net-tc/2.0" schemaLocation="https://inspire.ec.europa.eu/draft-schemas/us-net-tc/2.0/TelecommunicationsNetwork.xsd"/>
+	<import namespace="http://inspire.jrc.ec.europa.eu/schemas/us-net-wa/2.0" schemaLocation="https://inspire.ec.europa.eu/draft-schemas/us-net-wa/2.0/WaterNetwork.xsd"/>
+	<import namespace="http://inspire.jrc.ec.europa.eu/schemas/us-waste/2.0" schemaLocation="https://inspire.ec.europa.eu/draft-schemas/us-waste/2.0/UtilitiesAndGovernmentalServicesWasteManagement.xsd"/>
+	<import namespace="http://www.isotc211.org/2005/gmd" schemaLocation="http://schemas.opengis.net/iso/19139/20070417/gmd/gmd.xsd"/>
+	<import namespace="http://www.opengis.net/gml/3.2" schemaLocation="http://schemas.opengis.net/gml/3.2.1/gml.xsd"/>
+	<import namespace="urn:x-inspire:specification:gmlas:GeographicalNames:3.0" schemaLocation="https://inspire.ec.europa.eu/schemas/gn/3.0/GeographicalNames.xsd"/>
+	<import namespace="urn:x-inspire:specification:gmlas:Network:3.2" schemaLocation="https://inspire.ec.europa.eu/schemas/us-network/3.2/Network.xsd"/>
+	<import namespace="urn:x-inspire:specification:gmlas:BaseTypes:3.2" schemaLocation="https://inspire.ec.europa.eu/schemas/base/3.2/BaseTypes.xsd"/>
+	
+	<!--XML Schema document created by ShapeChange-->
+	<simpleType name="PipeShapeValueType">
+		<annotation>
+			<documentation>-- Definition --
+Geometric shape of the pipe.</documentation>
+		</annotation>
+		<union memberTypes="us-network:PipeShapeValueEnumerationType us-network:PipeShapeValueOtherType"/>
+	</simpleType>
+	<simpleType name="PipeShapeValueEnumerationType">
+		<annotation>
+			<documentation>-- Definition --
+Geometric shape of the pipe.</documentation>
+		</annotation>
+		<restriction base="string">
+			<enumeration value="arched">
+				<annotation>
+					<documentation>-- Definition --
+Arched.</documentation>
+				</annotation>
+			</enumeration>
+			<enumeration value="circle">
+				<annotation>
+					<documentation>-- Definition --
+Circle.</documentation>
+				</annotation>
+			</enumeration>
+			<enumeration value="cunette">
+				<annotation>
+					<documentation>-- Definition --
+Cunette.</documentation>
+				</annotation>
+			</enumeration>
+			<enumeration value="other">
+				<annotation>
+					<documentation>-- Definition --
+Other.</documentation>
+				</annotation>
+			</enumeration>
+			<enumeration value="rectangle">
+				<annotation>
+					<documentation>-- Definition --
+Rectangle.</documentation>
+				</annotation>
+			</enumeration>
+			<enumeration value="square">
+				<annotation>
+					<documentation>-- Definition --
+Square.</documentation>
+				</annotation>
+			</enumeration>
+			<enumeration value="trapezoid">
+				<annotation>
+					<documentation>-- Definition --
+Trapezoid.</documentation>
+				</annotation>
+			</enumeration>
+			<enumeration value="oval">
+				<annotation>
+					<documentation>-- Definition --
+Oval.</documentation>
+				</annotation>
+			</enumeration>
+		</restriction>
+	</simpleType>
+	<simpleType name="PipeShapeValueOtherType">
+		<restriction base="string">
+			<pattern value="other: \w{2,}"/>
+		</restriction>
+	</simpleType>
+	<simpleType name="ManholeCoverOpeningValueType">
+		<annotation>
+			<documentation>-- Definition --
+Opening of the manhole cover.</documentation>
+		</annotation>
+		<union memberTypes="us-network:ManholeCoverOpeningValueEnumerationType us-network:ManholeCoverOpeningValueOtherType"/>
+	</simpleType>
+	<simpleType name="ManholeCoverOpeningValueEnumerationType">
+		<annotation>
+			<documentation>-- Definition --
+Opening of the manhole cover.</documentation>
+		</annotation>
+		<restriction base="string">
+			<enumeration value="bolts">
+				<annotation>
+					<documentation>-- Definition --
+Bolts.</documentation>
+				</annotation>
+			</enumeration>
+			<enumeration value="hooks">
+				<annotation>
+					<documentation>-- Definition --
+Hooks.</documentation>
+				</annotation>
+			</enumeration>
+			<enumeration value="lever">
+				<annotation>
+					<documentation>-- Definition --
+Lever.</documentation>
+				</annotation>
+			</enumeration>
+			<enumeration value="socket">
+				<annotation>
+					<documentation>-- Definition --
+Socket.</documentation>
+				</annotation>
+			</enumeration>
+			<enumeration value="other">
+				<annotation>
+					<documentation>-- Definition --
+Other.</documentation>
+				</annotation>
+			</enumeration>
+		</restriction>
+	</simpleType>
+	<simpleType name="ManholeCoverOpeningValueOtherType">
+		<restriction base="string">
+			<pattern value="other: \w{2,}"/>
+		</restriction>
+	</simpleType>
+	<simpleType name="ManholeTypeValueType">
+		<annotation>
+			<documentation>-- Definition --
+Type of the manhole.</documentation>
+		</annotation>
+		<union memberTypes="us-network:ManholeTypeValueEnumerationType us-network:ManholeTypeValueOtherType"/>
+	</simpleType>
+	<simpleType name="ManholeTypeValueEnumerationType">
+		<annotation>
+			<documentation>-- Definition --
+Type of the manhole.</documentation>
+		</annotation>
+		<restriction base="string">
+			<enumeration value="handhole">
+				<annotation>
+					<documentation>-- Definition --
+Handhole.
+
+-- Description --
+A handhole represents a small hole for the insertion of the hand for cleaning purposes, etc.</documentation>
+				</annotation>
+			</enumeration>
+			<enumeration value="manhole">
+				<annotation>
+					<documentation>-- Definition --
+Manhole.</documentation>
+				</annotation>
+			</enumeration>
+			<enumeration value="vault">
+				<annotation>
+					<documentation>-- Definition --
+Vault.</documentation>
+				</annotation>
+			</enumeration>
+		</restriction>
+	</simpleType>
+	<simpleType name="ManholeTypeValueOtherType">
+		<restriction base="string">
+			<pattern value="other: \w{2,}"/>
+		</restriction>
+	</simpleType>
+	<element name="UtilityName" type="us-network:UtilityNameType" substitutionGroup="us-network:UtilityProperty">
+		<annotation>
+			<documentation>-- Definition --
+Name or identifier of the utility object, as assigned by the responsible authority.</documentation>
+		</annotation>
+	</element>
+	<complexType name="UtilityNameType">
+		<complexContent>
+			<extension base="us-network:UtilityPropertyType">
+				<sequence>
+					<element name="name" type="gn:GeographicalNamePropertyType">
+						<annotation>
+							<documentation>-- Definition --
+Name or identifier of the utility object.</documentation>
+						</annotation>
+					</element>
+				</sequence>
+			</extension>
+		</complexContent>
+	</complexType>
+	<complexType name="UtilityNamePropertyType">
+		<sequence minOccurs="0">
+			<element ref="us-network:UtilityName"/>
+		</sequence>
+		<attributeGroup ref="gml:AssociationAttributeGroup"/>
+		<attributeGroup ref="gml:OwnershipAttributeGroup"/>
+	</complexType>
+	<element name="UtilityLinkSet" type="us-network:UtilityLinkSetType" abstract="true" substitutionGroup="net:LinkSet">
+		<annotation>
+			<documentation>-- Definition --
+A collection of utility link sequences and/or individual utility links that has a specific function or significance in an utility network. 
+
+-- Description --
+NOTE
+This spatial object type supports the aggregation of links to form objects with branches, loops, parallel sequences of links, gaps, etc.
+
+EXAMPLE
+A set of cables/ducts in telecommunications representing a single, traceable &amp;ldquo;route&amp;rdquo; of an utility network.</documentation>
+		</annotation>
+	</element>
+	<complexType name="UtilityLinkSetType" abstract="true">
+		<complexContent>
+			<extension base="net:LinkSetType">
+				<sequence>
+					<element name="comment" type="gmd:PT_FreeText_PropertyType" nillable="true">
+						<annotation>
+							<documentation>-- Definition --
+Arbitrary comment on utility object.</documentation>
+						</annotation>
+					</element>
+					<element name="currentStatus" nillable="true">
+						<annotation>
+							<documentation>-- Definition --
+The status of an utility object with regards to its completion and use.</documentation>
+						</annotation>
+						<complexType>
+							<simpleContent>
+								<extension base="gml:CodeType">
+									<attribute name="nilReason" type="gml:NilReasonType"/>
+								</extension>
+							</simpleContent>
+						</complexType>
+					</element>
+					<element name="facilityReference" nillable="true">
+						<annotation>
+							<documentation>-- Definition --
+Reference to a facility this utility network element belongs to (or is part of).</documentation>
+						</annotation>
+						<complexType>
+							<complexContent>
+								<extension base="gml:AbstractMemberType">
+									<sequence minOccurs="0">
+										<element ref="us-waste:Facility"/>
+									</sequence>
+									<attributeGroup ref="gml:AssociationAttributeGroup"/>
+								</extension>
+							</complexContent>
+						</complexType>
+					</element>
+					<element name="manufacturerCode" type="gmd:PT_FreeText_PropertyType" nillable="true">
+						<annotation>
+							<documentation>-- Definition --
+Code of the utility object as defined by the manufacturer.</documentation>
+						</annotation>
+					</element>
+					<element name="manufacturerName" type="gmd:PT_FreeText_PropertyType" nillable="true">
+						<annotation>
+							<documentation>-- Definition --
+Name of the utility object manufacturer.</documentation>
+						</annotation>
+					</element>
+					<element name="objectName" nillable="true">
+						<annotation>
+							<documentation>-- Definition --
+A name or identifier that is used to identify the utility network object in the real world. It provides a 'key' for implicitly associating different representations of the object.</documentation>
+						</annotation>
+						<complexType>
+							<complexContent>
+								<extension base="gml:AbstractMemberType">
+									<sequence minOccurs="0">
+										<element ref="us-network:UtilityName"/>
+									</sequence>
+									<attributeGroup ref="gml:AssociationAttributeGroup"/>
+								</extension>
+							</complexContent>
+						</complexType>
+					</element>
+					<element name="reconstructionDate" nillable="true">
+						<annotation>
+							<documentation>-- Definition --
+The time when (if) the utility object was reconstructed or repaired.</documentation>
+						</annotation>
+						<complexType>
+							<simpleContent>
+								<extension base="dateTime">
+									<attribute name="nilReason" type="gml:NilReasonType"/>
+								</extension>
+							</simpleContent>
+						</complexType>
+					</element>
+					<element name="validFrom" nillable="true">
+						<annotation>
+							<documentation>-- Definition --
+The time when the utility object started to exist in the real world.</documentation>
+						</annotation>
+						<complexType>
+							<simpleContent>
+								<extension base="dateTime">
+									<attribute name="nilReason" type="gml:NilReasonType"/>
+								</extension>
+							</simpleContent>
+						</complexType>
+					</element>
+					<element name="validTo" nillable="true">
+						<annotation>
+							<documentation>-- Definition --
+The time from which the utility object no longer exists in the real world.</documentation>
+						</annotation>
+						<complexType>
+							<simpleContent>
+								<extension base="dateTime">
+									<attribute name="nilReason" type="gml:NilReasonType"/>
+								</extension>
+							</simpleContent>
+						</complexType>
+					</element>
+					<element name="verticalPosition" nillable="true">
+						<annotation>
+							<documentation>-- Definition --
+Vertical position of the utility object relative to ground.</documentation>
+						</annotation>
+						<complexType>
+							<simpleContent>
+								<extension base="base:VerticalPositionValueType">
+									<attribute name="nilReason" type="gml:NilReasonType"/>
+								</extension>
+							</simpleContent>
+						</complexType>
+					</element>
+					<element name="elevation" nillable="true">
+						<annotation>
+							<documentation>-- Definition --
+Relative height/depth with regards to the terrain surface.
+
+-- Description --
+Relative elevation of a utility node represents its relative height above a fixed reference point, most commonly terrain surface level. Relative elevation can be also negative, in case of  underground feature. Used if vertical postion is either underground or suspendedOrElevated.
+
+NOTE Relative elevation is measured differently depending on the type of utility feature. For example, conduits are measured from the top of the conduit (cable, duct...) to the</documentation>
+						</annotation>
+						<complexType>
+							<complexContent>
+								<extension base="gml:AbstractMemberType">
+									<sequence minOccurs="0">
+										<element ref="el-vec:ElevationLine"/>
+									</sequence>
+									<attributeGroup ref="gml:AssociationAttributeGroup"/>
+								</extension>
+							</complexContent>
+						</complexType>
+					</element>
+					<element name="length" nillable="true">
+						<annotation>
+							<documentation>-- Definition --
+Length of utility network link set.
+
+-- Description --
+This length is measured. Computed length is part of the geometry itself.</documentation>
+						</annotation>
+						<complexType>
+							<simpleContent>
+								<extension base="gml:LengthType">
+									<attribute name="nilReason" type="gml:NilReasonType"/>
+								</extension>
+							</simpleContent>
+						</complexType>
+					</element>
+				</sequence>
+			</extension>
+		</complexContent>
+	</complexType>
+	<complexType name="UtilityLinkSetPropertyType">
+		<sequence minOccurs="0">
+			<element ref="us-network:UtilityLinkSet"/>
+		</sequence>
+		<attributeGroup ref="gml:AssociationAttributeGroup"/>
+		<attributeGroup ref="gml:OwnershipAttributeGroup"/>
+	</complexType>
+	<element name="Pipe" type="us-network:PipeType" substitutionGroup="us-network:UtilityLinkSequence">
+		<annotation>
+			<documentation>-- Definition --
+A tube for the conveyance of solids, liquids or gases from one location to another.</documentation>
+		</annotation>
+	</element>
+	<complexType name="PipeType">
+		<complexContent>
+			<extension base="us-network:UtilityLinkSequenceType">
+				<sequence>
+					<element name="coating" nillable="true">
+						<annotation>
+							<documentation>-- Definition --
+Pipe coating.</documentation>
+						</annotation>
+						<complexType>
+							<simpleContent>
+								<extension base="us-network:PipeCoatingValueType">
+									<attribute name="nilReason" type="gml:NilReasonType"/>
+								</extension>
+							</simpleContent>
+						</complexType>
+					</element>
+					<element name="diameter" nillable="true">
+						<annotation>
+							<documentation>-- Definition --
+Pipe diameter.</documentation>
+						</annotation>
+						<complexType>
+							<simpleContent>
+								<extension base="gml:LengthType">
+									<attribute name="nilReason" type="gml:NilReasonType"/>
+								</extension>
+							</simpleContent>
+						</complexType>
+					</element>
+					<element name="material" nillable="true">
+						<annotation>
+							<documentation>-- Definition --
+Pipe material.</documentation>
+						</annotation>
+						<complexType>
+							<simpleContent>
+								<extension base="us-network:PipeMaterialValueType">
+									<attribute name="nilReason" type="gml:NilReasonType"/>
+								</extension>
+							</simpleContent>
+						</complexType>
+					</element>
+					<element name="shape" nillable="true">
+						<annotation>
+							<documentation>-- Definition --
+Pipe shape.</documentation>
+						</annotation>
+						<complexType>
+							<simpleContent>
+								<extension base="us-network:PipeShapeValueType">
+									<attribute name="nilReason" type="gml:NilReasonType"/>
+								</extension>
+							</simpleContent>
+						</complexType>
+					</element>
+					<element name="cables" nillable="true" minOccurs="0" maxOccurs="unbounded">
+						<annotation>
+							<documentation>-- Definition --
+Contained telecommunications cables.</documentation>
+						</annotation>
+						<complexType>
+							<complexContent>
+								<extension base="gml:AbstractMemberType">
+									<sequence minOccurs="0">
+										<element ref="us-net-tc:TelecommunicationsCable"/>
+									</sequence>
+									<attributeGroup ref="gml:AssociationAttributeGroup"/>
+								</extension>
+							</complexContent>
+						</complexType>
+					</element>
+				</sequence>
+			</extension>
+		</complexContent>
+	</complexType>
+	<complexType name="PipePropertyType">
+		<sequence minOccurs="0">
+			<element ref="us-network:Pipe"/>
+		</sequence>
+		<attributeGroup ref="gml:AssociationAttributeGroup"/>
+		<attributeGroup ref="gml:OwnershipAttributeGroup"/>
+	</complexType>
+	<element name="UtilityNodeContainer" type="us-network:UtilityNodeContainerType" abstract="true" substitutionGroup="net:Node">
+		<annotation>
+			<documentation>-- Definition --
+A point spatial object which is used for connectivity, and also may contain other spatial objects (not neccessarily belonging to the same utility network).
+
+-- Description --
+Nodes are found at either end of the UtilityLink.</documentation>
+		</annotation>
+	</element>
+	<complexType name="UtilityNodeContainerType" abstract="true">
+		<complexContent>
+			<extension base="net:NodeType">
+				<sequence>
+					<element name="comment" type="gmd:PT_FreeText_PropertyType" nillable="true">
+						<annotation>
+							<documentation>-- Definition --
+Arbitrary comment on utility object.</documentation>
+						</annotation>
+					</element>
+					<element name="currentStatus" nillable="true">
+						<annotation>
+							<documentation>-- Definition --
+The status of an utility object with regards to its completion and use.</documentation>
+						</annotation>
+						<complexType>
+							<simpleContent>
+								<extension base="gml:CodeType">
+									<attribute name="nilReason" type="gml:NilReasonType"/>
+								</extension>
+							</simpleContent>
+						</complexType>
+					</element>
+					<element name="facilityReference" nillable="true">
+						<annotation>
+							<documentation>-- Definition --
+Reference to a facility this utility network element belongs to (or is part of).</documentation>
+						</annotation>
+						<complexType>
+							<complexContent>
+								<extension base="gml:AbstractMemberType">
+									<sequence minOccurs="0">
+										<element ref="us-waste:Facility"/>
+									</sequence>
+									<attributeGroup ref="gml:AssociationAttributeGroup"/>
+								</extension>
+							</complexContent>
+						</complexType>
+					</element>
+					<element name="manufacturerCode" type="gmd:PT_FreeText_PropertyType" nillable="true">
+						<annotation>
+							<documentation>-- Definition --
+Code of the utility object as defined by the manufacturer.</documentation>
+						</annotation>
+					</element>
+					<element name="manufacturerName" type="gmd:PT_FreeText_PropertyType" nillable="true">
+						<annotation>
+							<documentation>-- Definition --
+Name of the utility object manufacturer.</documentation>
+						</annotation>
+					</element>
+					<element name="objectName" nillable="true">
+						<annotation>
+							<documentation>-- Definition --
+A name or identifier that is used to identify the utility network object in the real world. It provides a 'key' for implicitly associating different representations of the object.</documentation>
+						</annotation>
+						<complexType>
+							<complexContent>
+								<extension base="gml:AbstractMemberType">
+									<sequence minOccurs="0">
+										<element ref="us-network:UtilityName"/>
+									</sequence>
+									<attributeGroup ref="gml:AssociationAttributeGroup"/>
+								</extension>
+							</complexContent>
+						</complexType>
+					</element>
+					<element name="reconstructionDate" nillable="true">
+						<annotation>
+							<documentation>-- Definition --
+The time when (if) the utility object was reconstructed or repaired.</documentation>
+						</annotation>
+						<complexType>
+							<simpleContent>
+								<extension base="dateTime">
+									<attribute name="nilReason" type="gml:NilReasonType"/>
+								</extension>
+							</simpleContent>
+						</complexType>
+					</element>
+					<element name="validFrom" nillable="true">
+						<annotation>
+							<documentation>-- Definition --
+The time when the utility object started to exist in the real world.</documentation>
+						</annotation>
+						<complexType>
+							<simpleContent>
+								<extension base="dateTime">
+									<attribute name="nilReason" type="gml:NilReasonType"/>
+								</extension>
+							</simpleContent>
+						</complexType>
+					</element>
+					<element name="validTo" nillable="true">
+						<annotation>
+							<documentation>-- Definition --
+The time from which the utility object no longer exists in the real world.</documentation>
+						</annotation>
+						<complexType>
+							<simpleContent>
+								<extension base="dateTime">
+									<attribute name="nilReason" type="gml:NilReasonType"/>
+								</extension>
+							</simpleContent>
+						</complexType>
+					</element>
+					<element name="verticalPosition" nillable="true">
+						<annotation>
+							<documentation>-- Definition --
+Vertical position of the utility object relative to ground.</documentation>
+						</annotation>
+						<complexType>
+							<simpleContent>
+								<extension base="base:VerticalPositionValueType">
+									<attribute name="nilReason" type="gml:NilReasonType"/>
+								</extension>
+							</simpleContent>
+						</complexType>
+					</element>
+					<element name="elevation" nillable="true">
+						<annotation>
+							<documentation>-- Definition --
+Relative height/depth with regards to the terrain surface.
+
+-- Description --
+Relative elevation of a utility node represents its relative height above a fixed reference point, most commonly terrain surface level. Relative elevation can be also negative, in case of  underground feature. Used if vertical postion is either underground or suspendedOrElevated.
+
+NOTE Relative elevation is measured differently depending on the type of utility feature. For example, conduits are measured from the top of the conduit (cable, duct...) to the</documentation>
+						</annotation>
+						<complexType>
+							<complexContent>
+								<extension base="gml:AbstractMemberType">
+									<sequence minOccurs="0">
+										<element ref="el-vec:ElevationPoint"/>
+									</sequence>
+									<attributeGroup ref="gml:AssociationAttributeGroup"/>
+								</extension>
+							</complexContent>
+						</complexType>
+					</element>
+					<element name="heading" nillable="true">
+						<annotation>
+							<documentation>-- Definition --
+Heading (angle value) of an utility network node.
+
+-- Description --
+NOTE A directed angle together with a signed measure of the angle. Represents rotation with regards to True North. True North is the direction along the Earth's surface towards the geographic North Pole.</documentation>
+						</annotation>
+						<complexType>
+							<simpleContent>
+								<extension base="gml:AngleType">
+									<attribute name="nilReason" type="gml:NilReasonType"/>
+								</extension>
+							</simpleContent>
+						</complexType>
+					</element>
+					<element name="nodes" nillable="true" minOccurs="0" maxOccurs="unbounded">
+						<annotation>
+							<documentation>-- Definition --
+Contained utility nodes.</documentation>
+						</annotation>
+						<complexType>
+							<complexContent>
+								<extension base="gml:AbstractMemberType">
+									<sequence minOccurs="0">
+										<element ref="us-network:UtilityNode"/>
+									</sequence>
+									<attributeGroup ref="gml:AssociationAttributeGroup"/>
+								</extension>
+							</complexContent>
+						</complexType>
+					</element>
+				</sequence>
+			</extension>
+		</complexContent>
+	</complexType>
+	<complexType name="UtilityNodeContainerPropertyType">
+		<sequence minOccurs="0">
+			<element ref="us-network:UtilityNodeContainer"/>
+		</sequence>
+		<attributeGroup ref="gml:AssociationAttributeGroup"/>
+		<attributeGroup ref="gml:OwnershipAttributeGroup"/>
+	</complexType>
+	<simpleType name="DuctCasingValueType">
+		<annotation>
+			<documentation>-- Definition --
+Available types Duct casings.</documentation>
+		</annotation>
+		<union memberTypes="us-network:DuctCasingValueEnumerationType us-network:DuctCasingValueOtherType"/>
+	</simpleType>
+	<simpleType name="DuctCasingValueEnumerationType">
+		<annotation>
+			<documentation>-- Definition --
+Available types Duct casings.</documentation>
+		</annotation>
+		<restriction base="string">
+			<enumeration value="concrete">
+				<annotation>
+					<documentation>-- Definition --
+Concrete casing.</documentation>
+				</annotation>
+			</enumeration>
+			<enumeration value="directBuried">
+				<annotation>
+					<documentation>-- Definition --
+Direct buried (a trench)</documentation>
+				</annotation>
+			</enumeration>
+			<enumeration value="none">
+				<annotation>
+					<documentation>-- Definition --
+No casing. Used in case when Duct represents simply a bundle of Pipes.</documentation>
+				</annotation>
+			</enumeration>
+		</restriction>
+	</simpleType>
+	<simpleType name="DuctCasingValueOtherType">
+		<restriction base="string">
+			<pattern value="other: \w{2,}"/>
+		</restriction>
+	</simpleType>
+	<simpleType name="PoleMaterialValueType">
+		<annotation>
+			<documentation>-- Definition --
+Available materials or types of the pole.</documentation>
+		</annotation>
+		<union memberTypes="us-network:PoleMaterialValueEnumerationType us-network:PoleMaterialValueOtherType"/>
+	</simpleType>
+	<simpleType name="PoleMaterialValueEnumerationType">
+		<annotation>
+			<documentation>-- Definition --
+Available materials or types of the pole.</documentation>
+		</annotation>
+		<restriction base="string">
+			<enumeration value="aluminiuim">
+				<annotation>
+					<documentation>-- Definition --
+Aluminium.</documentation>
+				</annotation>
+			</enumeration>
+			<enumeration value="composite">
+				<annotation>
+					<documentation>-- Definition --
+Composite.</documentation>
+				</annotation>
+			</enumeration>
+			<enumeration value="concrete">
+				<annotation>
+					<documentation>-- Definition --
+Concrete.</documentation>
+				</annotation>
+			</enumeration>
+			<enumeration value="fiberglass">
+				<annotation>
+					<documentation>-- Definition --
+Fiberglass.</documentation>
+				</annotation>
+			</enumeration>
+			<enumeration value="other">
+				<annotation>
+					<documentation>-- Definition --
+Other material.</documentation>
+				</annotation>
+			</enumeration>
+			<enumeration value="steel">
+				<annotation>
+					<documentation>-- Definition --
+Steel.</documentation>
+				</annotation>
+			</enumeration>
+			<enumeration value="wood">
+				<annotation>
+					<documentation>-- Definition --
+Wood.</documentation>
+				</annotation>
+			</enumeration>
+		</restriction>
+	</simpleType>
+	<simpleType name="PoleMaterialValueOtherType">
+		<restriction base="string">
+			<pattern value="other: \w{2,}"/>
+		</restriction>
+	</simpleType>
+	<simpleType name="UtilityNetworkSubTypeValueType">
+		<annotation>
+			<documentation>-- Definition --
+Type of utility network with regards to the volume being served.</documentation>
+		</annotation>
+		<union memberTypes="us-network:UtilityNetworkSubTypeValueEnumerationType us-network:UtilityNetworkSubTypeValueOtherType"/>
+	</simpleType>
+	<simpleType name="UtilityNetworkSubTypeValueEnumerationType">
+		<annotation>
+			<documentation>-- Definition --
+Type of utility network with regards to the volume being served.</documentation>
+		</annotation>
+		<restriction base="string">
+			<enumeration value="distribution">
+				<annotation>
+					<documentation>-- Definition --
+Distribution networks serve a small scale volumes (of water, electricity, etc.). Service is most commonly served to the end-users by means of distribution (supply) networks.</documentation>
+				</annotation>
+			</enumeration>
+			<enumeration value="transmission">
+				<annotation>
+					<documentation>-- Definition --
+Transmission networks serve a large scale volumes (of water, electricity, etc.). Service is most commonly served from the production facilities to the distribution networks.</documentation>
+				</annotation>
+			</enumeration>
+		</restriction>
+	</simpleType>
+	<simpleType name="UtilityNetworkSubTypeValueOtherType">
+		<restriction base="string">
+			<pattern value="other: \w{2,}"/>
+		</restriction>
+	</simpleType>
+	<simpleType name="ManholeShaftMaterialValueType">
+		<annotation>
+			<documentation>-- Definition --
+Available manhole shaft material.</documentation>
+		</annotation>
+		<union memberTypes="us-network:ManholeShaftMaterialValueEnumerationType us-network:ManholeShaftMaterialValueOtherType"/>
+	</simpleType>
+	<simpleType name="ManholeShaftMaterialValueEnumerationType">
+		<annotation>
+			<documentation>-- Definition --
+Available manhole shaft material.</documentation>
+		</annotation>
+		<restriction base="string">
+			<enumeration value="cement">
+				<annotation>
+					<documentation>-- Definition --
+Cement.</documentation>
+				</annotation>
+			</enumeration>
+			<enumeration value="concrete">
+				<annotation>
+					<documentation>-- Definition --
+Concrete.</documentation>
+				</annotation>
+			</enumeration>
+			<enumeration value="fiberglass">
+				<annotation>
+					<documentation>-- Definition --
+Fiberglass.</documentation>
+				</annotation>
+			</enumeration>
+			<enumeration value="masonry">
+				<annotation>
+					<documentation>-- Definition --
+Masonry.</documentation>
+				</annotation>
+			</enumeration>
+			<enumeration value="other">
+				<annotation>
+					<documentation>-- Definition --
+Other.</documentation>
+				</annotation>
+			</enumeration>
+			<enumeration value="plasteredMasonry">
+				<annotation>
+					<documentation>-- Definition --
+Plastered masonry.</documentation>
+				</annotation>
+			</enumeration>
+			<enumeration value="plastic">
+				<annotation>
+					<documentation>-- Definition --
+Plastic.</documentation>
+				</annotation>
+			</enumeration>
+			<enumeration value="precastConcrete">
+				<annotation>
+					<documentation>-- Definition --
+Precast concrete.</documentation>
+				</annotation>
+			</enumeration>
+			<enumeration value="reinforcedPolyester">
+				<annotation>
+					<documentation>-- Definition --
+Reinforced polyester.</documentation>
+				</annotation>
+			</enumeration>
+		</restriction>
+	</simpleType>
+	<simpleType name="ManholeShaftMaterialValueOtherType">
+		<restriction base="string">
+			<pattern value="other: \w{2,}"/>
+		</restriction>
+	</simpleType>
+	<complexType name="UtilityNetworkElementPropertyType">
+		<choice minOccurs="0">
+			<element ref="us-network:UtilityLink"/>
+			<element ref="us-network:UtilityLinkSequence"/>
+			<element ref="us-network:UtilityLinkSet"/>
+			<element ref="us-network:UtilityNode"/>
+			<element ref="us-network:UtilityNodeContainer"/>
+		</choice>
+		<attributeGroup ref="gml:AssociationAttributeGroup"/>
+		<attributeGroup ref="gml:OwnershipAttributeGroup"/>
+	</complexType>
+	<element name="Manhole" type="us-network:ManholeType" substitutionGroup="us-network:UtilityNodeContainer">
+		<annotation>
+			<documentation>-- Definition --
+Simple container object which may contain either single or multiple utility networks objects.
+
+-- Description --
+Manholes perform following functions:
+&lt;ul&gt;
+	&lt;li&gt;Provide drainage for the conduit system so that freezing water does not damage the conduit or wires. &lt;/li&gt;
+	&lt;li&gt;Provide a location for bending the conduit run without damaging the wires. &lt;/li&gt;
+	&lt;li&gt;Provide a junction for conduits coming from different directions. &lt;/li&gt;
+	&lt;li&gt;Provide access to the system for maintenance. &lt;/li&gt;
+&lt;/ul&gt;</documentation>
+		</annotation>
+	</element>
+	<complexType name="ManholeType">
+		<complexContent>
+			<extension base="us-network:UtilityNodeContainerType">
+				<sequence>
+					<element name="coverLength" nillable="true">
+						<annotation>
+							<documentation>-- Definition --
+Manhole cover length.</documentation>
+						</annotation>
+						<complexType>
+							<simpleContent>
+								<extension base="gml:LengthType">
+									<attribute name="nilReason" type="gml:NilReasonType"/>
+								</extension>
+							</simpleContent>
+						</complexType>
+					</element>
+					<element name="coverOpening" nillable="true">
+						<annotation>
+							<documentation>-- Definition --
+Manhole cover opening.</documentation>
+						</annotation>
+						<complexType>
+							<simpleContent>
+								<extension base="us-network:ManholeCoverOpeningValueType">
+									<attribute name="nilReason" type="gml:NilReasonType"/>
+								</extension>
+							</simpleContent>
+						</complexType>
+					</element>
+					<element name="coverShape" nillable="true">
+						<annotation>
+							<documentation>-- Definition --
+Manhole cover shape.</documentation>
+						</annotation>
+						<complexType>
+							<simpleContent>
+								<extension base="us-network:ManholeCoverShapeValueType">
+									<attribute name="nilReason" type="gml:NilReasonType"/>
+								</extension>
+							</simpleContent>
+						</complexType>
+					</element>
+					<element name="coverWidth" nillable="true">
+						<annotation>
+							<documentation>-- Definition --
+Manhole cover width.</documentation>
+						</annotation>
+						<complexType>
+							<simpleContent>
+								<extension base="gml:LengthType">
+									<attribute name="nilReason" type="gml:NilReasonType"/>
+								</extension>
+							</simpleContent>
+						</complexType>
+					</element>
+					<element name="height" nillable="true">
+						<annotation>
+							<documentation>-- Definition --
+Manhole height.</documentation>
+						</annotation>
+						<complexType>
+							<simpleContent>
+								<extension base="gml:LengthType">
+									<attribute name="nilReason" type="gml:NilReasonType"/>
+								</extension>
+							</simpleContent>
+						</complexType>
+					</element>
+					<element name="shaftAccess" nillable="true">
+						<annotation>
+							<documentation>-- Definition --
+Manhole shaft access.</documentation>
+						</annotation>
+						<complexType>
+							<simpleContent>
+								<extension base="us-network:ManholeShaftAccessValueType">
+									<attribute name="nilReason" type="gml:NilReasonType"/>
+								</extension>
+							</simpleContent>
+						</complexType>
+					</element>
+					<element name="shaftLength" nillable="true">
+						<annotation>
+							<documentation>-- Definition --
+Manhole shaft length.</documentation>
+						</annotation>
+						<complexType>
+							<simpleContent>
+								<extension base="gml:LengthType">
+									<attribute name="nilReason" type="gml:NilReasonType"/>
+								</extension>
+							</simpleContent>
+						</complexType>
+					</element>
+					<element name="shaftMaterial" nillable="true">
+						<annotation>
+							<documentation>-- Definition --
+Manhole shaft material.</documentation>
+						</annotation>
+						<complexType>
+							<simpleContent>
+								<extension base="us-network:ManholeShaftMaterialValueType">
+									<attribute name="nilReason" type="gml:NilReasonType"/>
+								</extension>
+							</simpleContent>
+						</complexType>
+					</element>
+					<element name="shaftWidth" nillable="true">
+						<annotation>
+							<documentation>-- Definition --
+Manhole shaft width.</documentation>
+						</annotation>
+						<complexType>
+							<simpleContent>
+								<extension base="gml:LengthType">
+									<attribute name="nilReason" type="gml:NilReasonType"/>
+								</extension>
+							</simpleContent>
+						</complexType>
+					</element>
+					<element name="type" nillable="true">
+						<annotation>
+							<documentation>-- Definition --
+Type of the manhole.</documentation>
+						</annotation>
+						<complexType>
+							<simpleContent>
+								<extension base="us-network:ManholeTypeValueType">
+									<attribute name="nilReason" type="gml:NilReasonType"/>
+								</extension>
+							</simpleContent>
+						</complexType>
+					</element>
+				</sequence>
+			</extension>
+		</complexContent>
+	</complexType>
+	<complexType name="ManholePropertyType">
+		<sequence minOccurs="0">
+			<element ref="us-network:Manhole"/>
+		</sequence>
+		<attributeGroup ref="gml:AssociationAttributeGroup"/>
+		<attributeGroup ref="gml:OwnershipAttributeGroup"/>
+	</complexType>
+	<element name="UtilityProperty" type="us-network:UtilityPropertyType" abstract="true" substitutionGroup="net:NetworkProperty">
+		<annotation>
+			<documentation>-- Definition --
+A reference to a property that falls upon the utility network. This property can apply to the whole of the utility network element it is associated with or (for linear spatial objects) be described using linear referencing.</documentation>
+		</annotation>
+	</element>
+	<complexType name="UtilityPropertyType" abstract="true">
+		<complexContent>
+			<extension base="net:NetworkPropertyType">
+				<sequence>
+					<element name="validFrom" nillable="true">
+						<annotation>
+							<documentation>-- Definition --
+The time when the utility property started to exist in the real world.</documentation>
+						</annotation>
+						<complexType>
+							<simpleContent>
+								<extension base="dateTime">
+									<attribute name="nilReason" type="gml:NilReasonType"/>
+								</extension>
+							</simpleContent>
+						</complexType>
+					</element>
+					<element name="validTo" nillable="true" minOccurs="0">
+						<annotation>
+							<documentation>-- Definition --
+The time from which the utility property no longer exists in the real world.</documentation>
+						</annotation>
+						<complexType>
+							<simpleContent>
+								<extension base="dateTime">
+									<attribute name="nilReason" type="gml:NilReasonType"/>
+								</extension>
+							</simpleContent>
+						</complexType>
+					</element>
+				</sequence>
+			</extension>
+		</complexContent>
+	</complexType>
+	<complexType name="UtilityPropertyPropertyType">
+		<sequence minOccurs="0">
+			<element ref="us-network:UtilityProperty"/>
+		</sequence>
+		<attributeGroup ref="gml:AssociationAttributeGroup"/>
+		<attributeGroup ref="gml:OwnershipAttributeGroup"/>
+	</complexType>
+	<simpleType name="PipeCoatingValueType">
+		<annotation>
+			<documentation>-- Definition --
+Type of (material used for) pipe coating.</documentation>
+		</annotation>
+		<union memberTypes="us-network:PipeCoatingValueEnumerationType us-network:PipeCoatingValueOtherType"/>
+	</simpleType>
+	<simpleType name="PipeCoatingValueEnumerationType">
+		<annotation>
+			<documentation>-- Definition --
+Type of (material used for) pipe coating.</documentation>
+		</annotation>
+		<restriction base="string">
+			<enumeration value="CPVC">
+				<annotation>
+					<documentation>-- Definition --
+Collapsed polyvinylchloride (CPVC).</documentation>
+				</annotation>
+			</enumeration>
+			<enumeration value="epoxy">
+				<annotation>
+					<documentation>-- Definition --
+Epoxy.</documentation>
+				</annotation>
+			</enumeration>
+			<enumeration value="HDPE">
+				<annotation>
+					<documentation>-- Definition --
+High density polyethylene (HDPE).</documentation>
+				</annotation>
+			</enumeration>
+			<enumeration value="none">
+				<annotation>
+					<documentation>-- Definition --
+No coating.</documentation>
+				</annotation>
+			</enumeration>
+			<enumeration value="other">
+				<annotation>
+					<documentation>-- Definition --
+Other.</documentation>
+				</annotation>
+			</enumeration>
+			<enumeration value="PVC">
+				<annotation>
+					<documentation>-- Definition --
+Polyvinylchloride (PVC).</documentation>
+				</annotation>
+			</enumeration>
+		</restriction>
+	</simpleType>
+	<simpleType name="PipeCoatingValueOtherType">
+		<restriction base="string">
+			<pattern value="other: \w{2,}"/>
+		</restriction>
+	</simpleType>
+	<element name="OwnerAuthority" type="us-network:OwnerAuthorityType" substitutionGroup="us-network:UtilityProperty">
+		<annotation>
+			<documentation>-- Definition --
+The authority owning the utility element.</documentation>
+		</annotation>
+	</element>
+	<complexType name="OwnerAuthorityType">
+		<complexContent>
+			<extension base="us-network:UtilityPropertyType">
+				<sequence>
+					<element name="authority">
+						<annotation>
+							<documentation>-- Definition --
+Identification of the owner authority.</documentation>
+						</annotation>
+						<complexType>
+							<complexContent>
+								<extension base="gml:AbstractMetadataPropertyType">
+									<sequence>
+										<element ref="gmd:CI_ResponsibleParty"/>
+									</sequence>
+								</extension>
+							</complexContent>
+						</complexType>
+					</element>
+				</sequence>
+			</extension>
+		</complexContent>
+	</complexType>
+	<complexType name="OwnerAuthorityPropertyType">
+		<sequence minOccurs="0">
+			<element ref="us-network:OwnerAuthority"/>
+		</sequence>
+		<attributeGroup ref="gml:AssociationAttributeGroup"/>
+		<attributeGroup ref="gml:OwnershipAttributeGroup"/>
+	</complexType>
+	<simpleType name="PoleFoundationValueType">
+		<annotation>
+			<documentation>-- Definition --
+Available pole foundation types.</documentation>
+		</annotation>
+		<union memberTypes="us-network:PoleFoundationValueEnumerationType us-network:PoleFoundationValueOtherType"/>
+	</simpleType>
+	<simpleType name="PoleFoundationValueEnumerationType">
+		<annotation>
+			<documentation>-- Definition --
+Available pole foundation types.</documentation>
+		</annotation>
+		<restriction base="string">
+			<enumeration value="extraDeepInEarth">
+				<annotation>
+					<documentation>-- Definition --
+Pole foundation set extra deep in the Earth.</documentation>
+				</annotation>
+			</enumeration>
+			<enumeration value="normallyInEarth">
+				<annotation>
+					<documentation>-- Definition --
+Pole foundation set normally in the Earth.</documentation>
+				</annotation>
+			</enumeration>
+			<enumeration value="normalWithConcreteBackfill">
+				<annotation>
+					<documentation>-- Definition --
+Pole foundation set normally, with concrete backfill.</documentation>
+				</annotation>
+			</enumeration>
+			<enumeration value="onConcreteFoundation">
+				<annotation>
+					<documentation>-- Definition --
+Pole foundation set on concrete foundation.</documentation>
+				</annotation>
+			</enumeration>
+			<enumeration value="other">
+				<annotation>
+					<documentation>-- Definition --
+Other.</documentation>
+				</annotation>
+			</enumeration>
+		</restriction>
+	</simpleType>
+	<simpleType name="PoleFoundationValueOtherType">
+		<restriction base="string">
+			<pattern value="other: \w{2,}"/>
+		</restriction>
+	</simpleType>
+	<simpleType name="ManholeCoverShapeValueType">
+		<annotation>
+			<documentation>-- Definition --
+Shape of the manhole cover.</documentation>
+		</annotation>
+		<union memberTypes="us-network:ManholeCoverShapeValueEnumerationType us-network:ManholeCoverShapeValueOtherType"/>
+	</simpleType>
+	<simpleType name="ManholeCoverShapeValueEnumerationType">
+		<annotation>
+			<documentation>-- Definition --
+Shape of the manhole cover.</documentation>
+		</annotation>
+		<restriction base="string">
+			<enumeration value="circle">
+				<annotation>
+					<documentation>-- Definition --
+Circle.</documentation>
+				</annotation>
+			</enumeration>
+			<enumeration value="composite">
+				<annotation>
+					<documentation>-- Definition --
+Composite.</documentation>
+				</annotation>
+			</enumeration>
+			<enumeration value="grid">
+				<annotation>
+					<documentation>-- Definition --
+Grid.</documentation>
+				</annotation>
+			</enumeration>
+			<enumeration value="other">
+				<annotation>
+					<documentation>-- Definition --
+Other.</documentation>
+				</annotation>
+			</enumeration>
+			<enumeration value="rectangle">
+				<annotation>
+					<documentation>-- Definition --
+Rectangle.</documentation>
+				</annotation>
+			</enumeration>
+			<enumeration value="square">
+				<annotation>
+					<documentation>-- Definition --
+Square.</documentation>
+				</annotation>
+			</enumeration>
+		</restriction>
+	</simpleType>
+	<simpleType name="ManholeCoverShapeValueOtherType">
+		<restriction base="string">
+			<pattern value="other: \w{2,}"/>
+		</restriction>
+	</simpleType>
+	<simpleType name="ManholeShaftAccessValueType">
+		<annotation>
+			<documentation>-- Definition --
+Access to the manhole shaft.</documentation>
+		</annotation>
+		<union memberTypes="us-network:ManholeShaftAccessValueEnumerationType us-network:ManholeShaftAccessValueOtherType"/>
+	</simpleType>
+	<simpleType name="ManholeShaftAccessValueEnumerationType">
+		<annotation>
+			<documentation>-- Definition --
+Access to the manhole shaft.</documentation>
+		</annotation>
+		<restriction base="string">
+			<enumeration value="climbingIron">
+				<annotation>
+					<documentation>-- Definition --
+Climbing iron.</documentation>
+				</annotation>
+			</enumeration>
+			<enumeration value="ladder">
+				<annotation>
+					<documentation>-- Definition --
+Ladder.</documentation>
+				</annotation>
+			</enumeration>
+			<enumeration value="ladderFittings">
+				<annotation>
+					<documentation>-- Definition --
+Ladder fittings.</documentation>
+				</annotation>
+			</enumeration>
+			<enumeration value="noAccess">
+				<annotation>
+					<documentation>-- Definition --
+No access.</documentation>
+				</annotation>
+			</enumeration>
+			<enumeration value="stairs">
+				<annotation>
+					<documentation>-- Definition --
+Stairs.</documentation>
+				</annotation>
+			</enumeration>
+			<enumeration value="other">
+				<annotation>
+					<documentation>-- Definition --
+Other.</documentation>
+				</annotation>
+			</enumeration>
+		</restriction>
+	</simpleType>
+	<simpleType name="ManholeShaftAccessValueOtherType">
+		<restriction base="string">
+			<pattern value="other: \w{2,}"/>
+		</restriction>
+	</simpleType>
+	<element name="MaintenanceAuthority" type="us-network:MaintenanceAuthorityType" substitutionGroup="us-network:UtilityProperty">
+		<annotation>
+			<documentation>-- Definition --
+The authority responsible for maintenance of the utility element.</documentation>
+		</annotation>
+	</element>
+	<complexType name="MaintenanceAuthorityType">
+		<complexContent>
+			<extension base="us-network:UtilityPropertyType">
+				<sequence>
+					<element name="authority">
+						<annotation>
+							<documentation>-- Definition --
+Identification of the maintenance authority.</documentation>
+						</annotation>
+						<complexType>
+							<complexContent>
+								<extension base="gml:AbstractMetadataPropertyType">
+									<sequence>
+										<element ref="gmd:CI_ResponsibleParty"/>
+									</sequence>
+								</extension>
+							</complexContent>
+						</complexType>
+					</element>
+				</sequence>
+			</extension>
+		</complexContent>
+	</complexType>
+	<complexType name="MaintenanceAuthorityPropertyType">
+		<sequence minOccurs="0">
+			<element ref="us-network:MaintenanceAuthority"/>
+		</sequence>
+		<attributeGroup ref="gml:AssociationAttributeGroup"/>
+		<attributeGroup ref="gml:OwnershipAttributeGroup"/>
+	</complexType>
+	<element name="UtilityNetwork" type="us-network:UtilityNetworkType" abstract="true" substitutionGroup="net:Network">
+		<annotation>
+			<documentation>-- Definition --
+Collection of network elements that belong to a single type of utility.
+
+-- Description --
+In the real world, objects are connected to each other: an optical cable is connected to a multiplexer that in turn is connected to copper cables connecting into our homes to provide cable TV, telephony and internet access. Using GIS to support network utility management typically involves many types of features that may have connectivity to each other. Topology in GIS is generally defined as the spatial relationship between connecting or adjacent features, and is an essential prerequisite for many spatial operations such as network analysis. Utility networks can be described as NaN (Node-Arc-Node) network using two basic geometric types: points (aka &lt;i&gt;nodes&lt;/i&gt;) and polylines (aka &lt;i&gt;arcs&lt;/i&gt;). NaN topologies can be directed or un-directed, depending on specific type of network (i.e. water networks are directed, while telecommunications networks are not). Such topology structure provides an automated way to handle digitising and editing errors, and enable advanced spatial analyses such as adjacency, connectivity and containment. Infrastructure networks rely on Generic network model developed during Annex I.
+
+NOTE Water, sewer, electricity, telecommunications and oil &amp; gas networks are always considered separate utility network types.</documentation>
+		</annotation>
+	</element>
+	<complexType name="UtilityNetworkType" abstract="true">
+		<complexContent>
+			<extension base="net:NetworkType">
+				<sequence>
+					<element name="maintainer" nillable="true">
+						<annotation>
+							<documentation>-- Definition --
+Organization(s) which maintans the utility network.</documentation>
+						</annotation>
+						<complexType>
+							<complexContent>
+								<extension base="gml:AbstractMemberType">
+									<sequence minOccurs="0">
+										<element ref="us-network:MaintenanceAuthority"/>
+									</sequence>
+									<attributeGroup ref="gml:AssociationAttributeGroup"/>
+								</extension>
+							</complexContent>
+						</complexType>
+					</element>
+					<element name="owner" nillable="true">
+						<annotation>
+							<documentation>-- Definition --
+Organization(s) which owns the utility network.</documentation>
+						</annotation>
+						<complexType>
+							<complexContent>
+								<extension base="gml:AbstractMemberType">
+									<sequence minOccurs="0">
+										<element ref="us-network:OwnerAuthority"/>
+									</sequence>
+									<attributeGroup ref="gml:AssociationAttributeGroup"/>
+								</extension>
+							</complexContent>
+						</complexType>
+					</element>
+				</sequence>
+			</extension>
+		</complexContent>
+	</complexType>
+	<complexType name="UtilityNetworkPropertyType">
+		<sequence minOccurs="0">
+			<element ref="us-network:UtilityNetwork"/>
+		</sequence>
+		<attributeGroup ref="gml:AssociationAttributeGroup"/>
+		<attributeGroup ref="gml:OwnershipAttributeGroup"/>
+	</complexType>
+	<element name="Pole" type="us-network:PoleType" substitutionGroup="us-network:UtilityNodeContainer">
+		<annotation>
+			<documentation>-- Definition --
+Simple pole object which may carry utility objects belonging to either single or multiple utility networks.
+
+-- Description --
+Poles represent node objects that support utility devices and cables. the basic property is that it's container to other utlity objects.</documentation>
+		</annotation>
+	</element>
+	<complexType name="PoleType">
+		<complexContent>
+			<extension base="us-network:UtilityNodeContainerType">
+				<sequence>
+					<element name="diameter" nillable="true">
+						<annotation>
+							<documentation>-- Definition --
+Diameter of the pole.</documentation>
+						</annotation>
+						<complexType>
+							<simpleContent>
+								<extension base="gml:LengthType">
+									<attribute name="nilReason" type="gml:NilReasonType"/>
+								</extension>
+							</simpleContent>
+						</complexType>
+					</element>
+					<element name="foundation" nillable="true">
+						<annotation>
+							<documentation>-- Definition --
+Pole foundation type.</documentation>
+						</annotation>
+						<complexType>
+							<simpleContent>
+								<extension base="us-network:PoleFoundationValueType">
+									<attribute name="nilReason" type="gml:NilReasonType"/>
+								</extension>
+							</simpleContent>
+						</complexType>
+					</element>
+					<element name="hasAnchorGuy" nillable="true">
+						<annotation>
+							<documentation>-- Definition --
+Indicates whether a pole has anchor guy.
+
+-- Description --
+An &lt;i&gt;anchor guy&lt;/i&gt; is a wire or set of wires running from the top of the pole to an anchor installed in the ground and consists of wires, appropriate fastenings and the anchor. The anchor guy is usually installed at a distance from the pole that is 0.25 to 1.5 of the height of the attachment such that the slope is about 1:1. Sidewalk guys have a horizontal strut that is attached about halfway down the pole to provide pedestrian clearance. The guy runs from the top of the pole to the top of the strut, then down to the anchor.</documentation>
+						</annotation>
+						<complexType>
+							<simpleContent>
+								<extension base="boolean">
+									<attribute name="nilReason" type="gml:NilReasonType"/>
+								</extension>
+							</simpleContent>
+						</complexType>
+					</element>
+					<element name="hasPushBrace" nillable="true">
+						<annotation>
+							<documentation>-- Definition --
+Indicates whether a pole has push braces.
+
+-- Description --
+&lt;i&gt;Pushbraces&lt;/i&gt; support or brace a pole when it is not feasible to use an anchor guy. A pushbrace is a pole or other member that is placed at an angle to help support the unbalanced pole and is often used on the inside curve of mountain roads. The poles that pushbraces support are grouped into classes based on their circumference 6 feet from the butt of the structure.</documentation>
+						</annotation>
+						<complexType>
+							<simpleContent>
+								<extension base="boolean">
+									<attribute name="nilReason" type="gml:NilReasonType"/>
+								</extension>
+							</simpleContent>
+						</complexType>
+					</element>
+					<element name="hasRiser" nillable="true">
+						<annotation>
+							<documentation>-- Definition --
+Indicates whether a pole has risers. 
+
+-- Description --
+A &lt;i&gt;riser &lt;/i&gt;is a cylindrical or channel enclosure attached to a pole or structure to provide protection for underground conduit as it transitions from overhead to underground.</documentation>
+						</annotation>
+						<complexType>
+							<simpleContent>
+								<extension base="boolean">
+									<attribute name="nilReason" type="gml:NilReasonType"/>
+								</extension>
+							</simpleContent>
+						</complexType>
+					</element>
+					<element name="height" nillable="true">
+						<annotation>
+							<documentation>-- Definition --
+Pole height.</documentation>
+						</annotation>
+						<complexType>
+							<simpleContent>
+								<extension base="gml:LengthType">
+									<attribute name="nilReason" type="gml:NilReasonType"/>
+								</extension>
+							</simpleContent>
+						</complexType>
+					</element>
+					<element name="material" nillable="true">
+						<annotation>
+							<documentation>-- Definition --
+Pole material.</documentation>
+						</annotation>
+						<complexType>
+							<simpleContent>
+								<extension base="us-network:PoleMaterialValueType">
+									<attribute name="nilReason" type="gml:NilReasonType"/>
+								</extension>
+							</simpleContent>
+						</complexType>
+					</element>
+					<element name="type" nillable="true">
+						<annotation>
+							<documentation>-- Definition --
+Type of the pole.</documentation>
+						</annotation>
+						<complexType>
+							<simpleContent>
+								<extension base="us-network:PoleTypeValueType">
+									<attribute name="nilReason" type="gml:NilReasonType"/>
+								</extension>
+							</simpleContent>
+						</complexType>
+					</element>
+				</sequence>
+			</extension>
+		</complexContent>
+	</complexType>
+	<complexType name="PolePropertyType">
+		<sequence minOccurs="0">
+			<element ref="us-network:Pole"/>
+		</sequence>
+		<attributeGroup ref="gml:AssociationAttributeGroup"/>
+		<attributeGroup ref="gml:OwnershipAttributeGroup"/>
+	</complexType>
+	<simpleType name="UtilityNetworkTypeValueType">
+		<annotation>
+			<documentation>-- Definition --
+Available types of utility networks.</documentation>
+		</annotation>
+		<union memberTypes="us-network:UtilityNetworkTypeValueEnumerationType us-network:UtilityNetworkTypeValueOtherType"/>
+	</simpleType>
+	<simpleType name="UtilityNetworkTypeValueEnumerationType">
+		<annotation>
+			<documentation>-- Definition --
+Available types of utility networks.</documentation>
+		</annotation>
+		<restriction base="string">
+			<enumeration value="eletrical">
+				<annotation>
+					<documentation>-- Definition --
+Electrical network.</documentation>
+				</annotation>
+			</enumeration>
+			<enumeration value="gas">
+				<annotation>
+					<documentation>-- Definition --
+Gas network.</documentation>
+				</annotation>
+			</enumeration>
+			<enumeration value="oil">
+				<annotation>
+					<documentation>-- Definition --
+Oil network.</documentation>
+				</annotation>
+			</enumeration>
+			<enumeration value="sewer">
+				<annotation>
+					<documentation>-- Definition --
+Sewer network.</documentation>
+				</annotation>
+			</enumeration>
+			<enumeration value="telecom">
+				<annotation>
+					<documentation>-- Definition --
+Telecommunications network.</documentation>
+				</annotation>
+			</enumeration>
+			<enumeration value="water">
+				<annotation>
+					<documentation>-- Definition --
+Water network.</documentation>
+				</annotation>
+			</enumeration>
+		</restriction>
+	</simpleType>
+	<simpleType name="UtilityNetworkTypeValueOtherType">
+		<restriction base="string">
+			<pattern value="other: \w{2,}"/>
+		</restriction>
+	</simpleType>
+	<element name="UtilityNode" type="us-network:UtilityNodeType" abstract="true" substitutionGroup="net:Node">
+		<annotation>
+			<documentation>-- Definition --
+A point spatial object which is used for connectivity.
+
+-- Description --
+Nodes are found at both ends of the UtilityLink.</documentation>
+		</annotation>
+	</element>
+	<complexType name="UtilityNodeType" abstract="true">
+		<complexContent>
+			<extension base="net:NodeType">
+				<sequence>
+					<element name="comment" type="gmd:PT_FreeText_PropertyType" nillable="true">
+						<annotation>
+							<documentation>-- Definition --
+Arbitrary comment on utility object.</documentation>
+						</annotation>
+					</element>
+					<element name="currentStatus" nillable="true">
+						<annotation>
+							<documentation>-- Definition --
+The status of an utility object with regards to its completion and use.</documentation>
+						</annotation>
+						<complexType>
+							<simpleContent>
+								<extension base="gml:CodeType">
+									<attribute name="nilReason" type="gml:NilReasonType"/>
+								</extension>
+							</simpleContent>
+						</complexType>
+					</element>
+					<element name="facilityReference" nillable="true">
+						<annotation>
+							<documentation>-- Definition --
+Reference to a facility this utility network element belongs to (or is part of).</documentation>
+						</annotation>
+						<complexType>
+							<complexContent>
+								<extension base="gml:AbstractMemberType">
+									<sequence minOccurs="0">
+										<element ref="us-waste:Facility"/>
+									</sequence>
+									<attributeGroup ref="gml:AssociationAttributeGroup"/>
+								</extension>
+							</complexContent>
+						</complexType>
+					</element>
+					<element name="manufacturerCode" type="gmd:PT_FreeText_PropertyType" nillable="true">
+						<annotation>
+							<documentation>-- Definition --
+Code of the utility object as defined by the manufacturer.</documentation>
+						</annotation>
+					</element>
+					<element name="manufacturerName" type="gmd:PT_FreeText_PropertyType" nillable="true">
+						<annotation>
+							<documentation>-- Definition --
+Name of the utility object manufacturer.</documentation>
+						</annotation>
+					</element>
+					<element name="objectName" nillable="true">
+						<annotation>
+							<documentation>-- Definition --
+A name or identifier that is used to identify the utility network object in the real world. It provides a 'key' for implicitly associating different representations of the object.</documentation>
+						</annotation>
+						<complexType>
+							<complexContent>
+								<extension base="gml:AbstractMemberType">
+									<sequence minOccurs="0">
+										<element ref="us-network:UtilityName"/>
+									</sequence>
+									<attributeGroup ref="gml:AssociationAttributeGroup"/>
+								</extension>
+							</complexContent>
+						</complexType>
+					</element>
+					<element name="reconstructionDate" nillable="true">
+						<annotation>
+							<documentation>-- Definition --
+The time when (if) the utility object was reconstructed or repaired.</documentation>
+						</annotation>
+						<complexType>
+							<simpleContent>
+								<extension base="dateTime">
+									<attribute name="nilReason" type="gml:NilReasonType"/>
+								</extension>
+							</simpleContent>
+						</complexType>
+					</element>
+					<element name="validFrom" nillable="true">
+						<annotation>
+							<documentation>-- Definition --
+The time when the utility object started to exist in the real world.</documentation>
+						</annotation>
+						<complexType>
+							<simpleContent>
+								<extension base="dateTime">
+									<attribute name="nilReason" type="gml:NilReasonType"/>
+								</extension>
+							</simpleContent>
+						</complexType>
+					</element>
+					<element name="validTo" nillable="true">
+						<annotation>
+							<documentation>-- Definition --
+The time from which the utility object no longer exists in the real world.</documentation>
+						</annotation>
+						<complexType>
+							<simpleContent>
+								<extension base="dateTime">
+									<attribute name="nilReason" type="gml:NilReasonType"/>
+								</extension>
+							</simpleContent>
+						</complexType>
+					</element>
+					<element name="verticalPosition" nillable="true">
+						<annotation>
+							<documentation>-- Definition --
+Vertical position of the utility object relative to ground.</documentation>
+						</annotation>
+						<complexType>
+							<simpleContent>
+								<extension base="base:VerticalPositionValueType">
+									<attribute name="nilReason" type="gml:NilReasonType"/>
+								</extension>
+							</simpleContent>
+						</complexType>
+					</element>
+					<element name="elevation" nillable="true">
+						<annotation>
+							<documentation>-- Definition --
+Relative height/depth with regards to the terrain surface.
+
+-- Description --
+Relative elevation of a utility node represents its relative height above a fixed reference point, most commonly terrain surface level. Relative elevation can be also negative, in case of  underground feature. Used if vertical postion is either underground or suspendedOrElevated.
+
+NOTE Relative elevation is measured differently depending on the type of utility feature. For example, conduits are measured from the top of the conduit (cable, duct...) to the</documentation>
+						</annotation>
+						<complexType>
+							<complexContent>
+								<extension base="gml:AbstractMemberType">
+									<sequence minOccurs="0">
+										<element ref="el-vec:ElevationPoint"/>
+									</sequence>
+									<attributeGroup ref="gml:AssociationAttributeGroup"/>
+								</extension>
+							</complexContent>
+						</complexType>
+					</element>
+					<element name="heading" nillable="true">
+						<annotation>
+							<documentation>-- Definition --
+Heading (angle value) of an utility network node.
+
+-- Description --
+NOTE A directed angle together with a signed measure of the angle. Represents rotation with regards to True North. True North is the direction along the Earth's surface towards the geographic North Pole.</documentation>
+						</annotation>
+						<complexType>
+							<simpleContent>
+								<extension base="gml:AngleType">
+									<attribute name="nilReason" type="gml:NilReasonType"/>
+								</extension>
+							</simpleContent>
+						</complexType>
+					</element>
+				</sequence>
+			</extension>
+		</complexContent>
+	</complexType>
+	<complexType name="UtilityNodePropertyType">
+		<sequence minOccurs="0">
+			<element ref="us-network:UtilityNode"/>
+		</sequence>
+		<attributeGroup ref="gml:AssociationAttributeGroup"/>
+		<attributeGroup ref="gml:OwnershipAttributeGroup"/>
+	</complexType>
+	<element name="UtilityLink" type="us-network:UtilityLinkType" abstract="true" substitutionGroup="net:Link">
+		<annotation>
+			<documentation>-- Definition --
+A linear spatial object that describes the geometry and connectivity of an utility network between two points in the network.
+
+Utility links may represent pipes, ducts, cables, etc.</documentation>
+		</annotation>
+	</element>
+	<complexType name="UtilityLinkType" abstract="true">
+		<complexContent>
+			<extension base="net:LinkType">
+				<sequence>
+					<element name="comment" type="gmd:PT_FreeText_PropertyType" nillable="true">
+						<annotation>
+							<documentation>-- Definition --
+Arbitrary comment on utility object.</documentation>
+						</annotation>
+					</element>
+					<element name="currentStatus" nillable="true">
+						<annotation>
+							<documentation>-- Definition --
+The status of an utility object with regards to its completion and use.</documentation>
+						</annotation>
+						<complexType>
+							<simpleContent>
+								<extension base="gml:CodeType">
+									<attribute name="nilReason" type="gml:NilReasonType"/>
+								</extension>
+							</simpleContent>
+						</complexType>
+					</element>
+					<element name="facilityReference" nillable="true">
+						<annotation>
+							<documentation>-- Definition --
+Reference to a facility this utility network element belongs to (or is part of).</documentation>
+						</annotation>
+						<complexType>
+							<complexContent>
+								<extension base="gml:AbstractMemberType">
+									<sequence minOccurs="0">
+										<element ref="us-waste:Facility"/>
+									</sequence>
+									<attributeGroup ref="gml:AssociationAttributeGroup"/>
+								</extension>
+							</complexContent>
+						</complexType>
+					</element>
+					<element name="manufacturerCode" type="gmd:PT_FreeText_PropertyType" nillable="true">
+						<annotation>
+							<documentation>-- Definition --
+Code of the utility object as defined by the manufacturer.</documentation>
+						</annotation>
+					</element>
+					<element name="manufacturerName" type="gmd:PT_FreeText_PropertyType" nillable="true">
+						<annotation>
+							<documentation>-- Definition --
+Name of the utility object manufacturer.</documentation>
+						</annotation>
+					</element>
+					<element name="objectName" nillable="true">
+						<annotation>
+							<documentation>-- Definition --
+A name or identifier that is used to identify the utility network object in the real world. It provides a 'key' for implicitly associating different representations of the object.</documentation>
+						</annotation>
+						<complexType>
+							<complexContent>
+								<extension base="gml:AbstractMemberType">
+									<sequence minOccurs="0">
+										<element ref="us-network:UtilityName"/>
+									</sequence>
+									<attributeGroup ref="gml:AssociationAttributeGroup"/>
+								</extension>
+							</complexContent>
+						</complexType>
+					</element>
+					<element name="reconstructionDate" nillable="true">
+						<annotation>
+							<documentation>-- Definition --
+The time when (if) the utility object was reconstructed or repaired.</documentation>
+						</annotation>
+						<complexType>
+							<simpleContent>
+								<extension base="dateTime">
+									<attribute name="nilReason" type="gml:NilReasonType"/>
+								</extension>
+							</simpleContent>
+						</complexType>
+					</element>
+					<element name="validFrom" nillable="true">
+						<annotation>
+							<documentation>-- Definition --
+The time when the utility object started to exist in the real world.</documentation>
+						</annotation>
+						<complexType>
+							<simpleContent>
+								<extension base="dateTime">
+									<attribute name="nilReason" type="gml:NilReasonType"/>
+								</extension>
+							</simpleContent>
+						</complexType>
+					</element>
+					<element name="validTo" nillable="true">
+						<annotation>
+							<documentation>-- Definition --
+The time from which the utility object no longer exists in the real world.</documentation>
+						</annotation>
+						<complexType>
+							<simpleContent>
+								<extension base="dateTime">
+									<attribute name="nilReason" type="gml:NilReasonType"/>
+								</extension>
+							</simpleContent>
+						</complexType>
+					</element>
+					<element name="verticalPosition" nillable="true">
+						<annotation>
+							<documentation>-- Definition --
+Vertical position of the utility object relative to ground.</documentation>
+						</annotation>
+						<complexType>
+							<simpleContent>
+								<extension base="base:VerticalPositionValueType">
+									<attribute name="nilReason" type="gml:NilReasonType"/>
+								</extension>
+							</simpleContent>
+						</complexType>
+					</element>
+					<element name="elevation" nillable="true">
+						<annotation>
+							<documentation>-- Definition --
+Relative height/depth with regards to the terrain surface.
+
+-- Description --
+Relative elevation of a utility node represents its relative height above a fixed reference point, most commonly terrain surface level. Relative elevation can be also negative, in case of  underground feature. Used if vertical postion is either underground or suspendedOrElevated.
+
+NOTE Relative elevation is measured differently depending on the type of utility feature. For example, conduits are measured from the top of the conduit (cable, duct...) to the</documentation>
+						</annotation>
+						<complexType>
+							<complexContent>
+								<extension base="gml:AbstractMemberType">
+									<sequence minOccurs="0">
+										<element ref="el-vec:ElevationLine"/>
+									</sequence>
+									<attributeGroup ref="gml:AssociationAttributeGroup"/>
+								</extension>
+							</complexContent>
+						</complexType>
+					</element>
+					<element name="length" nillable="true">
+						<annotation>
+							<documentation>-- Definition --
+Length of utility network link.
+
+-- Description --
+This length is measured. Computed length is part of the geometry itself.</documentation>
+						</annotation>
+						<complexType>
+							<simpleContent>
+								<extension base="gml:LengthType">
+									<attribute name="nilReason" type="gml:NilReasonType"/>
+								</extension>
+							</simpleContent>
+						</complexType>
+					</element>
+				</sequence>
+			</extension>
+		</complexContent>
+	</complexType>
+	<complexType name="UtilityLinkPropertyType">
+		<sequence minOccurs="0">
+			<element ref="us-network:UtilityLink"/>
+		</sequence>
+		<attributeGroup ref="gml:AssociationAttributeGroup"/>
+		<attributeGroup ref="gml:OwnershipAttributeGroup"/>
+	</complexType>
+	<element name="Duct" type="us-network:DuctType" substitutionGroup="us-network:UtilityLinkSet">
+		<annotation>
+			<documentation>-- Definition --
+A utility link set used to convey fluids (solids, liquids or gases) from one location to another.
+
+-- Description --
+A Duct (or Conduit, or Duct-bank, or Wireway) is a linear object which belongs to the structural network. It is the outermost casing. A Duct may contain Pipe(s) or other Duct(s) and Innerduct(s). Duct is a concrete feature class that contains information about the position and characteristics of ducts as seen from a manhole, vault, or a cross section of a trench and duct.</documentation>
+		</annotation>
+	</element>
+	<complexType name="DuctType">
+		<complexContent>
+			<extension base="us-network:UtilityLinkSetType">
+				<sequence>
+					<element name="casing" nillable="true">
+						<annotation>
+							<documentation>-- Definition --
+Type of the Duct casing.</documentation>
+						</annotation>
+						<complexType>
+							<simpleContent>
+								<extension base="us-network:DuctCasingValueType">
+									<attribute name="nilReason" type="gml:NilReasonType"/>
+								</extension>
+							</simpleContent>
+						</complexType>
+					</element>
+					<element name="columns" nillable="true">
+						<annotation>
+							<documentation>-- Definition --
+Number of pipe columns.</documentation>
+						</annotation>
+						<complexType>
+							<simpleContent>
+								<extension base="integer">
+									<attribute name="nilReason" type="gml:NilReasonType"/>
+								</extension>
+							</simpleContent>
+						</complexType>
+					</element>
+					<element name="hasWarningTape" nillable="true">
+						<annotation>
+							<documentation>-- Definition --
+Indicates whether duct has attached warning tape.
+
+-- Description --
+Underground &lt;i&gt;warning tape&lt;/i&gt; (UWT) is a coloured polyethylene underground marker tape with a printed warning message for marking underground buried services.</documentation>
+						</annotation>
+						<complexType>
+							<simpleContent>
+								<extension base="boolean">
+									<attribute name="nilReason" type="gml:NilReasonType"/>
+								</extension>
+							</simpleContent>
+						</complexType>
+					</element>
+					<element name="height" nillable="true">
+						<annotation>
+							<documentation>-- Definition --
+Duct height.</documentation>
+						</annotation>
+						<complexType>
+							<simpleContent>
+								<extension base="gml:LengthType">
+									<attribute name="nilReason" type="gml:NilReasonType"/>
+								</extension>
+							</simpleContent>
+						</complexType>
+					</element>
+					<element name="rows" nillable="true">
+						<annotation>
+							<documentation>-- Definition --
+Number of pipe rows.</documentation>
+						</annotation>
+						<complexType>
+							<simpleContent>
+								<extension base="integer">
+									<attribute name="nilReason" type="gml:NilReasonType"/>
+								</extension>
+							</simpleContent>
+						</complexType>
+					</element>
+					<element name="spacer" nillable="true">
+						<annotation>
+							<documentation>-- Definition --
+Spacer size, in case there's built-in spacers.</documentation>
+						</annotation>
+						<complexType>
+							<simpleContent>
+								<extension base="gml:LengthType">
+									<attribute name="nilReason" type="gml:NilReasonType"/>
+								</extension>
+							</simpleContent>
+						</complexType>
+					</element>
+					<element name="width" nillable="true">
+						<annotation>
+							<documentation>-- Definition --
+Duct width.</documentation>
+						</annotation>
+						<complexType>
+							<simpleContent>
+								<extension base="gml:LengthType">
+									<attribute name="nilReason" type="gml:NilReasonType"/>
+								</extension>
+							</simpleContent>
+						</complexType>
+					</element>
+					<element name="pipes" type="us-network:PipePropertyType" maxOccurs="unbounded">
+						<annotation>
+							<documentation>-- Definition --
+The set of pipes that constitute the duct bank.</documentation>
+						</annotation>
+					</element>
+					<element name="ducts" nillable="true" minOccurs="0" maxOccurs="unbounded">
+						<annotation>
+							<documentation>-- Definition --
+A single duct or set of ducts that constitute the inner-duct.</documentation>
+						</annotation>
+						<complexType>
+							<sequence minOccurs="0">
+								<element ref="us-network:Duct"/>
+							</sequence>
+							<attributeGroup ref="gml:AssociationAttributeGroup"/>
+							<attributeGroup ref="gml:OwnershipAttributeGroup"/>
+						</complexType>
+					</element>
+				</sequence>
+			</extension>
+		</complexContent>
+	</complexType>
+	<complexType name="DuctPropertyType">
+		<sequence minOccurs="0">
+			<element ref="us-network:Duct"/>
+		</sequence>
+		<attributeGroup ref="gml:AssociationAttributeGroup"/>
+		<attributeGroup ref="gml:OwnershipAttributeGroup"/>
+	</complexType>
+	<element name="UtilityLinkSequence" type="us-network:UtilityLinkSequenceType" abstract="true" substitutionGroup="net:LinkSequence">
+		<annotation>
+			<documentation>-- Definition --
+A linear spatial object, composed of an ordered collection of utility links, which represents a continuous path in an utility network without any branches (monotone chain). The element has a defined beginning and end and every position on the utility link sequence is identifiable with one single parameter such as length. It describes an element of the utility network, characterized by one or more thematic identifiers and/or properties.</documentation>
+		</annotation>
+	</element>
+	<complexType name="UtilityLinkSequenceType" abstract="true">
+		<complexContent>
+			<extension base="net:LinkSequenceType">
+				<sequence>
+					<element name="comment" type="gmd:PT_FreeText_PropertyType" nillable="true">
+						<annotation>
+							<documentation>-- Definition --
+Arbitrary comment on utility object.</documentation>
+						</annotation>
+					</element>
+					<element name="currentStatus" nillable="true">
+						<annotation>
+							<documentation>-- Definition --
+The status of an utility object with regards to its completion and use.</documentation>
+						</annotation>
+						<complexType>
+							<simpleContent>
+								<extension base="gml:CodeType">
+									<attribute name="nilReason" type="gml:NilReasonType"/>
+								</extension>
+							</simpleContent>
+						</complexType>
+					</element>
+					<element name="facilityReference" nillable="true">
+						<annotation>
+							<documentation>-- Definition --
+Reference to a facility this utility network element belongs to (or is part of).</documentation>
+						</annotation>
+						<complexType>
+							<complexContent>
+								<extension base="gml:AbstractMemberType">
+									<sequence minOccurs="0">
+										<element ref="us-waste:Facility"/>
+									</sequence>
+									<attributeGroup ref="gml:AssociationAttributeGroup"/>
+								</extension>
+							</complexContent>
+						</complexType>
+					</element>
+					<element name="manufacturerCode" type="gmd:PT_FreeText_PropertyType" nillable="true">
+						<annotation>
+							<documentation>-- Definition --
+Code of the utility object as defined by the manufacturer.</documentation>
+						</annotation>
+					</element>
+					<element name="manufacturerName" type="gmd:PT_FreeText_PropertyType" nillable="true">
+						<annotation>
+							<documentation>-- Definition --
+Name of the utility object manufacturer.</documentation>
+						</annotation>
+					</element>
+					<element name="objectName" nillable="true">
+						<annotation>
+							<documentation>-- Definition --
+A name or identifier that is used to identify the utility network object in the real world. It provides a 'key' for implicitly associating different representations of the object.</documentation>
+						</annotation>
+						<complexType>
+							<complexContent>
+								<extension base="gml:AbstractMemberType">
+									<sequence minOccurs="0">
+										<element ref="us-network:UtilityName"/>
+									</sequence>
+									<attributeGroup ref="gml:AssociationAttributeGroup"/>
+								</extension>
+							</complexContent>
+						</complexType>
+					</element>
+					<element name="reconstructionDate" nillable="true">
+						<annotation>
+							<documentation>-- Definition --
+The time when (if) the utility object was reconstructed or repaired.</documentation>
+						</annotation>
+						<complexType>
+							<simpleContent>
+								<extension base="dateTime">
+									<attribute name="nilReason" type="gml:NilReasonType"/>
+								</extension>
+							</simpleContent>
+						</complexType>
+					</element>
+					<element name="validFrom" nillable="true">
+						<annotation>
+							<documentation>-- Definition --
+The time when the utility object started to exist in the real world.</documentation>
+						</annotation>
+						<complexType>
+							<simpleContent>
+								<extension base="dateTime">
+									<attribute name="nilReason" type="gml:NilReasonType"/>
+								</extension>
+							</simpleContent>
+						</complexType>
+					</element>
+					<element name="validTo" nillable="true">
+						<annotation>
+							<documentation>-- Definition --
+The time from which the utility object no longer exists in the real world.</documentation>
+						</annotation>
+						<complexType>
+							<simpleContent>
+								<extension base="dateTime">
+									<attribute name="nilReason" type="gml:NilReasonType"/>
+								</extension>
+							</simpleContent>
+						</complexType>
+					</element>
+					<element name="verticalPosition" nillable="true">
+						<annotation>
+							<documentation>-- Definition --
+Vertical position of the utility object relative to ground.</documentation>
+						</annotation>
+						<complexType>
+							<simpleContent>
+								<extension base="base:VerticalPositionValueType">
+									<attribute name="nilReason" type="gml:NilReasonType"/>
+								</extension>
+							</simpleContent>
+						</complexType>
+					</element>
+					<element name="elevation" nillable="true">
+						<annotation>
+							<documentation>-- Definition --
+Relative height/depth with regards to the terrain surface.
+
+-- Description --
+Relative elevation of a utility node represents its relative height above a fixed reference point, most commonly terrain surface level. Relative elevation can be also negative, in case of  underground feature. Used if vertical postion is either underground or suspendedOrElevated.
+
+NOTE Relative elevation is measured differently depending on the type of utility feature. For example, conduits are measured from the top of the conduit (cable, duct...) to the</documentation>
+						</annotation>
+						<complexType>
+							<complexContent>
+								<extension base="gml:AbstractMemberType">
+									<sequence minOccurs="0">
+										<element ref="el-vec:ElevationLine"/>
+									</sequence>
+									<attributeGroup ref="gml:AssociationAttributeGroup"/>
+								</extension>
+							</complexContent>
+						</complexType>
+					</element>
+					<element name="length" nillable="true">
+						<annotation>
+							<documentation>-- Definition --
+Length of utility network link sequence.
+
+-- Description --
+This length is measured. Computed length is part of the geometry itself.</documentation>
+						</annotation>
+						<complexType>
+							<simpleContent>
+								<extension base="gml:LengthType">
+									<attribute name="nilReason" type="gml:NilReasonType"/>
+								</extension>
+							</simpleContent>
+						</complexType>
+					</element>
+				</sequence>
+			</extension>
+		</complexContent>
+	</complexType>
+	<complexType name="UtilityLinkSequencePropertyType">
+		<sequence minOccurs="0">
+			<element ref="us-network:UtilityLinkSequence"/>
+		</sequence>
+		<attributeGroup ref="gml:AssociationAttributeGroup"/>
+		<attributeGroup ref="gml:OwnershipAttributeGroup"/>
+	</complexType>
+	<simpleType name="PoleTypeValueType">
+		<annotation>
+			<documentation>-- Definition --
+Available types of the pole.</documentation>
+		</annotation>
+		<union memberTypes="us-network:PoleTypeValueEnumerationType us-network:PoleTypeValueOtherType"/>
+	</simpleType>
+	<simpleType name="PoleTypeValueEnumerationType">
+		<annotation>
+			<documentation>-- Definition --
+Available types of the pole.</documentation>
+		</annotation>
+		<restriction base="string">
+			<enumeration value="hFrame">
+				<annotation>
+					<documentation>-- Definition --
+H-frame pole.</documentation>
+				</annotation>
+			</enumeration>
+			<enumeration value="other">
+				<annotation>
+					<documentation>-- Definition --
+Other.</documentation>
+				</annotation>
+			</enumeration>
+			<enumeration value="standard">
+				<annotation>
+					<documentation>-- Definition --
+Standard pole.</documentation>
+				</annotation>
+			</enumeration>
+			<enumeration value="streetLight">
+				<annotation>
+					<documentation>-- Definition --
+Street light pole.</documentation>
+				</annotation>
+			</enumeration>
+			<enumeration value="tower">
+				<annotation>
+					<documentation>-- Definition --
+Tower (not a pole).</documentation>
+				</annotation>
+			</enumeration>
+		</restriction>
+	</simpleType>
+	<simpleType name="PoleTypeValueOtherType">
+		<restriction base="string">
+			<pattern value="other: \w{2,}"/>
+		</restriction>
+	</simpleType>
+	<simpleType name="PipeMaterialValueType">
+		<annotation>
+			<documentation>-- Definition --
+Material used to build a pipe.</documentation>
+		</annotation>
+		<union memberTypes="us-network:PipeMaterialValueEnumerationType us-network:PipeMaterialValueOtherType"/>
+	</simpleType>
+	<simpleType name="PipeMaterialValueEnumerationType">
+		<annotation>
+			<documentation>-- Definition --
+Material used to build a pipe.</documentation>
+		</annotation>
+		<restriction base="string">
+			<enumeration value="ABS">
+				<annotation>
+					<documentation>-- Definition --
+Acrylonitrile butadiene styrene (ABS).</documentation>
+				</annotation>
+			</enumeration>
+			<enumeration value="asbestos">
+				<annotation>
+					<documentation>-- Definition --
+Asbestos.</documentation>
+				</annotation>
+			</enumeration>
+			<enumeration value="blackIron">
+				<annotation>
+					<documentation>-- Definition --
+Iron without any finish on it, gray-black in color.</documentation>
+				</annotation>
+			</enumeration>
+			<enumeration value="blackSteel">
+				<annotation>
+					<documentation>-- Definition --
+Steel with a surface layer of dark coloured iron oxides.</documentation>
+				</annotation>
+			</enumeration>
+			<enumeration value="castIron">
+				<annotation>
+					<documentation>-- Definition --
+Iron with a high Carbon content (above 2%).</documentation>
+				</annotation>
+			</enumeration>
+			<enumeration value="clay">
+				<annotation>
+					<documentation>-- Definition --
+Clay.</documentation>
+				</annotation>
+			</enumeration>
+			<enumeration value="compositeConcrete">
+				<annotation>
+					<documentation>-- Definition --
+Composite concrete.</documentation>
+				</annotation>
+			</enumeration>
+			<enumeration value="concrete">
+				<annotation>
+					<documentation>-- Definition --
+Concrete.</documentation>
+				</annotation>
+			</enumeration>
+			<enumeration value="CPVC">
+				<annotation>
+					<documentation>-- Definition --
+Chlorinated polyvinyl chloride (CPVC).</documentation>
+				</annotation>
+			</enumeration>
+			<enumeration value="FRP">
+				<annotation>
+					<documentation>-- Definition --
+Fibre reinforced plastic (FRP).</documentation>
+				</annotation>
+			</enumeration>
+			<enumeration value="galvanizedSteel">
+				<annotation>
+					<documentation>-- Definition --
+Galvanized steel.</documentation>
+				</annotation>
+			</enumeration>
+			<enumeration value="masonry">
+				<annotation>
+					<documentation>-- Definition --
+Masonry.</documentation>
+				</annotation>
+			</enumeration>
+			<enumeration value="other">
+				<annotation>
+					<documentation>-- Definition --
+Other.</documentation>
+				</annotation>
+			</enumeration>
+			<enumeration value="PB">
+				<annotation>
+					<documentation>-- Definition --
+Polybutylene (PB).</documentation>
+				</annotation>
+			</enumeration>
+			<enumeration value="PE">
+				<annotation>
+					<documentation>-- Definition --
+Polyethylene (PE).</documentation>
+				</annotation>
+			</enumeration>
+			<enumeration value="PEX">
+				<annotation>
+					<documentation>-- Definition --
+Cross-linked high-density polyethylene (PEX).</documentation>
+				</annotation>
+			</enumeration>
+			<enumeration value="PP">
+				<annotation>
+					<documentation>-- Definition --
+Polypropylene (PP).</documentation>
+				</annotation>
+			</enumeration>
+			<enumeration value="prestressedReinforcedConcrete">
+				<annotation>
+					<documentation>-- Definition --
+Prestressed reinforced concrete.</documentation>
+				</annotation>
+			</enumeration>
+			<enumeration value="PVC">
+				<annotation>
+					<documentation>-- Definition --
+Polyvinyl chloride (PVC).</documentation>
+				</annotation>
+			</enumeration>
+			<enumeration value="reinforcedConcrete">
+				<annotation>
+					<documentation>-- Definition --
+Reinforced concrete.</documentation>
+				</annotation>
+			</enumeration>
+			<enumeration value="RPMP">
+				<annotation>
+					<documentation>-- Definition --
+Reinforced polymer mortar (RPMP).</documentation>
+				</annotation>
+			</enumeration>
+			<enumeration value="steel">
+				<annotation>
+					<documentation>-- Definition --
+Steel.</documentation>
+				</annotation>
+			</enumeration>
+			<enumeration value="terracota">
+				<annotation>
+					<documentation>-- Definition --
+Terracota.</documentation>
+				</annotation>
+			</enumeration>
+			<enumeration value="wood">
+				<annotation>
+					<documentation>-- Definition --
+Wood.</documentation>
+				</annotation>
+			</enumeration>
+		</restriction>
+	</simpleType>
+	<simpleType name="PipeMaterialValueOtherType">
+		<restriction base="string">
+			<pattern value="other: \w{2,}"/>
+		</restriction>
+	</simpleType>
+</schema>

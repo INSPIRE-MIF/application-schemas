@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<schema xmlns="http://www.w3.org/2001/XMLSchema" xmlns:us-net-common-core="http://inspire.ec.europa.eu/schemas/us-net-common-core/3.0rc2" xmlns:us-net-core="http://inspire.ec.europa.eu/schemas/us-net-core/3.0rc2" xmlns:us-net-el-core="http://inspire.ec.europa.eu/schemas/us-net-el-core/3.0rc2" xmlns:us-net-ogc-core="http://inspire.ec.europa.eu/schemas/us-net-ogc-core/3.0rc2" xmlns:us-net-sw-core="http://inspire.ec.europa.eu/schemas/us-net-sw-core/3.0rc2" xmlns:us-net-tc-core="http://inspire.ec.europa.eu/schemas/us-net-tc-core/3.0rc2" xmlns:us-net-th-core="http://inspire.ec.europa.eu/schemas/us-net-th-core/3.0rc2" xmlns:us-net-wa-core="http://inspire.ec.europa.eu/schemas/us-net-wa-core/3.0rc2" targetNamespace="http://inspire.ec.europa.eu/schemas/us-net-core/3.0rc2" elementFormDefault="qualified" version="3.0rc2">
+	<import namespace="http://inspire.ec.europa.eu/schemas/us-net-common-core/3.0rc2" schemaLocation="https://inspire.ec.europa.eu/draft-schemas/us-net-common-core/3.0rc2/UtilityNetworksCommonCore.xsd"/>
+	<import namespace="http://inspire.ec.europa.eu/schemas/us-net-el-core/3.0rc2" schemaLocation="ElectricityNetworkCore.xsd"/>
+	<import namespace="http://inspire.ec.europa.eu/schemas/us-net-ogc-core/3.0rc2" schemaLocation="https://inspire.ec.europa.eu/schemas/us-net-ogc-core/3.0rc2/OilGasChemicalsNetworkCore.xsd"/>
+	<import namespace="http://inspire.ec.europa.eu/schemas/us-net-sw-core/3.0rc2" schemaLocation="https://inspire.ec.europa.eu/schemas/us-net-sw-core/3.0rc2/SewerNetworkCore.xsd"/>
+	<import namespace="http://inspire.ec.europa.eu/schemas/us-net-tc-core/3.0rc2" schemaLocation="https://inspire.ec.europa.eu/schemas/us-net-tc-core/3.0rc2/TelecommunicationsNetworkCore.xsd"/>
+	<import namespace="http://inspire.ec.europa.eu/schemas/us-net-th-core/3.0rc2" schemaLocation="https://inspire.ec.europa.eu/schemas/us-net-th-core/3.0rc2/ThermalNetworkCore.xsd"/>
+	<import namespace="http://inspire.ec.europa.eu/schemas/us-net-wa-core/3.0rc2" schemaLocation="https://inspire.ec.europa.eu/schemas/us-net-wa-core/3.0rc2/WaterNetworkCore.xsd"/>
+	<!--XML Schema document created by ShapeChange-->
+</schema>

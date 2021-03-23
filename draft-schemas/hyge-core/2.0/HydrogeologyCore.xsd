@@ -1,0 +1,1613 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<schema xmlns="http://www.w3.org/2001/XMLSchema" xmlns:base="urn:x-inspire:specification:gmlas:BaseTypes:3.2" xmlns:cgu="http://xmlns.geosciml.org/Utilities/3.0" xmlns:gbh="http://xmlns.geosciml.org/Borehole/3.0" xmlns:ge="http://inspire.jrc.ec.europa.eu/schemas/ge/2.0" xmlns:gmd="http://www.isotc211.org/2005/gmd" xmlns:gml="http://www.opengis.net/gml/3.2" xmlns:gsml="http://xmlns.geosciml.org/GeoSciML-Core/3.0" xmlns:hyge-core="http://inspire.jrc.ec.europa.eu/schemas/hyge-core/2.0" xmlns:ef="http://inspire.jrc.ec.europa.eu/schemas/ef/2.0" targetNamespace="http://inspire.jrc.ec.europa.eu/schemas/hyge-core/2.0" elementFormDefault="qualified" version="2.0">
+	<import namespace="http://inspire.jrc.ec.europa.eu/schemas/ge/2.0" schemaLocation="https://inspire.ec.europa.eu/draft-schemas/ge/2.0/Geology.xsd"/>
+	<import namespace="http://www.isotc211.org/2005/gmd" schemaLocation="http://schemas.opengis.net/iso/19139/20070417/gmd/gmd.xsd"/>
+	<import namespace="http://www.opengis.net/gml/3.2" schemaLocation="http://schemas.opengis.net/gml/3.2.1/gml.xsd"/>
+	<import namespace="http://xmlns.geosciml.org/Borehole/3.0" schemaLocation="http://inspire-twg.jrc.ec.europa.eu/annexII+III/schemas/borehole/3.0/borehole.xsd"/>
+	<import namespace="http://xmlns.geosciml.org/GeoSciML-Core/3.0" schemaLocation="http://inspire-twg.jrc.ec.europa.eu/annexII+III/schemas/geosciml-core/3.0/geosciml-core.xsd"/>
+	<import namespace="http://xmlns.geosciml.org/Utilities/3.0" schemaLocation="http://inspire-twg.jrc.ec.europa.eu/annexII+III/schemas/cgiutilities/3.0/cgiUtilities.xsd"/>
+	<import namespace="urn:x-inspire:specification:gmlas:BaseTypes:3.2" schemaLocation="https://inspire.ec.europa.eu/schemas/base/3.2/BaseTypes.xsd"/>
+	<import namespace="http://inspire.jrc.ec.europa.eu/schemas/ef/2.0" schemaLocation="https://inspire.ec.europa.eu/draft-schemas/ef/2.0/EnvironmentalMonitoringFacilities.xsd"/>
+	<!--XML Schema document created by ShapeChange-->
+	<element name="HydrogeologicalObjectManMade" type="hyge-core:HydrogeologicalObjectManMadeType" abstract="true" substitutionGroup="hyge-core:HydrogeologicalObject">
+		<annotation>
+			<documentation>-- Definition --
+A man-made facility, where interaction occurs with the hydrogeological system.
+
+-- Note --
+Examples of man-made hydrogeological objects are: groundwater abstraction well, groundwater monitoring station or groundwater monitoring well.</documentation>
+		</annotation>
+	</element>
+	<complexType name="HydrogeologicalObjectManMadeType" abstract="true">
+		<complexContent>
+			<extension base="hyge-core:HydrogeologicalObjectType">
+				<sequence>
+					<element name="validFrom" type="dateTime">
+						<annotation>
+							<documentation>-- Definition --
+The date the object started being used</documentation>
+						</annotation>
+					</element>
+					<element name="validTo" type="dateTime" minOccurs="0">
+						<annotation>
+							<documentation>-- Definition --
+The date the object ceased being used</documentation>
+						</annotation>
+					</element>
+				</sequence>
+			</extension>
+		</complexContent>
+	</complexType>
+	<complexType name="HydrogeologicalObjectManMadePropertyType">
+		<sequence minOccurs="0">
+			<element ref="hyge-core:HydrogeologicalObjectManMade"/>
+		</sequence>
+		<attributeGroup ref="gml:AssociationAttributeGroup"/>
+		<attributeGroup ref="gml:OwnershipAttributeGroup"/>
+	</complexType>
+	<element name="GroundWaterFlowSystem" type="hyge-core:GroundWaterFlowSystemType" substitutionGroup="hyge-core:HydrogeologicalFeature">
+		<annotation>
+			<documentation>-- Definition --
+A GroundWaterFlowSystem is an aggregate of one or more groundwater bodies. Both GroundWaterFlowSystem and GroundWaterBody may change over time, and these changes are caused by external factors.</documentation>
+		</annotation>
+	</element>
+	<complexType name="GroundWaterFlowSystemType">
+		<complexContent>
+			<extension base="hyge-core:HydrogeologicalFeatureType">
+				<sequence>
+					<element name="conditionOfFlowSystem" type="hyge-core:ConditionOfGroundwaterType">
+						<annotation>
+							<documentation>-- Definition --
+Specifies the health of groundwater flow through the aquifer, i.e. the approximate degree of change due to human activity</documentation>
+						</annotation>
+					</element>
+					<element name="piezometricState" nillable="true">
+						<annotation>
+							<documentation>-- Definition --
+Specifies the piezometric state of the groundwater table</documentation>
+						</annotation>
+						<complexType>
+							<sequence>
+								<element ref="hyge-core:PiezometricStateOfGroundwater"/>
+							</sequence>
+							<attribute name="nilReason" type="gml:NilReasonType"/>
+						</complexType>
+					</element>
+					<element name="contains" type="hyge-core:HydrogeologicalSystemPropertyType"/>
+				</sequence>
+			</extension>
+		</complexContent>
+	</complexType>
+	<complexType name="GroundWaterFlowSystemPropertyType">
+		<sequence minOccurs="0">
+			<element ref="hyge-core:GroundWaterFlowSystem"/>
+		</sequence>
+		<attributeGroup ref="gml:AssociationAttributeGroup"/>
+		<attributeGroup ref="gml:OwnershipAttributeGroup"/>
+	</complexType>
+	<simpleType name="AquiferTypeType">
+		<annotation>
+			<documentation>-- Definition --
+An enumeration for describing the type of aquifer.</documentation>
+		</annotation>
+		<restriction base="string">
+			<enumeration value="confinedSubArtesian">
+				<annotation>
+					<documentation>-- Definition --
+An aquifer containing water between two relatively impermeable boundaries. The water level in a well tapping a confined aquifer stands above the top of the confined aquifer and can be higher or lower than the water table that may be present in the material above it. The water level does not rise above the ground surface</documentation>
+				</annotation>
+			</enumeration>
+			<enumeration value="confinedArtesian">
+				<annotation>
+					<documentation>-- Definition --
+An aquifer containing water between two relatively impermeable boundaries. The water level in a well tapping a confined aquifer stands above the top of the confined aquifer and can be higher or lower than the water table that may be present in the material above. The water level rises above the ground surface, yielding a flowing well.</documentation>
+				</annotation>
+			</enumeration>
+			<enumeration value="unconfined">
+				<annotation>
+					<documentation>-- Definition --
+An aquifer containing water that is not under pressure; the water level in a well is the same as the water table outside the well. An unconfined aquifer made up of loose material, such as sand or gravel, that has not undergone lithification (settling). In an unconfined aquifer the upper boundary is the top of the Zone of Saturation (water table).</documentation>
+				</annotation>
+			</enumeration>
+		</restriction>
+	</simpleType>
+	<element name="FeatureUniqueEUCodeType" type="hyge-core:FeatureUniqueEUCodeTypeType" substitutionGroup="gml:AbstractObject">
+		<annotation>
+			<documentation>-- Definition --
+Type of EU code, which allows up to 42 characters (unique code within MS prefixed with country ISO 2 character code</documentation>
+		</annotation>
+	</element>
+	<complexType name="FeatureUniqueEUCodeTypeType">
+		<sequence/>
+	</complexType>
+	<complexType name="FeatureUniqueEUCodeTypePropertyType">
+		<sequence>
+			<element ref="hyge-core:FeatureUniqueEUCodeType"/>
+		</sequence>
+	</complexType>
+	<simpleType name="NaturalObjectTypeType">
+		<annotation>
+			<documentation>-- Definition --
+A type of natural hydrogeological object.</documentation>
+		</annotation>
+		<union memberTypes="hyge-core:NaturalObjectTypeEnumerationType hyge-core:NaturalObjectTypeOtherType"/>
+	</simpleType>
+	<simpleType name="NaturalObjectTypeEnumerationType">
+		<annotation>
+			<documentation>-- Definition --
+A type of natural hydrogeological object.</documentation>
+		</annotation>
+		<restriction base="string">
+			<enumeration value="spring">
+				<annotation>
+					<documentation>-- Definition --
+Also known as a rising or resurgence&lt;b&gt; &lt;/b&gt;- it is a component of the hydrosphere. Specifically, it is any natural situation where water flows to the surface of the earth from underground. Thus, a spring is a site where the aquifer surface meets the ground surface</documentation>
+				</annotation>
+			</enumeration>
+			<enumeration value="seep">
+				<annotation>
+					<documentation>-- Definition --
+A moist or wet place where water, usually groundwater, reaches the earth's surface from an underground aquifer</documentation>
+				</annotation>
+			</enumeration>
+			<enumeration value="swallowHole">
+				<annotation>
+					<documentation>-- Definition --
+Also known as a sink, shake hole, sinkhole, swallow hole, swallet, doline or cenote, it is a natural depression or hole in the Earth's surface caused by karst processes - the chemical dissolution of carbonate rocks or suffosion processes for example in sandstone.</documentation>
+				</annotation>
+			</enumeration>
+			<enumeration value="other">
+				<annotation>
+					<documentation>-- Definition --
+Other places where groundwater table meets the surface</documentation>
+				</annotation>
+			</enumeration>
+		</restriction>
+	</simpleType>
+	<simpleType name="NaturalObjectTypeOtherType">
+		<restriction base="string">
+			<pattern value="other: \w{2,}"/>
+		</restriction>
+	</simpleType>
+	<element name="GroundWaterMonitoringStation" type="hyge-core:GroundWaterMonitoringStationType" substitutionGroup="ef:EnvironmentalMonitoringFacility">
+		<annotation>
+			<documentation>-- Definition --
+A GroundWaterMonitoringStation is a facility, where groundwater data are collected, generally at regular time intervals in order to provide information which may be used to determine the state of groundwater both in quantitative and qualitative sense.
+-- Note --
+Class GroundWaterMonitoringStation realizes class Station from ISO 19156 standard in hydrogeology domain.</documentation>
+		</annotation>
+	</element>
+	<complexType name="GroundWaterMonitoringStationType">
+		<complexContent>
+			<extension base="ef:EnvironmentalMonitoringFacilityType">
+				<sequence>
+					<element name="level" nillable="true">
+						<annotation>
+							<documentation>-- Definition --
+Specifies the level of the monitoring station in the hierarchy of the monitoring system.  Refers to the organisation of the monitoring network from national, regional and local levels.</documentation>
+						</annotation>
+						<complexType>
+							<simpleContent>
+								<extension base="hyge-core:StationLevelType">
+									<attribute name="nilReason" type="gml:NilReasonType"/>
+								</extension>
+							</simpleContent>
+						</complexType>
+					</element>
+					<element name="type" nillable="true">
+						<annotation>
+							<documentation>-- Definition --
+Specifies the type of monitoring carried out at the monitoring station. Can be either quality (chemical status) or quantity (groundwater table level changes)</documentation>
+						</annotation>
+						<complexType>
+							<simpleContent>
+								<extension base="hyge-core:StationTypeType">
+									<attribute name="nilReason" type="gml:NilReasonType"/>
+								</extension>
+							</simpleContent>
+						</complexType>
+					</element>
+				</sequence>
+			</extension>
+		</complexContent>
+	</complexType>
+	<complexType name="GroundWaterMonitoringStationPropertyType">
+		<sequence minOccurs="0">
+			<element ref="hyge-core:GroundWaterMonitoringStation"/>
+		</sequence>
+		<attributeGroup ref="gml:AssociationAttributeGroup"/>
+		<attributeGroup ref="gml:OwnershipAttributeGroup"/>
+	</complexType>
+	<element name="HydrogeologicalObject" type="hyge-core:HydrogeologicalObjectType" abstract="true" substitutionGroup="gml:AbstractFeature">
+		<annotation>
+			<documentation>-- Definition --
+A man-made or natural object where interaction occurs with the hydrogeological system</documentation>
+		</annotation>
+	</element>
+	<complexType name="HydrogeologicalObjectType" abstract="true">
+		<complexContent>
+			<extension base="gml:AbstractFeatureType">
+				<sequence>
+					<element name="inspireId" type="base:IdentifierPropertyType">
+						<annotation>
+							<documentation>-- Definition --
+INSPIRE identifier</documentation>
+						</annotation>
+					</element>
+					<element name="geometry" type="gml:GeometricPrimitivePropertyType">
+						<annotation>
+							<documentation>-- Definition --
+Spatial configuration of the object</documentation>
+						</annotation>
+					</element>
+					<element name="name" type="gmd:PT_FreeText_PropertyType" nillable="true">
+						<annotation>
+							<documentation>-- Definition --
+Name by which this part of the system is known</documentation>
+						</annotation>
+					</element>
+					<element name="description" type="gmd:PT_FreeText_PropertyType" nillable="true">
+						<annotation>
+							<documentation>-- Definition --
+Text providing description of object</documentation>
+						</annotation>
+					</element>
+					<element name="beginLifespanVersion" type="dateTime">
+						<annotation>
+							<documentation>-- Definition --
+The date the new object was created</documentation>
+						</annotation>
+					</element>
+					<element name="endLifespanVersion" type="dateTime" minOccurs="0">
+						<annotation>
+							<documentation>-- Definition --
+The date that the next version of the object was created. If the endLifespanVersion is null, this indicates that the object is the current representation of the feature</documentation>
+						</annotation>
+					</element>
+					<element name="interactsWith" type="hyge-core:HydrogeologicalSystemPropertyType" maxOccurs="unbounded"/>
+				</sequence>
+			</extension>
+		</complexContent>
+	</complexType>
+	<complexType name="HydrogeologicalObjectPropertyType">
+		<sequence minOccurs="0">
+			<element ref="hyge-core:HydrogeologicalObject"/>
+		</sequence>
+		<attributeGroup ref="gml:AssociationAttributeGroup"/>
+		<attributeGroup ref="gml:OwnershipAttributeGroup"/>
+	</complexType>
+	<element name="VanishingPoint" type="hyge-core:VanishingPointType" substitutionGroup="hyge-core:HydrogeologicalObjectNatural">
+		<annotation>
+			<documentation>-- Definition --
+Location where a watercourse disappears into the terrain or vanishes due to anthropization.
+
+-- Description --
+NOTE 1 Corresponds to an 'outlet' node in a network view.
+
+NOTE 2 Regarded as a placeholder in Annex II theme 'Geology' due to the connection with groundwater.</documentation>
+		</annotation>
+	</element>
+	<complexType name="VanishingPointType">
+		<complexContent>
+			<extension base="hyge-core:HydrogeologicalObjectNaturalType">
+				<sequence/>
+			</extension>
+		</complexContent>
+	</complexType>
+	<complexType name="VanishingPointPropertyType">
+		<sequence minOccurs="0">
+			<element ref="hyge-core:VanishingPoint"/>
+		</sequence>
+		<attributeGroup ref="gml:AssociationAttributeGroup"/>
+		<attributeGroup ref="gml:OwnershipAttributeGroup"/>
+	</complexType>
+	<element name="Aquitard" type="hyge-core:AquitardType" substitutionGroup="hyge-core:HydrogeologicalUnit">
+		<annotation>
+			<documentation>-- Definition --
+A saturated, but poorly permeable bed that impedes ground-water movement and does not yield water freely to wells, but which may  transmit appreciable water to or from adjacent aquifers and, where sufficiently thick, may constitute an important ground-water storage unit. 
+-- Note --
+Aquitards are characterized by values of leakage that may range from relatively low to relatively high. Lateral extensive aquitards of relatively low leakage may function regionally as boundaries of groundwater flow systems.</documentation>
+		</annotation>
+	</element>
+	<complexType name="AquitardType">
+		<complexContent>
+			<extension base="hyge-core:HydrogeologicalUnitType">
+				<sequence>
+					<element name="hasLargeHorizontalExtent" type="boolean">
+						<annotation>
+							<documentation>-- Definition --
+Indicates if aquitard is of regional or local extent</documentation>
+						</annotation>
+					</element>
+					<element name="Thickness" type="hyge-core:HG_ValuePropertyType">
+						<annotation>
+							<documentation>-- Definition --
+The average perpendicular vertical distance between aquitard bottom and roof</documentation>
+						</annotation>
+					</element>
+					<element name="orderNumberFromSurface" type="integer">
+						<annotation>
+							<documentation>-- Definition --
+Consecutive layer number counted from the ground surface</documentation>
+						</annotation>
+					</element>
+					<element name="isCollectionOf" type="hyge-core:AquiferSystemPropertyType"/>
+				</sequence>
+			</extension>
+		</complexContent>
+	</complexType>
+	<complexType name="AquitardPropertyType">
+		<sequence minOccurs="0">
+			<element ref="hyge-core:Aquitard"/>
+		</sequence>
+		<attributeGroup ref="gml:AssociationAttributeGroup"/>
+		<attributeGroup ref="gml:OwnershipAttributeGroup"/>
+	</complexType>
+	<element name="AquiferSystem" type="hyge-core:AquiferSystemType" substitutionGroup="hyge-core:HydrogeologicalFeature">
+		<annotation>
+			<documentation>-- Definition --
+A collection of aquifers and aquitards, which together constitute the environment of groundwater - "communicating vessels", that are filled or can be filled with water. Attributes of Aquifer System and its components determine the feasibility of water collection, its movement, as well as the impact on its chemical state.
+-- Note --
+The Aquifer System components and their attributes (including geometry) are relative stable over time except in special cases.</documentation>
+		</annotation>
+	</element>
+	<complexType name="AquiferSystemType">
+		<complexContent>
+			<extension base="hyge-core:HydrogeologicalFeatureType">
+				<sequence>
+					<element name="isLayered" nillable="true">
+						<annotation>
+							<documentation>-- Definition --
+AquiferSystem which has more than one layer</documentation>
+						</annotation>
+						<complexType>
+							<simpleContent>
+								<extension base="boolean">
+									<attribute name="nilReason" type="gml:NilReasonType"/>
+								</extension>
+							</simpleContent>
+						</complexType>
+					</element>
+					<element name="mediaType" nillable="true">
+						<annotation>
+							<documentation>-- Definition --
+The media type of an aquifer system</documentation>
+						</annotation>
+						<complexType>
+							<simpleContent>
+								<extension base="hyge-core:AquiferMediaTypeType">
+									<attribute name="nilReason" type="gml:NilReasonType"/>
+								</extension>
+							</simpleContent>
+						</complexType>
+					</element>
+					<element name="aquiferType" nillable="true">
+						<annotation>
+							<documentation>-- Definition --
+The type of confined or unconfined aquifer</documentation>
+						</annotation>
+						<complexType>
+							<simpleContent>
+								<extension base="hyge-core:AquiferTypeType">
+									<attribute name="nilReason" type="gml:NilReasonType"/>
+								</extension>
+							</simpleContent>
+						</complexType>
+					</element>
+					<element name="formedBy" type="hyge-core:HydrogeologicalSystemPropertyType"/>
+					<element name="encloses" type="hyge-core:AquicludePropertyType" maxOccurs="unbounded"/>
+				</sequence>
+			</extension>
+		</complexContent>
+	</complexType>
+	<complexType name="AquiferSystemPropertyType">
+		<sequence minOccurs="0">
+			<element ref="hyge-core:AquiferSystem"/>
+		</sequence>
+		<attributeGroup ref="gml:AssociationAttributeGroup"/>
+		<attributeGroup ref="gml:OwnershipAttributeGroup"/>
+	</complexType>
+	<element name="GroundWaterAbstractionWell" type="hyge-core:GroundWaterAbstractionWellType" substitutionGroup="hyge-core:WaterWell">
+		<annotation>
+			<documentation>-- Definition --
+A WaterWell, that is used for the abstraction of groundwater from a groundwater body</documentation>
+		</annotation>
+	</element>
+	<complexType name="GroundWaterAbstractionWellType">
+		<complexContent>
+			<extension base="hyge-core:WaterWellType">
+				<sequence>
+					<element name="quantityOfAbstraction" type="hyge-core:HG_ValuePropertyType">
+						<annotation>
+							<documentation>-- Definition --
+Amount of water abstracted form the well</documentation>
+						</annotation>
+					</element>
+					<element name="waterUse" type="gml:CodeType">
+						<annotation>
+							<documentation>-- Definition --
+A classification of the water according to its use. Can be agriculture, commercial, domestic, heat transfer, industrial, irrigation, municipal, other, unknown, public recreation, research.</documentation>
+						</annotation>
+					</element>
+					<element name="isPartOfComplexIntake" nillable="true">
+						<annotation>
+							<documentation>-- Definition --
+Specifies if groundwater well is a part of a complex water system.</documentation>
+						</annotation>
+						<complexType>
+							<simpleContent>
+								<extension base="boolean">
+									<attribute name="nilReason" type="gml:NilReasonType"/>
+								</extension>
+							</simpleContent>
+						</complexType>
+					</element>
+				</sequence>
+			</extension>
+		</complexContent>
+	</complexType>
+	<complexType name="GroundWaterAbstractionWellPropertyType">
+		<sequence minOccurs="0">
+			<element ref="hyge-core:GroundWaterAbstractionWell"/>
+		</sequence>
+		<attributeGroup ref="gml:AssociationAttributeGroup"/>
+		<attributeGroup ref="gml:OwnershipAttributeGroup"/>
+	</complexType>
+	<element name="HydrogeologicalObjectNatural" type="hyge-core:HydrogeologicalObjectNaturalType" substitutionGroup="hyge-core:HydrogeologicalObject">
+		<annotation>
+			<documentation>-- Definition --
+A natural object, where interaction (inflow or outflow) occurs with the hydrogeological system.
+
+-- Note --
+Examples of natural hydrogeological objects are: spring, seep or vanishing point.</documentation>
+		</annotation>
+	</element>
+	<complexType name="HydrogeologicalObjectNaturalType">
+		<complexContent>
+			<extension base="hyge-core:HydrogeologicalObjectType">
+				<sequence>
+					<element name="naturalObjectType" nillable="true">
+						<annotation>
+							<documentation>-- Definition --
+The type of natural object</documentation>
+						</annotation>
+						<complexType>
+							<simpleContent>
+								<extension base="hyge-core:NaturalObjectTypeType">
+									<attribute name="nilReason" type="gml:NilReasonType"/>
+								</extension>
+							</simpleContent>
+						</complexType>
+					</element>
+					<element name="waterPersistance" type="gml:CodeType">
+						<annotation>
+							<documentation>-- Definition --
+Specifies the water occurrence frequency in the object</documentation>
+						</annotation>
+					</element>
+					<element name="quantityOfFlow" type="hyge-core:HG_ValuePropertyType">
+						<annotation>
+							<documentation>-- Definition --
+Specifies the water flow value measures</documentation>
+						</annotation>
+					</element>
+				</sequence>
+			</extension>
+		</complexContent>
+	</complexType>
+	<complexType name="HydrogeologicalObjectNaturalPropertyType">
+		<sequence minOccurs="0">
+			<element ref="hyge-core:HydrogeologicalObjectNatural"/>
+		</sequence>
+		<attributeGroup ref="gml:AssociationAttributeGroup"/>
+		<attributeGroup ref="gml:OwnershipAttributeGroup"/>
+	</complexType>
+	<element name="HG_ComplexGeometry" type="hyge-core:HG_ComplexGeometryType" substitutionGroup="gml:AbstractObject">
+		<annotation>
+			<documentation>-- Definition --
+A utility class for describing the geometry of a hydrogeological feature for groundwater modelling needs.
+-- Note --
+The horizontal extent of a hydrogeological feature is expressed by GM_SurfaceBoundary.
+The vertical extent may differ in different places and is limited by floor and roof surfaces.
+These surfaces are expressed in CV_ContinousQuadrilatereaGridCoverage form.</documentation>
+		</annotation>
+	</element>
+	<complexType name="HG_ComplexGeometryType">
+		<sequence>
+			<element name="floor">
+				<annotation>
+					<documentation>-- Definition --
+The bottom surface of the aquifer. In most cases limited by underlying aquitard or aquiclude sediments.</documentation>
+				</annotation>
+				<complexType>
+					<complexContent>
+						<extension base="gml:AbstractMemberType">
+							<sequence minOccurs="0">
+								<element ref="gml:AbstractDiscreteCoverage"/>
+							</sequence>
+							<attributeGroup ref="gml:AssociationAttributeGroup"/>
+						</extension>
+					</complexContent>
+				</complexType>
+			</element>
+			<element name="horizontalExtent" type="gml:SurfacePropertyType">
+				<annotation>
+					<documentation>-- Definition --
+The horizontal extent of the aquifer</documentation>
+				</annotation>
+			</element>
+			<element name="roof">
+				<annotation>
+					<documentation>-- Definition --
+The upper surface of the aquifer water table. In cases of confined aquifer limited by aquitard or aquiclude sediments. For unconfined aquifers is the piezometric surface forming the groundwater table</documentation>
+				</annotation>
+				<complexType>
+					<complexContent>
+						<extension base="gml:AbstractMemberType">
+							<sequence minOccurs="0">
+								<element ref="gml:AbstractDiscreteCoverage"/>
+							</sequence>
+							<attributeGroup ref="gml:AssociationAttributeGroup"/>
+						</extension>
+					</complexContent>
+				</complexType>
+			</element>
+		</sequence>
+	</complexType>
+	<complexType name="HG_ComplexGeometryPropertyType">
+		<sequence>
+			<element ref="hyge-core:HG_ComplexGeometry"/>
+		</sequence>
+	</complexType>
+	<simpleType name="WaterTypeType">
+		<annotation>
+			<documentation>-- Definition --
+An enumeration class, that refers to the concept of salinity and its classes in water. 
+-- Note --
+Salinity is the saltiness or dissolved salt content of a body of water. 
+Generally, the concentration of mineral salts dissolved in water. Salinity may be expressed in terms of a concentration or as electrical conductivity. When describing salinity influenced by seawater, salinity often refers to the concentration of chlorides in the water. See also total dissolved solids.</documentation>
+		</annotation>
+		<restriction base="string">
+			<enumeration value="ultraFreshWater">
+				<annotation>
+					<documentation>-- Definition --
+Very pure water with little or no mineral content.</documentation>
+				</annotation>
+			</enumeration>
+			<enumeration value="freshWater">
+				<annotation>
+					<documentation>-- Definition --
+Freshwater is a word that refers to bodies of water such as ponds, lakes, rivers and streams containing low concentrations of dissolved salts (less than 0.5 parts per thousand) and other total dissolved solids. In other words, the term excludes seawater and brackish water. Freshwater can also be the output of desalinated seawater.</documentation>
+				</annotation>
+			</enumeration>
+			<enumeration value="acratopegae">
+				<annotation>
+					<documentation>-- Definition --
+Groundwater with total mineralization lower than 1000 mg/dm3 and temperature&lt;b&gt; &lt;/b&gt;lower than 20 C</documentation>
+				</annotation>
+			</enumeration>
+			<enumeration value="brackishWater">
+				<annotation>
+					<documentation>-- Definition --
+Brackish water (less commonly brack water) is water that has more salinity than fresh water, but not as much as seawater. It may result from mixing of seawater with fresh water, as in estuaries, or it may occur in brackish fossil aquifers. Technically,  brackish water contains between 0.5 to 30 grams of salt per litre more often expressed as 0.5 to 30 parts per thousand (ppt). Thus, brackish covers a range of salinity regimes and is not considered a precisely defined condition.</documentation>
+				</annotation>
+			</enumeration>
+			<enumeration value="saltWater">
+				<annotation>
+					<documentation>-- Definition --
+Salt (Saline) water is a general term for water that contains a significant concentration of dissolved salts (NaCl). The concentration is usually expressed in parts per million (ppm) of salt. The salinity concentration level used by United States Geological Survey classifies saline water in three categories. Slightly saline water contains around 1,000 to 3,000 ppm. Moderately saline water contains roughly 3,000 to 10,000 ppm. Highly saline water has around 10,000 to 35,000 ppm of salt. Seawater has a salinity of roughly 35,000 ppm, equivalent to 35 g/L.</documentation>
+				</annotation>
+			</enumeration>
+			<enumeration value="brineWater">
+				<annotation>
+					<documentation>-- Definition --
+Brine (lat. saltus) is water saturated or nearly saturated with salt (NaCl).</documentation>
+				</annotation>
+			</enumeration>
+		</restriction>
+	</simpleType>
+	<element name="GroundWaterBody" type="hyge-core:GroundWaterBodyType" substitutionGroup="hyge-core:HydrogeologicalFeature">
+		<annotation>
+			<documentation>-- Definition --
+A distinct volume of groundwater within an aquifer or system of aquifers, which is hydraulically isolated from nearby groundwater bodies. 
+
+-- Note --
+Groundwater bodies form the principal management units under the European Water Framework Directive (2000/60/CE, 2000) They should be hydraulically continuous entities, and must be defined on the basis of flow or abstraction, and are inextricably linked to surface water bodies.</documentation>
+		</annotation>
+	</element>
+	<complexType name="GroundWaterBodyType">
+		<complexContent>
+			<extension base="hyge-core:HydrogeologicalFeatureType">
+				<sequence>
+					<element name="mineralization" nillable="true">
+						<annotation>
+							<documentation>-- Definition --
+One of the main chemical characteristics of water. A value is a sum of all water chemical concentration components.</documentation>
+						</annotation>
+						<complexType>
+							<simpleContent>
+								<extension base="hyge-core:WaterTypeType">
+									<attribute name="nilReason" type="gml:NilReasonType"/>
+								</extension>
+							</simpleContent>
+						</complexType>
+					</element>
+					<element name="conditionOfGroundWaterBody" type="hyge-core:ConditionOfGroundwaterType">
+						<annotation>
+							<documentation>-- Definition --
+The approximate degree of change to groundwater as a result of human activity</documentation>
+						</annotation>
+					</element>
+					<element name="piezometricState" nillable="true">
+						<annotation>
+							<documentation>-- Definition --
+Specifies the piezometric state of the GroundwaterBody water table</documentation>
+						</annotation>
+						<complexType>
+							<sequence>
+								<element ref="hyge-core:PiezometricStateOfGroundwater"/>
+							</sequence>
+							<attribute name="nilReason" type="gml:NilReasonType"/>
+						</complexType>
+					</element>
+					<element name="contains" type="hyge-core:GroundWaterFlowSystemPropertyType"/>
+				</sequence>
+			</extension>
+		</complexContent>
+	</complexType>
+	<complexType name="GroundWaterBodyPropertyType">
+		<sequence minOccurs="0">
+			<element ref="hyge-core:GroundWaterBody"/>
+		</sequence>
+		<attributeGroup ref="gml:AssociationAttributeGroup"/>
+		<attributeGroup ref="gml:OwnershipAttributeGroup"/>
+	</complexType>
+	<element name="WaterWell" type="hyge-core:WaterWellType" substitutionGroup="hyge-core:HydrogeologicalObjectManMade">
+		<annotation>
+			<documentation>-- Definition --
+A cased excavation or opening into the ground where the intended use is for location, acquisition, development, or artificial recharge of ground water.</documentation>
+		</annotation>
+	</element>
+	<complexType name="WaterWellType">
+		<complexContent>
+			<extension base="hyge-core:HydrogeologicalObjectManMadeType">
+				<sequence>
+					<element name="usage" type="gml:CodeType">
+						<annotation>
+							<documentation>-- Definition --
+A classification of the use of the well eg observation, monitoring etc</documentation>
+						</annotation>
+					</element>
+					<element name="wellStatus" nillable="true">
+						<annotation>
+							<documentation>-- Definition --
+Specifies the status of the  well</documentation>
+						</annotation>
+						<complexType>
+							<simpleContent>
+								<extension base="gml:CodeType">
+									<attribute name="nilReason" type="gml:NilReasonType"/>
+								</extension>
+							</simpleContent>
+						</complexType>
+					</element>
+					<element name="wellPurpose" nillable="true">
+						<annotation>
+							<documentation>-- Definition --
+Specifies the purpose of the well eg water supply, recharge etc</documentation>
+						</annotation>
+						<complexType>
+							<simpleContent>
+								<extension base="gml:CodeType">
+									<attribute name="nilReason" type="gml:NilReasonType"/>
+								</extension>
+							</simpleContent>
+						</complexType>
+					</element>
+					<element name="isEquivalentTo" type="gbh:BoreholePropertyType" minOccurs="0"/>
+				</sequence>
+			</extension>
+		</complexContent>
+	</complexType>
+	<complexType name="WaterWellPropertyType">
+		<sequence minOccurs="0">
+			<element ref="hyge-core:WaterWell"/>
+		</sequence>
+		<attributeGroup ref="gml:AssociationAttributeGroup"/>
+		<attributeGroup ref="gml:OwnershipAttributeGroup"/>
+	</complexType>
+	<element name="HydrogeologicalDescription" type="hyge-core:HydrogeologicalDescriptionType" substitutionGroup="gml:AbstractObject">
+		<annotation>
+			<documentation>-- Definition --
+Properties of the rock (forming the aquifer or aquitard), that are relevant to the groundwater system.</documentation>
+		</annotation>
+	</element>
+	<complexType name="HydrogeologicalDescriptionType">
+		<sequence>
+			<element name="capacityCoefficient" type="hyge-core:HG_ValuePropertyType">
+				<annotation>
+					<documentation>-- Definition --
+Volumetric capacity of an aquifer or aquitard to hold water.</documentation>
+				</annotation>
+			</element>
+			<element name="hydraulicConductivityCoefficient" type="hyge-core:HG_ValuePropertyType">
+				<annotation>
+					<documentation>-- Definition --
+The hydraulic conductivity is a measure of the ability to transmit water when submitted to a hydraulic gradient. Hydraulic conductivity is defined by Darcy's law.</documentation>
+				</annotation>
+			</element>
+			<element name="storativityCoefficient" type="hyge-core:HG_ValuePropertyType">
+				<annotation>
+					<documentation>-- Definition --
+Storativity is the volume of water released from storage per unit decline in hydraulic head in the aquifer or aquitard, per unit area
+http://en.wikipedia.org/wiki/Specific_storage</documentation>
+				</annotation>
+			</element>
+			<element name="description" type="gmd:PT_FreeText_PropertyType" nillable="true">
+				<annotation>
+					<documentation>-- Definition --
+General aquifer or aquitard characteristics&lt;font color="#ff0000"&gt; &lt;/font&gt;</documentation>
+				</annotation>
+			</element>
+			<element name="PermeabilityCoefficient" type="hyge-core:HG_ValuePropertyType">
+				<annotation>
+					<documentation>-- Definition --
+Parameter expressing the permeability of the porous medium regardless of fluid properties. The volume of an incompressible fluid that will flow in unit time through a unit cube of a porous substance across which a unit pressure difference is maintained.</documentation>
+				</annotation>
+			</element>
+			<element name="beginLifespanVersion" type="dateTime">
+				<annotation>
+					<documentation>-- Definition --
+Stores the date that the new object was created</documentation>
+				</annotation>
+			</element>
+			<element name="endLifespanVersion" type="dateTime" minOccurs="0">
+				<annotation>
+					<documentation>-- Definition --
+Stores the date that the next version of the object was created. If the endLifespanVersion is null, this indicates that the object is the current representation of the feature</documentation>
+				</annotation>
+			</element>
+		</sequence>
+	</complexType>
+	<complexType name="HydrogeologicalDescriptionPropertyType">
+		<sequence>
+			<element ref="hyge-core:HydrogeologicalDescription"/>
+		</sequence>
+	</complexType>
+	<element name="FeatureUniqueCodeType" type="hyge-core:FeatureUniqueCodeTypeType" substitutionGroup="gml:AbstractObject">
+		<annotation>
+			<documentation>-- Definition --
+Type for the unique code within the Member State for a hydrogeological feature</documentation>
+		</annotation>
+	</element>
+	<complexType name="FeatureUniqueCodeTypeType">
+		<sequence/>
+	</complexType>
+	<complexType name="FeatureUniqueCodeTypePropertyType">
+		<sequence>
+			<element ref="hyge-core:FeatureUniqueCodeType"/>
+		</sequence>
+	</complexType>
+	<element name="HydrogeologicalSystem" type="hyge-core:HydrogeologicalSystemType" substitutionGroup="hyge-core:HydrogeologicalFeature">
+		<annotation>
+			<documentation>-- Definition --
+A distinct part of the subsurface which consists of an aquifer system (invariable in time) filled with a groundwater flow system (variable in time). Both these components are complex, interrelated and their components are also interrelated.
+-- Note --
+General hydrogeological relationships in the system:
+- External Factors influence the HydrogeologicalSystem.
+- The HydrogeologicalSystem response to these factors is determined by the hydrodynamic properties of the system (the Aquifer System).
+- The answer to the HydrogeologicalSystem state of the external factors is expressed by the groundwater flow system.
+A detailed description of these relationships and elements that shape them are described by classes derived from classes GroundWaterFlowSystem  and AquiferSystem or are associated to them.</documentation>
+		</annotation>
+	</element>
+	<complexType name="HydrogeologicalSystemType">
+		<complexContent>
+			<extension base="hyge-core:HydrogeologicalFeatureType">
+				<sequence>
+					<element name="isMain" nillable="true">
+						<annotation>
+							<documentation>-- Definition --
+Specifies if the system is the main system in the Groundwater Flow System</documentation>
+						</annotation>
+						<complexType>
+							<simpleContent>
+								<extension base="boolean">
+									<attribute name="nilReason" type="gml:NilReasonType"/>
+								</extension>
+							</simpleContent>
+						</complexType>
+					</element>
+				</sequence>
+			</extension>
+		</complexContent>
+	</complexType>
+	<complexType name="HydrogeologicalSystemPropertyType">
+		<sequence minOccurs="0">
+			<element ref="hyge-core:HydrogeologicalSystem"/>
+		</sequence>
+		<attributeGroup ref="gml:AssociationAttributeGroup"/>
+		<attributeGroup ref="gml:OwnershipAttributeGroup"/>
+	</complexType>
+	<element name="GroundWaterObservationWell" type="hyge-core:GroundWaterObservationWellType" substitutionGroup="hyge-core:WaterWell">
+		<annotation>
+			<documentation>-- Definition --
+Any cased excavation or opening into the ground, with greater depth than width, made by digging, boring, drilling, driving, jetting or other methods for the purpose of determining the physical, chemical, biological, or radiological properties of groundwater.
+-- Note --
+Class GroundWaterObservation realizes class ObservationWell from ISO 19156 standard in hydrogeology domain.</documentation>
+		</annotation>
+	</element>
+	<complexType name="GroundWaterObservationWellType">
+		<complexContent>
+			<extension base="hyge-core:WaterWellType">
+				<sequence>
+					<element name="observation" nillable="true" maxOccurs="unbounded">
+						<annotation>
+							<documentation>-- Definition --
+Specifies the type of observation carried out at the observation well eg diagnostics, surveillance etc</documentation>
+						</annotation>
+						<complexType>
+							<simpleContent>
+								<extension base="hyge-core:ObservationTypeType">
+									<attribute name="nilReason" type="gml:NilReasonType"/>
+								</extension>
+							</simpleContent>
+						</complexType>
+					</element>
+				</sequence>
+			</extension>
+		</complexContent>
+	</complexType>
+	<complexType name="GroundWaterObservationWellPropertyType">
+		<sequence minOccurs="0">
+			<element ref="hyge-core:GroundWaterObservationWell"/>
+		</sequence>
+		<attributeGroup ref="gml:AssociationAttributeGroup"/>
+		<attributeGroup ref="gml:OwnershipAttributeGroup"/>
+	</complexType>
+	<simpleType name="StationLevelType">
+		<annotation>
+			<documentation>-- Definition --
+A type of level for a groundwater monitoring station.</documentation>
+		</annotation>
+		<restriction base="string">
+			<enumeration value="basicNetwork">
+				<annotation>
+					<documentation>-- Definition --
+National groundwater monitoring network or the network for filling out the Water Framework Directive tasks</documentation>
+				</annotation>
+			</enumeration>
+			<enumeration value="hydrologicalBenchmark">
+				<annotation>
+					<documentation>-- Definition --
+Provides a continuing series of consistent observations on hydrological and related climatological variables.</documentation>
+				</annotation>
+			</enumeration>
+			<enumeration value="baseLine">
+				<annotation>
+					<documentation>-- Definition --
+Provides baseline environmental conditions with which to compare changes in water quality</documentation>
+				</annotation>
+			</enumeration>
+			<enumeration value="specificNetwork">
+				<annotation>
+					<documentation>-- Definition --
+Monitoring network created for local assessment tasks or other purposes</documentation>
+				</annotation>
+			</enumeration>
+			<enumeration value="temporalNetwork">
+				<annotation>
+					<documentation>-- Definition --
+Monitoring network created just for temporal purposes</documentation>
+				</annotation>
+			</enumeration>
+		</restriction>
+	</simpleType>
+	<simpleType name="ConditionOfGroundwaterType">
+		<annotation>
+			<documentation>-- Definition --
+Enumeration for indicating the approximate degree of changes, which have taken place on the natural state of groundwater.
+-- Note --
+The groundwater in a GroundWaterFlowSystem is in a variable condition, dependent on external factors, among which diverse human activities.</documentation>
+		</annotation>
+		<restriction base="string">
+			<enumeration value="natural">
+				<annotation>
+					<documentation>-- Definition --
+Groundwater composition is dependent only on natural factors.</documentation>
+				</annotation>
+			</enumeration>
+			<enumeration value="lightlyModified">
+				<annotation>
+					<documentation>-- Definition --
+Groundwater composition is dependent mostly on natural factors, but with some human activity</documentation>
+				</annotation>
+			</enumeration>
+			<enumeration value="modified">
+				<annotation>
+					<documentation>-- Definition --
+Groundwater composition is modified by human activity.</documentation>
+				</annotation>
+			</enumeration>
+			<enumeration value="stronglyModified">
+				<annotation>
+					<documentation>-- Definition --
+Groundwater composition is modified by human activity and the values of a number of parameters exceed the drinking water standards.</documentation>
+				</annotation>
+			</enumeration>
+		</restriction>
+	</simpleType>
+	<element name="HydrogeologicalFeatureAppearence" type="hyge-core:HydrogeologicalFeatureAppearenceType" substitutionGroup="gml:AbstractFeature">
+		<annotation>
+			<documentation>-- Definition --
+HydrogeologicalFeatureAppearence class is a geometric representation of a HydrogeologicalFeature. 
+A HydrogeologicalFeature instance could be represented by various instances of the HydrogeologicalFeatureAppearence class.
+-- Note --
+Class equivalent to HydrogeologicMappedFeature in GWML model and MappedFeature in the Geology schema:
+The difference is that the geometry could be represented by coverages, while in MappedFeature the geometry is represented by a GM_Object.</documentation>
+		</annotation>
+	</element>
+	<complexType name="HydrogeologicalFeatureAppearenceType">
+		<complexContent>
+			<extension base="gml:AbstractFeatureType">
+				<sequence>
+					<element name="geometry" type="hyge-core:HG_GeometryPropertyType">
+						<annotation>
+							<documentation>-- Definition --
+Configuration of the object in space</documentation>
+						</annotation>
+					</element>
+					<element name="geometrySource" type="hyge-core:TypeOfSourceForGeometryType">
+						<annotation>
+							<documentation>-- Definition --
+A type of source for the geometry of a hydrogeological feature</documentation>
+						</annotation>
+					</element>
+					<element name="inspireId" type="base:IdentifierPropertyType">
+						<annotation>
+							<documentation>-- Definition --
+INSPIRE identifier</documentation>
+						</annotation>
+					</element>
+					<element name="description" type="gmd:PT_FreeText_PropertyType" nillable="true">
+						<annotation>
+							<documentation>-- Definition --
+Text providing description of feature</documentation>
+						</annotation>
+					</element>
+					<element name="isPresented" type="hyge-core:HydrogeologicalFeaturePropertyType">
+						<annotation>
+							<appinfo>
+								<reversePropertyName xmlns="http://www.opengis.net/gml/3.2">hyge-core:presents</reversePropertyName>
+							</appinfo>
+						</annotation>
+					</element>
+					<element name="canBeApplied" type="gsml:MappedFeaturePropertyType" minOccurs="0" maxOccurs="unbounded"/>
+				</sequence>
+			</extension>
+		</complexContent>
+	</complexType>
+	<complexType name="HydrogeologicalFeatureAppearencePropertyType">
+		<sequence minOccurs="0">
+			<element ref="hyge-core:HydrogeologicalFeatureAppearence"/>
+		</sequence>
+		<attributeGroup ref="gml:AssociationAttributeGroup"/>
+		<attributeGroup ref="gml:OwnershipAttributeGroup"/>
+	</complexType>
+	<simpleType name="StationTypeType">
+		<annotation>
+			<documentation>-- Definition --
+A type of groundwater monitoring station.</documentation>
+		</annotation>
+		<restriction base="string">
+			<enumeration value="quality">
+				<annotation>
+					<documentation>-- Definition --
+Monitoring stations where the quality (chemical parameters) measurements are collected</documentation>
+				</annotation>
+			</enumeration>
+			<enumeration value="quantity">
+				<annotation>
+					<documentation>-- Definition --
+Monitoring stations where the quantity measurements are collected</documentation>
+				</annotation>
+			</enumeration>
+		</restriction>
+	</simpleType>
+	<element name="HG_Value" type="hyge-core:HG_ValueType" substitutionGroup="gml:AbstractObject">
+		<annotation>
+			<documentation>-- Definition --
+A data union for describing properties of a feature in terms of a numeric value or a more descriptive text.
+-- Note --
+In GML application schema this is realised by a choice element.
+XML Schema choice element allows only one of the elements contained in the &lt;choice&gt; declaration to be present within the containing element.</documentation>
+		</annotation>
+	</element>
+	<complexType name="HG_ValueType">
+		<choice>
+			<element name="numericValue" type="cgu:CGI_NumericRangePropertyType">
+				<annotation>
+					<documentation>-- Definition --
+General numeric value of a quantity, with its associated unit of measure. urn:ogc:def:dataType:OGC:1.1:measure Value of a length (or distance) quantity, with its units.</documentation>
+				</annotation>
+			</element>
+			<element name="valueDescription" type="gmd:PT_FreeText_PropertyType">
+				<annotation>
+					<documentation>-- Definition --
+Description of measures used</documentation>
+				</annotation>
+			</element>
+		</choice>
+	</complexType>
+	<complexType name="HG_ValuePropertyType">
+		<sequence>
+			<element ref="hyge-core:HG_Value"/>
+		</sequence>
+	</complexType>
+	<simpleType name="ObservationTypeType">
+		<annotation>
+			<documentation>-- Definition --
+A type of an observation made on the feature of interest.</documentation>
+		</annotation>
+		<restriction base="string">
+			<enumeration value="surveillance">
+				<annotation>
+					<documentation>-- Definition --
+Monitoring programme to: 
+- Validate risk assessments: supplement and validate the characterisation and risk assessment procedure with respect to risks of failing to achieve good groundwater chemical status; 
+- Classify groundwater bodies: confirm the status of all groundwater bodies, or groups of bodies, determined as not being at risk on the basis of the risk assessments; and 
+- Assess trends:&lt;i&gt; &lt;/i&gt;provide information for use in the assessment of long-term trends in natural conditions and in pollutant concentrations resulting from human activity. 
+Parameters indicative of all the biological, hydro-morphological and general as well as specific physico-chemical quality elements must be monitored</documentation>
+				</annotation>
+			</enumeration>
+			<enumeration value="research">
+				<annotation>
+					<documentation>-- Definition --
+Monitoring programme to research the GroundWaterBody (or any local groundwater conditions) to obtain quality or quantity measures.</documentation>
+				</annotation>
+			</enumeration>
+			<enumeration value="industrial">
+				<annotation>
+					<documentation>-- Definition --
+Local monitoring networks created to control groundwater status around industrial objects (factories, petrol stations and others)</documentation>
+				</annotation>
+			</enumeration>
+			<enumeration value="quantitative">
+				<annotation>
+					<documentation>-- Definition --
+Monitoring programme to supplement and validate the WFD Article 5 characterisation and risk assessment procedure with respect to risks of failing to achieve good groundwater quantitative status in all groundwater bodies, or groups of bodies. Its principal purpose is therefore to facilitate quantitative status assessment.</documentation>
+				</annotation>
+			</enumeration>
+			<enumeration value="operational">
+				<annotation>
+					<documentation>-- Definition --
+Monitoring programme to
+- establish the status of all groundwater bodies, or groups of bodies, determined as being &amp;lsquo;at risk&amp;rsquo;,
+- establish the presence of significant and sustained upward trends in the concentration of pollutants.</documentation>
+				</annotation>
+			</enumeration>
+			<enumeration value="protectedArea">
+				<annotation>
+					<documentation>-- Definition --
+Monitoring program established directly for Protected Areas (including Drinking Water Protected Area (DWPA))</documentation>
+				</annotation>
+			</enumeration>
+		</restriction>
+	</simpleType>
+	<element name="HG_Geometry" type="hyge-core:HG_GeometryType" substitutionGroup="gml:AbstractObject">
+		<annotation>
+			<documentation>-- Definition --
+A data union for describing the geometry of a feature.
+-- Note --
+In GML application schema this is realised by a choice element.
+XML Schema choice element allows only one of the elements contained in the &lt;choice&gt; declaration to be present within the containing element.</documentation>
+		</annotation>
+	</element>
+	<complexType name="HG_GeometryType">
+		<choice>
+			<element name="complexGeometry" type="hyge-core:HG_ComplexGeometryPropertyType">
+				<annotation>
+					<documentation>-- Definition --
+Spatial configuration of the object</documentation>
+				</annotation>
+			</element>
+			<element name="simpleGeometry" type="gml:GeometricPrimitivePropertyType">
+				<annotation>
+					<documentation>-- Definition --
+Spatial configuration of the object</documentation>
+				</annotation>
+			</element>
+		</choice>
+	</complexType>
+	<complexType name="HG_GeometryPropertyType">
+		<sequence>
+			<element ref="hyge-core:HG_Geometry"/>
+		</sequence>
+	</complexType>
+	<element name="Aquifer" type="hyge-core:AquiferType" substitutionGroup="hyge-core:HydrogeologicalUnit">
+		<annotation>
+			<documentation>-- Definition --
+An aquifer is a wet underground layer of water-bearing permeable rock or unconsolidated materials (gravel, sand, silt, or clay) from which groundwater can be usefully extracted using a water well.
+-- Note --
+An underground geological formation able to store and yield water.</documentation>
+		</annotation>
+	</element>
+	<complexType name="AquiferType">
+		<complexContent>
+			<extension base="hyge-core:HydrogeologicalUnitType">
+				<sequence>
+					<element name="hasLargeHorizontalExtent" type="boolean">
+						<annotation>
+							<documentation>-- Definition --
+Indicates if aquifer is of regional or local extent</documentation>
+						</annotation>
+					</element>
+					<element name="isConfined" type="boolean">
+						<annotation>
+							<documentation>-- Definition --
+Indicates if aquifer water table is confined or not.</documentation>
+						</annotation>
+					</element>
+					<element name="isExploited" type="boolean">
+						<annotation>
+							<documentation>-- Definition --
+Indicates if groundwater from aquifer is exploited by wells or intakes</documentation>
+						</annotation>
+					</element>
+					<element name="IsMainInSystem" type="boolean">
+						<annotation>
+							<documentation>-- Definition --
+Indicates if aquifer is the main useful aquifer in the aquifer system</documentation>
+						</annotation>
+					</element>
+					<element name="Thickness" type="hyge-core:HG_ValuePropertyType">
+						<annotation>
+							<documentation>-- Definition --
+The average perpendicular vertical distance between aquifer bottom and roof</documentation>
+						</annotation>
+					</element>
+					<element name="orderNumberFromSurface" type="integer">
+						<annotation>
+							<documentation>-- Definition --
+Consecutive layer number counted from the ground surface</documentation>
+						</annotation>
+					</element>
+					<element name="vulnerabilityToPollution" type="hyge-core:HG_ValuePropertyType">
+						<annotation>
+							<documentation>-- Definition --
+Term for the potential degree of aquifer risk arising from the geological structure, hydrogeological conditions and the existence of real or potential source of contamination</documentation>
+						</annotation>
+					</element>
+					<element name="isCollectionOf" type="hyge-core:AquiferSystemPropertyType"/>
+				</sequence>
+			</extension>
+		</complexContent>
+	</complexType>
+	<complexType name="AquiferPropertyType">
+		<sequence minOccurs="0">
+			<element ref="hyge-core:Aquifer"/>
+		</sequence>
+		<attributeGroup ref="gml:AssociationAttributeGroup"/>
+		<attributeGroup ref="gml:OwnershipAttributeGroup"/>
+	</complexType>
+	<simpleType name="TypeOfSourceForGeometryType">
+		<annotation>
+			<documentation>-- Definition --
+A type of source for the geometry of a hydrogeological feature</documentation>
+		</annotation>
+		<union memberTypes="hyge-core:TypeOfSourceForGeometryEnumerationType hyge-core:TypeOfSourceForGeometryOtherType"/>
+	</simpleType>
+	<simpleType name="TypeOfSourceForGeometryEnumerationType">
+		<annotation>
+			<documentation>-- Definition --
+A type of source for the geometry of a hydrogeological feature</documentation>
+		</annotation>
+		<restriction base="string">
+			<enumeration value="boreholeM&amp;O">
+				<annotation>
+					<documentation>-- Definition --
+Geometry specified from borehole location (Measurements &amp; Observations)</documentation>
+				</annotation>
+			</enumeration>
+			<enumeration value="cartographicalM&amp;O">
+				<annotation>
+					<documentation>-- Definition --
+Geometry specified from cartographical measurements (Measurements &amp; Observations)</documentation>
+				</annotation>
+			</enumeration>
+			<enumeration value="fiat">
+				<annotation>
+					<documentation>-- Definition --
+Geometry defined according to decree, regulation or other official document</documentation>
+				</annotation>
+			</enumeration>
+			<enumeration value="fromMap">
+				<annotation>
+					<documentation>-- Definition --
+Geometry specified from map</documentation>
+				</annotation>
+			</enumeration>
+			<enumeration value="fuzzy">
+				<annotation>
+					<documentation>-- Definition --
+Geometry specified from fuzzy source</documentation>
+				</annotation>
+			</enumeration>
+			<enumeration value="attributable">
+				<annotation>
+					<documentation>-- Definition --
+Geometry specified from attributable or accurate source</documentation>
+				</annotation>
+			</enumeration>
+			<enumeration value="geophysicalM&amp;O">
+				<annotation>
+					<documentation>-- Definition --
+Geometry specified from geophysical measurements (Measurements &amp; Observations)</documentation>
+				</annotation>
+			</enumeration>
+			<enumeration value="hypothetical">
+				<annotation>
+					<documentation>-- Definition --
+Geometry specified from hypothetical source</documentation>
+				</annotation>
+			</enumeration>
+			<enumeration value="hypotheticalVerifed">
+				<annotation>
+					<documentation>-- Definition --
+Geometry specified from a hypothetical source but verified</documentation>
+				</annotation>
+			</enumeration>
+			<enumeration value="other">
+				<annotation>
+					<documentation>-- Definition --
+Geometry specified from other source</documentation>
+				</annotation>
+			</enumeration>
+		</restriction>
+	</simpleType>
+	<simpleType name="TypeOfSourceForGeometryOtherType">
+		<restriction base="string">
+			<pattern value="other: \w{2,}"/>
+		</restriction>
+	</simpleType>
+	<element name="WFD_GroundWaterBody" type="hyge-core:WFD_GroundWaterBodyType" substitutionGroup="hyge-core:GroundWaterBody">
+		<annotation>
+			<documentation>-- Definition --
+A distinct volume of groundwater within a groundwater flow system, which is used as a reporting or management unit within the Water Framework Directive. 
+
+-- Description --
+SOURCE [2000/60/EC Art. 2(12)].</documentation>
+		</annotation>
+	</element>
+	<complexType name="WFD_GroundWaterBodyType">
+		<complexContent>
+			<extension base="hyge-core:GroundWaterBodyType">
+				<sequence>
+					<element name="EU_GWB_code" type="hyge-core:FeatureUniqueEUCodeTypePropertyType">
+						<annotation>
+							<documentation>-- Definition --
+Unique Code for the Groundwater Body at EU level</documentation>
+						</annotation>
+					</element>
+					<element name="GWB_MS_code" type="hyge-core:FeatureUniqueCodeTypePropertyType">
+						<annotation>
+							<documentation>-- Definition --
+Unique Code for the Groundwater Body within the Member State</documentation>
+						</annotation>
+					</element>
+					<element name="GWB_name" type="gmd:PT_FreeText_PropertyType" nillable="true">
+						<annotation>
+							<documentation>-- Definition --
+Locally-used name of groundwater body  if known</documentation>
+						</annotation>
+					</element>
+					<element name="isOutOf_RBD" nillable="true">
+						<annotation>
+							<documentation>-- Definition --
+Indicate whether or not  parts of the Groundwater Body are outside the River Basin District (RBD)</documentation>
+						</annotation>
+						<complexType>
+							<simpleContent>
+								<extension base="boolean">
+									<attribute name="nilReason" type="gml:NilReasonType"/>
+								</extension>
+							</simpleContent>
+						</complexType>
+					</element>
+					<element name="isTransboundary" nillable="true">
+						<annotation>
+							<documentation>-- Definition --
+Indicates if the Groundwater Body crosses a national border</documentation>
+						</annotation>
+						<complexType>
+							<simpleContent>
+								<extension base="boolean">
+									<attribute name="nilReason" type="gml:NilReasonType"/>
+								</extension>
+							</simpleContent>
+						</complexType>
+					</element>
+					<element name="URL" nillable="true">
+						<annotation>
+							<documentation>-- Definition --
+URL to provide linkage to source of Member State's own internet-based information</documentation>
+						</annotation>
+						<complexType>
+							<simpleContent>
+								<extension base="anyURI">
+									<attribute name="nilReason" type="gml:NilReasonType"/>
+								</extension>
+							</simpleContent>
+						</complexType>
+					</element>
+					<element name="centroid" type="gml:PointPropertyType">
+						<annotation>
+							<documentation>-- Definition --
+Centre of gravity of the volume of the groundwater body</documentation>
+						</annotation>
+					</element>
+				</sequence>
+			</extension>
+		</complexContent>
+	</complexType>
+	<complexType name="WFD_GroundWaterBodyPropertyType">
+		<sequence minOccurs="0">
+			<element ref="hyge-core:WFD_GroundWaterBody"/>
+		</sequence>
+		<attributeGroup ref="gml:AssociationAttributeGroup"/>
+		<attributeGroup ref="gml:OwnershipAttributeGroup"/>
+	</complexType>
+	<element name="PiezometricStateOfGroundwater" type="hyge-core:PiezometricStateOfGroundwaterType" substitutionGroup="gml:AbstractObject">
+		<annotation>
+			<documentation>-- Definition --
+A data type describing the piezometric state of groundwater in a groundwater body or groundwater system in terms of a description, surface grid, surface contours or a set of point measures.</documentation>
+		</annotation>
+	</element>
+	<complexType name="PiezometricStateOfGroundwaterType">
+		<choice>
+			<element name="descriptionOfPiezometricState" type="gmd:PT_FreeText_PropertyType">
+				<annotation>
+					<documentation>-- Definition --
+Free text describing the piezometric state of the groundwater</documentation>
+				</annotation>
+			</element>
+			<element name="piezometricSurfaceGrid">
+				<annotation>
+					<documentation>-- Definition --
+Piezometric state value obtained from surface grid</documentation>
+				</annotation>
+				<complexType>
+					<complexContent>
+						<extension base="gml:AbstractMemberType">
+							<sequence minOccurs="0">
+								<element ref="gml:AbstractDiscreteCoverage"/>
+							</sequence>
+							<attributeGroup ref="gml:AssociationAttributeGroup"/>
+						</extension>
+					</complexContent>
+				</complexType>
+			</element>
+			<element name="piezometricSurfaceContours">
+				<annotation>
+					<documentation>-- Definition --
+Piezometric state value obtained from surface contour map presented as a range</documentation>
+				</annotation>
+			</element>
+			<element name="piezometricPointMeasures">
+				<annotation>
+					<documentation>-- Definition --
+Piezometric state value obtained from direct measurements</documentation>
+				</annotation>
+				<complexType>
+					<complexContent>
+						<extension base="gml:AbstractMemberType">
+							<sequence minOccurs="0">
+								<element ref="gml:AbstractDiscreteCoverage"/>
+							</sequence>
+							<attributeGroup ref="gml:AssociationAttributeGroup"/>
+						</extension>
+					</complexContent>
+				</complexType>
+			</element>
+		</choice>
+	</complexType>
+	<complexType name="PiezometricStateOfGroundwaterPropertyType">
+		<sequence>
+			<element ref="hyge-core:PiezometricStateOfGroundwater"/>
+		</sequence>
+	</complexType>
+	<element name="Aquiclude" type="hyge-core:AquicludeType" substitutionGroup="hyge-core:HydrogeologicalFeature">
+		<annotation>
+			<documentation>-- Definition --
+An impermeable body of rock or stratum of sediment that acts as a barrier to the flow of groundwater
+- Note --
+A formation which, although porous and capable of absorbing water slowly, will not transmit water fast enough to furnish an appreciable supply for a well or spring. Aquicludes are characterized by very low values of "leakage" (the ratio of vertical &lt;i&gt;Hydraulic Conductivity &lt;/i&gt;to thickness), so that they transmit only minor inter-aquifer flow and also have very low rates of yield from compressible storage. Therefore, they constitute boundaries of aquifer flow systems.</documentation>
+		</annotation>
+	</element>
+	<complexType name="AquicludeType">
+		<complexContent>
+			<extension base="hyge-core:HydrogeologicalFeatureType">
+				<sequence>
+					<element name="hasLargeHorizontalExtent" type="boolean">
+						<annotation>
+							<documentation>-- Definition --
+Indicates if aquiclde is of regional or local extent</documentation>
+						</annotation>
+					</element>
+					<element name="Thickness" type="hyge-core:HG_ValuePropertyType">
+						<annotation>
+							<documentation>-- Definition --
+The average perpendicular vertical distance between aquiclude bottom and roof</documentation>
+						</annotation>
+					</element>
+					<element name="orderNumberFromSurface" type="integer">
+						<annotation>
+							<documentation>-- Definition --
+Consecutive layer number counted from the ground surface</documentation>
+						</annotation>
+					</element>
+				</sequence>
+			</extension>
+		</complexContent>
+	</complexType>
+	<complexType name="AquicludePropertyType">
+		<sequence minOccurs="0">
+			<element ref="hyge-core:Aquiclude"/>
+		</sequence>
+		<attributeGroup ref="gml:AssociationAttributeGroup"/>
+		<attributeGroup ref="gml:OwnershipAttributeGroup"/>
+	</complexType>
+	<simpleType name="AquiferMediaTypeType">
+		<annotation>
+			<documentation>-- Definition --
+An enumeration for describing the characteristics of the aquifer medium</documentation>
+		</annotation>
+		<restriction base="string">
+			<enumeration value="fractured">
+				<annotation>
+					<documentation>-- Definition --
+Fractured aquifers are rocks in which the groundwater moves through cracks, joints or fractures in otherwise
+solid rock. Examples of fractured aquifers include granite and basalt. Porous media such as sandstone may
+become so highly cemented or recrystallized that all of the original space is filled. In this case, the rock is no
+longer a porous medium. However, if it contains cracks it can still act as a fractured aquifer.</documentation>
+				</annotation>
+			</enumeration>
+			<enumeration value="porous">
+				<annotation>
+					<documentation>-- Definition --
+Porous media are those aquifers consisting of aggregates of individual particles such as sand or gravel. The
+groundwater occurs in and moves through the openings between the individual grains. Porous media where the
+grains are not connected to each other are considered unconsolidated. If the grains are cemented together,
+such aquifers are called consolidated. Sandstones are examples of consolidated porous media</documentation>
+				</annotation>
+			</enumeration>
+			<enumeration value="karstic">
+				<annotation>
+					<documentation>-- Definition --
+Karstic aquifers are fractured aquifers where the cracks and fractures may be enlarged by solution, forming large channels or even caverns.  Limestone terrain where solution has been very active is termed karst.</documentation>
+				</annotation>
+			</enumeration>
+			<enumeration value="compound">
+				<annotation>
+					<documentation>-- Definition --
+A combination of a porous, karstic and/or fractured aquifer</documentation>
+				</annotation>
+			</enumeration>
+		</restriction>
+	</simpleType>
+	<element name="SpringOrSeep" type="hyge-core:SpringOrSeepType" substitutionGroup="hyge-core:HydrogeologicalObjectNatural">
+		<annotation>
+			<documentation>-- Definition --
+A natural outflow of water from below the ground surface.
+
+-- Description --
+NOTE 1 Corresponds to a 'source' node in a network view.
+
+NOTE 2 Regarded as a placeholder in Annex II theme 'Geology' due to the connection with groundwater.</documentation>
+		</annotation>
+	</element>
+	<complexType name="SpringOrSeepType">
+		<complexContent>
+			<extension base="hyge-core:HydrogeologicalObjectNaturalType">
+				<sequence/>
+			</extension>
+		</complexContent>
+	</complexType>
+	<complexType name="SpringOrSeepPropertyType">
+		<sequence minOccurs="0">
+			<element ref="hyge-core:SpringOrSeep"/>
+		</sequence>
+		<attributeGroup ref="gml:AssociationAttributeGroup"/>
+		<attributeGroup ref="gml:OwnershipAttributeGroup"/>
+	</complexType>
+	<element name="HydrogeologicalFeature" type="hyge-core:HydrogeologicalFeatureType" abstract="true" substitutionGroup="gml:AbstractFeature">
+		<annotation>
+			<documentation>-- Definition --
+The abstract hydrogeological feature class represents a conceptual hydrogeological feature that is hypothesized to exist coherently in the subsurface.</documentation>
+		</annotation>
+	</element>
+	<complexType name="HydrogeologicalFeatureType" abstract="true">
+		<complexContent>
+			<extension base="gml:AbstractFeatureType">
+				<sequence>
+					<element name="beginLifespanVersion" type="dateTime">
+						<annotation>
+							<documentation>-- Definition --
+Stores the date that the new object was created</documentation>
+						</annotation>
+					</element>
+					<element name="description" type="gmd:PT_FreeText_PropertyType" nillable="true">
+						<annotation>
+							<documentation>-- Definition --
+Description of the general characteristics of the HydrogeologicalFeature</documentation>
+						</annotation>
+					</element>
+					<element name="endLifespanVersion" type="dateTime" minOccurs="0">
+						<annotation>
+							<documentation>-- Definition --
+The date that the next version of the object was created. If the endLifespanVersion is null, this indicates that the object is the current representation of the feature</documentation>
+						</annotation>
+					</element>
+					<element name="inspireId" type="base:IdentifierPropertyType">
+						<annotation>
+							<documentation>-- Definition --
+INSPIRE identifier</documentation>
+						</annotation>
+					</element>
+					<element name="name" type="gmd:PT_FreeText_PropertyType" nillable="true">
+						<annotation>
+							<documentation>-- Definition --
+Name of the HydrogeologicalFeature</documentation>
+						</annotation>
+					</element>
+					<element name="presents" type="hyge-core:HydrogeologicalFeatureAppearencePropertyType" minOccurs="0" maxOccurs="unbounded">
+						<annotation>
+							<appinfo>
+								<reversePropertyName xmlns="http://www.opengis.net/gml/3.2">hyge-core:isPresented</reversePropertyName>
+							</appinfo>
+						</annotation>
+					</element>
+				</sequence>
+			</extension>
+		</complexContent>
+	</complexType>
+	<complexType name="HydrogeologicalFeaturePropertyType">
+		<sequence minOccurs="0">
+			<element ref="hyge-core:HydrogeologicalFeature"/>
+		</sequence>
+		<attributeGroup ref="gml:AssociationAttributeGroup"/>
+		<attributeGroup ref="gml:OwnershipAttributeGroup"/>
+	</complexType>
+	<element name="HydrogeologicalUnit" type="hyge-core:HydrogeologicalUnitType" substitutionGroup="gsml:GeologicUnit">
+		<annotation>
+			<documentation>-- Definition --
+Any soil or rock unit which by virtue of its porosity or permeability, or lack thereof, has a distinct influence on the storage or movement of groundwater.
+
+-- Note --
+Hydrogeological unit is almost always invariable in time.
+Examples of hydrogeological units are aquifer and aquitard.
+
+Groundwater flow system and groundwater body are not hydrogeological units.</documentation>
+		</annotation>
+	</element>
+	<complexType name="HydrogeologicalUnitType">
+		<complexContent>
+			<extension base="gsml:GeologicUnitType">
+				<sequence>
+					<element name="isComplex" type="boolean">
+						<annotation>
+							<documentation>-- Definition --
+Contains a number of hydrogeological units</documentation>
+						</annotation>
+					</element>
+				</sequence>
+			</extension>
+		</complexContent>
+	</complexType>
+	<complexType name="HydrogeologicalUnitPropertyType">
+		<sequence minOccurs="0">
+			<element ref="hyge-core:HydrogeologicalUnit"/>
+		</sequence>
+		<attributeGroup ref="gml:AssociationAttributeGroup"/>
+		<attributeGroup ref="gml:OwnershipAttributeGroup"/>
+	</complexType>
+</schema>

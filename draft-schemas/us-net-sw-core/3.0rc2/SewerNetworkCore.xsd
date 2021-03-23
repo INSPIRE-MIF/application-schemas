@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<schema xmlns="http://www.w3.org/2001/XMLSchema" xmlns:gml="http://www.opengis.net/gml/3.2" xmlns:sc="http://www.interactive-instruments.de/ShapeChange/AppInfo" xmlns:us-net-common-core="http://inspire.ec.europa.eu/schemas/us-net-common-core/3.0rc2" xmlns:us-net-sw-core="http://inspire.ec.europa.eu/schemas/us-net-sw-core/3.0rc2" targetNamespace="http://inspire.ec.europa.eu/schemas/us-net-sw-core/3.0rc2" elementFormDefault="qualified" version="3.0rc2">
+	<annotation>
+		<documentation>-- Definition --
+Sewer network sub-domain.</documentation>
+	</annotation>
+	<import namespace="http://inspire.ec.europa.eu/schemas/us-net-common-core/3.0rc2" schemaLocation="https://inspire.ec.europa.eu/draft-schemas/us-net-common-core/3.0rc2/UtilityNetworksCommonCore.xsd"/>
+	<import namespace="http://www.interactive-instruments.de/ShapeChange/AppInfo" schemaLocation="http://portele.de/ShapeChangeAppinfo.xsd"/>
+	<import namespace="http://www.opengis.net/gml/3.2" schemaLocation="http://schemas.opengis.net/gml/3.2.1/gml.xsd"/>
+	<!--XML Schema document created by ShapeChange-->
+	<element name="SewerPipe" type="us-net-sw-core:SewerPipeType" substitutionGroup="us-net-common-core:Pipe">
+		<annotation>
+			<documentation>-- Name --
+sewer pipe
+
+-- Definition --
+A sewer pipe used to convey wastewater (sewer) from one location to another.</documentation>
+		</annotation>
+	</element>
+	<complexType name="SewerPipeType">
+		<complexContent>
+			<extension base="us-net-common-core:PipeType">
+				<sequence>
+					<element name="sewerWaterType" nillable="true">
+						<annotation>
+							<documentation>-- Name --
+sewer water type
+
+-- Definition --
+Type of sewer water.</documentation>
+							<appinfo>
+								<taggedValue xmlns="http://www.interactive-instruments.de/ShapeChange/AppInfo" tag="obligation">implementingRule</taggedValue>
+							</appinfo>
+						</annotation>
+						<complexType>
+							<simpleContent>
+								<extension base="gml:CodeType">
+									<attribute name="nilReason" type="gml:NilReasonType"/>
+								</extension>
+							</simpleContent>
+						</complexType>
+					</element>
+				</sequence>
+			</extension>
+		</complexContent>
+	</complexType>
+	<complexType name="SewerPipePropertyType">
+		<sequence minOccurs="0">
+			<element ref="us-net-sw-core:SewerPipe"/>
+		</sequence>
+		<attributeGroup ref="gml:AssociationAttributeGroup"/>
+		<attributeGroup ref="gml:OwnershipAttributeGroup"/>
+	</complexType>
+</schema>

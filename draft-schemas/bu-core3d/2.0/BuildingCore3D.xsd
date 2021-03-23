@@ -1,0 +1,243 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<schema xmlns="http://www.w3.org/2001/XMLSchema" xmlns:bu-core3d="http://inspire.jrc.ec.europa.eu/schemas/bu-core3d/2.0" xmlns:bu-core2d="http://inspire.jrc.ec.europa.eu/schemas/bu-core2d/2.0" xmlns:gml="http://www.opengis.net/gml/3.2" targetNamespace="http://inspire.jrc.ec.europa.eu/schemas/bu-core3d/2.0" elementFormDefault="qualified" version="2.0">
+	<annotation>
+		<documentation>-- Definition --
+The core 3D application schema for INSPIRE theme building.</documentation>
+	</annotation>
+	<import namespace="http://www.opengis.net/gml/3.2" schemaLocation="http://schemas.opengis.net/gml/3.2.1/gml.xsd"/>
+	<import namespace="http://inspire.jrc.ec.europa.eu/schemas/bu-core2d/2.0" schemaLocation="https://inspire.ec.europa.eu/draft-schemas/bu-core2d/2.0/BuildingCore2D.xsd"/>
+	<!--XML Schema document created by ShapeChange-->
+	<element name="Building" type="bu-core3d:BuildingType" substitutionGroup="bu-core3d:Core2DAbstractBuilding">
+		<annotation>
+			<documentation>-- Definition --
+A Building is an enclosed construction above and/or underground, used or intended for the shelter of humans, animals or things or for the production of economic goods. A building refers to any structure permanently constructed or erected on its site.</documentation>
+		</annotation>
+	</element>
+	<complexType name="BuildingType">
+		<complexContent>
+			<extension base="bu-core3d:Core2DAbstractBuildingType">
+				<sequence>
+					<element name="parts" minOccurs="0" maxOccurs="unbounded">
+						<annotation>
+							<documentation>-- Definition --
+The building parts.</documentation>
+						</annotation>
+						<complexType>
+							<complexContent>
+								<extension base="gml:AbstractMemberType">
+									<sequence minOccurs="0">
+										<element ref="bu-core3d:BuildingPart"/>
+									</sequence>
+									<attributeGroup ref="gml:AssociationAttributeGroup"/>
+								</extension>
+							</complexContent>
+						</complexType>
+					</element>
+				</sequence>
+			</extension>
+		</complexContent>
+	</complexType>
+	<complexType name="BuildingPropertyType">
+		<sequence minOccurs="0">
+			<element ref="bu-core3d:Building"/>
+		</sequence>
+		<attributeGroup ref="gml:AssociationAttributeGroup"/>
+		<attributeGroup ref="gml:OwnershipAttributeGroup"/>
+	</complexType>
+	<element name="OtherConstruction" type="bu-core3d:OtherConstructionType" substitutionGroup="bu-core3d:AbstractConstruction">
+		<annotation>
+			<documentation>-- Definition --
+An OtherConstruction is a construction that is under scope of theme Buildings without being within feature type Building.
+
+-- Description --
+NOTE: In other words, an OtherConstruction is a construction that is generally not considered as a building in common sense but that is required by at least one of the use cases identified by TWG BU.
+
+EXAMPLES: bridge, antenna, acoustic fence.</documentation>
+		</annotation>
+	</element>
+	<complexType name="OtherConstructionType">
+		<complexContent>
+			<extension base="bu-core3d:AbstractConstructionType">
+				<sequence>
+					<element name="constructionNature" type="bu-core2d:ConstructionNatureValueType">
+						<annotation>
+							<documentation>-- Definition -- 
+A description of the feature that represents its intended nature or current function which differentiates it from that of a Building.</documentation>
+						</annotation>
+					</element>
+				</sequence>
+			</extension>
+		</complexContent>
+	</complexType>
+	<complexType name="OtherConstructionPropertyType">
+		<sequence minOccurs="0">
+			<element ref="bu-core3d:OtherConstruction"/>
+		</sequence>
+		<attributeGroup ref="gml:AssociationAttributeGroup"/>
+		<attributeGroup ref="gml:OwnershipAttributeGroup"/>
+	</complexType>
+	<element name="BuildingPart" type="bu-core3d:BuildingPartType" substitutionGroup="bu-core3d:Core2DAbstractBuilding">
+		<annotation>
+			<documentation>-- Definition --
+A BuildingPart is a sub-division of a Building that is homogeneous related to its physical, functional or temporal aspects.
+
+-- Description --
+
+NOTE: A BuildingPart may be considered as a building (as buildings and building parts share same set of properties).
+
+EXAMPLE:A Building may be composed of two BuildingParts having different heights.</documentation>
+		</annotation>
+	</element>
+	<complexType name="BuildingPartType">
+		<complexContent>
+			<extension base="bu-core3d:Core2DAbstractBuildingType">
+				<sequence/>
+			</extension>
+		</complexContent>
+	</complexType>
+	<complexType name="BuildingPartPropertyType">
+		<sequence minOccurs="0">
+			<element ref="bu-core3d:BuildingPart"/>
+		</sequence>
+		<attributeGroup ref="gml:AssociationAttributeGroup"/>
+		<attributeGroup ref="gml:OwnershipAttributeGroup"/>
+	</complexType>
+	<element name="Core2DAbstractBuilding" type="bu-core3d:Core2DAbstractBuildingType" substitutionGroup="bu-core3d:AbstractConstruction">
+		<annotation>
+			<documentation>-- Definition --
+Abstract feature type grouping the common properties of instanciable feature types Building and BuildingPart.</documentation>
+		</annotation>
+	</element>
+	<complexType name="Core2DAbstractBuildingType">
+		<complexContent>
+			<extension base="bu-core3d:AbstractConstructionType">
+				<sequence>
+					<element name="currentUse" nillable="true" minOccurs="0" maxOccurs="unbounded">
+						<annotation>
+							<documentation>-- Definition --
+Activity hosted by the building.
+
+-- Description --
+NOTE: this attribute addresses mainly the buildings hosting human activities</documentation>
+						</annotation>
+						<complexType>
+							<simpleContent>
+								<extension base="bu-core2d:CurrentUseValueType">
+									<attribute name="nilReason" type="gml:NilReasonType"/>
+								</extension>
+							</simpleContent>
+						</complexType>
+					</element>
+					<element name="specificInterest" nillable="true">
+						<annotation>
+							<documentation>-- Definition --
+Characteristics of the building that makes it generally of interest for mapping purposes.
+
+-- Description --
+NOTE 1: the characteristic may be related to the physical aspect and/or to the function of the building.</documentation>
+						</annotation>
+						<complexType>
+							<simpleContent>
+								<extension base="bu-core2d:SpecificInterestValueType">
+									<attribute name="nilReason" type="gml:NilReasonType"/>
+								</extension>
+							</simpleContent>
+						</complexType>
+					</element>
+					<element name="numberOfBuildingUnits" nillable="true" minOccurs="0">
+						<annotation>
+							<documentation>-- Definition --
+Number of building units in the building. A building unit is the sub-division of the building that is homogeneous related to management aspects.
+
+-- Description --
+EXAMPLE : A building unit may be a flat in a multi-owned building.</documentation>
+						</annotation>
+						<complexType>
+							<simpleContent>
+								<extension base="integer">
+									<attribute name="nilReason" type="gml:NilReasonType"/>
+								</extension>
+							</simpleContent>
+						</complexType>
+					</element>
+					<element name="numberOfDwellings" nillable="true" minOccurs="0">
+						<annotation>
+							<documentation>-- Definition --
+Number of dwellings in the building.</documentation>
+						</annotation>
+						<complexType>
+							<simpleContent>
+								<extension base="integer">
+									<attribute name="nilReason" type="gml:NilReasonType"/>
+								</extension>
+							</simpleContent>
+						</complexType>
+					</element>
+					<element name="numberOfFloorsAboveGround" nillable="true" minOccurs="0">
+						<annotation>
+							<documentation>-- Definition --
+Number of floors above ground of the building.</documentation>
+						</annotation>
+						<complexType>
+							<simpleContent>
+								<extension base="integer">
+									<attribute name="nilReason" type="gml:NilReasonType"/>
+								</extension>
+							</simpleContent>
+						</complexType>
+					</element>
+				</sequence>
+			</extension>
+		</complexContent>
+	</complexType>
+	<complexType name="Core2DAbstractBuildingPropertyType">
+		<sequence minOccurs="0">
+			<element ref="bu-core3d:Core2DAbstractBuilding"/>
+		</sequence>
+		<attributeGroup ref="gml:AssociationAttributeGroup"/>
+		<attributeGroup ref="gml:OwnershipAttributeGroup"/>
+	</complexType>
+	<element name="AbstractConstruction" type="bu-core3d:AbstractConstructionType" substitutionGroup="bu-core2d:AbstractConstruction">
+		<annotation>
+			<documentation>-- Definition --
+Abstract feature type grouping common properties of instanciable feature types Building, BuildingPart and OtherConstruction.</documentation>
+		</annotation>
+	</element>
+	<complexType name="AbstractConstructionType">
+		<complexContent>
+			<extension base="bu-core2d:AbstractConstructionType">
+				<sequence>
+					<element name="horizontalGeometryEstimatedAccuracy" type="gml:LengthType">
+						<annotation>
+							<documentation>-- Definition --
+The estimated absolute &lt;b&gt;&lt;u&gt;planimetric&lt;/u&gt;&lt;/b&gt; accuracy of the geometry of the building, in the INSPIRE official Coordinate Reference System. Absolute &lt;b&gt;&lt;u&gt;planimetric&lt;/u&gt;&lt;/b&gt; accuracy is defined as the mean value of the positional uncertainties for a set of positions where the positional uncertainties are defined as the distance between a measured position and what is considered as the corresponding true position.
+-- Description --
+NOTE: this mean value may come from quality measures on a homogeneous population of buildings or from an estimation based on the knowledge of the production processes and of their accuracy.</documentation>
+						</annotation>
+					</element>
+					<element name="verticalGeometryEstimatedAccuracy" type="gml:LengthType">
+						<annotation>
+							<documentation>-- Definition --
+The estimated absolute &lt;b&gt;&lt;u&gt;height&lt;/u&gt;&lt;/b&gt; accuracy of the geometry of the building, in the INSPIRE official Coordinate Reference System. Absolute &lt;b&gt;&lt;u&gt;height&lt;/u&gt;&lt;/b&gt; accuracy is defined as the mean value of the positional uncertainties for a set of positions where the positional uncertainties are defined as the distance between a measured position and what is considered as the corresponding true position.
+-- Description --
+NOTE: this mean value may come from quality measures on a homogeneous population of buildings or from an estimation based on the knowledge of the production processes and of their accuracy.</documentation>
+						</annotation>
+					</element>
+					<element name="geometry" type="gml:SolidPropertyType">
+						<annotation>
+							<documentation>-- Definition --
+Geometric representation of the building.</documentation>
+						</annotation>
+					</element>
+				</sequence>
+			</extension>
+		</complexContent>
+	</complexType>
+	<complexType name="AbstractConstructionPropertyType">
+		<sequence minOccurs="0">
+			<element ref="bu-core3d:AbstractConstruction"/>
+		</sequence>
+		<attributeGroup ref="gml:AssociationAttributeGroup"/>
+		<attributeGroup ref="gml:OwnershipAttributeGroup"/>
+	</complexType>
+</schema>

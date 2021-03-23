@@ -1,0 +1,263 @@
+<?xml version="1.0" encoding="UTF-8"?><schema xmlns="http://www.w3.org/2001/XMLSchema" xmlns:base="urn:x-inspire:specification:gmlas:BaseTypes:3.2" xmlns:gmd="http://www.isotc211.org/2005/gmd" xmlns:gml="http://www.opengis.net/gml/3.2" xmlns:gmlcov="http://www.opengis.net/gmlcov/1.0" xmlns:oi="http://inspire.jrc.ec.europa.eu/schemas/oi/2.0" elementFormDefault="qualified" targetNamespace="http://inspire.jrc.ec.europa.eu/schemas/oi/2.0" version="2.0">
+  <import namespace="http://www.isotc211.org/2005/gmd" schemaLocation="http://schemas.opengis.net/iso/19139/20070417/gmd/gmd.xsd"/>
+  <import namespace="http://www.opengis.net/gml/3.2" schemaLocation="http://schemas.opengis.net/gml/3.2.1/gml.xsd"/>
+  <import namespace="http://www.opengis.net/gmlcov/1.0" schemaLocation="http://schemas.opengis.net/gmlcov/1.0/coverage.xsd"/>
+  <import namespace="urn:x-inspire:specification:gmlas:BaseTypes:3.2" schemaLocation="https://inspire.ec.europa.eu/schemas/base/3.2/BaseTypes.xsd"/>
+  <!--XML Schema document created by ShapeChange-->
+  <element name="OrthoimageAggregation" substitutionGroup="gml:AbstractObject" type="oi:OrthoimageAggregationType">
+    <annotation>
+      <documentation>--Name--
+orthoimage aggregation
+
+-- Definition --
+Geometrical characteristics of the orthoimage aggregation.</documentation>
+    </annotation>
+  </element>
+  <complexType name="OrthoimageAggregationType">
+    <sequence>
+      <element name="contributingFootprint" type="gml:MultiSurfacePropertyType">
+        <annotation>
+          <documentation>-- Definition --
+Multi polygon delineating the geographic area of an orthoimage coverage that contributes to the aggregated orthoimage coverage.</documentation>
+        </annotation>
+      </element>
+      <element name="contributingOrthoimageCoverage" type="oi:OrthoimageCoveragePropertyType">
+        <annotation>
+          <documentation>-- Definition --
+Reference to the orthoimage coverages that compose an aggregated orthoimage coverage.</documentation>
+        </annotation>
+      </element>
+    </sequence>
+  </complexType>
+  <complexType name="OrthoimageAggregationPropertyType">
+    <sequence>
+      <element ref="oi:OrthoimageAggregation"/>
+    </sequence>
+  </complexType>
+  <element name="Seamline" substitutionGroup="gml:AbstractFeature" type="oi:SeamlineType">
+    <annotation>
+      <documentation>--Name--
+seamline
+
+-- Definition --
+Identification of the acquisition date and the contributing area of an input image used to generate a mosaicked orthoimage coverage.
+
+-- Description --
+NOTE The main purpose of this feature type is the provision of a mechanism for describing the spatial distribution of the acquisition dates and times over a mosaicked orthoimage.</documentation>
+    </annotation>
+  </element>
+  <complexType name="SeamlineType">
+    <complexContent>
+      <extension base="gml:AbstractFeatureType">
+        <sequence>
+          <element minOccurs="0" name="inspireId" type="base:IdentifierPropertyType">
+            <annotation>
+              <documentation>-- Definition --
+External object identifier of the spatial object.
+
+-- Description --
+NOTE An external object identifier is a unique object identifier published by the responsible body, which may be used by external applications to reference the spatial object. The identifier is an identifier of the spatial object, not an identifier of the real-world phenomenon.</documentation>
+            </annotation>
+          </element>
+          <element name="geometry" type="gml:MultiSurfacePropertyType">
+            <annotation>
+              <documentation>-- Definition --
+Multi polygon delineating the geographic area covered by an input image that contributes to the final mosaic.</documentation>
+            </annotation>
+          </element>
+          <element minOccurs="0" name="imageSourceReference" nillable="true">
+            <annotation>
+              <documentation>-- Definition --
+Reference to the input image.
+
+-- Description --
+NOTE The input image may be orthorectified or not.
+
+EXAMPLE The reference may be a local identifier provided by a data producer.</documentation>
+            </annotation>
+            <complexType>
+              <simpleContent>
+                <extension base="string">
+                  <attribute name="nilReason" type="gml:NilReasonType"/>
+                </extension>
+              </simpleContent>
+            </complexType>
+          </element>
+          <element name="phenomenonTime" type="gml:TimePeriodPropertyType">
+            <annotation>
+              <documentation>-- Definition --
+Description of the observation/acquisition time of the input image.
+
+--Description--
+NOTE The end date and time may be identical to the begin date and time, especially when the acquisition is quasi instantaneous.</documentation>
+            </annotation>
+          </element>
+        </sequence>
+      </extension>
+    </complexContent>
+  </complexType>
+  <complexType name="SeamlinePropertyType">
+    <sequence minOccurs="0">
+      <element ref="oi:Seamline"/>
+    </sequence>
+    <attributeGroup ref="gml:AssociationAttributeGroup"/>
+    <attributeGroup ref="gml:OwnershipAttributeGroup"/>
+  </complexType>
+  <element name="OrthoimageCoverage" substitutionGroup="gmlcov:RectifiedGridCoverage" type="oi:OrthoimageCoverageType">
+    <annotation>
+      <documentation>--Name--
+orthoimage coverage
+
+-- Definition --
+Raster image of the Earth surface that has been geometrically corrected ("orthorectified") to remove distortion caused by camera optics, camera tilts and differences in elevation.
+
+-- Description --
+NOTE 1 An orthoimage coverage can be derived from one single input image or from different input images which have been mosaicked and merged together.
+
+NOTE 2 An orthoimage coverage may be an aggregation of subsets extracted from other orthoimage coverages. For the avoidance of data duplication, this kind of aggregated orthoimage is dynamically constructed thanks to references to the contributing orthoimage coverages .</documentation>
+    </annotation>
+  </element>
+  <complexType name="OrthoimageCoverageType">
+    <complexContent>
+      <extension base="gmlcov:AbstractDiscreteCoverageType">
+        <sequence>
+          <element name="inspireId" type="base:IdentifierPropertyType">
+            <annotation>
+              <documentation>-- Definition --
+External object identifier of the spatial object.
+
+-- Description --
+NOTE An external object identifier is a unique object identifier published by the responsible body, which may be used by external applications to reference the spatial object. The identifier is an identifier of the spatial object, not an identifier of the real-world phenomenon.</documentation>
+            </annotation>
+          </element>
+          <element maxOccurs="unbounded" name="domainExtent">
+            <annotation>
+              <documentation>-- Definition --
+Extent of the domain of the coverage.
+
+-- Description --
+SOURCE [ISO 19123]
+
+NOTE 1 The domain extent shall be specified in space at least by using EX_BoundingPolygon, EX_GeographicBoundingBox or EX_GeographicDescription.  The whole geographic extent of the orthoimage is affected, including areas where grid points hold nil reason values.</documentation>
+            </annotation>
+            <complexType>
+              <complexContent>
+                <extension base="gml:AbstractMetadataPropertyType">
+                  <sequence minOccurs="0">
+                    <element ref="gmd:EX_Extent"/>
+                  </sequence>
+                  <attributeGroup ref="gml:AssociationAttributeGroup"/>
+                </extension>
+              </complexContent>
+            </complexType>
+          </element>
+          <element name="footprint" nillable="true" type="gml:MultiSurfacePropertyType">
+            <annotation>
+              <documentation>-- Definition --
+Geographic area enclosing valid data of the orthoimage coverage.
+
+-- Description --
+NOTE 1 The footprint shall be enclosed in the geographic domain extent that it refines.
+
+NOTE 2 This property is mandatory if the OrthoimageCoverage instance is an aggregation of other OrthoimageCoverage instances or if Seamlines are provided.</documentation>
+            </annotation>
+          </element>
+          <element name="interpolationType" type="gml:CodeType">
+            <annotation>
+              <documentation>-- Definition --
+Code that identifies the interpolation
+method recommended for the evaluation of the orthoimage coverage.
+
+-- Description --
+NOTE 1 The code list CV_InterpolationMethod is specified in [ISO 19123].
+
+NOTE 2 Nearestneighbor is set as a default value in case where this information is omitted by data producers.
+
+NOTE 3 A continuous grid coverage that uses nearest neighbour interpolation acts as a discrete surface coverage.</documentation>
+            </annotation>
+          </element>
+          <element minOccurs="0" name="name" nillable="true">
+            <annotation>
+              <documentation>-- Definition --
+Name of the orthoimage coverage.
+
+-- Description --
+EXAMPLE The name of the administrative unit covered by an orthoimage.</documentation>
+            </annotation>
+            <complexType>
+              <simpleContent>
+                <extension base="string">
+                  <attribute name="nilReason" type="gml:NilReasonType"/>
+                </extension>
+              </simpleContent>
+            </complexType>
+          </element>
+          <element name="phenomenonTime" nillable="true" type="gml:TimePeriodPropertyType">
+            <annotation>
+              <documentation>-- Definition --
+Description of the observation/acquisition time.
+
+-- Description --
+NOTE The end date and time may be identical to the begin date and time, especially when the acquisition is quasi instantaneous.</documentation>
+            </annotation>
+          </element>
+          <element name="beginLifespanVersion" nillable="true">
+            <annotation>
+              <documentation>-- Definition --
+Date and time at which this version of the spatial object was inserted or changed in the spatial data set.</documentation>
+            </annotation>
+            <complexType>
+              <simpleContent>
+                <extension base="dateTime">
+                  <attribute name="nilReason" type="gml:NilReasonType"/>
+                </extension>
+              </simpleContent>
+            </complexType>
+          </element>
+          <element minOccurs="0" name="endLifespanVersion" nillable="true">
+            <annotation>
+              <documentation>-- Definition --
+Date and time at which this version of the spatial object was superseded or retired from the spatial data set.</documentation>
+            </annotation>
+            <complexType>
+              <simpleContent>
+                <extension base="dateTime">
+                  <attribute name="nilReason" type="gml:NilReasonType"/>
+                </extension>
+              </simpleContent>
+            </complexType>
+          </element>
+          <element maxOccurs="unbounded" minOccurs="0" name="seamlines" nillable="true">
+            <annotation>
+              <documentation>-- Definition --
+Description of the seamlines that have been used to create a mosaiced Orthoimage coverage.
+
+-- Description --
+NOTE This property shall be used only when the orthoimage coverage is a mosaic of several input images.</documentation>
+            </annotation>
+            <complexType>
+              <sequence minOccurs="0">
+                <element ref="oi:Seamline"/>
+              </sequence>
+              <attributeGroup ref="gml:AssociationAttributeGroup"/>
+              <attributeGroup ref="gml:OwnershipAttributeGroup"/>
+            </complexType>
+          </element>
+          <element maxOccurs="unbounded" minOccurs="0" name="contributingOrthoimageCoverage" type="oi:OrthoimageCoveragePropertyType">
+            <annotation>
+              <documentation>-- Definition --
+Reference to the orthoimage coverages that compose an aggregated orthoimage coverage.</documentation>
+            </annotation>
+          </element>
+        </sequence>
+      </extension>
+    </complexContent>
+  </complexType>
+  <complexType name="OrthoimageCoveragePropertyType">
+    <sequence minOccurs="0">
+      <element ref="oi:OrthoimageCoverage"/>
+    </sequence>
+    <attributeGroup ref="gml:AssociationAttributeGroup"/>
+    <attributeGroup ref="gml:OwnershipAttributeGroup"/>
+  </complexType>
+</schema>

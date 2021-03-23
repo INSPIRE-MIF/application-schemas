@@ -1,0 +1,955 @@
+<?xml version="1.0" encoding="UTF-8"?><schema xmlns="http://www.w3.org/2001/XMLSchema" xmlns:base="urn:x-inspire:specification:gmlas:BaseTypes:3.2" xmlns:gmd="http://www.isotc211.org/2005/gmd" xmlns:gml="http://www.opengis.net/gml/3.2" xmlns:gph-core="http://inspire.jrc.ec.europa.eu/schemas/gph-core/2.0" elementFormDefault="qualified" targetNamespace="http://inspire.jrc.ec.europa.eu/schemas/gph-core/2.0" version="2.0">
+  <import namespace="http://www.isotc211.org/2005/gmd" schemaLocation="http://schemas.opengis.net/iso/19139/20070417/gmd/gmd.xsd"/>
+  <import namespace="http://www.opengis.net/gml/3.2" schemaLocation="http://schemas.opengis.net/gml/3.2.1/gml.xsd"/>
+  <import namespace="urn:x-inspire:specification:gmlas:BaseTypes:3.2" schemaLocation="https://inspire.ec.europa.eu/schemas/base/3.2/BaseTypes.xsd"/>
+  <!--XML Schema document created by ShapeChange-->
+  <element name="GeophMeasurement" substitutionGroup="gml:AbstractFeature" type="gph-core:GeophMeasurementType">
+    <annotation>
+      <documentation>-- Definition --
+Generic feature for geophysical measurements.
+
+-- Description --
+Geophysical measurements collect data outside or on the boundary of the observed spatial domain.</documentation>
+    </annotation>
+  </element>
+  <complexType name="GeophMeasurementType">
+    <complexContent>
+      <extension base="gml:AbstractFeatureType">
+        <sequence>
+          <element name="resolutionScale" nillable="true">
+            <annotation>
+              <documentation>-- Definition --
+NOTE: this attribute type will be mapped to a temporary proxy for MD_RepresentativeFraction until support for GML3.2 is achieved.  
+
+Reciprocal of equivalent scale of resolution for delineation of a feature's geometry. This is in contrast to positionAccuracy which is a measure of how well a feature is located relative to other features in the geographic reference system.</documentation>
+            </annotation>
+            <complexType>
+              <complexContent>
+                <extension base="gml:AbstractMetadataPropertyType">
+                  <sequence minOccurs="0">
+                    <element ref="gmd:MD_RepresentativeFraction"/>
+                  </sequence>
+                  <attributeGroup ref="gml:AssociationAttributeGroup"/>
+                </extension>
+              </complexContent>
+            </complexType>
+          </element>
+          <element name="inspireId" type="base:IdentifierPropertyType">
+            <annotation>
+              <documentation>-- Definition --
+External object identifier of the measurement.
+
+-- Description --
+NOTE An external object identifier is a unique object identifier published by the responsible body, which may be used by external applications to reference the spatial object. The identifier is an identifier of the spatial object, not an identifier of the real-world phenomenon.</documentation>
+            </annotation>
+          </element>
+          <element name="citation">
+            <annotation>
+              <documentation>-- Definition --
+Citation of the model resource data
+
+-- Description --
+title, date of publication etc.</documentation>
+            </annotation>
+            <complexType>
+              <complexContent>
+                <extension base="gml:AbstractMetadataPropertyType">
+                  <sequence>
+                    <element ref="gmd:CI_Citation"/>
+                  </sequence>
+                </extension>
+              </complexContent>
+            </complexType>
+          </element>
+          <element name="measurementStart" nillable="true" type="gml:TimePositionType">
+            <annotation>
+              <documentation>-- Definition --
+Start of the sampling procedure</documentation>
+            </annotation>
+          </element>
+          <element name="measurementEnd" nillable="true" type="gml:TimePositionType">
+            <annotation>
+              <documentation>-- Definition --
+End of the sampling procedure</documentation>
+            </annotation>
+          </element>
+          <element name="verticalExtent" nillable="true">
+            <annotation>
+              <documentation>-- Definition --
+Vertical extent of the sampling configuration
+
+-- Description --
+Geophysical measurements often have vertical extent. 
+Example: A borehole logging measurement is usually displayed on maps as a point, but the sampling takes place in a vertical or inclined borehole</documentation>
+            </annotation>
+            <complexType>
+              <complexContent>
+                <extension base="gml:AbstractMetadataPropertyType">
+                  <sequence minOccurs="0">
+                    <element ref="gmd:EX_VerticalExtent"/>
+                  </sequence>
+                  <attributeGroup ref="gml:AssociationAttributeGroup"/>
+                </extension>
+              </complexContent>
+            </complexType>
+          </element>
+          <element name="distributionInfo" nillable="true">
+            <annotation>
+              <documentation>-- Definition --
+Distribution metadata
+
+-- Description --
+Link to measured data access point</documentation>
+            </annotation>
+            <complexType>
+              <complexContent>
+                <extension base="gml:AbstractMetadataPropertyType">
+                  <sequence minOccurs="0">
+                    <element ref="gmd:MD_Distribution"/>
+                  </sequence>
+                  <attributeGroup ref="gml:AssociationAttributeGroup"/>
+                </extension>
+              </complexContent>
+            </complexType>
+          </element>
+          <element maxOccurs="unbounded" name="largerWork" nillable="true">
+            <annotation>
+              <documentation>-- Definition --
+reference to a larger work, tipically a campaign or project</documentation>
+            </annotation>
+            <complexType>
+              <complexContent>
+                <extension base="gml:AbstractMetadataPropertyType">
+                  <sequence minOccurs="0">
+                    <element ref="gmd:MD_Identifier"/>
+                  </sequence>
+                  <attributeGroup ref="gml:AssociationAttributeGroup"/>
+                </extension>
+              </complexContent>
+            </complexType>
+          </element>
+          <element maxOccurs="unbounded" name="relatedModel" nillable="true">
+            <annotation>
+              <documentation>-- Definition --
+Reference to the geophysical model that was created from the measurement</documentation>
+            </annotation>
+            <complexType>
+              <complexContent>
+                <extension base="gml:AbstractMetadataPropertyType">
+                  <sequence minOccurs="0">
+                    <element ref="gmd:MD_Identifier"/>
+                  </sequence>
+                  <attributeGroup ref="gml:AssociationAttributeGroup"/>
+                </extension>
+              </complexContent>
+            </complexType>
+          </element>
+          <element name="dataOwner" nillable="true">
+            <annotation>
+              <documentation>-- Definition --
+Owner of the model 
+
+-- Description --
+Ownership is usually inherited from campaign to measurement. If not, data owner may be defined for separate measurements.</documentation>
+            </annotation>
+            <complexType>
+              <complexContent>
+                <extension base="gml:AbstractMetadataPropertyType">
+                  <sequence>
+                    <element ref="gmd:CI_ResponsibleParty"/>
+                  </sequence>
+                  <attribute name="nilReason" type="gml:NilReasonType"/>
+                </extension>
+              </complexContent>
+            </complexType>
+          </element>
+          <element maxOccurs="unbounded" name="projectedGeometry" type="gph-core:ProjectedGeometryPropertyType">
+            <annotation>
+              <documentation>-- Definition --
+2D projection of the feature to the ground surface. This is going to be used by WMS to display the 3D feature</documentation>
+            </annotation>
+          </element>
+          <element name="platformType" type="gml:CodeType">
+            <annotation>
+              <documentation>-- Definition --
+platform from which the measurement was carried out</documentation>
+            </annotation>
+          </element>
+        </sequence>
+      </extension>
+    </complexContent>
+  </complexType>
+  <complexType name="GeophMeasurementPropertyType">
+    <sequence minOccurs="0">
+      <element ref="gph-core:GeophMeasurement"/>
+    </sequence>
+    <attributeGroup ref="gml:AssociationAttributeGroup"/>
+    <attributeGroup ref="gml:OwnershipAttributeGroup"/>
+  </complexType>
+  <element abstract="true" name="AbstractGeophProfile" substitutionGroup="gph-core:GeophMeasurement" type="gph-core:AbstractGeophProfileType">
+    <annotation>
+      <documentation>-- Definition --
+Geophysical measurement spatially referenced to a curve
+
+-- Description --
+Used to collect data along a curve. 
+Examples: 2D seismic measurement, borehole logging, airborne geophysical flight line
+
+NOTE1. Processing results of geophProfiles are often surface coverages</documentation>
+    </annotation>
+  </element>
+  <complexType abstract="true" name="AbstractGeophProfileType">
+    <complexContent>
+      <extension base="gph-core:GeophMeasurementType">
+        <sequence>
+          <element name="shape" type="gml:CurvePropertyType">
+            <annotation>
+              <documentation>-- Definition --
+Curve geometry, equivalent to the reference curve of the measurement</documentation>
+            </annotation>
+          </element>
+        </sequence>
+      </extension>
+    </complexContent>
+  </complexType>
+  <complexType name="AbstractGeophProfilePropertyType">
+    <sequence minOccurs="0">
+      <element ref="gph-core:AbstractGeophProfile"/>
+    </sequence>
+    <attributeGroup ref="gml:AssociationAttributeGroup"/>
+    <attributeGroup ref="gml:OwnershipAttributeGroup"/>
+  </complexType>
+  <simpleType name="SeismicLineTypeValueType">
+    <annotation>
+      <documentation>-- Definition --
+The types of seismic line (2D or 3D)</documentation>
+    </annotation>
+    <restriction base="string">
+      <enumeration value="2D">
+        <annotation>
+          <documentation>-- Definition --
+A 2D seismic line</documentation>
+        </annotation>
+      </enumeration>
+      <enumeration value="3D">
+        <annotation>
+          <documentation>-- Definition --
+A 3D seismic line</documentation>
+        </annotation>
+      </enumeration>
+    </restriction>
+  </simpleType>
+  <element abstract="true" name="AbstractSurfaceModel" substitutionGroup="gph-core:GeophModel" type="gph-core:AbstractSurfaceModelType">
+    <annotation>
+      <documentation>-- Definition -- 
+Abstract class for Surface models</documentation>
+    </annotation>
+  </element>
+  <complexType abstract="true" name="AbstractSurfaceModelType">
+    <complexContent>
+      <extension base="gph-core:GeophModelType">
+        <sequence>
+          <element name="shape" type="gml:SurfacePropertyType">
+            <annotation>
+              <documentation>-- Definition --
+Surface geometry equivalent to the domain of the surface coverage</documentation>
+            </annotation>
+          </element>
+        </sequence>
+      </extension>
+    </complexContent>
+  </complexType>
+  <complexType name="AbstractSurfaceModelPropertyType">
+    <sequence minOccurs="0">
+      <element ref="gph-core:AbstractSurfaceModel"/>
+    </sequence>
+    <attributeGroup ref="gml:AssociationAttributeGroup"/>
+    <attributeGroup ref="gml:OwnershipAttributeGroup"/>
+  </complexType>
+  <element name="SurfaceGridModel" substitutionGroup="gph-core:AbstractSurfaceModel" type="gph-core:SurfaceGridModelType">
+    <annotation>
+      <documentation>-- Definition --
+A surface model in which the surface is defined by a grid</documentation>
+    </annotation>
+  </element>
+  <complexType name="SurfaceGridModelType">
+    <complexContent>
+      <extension base="gph-core:AbstractSurfaceModelType">
+        <sequence>
+          <element name="modelType" type="gml:CodeType">
+            <annotation>
+              <documentation>-- Definition --
+Defines the model type category</documentation>
+            </annotation>
+          </element>
+          <element maxOccurs="unbounded" name="propertyName" type="gml:CodeType">
+            <annotation>
+              <documentation>-- Definition --
+Name of the physical property contained in the model
+
+-- Description --
+Models are coverages of physical properties.</documentation>
+            </annotation>
+          </element>
+        </sequence>
+      </extension>
+    </complexContent>
+  </complexType>
+  <complexType name="SurfaceGridModelPropertyType">
+    <sequence minOccurs="0">
+      <element ref="gph-core:SurfaceGridModel"/>
+    </sequence>
+    <attributeGroup ref="gml:AssociationAttributeGroup"/>
+    <attributeGroup ref="gml:OwnershipAttributeGroup"/>
+  </complexType>
+  <element abstract="true" name="AbstractGeophStation" substitutionGroup="gph-core:GeophMeasurement" type="gph-core:AbstractGeophStationType">
+    <annotation>
+      <documentation>-- Definition --
+Geophysical measurement spatially referenced to a single point location
+
+-- Description --
+Used to collect data at a single location. The source-sensor setup may be elongated or two dimensional, but the collected data is referenced to a single point. 
+Example: Gravity station, Magnetic station
+
+NOTE 1. Processing results of geophStations are often curve coverages</documentation>
+    </annotation>
+  </element>
+  <complexType abstract="true" name="AbstractGeophStationType">
+    <complexContent>
+      <extension base="gph-core:GeophMeasurementType">
+        <sequence>
+          <element name="shape" type="gml:PointPropertyType">
+            <annotation>
+              <documentation>-- Definition --
+Point geometry, equivalent to the center or reference point of the measurement</documentation>
+            </annotation>
+          </element>
+          <element maxOccurs="unbounded" name="stationRank" nillable="true">
+            <annotation>
+              <documentation>-- Definition --
+Geophysical stations may be part of a hyerarchical system. Rank relates to the importance of a station</documentation>
+            </annotation>
+            <complexType>
+              <simpleContent>
+                <extension base="gml:CodeType">
+                  <attribute name="nilReason" type="gml:NilReasonType"/>
+                </extension>
+              </simpleContent>
+            </complexType>
+          </element>
+          <element maxOccurs="unbounded" minOccurs="0" name="relatedNetwork" nillable="true">
+            <annotation>
+              <documentation>-- Definition --
+Name of a national or international observation network which the station belongs to, or  which measured data is reported to.</documentation>
+            </annotation>
+            <complexType>
+              <simpleContent>
+                <extension base="gml:CodeType">
+                  <attribute name="nilReason" type="gml:NilReasonType"/>
+                </extension>
+              </simpleContent>
+            </complexType>
+          </element>
+        </sequence>
+      </extension>
+    </complexContent>
+  </complexType>
+  <complexType name="AbstractGeophStationPropertyType">
+    <sequence minOccurs="0">
+      <element ref="gph-core:AbstractGeophStation"/>
+    </sequence>
+    <attributeGroup ref="gml:AssociationAttributeGroup"/>
+    <attributeGroup ref="gml:OwnershipAttributeGroup"/>
+  </complexType>
+  <element name="SeismicLine" substitutionGroup="gph-core:GeophProfile" type="gph-core:SeismicLineType">
+    <annotation>
+      <documentation>-- Definition --
+Seismic measurement along a line</documentation>
+    </annotation>
+  </element>
+  <complexType name="SeismicLineType">
+    <complexContent>
+      <extension base="gph-core:GeophProfileType">
+        <sequence>
+          <element name="seismicLineType" type="gph-core:SeismicLineTypeValueType">
+            <annotation>
+              <documentation>-- Definition --
+The type of seismic line (2D or 3D)</documentation>
+            </annotation>
+          </element>
+        </sequence>
+      </extension>
+    </complexContent>
+  </complexType>
+  <complexType name="SeismicLinePropertyType">
+    <sequence minOccurs="0">
+      <element ref="gph-core:SeismicLine"/>
+    </sequence>
+    <attributeGroup ref="gml:AssociationAttributeGroup"/>
+    <attributeGroup ref="gml:OwnershipAttributeGroup"/>
+  </complexType>
+  <element abstract="true" name="AbstractGeophDataSet" substitutionGroup="gml:AbstractFeature" type="gph-core:AbstractGeophDataSetType">
+    <annotation>
+      <documentation>-- Definition -- 
+Generic feature type for geophysical datasets.
+
+-- Description --</documentation>
+    </annotation>
+  </element>
+  <complexType abstract="true" name="AbstractGeophDataSetType">
+    <complexContent>
+      <extension base="gml:AbstractFeatureType">
+        <sequence>
+          <element name="resolutionScale" nillable="true">
+            <annotation>
+              <documentation>-- Definition --
+NOTE: this attribute type will be mapped to a temporary proxy for MD_RepresentativeFraction until support for GML3.2 is achieved.  
+
+Reciprocal of equivalent scale of resolution for delineation of a feature's geometry. This is in contrast to positionAccuracy which is a measure of how well a feature is located relative to other features in the geographic reference system.</documentation>
+            </annotation>
+            <complexType>
+              <complexContent>
+                <extension base="gml:AbstractMetadataPropertyType">
+                  <sequence minOccurs="0">
+                    <element ref="gmd:MD_RepresentativeFraction"/>
+                  </sequence>
+                  <attributeGroup ref="gml:AssociationAttributeGroup"/>
+                </extension>
+              </complexContent>
+            </complexType>
+          </element>
+          <element name="inspireId" type="base:IdentifierPropertyType">
+            <annotation>
+              <documentation>-- Definition --
+External object identifier of the measurement.
+
+-- Description --
+NOTE An external object identifier is a unique object identifier published by the responsible body, which may be used by external applications to reference the spatial object. The identifier is an identifier of the spatial object, not an identifier of the real-world phenomenon.</documentation>
+            </annotation>
+          </element>
+          <element name="citation">
+            <annotation>
+              <documentation>-- Definition --
+An ISO 19115 citation with a human readable title and important dates.</documentation>
+            </annotation>
+            <complexType>
+              <complexContent>
+                <extension base="gml:AbstractMetadataPropertyType">
+                  <sequence>
+                    <element ref="gmd:CI_Citation"/>
+                  </sequence>
+                </extension>
+              </complexContent>
+            </complexType>
+          </element>
+          <element name="startTime" nillable="true" type="gml:TimePositionType">
+            <annotation>
+              <documentation>-- Definition --
+Start of survey, campaign or project</documentation>
+            </annotation>
+          </element>
+          <element name="endTime" nillable="true" type="gml:TimePositionType">
+            <annotation>
+              <documentation>-- Definition --
+End of survey, campaign or project</documentation>
+            </annotation>
+          </element>
+          <element name="verticalExtent" nillable="true">
+            <annotation>
+              <documentation>-- Definition --
+Vertical extent of the sampling configuration
+
+-- Description --
+Geophysical measurements often have vertical extent. 
+Example: A borehole logging measurement is usually displayed on maps as a point, but the sampling takes place in a vertical or inclined borehole</documentation>
+            </annotation>
+            <complexType>
+              <complexContent>
+                <extension base="gml:AbstractMetadataPropertyType">
+                  <sequence minOccurs="0">
+                    <element ref="gmd:EX_VerticalExtent"/>
+                  </sequence>
+                  <attributeGroup ref="gml:AssociationAttributeGroup"/>
+                </extension>
+              </complexContent>
+            </complexType>
+          </element>
+          <element name="distributionInfo" nillable="true">
+            <annotation>
+              <documentation>-- Definition --
+Distribution metadata
+
+-- Description --
+Link to measured data access point</documentation>
+            </annotation>
+            <complexType>
+              <complexContent>
+                <extension base="gml:AbstractMetadataPropertyType">
+                  <sequence minOccurs="0">
+                    <element ref="gmd:MD_Distribution"/>
+                  </sequence>
+                  <attributeGroup ref="gml:AssociationAttributeGroup"/>
+                </extension>
+              </complexContent>
+            </complexType>
+          </element>
+          <element maxOccurs="unbounded" name="projectedGeometry" type="gph-core:ProjectedGeometryPropertyType">
+            <annotation>
+              <documentation>-- Definition --
+2D projection of the feature to the ground surface. This is going to be used by WMS to display the 3D feature</documentation>
+            </annotation>
+          </element>
+        </sequence>
+      </extension>
+    </complexContent>
+  </complexType>
+  <complexType name="AbstractGeophDataSetPropertyType">
+    <sequence minOccurs="0">
+      <element ref="gph-core:AbstractGeophDataSet"/>
+    </sequence>
+    <attributeGroup ref="gml:AssociationAttributeGroup"/>
+    <attributeGroup ref="gml:OwnershipAttributeGroup"/>
+  </complexType>
+  <element abstract="true" name="AbstractGeoph3DMeasurement" substitutionGroup="gph-core:GeophMeasurement" type="gph-core:AbstractGeoph3DMeasurementType">
+    <annotation>
+      <documentation>-- Definition --
+Abstract class for 3D Geophysical measurements 
+
+-- Description --</documentation>
+    </annotation>
+  </element>
+  <complexType abstract="true" name="AbstractGeoph3DMeasurementType">
+    <complexContent>
+      <extension base="gph-core:GeophMeasurementType">
+        <sequence>
+          <element name="shape" type="gml:GeometryPropertyType">
+            <annotation>
+              <documentation>-- Definition --
+Equivalent to the reference geometry of the measurement. In most cases - like 3DSeismics - it is a surface</documentation>
+            </annotation>
+          </element>
+        </sequence>
+      </extension>
+    </complexContent>
+  </complexType>
+  <complexType name="AbstractGeoph3DMeasurementPropertyType">
+    <sequence minOccurs="0">
+      <element ref="gph-core:AbstractGeoph3DMeasurement"/>
+    </sequence>
+    <attributeGroup ref="gml:AssociationAttributeGroup"/>
+    <attributeGroup ref="gml:OwnershipAttributeGroup"/>
+  </complexType>
+  <element name="GeophModel" substitutionGroup="gml:AbstractFeature" type="gph-core:GeophModelType">
+    <annotation>
+      <documentation>-- Definition -- 
+Generic feature type for geophysical models
+
+-- Description --
+Spatial distribution of physical properties. Usually it is the result of geophysical processing. It provides distribution of physical properties within the observed spatial domain.</documentation>
+    </annotation>
+  </element>
+  <complexType name="GeophModelType">
+    <complexContent>
+      <extension base="gml:AbstractFeatureType">
+        <sequence>
+          <element name="resolutionScale" nillable="true">
+            <annotation>
+              <documentation>-- Definition --
+NOTE: this attribute type will be mapped to a temporary proxy for MD_RepresentativeFraction until support for GML3.2 is achieved.  
+
+Reciprocal of equivalent scale of resolution for delineation of a feature's geometry. This is in contrast to positionAccuracy which is a measure of how well a feature is located relative to other features in the geographic reference system.</documentation>
+            </annotation>
+            <complexType>
+              <complexContent>
+                <extension base="gml:AbstractMetadataPropertyType">
+                  <sequence minOccurs="0">
+                    <element ref="gmd:MD_RepresentativeFraction"/>
+                  </sequence>
+                  <attributeGroup ref="gml:AssociationAttributeGroup"/>
+                </extension>
+              </complexContent>
+            </complexType>
+          </element>
+          <element name="inspireId" type="base:IdentifierPropertyType">
+            <annotation>
+              <documentation>-- Definition --
+External object identifier of the model
+.
+
+-- Description --
+NOTE An external object identifier is a unique object identifier published by the responsible body, which may be used by external applications to reference the spatial object. The identifier is an identifier of the spatial object, not an identifier of the real-world phenomenon.</documentation>
+            </annotation>
+          </element>
+          <element name="citation">
+            <annotation>
+              <documentation>-- Definition --
+Citation of the model resource data
+
+-- Description --
+title, date of publication etc.</documentation>
+            </annotation>
+            <complexType>
+              <complexContent>
+                <extension base="gml:AbstractMetadataPropertyType">
+                  <sequence>
+                    <element ref="gmd:CI_Citation"/>
+                  </sequence>
+                </extension>
+              </complexContent>
+            </complexType>
+          </element>
+          <element name="distributionInfo">
+            <annotation>
+              <documentation>-- Definition --
+Distribution metadata
+
+-- Description --
+Link to measured data access point</documentation>
+            </annotation>
+            <complexType>
+              <complexContent>
+                <extension base="gml:AbstractMetadataPropertyType">
+                  <sequence minOccurs="0">
+                    <element ref="gmd:MD_Distribution"/>
+                  </sequence>
+                  <attributeGroup ref="gml:AssociationAttributeGroup"/>
+                </extension>
+              </complexContent>
+            </complexType>
+          </element>
+          <element name="processingStart" nillable="true" type="gml:TimePositionType">
+            <annotation>
+              <documentation>-- Definition --
+Start time of processing</documentation>
+            </annotation>
+          </element>
+          <element name="processingEnd" nillable="true" type="gml:TimePositionType">
+            <annotation>
+              <documentation>-- Definition --
+End time of processing</documentation>
+            </annotation>
+          </element>
+          <element name="verticalExtent" nillable="true">
+            <annotation>
+              <documentation>-- Definition --
+Vertical extent of the model</documentation>
+            </annotation>
+            <complexType>
+              <complexContent>
+                <extension base="gml:AbstractMetadataPropertyType">
+                  <sequence minOccurs="0">
+                    <element ref="gmd:EX_VerticalExtent"/>
+                  </sequence>
+                  <attributeGroup ref="gml:AssociationAttributeGroup"/>
+                </extension>
+              </complexContent>
+            </complexType>
+          </element>
+          <element maxOccurs="unbounded" name="largerWork" nillable="true">
+            <annotation>
+              <documentation>-- Definition --
+Reference to a larger work, tipically a processing campaign</documentation>
+            </annotation>
+            <complexType>
+              <complexContent>
+                <extension base="gml:AbstractMetadataPropertyType">
+                  <sequence minOccurs="0">
+                    <element ref="gmd:MD_Identifier"/>
+                  </sequence>
+                  <attributeGroup ref="gml:AssociationAttributeGroup"/>
+                </extension>
+              </complexContent>
+            </complexType>
+          </element>
+          <element maxOccurs="unbounded" name="relatedMeasurement" nillable="true">
+            <annotation>
+              <documentation>-- Definition --
+Reference to the geophysical measurement that was used to create the model</documentation>
+            </annotation>
+            <complexType>
+              <complexContent>
+                <extension base="gml:AbstractMetadataPropertyType">
+                  <sequence minOccurs="0">
+                    <element ref="gmd:MD_Identifier"/>
+                  </sequence>
+                  <attributeGroup ref="gml:AssociationAttributeGroup"/>
+                </extension>
+              </complexContent>
+            </complexType>
+          </element>
+          <element name="dataOwner" nillable="true">
+            <annotation>
+              <documentation>-- Definition --
+Owner of the geophysical data</documentation>
+            </annotation>
+            <complexType>
+              <complexContent>
+                <extension base="gml:AbstractMetadataPropertyType">
+                  <sequence>
+                    <element ref="gmd:CI_ResponsibleParty"/>
+                  </sequence>
+                  <attribute name="nilReason" type="gml:NilReasonType"/>
+                </extension>
+              </complexContent>
+            </complexType>
+          </element>
+          <element maxOccurs="unbounded" name="projectedGeometry" type="gph-core:ProjectedGeometryPropertyType">
+            <annotation>
+              <documentation>-- Definition --
+2D projection of the feature to the ground surface. This is going to be used by WMS to display the 3D feature</documentation>
+            </annotation>
+          </element>
+          <element maxOccurs="unbounded" name="processor" nillable="true">
+            <annotation>
+              <documentation>-- Definition --
+Party responsible for the processing (creator of the model)</documentation>
+            </annotation>
+            <complexType>
+              <complexContent>
+                <extension base="gml:AbstractMetadataPropertyType">
+                  <sequence>
+                    <element ref="gmd:CI_ResponsibleParty"/>
+                  </sequence>
+                  <attribute name="nilReason" type="gml:NilReasonType"/>
+                </extension>
+              </complexContent>
+            </complexType>
+          </element>
+        </sequence>
+      </extension>
+    </complexContent>
+  </complexType>
+  <complexType name="GeophModelPropertyType">
+    <sequence minOccurs="0">
+      <element ref="gph-core:GeophModel"/>
+    </sequence>
+    <attributeGroup ref="gml:AssociationAttributeGroup"/>
+    <attributeGroup ref="gml:OwnershipAttributeGroup"/>
+  </complexType>
+  <element name="Geoph3DMeasurement" substitutionGroup="gph-core:AbstractGeoph3DMeasurement" type="gph-core:Geoph3DMeasurementType">
+    <annotation>
+      <documentation>-- Definition -- 
+3D Geophysical measurement spatially referenced to a surface 
+
+-- Description -- 
+In the core model scope is restricted by the size of the data acquisition area.</documentation>
+    </annotation>
+  </element>
+  <complexType name="Geoph3DMeasurementType">
+    <complexContent>
+      <extension base="gph-core:AbstractGeoph3DMeasurementType">
+        <sequence>
+          <element name="measurementType" type="gml:CodeType">
+            <annotation>
+              <documentation>-- Definition --
+The geophysical method</documentation>
+            </annotation>
+          </element>
+        </sequence>
+      </extension>
+    </complexContent>
+  </complexType>
+  <complexType name="Geoph3DMeasurementPropertyType">
+    <sequence minOccurs="0">
+      <element ref="gph-core:Geoph3DMeasurement"/>
+    </sequence>
+    <attributeGroup ref="gml:AssociationAttributeGroup"/>
+    <attributeGroup ref="gml:OwnershipAttributeGroup"/>
+  </complexType>
+  <element name="GeophStation" substitutionGroup="gph-core:AbstractGeophStation" type="gph-core:GeophStationType">
+    <annotation>
+      <documentation>-- Definition --
+Geophysical station
+
+-- Description --
+The core model is restricted to high rank geophysical stations.</documentation>
+    </annotation>
+  </element>
+  <complexType name="GeophStationType">
+    <complexContent>
+      <extension base="gph-core:AbstractGeophStationType">
+        <sequence>
+          <element name="stationType" type="gml:CodeType">
+            <annotation>
+              <documentation>-- Definition --
+Type of geophysical measurement
+
+-- Description --
+provides access to the extended codelist</documentation>
+            </annotation>
+          </element>
+        </sequence>
+      </extension>
+    </complexContent>
+  </complexType>
+  <complexType name="GeophStationPropertyType">
+    <sequence minOccurs="0">
+      <element ref="gph-core:GeophStation"/>
+    </sequence>
+    <attributeGroup ref="gml:AssociationAttributeGroup"/>
+    <attributeGroup ref="gml:OwnershipAttributeGroup"/>
+  </complexType>
+  <element name="GeophSurvey" substitutionGroup="gph-core:AbstractGeophDataSet" type="gph-core:GeophSurveyType">
+    <annotation>
+      <documentation>-- Definition --
+Data acquisistion or processing activity bound to a specific geophysical method, limited area and time range.</documentation>
+    </annotation>
+  </element>
+  <complexType name="GeophSurveyType">
+    <complexContent>
+      <extension base="gph-core:AbstractGeophDataSetType">
+        <sequence>
+          <element name="surveyType" type="gml:CodeType">
+            <annotation>
+              <documentation>-- Definition --
+Type of  survey</documentation>
+            </annotation>
+          </element>
+          <element name="principalInverstigator" nillable="true">
+            <annotation>
+              <documentation>-- Definition --
+Main responsible for the investigation</documentation>
+            </annotation>
+            <complexType>
+              <complexContent>
+                <extension base="gml:AbstractMetadataPropertyType">
+                  <sequence>
+                    <element ref="gmd:CI_ResponsibleParty"/>
+                  </sequence>
+                  <attribute name="nilReason" type="gml:NilReasonType"/>
+                </extension>
+              </complexContent>
+            </complexType>
+          </element>
+          <element name="dataOwner" nillable="true">
+            <annotation>
+              <documentation>-- Definition --
+Owner of geophysical data created by the survey</documentation>
+            </annotation>
+            <complexType>
+              <complexContent>
+                <extension base="gml:AbstractMetadataPropertyType">
+                  <sequence>
+                    <element ref="gmd:CI_ResponsibleParty"/>
+                  </sequence>
+                  <attribute name="nilReason" type="gml:NilReasonType"/>
+                </extension>
+              </complexContent>
+            </complexType>
+          </element>
+          <element name="client" nillable="true">
+            <annotation>
+              <documentation>-- Definition --
+Responsible party to which the survey is carried out</documentation>
+            </annotation>
+            <complexType>
+              <complexContent>
+                <extension base="gml:AbstractMetadataPropertyType">
+                  <sequence>
+                    <element ref="gmd:CI_ResponsibleParty"/>
+                  </sequence>
+                  <attribute name="nilReason" type="gml:NilReasonType"/>
+                </extension>
+              </complexContent>
+            </complexType>
+          </element>
+          <element name="custodian">
+            <annotation>
+              <documentation>-- Definition --
+Party responsible to maintain data related to the survey</documentation>
+            </annotation>
+            <complexType>
+              <complexContent>
+                <extension base="gml:AbstractMetadataPropertyType">
+                  <sequence>
+                    <element ref="gmd:CI_ResponsibleParty"/>
+                  </sequence>
+                </extension>
+              </complexContent>
+            </complexType>
+          </element>
+          <element name="contractor" nillable="true">
+            <annotation>
+              <documentation>-- Definition --
+Party responsible to carry out the survey</documentation>
+            </annotation>
+            <complexType>
+              <complexContent>
+                <extension base="gml:AbstractMetadataPropertyType">
+                  <sequence>
+                    <element ref="gmd:CI_ResponsibleParty"/>
+                  </sequence>
+                  <attribute name="nilReason" type="gml:NilReasonType"/>
+                </extension>
+              </complexContent>
+            </complexType>
+          </element>
+        </sequence>
+      </extension>
+    </complexContent>
+  </complexType>
+  <complexType name="GeophSurveyPropertyType">
+    <sequence minOccurs="0">
+      <element ref="gph-core:GeophSurvey"/>
+    </sequence>
+    <attributeGroup ref="gml:AssociationAttributeGroup"/>
+    <attributeGroup ref="gml:OwnershipAttributeGroup"/>
+  </complexType>
+  <element name="ProjectedGeometry" substitutionGroup="gml:AbstractObject" type="gph-core:ProjectedGeometryType">
+    <annotation>
+      <documentation>-- Definition --
+2D geometry for displaying 3D objects - usually the 2D projection of the spatial object on the ground surface.</documentation>
+    </annotation>
+  </element>
+  <complexType name="ProjectedGeometryType">
+    <sequence>
+      <element name="geometry" type="gml:GeometricPrimitivePropertyType">
+        <annotation>
+          <documentation>-- Definition --
+2D geometry for displaying purposes</documentation>
+        </annotation>
+      </element>
+      <element name="projectedGeometryType" type="gml:CodeType">
+        <annotation>
+          <documentation>-- Definition --
+The type of projected 2D geometry (eg point, trace, footprint)</documentation>
+        </annotation>
+      </element>
+    </sequence>
+  </complexType>
+  <complexType name="ProjectedGeometryPropertyType">
+    <sequence>
+      <element ref="gph-core:ProjectedGeometry"/>
+    </sequence>
+  </complexType>
+  <element name="GeophProfile" substitutionGroup="gph-core:AbstractGeophProfile" type="gph-core:GeophProfileType">
+    <annotation>
+      <documentation>-- Definition --
+Geophysical profile
+
+-- Description --
+In the core model scope is restricted by the length of the profile</documentation>
+    </annotation>
+  </element>
+  <complexType name="GeophProfileType">
+    <complexContent>
+      <extension base="gph-core:AbstractGeophProfileType">
+        <sequence>
+          <element name="profileType" type="gml:CodeType">
+            <annotation>
+              <documentation>-- Definition --
+The geophysical method</documentation>
+            </annotation>
+          </element>
+        </sequence>
+      </extension>
+    </complexContent>
+  </complexType>
+  <complexType name="GeophProfilePropertyType">
+    <sequence minOccurs="0">
+      <element ref="gph-core:GeophProfile"/>
+    </sequence>
+    <attributeGroup ref="gml:AssociationAttributeGroup"/>
+    <attributeGroup ref="gml:OwnershipAttributeGroup"/>
+  </complexType>
+</schema>

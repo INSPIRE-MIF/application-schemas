@@ -1,0 +1,673 @@
+<?xml version="1.0" encoding="UTF-8"?><schema xmlns="http://www.w3.org/2001/XMLSchema" xmlns:am="http://inspire.jrc.ec.europa.eu/schemas/am/2.0" xmlns:base="urn:x-inspire:specification:gmlas:BaseTypes:3.2" xmlns:base2="http://inspire.jrc.ec.europa.eu/schemas/base2/0.1" xmlns:cvbase="http://inspire.jrc.ec.europa.eu/schemas/cvbase/0.1" xmlns:ef="http://inspire.jrc.ec.europa.eu/schemas/ef/2.0" xmlns:gml="http://www.opengis.net/gml/3.2" xmlns:gmlcov="http://www.opengis.net/gmlcov/1.0" xmlns:lucm="http://inspire.jrc.ec.europa.eu/schemas/lucm/2.0" xmlns:nz-core="http://inspire.jrc.ec.europa.eu/schemas/nz-core/2.0" xmlns:nz-cov="http://inspire.jrc.ec.europa.eu/schemas/nz-cov/2.0" elementFormDefault="qualified" targetNamespace="http://inspire.jrc.ec.europa.eu/schemas/nz-cov/2.0" version="2.0">
+  <import namespace="http://inspire.jrc.ec.europa.eu/schemas/am/2.0" schemaLocation="https://inspire.ec.europa.eu/draft-schemas/am/2.0/AreaManagementRestrictionRegulationZone.xsd"/>
+  <import namespace="http://inspire.jrc.ec.europa.eu/schemas/base2/0.1" schemaLocation="https://inspire.ec.europa.eu/draft-schemas/base2/0.1/BaseTypes2.xsd"/>
+  <import namespace="http://inspire.jrc.ec.europa.eu/schemas/cvbase/0.1" schemaLocation="https://inspire.ec.europa.eu/draft-schemas/cvbase/0.1/CoverageBase.xsd"/>
+  <import namespace="http://inspire.jrc.ec.europa.eu/schemas/ef/2.0" schemaLocation="https://inspire.ec.europa.eu/draft-schemas/ef/2.0/EnvironmentalMonitoringFacilities.xsd"/>
+  <import namespace="http://inspire.jrc.ec.europa.eu/schemas/lucm/2.0" schemaLocation="https://inspire.ec.europa.eu/draft-schemas/lucm/2.0/LandUseCoreModel.xsd"/>
+  <import namespace="http://inspire.jrc.ec.europa.eu/schemas/nz-core/2.0" schemaLocation="https://inspire.ec.europa.eu/draft-schemas/nz-core/2.0/NaturalRiskZonesCore.xsd"/>
+  <import namespace="http://www.opengis.net/gml/3.2" schemaLocation="http://schemas.opengis.net/gml/3.2.1/gml.xsd"/>
+  <import namespace="http://www.opengis.net/gmlcov/1.0" schemaLocation="http://schemas.opengis.net/gmlcov/1.0/coverage.xsd"/>
+  <import namespace="urn:x-inspire:specification:gmlas:BaseTypes:3.2" schemaLocation="https://inspire.ec.europa.eu/schemas/base/3.2/BaseTypes.xsd"/>
+  <!--XML Schema document created by ShapeChange-->
+  <element name="LevelOfRisk" substitutionGroup="gml:AbstractObject" type="nz-cov:LevelOfRiskType">
+    <annotation>
+      <documentation>-- Definition --
+The level of risk is an assessment of the combination of the consequences of an event (hazard) and the associated probability/likelihood of the occurence of the event.</documentation>
+    </annotation>
+  </element>
+  <complexType name="LevelOfRiskType">
+    <sequence>
+      <element name="scale" type="gml:CodeType">
+        <annotation>
+          <documentation>-- Definition --
+Type of scale according to which the value is expressed.</documentation>
+        </annotation>
+      </element>
+      <element name="value">
+        <annotation>
+          <documentation>-- Definition --
+the value that expresses the level of risk.</documentation>
+        </annotation>
+        <complexType>
+          <complexContent>
+            <extension base="gml:AbstractMemberType">
+              <sequence minOccurs="0">
+                <element ref="gml:AbstractObject"/>
+              </sequence>
+              <attributeGroup ref="gml:AssociationAttributeGroup"/>
+            </extension>
+          </complexContent>
+        </complexType>
+      </element>
+    </sequence>
+  </complexType>
+  <complexType name="LevelOfRiskPropertyType">
+    <sequence>
+      <element ref="nz-cov:LevelOfRisk"/>
+    </sequence>
+  </complexType>
+  <element name="VulnerabilityCoverage" substitutionGroup="nz-cov:RiskHazardOrVulnerabilityCoverage" type="nz-cov:VulnerabilityCoverageType">
+    <annotation>
+      <documentation>-- Definition --
+A coverage for vulnerability of exposed elements for a specific risk.</documentation>
+    </annotation>
+  </element>
+  <complexType name="VulnerabilityCoverageType">
+    <complexContent>
+      <extension base="nz-cov:RiskHazardOrVulnerabilityCoverageType">
+        <sequence>
+          <element name="exposedElement" nillable="true">
+            <annotation>
+              <documentation>-- Definition --
+The exposed elementcoverage for which vulnerability is calculated.</documentation>
+              <appinfo>
+                <reversePropertyName xmlns="http://www.opengis.net/gml/3.2">nz-cov:vulnerability</reversePropertyName>
+              </appinfo>
+            </annotation>
+            <complexType>
+              <sequence minOccurs="0">
+                <element ref="nz-cov:ExposedElementCoverage"/>
+              </sequence>
+              <attributeGroup ref="gml:AssociationAttributeGroup"/>
+              <attributeGroup ref="gml:OwnershipAttributeGroup"/>
+            </complexType>
+          </element>
+          <element name="risk" nillable="true">
+            <annotation>
+              <documentation>-- Definition --
+The risk zone coverage according to which vulnerability of exposed element is calculated.</documentation>
+              <appinfo>
+                <reversePropertyName xmlns="http://www.opengis.net/gml/3.2">nz-cov:vulnerability</reversePropertyName>
+              </appinfo>
+            </annotation>
+            <complexType>
+              <sequence minOccurs="0">
+                <element ref="nz-cov:RiskCoverage"/>
+              </sequence>
+              <attributeGroup ref="gml:AssociationAttributeGroup"/>
+              <attributeGroup ref="gml:OwnershipAttributeGroup"/>
+            </complexType>
+          </element>
+        </sequence>
+      </extension>
+    </complexContent>
+  </complexType>
+  <complexType name="VulnerabilityCoveragePropertyType">
+    <sequence minOccurs="0">
+      <element ref="nz-cov:VulnerabilityCoverage"/>
+    </sequence>
+    <attributeGroup ref="gml:AssociationAttributeGroup"/>
+    <attributeGroup ref="gml:OwnershipAttributeGroup"/>
+  </complexType>
+  <element name="LikelihoodOfOccurrence" substitutionGroup="gml:AbstractObject" type="nz-cov:LikelihoodOfOccurrenceType">
+    <annotation>
+      <documentation>-- Definition --
+SOURCE : [EXCIFF]
+
+Likelihood is a general concept relating to the chance of an event occuring. Likelihood is generally expressed as a probability or a frequency.</documentation>
+    </annotation>
+  </element>
+  <complexType name="LikelihoodOfOccurrenceType">
+    <sequence>
+      <element name="scale" type="gml:CodeType">
+        <annotation>
+          <documentation>-- Definition --
+Type of scale according to which the value is expressed.</documentation>
+        </annotation>
+      </element>
+      <element maxOccurs="unbounded" minOccurs="0" name="validityPeriod" type="gml:TimePeriodPropertyType">
+        <annotation>
+          <documentation>-- Definition --
+Future finite time frame where likelihood of occurrence assessment applies. It is an interval of dates, or the expression of a time frame for which the estimates are meant (eg: until 2090; summer of 2011; winter seasons until 2015).</documentation>
+        </annotation>
+      </element>
+      <element name="value">
+        <annotation>
+          <documentation>-- Definition --
+The value that expresses the likelihood of occurence.</documentation>
+        </annotation>
+        <complexType>
+          <complexContent>
+            <extension base="gml:AbstractMemberType">
+              <sequence minOccurs="0">
+                <element ref="gml:AbstractObject"/>
+              </sequence>
+              <attributeGroup ref="gml:AssociationAttributeGroup"/>
+            </extension>
+          </complexContent>
+        </complexType>
+      </element>
+    </sequence>
+  </complexType>
+  <complexType name="LikelihoodOfOccurrencePropertyType">
+    <sequence>
+      <element ref="nz-cov:LikelihoodOfOccurrence"/>
+    </sequence>
+  </complexType>
+  <element name="ModelledHazardCoverage" substitutionGroup="nz-cov:HazardCoverage" type="nz-cov:ModelledHazardCoverageType">
+    <annotation>
+      <documentation>-- Definition --
+A coverage for hazards which extent is modeled, or inferred by the interpretation of indirect artefacts</documentation>
+    </annotation>
+  </element>
+  <complexType name="ModelledHazardCoverageType">
+    <complexContent>
+      <extension base="nz-cov:HazardCoverageType">
+        <sequence>
+          <element name="determinationMethod" type="nz-core:DeterminationMethodValueType">
+            <annotation>
+              <documentation>-- Definition --
+Specifies if the hazard area result is delineated after a modelling or determined after interpretation of indirect artefacts.</documentation>
+            </annotation>
+          </element>
+        </sequence>
+      </extension>
+    </complexContent>
+  </complexType>
+  <complexType name="ModelledHazardCoveragePropertyType">
+    <sequence minOccurs="0">
+      <element ref="nz-cov:ModelledHazardCoverage"/>
+    </sequence>
+    <attributeGroup ref="gml:AssociationAttributeGroup"/>
+    <attributeGroup ref="gml:OwnershipAttributeGroup"/>
+  </complexType>
+  <element name="ExposedElementCoverage" substitutionGroup="gmlcov:AbstractCoverage" type="nz-cov:ExposedElementCoverageType">
+    <annotation>
+      <documentation>-- Definition --
+A coverage of exposed elements.</documentation>
+    </annotation>
+  </element>
+  <complexType name="ExposedElementCoverageType">
+    <complexContent>
+      <extension base="gmlcov:AbstractCoverageType">
+        <sequence>
+          <element name="inspireId" type="base:IdentifierPropertyType"/>
+          <element name="beginLifeSpanVersion" nillable="true">
+            <annotation>
+              <documentation>-- Definition --
+Date and time at which this version of the spatial object was inserted or changed in the spatial data set.</documentation>
+            </annotation>
+            <complexType>
+              <simpleContent>
+                <extension base="dateTime">
+                  <attribute name="nilReason" type="gml:NilReasonType"/>
+                </extension>
+              </simpleContent>
+            </complexType>
+          </element>
+          <element name="endLifeSpanVersion" nillable="true">
+            <annotation>
+              <documentation>-- Definition --
+Date and time at which this version of the spatial object was superseded or retired in the spatial data set.</documentation>
+            </annotation>
+            <complexType>
+              <simpleContent>
+                <extension base="dateTime">
+                  <attribute name="nilReason" type="gml:NilReasonType"/>
+                </extension>
+              </simpleContent>
+            </complexType>
+          </element>
+          <element name="validFrom" nillable="true">
+            <annotation>
+              <documentation>-- Definition --
+The time when the phenomenon started to exist in the real world.</documentation>
+            </annotation>
+            <complexType>
+              <simpleContent>
+                <extension base="dateTime">
+                  <attribute name="nilReason" type="gml:NilReasonType"/>
+                </extension>
+              </simpleContent>
+            </complexType>
+          </element>
+          <element minOccurs="0" name="validTo" nillable="true">
+            <annotation>
+              <documentation>-- Definition --
+The time from which the phenomenon no longer exists in the real world.</documentation>
+            </annotation>
+            <complexType>
+              <simpleContent>
+                <extension base="dateTime">
+                  <attribute name="nilReason" type="gml:NilReasonType"/>
+                </extension>
+              </simpleContent>
+            </complexType>
+          </element>
+          <element maxOccurs="unbounded" name="vulnerability" nillable="true">
+            <annotation>
+              <documentation>-- Definition --
+The vulnerability coverage that is calculated after an exposed element coverage.</documentation>
+              <appinfo>
+                <reversePropertyName xmlns="http://www.opengis.net/gml/3.2">nz-cov:exposedElement</reversePropertyName>
+              </appinfo>
+            </annotation>
+            <complexType>
+              <sequence minOccurs="0">
+                <element ref="nz-cov:VulnerabilityCoverage"/>
+              </sequence>
+              <attributeGroup ref="gml:AssociationAttributeGroup"/>
+              <attributeGroup ref="gml:OwnershipAttributeGroup"/>
+            </complexType>
+          </element>
+          <element maxOccurs="unbounded" minOccurs="0" name="observedHazard" nillable="true">
+            <annotation>
+              <documentation>-- Definition --
+The observed hazard to which some elements may have been exposed in the past.</documentation>
+              <appinfo>
+                <reversePropertyName xmlns="http://www.opengis.net/gml/3.2">nz-cov:exposedElement</reversePropertyName>
+              </appinfo>
+            </annotation>
+            <complexType>
+              <sequence minOccurs="0">
+                <element ref="nz-cov:ObservedHazardCoverage"/>
+              </sequence>
+              <attributeGroup ref="gml:AssociationAttributeGroup"/>
+              <attributeGroup ref="gml:OwnershipAttributeGroup"/>
+            </complexType>
+          </element>
+        </sequence>
+      </extension>
+    </complexContent>
+  </complexType>
+  <complexType name="ExposedElementCoveragePropertyType">
+    <sequence minOccurs="0">
+      <element ref="nz-cov:ExposedElementCoverage"/>
+    </sequence>
+    <attributeGroup ref="gml:AssociationAttributeGroup"/>
+    <attributeGroup ref="gml:OwnershipAttributeGroup"/>
+  </complexType>
+  <element abstract="true" name="HazardCoverage" substitutionGroup="nz-cov:RiskHazardOrVulnerabilityCoverage" type="nz-cov:HazardCoverageType">
+    <annotation>
+      <documentation>-- Definition --
+A coverage of natural hazards.</documentation>
+    </annotation>
+  </element>
+  <complexType abstract="true" name="HazardCoverageType">
+    <complexContent>
+      <extension base="nz-cov:RiskHazardOrVulnerabilityCoverageType">
+        <sequence>
+          <element name="typeOfHazard" type="nz-core:NaturalRiskOrHazardClassificationPropertyType">
+            <annotation>
+              <documentation>-- Definition --
+A generic classification and a specific classification of the type of hazard.</documentation>
+            </annotation>
+          </element>
+          <element maxOccurs="unbounded" minOccurs="0" name="risk" nillable="true">
+            <annotation>
+              <documentation>-- Definition
+The risk zone coverage that result from the hazard area coverage.</documentation>
+              <appinfo>
+                <reversePropertyName xmlns="http://www.opengis.net/gml/3.2">nz-cov:hazard</reversePropertyName>
+              </appinfo>
+            </annotation>
+            <complexType>
+              <sequence minOccurs="0">
+                <element ref="nz-cov:RiskCoverage"/>
+              </sequence>
+              <attributeGroup ref="gml:AssociationAttributeGroup"/>
+              <attributeGroup ref="gml:OwnershipAttributeGroup"/>
+            </complexType>
+          </element>
+        </sequence>
+      </extension>
+    </complexContent>
+  </complexType>
+  <complexType name="HazardCoveragePropertyType">
+    <sequence minOccurs="0">
+      <element ref="nz-cov:HazardCoverage"/>
+    </sequence>
+    <attributeGroup ref="gml:AssociationAttributeGroup"/>
+    <attributeGroup ref="gml:OwnershipAttributeGroup"/>
+  </complexType>
+  <element abstract="true" name="RiskHazardOrVulnerabilityCoverage" substitutionGroup="gmlcov:AbstractCoverage" type="nz-cov:RiskHazardOrVulnerabilityCoverageType">
+    <annotation>
+      <documentation>-- Definition --
+An abstract feature type that contains the properties that are common to the hazard coverage feature type, the risk coverage feature type, and the vulnerability coverage feature type.</documentation>
+    </annotation>
+  </element>
+  <complexType abstract="true" name="RiskHazardOrVulnerabilityCoverageType">
+    <complexContent>
+      <extension base="gmlcov:AbstractCoverageType">
+        <sequence>
+          <element name="inspireId" type="base:IdentifierPropertyType"/>
+          <element name="assessmentMethod" type="nz-core:DocumentReferencePropertyType">
+            <annotation>
+              <documentation>-- Definition --
+A document reference to the method used to express the level of hazard / level of risk / level of vulnerability.</documentation>
+            </annotation>
+          </element>
+          <element name="beginLifeSpanVersion" nillable="true">
+            <annotation>
+              <documentation>-- Definition --
+Date and time at which this version of the spatial object was inserted or changed in the spatial data set.</documentation>
+            </annotation>
+            <complexType>
+              <simpleContent>
+                <extension base="dateTime">
+                  <attribute name="nilReason" type="gml:NilReasonType"/>
+                </extension>
+              </simpleContent>
+            </complexType>
+          </element>
+          <element minOccurs="0" name="endLifeSpanVersion" nillable="true">
+            <annotation>
+              <documentation>-- Definition --
+Date and time at which this version of the spatial object was superseded or retired in the spatial data set.</documentation>
+            </annotation>
+            <complexType>
+              <simpleContent>
+                <extension base="dateTime">
+                  <attribute name="nilReason" type="gml:NilReasonType"/>
+                </extension>
+              </simpleContent>
+            </complexType>
+          </element>
+        </sequence>
+      </extension>
+    </complexContent>
+  </complexType>
+  <complexType name="RiskHazardOrVulnerabilityCoveragePropertyType">
+    <sequence minOccurs="0">
+      <element ref="nz-cov:RiskHazardOrVulnerabilityCoverage"/>
+    </sequence>
+    <attributeGroup ref="gml:AssociationAttributeGroup"/>
+    <attributeGroup ref="gml:OwnershipAttributeGroup"/>
+  </complexType>
+  <element name="LevelOfHazard" substitutionGroup="gml:AbstractObject" type="nz-cov:LevelOfHazardType">
+    <annotation>
+      <documentation>-- Definition --
+Assessment of the level of the hazard.</documentation>
+    </annotation>
+  </element>
+  <complexType name="LevelOfHazardType">
+    <sequence>
+      <element name="scale" type="gml:CodeType">
+        <annotation>
+          <documentation>-- Definition --
+Type of scale according to which the value is expressed.
+
+-- Description --</documentation>
+        </annotation>
+      </element>
+      <element name="value">
+        <annotation>
+          <documentation>-- Definition --
+The value that expresses the level of hazard.</documentation>
+        </annotation>
+        <complexType>
+          <complexContent>
+            <extension base="gml:AbstractMemberType">
+              <sequence minOccurs="0">
+                <element ref="gml:AbstractObject"/>
+              </sequence>
+              <attributeGroup ref="gml:AssociationAttributeGroup"/>
+            </extension>
+          </complexContent>
+        </complexType>
+      </element>
+    </sequence>
+  </complexType>
+  <complexType name="LevelOfHazardPropertyType">
+    <sequence>
+      <element ref="nz-cov:LevelOfHazard"/>
+    </sequence>
+  </complexType>
+  <element name="LevelOfVulnerability" substitutionGroup="gml:AbstractObject" type="nz-cov:LevelOfVulnerabilityType">
+    <annotation>
+      <documentation>-- Definition --
+SOURCE : [UNISDR, 2009]
+
+The characteristics and circumstances of a community, system or asset that make it susceptible  to the damaging effect of a hazard. 
+NOTE : It can also adress exposure.
+
+-- Description --
+SOURCE : [Council of The European Union - Commission Staff Working Paper - Risk Assessment and Mapping Guidelines for Disaster Management]
+
+In probablistic/quantitative risk assessments the term vulnerability expresses the part of percentage of Exposure that is likely to be lost due to a certain hazard.</documentation>
+    </annotation>
+  </element>
+  <complexType name="LevelOfVulnerabilityType">
+    <sequence>
+      <element name="scale" type="gml:CodeType">
+        <annotation>
+          <documentation>-- Definition --
+Type of scale according to which the value is expressed.</documentation>
+        </annotation>
+      </element>
+      <element name="value">
+        <annotation>
+          <documentation>-- Definition --
+the value that expresses the level of vulnerability.</documentation>
+        </annotation>
+        <complexType>
+          <complexContent>
+            <extension base="gml:AbstractMemberType">
+              <sequence minOccurs="0">
+                <element ref="gml:AbstractObject"/>
+              </sequence>
+              <attributeGroup ref="gml:AssociationAttributeGroup"/>
+            </extension>
+          </complexContent>
+        </complexType>
+      </element>
+    </sequence>
+  </complexType>
+  <complexType name="LevelOfVulnerabilityPropertyType">
+    <sequence>
+      <element ref="nz-cov:LevelOfVulnerability"/>
+    </sequence>
+  </complexType>
+  <element name="ObservedHazardCoverage" substitutionGroup="nz-cov:HazardCoverage" type="nz-cov:ObservedHazardCoverageType">
+    <annotation>
+      <documentation>-- Definition --
+A coverage for observed hazards.</documentation>
+    </annotation>
+  </element>
+  <complexType name="ObservedHazardCoverageType">
+    <complexContent>
+      <extension base="nz-cov:HazardCoverageType">
+        <sequence>
+          <element name="validFrom" nillable="true">
+            <annotation>
+              <documentation>-- Definition --
+The time when the phenomenon started to exist in the real world.</documentation>
+            </annotation>
+            <complexType>
+              <simpleContent>
+                <extension base="dateTime">
+                  <attribute name="nilReason" type="gml:NilReasonType"/>
+                </extension>
+              </simpleContent>
+            </complexType>
+          </element>
+          <element minOccurs="0" name="validTo" nillable="true">
+            <annotation>
+              <documentation>-- Definition --
+The time from which the phenomenon no longer exists in the real world.</documentation>
+            </annotation>
+            <complexType>
+              <simpleContent>
+                <extension base="dateTime">
+                  <attribute name="nilReason" type="gml:NilReasonType"/>
+                </extension>
+              </simpleContent>
+            </complexType>
+          </element>
+          <element name="nameOfEvent" nillable="true">
+            <annotation>
+              <documentation>-- Definition --
+common name of the observed hazard.</documentation>
+            </annotation>
+            <complexType>
+              <simpleContent>
+                <extension base="string">
+                  <attribute name="nilReason" type="gml:NilReasonType"/>
+                </extension>
+              </simpleContent>
+            </complexType>
+          </element>
+          <element maxOccurs="unbounded" minOccurs="0" name="exposedElement" nillable="true">
+            <annotation>
+              <documentation>-- Definition --
+The element that was exposed to a hazard which has been observed.</documentation>
+              <appinfo>
+                <reversePropertyName xmlns="http://www.opengis.net/gml/3.2">nz-cov:observedHazard</reversePropertyName>
+              </appinfo>
+            </annotation>
+            <complexType>
+              <sequence minOccurs="0">
+                <element ref="nz-cov:ExposedElementCoverage"/>
+              </sequence>
+              <attributeGroup ref="gml:AssociationAttributeGroup"/>
+              <attributeGroup ref="gml:OwnershipAttributeGroup"/>
+            </complexType>
+          </element>
+        </sequence>
+      </extension>
+    </complexContent>
+  </complexType>
+  <complexType name="ObservedHazardCoveragePropertyType">
+    <sequence minOccurs="0">
+      <element ref="nz-cov:ObservedHazardCoverage"/>
+    </sequence>
+    <attributeGroup ref="gml:AssociationAttributeGroup"/>
+    <attributeGroup ref="gml:OwnershipAttributeGroup"/>
+  </complexType>
+  <element name="RiskCoverage" substitutionGroup="nz-cov:RiskHazardOrVulnerabilityCoverage" type="nz-cov:RiskCoverageType">
+    <annotation>
+      <documentation>-- Definition --
+A coverage of natural risks.</documentation>
+    </annotation>
+  </element>
+  <complexType name="RiskCoverageType">
+    <complexContent>
+      <extension base="nz-cov:RiskHazardOrVulnerabilityCoverageType">
+        <sequence>
+          <element name="determinationMethod" nillable="true">
+            <annotation>
+              <documentation>-- Definition --
+A simplified enumeration to describe the method used to define the area of risk.</documentation>
+            </annotation>
+            <complexType>
+              <simpleContent>
+                <extension base="nz-core:DeterminationMethodValueType">
+                  <attribute name="nilReason" type="gml:NilReasonType"/>
+                </extension>
+              </simpleContent>
+            </complexType>
+          </element>
+          <element name="legalBasis" nillable="true">
+            <annotation>
+              <documentation>-- Definition --
+Legal basis upon which the risk zone coverage is based (if any).</documentation>
+            </annotation>
+            <complexType>
+              <sequence>
+                <element ref="base2:LegislationReference"/>
+              </sequence>
+              <attribute name="nilReason" type="gml:NilReasonType"/>
+            </complexType>
+          </element>
+          <element name="legallyBindingZone" nillable="true">
+            <annotation>
+              <documentation>-- Definition --
+A boolean to express wether the risk zone feature has an impact on the use of the zone, based on a legal basis.</documentation>
+            </annotation>
+            <complexType>
+              <simpleContent>
+                <extension base="boolean">
+                  <attribute name="nilReason" type="gml:NilReasonType"/>
+                </extension>
+              </simpleContent>
+            </complexType>
+          </element>
+          <element name="typeOfRisk" type="nz-core:NaturalRiskOrHazardClassificationPropertyType">
+            <annotation>
+              <documentation>-- Definition --
+A generic classification and a specific classification of the type of risk.</documentation>
+            </annotation>
+          </element>
+          <element maxOccurs="unbounded" minOccurs="0" name="areaManagement" nillable="true">
+            <annotation>
+              <documentation>-- Definition --
+The area management to which the risk zone coverage is linked.</documentation>
+            </annotation>
+            <complexType>
+              <sequence minOccurs="0">
+                <element ref="am:ManagementRegulationOrRestrictionZone"/>
+              </sequence>
+              <attributeGroup ref="gml:AssociationAttributeGroup"/>
+              <attributeGroup ref="gml:OwnershipAttributeGroup"/>
+            </complexType>
+          </element>
+          <element maxOccurs="unbounded" minOccurs="0" name="coreLanduseObject" nillable="true">
+            <annotation>
+              <documentation>-- Definition --
+The land use object to which the risk zone coverage is linked.</documentation>
+            </annotation>
+            <complexType>
+              <sequence minOccurs="0">
+                <element ref="lucm:CoreLandUseObject"/>
+              </sequence>
+              <attributeGroup ref="gml:AssociationAttributeGroup"/>
+              <attributeGroup ref="gml:OwnershipAttributeGroup"/>
+            </complexType>
+          </element>
+          <element maxOccurs="unbounded" name="vulnerability" nillable="true">
+            <annotation>
+              <documentation>- Definition --
+The vulnerability coverage, calculated for an exposed element coverage,  that is linked to a risk zone coverage</documentation>
+              <appinfo>
+                <reversePropertyName xmlns="http://www.opengis.net/gml/3.2">nz-cov:risk</reversePropertyName>
+              </appinfo>
+            </annotation>
+            <complexType>
+              <sequence minOccurs="0">
+                <element ref="nz-cov:VulnerabilityCoverage"/>
+              </sequence>
+              <attributeGroup ref="gml:AssociationAttributeGroup"/>
+              <attributeGroup ref="gml:OwnershipAttributeGroup"/>
+            </complexType>
+          </element>
+          <element name="hazard" nillable="true">
+            <annotation>
+              <documentation>-- Definition --
+The hazard area coverage that is source of the risk zone coverage.</documentation>
+              <appinfo>
+                <reversePropertyName xmlns="http://www.opengis.net/gml/3.2">nz-cov:risk</reversePropertyName>
+              </appinfo>
+            </annotation>
+            <complexType>
+              <sequence minOccurs="0">
+                <element ref="nz-cov:HazardCoverage"/>
+              </sequence>
+              <attributeGroup ref="gml:AssociationAttributeGroup"/>
+              <attributeGroup ref="gml:OwnershipAttributeGroup"/>
+            </complexType>
+          </element>
+          <element maxOccurs="unbounded" minOccurs="0" name="monitors" nillable="true">
+            <annotation>
+              <documentation>-- Definition --
+The monitoring feature that monitors the risk zone coverage.</documentation>
+            </annotation>
+            <complexType>
+              <sequence minOccurs="0">
+                <element ref="ef:AbstractMonitoringFeature"/>
+              </sequence>
+              <attributeGroup ref="gml:AssociationAttributeGroup"/>
+              <attributeGroup ref="gml:OwnershipAttributeGroup"/>
+            </complexType>
+          </element>
+        </sequence>
+      </extension>
+    </complexContent>
+  </complexType>
+  <complexType name="RiskCoveragePropertyType">
+    <sequence minOccurs="0">
+      <element ref="nz-cov:RiskCoverage"/>
+    </sequence>
+    <attributeGroup ref="gml:AssociationAttributeGroup"/>
+    <attributeGroup ref="gml:OwnershipAttributeGroup"/>
+  </complexType>
+</schema>

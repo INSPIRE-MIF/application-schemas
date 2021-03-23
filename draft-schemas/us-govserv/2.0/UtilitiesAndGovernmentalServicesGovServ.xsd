@@ -1,0 +1,2038 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<schema xmlns="http://www.w3.org/2001/XMLSchema" xmlns:ad="urn:x-inspire:specification:gmlas:Addresses:3.0" xmlns:au="urn:x-inspire:specification:gmlas:AdministrativeUnits:3.0" xmlns:base="urn:x-inspire:specification:gmlas:BaseTypes:3.2" xmlns:bu="http://inspire.jrc.ec.europa.eu/schemas/bu/2.0" xmlns:gmd="http://www.isotc211.org/2005/gmd" xmlns:gml="http://www.opengis.net/gml/3.2" xmlns:gn="urn:x-inspire:specification:gmlas:GeographicalNames:3.0" xmlns:net="urn:x-inspire:specification:gmlas:Network:3.2" xmlns:us-govserv="http://inspire.jrc.ec.europa.eu/schemas/us-govserv/2.0" xmlns:us-waste="http://inspire.jrc.ec.europa.eu/schemas/us-waste/2.0" targetNamespace="http://inspire.jrc.ec.europa.eu/schemas/us-govserv/2.0" elementFormDefault="qualified" version="2.0">
+	<import namespace="http://inspire.jrc.ec.europa.eu/schemas/bu/2.0" schemaLocation="https://inspire.ec.europa.eu/draft-schemas/bu/2.0/Buildings.xsd"/>
+	<import namespace="http://inspire.jrc.ec.europa.eu/schemas/us-waste/2.0" schemaLocation="https://inspire.ec.europa.eu/draft-schemas/us-waste/2.0/UtilitiesAndGovernmentalServicesWasteManagement.xsd"/>
+	<import namespace="http://www.isotc211.org/2005/gmd" schemaLocation="http://schemas.opengis.net/iso/19139/20070417/gmd/gmd.xsd"/>
+	<import namespace="http://www.opengis.net/gml/3.2" schemaLocation="http://schemas.opengis.net/gml/3.2.1/gml.xsd"/>
+	<import namespace="urn:x-inspire:specification:gmlas:Addresses:3.0" schemaLocation="https://inspire.ec.europa.eu/schemas/ad/3.0/Addresses.xsd"/>
+	<import namespace="urn:x-inspire:specification:gmlas:AdministrativeUnits:3.0" schemaLocation="https://inspire.ec.europa.eu/schemas/au/3.0/AdministrativeUnits.xsd"/>
+	<import namespace="urn:x-inspire:specification:gmlas:BaseTypes:3.2" schemaLocation="https://inspire.ec.europa.eu/schemas/base/3.2/BaseTypes.xsd"/>
+	<import namespace="urn:x-inspire:specification:gmlas:GeographicalNames:3.0" schemaLocation="https://inspire.ec.europa.eu/schemas/gn/3.0/GeographicalNames.xsd"/>
+	<import namespace="urn:x-inspire:specification:gmlas:Network:3.2" schemaLocation="https://inspire.ec.europa.eu/schemas/net/3.2/Network.xsd"/>
+	<!--XML Schema document created by ShapeChange-->
+	<element name="ServiceLocationType" type="us-govserv:ServiceLocationTypeType" substitutionGroup="gml:AbstractObject">
+		<annotation>
+			<documentation>-- Definition --
+Allowed types of references to locate the service</documentation>
+		</annotation>
+	</element>
+	<complexType name="ServiceLocationTypeType">
+		<choice>
+			<element name="serviceLocationByAddress">
+				<annotation>
+					<documentation>-- Definition --
+Location of the service by referencing to an address</documentation>
+				</annotation>
+				<complexType>
+					<complexContent>
+						<extension base="gml:AbstractMemberType">
+							<sequence minOccurs="0">
+								<element ref="ad:Address"/>
+							</sequence>
+							<attributeGroup ref="gml:AssociationAttributeGroup"/>
+						</extension>
+					</complexContent>
+				</complexType>
+			</element>
+			<element name="serviceLocationByBuilding" maxOccurs="unbounded">
+				<annotation>
+					<documentation>-- Definition --
+Location of the service by referencing to a building</documentation>
+				</annotation>
+				<complexType>
+					<complexContent>
+						<extension base="gml:AbstractMemberType">
+							<sequence minOccurs="0">
+								<element ref="bu:Building"/>
+							</sequence>
+							<attributeGroup ref="gml:AssociationAttributeGroup"/>
+						</extension>
+					</complexContent>
+				</complexType>
+			</element>
+			<element name="serviceLocationByFacility">
+				<annotation>
+					<documentation>-- Definition --
+Location of the service by referencing to a facility</documentation>
+				</annotation>
+				<complexType>
+					<complexContent>
+						<extension base="gml:AbstractMemberType">
+							<sequence minOccurs="0">
+								<element ref="us-waste:Facility"/>
+							</sequence>
+							<attributeGroup ref="gml:AssociationAttributeGroup"/>
+						</extension>
+					</complexContent>
+				</complexType>
+			</element>
+			<element name="serviceLocationByGeometry" type="gml:GeometryPropertyType">
+				<annotation>
+					<documentation>-- Definition --
+Location of the service by referencing to a geometry</documentation>
+				</annotation>
+			</element>
+		</choice>
+	</complexType>
+	<complexType name="ServiceLocationTypePropertyType">
+		<sequence>
+			<element ref="us-govserv:ServiceLocationType"/>
+		</sequence>
+	</complexType>
+	<element name="GovernmentalService" type="us-govserv:GovernmentalServiceType" substitutionGroup="gml:AbstractFeature">
+		<annotation>
+			<documentation>-- Definition --
+Administrative and social governmental services provided by, or on behalf of, a Public Administrative Body, in order to be used in the treatment of environmental issues (broad meaning) for public use or to the benefit of citizens
+
+-- Description --
+Administrative and social governmental services such as public administrations, civil protection, sites, schools, hospitals. The kinds of sites are commonly presented in governmental and municipal portals and map system as "point of interest"-data, and may be point-based location of a variety of categories of municipal and governmental services and social infrastructure</documentation>
+		</annotation>
+	</element>
+	<complexType name="GovernmentalServiceType">
+		<complexContent>
+			<extension base="gml:AbstractFeatureType">
+				<sequence>
+					<element name="additionalLocationDescription" type="gmd:PT_FreeText_PropertyType" nillable="true" minOccurs="0">
+						<annotation>
+							<documentation>-- Definition --
+Additional information that helps to easily find the specific governmental service, more than provided by the service location (i.e. correct level in a building, prefered entrance, etc.)
+
+-- Description --
+EXAMPLE A heart defibrillator is located at the &amp;ldquo;information desk, ground floor"</documentation>
+						</annotation>
+					</element>
+					<element name="areaOfResponsibility" nillable="true" minOccurs="0">
+						<annotation>
+							<documentation>-- Definition --
+The spatial responsibility of a service instance
+
+-- Description --
+EXAMPLES:
+An administration is responsible for a municipality;
+A winter service is responsible for a number of roads</documentation>
+						</annotation>
+						<complexType>
+							<sequence>
+								<element ref="us-govserv:AreaOfResponsibilityType"/>
+							</sequence>
+							<attribute name="nilReason" type="gml:NilReasonType"/>
+						</complexType>
+					</element>
+					<element name="beginLifespanVersion" nillable="true">
+						<annotation>
+							<documentation>-- Definition --
+Date and time at which this version of the spatial object was inserted or changed in the spatial data set
+
+-- Description --
+related to the life-cycle of the spatial object in the data set</documentation>
+						</annotation>
+						<complexType>
+							<simpleContent>
+								<extension base="dateTime">
+									<attribute name="nilReason" type="gml:NilReasonType"/>
+								</extension>
+							</simpleContent>
+						</complexType>
+					</element>
+					<element name="emergencyPlan" nillable="true" minOccurs="0" maxOccurs="unbounded">
+						<annotation>
+							<documentation>-- Definition --
+Document describing actions to be undertaken by the governmental service users and responsible parties, when a certain (or several) risk(s) occurs 
+
+-- Description --
+EXAMPLE: Emergency Plan in case of volcano's eruption in Vesuvio's region, in Italy.
+The document can provide information to minimize such risks preventively or how to react in front of such risks.
+Such documents may be required by the legislations of several European countries</documentation>
+						</annotation>
+						<complexType>
+							<complexContent>
+								<extension base="gml:AbstractMetadataPropertyType">
+									<sequence>
+										<element ref="gmd:CI_Citation"/>
+									</sequence>
+									<attribute name="nilReason" type="gml:NilReasonType"/>
+								</extension>
+							</complexContent>
+						</complexType>
+					</element>
+					<element name="endLifespanVersion" nillable="true" minOccurs="0">
+						<annotation>
+							<documentation>-- Definition --
+Date and time at which this version of the spatial object was superseded or retired in the spatial data set
+
+-- Description --
+related to the life-cycle of the spatial object in the data set</documentation>
+						</annotation>
+						<complexType>
+							<simpleContent>
+								<extension base="dateTime">
+									<attribute name="nilReason" type="gml:NilReasonType"/>
+								</extension>
+							</simpleContent>
+						</complexType>
+					</element>
+					<element name="hoursOfService" type="gmd:PT_FreeText_PropertyType" nillable="true">
+						<annotation>
+							<documentation>-- Definition --
+Time, when the service can be used</documentation>
+						</annotation>
+					</element>
+					<element name="inspireId" type="base:IdentifierPropertyType">
+						<annotation>
+							<documentation>-- Definition --
+External object identifier of the governmental service
+
+-- Description --
+NOTE An external object identifier is a unique object identifier
+published by the responsible body, which may be used by external
+applications to reference the spatial object. The identifier is an identifier of the
+spatial object, not an identifier of the real-world phenomenon</documentation>
+						</annotation>
+					</element>
+					<element name="name" nillable="true" minOccurs="0" maxOccurs="unbounded">
+						<annotation>
+							<documentation>-- Definition --
+Usual name (designation of an object by a linguistic expression) of the service
+
+-- Description --
+EXAMPLE "Hotel de ville"
+The name can be refering:
+(a) to the description of the type of governmental service, if providing more detailled information than the ServiceTypeValue (e.g. "Children Library" when the value in the codelist is only "Library");
+(b) to a proper noun, given to the service (e.g. "Reichstag" or "Buckhingam Palace"); or
+(c) to a mix of both solutions (a) and (b) (e.g. "Lycee Professionnel Jean Jaures" or "KinderGarten W.A. Mozart")
+Recommandation: It's useless to have a name only repeating the value of the codelist ServiceTypeValue
+The text is multi-linguistic (PT_FreeText), so several names can be provided (Tour Eiffel (FR), Eiffel Tower (EN), EiffelTurm (DE), etc.)</documentation>
+						</annotation>
+						<complexType>
+							<sequence>
+								<element ref="gn:GeographicalName"/>
+							</sequence>
+							<attribute name="nilReason" type="gml:NilReasonType"/>
+						</complexType>
+					</element>
+					<element name="note" type="gmd:PT_FreeText_PropertyType" nillable="true" minOccurs="0">
+						<annotation>
+							<documentation>-- Definition --
+Any comment that help the user to better understand what is the governmental service (i.e. litteral description of the service)
+
+-- Description --
+This atribute is not used for internal matters, such as database management, but to provide more detailleed information that cannot be included in other attributes (e.g. "This home for the handicapped is speciallized for the blind people only")</documentation>
+						</annotation>
+					</element>
+					<element name="occupancy" nillable="true" minOccurs="0" maxOccurs="unbounded">
+						<annotation>
+							<documentation>-- Definition --
+Capacity of a governmental service with the purpose of accommodation (e.g. home for the elderly) or attendance of persons (e.g. stadium).
+
+-- Description --
+The capacity of the service shall be provided, not the current occupancy.</documentation>
+						</annotation>
+						<complexType>
+							<sequence>
+								<element ref="us-govserv:OccupancyType"/>
+							</sequence>
+							<attribute name="nilReason" type="gml:NilReasonType"/>
+						</complexType>
+					</element>
+					<element name="resources" nillable="true" minOccurs="0" maxOccurs="unbounded">
+						<annotation>
+							<documentation>-- Definition --
+Description of technical resources of services</documentation>
+						</annotation>
+						<complexType>
+							<sequence>
+								<element ref="us-govserv:ResourceType"/>
+							</sequence>
+							<attribute name="nilReason" type="gml:NilReasonType"/>
+						</complexType>
+					</element>
+					<element name="responsiblePartyContact" nillable="true" maxOccurs="unbounded">
+						<annotation>
+							<documentation>-- Definition --
+Contact (i.e. person, telephone number, e-mail, etc.) of the responsible party, given a specific role (owner, maintainer, etc.) of the governmental service.
+This information can be used for emergency purposes or for gathering more detailled information about the governmental service
+
+-- Description --
+Prefer to use designation of the function and generic informations, rather than data unsing the names of the responsible persons, who may change within shorter period than data update (e.g. for e-mail addresses)</documentation>
+						</annotation>
+						<complexType>
+							<complexContent>
+								<extension base="gml:AbstractMetadataPropertyType">
+									<sequence>
+										<element ref="gmd:CI_ResponsibleParty"/>
+									</sequence>
+									<attribute name="nilReason" type="gml:NilReasonType"/>
+								</extension>
+							</complexContent>
+						</complexType>
+					</element>
+					<element name="serviceLevel" nillable="true" minOccurs="0" maxOccurs="unbounded">
+						<annotation>
+							<documentation>-- Definition --
+Allowed types for the adminstrative level where the service is provided from</documentation>
+						</annotation>
+						<complexType>
+							<simpleContent>
+								<extension base="us-govserv:ServiceLevelValueType">
+									<attribute name="nilReason" type="gml:NilReasonType"/>
+								</extension>
+							</simpleContent>
+						</complexType>
+					</element>
+					<element name="serviceLocation" type="us-govserv:ServiceLocationTypePropertyType">
+						<annotation>
+							<documentation>-- Definition --
+Location from where the service is offered</documentation>
+						</annotation>
+					</element>
+					<element name="serviceType" type="us-govserv:ServiceTypeValueType">
+						<annotation>
+							<documentation>-- Definition --
+Type of a governmental service</documentation>
+						</annotation>
+					</element>
+					<element name="validFrom" nillable="true">
+						<annotation>
+							<documentation>-- Definition --
+The time when the phenomenon started to exist in the real world
+
+-- Description --
+related to the existence of the phenomenon in the real world</documentation>
+						</annotation>
+						<complexType>
+							<simpleContent>
+								<extension base="dateTime">
+									<attribute name="nilReason" type="gml:NilReasonType"/>
+								</extension>
+							</simpleContent>
+						</complexType>
+					</element>
+					<element name="validTo" nillable="true" minOccurs="0">
+						<annotation>
+							<documentation>-- Definition --
+The time from which the phenomenon no longer exists in the real world
+
+-- Description --
+related to the existence of the phenomenon in the real world</documentation>
+						</annotation>
+						<complexType>
+							<simpleContent>
+								<extension base="dateTime">
+									<attribute name="nilReason" type="gml:NilReasonType"/>
+								</extension>
+							</simpleContent>
+						</complexType>
+					</element>
+					<element name="website" nillable="true" minOccurs="0">
+						<annotation>
+							<documentation>-- Definition --
+Official Internet site of the governmental service, where can be found more detailled information.
+The URL can also link to a document provinding such information (preferebly .pdf or universally readable format)
+
+-- Description --
+EXAMPLES: http://www.opapisa.it/fr/home.html for the Leaning Tower of Pisa or http://www.teatroallascala.org/en/index.html for the Opera of Milano</documentation>
+						</annotation>
+						<complexType>
+							<simpleContent>
+								<extension base="anyURI">
+									<attribute name="nilReason" type="gml:NilReasonType"/>
+								</extension>
+							</simpleContent>
+						</complexType>
+					</element>
+				</sequence>
+			</extension>
+		</complexContent>
+	</complexType>
+	<complexType name="GovernmentalServicePropertyType">
+		<sequence minOccurs="0">
+			<element ref="us-govserv:GovernmentalService"/>
+		</sequence>
+		<attributeGroup ref="gml:AssociationAttributeGroup"/>
+		<attributeGroup ref="gml:OwnershipAttributeGroup"/>
+	</complexType>
+	<element name="AreaOfResponsibilityType" type="us-govserv:AreaOfResponsibilityTypeType" substitutionGroup="gml:AbstractObject">
+		<annotation>
+			<documentation>-- Definition --
+Allowed types for the description of spatial responsibility</documentation>
+		</annotation>
+	</element>
+	<complexType name="AreaOfResponsibilityTypeType">
+		<choice>
+			<element name="areaOfResponsibilityByAdministrativeUnit" maxOccurs="unbounded">
+				<annotation>
+					<documentation>-- Definition --
+Administrative unit describing the geographic extent of the responsibility of a service</documentation>
+				</annotation>
+				<complexType>
+					<complexContent>
+						<extension base="gml:AbstractMemberType">
+							<sequence minOccurs="0">
+								<element ref="au:AdministrativeUnit"/>
+							</sequence>
+							<attributeGroup ref="gml:AssociationAttributeGroup"/>
+						</extension>
+					</complexContent>
+				</complexType>
+			</element>
+			<element name="areaOfResponsibilityByNamedPlace" maxOccurs="unbounded">
+				<annotation>
+					<documentation>-- Definition --
+Geographical name describing the geographic extent of the responsibility of a service</documentation>
+				</annotation>
+				<complexType>
+					<complexContent>
+						<extension base="gml:AbstractMemberType">
+							<sequence minOccurs="0">
+								<element ref="gn:NamedPlace"/>
+							</sequence>
+							<attributeGroup ref="gml:AssociationAttributeGroup"/>
+						</extension>
+					</complexContent>
+				</complexType>
+			</element>
+			<element name="areaOfResponsibilityByNetwork" type="net:NetworkReferencePropertyType" maxOccurs="unbounded">
+				<annotation>
+					<documentation>-- Definition --
+Part of a network describing the geographic extent of the competence of a service</documentation>
+				</annotation>
+			</element>
+			<element name="areaOfResponsibilityByPolygon" type="gml:MultiSurfacePropertyType">
+				<annotation>
+					<documentation>-- Definition --
+Polygon describing the geographic extent of the responsibility of a service</documentation>
+				</annotation>
+			</element>
+		</choice>
+	</complexType>
+	<complexType name="AreaOfResponsibilityTypePropertyType">
+		<sequence>
+			<element ref="us-govserv:AreaOfResponsibilityType"/>
+		</sequence>
+	</complexType>
+	<element name="ResourceType" type="us-govserv:ResourceTypeType" substitutionGroup="gml:AbstractObject">
+		<annotation>
+			<documentation>-- Definition --
+Description of a single technical resource
+
+-- Description --
+EXAMPLE: Capacity of a fire water reservoir</documentation>
+		</annotation>
+	</element>
+	<complexType name="ResourceTypeType">
+		<sequence>
+			<element name="amount" nillable="true">
+				<annotation>
+					<documentation>-- Definition --
+Quantitative description of a technical resource</documentation>
+				</annotation>
+				<complexType>
+					<simpleContent>
+						<extension base="gml:MeasureType">
+							<attribute name="nilReason" type="gml:NilReasonType"/>
+						</extension>
+					</simpleContent>
+				</complexType>
+			</element>
+			<element name="typeOfTechnicalMeans" type="gmd:PT_FreeText_PropertyType">
+				<annotation>
+					<documentation>-- Definition --
+Qualitative description of a technical resource</documentation>
+				</annotation>
+			</element>
+		</sequence>
+	</complexType>
+	<complexType name="ResourceTypePropertyType">
+		<sequence>
+			<element ref="us-govserv:ResourceType"/>
+		</sequence>
+	</complexType>
+	<simpleType name="ServiceTypeValueType">
+		<annotation>
+			<documentation>-- Definition --
+Codelist containing a classification of governmental services</documentation>
+		</annotation>
+		<union memberTypes="us-govserv:ServiceTypeValueEnumerationType us-govserv:ServiceTypeValueOtherType"/>
+	</simpleType>
+	<simpleType name="ServiceTypeValueEnumerationType">
+		<annotation>
+			<documentation>-- Definition --
+Codelist containing a classification of governmental services</documentation>
+		</annotation>
+		<restriction base="string">
+			<enumeration value="accommodation">
+				<annotation>
+					<documentation>-- Definition --
+General services concerned with the over night accommodation of travellers e.g. in hotels, on cruise ships or on campgrounds.
+[Based on Wikipedia]</documentation>
+				</annotation>
+			</enumeration>
+			<enumeration value="administrationForEconomicAffairs">
+				<annotation>
+					<documentation>-- Definition --
+Administration offices concerned with economic affairs.</documentation>
+				</annotation>
+			</enumeration>
+			<enumeration value="administrationForEducation">
+				<annotation>
+					<documentation>-- Definition --
+Administration offices concerned with educational matters.</documentation>
+				</annotation>
+			</enumeration>
+			<enumeration value="administrationForEnvironmentalProtection">
+				<annotation>
+					<documentation>-- Definition --
+Administration offices concerned with environmental protection.</documentation>
+				</annotation>
+			</enumeration>
+			<enumeration value="administrationForHealth">
+				<annotation>
+					<documentation>-- Definition --
+This item comprises establishments primarily engaged in the regulation of activities of agencies that provide health care and overall administration of health policy.
+[Based on ICHA-HP, OECD 2000]</documentation>
+				</annotation>
+			</enumeration>
+			<enumeration value="administrationForPublicOrderAndSafety">
+				<annotation>
+					<documentation>-- Definition --
+Administration offices concerned with public order and safety.</documentation>
+				</annotation>
+			</enumeration>
+			<enumeration value="administrationForSocialProtection">
+				<annotation>
+					<documentation>-- Definition --
+Administration offices concerned with matters of social protection.</documentation>
+				</annotation>
+			</enumeration>
+			<enumeration value="adminitrationForRecreationCultureAndReligion">
+				<annotation>
+					<documentation>-- Definition --
+Administration offices concerned with recreation, culture and religion.</documentation>
+				</annotation>
+			</enumeration>
+			<enumeration value="airRaidShelter">
+				<annotation>
+					<documentation>-- Definition --
+Structure originally built as a shelter during an air raid.</documentation>
+				</annotation>
+			</enumeration>
+			<enumeration value="amphitheatre">
+				<annotation>
+					<documentation>-- Definition --
+Services provided by or at amphitheatres.</documentation>
+				</annotation>
+			</enumeration>
+			<enumeration value="amusementPark">
+				<annotation>
+					<documentation>-- Definition --
+Permanent site providing entertainment for the public in the form of amusement arcades, water rides and other facilities.
+[Based on Ordnance Survey, OS MasterMap Real-World Object Catalogue 2001]</documentation>
+				</annotation>
+			</enumeration>
+			<enumeration value="anaesthesiology">
+				<annotation>
+					<documentation>-- Definition --
+Practice of anaesthesiology. An anaesthesiologist is a physician trained in anaesthesia and peri-operative medicine.
+[Based on Wikipedia]</documentation>
+				</annotation>
+			</enumeration>
+			<enumeration value="ancillaryEquipment">
+				<annotation>
+					<documentation>-- Definition --
+Services concerned with supplementary equipment for the fire-protection services.</documentation>
+				</annotation>
+			</enumeration>
+			<enumeration value="animalHospital">
+				<annotation>
+					<documentation>-- Definition --
+Location where sick or injured animals are given medical or surgical care.
+[Based on Oxford English Dictionary]</documentation>
+				</annotation>
+			</enumeration>
+			<enumeration value="antiNoiseConstruction">
+				<annotation>
+					<documentation>-- Definition --
+Structures to mitigate noise from e.g. roadways or construction.</documentation>
+				</annotation>
+			</enumeration>
+			<enumeration value="auxiliaryFireBrigade">
+				<annotation>
+					<documentation>-- Definition --
+Organized body of volunteer firemen.
+[Based on Oxford English Dictionary]</documentation>
+				</annotation>
+			</enumeration>
+			<enumeration value="bankOffice">
+				<annotation>
+					<documentation>-- Definition --
+Services concerned with monetary transactions and financial advice.
+[Based on Ordnance Survey, OS MasterMap Real-World Object Catalogue 2001]</documentation>
+				</annotation>
+			</enumeration>
+			<enumeration value="basementGarage">
+				<annotation>
+					<documentation>-- Definition --
+Underground location for parking.</documentation>
+				</annotation>
+			</enumeration>
+			<enumeration value="beach">
+				<annotation>
+					<documentation>-- Definition --
+Area of sand, shingles or rocks beside inland or tidal water.
+[Based on Ordnance Survey, OS MasterMap Real-World Object Catalogue 2001]</documentation>
+				</annotation>
+			</enumeration>
+			<enumeration value="bicycleLoaningPoint">
+				<annotation>
+					<documentation>-- Definition --
+Location where bicycles can be rented.</documentation>
+				</annotation>
+			</enumeration>
+			<enumeration value="biodiversityMonitoringFacility">
+				<annotation>
+					<documentation>-- Definition --
+Services providing current information and trends on biodiversity.</documentation>
+				</annotation>
+			</enumeration>
+			<enumeration value="bloodAndOrganBank">
+				<annotation>
+					<documentation>-- Definition --
+This item comprises establishments primarily engaged in collecting, storing and distributing blood and blood products and storing and distributing body organs.
+Illustrative examples:
+&amp;bull; blood donor stations.
+[ICHA-HP, OECD 2000]</documentation>
+				</annotation>
+			</enumeration>
+			<enumeration value="broadcastingAndPublishingService">
+				<annotation>
+					<documentation>-- Definition --
+Services concerned with broadcasting and publishing affairs.</documentation>
+				</annotation>
+			</enumeration>
+			<enumeration value="campingCaravaningSite">
+				<annotation>
+					<documentation>-- Definition --
+Location where facilities or campsites for caravans and camping are provided.</documentation>
+				</annotation>
+			</enumeration>
+			<enumeration value="cashpoint">
+				<annotation>
+					<documentation>-- Definition --
+Machine on inside/outside of banks/building societies that dispense cash 24 hours a day.
+[Based on Ordnance Survey, OS MasterMap Real-World Object Catalogue 2001]</documentation>
+				</annotation>
+			</enumeration>
+			<enumeration value="castlePalace">
+				<annotation>
+					<documentation>-- Definition --
+Services provided by or at castles/palaces.</documentation>
+				</annotation>
+			</enumeration>
+			<enumeration value="cemetery">
+				<annotation>
+					<documentation>-- Definition --
+Site and associated structures devoted to services concerned with the burial of the dead.
+[Based on DGIWG Feature Data Dictionary 2010]</documentation>
+				</annotation>
+			</enumeration>
+			<enumeration value="charity">
+				<annotation>
+					<documentation>-- Definition --
+Institutions and services engaged in the relief of the poor and provision for the needy.
+[Based on Merriam-Webster Online Dictionary]</documentation>
+				</annotation>
+			</enumeration>
+			<enumeration value="cinema">
+				<annotation>
+					<documentation>-- Definition --
+Services provided by or at cinemas.</documentation>
+				</annotation>
+			</enumeration>
+			<enumeration value="civilProtectionSite">
+				<annotation>
+					<documentation>-- Definition --
+Site offering protection from disasters.</documentation>
+				</annotation>
+			</enumeration>
+			<enumeration value="comfortStation">
+				<annotation>
+					<documentation>-- Definition --
+Location where public toilets and lavatories are provided.</documentation>
+				</annotation>
+			</enumeration>
+			<enumeration value="communityCareFacilityForTheElderly">
+				<annotation>
+					<documentation>-- Definition --
+This item comprises establishments primarily engaged in providing residential and personal care services for elderly and other persons (1) unable to fully care for themselves and/or (2) unwilling to live independently.  The care typically includes room, board, supervision, and assistance in daily living, such as housekeeping services.  In some instances these establishments provide skilled nursing care for residents in separate on-site facilities. Assisted living facilities with on-site nursing care facilities are included in this item.  Homes for the elderly without on-site nursing care facilities are also included.
+Illustrative examples:
+&amp;bull; assisted-living facilities;
+&amp;bull; continuing-care retirement communities;
+&amp;bull; homes for the elderly without nursing care.
+[ICHA-HP, OECD 2000]</documentation>
+				</annotation>
+			</enumeration>
+			<enumeration value="concertHall">
+				<annotation>
+					<documentation>-- Definition --
+Services provided by or at concert halls.</documentation>
+				</annotation>
+			</enumeration>
+			<enumeration value="conferenceCentre">
+				<annotation>
+					<documentation>-- Definition --
+Location where formal discussions/meetings take place.
+[Based on Ordnance Survey, OS MasterMap Real-World Object Catalogue 2001]</documentation>
+				</annotation>
+			</enumeration>
+			<enumeration value="counselling">
+				<annotation>
+					<documentation>-- Definition --
+Services concerned with the provision of counselling of persons who are disaster victims, victims of assault and abuse and potential suicides; services concerned with the long-term support of persons who are gamblers, alcohol abusers and substance abusers; services concerned with the improvement of conditions in prisons, including prison visitors and social rehabilitation.
+[Based on COPNI 2001]</documentation>
+				</annotation>
+			</enumeration>
+			<enumeration value="creche">
+				<annotation>
+					<documentation>-- Definition --
+Public centre for the care and education of young children.
+[Based on Merriam-Webster Online Dictionary]</documentation>
+				</annotation>
+			</enumeration>
+			<enumeration value="culturalService">
+				<annotation>
+					<documentation>-- Definition --
+Services concerned with facilities for cultural pursuits (libraries, museums, art galleries, theatres, exhibition halls, monuments, historic houses and sites, zoological and botanical gardens, aquaria, arboreta, etc.); production, operation or support of cultural events (concerts, stage and film productions, art shows, etc.).
+[Based on COFOG 1999]</documentation>
+				</annotation>
+			</enumeration>
+			<enumeration value="dayCareCentreAndOtherChildMindingFacilities">
+				<annotation>
+					<documentation>-- Definition --
+Child-care institutions other than creche, kindergarten and play school.</documentation>
+				</annotation>
+			</enumeration>
+			<enumeration value="dayCareHolidayCareService">
+				<annotation>
+					<documentation>-- Definition --
+Services concerned with non-residential facilities providing activities for elderly or disabled individuals. Most centres operate 10 &amp;ndash; 12 hours per day and provide meals, social/recreational outings, and general supervision. Some centres offer additional short-term care during holidays.
+[Based on Wikipedia]</documentation>
+				</annotation>
+			</enumeration>
+			<enumeration value="dentalLaboratory">
+				<annotation>
+					<documentation>-- Definition --
+Dental services concerned with manufacturing or customizing a variety of products to assist in the provision of oral health care by a licensed dentist. These products include crowns, bridges, dentures and other dental products.
+[Based on Wikipedia]</documentation>
+				</annotation>
+			</enumeration>
+			<enumeration value="dentalMedicine">
+				<annotation>
+					<documentation>-- Definition --
+Practice of dental medicine. Dentistry is the branch of medicine that is involved in the study, diagnosis, prevention, and treatment of diseases, disorders and conditions of the oral cavity, maxillofacial area and the adjacent and associated structures.
+[Based on Wikipedia]</documentation>
+				</annotation>
+			</enumeration>
+			<enumeration value="dermatology">
+				<annotation>
+					<documentation>-- Definition --
+Practice for dermatology. Dermatology is the branch of medicine dealing with the skin and its diseases.
+[Based on Wikipedia]</documentation>
+				</annotation>
+			</enumeration>
+			<enumeration value="dialysisCareCentre">
+				<annotation>
+					<documentation>-- Definition --
+This item comprises establishments with medical staff primarily engaged in providing out-patient kidney or renal dialysis services.
+[ICHA-HP, OECD 2000]</documentation>
+				</annotation>
+			</enumeration>
+			<enumeration value="distributiveTradesStorageAndWarehousing">
+				<annotation>
+					<documentation>-- Definition --
+Services concerned with the distributive trade and the storage and warehousing industry.
+[Based on COFOG 1999]</documentation>
+				</annotation>
+			</enumeration>
+			<enumeration value="drapeNetAgainstRockFall">
+				<annotation>
+					<documentation>-- Definition --
+Metallic nets on rock slope surfaces providing protection for roads and infrastructure against the detachment of small rock elements.</documentation>
+				</annotation>
+			</enumeration>
+			<enumeration value="driveInTheatre">
+				<annotation>
+					<documentation>-- Definition --
+Services provided by or at drive-in theatres.</documentation>
+				</annotation>
+			</enumeration>
+			<enumeration value="economicAffairs">
+				<annotation>
+					<documentation>-- Definition --
+Services concerned with activities relating to general and sectoral economic affairs.
+[Based on COFOG 1999]</documentation>
+				</annotation>
+			</enumeration>
+			<enumeration value="education">
+				<annotation>
+					<documentation>-- Definition --
+Services concerned with educational affairs. These services include military schools and colleges where curricula resemble those of civilian institutions, police colleges offering general education in addition to police training and the provision of education by radio or television broadcasting.
+[Based on COFOG 1999]</documentation>
+				</annotation>
+			</enumeration>
+			<enumeration value="educationNotDefinableBylevel">
+				<annotation>
+					<documentation>-- Definition --
+Provision of education not definable by level (that is, educational programmes, generally for adults, which do not require any special prior instruction, in particular vocational training and cultural development).
+[Based on COFOG 1999]</documentation>
+				</annotation>
+			</enumeration>
+			<enumeration value="emergencyCallPoint">
+				<annotation>
+					<documentation>-- Definition --
+Location of  telephones in a box or on a post for the use of motorists in the event of a breakdown.
+[Based on Ordnance Survey, OS MasterMap Real-World Object Catalogue 2001]</documentation>
+				</annotation>
+			</enumeration>
+			<enumeration value="environmentalEducationCentre">
+				<annotation>
+					<documentation>-- Definition --
+Institution engaged in developing programs and material to increase awareness about the environment and sustainable development.</documentation>
+				</annotation>
+			</enumeration>
+			<enumeration value="environmentalProtection">
+				<annotation>
+					<documentation>-- Definition --
+Services concerned with the administration, supervision, inspection, operation or support of activities relating to the protection and conservation of the environment.</documentation>
+				</annotation>
+			</enumeration>
+			<enumeration value="equipmentForFireBrigade">
+				<annotation>
+					<documentation>-- Definition --
+Location for the storage of equipment for fire brigades.</documentation>
+				</annotation>
+			</enumeration>
+			<enumeration value="establishmentAsProviderOfOccupationalHealthCareService">
+				<annotation>
+					<documentation>-- Definition --
+This item comprises service locations providing occupational health care as ancillary production.
+
+Illustrative examples
+&amp;bull; occupational health care services not provided in separate health care establishments (all industries);
+&amp;bull; military health services not provided in separate health care establishments;
+&amp;bull; prison health services not provided in separate health care establishments;
+&amp;bull; school health services.
+[Based on ICHA-HP, OECD 2000]</documentation>
+				</annotation>
+			</enumeration>
+			<enumeration value="fairAndExhibitionCentre">
+				<annotation>
+					<documentation>-- Definition --
+Services concerned with building complexes used for displaying products, e.g. cars, computers, ect.
+[Based on Ordnance Survey, OS MasterMap Real-World Object Catalogue 2001]</documentation>
+				</annotation>
+			</enumeration>
+			<enumeration value="familyAdvisoryService">
+				<annotation>
+					<documentation>-- Definition --
+Services concerned with guidance, arbitration, fostering and adoption services for families.
+[Based on COPNI 2001]</documentation>
+				</annotation>
+			</enumeration>
+			<enumeration value="familyPlanningCentre">
+				<annotation>
+					<documentation>-- Definition --
+This item comprises establishments with medical staff primarily engaged in providing a range of family planning services on an out-patient basis, such as contraceptive services, genetic and prenatal counselling, voluntary sterilisation, and therapeutic and medically indicated termination of pregnancy.
+Illustrative examples:
+&amp;bull; pregnancy counselling centres;
+&amp;bull; birth control clinics;
+&amp;bull; childbirth preparation classes;
+&amp;bull; fertility clinics.
+[ICHA-HP, OECD 2000]</documentation>
+				</annotation>
+			</enumeration>
+			<enumeration value="familyViolenceShelter">
+				<annotation>
+					<documentation>-- Definition --
+Place of temporary refuge and support for women and their children escaping violent or abusive situations, such as rape, and domestic violence.
+[Based on Wikipedia]</documentation>
+				</annotation>
+			</enumeration>
+			<enumeration value="financialAndPostalService">
+				<annotation>
+					<documentation>-- Definition --
+Services concerned with the financial and postal sector.</documentation>
+				</annotation>
+			</enumeration>
+			<enumeration value="fireDetectionCamera">
+				<annotation>
+					<documentation>-- Definition --
+Camera for the detection of fires.</documentation>
+				</annotation>
+			</enumeration>
+			<enumeration value="fireFightingStation">
+				<annotation>
+					<documentation>-- Definition --
+Services concerned with a station housing fire fighters, their equipment and vehicles.
+[Based on Ordnance Survey, OS MasterMap Real-World Object Catalogue 2001]</documentation>
+				</annotation>
+			</enumeration>
+			<enumeration value="fireProtectionService">
+				<annotation>
+					<documentation>-- Definition --
+Services concerned with fire-prevention and fire-fighting affairs; operation of regular and auxiliary fire brigades and of other fire-prevention and fire fighting services maintained by public authorities; operation or support of fire prevention and fire-fighting training programmes.
+[Based on COFOG 1999]</documentation>
+				</annotation>
+			</enumeration>
+			<enumeration value="fireWater">
+				<annotation>
+					<documentation>-- Definition --
+Location where water for fire-fighting is provided.</documentation>
+				</annotation>
+			</enumeration>
+			<enumeration value="firstStageOfTertiaryEducation">
+				<annotation>
+					<documentation>-- Definition --
+Provision of tertiary education at ISCED-97 level 5 (International Standard Classification of Education).
+[Based on COFOG 1999]</documentation>
+				</annotation>
+			</enumeration>
+			<enumeration value="floodWall">
+				<annotation>
+					<documentation>-- Definition --
+Barrier constructed to hold back water and raise its level to form a reservoir or to prevent flooding.
+[Based on DGIWG Feature Data Dictionary 2010]</documentation>
+				</annotation>
+			</enumeration>
+			<enumeration value="fountain">
+				<annotation>
+					<documentation>-- Definition --
+Ornamental feature in a pool or lake from which water issues or a device that supplies drinking water, usually in a public place.
+[Based on Ordnance Survey, OS MasterMap Real-World Object Catalogue 2001]</documentation>
+				</annotation>
+			</enumeration>
+			<enumeration value="freeStandingAmbulatorySurgeryCentre">
+				<annotation>
+					<documentation>-- Definition --
+This item comprises establishments with physicians and other medical staff primarily engaged in providing surgical services (e.g., orthoscopic and cataract surgery) on an out-patient basis. Out-patient surgical establishments have specialised facilities, such as operating and recovery rooms, and specialised equipment, such as anaesthetic or X-ray equipment.
+[ICHA-HP, OECD 2000]</documentation>
+				</annotation>
+			</enumeration>
+			<enumeration value="gallery">
+				<annotation>
+					<documentation>-- Definition --
+Services provided by or at galleries.</documentation>
+				</annotation>
+			</enumeration>
+			<enumeration value="gardenPlot">
+				<annotation>
+					<documentation>-- Definition --
+Plot of land let to an individual for cultivation.
+[Based on Merriam-Webster Online Dictionary]</documentation>
+				</annotation>
+			</enumeration>
+			<enumeration value="gastronomy">
+				<annotation>
+					<documentation>-- Definition --
+Public restaurants of different kinds.</documentation>
+				</annotation>
+			</enumeration>
+			<enumeration value="generalAdministrationOffice">
+				<annotation>
+					<documentation>-- Definition --
+General administration offices e.g. town halls.</documentation>
+				</annotation>
+			</enumeration>
+			<enumeration value="generalHospital">
+				<annotation>
+					<documentation>-- Definition --
+Hospital services that do not limit their services to a particular medical speciality.
+[Based on COFOG 1999]</documentation>
+				</annotation>
+			</enumeration>
+			<enumeration value="generalMedicalService">
+				<annotation>
+					<documentation>-- Definition --
+General medical services delivered by general medical clinics and general medical practitioners.
+[Based on COFOG 1999]
+
+-- Description --
+General medical clinics are defined as institutions which chiefly provide outpatient services which are not limited to a particular medical speciality and which are chiefly delivered by qualified medical doctors. General medical practitioners do not specialize in a particular medical speciality.
+[Based on COFOG 1999]</documentation>
+				</annotation>
+			</enumeration>
+			<enumeration value="generalPractice">
+				<annotation>
+					<documentation>-- Definition --
+General medical practice. A general practitioner treats acute and chronic illnesses and provides preventive care and health education for all ages and both sexes.
+[Based on Wikipedia]</documentation>
+				</annotation>
+			</enumeration>
+			<enumeration value="greenAreaAndBeach">
+				<annotation>
+					<documentation>-- Definition --
+Services concerned with open green spaces and beach.</documentation>
+				</annotation>
+			</enumeration>
+			<enumeration value="greenSpace">
+				<annotation>
+					<documentation>-- Definition --
+Area of land covered with grass, especially in the middle of a village.
+[Based on Ordnance Survey, OS MasterMap Real-World Object Catalogue 2001]</documentation>
+				</annotation>
+			</enumeration>
+			<enumeration value="gynaecology">
+				<annotation>
+					<documentation>-- Definition --
+Practice of gynaecology. Gynaecology is the medical practice dealing with the health of the female reproductive system (uterus, vagina, and ovaries).
+[Based on Wikipedia]</documentation>
+				</annotation>
+			</enumeration>
+			<enumeration value="health">
+				<annotation>
+					<documentation>-- Definition --
+Services concerned with health issues provided to individual persons and services provided on a collective basis.
+[Based on COFOG 1999]</documentation>
+				</annotation>
+			</enumeration>
+			<enumeration value="hearingAids">
+				<annotation>
+					<documentation>-- Definition --
+Location of a hearing aid specialist.</documentation>
+				</annotation>
+			</enumeration>
+			<enumeration value="heartDefibrillator">
+				<annotation>
+					<documentation>-- Definition --
+Location where heart defibrillators are provided.</documentation>
+				</annotation>
+			</enumeration>
+			<enumeration value="helicopterLandingSite">
+				<annotation>
+					<documentation>-- Definition --
+Improved area used for take-off and landing of helicopters.
+[Based on DGIWG Feature Data Dictionary 2010]</documentation>
+				</annotation>
+			</enumeration>
+			<enumeration value="homeForTheElderly">
+				<annotation>
+					<documentation>-- Definition --
+Services concerned with any home, residence, facility, or premises which provides temporary, interim, or permanent housing to elderly persons.
+[Pasadena Municipal Code, California, 2011]</documentation>
+				</annotation>
+			</enumeration>
+			<enumeration value="hospitalService">
+				<annotation>
+					<documentation>-- Definition --
+Services concerned with Hospitalization. Hospitalization is defined as occurring when a patient is accommodated in a hospital for the duration of the treatment. Hospital day-care and home-based hospital treatment are included, as are hospices for terminally ill persons.
+Hospitals are defined as institutions which offer in-patient care under direct supervision of qualified medical doctors.
+Hospital services include medicaments, prostheses, medical appliances and equipment and other health related products supplied to hospital patients. It also includes non-medical expenditure of hospitals on administration, non-medical staff, food and drink, accommodation (including staff accommodation), etc.
+[Based on COFOG 1999]</documentation>
+				</annotation>
+			</enumeration>
+			<enumeration value="hotel">
+				<annotation>
+					<documentation>-- Definition --
+Location providing over night accommodation for travellers in hotels.
+[Based on Ordnance Survey, OS MasterMap Real-World Object Catalogue 2001]</documentation>
+				</annotation>
+			</enumeration>
+			<enumeration value="hotelAndRestaurant">
+				<annotation>
+					<documentation>-- Definition --
+Services provided by the hotel and catering industry.</documentation>
+				</annotation>
+			</enumeration>
+			<enumeration value="housing">
+				<annotation>
+					<documentation>-- Definition --
+Services concerned with any home, residence, facility, or premises which provides temporary, interim, or permanent housing to various groups of persons.
+[Pasadena Municipal Code, California, 2011]</documentation>
+				</annotation>
+			</enumeration>
+			<enumeration value="hydrant">
+				<annotation>
+					<documentation>-- Definition --
+Special water access point used by emergency services.
+[Based on Ordnance Survey, OS MasterMap Real-World Object Catalogue 2001]</documentation>
+				</annotation>
+			</enumeration>
+			<enumeration value="indoorSport">
+				<annotation>
+					<documentation>-- Definition --
+Services concerned with indoor sport facilities and activities.</documentation>
+				</annotation>
+			</enumeration>
+			<enumeration value="internalMedicine">
+				<annotation>
+					<documentation>-- Definition --
+Practice of internal medicine. Internal medicine is the medical specialty dealing with the prevention, diagnosis, and treatment of adult diseases. Physicians specializing in internal medicine are called internists.
+[Based on Wikipedia]</documentation>
+				</annotation>
+			</enumeration>
+			<enumeration value="jobCentre">
+				<annotation>
+					<documentation>-- Definition --
+Services concerned with centres that deal with all aspects of employment and job vacancies.
+[Based on Ordnance Survey, OS MasterMap Real-World Object Catalogue 2001]</documentation>
+				</annotation>
+			</enumeration>
+			<enumeration value="kindergarten">
+				<annotation>
+					<documentation>-- Definition --
+Services concerned with day-care establishments for young children of pre-school age.
+[Based on Ordnance Survey, OS MasterMap Real-World Object Catalogue 2001]</documentation>
+				</annotation>
+			</enumeration>
+			<enumeration value="lawCourt">
+				<annotation>
+					<documentation>-- Definition --
+Services concerned with civil and criminal law courts and the judicial system, including enforcement of fines and legal settlements imposed by the courts and operation of parole and probation systems; legal representation and advice on behalf of government or on behalf of others provided by government in cash or in services.
+[Based on COFOG 1999]</documentation>
+				</annotation>
+			</enumeration>
+			<enumeration value="leisure">
+				<annotation>
+					<documentation>-- Definition --
+Services concerned with leisure time activities.</documentation>
+				</annotation>
+			</enumeration>
+			<enumeration value="levee">
+				<annotation>
+					<documentation>-- Definition --
+Natural or artificial slope or wall to regulate water levels.
+[Based on Wikipedia]</documentation>
+				</annotation>
+			</enumeration>
+			<enumeration value="library">
+				<annotation>
+					<documentation>-- Definition --
+Services provided by or at libraries.</documentation>
+				</annotation>
+			</enumeration>
+			<enumeration value="lookout">
+				<annotation>
+					<documentation>-- Definition --
+Elevated place or structure affording a wide view for observation
+[Based on Merriam-Webster Online Dictionary]</documentation>
+				</annotation>
+			</enumeration>
+			<enumeration value="lowerSecondaryEducation">
+				<annotation>
+					<documentation>-- Definition --
+Provision of lower-secondary education at ISCED-97 level 2 (International Standard Classification of Education).
+[Based on COFOG 1999]
+
+-- Description --
+Includes: out-of-school lower-secondary education for adults and young people.
+[COFOG 1999]</documentation>
+				</annotation>
+			</enumeration>
+			<enumeration value="marineRescueStation">
+				<annotation>
+					<documentation>-- Definition --
+Services on the coast providing search-and-rescue ships and/or search-and-rescue control.
+[Based on Ordnance Survey, OS MasterMap Real-World Object Catalogue 2001]</documentation>
+				</annotation>
+			</enumeration>
+			<enumeration value="maternityCentreService">
+				<annotation>
+					<documentation>-- Definition --
+Services concerned with maternity centres. Maternity centres offer prenatal, perinatal and postnatal care to women.
+[Based on Wikipedia]</documentation>
+				</annotation>
+			</enumeration>
+			<enumeration value="medicalAndDiagnosticLaboratory">
+				<annotation>
+					<documentation>-- Definition --
+This item comprises establishments primarily engaged in providing analytic or diagnostic services, including body fluid analysis and diagnostic imaging, generally to the medical profession or the patient on referral from a health practitioner.
+Illustrative examples:
+&amp;bull; diagnostic imaging centres;
+&amp;bull; dental or medical X-ray laboratories;
+&amp;bull; medical testing laboratories;
+&amp;bull; medical pathology laboratories;
+&amp;bull; medical forensic laboratories.
+[ICHA-HP, OECD 2000]</documentation>
+				</annotation>
+			</enumeration>
+			<enumeration value="medicalAppliances">
+				<annotation>
+					<documentation>-- Definition --
+This item comprises establishments primarily engaged in the sale of medical appliances other than optical goods and hearing aids to the general public with or without prescription for personal or household consumption or utilisation.  Included are establishments primarily engaged in the manufacture of medical appliances but where the fitting and repair is usually done in combination with manufacture of medical appliances.
+[ICHA-HP, OECD 2000]</documentation>
+				</annotation>
+			</enumeration>
+			<enumeration value="medicalCentre">
+				<annotation>
+					<documentation>-- Definition --
+Locations with physicians and other medical staff primarily engaged in providing a range of out-patient health care services with a focus generally on primary health care. Included are integrated community care centres providing both in-patient and out-patient services primarily engaged in out-patient services.
+[Based on ICHA-HP, OECD 2000]</documentation>
+				</annotation>
+			</enumeration>
+			<enumeration value="medicalPractice">
+				<annotation>
+					<documentation>-- Definition --
+Location where medical services are provided.</documentation>
+				</annotation>
+			</enumeration>
+			<enumeration value="medicalProductsAppliancesAndEquipment">
+				<annotation>
+					<documentation>-- Definition --
+Service covering medicaments, prostheses, medical appliances and equipment and other health-related products obtained by individuals or households, either with or without a prescription, usually from dispensing chemists, pharmacists or medical equipment suppliers. They are intended for consumption or use outside a health facility or institution. Such products supplied directly to outpatients by medical, dental and paramedical practitioners or to in-patients by hospitals and the like are included in outpatientService or hospitalService groups.
+[Based on COFOG 1999]</documentation>
+				</annotation>
+			</enumeration>
+			<enumeration value="mentalHealthAndSubstanceAbuseHospital">
+				<annotation>
+					<documentation>-- Definition --
+This item comprises licensed establishments that are primarily engaged in providing diagnostic and medical treatment, and monitoring services to in-patients who suffer from mental illness or substance abuse disorders.  The treatment often requires an extended stay in an in-patient setting including hostelling and nutritional facilities. Psychiatric, psychological, and social work services are available at the facility.  These hospitals usually provide other services, such as out-patient care, clinical laboratory tests, diagnostic X-rays, and electroencephalography services.
+[ICHA-HP, OECD 2000]</documentation>
+				</annotation>
+			</enumeration>
+			<enumeration value="moneyExchangeOffice">
+				<annotation>
+					<documentation>-- Definition --
+Office where the exchanging of kinds or denominations of currency takes place.
+[Based on Merriam-Webster Online Dictionary]</documentation>
+				</annotation>
+			</enumeration>
+			<enumeration value="museum">
+				<annotation>
+					<documentation>-- Definition --
+Services provided by or at museums.</documentation>
+				</annotation>
+			</enumeration>
+			<enumeration value="neurology">
+				<annotation>
+					<documentation>-- Definition --
+Practice of neurology. A neurologist is a physician who specializes in neurology, and is trained to investigate, or diagnose and treat neurological disorders. Paediatric neurologists treat neurological disease in children.
+[Based on Wikipedia]</documentation>
+				</annotation>
+			</enumeration>
+			<enumeration value="noiseProtectionEmbankment">
+				<annotation>
+					<documentation>-- Definition --
+Embankment built to reduce noise.
+[Based on Ordnance Survey, OS MasterMap Real-World Object Catalogue 2001]</documentation>
+				</annotation>
+			</enumeration>
+			<enumeration value="noiseProtectionWall">
+				<annotation>
+					<documentation>-- Definition --
+Wall erected to reduce noise.
+[Based on Ordnance Survey, OS MasterMap Real-World Object Catalogue 2001]</documentation>
+				</annotation>
+			</enumeration>
+			<enumeration value="nonMedicalHomeCareService">
+				<annotation>
+					<documentation>-- Definition --
+Domiciliary care services  such as home-cleaning services or meal programmes.
+[Based on COPNI 2001]</documentation>
+				</annotation>
+			</enumeration>
+			<enumeration value="nursingAndConvalescentHomeService">
+				<annotation>
+					<documentation>-- Definition --
+In-patient services to persons recovering from surgery or a debilitating disease or condition that requires chiefly monitoring and administering of medicaments, physiotherapy and training to compensate for loss of function or rest.
+[Based on COFOG]
+
+-- Description --
+Includes: Institutions serving old people in which medical monitoring is an essential component; rehabilitation centres providing in-patient health care and rehabilitative therapy where the objective is to treat the patient rather than to provide long-term support.
+[COFOG 1999]</documentation>
+				</annotation>
+			</enumeration>
+			<enumeration value="nursingCareFacility">
+				<annotation>
+					<documentation>-- Definition --
+This item comprises establishments primarily engaged in providing in-patient nursing and rehabilitative services.  The care is generally provided for an extended period of time to individuals requiring nursing care.  These establishments have a permanent core staff of registered or licensed practical nurses who, along with other staff, provide nursing and continuous personal care services.
+Illustrative examples:
+&amp;bull; convalescent homes or convalescent hospitals (other than mental health and substance abuse facilities);
+&amp;bull; homes for the elderly with nursing care;
+&amp;bull; in-patient care hospices;
+&amp;bull; nursing homes;
+&amp;bull; rest homes with nursing care;
+&amp;bull; skilled nursing facilities (USA);
+&amp;bull; teaching nursing homes.
+[ICHA-HP, OECD 2000]</documentation>
+				</annotation>
+			</enumeration>
+			<enumeration value="ophthalmology">
+				<annotation>
+					<documentation>-- Definition --
+Practice of Ophthalmology. Ophthalmology is the branch of medicine which deals with the anatomy, physiology and diseases of the eye.
+[Based on Wikipedia]</documentation>
+				</annotation>
+			</enumeration>
+			<enumeration value="opticalGlassesAndOtherVisionProducts">
+				<annotation>
+					<documentation>-- Definition --
+Location of an Optician.</documentation>
+				</annotation>
+			</enumeration>
+			<enumeration value="orphanage">
+				<annotation>
+					<documentation>-- Definition --
+Institution for the care of orphans.
+[Based on Merriam-Webster Online Dictionary]</documentation>
+				</annotation>
+			</enumeration>
+			<enumeration value="orthopaedics">
+				<annotation>
+					<documentation>-- Definition --
+Practice of Orthopaedics. Orthopaedic surgeons use both surgical and nonsurgical means to treat musculoskeletal trauma, sports injuries, degenerative diseases, infections, tumours, and congenital disorders.
+[Based on Wikipedia]</documentation>
+				</annotation>
+			</enumeration>
+			<enumeration value="otherCommunityService">
+				<annotation>
+					<documentation>-- Definition --
+Services concerned with community affairs other than religion.</documentation>
+				</annotation>
+			</enumeration>
+			<enumeration value="otorhinolaryngology">
+				<annotation>
+					<documentation>-- Definition --
+Practice of otolaryngology. Otolaryngology or ENT (ear, nose, and throat) is the branch of medicine and surgery that specializes in the diagnosis and treatment of ear, nose, throat, and head and neck disorders.
+[Based on Wikipedia]</documentation>
+				</annotation>
+			</enumeration>
+			<enumeration value="outdoorSport">
+				<annotation>
+					<documentation>-- Definition --
+Services concerned with outdoor sport facilities and activities.</documentation>
+				</annotation>
+			</enumeration>
+			<enumeration value="outdoorTheatreScreen">
+				<annotation>
+					<documentation>-- Definition --
+Large outdoor screen for showing motion pictures.</documentation>
+				</annotation>
+			</enumeration>
+			<enumeration value="outPatientMentalHealthAndSubstanceAbuseCentre">
+				<annotation>
+					<documentation>-- Definition --
+This item comprises establishments with medical staff primarily engaged in providing out-patient services related to the diagnosis and treatment of mental health disorders and alcohol and other substance abuse.  These establishments generally treat patients who do not require in-patient treatment. They may provide a counselling staff and information regarding a wide range of mental health and substance abuse issues and/or refer patients to more extensive treatment programmes, if necessary.
+
+Illustrative examples
+&amp;bull; out-patient alcoholism treatment centres and clinics (other than hospitals);
+&amp;bull; out-patient detoxification centre and clinics (other than hospitals);
+&amp;bull; out-patient drug addiction treatment centres and clinics (other than hospitals);
+&amp;bull; out-patient mental health centres and clinics (other than hospitals);
+&amp;bull; out-patient substance abuse treatment centres and clinics (other than hospitals).
+[ICHA-HP, OECD 2000]</documentation>
+				</annotation>
+			</enumeration>
+			<enumeration value="outpatientService">
+				<annotation>
+					<documentation>-- Definition --
+Medical, dental and paramedical services delivered to outpatients by medical, dental and paramedical practitioners and auxiliaries. The services may be delivered at home, in individual or group consulting facilities, dispensaries or the outpatient clinics of hospitals and the like.
+Outpatient services include the medicaments, prostheses, medical appliances and equipment and other health-related products supplied directly to outpatients by medical, dental and paramedical practitioners and auxiliaries.
+[Based on COFOG 1999]</documentation>
+				</annotation>
+			</enumeration>
+			<enumeration value="paediatrics">
+				<annotation>
+					<documentation>-- Definition --
+Practice of Paediatrics. Paediatrics is the branch of medicine that deals with the medical care of infants, children, and adolescents.
+[Based on Wikipedia]</documentation>
+				</annotation>
+			</enumeration>
+			<enumeration value="paramedicalService">
+				<annotation>
+					<documentation>-- Definition --
+Provision of paramedical health services to outpatients;
+Administration, inspection, operation or support of health services delivered by clinics supervised by nurses, midwives, physiotherapists, occupational therapists, speech therapists or other paramedical personnel and of health services delivered by nurses, midwives and paramedical personnel in non-consulting rooms, in patients' homes or other non-medical institutions.
+[COFOG 1999]
+
+-- Description --
+Includes: acupuncturists, chiropodists, chiropractors, optometrists, practitioners of traditional medicine, etc.; medical analysis laboratories and x-ray centres; hire of therapeutic equipment; medically prescribed corrective-gymnastic therapy; outpatient thermal bath or sea-water treatments; ambulance services other than ambulance services operated by hospitals.
+Excludes: public health service laboratories; laboratories engaged in determining the causes of disease.
+[COFOG 1999]</documentation>
+				</annotation>
+			</enumeration>
+			<enumeration value="park">
+				<annotation>
+					<documentation>-- Definition --
+Area of open land, sometimes with grass and formal flowerbeds or trees, usually within a town, that is open to the public.
+[Based on Ordnance Survey, OS MasterMap Real-World Object Catalogue 2001]</documentation>
+				</annotation>
+			</enumeration>
+			<enumeration value="parkingGarage">
+				<annotation>
+					<documentation>-- Definition --
+Sheltered location where vehicles may be parked.</documentation>
+				</annotation>
+			</enumeration>
+			<enumeration value="petrolStation">
+				<annotation>
+					<documentation>-- Definition --
+Service providing motor fuels.</documentation>
+				</annotation>
+			</enumeration>
+			<enumeration value="pharmaceuticalProducts">
+				<annotation>
+					<documentation>-- Definition --
+Services concerned with the provision of pharmaceutical products such as medicinal preparations, medicinal drugs, patent medicines, serums and vaccines, vitamins and minerals, cod liver oil and halibut liver oil, oral contraceptives (e.g. pharmacies).
+[Based on COFOG 1999]</documentation>
+				</annotation>
+			</enumeration>
+			<enumeration value="picnicSite">
+				<annotation>
+					<documentation>-- Definition --
+Open area of land set aside for picnics.
+[Based on Ordnance Survey, OS MasterMap Real-World Object Catalogue 2001]</documentation>
+				</annotation>
+			</enumeration>
+			<enumeration value="playground">
+				<annotation>
+					<documentation>-- Definition --
+Public area where there are swings, slides, climbing frames, etc.
+[Based on Ordnance Survey, OS MasterMap Real-World Object Catalogue 2001]</documentation>
+				</annotation>
+			</enumeration>
+			<enumeration value="playSchool">
+				<annotation>
+					<documentation>-- Definition --
+Organised group providing care and socialisation for children under five.
+[Based on Wikipedia]</documentation>
+				</annotation>
+			</enumeration>
+			<enumeration value="pointOfTouristicInterest">
+				<annotation>
+					<documentation>-- Definition --
+Specific location that might be of interest to tourists (not elsewhere classified).</documentation>
+				</annotation>
+			</enumeration>
+			<enumeration value="policeService">
+				<annotation>
+					<documentation>-- Definition --
+Services concerned with police affairs, including alien registration, issuing work and travel documents to immigrants, maintenance of arrest records and statistics related to police work, road traffic regulation and control, prevention of smuggling and control of offshore and ocean fishing; operation of regular and auxiliary police forces, of port, border and coast guards, and of other special police forces maintained by public authorities; operation of police laboratories; operation or support of police training programmes.
+[Based on COFOG 1999]</documentation>
+				</annotation>
+			</enumeration>
+			<enumeration value="postOffice">
+				<annotation>
+					<documentation>-- Definition --
+Location where postal services are offered to the public, either as a dedicated service or within other retail outlets.
+[Based on Ordnance Survey, OS MasterMap Real-World Object Catalogue 2001]</documentation>
+				</annotation>
+			</enumeration>
+			<enumeration value="postSecondaryNonTertiaryEducation">
+				<annotation>
+					<documentation>-- Definition --
+Provision of post-secondary non-tertiary education at ISCED-97 level 4 (International Standard Classification of Education).
+[Based on COFOG 1999]
+
+-- Description --
+Includes: out-of-school post-secondary non-tertiary education for adults and young people.
+[COFOG 1999]</documentation>
+				</annotation>
+			</enumeration>
+			<enumeration value="prePrimaryAndPrimaryEducation">
+				<annotation>
+					<documentation>-- Definition --
+Services concerned with pre-primary and primary education.</documentation>
+				</annotation>
+			</enumeration>
+			<enumeration value="prePrimaryEducation">
+				<annotation>
+					<documentation>-- Definition --
+Provision of pre-primary education at ISCED-97 level 0 (International Standard Classification of Education).
+[Based on COFOG 1999]</documentation>
+				</annotation>
+			</enumeration>
+			<enumeration value="primaryEducation">
+				<annotation>
+					<documentation>-- Definition --
+Provision of primary education at ISCED-97 level 1 (International Standard Classification of Education).
+[Based on COFOG 1999]
+
+-- Description --
+Includes: literacy programmes for students too old for primary school.
+[COFOG 1999]</documentation>
+				</annotation>
+			</enumeration>
+			<enumeration value="prison">
+				<annotation>
+					<documentation>-- Definition --
+Services concerned with prisons and other places for the detention or rehabilitation of criminals such as prison farms, workhouses, reformatories, borstals, asylums for the criminally insane, etc.
+[Based on COFOG 1999]</documentation>
+				</annotation>
+			</enumeration>
+			<enumeration value="privateHouseholdAsProviderOfHomeCare">
+				<annotation>
+					<documentation>-- Definition --
+Services comprising private households as providers of home care.</documentation>
+				</annotation>
+			</enumeration>
+			<enumeration value="professionalFireBrigade">
+				<annotation>
+					<documentation>-- Definition --
+Organized body of professional firemen.
+[Based on Oxford English Dictionary]</documentation>
+				</annotation>
+			</enumeration>
+			<enumeration value="protectionFacilityAgainstNaturalHazards">
+				<annotation>
+					<documentation>-- Definition --
+Installation for identifying, assessing and reducing the risks of natural hazards like earthquakes, floods, tsunamis, storms, avalanches/landslides, volcanoes.</documentation>
+				</annotation>
+			</enumeration>
+			<enumeration value="protectionForest">
+				<annotation>
+					<documentation>-- Definition --
+Forest, established and tended as a protection against natural hazards.</documentation>
+				</annotation>
+			</enumeration>
+			<enumeration value="protectionOfBiodiversityAndLandscape">
+				<annotation>
+					<documentation>-- Definition --
+Services relating to the protection of biodiversity and landscape.
+[Based on COFOG 1999]</documentation>
+				</annotation>
+			</enumeration>
+			<enumeration value="protectiveWall">
+				<annotation>
+					<documentation>-- Definition --
+Solid man-made barrier of heavy material used as an enclosure or boundary or for protection.
+[Based on DGIWG Feature Data Dictionary 2010]</documentation>
+				</annotation>
+			</enumeration>
+			<enumeration value="providerOfHomeHealthCareService">
+				<annotation>
+					<documentation>-- Definition --
+This item comprises establishments primarily engaged in providing skilled nursing services in the home, along with a range of the following: personal care services; homemaker and companion services; physical therapy; medical social services; medications; medical equipment and supplies; counselling; 24-hour home care; occupation and vocational therapy; dietary and nutritional services; speech therapy; audiology; and high-tech care, such as intravenous therapy.
+[ICHA-HP, OECD 2000]</documentation>
+				</annotation>
+			</enumeration>
+			<enumeration value="psychotherapy">
+				<annotation>
+					<documentation>-- Definition --
+Practice of psychotherapy or personal counselling with a psychotherapist. Psychotherapy is an intentional interpersonal relationship used by trained psychotherapists to aid a client or patient in problems of living.
+[Based on Wikipedia]</documentation>
+				</annotation>
+			</enumeration>
+			<enumeration value="publicAdministrationOffice">
+				<annotation>
+					<documentation>-- Definition --
+Public administration offices (not further differentiated).</documentation>
+				</annotation>
+			</enumeration>
+			<enumeration value="publicOrderAndSafety">
+				<annotation>
+					<documentation>-- Definition --
+Services concerned with public order and safety.</documentation>
+				</annotation>
+			</enumeration>
+			<enumeration value="publicTransportationServicePoint">
+				<annotation>
+					<documentation>-- Definition --
+Information and service centre for the public transport system offering information material or services, e.g. purchasing tickets.
+
+-- Description --
+Often located at central stations of the public transport system.</documentation>
+				</annotation>
+			</enumeration>
+			<enumeration value="radiology">
+				<annotation>
+					<documentation>-- Definition --
+Practice of radiology. Radiology is a medical specialty that employs the use of imaging to both diagnose and treat disease visualized within the human body.
+[Based on Wikipedia]</documentation>
+				</annotation>
+			</enumeration>
+			<enumeration value="recreationalAndSportingService">
+				<annotation>
+					<documentation>-- Definition --
+Services concerned with recreation and sport.</documentation>
+				</annotation>
+			</enumeration>
+			<enumeration value="recreationalPier">
+				<annotation>
+					<documentation>-- Definition --
+Structure extending into the water used as a platform for recreational purposes, not intended as a berthing place for vessels. 
+[Based on DGIWG Feature Data Dictionary 2010]</documentation>
+				</annotation>
+			</enumeration>
+			<enumeration value="recreationCultureAndReligion">
+				<annotation>
+					<documentation>-- Definition --
+Services concerned with recreation, culture and religion.</documentation>
+				</annotation>
+			</enumeration>
+			<enumeration value="rehabilitationCentre">
+				<annotation>
+					<documentation>-- Definition --
+Services providing long-term support for patients rather than health care and rehabilitative therapy.
+[Based on COPNI 2001]</documentation>
+				</annotation>
+			</enumeration>
+			<enumeration value="religiousAndOtherCommunityService">
+				<annotation>
+					<documentation>-- Definition --
+Services concerned with religious and other community affairs.</documentation>
+				</annotation>
+			</enumeration>
+			<enumeration value="religiousService">
+				<annotation>
+					<documentation>-- Definition --
+Services concerned with religious affairs.</documentation>
+				</annotation>
+			</enumeration>
+			<enumeration value="rescueService">
+				<annotation>
+					<documentation>-- Definition --
+Services dedicated to the search-and-rescue of people, animals and goods in emergency situations.</documentation>
+				</annotation>
+			</enumeration>
+			<enumeration value="rescueStation">
+				<annotation>
+					<documentation>-- Definition --
+Services concerned with the housing of personnel and/or equipment for emergency rescues.</documentation>
+				</annotation>
+			</enumeration>
+			<enumeration value="residenceForPeopleWithDisabilities">
+				<annotation>
+					<documentation>-- Definition --
+Services concerned with any home, residence, facility, or premises which provides temporary, interim, or permanent housing to people with disabilities.
+[Pasadena Municipal Code, California, 2011]</documentation>
+				</annotation>
+			</enumeration>
+			<enumeration value="residentialMentalRetardationMentalHealthAndSubstanceAbuseFacility">
+				<annotation>
+					<documentation>-- Definition --
+This item comprises establishments primarily engaged in providing in-patient nursing and rehabilitative services.  The care is generally provided for an extended period of time to individuals requiring nursing care.  These establishments have a permanent core staff of registered or licensed practical nurses who, along with other staff, provide nursing and continuous personal care services.
+Illustrative examples:
+&amp;bull; convalescent homes or convalescent hospitals (other than mental health and substance abuse facilities);
+&amp;bull; homes for the elderly with nursing care;
+&amp;bull; in-patient care hospices;
+&amp;bull; nursing homes;
+&amp;bull; rest homes with nursing care;
+&amp;bull; skilled nursing facilities (USA);
+&amp;bull; teaching nursing homes.
+[ICHA-HP, OECD 2000]</documentation>
+				</annotation>
+			</enumeration>
+			<enumeration value="rockfallCatchmentFence">
+				<annotation>
+					<documentation>-- Definition --
+Fence on or below the slope to catch large rocks travelling at high speeds.</documentation>
+				</annotation>
+			</enumeration>
+			<enumeration value="roofing">
+				<annotation>
+					<documentation>-- Definition --
+Roofing of traffic infrastructures to reduce noise emissions.</documentation>
+				</annotation>
+			</enumeration>
+			<enumeration value="secondaryEducation">
+				<annotation>
+					<documentation>-- Definition --
+Services concerned with all levels of secondary education.</documentation>
+				</annotation>
+			</enumeration>
+			<enumeration value="secondStageOfTertiaryEducation">
+				<annotation>
+					<documentation>-- Definition --
+Provision of tertiary education at ISCED-97 level 6 (International Standard Classification of Education).
+[Based on COFOG 1999]</documentation>
+				</annotation>
+			</enumeration>
+			<enumeration value="serviceForFamilyAndChildren">
+				<annotation>
+					<documentation>-- Definition --
+Services concerned with benefits in kind to households with dependent children;
+Benefits in kind, such as shelter and board provided to pre-school children during the day or part of the day, financial assistance towards payment of a nurse to look after children during the day, shelter and board provided to children and families on a permanent basis, goods and services provided at home to children or to those who care for them, miscellaneous services and goods provided to families, young people or children.
+[Based on COFOG 1999]</documentation>
+				</annotation>
+			</enumeration>
+			<enumeration value="shelter">
+				<annotation>
+					<documentation>-- Definition --
+Services concerned with the provision of temporary shelters or housing for homeless persons.
+[Based on COPNI 2001]</documentation>
+				</annotation>
+			</enumeration>
+			<enumeration value="shelteredWorkshop">
+				<annotation>
+					<documentation>-- Definition --
+Service concerned with employment opportunities for people with disabilities.
+[Based on Wikipedia]</documentation>
+				</annotation>
+			</enumeration>
+			<enumeration value="shop">
+				<annotation>
+					<documentation>-- Definition --
+Stand-alone unit for the sale of merchandize.</documentation>
+				</annotation>
+			</enumeration>
+			<enumeration value="shoppingCentre">
+				<annotation>
+					<documentation>-- Definition --
+Conglomeration of shops and retail units.
+[Based on Ordnance Survey, OS MasterMap Real-World Object Catalogue 2001]</documentation>
+				</annotation>
+			</enumeration>
+			<enumeration value="shoppingFacility">
+				<annotation>
+					<documentation>-- Definition --
+Location for the sale of merchandize.</documentation>
+				</annotation>
+			</enumeration>
+			<enumeration value="singleParentAgency">
+				<annotation>
+					<documentation>-- Definition --
+Services concerned with the issues of single parenting.
+[Based on COPNI 2001]</documentation>
+				</annotation>
+			</enumeration>
+			<enumeration value="siren">
+				<annotation>
+					<documentation>-- Definition --
+Device, often electrically operated, for producing a penetrating warning sound like e.g.  an ambulance siren or an air-raid siren.
+[Based on Merriam-Webster Online Dictionary]</documentation>
+				</annotation>
+			</enumeration>
+			<enumeration value="socialProtection">
+				<annotation>
+					<documentation>-- Definition --
+Services concerned with social protection.</documentation>
+				</annotation>
+			</enumeration>
+			<enumeration value="socialSecurityFund">
+				<annotation>
+					<documentation>-- Definition --
+This item comprises the funding and administration of government-provided compulsory social security programmes compensating for reduction of loss of income or inadequate earning capacity due to sickness (as part of ISIC 7530).
+Illustrative examples:
+- administration of compulsory social health insurance and sickness funds;
+- administration of compulsory employer&amp;rsquo;s sickness funds;
+- administration of compulsory social health insurance covering various groups of state employees (army, veterans, railroad and other public transport, police, state officials, etc.).
+[ICHA-HP, OECD 2000]</documentation>
+				</annotation>
+			</enumeration>
+			<enumeration value="spa">
+				<annotation>
+					<documentation>-- Definition --
+Place where mineral water bubbles out of the ground.
+[Based on Ordnance Survey, OS MasterMap Real-World Object Catalogue 2001]</documentation>
+				</annotation>
+			</enumeration>
+			<enumeration value="specializedAdministrationOffice">
+				<annotation>
+					<documentation>-- Definition --
+Specialized administration offices which can not be allocated to the following areas: social protection, education, recreation, culture and religion, health, 
+environmental protection, economic affairs, public order and safety (e. g. surveying administration).</documentation>
+				</annotation>
+			</enumeration>
+			<enumeration value="specializedHospital">
+				<annotation>
+					<documentation>-- Definition --
+Hospital services that limit their services to a particular medical speciality (except mental health and substance abuse hospital services).
+[Based on COFOG 1999]
+
+-- Description --
+Specialized hospitals differ from general hospitals in that their services are limited to treatment of a particular condition, disease, or class of patient, for example, diseases of the chest and tuberculosis, leprosy, cancer, otorhinolaryngology, psychiatry, obstetrics, paediatrics and so forth.
+[COFOG 1999]</documentation>
+				</annotation>
+			</enumeration>
+			<enumeration value="specializedMedicalService">
+				<annotation>
+					<documentation>-- Definition --
+Specialized medical services delivered by specialized medical clinics and specialist medical practitioners.
+[COFOG 1999]
+
+-- Description --
+Specialized medical clinics and specialist medical practitioners differ from general medical clinics and general medical practitioners in that their services are limited to treatment of a particular condition, disease, medical procedure or class of patient.
+[COFOG 1999]</documentation>
+				</annotation>
+			</enumeration>
+			<enumeration value="specializedServiceForTheDisabled">
+				<annotation>
+					<documentation>-- Definition --
+Services specifically concerned with education and employment of people with disabilities.</documentation>
+				</annotation>
+			</enumeration>
+			<enumeration value="specializedServiceOfSocialProtection">
+				<annotation>
+					<documentation>-- Definition --
+Various specialized services concerned with transport, home-,day and holiday-care.</documentation>
+				</annotation>
+			</enumeration>
+			<enumeration value="specialSchool">
+				<annotation>
+					<documentation>-- Definition --
+Services concerned with learning opportunities for people with disabilities.</documentation>
+				</annotation>
+			</enumeration>
+			<enumeration value="sport">
+				<annotation>
+					<documentation>-- Definition --
+Services concerned with sport facilities and activities.</documentation>
+				</annotation>
+			</enumeration>
+			<enumeration value="sportsMedicine">
+				<annotation>
+					<documentation>-- Definition --
+Practice of sports medicine. Sports medicine is an area of health and special services that apply medical and scientific knowledge to prevent, recognize, manage, and rehabilitate injuries related to sport, exercise, or recreational activity.
+[Based on Wikipedia]</documentation>
+				</annotation>
+			</enumeration>
+			<enumeration value="stockExchange">
+				<annotation>
+					<documentation>-- Definition --
+Market for the buying and selling of shares.</documentation>
+				</annotation>
+			</enumeration>
+			<enumeration value="subsidiaryServicesToEducation">
+				<annotation>
+					<documentation>-- Definition --
+Provision of subsidiary services to education;
+Services concerned with transportation, food, lodging, medical and dental care and related subsidiary services chiefly for students regardless of level.
+[Based on COFOG 1999]</documentation>
+				</annotation>
+			</enumeration>
+			<enumeration value="surgery">
+				<annotation>
+					<documentation>-- Definition --
+Surgical practice. Surgery is a broad category of invasive medical treatment that involves the cutting of a body, whether human or animal, for a specific reason such as the removal of diseased tissue or to repair a tear or breakage.
+[Based on Wikipedia]</documentation>
+				</annotation>
+			</enumeration>
+			<enumeration value="tertiaryEducation">
+				<annotation>
+					<documentation>-- Definition --
+Services concerned with all levels of tertiary education.</documentation>
+				</annotation>
+			</enumeration>
+			<enumeration value="theatre">
+				<annotation>
+					<documentation>-- Definition --
+Services provided by or at theatres.</documentation>
+				</annotation>
+			</enumeration>
+			<enumeration value="therapeuticAppliancesAndEquipmentOtherThanOpticalGlassesAndHearingAids">
+				<annotation>
+					<documentation>-- Definition --
+Provision of therapeutic appliances and equipment such as artificial limbs and other prosthetic devices, orthopaedic braces and supports, orthopaedic footwear, surgical belts, trusses and supports, neck braces, medical massage equipment and health lamps, powered and unpowered wheelchairs and invalid carriages, &amp;ldquo;special&amp;rdquo; beds, crutches, electronic and other devices for monitoring blood pressure, etc.;
+Administration, operation or support of the provision of prescribed therapeutic appliances and equipment.
+[COFOG 1999]</documentation>
+				</annotation>
+			</enumeration>
+			<enumeration value="tourism">
+				<annotation>
+					<documentation>-- Definition --
+Services concerned with tourism; promotion and development of tourism; liaison with the transport, hotel and restaurant industries and other industries benefiting from the presence of tourists;
+Operation of tourist offices at home and abroad, etc.; organization of advertising campaigns, including the production and dissemination of promotional literature and the like;
+Compilation and publication of statistics on tourism.
+[Based on COFOG 1999]</documentation>
+				</annotation>
+			</enumeration>
+			<enumeration value="touristBoard">
+				<annotation>
+					<documentation>-- Definition --
+Regional or local organization responsible for marketing the region and improving the touristic offerings.
+[Based on Wikipedia]</documentation>
+				</annotation>
+			</enumeration>
+			<enumeration value="touristInformation">
+				<annotation>
+					<documentation>-- Definition --
+Location that provides tourist information to the public.
+[Based on Ordnance Survey, OS MasterMap Real-World Object Catalogue 2001]</documentation>
+				</annotation>
+			</enumeration>
+			<enumeration value="transport">
+				<annotation>
+					<documentation>-- Definition --
+Services concerned with the movement of people and goods from one location to another. Modes of transport include air, rail, road, water, cable, pipeline, and space.
+[Based on Wikipedia]</documentation>
+				</annotation>
+			</enumeration>
+			<enumeration value="transportService">
+				<annotation>
+					<documentation>-- Definition --
+Services concerned with the transport of elderly and disabled persons.
+[Based on COPNI 2001]</documentation>
+				</annotation>
+			</enumeration>
+			<enumeration value="unemployment">
+				<annotation>
+					<documentation>-- Definition --
+Services in the form of cash benefits and benefits in kind to persons who are capable of work, available for work but are unable to find suitable employment;
+Cash benefits, such as full and partial unemployment benefits, early retirement benefits paid to older workers who retire before reaching the standard retirement age due to unemployment or job reduction caused by economic measures, allowances to targeted groups in the labour force who take part in training schemes intended to develop their potential for employment, redundancy compensation, other periodic or lump-sum payments to the unemployed, particularly the long-term unemployed;
+Benefits in kind, such as mobility and resettlement payments, vocational training provided to persons without a job or retraining provided to persons at risk of losing their job, accommodation, food or clothes provided to unemployed persons and their families.
+[Based on COFOG 1999]</documentation>
+				</annotation>
+			</enumeration>
+			<enumeration value="upperSecondaryEducation">
+				<annotation>
+					<documentation>-- Definition --
+Provision of upper-secondary education at ISCED-97 level 3 (International Standard Classification of Education).
+[Based on COFOG 1999]
+
+-- Description --
+Includes: out-of-school upper-secondary education for adults and young people.
+[COFOG 1999]</documentation>
+				</annotation>
+			</enumeration>
+			<enumeration value="urology">
+				<annotation>
+					<documentation>-- Definition --
+Practice of Urology. Urology is the medical and surgical specialty that focuses on the urinary tracts of males and females, and on the reproductive system of males.
+[Based on Wikipedia]</documentation>
+				</annotation>
+			</enumeration>
+			<enumeration value="venue">
+				<annotation>
+					<documentation>-- Definition --
+Appointed place of meeting, esp. for a match or competition.
+[Based on Oxford English Dictionary]</documentation>
+				</annotation>
+			</enumeration>
+			<enumeration value="veterinaryMedicine">
+				<annotation>
+					<documentation>-- Definition --
+Practice of veterinary medicine. Veterinary medicine is the branch of science that deals with the application of medical, surgical, public health, dental, diagnostic, and therapeutic principles to animals, including wildlife and domesticated animals, including livestock, working animals, and companion animals.
+[Based on Wikipedia]</documentation>
+				</annotation>
+			</enumeration>
+			<enumeration value="weatherMonitoringFacility">
+				<annotation>
+					<documentation>-- Definition --
+Service for taking, recording, and reporting meteorological observations.
+[Based on Merriam-Webster Online Dictionary]</documentation>
+				</annotation>
+			</enumeration>
+			<enumeration value="welfareCentre">
+				<annotation>
+					<documentation>-- Definition --
+Services concerned with the provision of cash assistance, food, clothing, shelter and other services to persons who are refugees, immigrants, destitute, low-income earners or generally in need.
+[Based on COPNI 2001]</documentation>
+				</annotation>
+			</enumeration>
+			<enumeration value="winterService">
+				<annotation>
+					<documentation>-- Definition --
+Road maintenance during winterly weather conditions.</documentation>
+				</annotation>
+			</enumeration>
+			<enumeration value="youthCentre">
+				<annotation>
+					<documentation>-- Definition --
+Services concerned with any home, residence, facility, or premises which provides temporary, interim, or permanent housing to young persons.
+[Pasadena Municipal Code, California, 2011]</documentation>
+				</annotation>
+			</enumeration>
+			<enumeration value="youthClub">
+				<annotation>
+					<documentation>-- Definition --
+Services concerned with centres where the young (teenagers) can meet and pursue various activities.
+[Based on Ordnance Survey, OS MasterMap Real-World Object Catalogue 2001]</documentation>
+				</annotation>
+			</enumeration>
+			<enumeration value="zooSafariPark">
+				<annotation>
+					<documentation>-- Definition --
+Site where wild animals are kept for exhibition to the public, that may also support breeding and/or study.
+[Based on DGIWG Feature Data Dictionary 2010]</documentation>
+				</annotation>
+			</enumeration>
+		</restriction>
+	</simpleType>
+	<simpleType name="ServiceTypeValueOtherType">
+		<restriction base="string">
+			<pattern value="other: \w{2,}"/>
+		</restriction>
+	</simpleType>
+	<simpleType name="ServiceLevelValueType">
+		<annotation>
+			<documentation>-- Definition --
+EUROSTAT classification of European territorial units</documentation>
+		</annotation>
+		<restriction base="string">
+			<enumeration value="GLB">
+				<annotation>
+					<documentation>-- Definition --
+Global, supra-European level</documentation>
+				</annotation>
+			</enumeration>
+			<enumeration value="EUR">
+				<annotation>
+					<documentation>-- Definition --
+Pan-European level</documentation>
+				</annotation>
+			</enumeration>
+			<enumeration value="STA">
+				<annotation>
+					<documentation>-- Definition --
+Member State level</documentation>
+				</annotation>
+			</enumeration>
+			<enumeration value="NUTS1">
+				<annotation>
+					<documentation>-- Definition --
+Major socio-economic region level</documentation>
+				</annotation>
+			</enumeration>
+			<enumeration value="NUTS2">
+				<annotation>
+					<documentation>-- Definition --
+Basic region level (for the aplication of regional policies)</documentation>
+				</annotation>
+			</enumeration>
+			<enumeration value="NUTS3">
+				<annotation>
+					<documentation>-- Definition --
+Small region level (for specoific diagnoses)</documentation>
+				</annotation>
+			</enumeration>
+			<enumeration value="LAU1">
+				<annotation>
+					<documentation>-- Definition --
+Local administrative units at the supramunicipal level</documentation>
+				</annotation>
+			</enumeration>
+			<enumeration value="LAU2">
+				<annotation>
+					<documentation>-- Definition --
+Local administrative units at the municipal level</documentation>
+				</annotation>
+			</enumeration>
+		</restriction>
+	</simpleType>
+	<element name="OccupancyType" type="us-govserv:OccupancyTypeType" substitutionGroup="gml:AbstractObject">
+		<annotation>
+			<documentation>-- Definition --
+Description of a group of occupants</documentation>
+		</annotation>
+	</element>
+	<complexType name="OccupancyTypeType">
+		<sequence>
+			<element name="numberOfOccupants" nillable="true">
+				<annotation>
+					<documentation>-- Definition --
+Number of occupants</documentation>
+				</annotation>
+				<complexType>
+					<simpleContent>
+						<extension base="integer">
+							<attribute name="nilReason" type="gml:NilReasonType"/>
+						</extension>
+					</simpleContent>
+				</complexType>
+			</element>
+			<element name="typeOfOccupant" type="gmd:PT_FreeText_PropertyType">
+				<annotation>
+					<documentation>-- Definition --
+Qualitative description of a group of occupants
+
+-- Description --
+EXAMPLE: Elderly people, partly immobile</documentation>
+				</annotation>
+			</element>
+		</sequence>
+	</complexType>
+	<complexType name="OccupancyTypePropertyType">
+		<sequence>
+			<element ref="us-govserv:OccupancyType"/>
+		</sequence>
+	</complexType>
+</schema>

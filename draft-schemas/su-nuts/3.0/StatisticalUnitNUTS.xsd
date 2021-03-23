@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- edited with XMLSpy v2014 sp1 (x64) (http://www.altova.com) by Chris Schubert (European Commission DG JRC - IES) -->
+<schema xmlns="http://www.w3.org/2001/XMLSchema" xmlns:au="urn:x-inspire:specification:gmlas:AdministrativeUnits:3.0" xmlns:gml="http://www.opengis.net/gml/3.2" xmlns:sc="http://www.interactive-instruments.de/ShapeChange/AppInfo" xmlns:su-nuts="http://inspire.ec.europa.eu/schemas/su-nuts/3.0" xmlns:su-vector="http://inspire.ec.europa.eu/schemas/su-vector/3.0" targetNamespace="http://inspire.ec.europa.eu/schemas/su-nuts/3.0" elementFormDefault="qualified" version="3.0">
+	<annotation>
+		<documentation>-- Name --
+NUTS
+
+-- Definition --
+Example of INSPIRE compliant view of the NUTS model (produced by Eurostat).</documentation>
+	</annotation>
+	<import namespace="http://inspire.ec.europa.eu/schemas/su-vector/3.0" schemaLocation="https://inspire.ec.europa.eu/schemas/su-vector/3.0/StatisticalUnitVector.xsd"/>
+	<import namespace="http://www.interactive-instruments.de/ShapeChange/AppInfo" schemaLocation="http://portele.de/ShapeChangeAppinfo.xsd"/>
+	<import namespace="http://www.opengis.net/gml/3.2" schemaLocation="http://schemas.opengis.net/gml/3.2.1/gml.xsd"/>
+	<import namespace="urn:x-inspire:specification:gmlas:AdministrativeUnits:3.0" schemaLocation="https://inspire.ec.europa.eu/schemas/au/3.0/AdministrativeUnits.xsd"/>
+	<!--XML Schema document created by ShapeChange-->
+	<element name="NUTSTessellation" type="su-nuts:NUTSTessellationType" substitutionGroup="su-vector:StatisticalTessellation">
+		<annotation>
+			<documentation>-- Name --
+NUTS tesselation
+
+-- Definition --
+A statistical tessellation composed of NUTS regions.
+
+-- Description --
+NOTE level attribute values should be among the NUTSHierarchy CodeList.</documentation>
+		</annotation>
+	</element>
+	<complexType name="NUTSTessellationType">
+		<complexContent>
+			<extension base="su-vector:StatisticalTessellationType">
+				<sequence>
+					<element name="level" type="gml:ReferenceType">
+						<annotation>
+							<documentation>-- Name --
+Level
+
+-- Definition --
+The level in the hierarchy.</documentation>
+							<appinfo>
+								<taggedValue xmlns="http://www.interactive-instruments.de/ShapeChange/AppInfo" tag="obligation">technicalGuidance</taggedValue>
+							</appinfo>
+						</annotation>
+					</element>
+				</sequence>
+			</extension>
+		</complexContent>
+	</complexType>
+	<complexType name="NUTSTessellationPropertyType">
+		<sequence minOccurs="0">
+			<element ref="su-nuts:NUTSTessellation"/>
+		</sequence>
+		<attributeGroup ref="gml:AssociationAttributeGroup"/>
+		<attributeGroup ref="gml:OwnershipAttributeGroup"/>
+	</complexType>
+	<element name="NUTSRegion" type="su-nuts:NUTSRegionType" substitutionGroup="su-vector:AreaStatisticalUnit">
+		<annotation>
+			<documentation>-- Name --
+NUTS region
+
+-- Definition --
+Territorial unit for statistics defined in the framework of the Regulation (EC) No 1059/2003 of the European Parliament and of the Council of 26 May 2003.
+
+-- Description --
+NOTE NUTS regions subdivide each Member State into a whole number of territorial units for statistic at NUTS1 level. Each of these is then subdivided into regions at NUTS2 level and these in turn into regions at NUTS3 level.</documentation>
+		</annotation>
+	</element>
+	<complexType name="NUTSRegionType">
+		<complexContent>
+			<extension base="su-vector:AreaStatisticalUnitType">
+				<sequence>
+					<element name="tessellation" nillable="true" minOccurs="0">
+						<annotation>
+							<documentation>-- Definition --
+The tesselation composed of units.</documentation>
+							<appinfo>
+								<reversePropertyName xmlns="http://www.opengis.net/gml/3.2">su-nuts:units</reversePropertyName>
+							</appinfo>
+						</annotation>
+						<complexType>
+							<sequence minOccurs="0">
+								<element ref="su-nuts:NUTSTessellation"/>
+							</sequence>
+							<attributeGroup ref="gml:AssociationAttributeGroup"/>
+							<attributeGroup ref="gml:OwnershipAttributeGroup"/>
+						</complexType>
+					</element>
+				</sequence>
+			</extension>
+		</complexContent>
+	</complexType>
+	<complexType name="NUTSRegionPropertyType">
+		<sequence minOccurs="0">
+			<element ref="su-nuts:NUTSRegion"/>
+		</sequence>
+		<attributeGroup ref="gml:AssociationAttributeGroup"/>
+		<attributeGroup ref="gml:OwnershipAttributeGroup"/>
+	</complexType>
+</schema>

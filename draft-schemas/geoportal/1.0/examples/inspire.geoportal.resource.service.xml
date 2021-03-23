@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<ns9:Resource xmlns:ns2="http://www.opengis.net/ows" xmlns="http://inspire.ec.europa.eu/schemas/common/1.0" xmlns:ns4="http://inspire.ec.europa.eu/schemas/inspire_ds/1.0" xmlns:ns3="http://www.w3.org/1999/xlink" xmlns:ns9="http://inspire.ec.europa.eu/schemas/geoportal/1.0" xmlns:ns5="http://www.opengis.net/ows/1.1" xmlns:ns6="http://inspire.ec.europa.eu/schemas/inspire_vs_ows11/1.0" xmlns:ns7="http://www.opengis.net/wms" xmlns:ns8="http://inspire.ec.europa.eu/schemas/inspire_vs/1.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="https://inspire.ec.europa.eu/schemas/geoportal/1.0 file:///E:/schemas/inspire/geoportal/1.0/geoportal.xsd">
+	<SpatialDataService>
+		<ResourceTitle>INSPIRE Darstellungsdienst Verkehrsnetze Land Tirol</ResourceTitle>
+		<ResourceAbstract>INSPIRE Darstellungsdienst des Landes Tirol mit Verkehrsnetzen, Landesstraßen B und L sowie Brücken und Tunnel auf diesen Straßen.</ResourceAbstract>
+		<ResourceType>service</ResourceType>
+		<MandatoryKeyword>
+			<KeywordValue>humanGeographicViewer</KeywordValue>
+		</MandatoryKeyword>
+		<Keyword>
+			<OriginatingControlledVocabulary>
+				<Title>GEMET - Concepts, version 2.4</Title>
+				<DateOfPublication>2010-01-13</DateOfPublication>
+			</OriginatingControlledVocabulary>
+			<KeywordValue>Transport Networks</KeywordValue>
+		</Keyword>
+		<Keyword>
+			<KeywordValue>Verkehrsnetze</KeywordValue>
+		</Keyword>
+		<GeographicBoundingBox>
+			<East>12.967</East>
+			<West>10.098</West>
+			<North>47.744</North>
+			<South>46.652</South>
+		</GeographicBoundingBox>
+		<TemporalReference>
+			<DateOfCreation>2001-01-01</DateOfCreation>
+			<DateOfLastRevision>2012-01-01</DateOfLastRevision>
+			<DateOfPublication>2011-12-19</DateOfPublication>
+			<TemporalExtent>
+				<IntervalOfDates>
+					<StartingDate>0001-01-01</StartingDate>
+					<EndDate>9999-12-31</EndDate>
+				</IntervalOfDates>
+			</TemporalExtent>
+		</TemporalReference>
+		<SpatialResolution abstract="INSPIRE Darstellungsdienst des Landes Tirol mit Verkehrsnetzen, Landesstraßen B und L sowie Brücken und Tunnel auf diesen Straßen.">
+			<EquivalentScale>1</EquivalentScale>
+		</SpatialResolution>
+		<SpatialResolution abstract="INSPIRE Darstellungsdienst des Landes Tirol mit Verkehrsnetzen, Landesstraßen B und L sowie Brücken und Tunnel auf diesen Straßen.">
+			<ResolutionDistance>1</ResolutionDistance>
+			<UnitOfMeasure>mt</UnitOfMeasure>
+		</SpatialResolution>
+		<Conformity>
+			<Specification>
+				<Title>Technical Guidance for the implemantation of INSPIRE View Services</Title>
+				<DateOfLastRevision>2011-12-19</DateOfLastRevision>
+			</Specification>
+			<Degree>conformant</Degree>
+		</Conformity>
+		<ConditionsForAccessAndUse>no conditions apply</ConditionsForAccessAndUse>
+		<LimitationsOnPublicAccess>no limitations</LimitationsOnPublicAccess>
+		<LimitationsOnPublicAccess>unclassified</LimitationsOnPublicAccess>
+		<ResponsibleOrganisation>
+			<ResponsibleParty>
+				<OrganisationName>Amt der Tiroler Landesregierung, Abteilung Geoinformation, tiris</OrganisationName>
+				<EmailAddress>anton.willi@tirol.gv.at</EmailAddress>
+			</ResponsibleParty>
+			<ResponsiblePartyRole>pointOfContact</ResponsiblePartyRole>
+		</ResponsibleOrganisation>
+		<MetadataPointOfContact>
+			<OrganisationName>Amt der Tiroler Landesregierung, Abteilung Geoinformation, tiris</OrganisationName>
+			<EmailAddress>anton.willi@tirol.gv.at</EmailAddress>
+		</MetadataPointOfContact>
+		<MetadataDate>2011-12-19</MetadataDate>
+		<MetadataLanguage>ger</MetadataLanguage>
+		<CoupledResource>
+			<Code>22222</Code>
+			<Namespace>http://eee.eee.ee</Namespace>
+		</CoupledResource>
+		<CoupledResource>
+			<Code>22222</Code>
+			<Namespace>http://eee.eee.ee</Namespace>
+		</CoupledResource>
+		<SpatialDataServiceType>view</SpatialDataServiceType>
+	</SpatialDataService>
+	<ns9:AuditRecord>
+		<ns9:CreationDate>2012-03-16T11:08:43.512</ns9:CreationDate>
+		<ns9:LastUpdateDate>2012-03-16T11:08:47.762</ns9:LastUpdateDate>
+	</ns9:AuditRecord>
+	<ns9:SourceMetadataLocator>
+		<URL>../../1.iso19139.xml</URL>
+		<MediaType>application/vnd.iso.19139+xml</MediaType>
+	</ns9:SourceMetadataLocator>
+	<ns9:GeoportalMetadataLocator>
+		<URL>/INSPIRE-efd2e1f4-6f4f-11e1-a10a-00e081b628c8_20120316-110811/services/1/PullResults/1-10/resources/services/1</URL>
+		<MediaType>application/vnd.eu.europa.ec.inspire.geoportal.resource.service+xml</MediaType>
+		<LinkDescription metadataLanguage="ger">INSPIRE Darstellungsdienst Verkehrsnetze Land Tirol (Amt der Tiroler Landesregierung, Abteilung Geoinformation, tiris)</LinkDescription>
+	</ns9:GeoportalMetadataLocator>
+	<ns9:SiblingNextResourceMetadataLocator>
+		<URL>../2</URL>
+		<MediaType>application/vnd.eu.europa.ec.inspire.geoportal.resource.service+xml</MediaType>
+	</ns9:SiblingNextResourceMetadataLocator>
+	<ns9:MemberStateCountryCode>AT</ns9:MemberStateCountryCode>
+	<ns9:MemberStateDiscoveryServiceResourceLocator>
+		<URL>../../../../..</URL>
+		<MediaType>application/vnd.eu.europa.ec.inspire.geoportal.resource.service.network.discovery+xml</MediaType>
+	</ns9:MemberStateDiscoveryServiceResourceLocator>
+	<ns9:ResourceReportLocator>
+		<URL>resourceReport</URL>
+		<MediaType>application/vnd.eu.europa.ec.inspire.resource+xml</MediaType>
+	</ns9:ResourceReportLocator>
+</ns9:Resource>

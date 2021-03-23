@@ -1,0 +1,125 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<schema xmlns="http://www.w3.org/2001/XMLSchema" xmlns:ge-core="http://inspire.jrc.ec.europa.eu/schemas/ge-core/2.0" xmlns:gml="http://www.opengis.net/gml/3.2" xmlns:gsml="http://xmlns.geosciml.org/GeoSciML-Core/3.0" targetNamespace="http://inspire.jrc.ec.europa.eu/schemas/ge-core/2.0" elementFormDefault="qualified" version="2.0">
+	<import namespace="http://www.opengis.net/gml/3.2" schemaLocation="http://schemas.opengis.net/gml/3.2.1/gml.xsd"/>
+	<import namespace="http://xmlns.geosciml.org/GeoSciML-Core/3.0" schemaLocation="http://inspire-twg.jrc.ec.europa.eu/annexII+III/schemas/geosciml-core/3.0/geosciml-core.xsd"/>
+	<!--XML Schema document created by ShapeChange-->
+	<element name="AnthropogenicGeomorphologicFeatureType" type="ge-core:AnthropogenicGeomorphologicFeatureTypeType" substitutionGroup="ge-core:GeomorphologicFeature">
+		<annotation>
+			<documentation>-- Definition --
+A man-made geomorphological feature.</documentation>
+		</annotation>
+	</element>
+	<complexType name="AnthropogenicGeomorphologicFeatureTypeType">
+		<complexContent>
+			<extension base="ge-core:GeomorphologicFeatureType">
+				<sequence>
+					<element name="anthropogenicGeomorphologicFeatureType" type="ge-core:AnthropogenicGeomorphologicFeatureTypeTermType">
+						<annotation>
+							<documentation>-- Definition --
+The type of anthropogenic geomorphologic feature.</documentation>
+						</annotation>
+					</element>
+				</sequence>
+			</extension>
+		</complexContent>
+	</complexType>
+	<complexType name="AnthropogenicGeomorphologicFeatureTypePropertyType">
+		<sequence minOccurs="0">
+			<element ref="ge-core:AnthropogenicGeomorphologicFeatureType"/>
+		</sequence>
+		<attributeGroup ref="gml:AssociationAttributeGroup"/>
+		<attributeGroup ref="gml:OwnershipAttributeGroup"/>
+	</complexType>
+	<simpleType name="NaturalGeomorphologicFeatureTypeTermType">
+		<annotation>
+			<documentation>-- Definition --
+The types of natural geomorphological feature</documentation>
+		</annotation>
+		<union memberTypes="ge-core:NaturalGeomorphologicFeatureTypeTermEnumerationType ge-core:NaturalGeomorphologicFeatureTypeTermOtherType"/>
+	</simpleType>
+	<simpleType name="NaturalGeomorphologicFeatureTypeTermEnumerationType">
+		<annotation>
+			<documentation>-- Definition --
+The types of natural geomorphological feature</documentation>
+		</annotation>
+		<restriction base="string"/>
+	</simpleType>
+	<simpleType name="NaturalGeomorphologicFeatureTypeTermOtherType">
+		<restriction base="string">
+			<pattern value="other: \w{2,}"/>
+		</restriction>
+	</simpleType>
+	<simpleType name="AnthropogenicGeomorphologicFeatureTypeTermType">
+		<annotation>
+			<documentation>-- Definition --
+The types of man-made geomorphological feature</documentation>
+		</annotation>
+		<union memberTypes="ge-core:AnthropogenicGeomorphologicFeatureTypeTermEnumerationType ge-core:AnthropogenicGeomorphologicFeatureTypeTermOtherType"/>
+	</simpleType>
+	<simpleType name="AnthropogenicGeomorphologicFeatureTypeTermEnumerationType">
+		<annotation>
+			<documentation>-- Definition --
+The types of man-made geomorphological feature</documentation>
+		</annotation>
+		<restriction base="string"/>
+	</simpleType>
+	<simpleType name="AnthropogenicGeomorphologicFeatureTypeTermOtherType">
+		<restriction base="string">
+			<pattern value="other: \w{2,}"/>
+		</restriction>
+	</simpleType>
+	<element name="NaturalGeomorphologicFeature" type="ge-core:NaturalGeomorphologicFeatureType" substitutionGroup="ge-core:GeomorphologicFeature">
+		<annotation>
+			<documentation>-- Definition --
+A natural geomorphological feature.</documentation>
+		</annotation>
+	</element>
+	<complexType name="NaturalGeomorphologicFeatureType">
+		<complexContent>
+			<extension base="ge-core:GeomorphologicFeatureType">
+				<sequence>
+					<element name="naturalGeomorphologicFeatureType" type="ge-core:NaturalGeomorphologicFeatureTypeTermType">
+						<annotation>
+							<documentation>-- Definition --
+The type of natural geomorphologic feature.</documentation>
+						</annotation>
+					</element>
+				</sequence>
+			</extension>
+		</complexContent>
+	</complexType>
+	<complexType name="NaturalGeomorphologicFeaturePropertyType">
+		<sequence minOccurs="0">
+			<element ref="ge-core:NaturalGeomorphologicFeature"/>
+		</sequence>
+		<attributeGroup ref="gml:AssociationAttributeGroup"/>
+		<attributeGroup ref="gml:OwnershipAttributeGroup"/>
+	</complexType>
+	<element name="GeomorphologicFeature" type="ge-core:GeomorphologicFeatureType" abstract="true" substitutionGroup="gsml:GeologicFeature">
+		<annotation>
+			<documentation>-- Definition --
+A geomorphological feature is a linear or areal landform. It may be associated with an underlying GeologicUnit</documentation>
+		</annotation>
+	</element>
+	<complexType name="GeomorphologicFeatureType" abstract="true">
+		<complexContent>
+			<extension base="gsml:GeologicFeatureType">
+				<sequence>
+					<element name="relatedUnit" type="gsml:GeologicUnitPropertyType" minOccurs="0">
+						<annotation>
+							<documentation>-- Definition --
+Specifies the GeologicUnit associated with a depositional GeomorphologicFeature. Examples include a river terrace deposit or a till from which drumlins are formed. It implies that both the GeologicUnit and GeomorphologicFeature were formed together by the same process.</documentation>
+						</annotation>
+					</element>
+				</sequence>
+			</extension>
+		</complexContent>
+	</complexType>
+	<complexType name="GeomorphologicFeaturePropertyType">
+		<sequence minOccurs="0">
+			<element ref="ge-core:GeomorphologicFeature"/>
+		</sequence>
+		<attributeGroup ref="gml:AssociationAttributeGroup"/>
+		<attributeGroup ref="gml:OwnershipAttributeGroup"/>
+	</complexType>
+</schema>

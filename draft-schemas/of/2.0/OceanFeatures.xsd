@@ -1,0 +1,281 @@
+<?xml version="1.0" encoding="UTF-8"?><schema xmlns="http://www.w3.org/2001/XMLSchema" xmlns:base="urn:x-inspire:specification:gmlas:BaseTypes:3.2" xmlns:gml="http://www.opengis.net/gml/3.2" xmlns:of="http://inspire.jrc.ec.europa.eu/schemas/of/2.0" xmlns:om="http://www.opengis.net/om/2.0" elementFormDefault="qualified" targetNamespace="http://inspire.jrc.ec.europa.eu/schemas/of/2.0" version="2.0">
+  <import namespace="http://www.opengis.net/gml/3.2" schemaLocation="http://schemas.opengis.net/gml/3.2.1/gml.xsd"/>
+  <import namespace="http://www.opengis.net/om/2.0" schemaLocation="http://schemas.opengis.net/om/2.0/observation.xsd"/>
+  <import namespace="urn:x-inspire:specification:gmlas:BaseTypes:3.2" schemaLocation="https://inspire.ec.europa.eu/schemas/base/3.2/BaseTypes.xsd"/>
+  <!--XML Schema document created by ShapeChange-->
+  <element name="GridSeriesObservation" substitutionGroup="om:OM_Observation" type="of:GridSeriesObservationType">
+    <annotation>
+      <documentation>-- Name --
+GridSeries Observation
+
+-- Definition --
+The &lt;i&gt;GridSeries&lt;/i&gt; observation (Figure 14) is a &lt;i&gt;CSML Time Series Observation&lt;/i&gt; representing an evolving gridded field at a succession of time instants.
+source: CSML (Climate Science Modelling Langauge, OGC Pending Documents 11-021)
+
+-- Description --
+A GridSeriesObservation is a time series of gridded fields representing the same phenomenon (or phenomena) over a series of times. E.g. Ocean model output.
+The result of a &lt;i&gt;GridSeriesO&lt;/i&gt;bservation is a discrete coverage within a compound spatiotemporal CRS where the domain consists of a series of two- or three-dimensional grids of points, each at a successive time instant.</documentation>
+    </annotation>
+  </element>
+  <complexType name="GridSeriesObservationType">
+    <complexContent>
+      <extension base="om:OM_ObservationType">
+        <sequence/>
+      </extension>
+    </complexContent>
+  </complexType>
+  <complexType name="GridSeriesObservationPropertyType">
+    <sequence minOccurs="0">
+      <element ref="of:GridSeriesObservation"/>
+    </sequence>
+    <attributeGroup ref="gml:AssociationAttributeGroup"/>
+    <attributeGroup ref="gml:OwnershipAttributeGroup"/>
+  </complexType>
+  <element name="CompositeObservableProperty_Stub" substitutionGroup="of:AbstractObservableProperty_Stub" type="of:CompositeObservableProperty_StubType">
+    <annotation>
+      <documentation>-- Name --
+Composite Observable Property (Stub)
+
+-- Definition -- 
+A composite observable property made up of two or more SimpleObservablePropertys.
+-- Description --
+Where multiple phenomena are observed they may be grouped together using this CompositeObservableProperty.
+It is anticipated that some level of X-TWG harmonisation will take place on the exact structure of this class and it's subtypes. For version 2.0 we use a stub.</documentation>
+    </annotation>
+  </element>
+  <complexType name="CompositeObservableProperty_StubType">
+    <complexContent>
+      <extension base="of:AbstractObservableProperty_StubType">
+        <sequence>
+          <element maxOccurs="unbounded" minOccurs="2" name="component">
+            <annotation>
+              <documentation>-- Name --
+component
+
+ -- Definition -- 
+A simple component of a composite observable property.</documentation>
+              <appinfo>
+                <targetElement xmlns="http://www.opengis.net/gml/3.2">of:SimpleObservableProperty_Stub</targetElement>
+              </appinfo>
+            </annotation>
+            <complexType>
+              <complexContent>
+                <extension base="gml:AbstractMemberType">
+                  <sequence/>
+                  <attributeGroup ref="gml:AssociationAttributeGroup"/>
+                </extension>
+              </complexContent>
+            </complexType>
+          </element>
+        </sequence>
+      </extension>
+    </complexContent>
+  </complexType>
+  <complexType name="CompositeObservableProperty_StubPropertyType">
+    <sequence minOccurs="0">
+      <element ref="of:CompositeObservableProperty_Stub"/>
+    </sequence>
+    <attributeGroup ref="gml:AssociationAttributeGroup"/>
+    <attributeGroup ref="gml:OwnershipAttributeGroup"/>
+  </complexType>
+  <element name="PointObservation" substitutionGroup="om:OM_Observation" type="of:PointObservationType">
+    <annotation>
+      <documentation>-- Name --
+Point Observation
+-- Definition --
+The &lt;i&gt;Point&lt;/i&gt; observation (Figure 9) is a &lt;i&gt;CSML Static Observation&lt;/i&gt; that represents a measurement of a property at a single point in time and space.
+
+source: CSML (Climate Science Modelling Langauge, OGC Pending Documents 11-021)
+-- Description --
+The PointObservation represents a single measurement or estimation of a property at a single point in time and space.</documentation>
+    </annotation>
+  </element>
+  <complexType name="PointObservationType">
+    <complexContent>
+      <extension base="om:OM_ObservationType">
+        <sequence/>
+      </extension>
+    </complexContent>
+  </complexType>
+  <complexType name="PointObservationPropertyType">
+    <sequence minOccurs="0">
+      <element ref="of:PointObservation"/>
+    </sequence>
+    <attributeGroup ref="gml:AssociationAttributeGroup"/>
+    <attributeGroup ref="gml:OwnershipAttributeGroup"/>
+  </complexType>
+  <element name="PointObservationCollection" substitutionGroup="gml:AbstractFeature" type="of:PointObservationCollectionType">
+    <annotation>
+      <documentation>-- Name --
+Point Observation Collection
+
+-- Definition --
+Collection of PointObservations.
+
+-- Description --
+The PointObservationCollection is simply a collection of PointObservations. In the case where it is useful to group together a set of otherwise independent PointObservations the PointObservationCollection should be used to make this grouping. The grouping may be made on any basis e.g. it may be useful to group together PointObservations made by the same instrument or Environmental Facility, or in a particular measurement campaign. Each member of the PointObservationCollection must be a single PointObservation.</documentation>
+    </annotation>
+  </element>
+  <complexType name="PointObservationCollectionType">
+    <complexContent>
+      <extension base="gml:AbstractFeatureType">
+        <sequence>
+          <element maxOccurs="unbounded" minOccurs="0" name="member">
+            <annotation>
+              <documentation>-- Definition --
+A member of the collection, must be a PointObservation.
+-- Description --</documentation>
+            </annotation>
+            <complexType>
+              <complexContent>
+                <extension base="gml:AbstractMemberType">
+                  <sequence minOccurs="0">
+                    <element ref="of:PointObservation"/>
+                  </sequence>
+                  <attributeGroup ref="gml:AssociationAttributeGroup"/>
+                </extension>
+              </complexContent>
+            </complexType>
+          </element>
+        </sequence>
+      </extension>
+    </complexContent>
+  </complexType>
+  <complexType name="PointObservationCollectionPropertyType">
+    <sequence minOccurs="0">
+      <element ref="of:PointObservationCollection"/>
+    </sequence>
+    <attributeGroup ref="gml:AssociationAttributeGroup"/>
+    <attributeGroup ref="gml:OwnershipAttributeGroup"/>
+  </complexType>
+  <element abstract="true" name="AbstractObservableProperty_Stub" substitutionGroup="gml:AbstractFeature" type="of:AbstractObservableProperty_StubType">
+    <annotation>
+      <documentation>-- Name --
+Abstract Observable Property (Stub)
+
+-- Definition -- 
+Observable Property defines the physical property observed. This is an abstract class.
+-- Description --
+The Observaitons &amp; Measurements model (ISO 19156) states that the 'observedProperty' can be of type any.
+This class is an abstract base class that may be extended to create sensible Observable Property structures suitable for the O&amp;M observedProperty. It is anticipated that some level of X-TWG harmonisation will take place on the exact structure of this class and it's subtypes. For version 2.0 we use a stub.</documentation>
+    </annotation>
+  </element>
+  <complexType abstract="true" name="AbstractObservableProperty_StubType">
+    <complexContent>
+      <extension base="gml:AbstractFeatureType">
+        <sequence/>
+      </extension>
+    </complexContent>
+  </complexType>
+  <complexType name="AbstractObservableProperty_StubPropertyType">
+    <sequence minOccurs="0">
+      <element ref="of:AbstractObservableProperty_Stub"/>
+    </sequence>
+    <attributeGroup ref="gml:AssociationAttributeGroup"/>
+    <attributeGroup ref="gml:OwnershipAttributeGroup"/>
+  </complexType>
+  <element name="OFProcess_Stub" substitutionGroup="gml:AbstractGML" type="of:OFProcess_StubType">
+    <annotation>
+      <documentation>-- Name --
+Ocean Feature Process (Stub)
+
+-- Definition -- 
+A placeholder class for the Process defintion which acknowledges X-TWG work in this area.
+
+-- Description --
+An Ocean Features observation should describe the process used in the observation. This process should, where appropriate, include a link to an INSPIRE Environmental Monitoring Facility.
+The exact nature of this linkage is under review and is the subject of X-TWG harmonisation discussion. For now we use a stub class as a placeholder in the model.</documentation>
+    </annotation>
+  </element>
+  <complexType name="OFProcess_StubType">
+    <complexContent>
+      <extension base="gml:AbstractGMLType">
+        <sequence/>
+      </extension>
+    </complexContent>
+  </complexType>
+  <complexType name="OFProcess_StubPropertyType">
+    <sequence minOccurs="0">
+      <element ref="of:OFProcess_Stub"/>
+    </sequence>
+    <attributeGroup ref="gml:AssociationAttributeGroup"/>
+    <attributeGroup ref="gml:OwnershipAttributeGroup"/>
+  </complexType>
+  <element name="PointSeriesObservation" substitutionGroup="om:OM_Observation" type="of:PointSeriesObservationType">
+    <annotation>
+      <documentation>-- Name --
+PointSeries Observation 
+-- Definition --
+The &lt;i&gt;PointSeries&lt;/i&gt; observation (Figure 10) is a &lt;i&gt;CSML Time Series Observation&lt;/i&gt; that represents a time-series of point measurements of a property at a fixed location in space.
+source: CSML (Climate Science Modelling Langauge, OGC Pending Documents 11-021).
+-- Description --
+A PointSeriesObservation is a time series of observations made at the same fixed spatial location e.g. Measurements made repeatedly by a fixed monitoring instrument.</documentation>
+    </annotation>
+  </element>
+  <complexType name="PointSeriesObservationType">
+    <complexContent>
+      <extension base="om:OM_ObservationType">
+        <sequence/>
+      </extension>
+    </complexContent>
+  </complexType>
+  <complexType name="PointSeriesObservationPropertyType">
+    <sequence minOccurs="0">
+      <element ref="of:PointSeriesObservation"/>
+    </sequence>
+    <attributeGroup ref="gml:AssociationAttributeGroup"/>
+    <attributeGroup ref="gml:OwnershipAttributeGroup"/>
+  </complexType>
+  <element name="SimpleObservableProperty_Stub" substitutionGroup="of:AbstractObservableProperty_Stub" type="of:SimpleObservableProperty_StubType">
+    <annotation>
+      <documentation>-- Name --
+Simple Observable Property (Stub)
+
+-- Definition -- 
+A simple observable property. The basePhenomenon is a link to a definition in a catalogue or registry.
+-- Description --
+It is anticipated that some level of X-TWG harmonisation will take place on the exact structure of this class and it's subtypes. For version 2.0 we use a stub.</documentation>
+    </annotation>
+  </element>
+  <complexType name="SimpleObservableProperty_StubType">
+    <complexContent>
+      <extension base="of:AbstractObservableProperty_StubType">
+        <sequence/>
+      </extension>
+    </complexContent>
+  </complexType>
+  <complexType name="SimpleObservableProperty_StubPropertyType">
+    <sequence minOccurs="0">
+      <element ref="of:SimpleObservableProperty_Stub"/>
+    </sequence>
+    <attributeGroup ref="gml:AssociationAttributeGroup"/>
+    <attributeGroup ref="gml:OwnershipAttributeGroup"/>
+  </complexType>
+  <element name="GridObservation" substitutionGroup="om:OM_Observation" type="of:GridObservationType">
+    <annotation>
+      <documentation>-- Name --
+Grid Observation
+
+-- Definition --
+The &lt;i&gt;Grid&lt;/i&gt; observationis a &lt;i&gt;CSML Static Observation&lt;/i&gt; representing a gridded field at a single time instant.
+source: CSML (Climate Science Modelling Langauge, OGC Pending Documents 11-021).
+-- Description --
+A GridObservation is an observation of some phenomenon (or phenomena) over a gridded field. E.g. Output from a model, or rectified, georeferenced satellite data.
+The result of a &lt;i&gt;GridO&lt;/i&gt;bservation is a discrete coverage within a compound spatiotemporal CRS where the domain consists of a two- or three-dimensional grid of points, all having the same time instant temporal component.</documentation>
+    </annotation>
+  </element>
+  <complexType name="GridObservationType">
+    <complexContent>
+      <extension base="om:OM_ObservationType">
+        <sequence/>
+      </extension>
+    </complexContent>
+  </complexType>
+  <complexType name="GridObservationPropertyType">
+    <sequence minOccurs="0">
+      <element ref="of:GridObservation"/>
+    </sequence>
+    <attributeGroup ref="gml:AssociationAttributeGroup"/>
+    <attributeGroup ref="gml:OwnershipAttributeGroup"/>
+  </complexType>
+</schema>

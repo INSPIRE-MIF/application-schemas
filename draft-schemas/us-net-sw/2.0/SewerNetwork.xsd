@@ -1,0 +1,538 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<schema xmlns="http://www.w3.org/2001/XMLSchema" xmlns:gml="http://www.opengis.net/gml/3.2" xmlns:us-net-sw="http://inspire.jrc.ec.europa.eu/schemas/us-net-sw/2.0" xmlns:us-network="http://inspire.jrc.ec.europa.eu/schemas/us-network/2.0" targetNamespace="http://inspire.jrc.ec.europa.eu/schemas/us-net-sw/2.0" elementFormDefault="qualified" version="2.0">
+	<annotation>
+		<documentation>-- Definition --
+Sewer network sub-domain.</documentation>
+	</annotation>
+	<import namespace="http://www.opengis.net/gml/3.2" schemaLocation="http://schemas.opengis.net/gml/3.2.1/gml.xsd"/>
+	<import namespace="http://inspire.jrc.ec.europa.eu/schemas/us-network/2.0" schemaLocation="https://inspire.ec.europa.eu/draft-schemas/us-network/2.0/UtilitiesAndGovernmentalServicesNetworks.xsd"/>
+	<!--XML Schema document created by ShapeChange-->
+	<element name="SewerPipe" type="us-net-sw:SewerPipeType" substitutionGroup="us-network:Pipe">
+		<annotation>
+			<documentation>-- Definition --
+A sewer pipe used to convey wastewater (sewer) from one location to another</documentation>
+		</annotation>
+	</element>
+	<complexType name="SewerPipeType">
+		<complexContent>
+			<extension base="us-network:PipeType">
+				<sequence>
+					<element name="averageVolume" nillable="true">
+						<annotation>
+							<documentation>-- Definition --
+Average volume of the pipe.</documentation>
+						</annotation>
+						<complexType>
+							<simpleContent>
+								<extension base="gml:VolumeType">
+									<attribute name="nilReason" type="gml:NilReasonType"/>
+								</extension>
+							</simpleContent>
+						</complexType>
+					</element>
+					<element name="maxCapacity" nillable="true">
+						<annotation>
+							<documentation>-- Definition --
+Maximum capacity of the pipe.</documentation>
+						</annotation>
+						<complexType>
+							<simpleContent>
+								<extension base="gml:MeasureType">
+									<attribute name="nilReason" type="gml:NilReasonType"/>
+								</extension>
+							</simpleContent>
+						</complexType>
+					</element>
+					<element name="type" nillable="true">
+						<annotation>
+							<documentation>-- Definition --
+Type of sewer pipe.</documentation>
+						</annotation>
+						<complexType>
+							<simpleContent>
+								<extension base="us-net-sw:SewerPipeTypeValueType">
+									<attribute name="nilReason" type="gml:NilReasonType"/>
+								</extension>
+							</simpleContent>
+						</complexType>
+					</element>
+					<element name="waterType" nillable="true">
+						<annotation>
+							<documentation>-- Definition --
+Type of sewer pipe based on water type.</documentation>
+						</annotation>
+						<complexType>
+							<simpleContent>
+								<extension base="us-net-sw:SewerPipeWaterTypeValueType">
+									<attribute name="nilReason" type="gml:NilReasonType"/>
+								</extension>
+							</simpleContent>
+						</complexType>
+					</element>
+				</sequence>
+			</extension>
+		</complexContent>
+	</complexType>
+	<complexType name="SewerPipePropertyType">
+		<sequence minOccurs="0">
+			<element ref="us-net-sw:SewerPipe"/>
+		</sequence>
+		<attributeGroup ref="gml:AssociationAttributeGroup"/>
+		<attributeGroup ref="gml:OwnershipAttributeGroup"/>
+	</complexType>
+	<element name="SewerNetwork" type="us-net-sw:SewerNetworkType" substitutionGroup="us-network:UtilityNetwork">
+		<annotation>
+			<documentation>-- Definition --
+Collection of sewer (wastewater) network elements.</documentation>
+		</annotation>
+	</element>
+	<complexType name="SewerNetworkType">
+		<complexContent>
+			<extension base="us-network:UtilityNetworkType">
+				<sequence/>
+			</extension>
+		</complexContent>
+	</complexType>
+	<complexType name="SewerNetworkPropertyType">
+		<sequence minOccurs="0">
+			<element ref="us-net-sw:SewerNetwork"/>
+		</sequence>
+		<attributeGroup ref="gml:AssociationAttributeGroup"/>
+		<attributeGroup ref="gml:OwnershipAttributeGroup"/>
+	</complexType>
+	<element name="SewerAppurtenance" type="us-net-sw:SewerAppurtenanceType" substitutionGroup="us-network:UtilityNode">
+		<annotation>
+			<documentation>-- Definition --
+A node (point) appurtenance in sewer networks.</documentation>
+		</annotation>
+	</element>
+	<complexType name="SewerAppurtenanceType">
+		<complexContent>
+			<extension base="us-network:UtilityNodeType">
+				<sequence>
+					<element name="type" nillable="true">
+						<annotation>
+							<documentation>-- Definition --
+Type of the sewer network appurtenance.</documentation>
+						</annotation>
+						<complexType>
+							<simpleContent>
+								<extension base="us-net-sw:SewerAppurtenanceValueType">
+									<attribute name="nilReason" type="gml:NilReasonType"/>
+								</extension>
+							</simpleContent>
+						</complexType>
+					</element>
+				</sequence>
+			</extension>
+		</complexContent>
+	</complexType>
+	<complexType name="SewerAppurtenancePropertyType">
+		<sequence minOccurs="0">
+			<element ref="us-net-sw:SewerAppurtenance"/>
+		</sequence>
+		<attributeGroup ref="gml:AssociationAttributeGroup"/>
+		<attributeGroup ref="gml:OwnershipAttributeGroup"/>
+	</complexType>
+	<simpleType name="SewerPipeTypeValueType">
+		<annotation>
+			<documentation>-- Definition --
+Sewer lines classification.</documentation>
+		</annotation>
+		<union memberTypes="us-net-sw:SewerPipeTypeValueEnumerationType us-net-sw:SewerPipeTypeValueOtherType"/>
+	</simpleType>
+	<simpleType name="SewerPipeTypeValueEnumerationType">
+		<annotation>
+			<documentation>-- Definition --
+Sewer lines classification.</documentation>
+		</annotation>
+		<restriction base="string">
+			<enumeration value="LL">
+				<annotation>
+					<documentation>-- Definition --
+Lateral line.
+
+-- Description --
+A &lt;i&gt;lateral line &lt;/i&gt;is a small-diameter pipe that runs from the main line to the customer premises.</documentation>
+				</annotation>
+			</enumeration>
+			<enumeration value="LL_Combination">
+				<annotation>
+					<documentation>-- Definition --
+Lateral line that transports a combination of sanitary and storm water.
+
+-- Description --
+Lateral line that transports a combination of sanitary and storm water.</documentation>
+				</annotation>
+			</enumeration>
+			<enumeration value="LL_Commercial">
+				<annotation>
+					<documentation>-- Definition --
+Lateral line that transport commercial-origin wastewater.
+
+-- Description --
+Lateral line that transport wastewater from commercial facilities.</documentation>
+				</annotation>
+			</enumeration>
+			<enumeration value="LL_Domestic">
+				<annotation>
+					<documentation>-- Definition --
+Lateral line that transports domestic sanitary water.
+
+-- Description --
+Lateral line that transports domestic wastewater.</documentation>
+				</annotation>
+			</enumeration>
+			<enumeration value="LL_Irrigation">
+				<annotation>
+					<documentation>-- Definition --
+Irrigation lateral line.
+
+-- Description --
+Lateral line that transports irrigation wastewater.</documentation>
+				</annotation>
+			</enumeration>
+			<enumeration value="LL_Storm">
+				<annotation>
+					<documentation>-- Definition --
+Lateral line that transports storm water.
+
+-- Description --
+Lateral line that transports storm water.</documentation>
+				</annotation>
+			</enumeration>
+			<enumeration value="ML">
+				<annotation>
+					<documentation>-- Definition --
+Main line.
+
+-- Description --
+A &lt;i&gt;main line &lt;/i&gt;is a large-diameter pipe that carries sewer from the source through the network.</documentation>
+				</annotation>
+			</enumeration>
+			<enumeration value="ML_GM">
+				<annotation>
+					<documentation>-- Definition --
+Main line's gravity main.
+
+-- Description --
+A &lt;i&gt;gravity main &lt;/i&gt;is a type of main line that is unpressurized and relies on gravity to move the water through the main.</documentation>
+				</annotation>
+			</enumeration>
+			<enumeration value="ML_GM_Collector">
+				<annotation>
+					<documentation>-- Definition --
+Main line's gravity main's collector.
+
+-- Description --
+A &lt;i&gt;collector &lt;/i&gt;is a pipe that collects and transports wastewater to a treatment plant or disposal system. Service laterals connect to collectors.</documentation>
+				</annotation>
+			</enumeration>
+			<enumeration value="ML_GM_Culvert">
+				<annotation>
+					<documentation>-- Definition --
+Main line's gravity main's culvert.
+
+-- Description --
+A &lt;i&gt;culvert &lt;/i&gt;is a pipe used to channel water e.g. underneath a road, railway or embankment.</documentation>
+				</annotation>
+			</enumeration>
+			<enumeration value="ML_GM_InLineStorage">
+				<annotation>
+					<documentation>-- Definition --
+Main line's gravity main's in-line storage.
+
+-- Description --
+&lt;i&gt;In-&lt;/i&gt;&lt;i&gt;l&lt;/i&gt;&lt;i&gt;ine storage&lt;/i&gt; involves retaining wet-weather flow in the pipe for small rainstorms.</documentation>
+				</annotation>
+			</enumeration>
+			<enumeration value="ML_GM_Interceptor">
+				<annotation>
+					<documentation>-- Definition --
+Main line's gravity main's interceptor.
+
+-- Description --
+Large sewer line that controls the flow of sewage to the treatment plant. In a storm it allows some of the sewage to flow directly into a receiving stream, thus keeping it from overflowing onto the streets.</documentation>
+				</annotation>
+			</enumeration>
+			<enumeration value="ML_GM_InvertedSiphon">
+				<annotation>
+					<documentation>-- Definition --
+Main line's gravity main's inverted siphon.
+
+-- Description --
+An &lt;i&gt;inverted siphon&lt;/i&gt; is a pipe that must dip below an obstruction to form a „U&amp;ldquo; shaped flow path. Inverted siphons are commonly used for preventing smelly sewer gases from coming back out of drains.</documentation>
+				</annotation>
+			</enumeration>
+			<enumeration value="ML_GM_OpenChannel">
+				<annotation>
+					<documentation>-- Definition --
+Main line's gravity main's open channel.
+
+-- Description --
+An &lt;i&gt;open channel&lt;/i&gt; is a channel open to the environment that transmits raw water and drainage.</documentation>
+				</annotation>
+			</enumeration>
+			<enumeration value="ML_GM_Outfall">
+				<annotation>
+					<documentation>-- Definition --
+Main line's gravity main's outfall.
+
+-- Description --
+&lt;i&gt;Outfalls &lt;/i&gt;are the conduit leading to the final disposal point or area for wastewater and drainage. Outfalls discharge into a receiving water body, such as a stream, river, lake, ocean, or other surface, or groundwater.</documentation>
+				</annotation>
+			</enumeration>
+			<enumeration value="ML_GM_Overflow">
+				<annotation>
+					<documentation>-- Definition --
+Main line's gravity main's overflow.
+
+-- Description --
+An overflow connects a chamber or pipe to another part of the system or outfall during overload conditions or peak flows.</documentation>
+				</annotation>
+			</enumeration>
+			<enumeration value="ML_GM_Tunnel">
+				<annotation>
+					<documentation>-- Definition --
+Main line's gravity main's tunnel.
+
+-- Description --
+Tunnels are used to transmit sewer through mountains or deep below the ground. Tunnels are generally created in bedrock and may contain features such as pipes and ducts (conduits) within the tunnel.</documentation>
+				</annotation>
+			</enumeration>
+			<enumeration value="ML_PM">
+				<annotation>
+					<documentation>-- Definition --
+Main line's pressurized main.
+
+-- Description --
+A &lt;i&gt;pressurized main &lt;/i&gt;is a type of main line that is pressurized. Pressure sewers are particularly adaptable for rural or
+semi-rural communities where public contact with
+effluent from failing drain fields presents a substantial
+health concern. 
+
+NOTE There are numerous types of PressurizedMains in the sewer distribution model; they include AirRelease, BlowOff, Bypass, ChemicalInjection, DistributionMain, Interconnect, PipeBridge, SamplingStation, and TransmissionMain.</documentation>
+				</annotation>
+			</enumeration>
+			<enumeration value="ML_PM_ForceMain">
+				<annotation>
+					<documentation>-- Definition --
+Main line's pressurized main's force main.</documentation>
+				</annotation>
+			</enumeration>
+			<enumeration value="ML_PM_PipeBridge">
+				<annotation>
+					<documentation>-- Definition --
+Main line's pressurized main's pipe bridge.</documentation>
+				</annotation>
+			</enumeration>
+			<enumeration value="ML_PM_Pressure">
+				<annotation>
+					<documentation>-- Definition --
+Main line's pressurized main's pressure.</documentation>
+				</annotation>
+			</enumeration>
+			<enumeration value="ML_PM_Vacuum">
+				<annotation>
+					<documentation>-- Definition --
+Main line's pressurized main's vacuum.</documentation>
+				</annotation>
+			</enumeration>
+		</restriction>
+	</simpleType>
+	<simpleType name="SewerPipeTypeValueOtherType">
+		<restriction base="string">
+			<pattern value="other: \w{2,}"/>
+		</restriction>
+	</simpleType>
+	<simpleType name="SewerAppurtenanceValueType">
+		<annotation>
+			<documentation>-- Definition --
+Possible node (point) appurtenance values in sewer networks.</documentation>
+		</annotation>
+		<union memberTypes="us-net-sw:SewerAppurtenanceValueEnumerationType us-net-sw:SewerAppurtenanceValueOtherType"/>
+	</simpleType>
+	<simpleType name="SewerAppurtenanceValueEnumerationType">
+		<annotation>
+			<documentation>-- Definition --
+Possible node (point) appurtenance values in sewer networks.</documentation>
+		</annotation>
+		<restriction base="string">
+			<enumeration value="anode">
+				<annotation>
+					<documentation>-- Definition --
+Anode.
+
+-- Description --
+An &lt;i&gt;anode &lt;/i&gt;is a feature (specifically, an electrical mechanism) that&amp;rsquo;s applied to system components for the prevention of rust, pitting, and the corrosion of metal surfaces that are in contact with water or soil. A low-voltage current is applied to the water or soil in contact with the metal, such that the
+electromotive force renders the metal component cathodic. Corrosion is concentrated on the anodes instead of on the associated (and protected) water system components. This type of corrosion may occur in copper, steel, stainless steel, cast iron, and ductile iron pipes.</documentation>
+				</annotation>
+			</enumeration>
+			<enumeration value="barrel">
+				<annotation>
+					<documentation>-- Definition --
+Barrel.
+
+-- Description --
+A &lt;i&gt;barrel &lt;/i&gt;is the cylindrical part of a manhole between the cone and the shelf. Barrels are only found in wastewater and stormwater systems.</documentation>
+				</annotation>
+			</enumeration>
+			<enumeration value="barScreen">
+				<annotation>
+					<documentation>-- Definition --
+Bar screen.
+
+-- Description --
+A &lt;i&gt;bar screen &lt;/i&gt;is a set of parallel bars, either vertical
+or inclined, that is placed in a sewer or other waterway to catch debris. Bar screens are only found in wastewater and stormwater systems.</documentation>
+				</annotation>
+			</enumeration>
+			<enumeration value="catchBasin">
+				<annotation>
+					<documentation>-- Definition --
+Catch basin.
+
+-- Description --
+A &lt;i&gt;catch basin &lt;/i&gt;is a chamber or well used with storm or combined sewers to receive runoff into the collection system. Catch basins are used as a means of removing debris and solids that could enter thecollection system. Catch basins may also be modeled as curb inlets or stormwater inlets.</documentation>
+				</annotation>
+			</enumeration>
+			<enumeration value="cleanOut">
+				<annotation>
+					<documentation>-- Definition --
+Clean out.
+
+-- Description --
+A &lt;i&gt;cleanout &lt;/i&gt;is a sewer and stormwater-specific facility that is used as an opening in a collection system for inserting tools, rods, or snakes while cleaning a pipeline or clearing a stoppage. Cleanout types include two-way cleanouts, which are designed for working a snake into the pipe in either
+direction. Two-way cleanouts are commonly found in laterals or near a property line.</documentation>
+				</annotation>
+			</enumeration>
+			<enumeration value="dischargeStructure">
+				<annotation>
+					<documentation>-- Definition --
+Discharge structure.
+
+-- Description --
+A &lt;i&gt;discharge point &lt;/i&gt;is a sewer and stormwater-specific facility where wastewater drainage is discharged from the system. A discharge point may be located at the terminus of an outfall.</documentation>
+				</annotation>
+			</enumeration>
+			<enumeration value="meter">
+				<annotation>
+					<documentation>-- Definition --
+Meter.
+
+-- Description --
+A &lt;i&gt;meter &lt;/i&gt;is a facility that is used to measure wastewater volume. Being a facility, a meter plays the role of a junction on the active network.</documentation>
+				</annotation>
+			</enumeration>
+			<enumeration value="pump">
+				<annotation>
+					<documentation>-- Definition --
+Pump.
+
+-- Description --
+A &lt;i&gt;pump &lt;/i&gt;is a piece of equipment that moves, compresses, or alters the pressure of a fluid, such as water or air, being conveyed through a natural or artificial channel. Pump types include AxialFlow, Centrifugal, Jet, Reciprocating, Rotary,
+Screw, and Turbine.</documentation>
+				</annotation>
+			</enumeration>
+			<enumeration value="regulator">
+				<annotation>
+					<documentation>-- Definition --
+Regulator.
+
+-- Description --
+A &lt;i&gt;regulator &lt;/i&gt;is a device that is used in combined sewer systems to control or regulate the diversion flow.</documentation>
+				</annotation>
+			</enumeration>
+			<enumeration value="scadaSensor">
+				<annotation>
+					<documentation>-- Definition --
+SCADA sensor.
+
+-- Description --
+The &lt;i&gt;SCADA sensor &lt;/i&gt;is a feature that&amp;rsquo;s used to remotely measure the status of network components as part of a supervisory control and data acquisition (SCADA) system. SCADA systems provide alarms, responses, data acquisition, and control for collection and distribution systems. Operators use the SCADA system to monitor and
+adjust processes and facilities.</documentation>
+				</annotation>
+			</enumeration>
+			<enumeration value="thrustProtection">
+				<annotation>
+					<documentation>-- Definition --
+Thrust protection.
+
+-- Description --
+The &lt;i&gt;t&lt;/i&gt;&lt;i&gt;hrust&lt;/i&gt;&lt;i&gt; p&lt;/i&gt;&lt;i&gt;rotection &lt;/i&gt;represents a type of line protector that&amp;rsquo;s used to prevent pipe movement. Thrust protection is commonly implemented as thrust blocks (masses of concrete material) that are placed at bends and around valve structures. The types of thrust protection include Anchor,
+Blocking, Deadman, and Kicker.</documentation>
+				</annotation>
+			</enumeration>
+			<enumeration value="tideGate">
+				<annotation>
+					<documentation>-- Definition --
+Tide gate.
+
+-- Description --
+A &lt;i&gt;tide gate &lt;/i&gt;is a device used in sewer and stormwater systems that is suspended from a free-swinging horizontal hinge and is usually placed at the end of a conduit, discharging into a body of water with a fluctuating surface elevation. This piece of equipment is also termed a backwater gate, flap gate, or check gate.</documentation>
+				</annotation>
+			</enumeration>
+		</restriction>
+	</simpleType>
+	<simpleType name="SewerAppurtenanceValueOtherType">
+		<restriction base="string">
+			<pattern value="other: \w{2,}"/>
+		</restriction>
+	</simpleType>
+	<simpleType name="SewerPipeWaterTypeValueType">
+		<annotation>
+			<documentation>-- Definition --
+Sewer lines classification based on water type.</documentation>
+		</annotation>
+		<union memberTypes="us-net-sw:SewerPipeWaterTypeValueEnumerationType us-net-sw:SewerPipeWaterTypeValueOtherType"/>
+	</simpleType>
+	<simpleType name="SewerPipeWaterTypeValueEnumerationType">
+		<annotation>
+			<documentation>-- Definition --
+Sewer lines classification based on water type.</documentation>
+		</annotation>
+		<restriction base="string">
+			<enumeration value="combined">
+				<annotation>
+					<documentation>-- Definition --
+Combined wastewater.
+
+-- Description --
+A &lt;i&gt;combined &lt;/i&gt;&lt;i&gt;wastewater &lt;/i&gt;sewer is a type of sewer system that collects sanitary sewage and stormwater runoff in a single pipe system.</documentation>
+				</annotation>
+			</enumeration>
+			<enumeration value="reclaimed">
+				<annotation>
+					<documentation>-- Definition --
+Reclaimed water.
+
+-- Description --
+&lt;i&gt;Reclaimed water&lt;/i&gt;, sometimes called recycled water, is former wastewater (sewage) that has been treated to remove solids and certain impurities, and then used in sustainable landscaping irrigation or to recharge groundwater aquifers.</documentation>
+				</annotation>
+			</enumeration>
+			<enumeration value="sanitary">
+				<annotation>
+					<documentation>-- Definition --
+Sanitary wastewater.
+
+-- Description --
+&lt;i&gt;Sanitary sewers&lt;/i&gt; remove waste products from peoples' home and send them underground to a treatment plant.</documentation>
+				</annotation>
+			</enumeration>
+			<enumeration value="storm">
+				<annotation>
+					<documentation>-- Definition --
+Storm runoff wastewater.
+
+-- Description --
+&lt;i&gt;Storm wastewater &lt;/i&gt;drains gather rain and storm runoff and direct them to wetlands and lakes. Ditches and curb line grates are storm drains.</documentation>
+				</annotation>
+			</enumeration>
+		</restriction>
+	</simpleType>
+	<simpleType name="SewerPipeWaterTypeValueOtherType">
+		<restriction base="string">
+			<pattern value="other: \w{2,}"/>
+		</restriction>
+	</simpleType>
+</schema>

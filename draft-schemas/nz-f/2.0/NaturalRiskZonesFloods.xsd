@@ -1,0 +1,655 @@
+<?xml version="1.0" encoding="UTF-8"?><schema xmlns="http://www.w3.org/2001/XMLSchema" xmlns:base="urn:x-inspire:specification:gmlas:BaseTypes:3.2" xmlns:gml="http://www.opengis.net/gml/3.2" xmlns:gn="urn:x-inspire:specification:gmlas:GeographicalNames:3.0" xmlns:hy="urn:x-inspire:specification:gmlas:HydroBase:3.0" xmlns:hy-p="urn:x-inspire:specification:gmlas:HydroPhysicalWaters:3.0" xmlns:nz-core="http://inspire.jrc.ec.europa.eu/schemas/nz-core/2.0" xmlns:nz-f="http://inspire.jrc.ec.europa.eu/schemas/nz-f/2.0" elementFormDefault="qualified" targetNamespace="http://inspire.jrc.ec.europa.eu/schemas/nz-f/2.0" version="2.0">
+  <import namespace="http://inspire.jrc.ec.europa.eu/schemas/nz-core/2.0" schemaLocation="https://inspire.ec.europa.eu/draft-schemas/nz-core/2.0/NaturalRiskZonesCore.xsd"/>
+  <import namespace="http://www.opengis.net/gml/3.2" schemaLocation="http://schemas.opengis.net/gml/3.2.1/gml.xsd"/>
+  <import namespace="urn:x-inspire:specification:gmlas:BaseTypes:3.2" schemaLocation="https://inspire.ec.europa.eu/schemas/base/3.2/BaseTypes.xsd"/>
+  <import namespace="urn:x-inspire:specification:gmlas:GeographicalNames:3.0" schemaLocation="https://inspire.ec.europa.eu/schemas/gn/3.0/GeographicalNames.xsd"/>
+  <import namespace="urn:x-inspire:specification:gmlas:HydroBase:3.0" schemaLocation="https://inspire.ec.europa.eu/schemas/hy/3.0/HydroBase.xsd"/>
+  <import namespace="urn:x-inspire:specification:gmlas:HydroPhysicalWaters:3.0" schemaLocation="https://inspire.ec.europa.eu/schemas/hy-p/3.0/HydroPhysicalWaters.xsd"/>
+  <!--XML Schema document created by ShapeChange-->
+  <element name="Embankment" substitutionGroup="hy-p:ManMadeObject" type="nz-f:EmbankmentType">
+    <annotation>
+      <documentation>-- Definition --
+A man-made raised long mound of earth or other material.
+
+-- Description --
+SOURCE [DFDD].
+
+NOTE 1 Includes retaining walls, harbours, dikes.
+
+NOTE 2 Regarded as a candidate spatial object in Annex III theme 'Natural risk zones' due to its role in limiting flooding.</documentation>
+    </annotation>
+  </element>
+  <complexType name="EmbankmentType">
+    <complexContent>
+      <extension base="hy-p:ManMadeObjectType">
+        <sequence/>
+      </extension>
+    </complexContent>
+  </complexType>
+  <complexType name="EmbankmentPropertyType">
+    <sequence minOccurs="0">
+      <element ref="nz-f:Embankment"/>
+    </sequence>
+    <attributeGroup ref="gml:AssociationAttributeGroup"/>
+    <attributeGroup ref="gml:OwnershipAttributeGroup"/>
+  </complexType>
+  <element name="PreliminaryFRAssessment" substitutionGroup="gml:AbstractObject" type="nz-f:PreliminaryFRAssessmentType">
+    <annotation>
+      <documentation>-- Definition --
+SOURCE : [Flood Directive 2007/60/CE]
+Document as defined in Chapter II, article 4, paragraph 2 of Directive 2007/60/CE.
+
+-- Description --
+Based on available or readily derivable information, such as records and studies on long term developments, in particular impacts of climate change on the occurrence of floods, a preliminary
+flood risk assessment shall be undertaken to provide an assessment of potential risks. The assessment shall include at least the following:
+(a) maps of the river basin district at the appropriate scale including the borders of the river basins, sub-basins and, where existing, coastal areas, showing topography and land use;
+(b) a description of the floods which have occurred in the past and which had significant adverse impacts on human health, the environment, cultural heritage and economic activity and for which the likelihood of similar future events is still relevant, including their flood extent and conveyance routes and an assessment of the adverse impacts they have entailed;
+(c) a description of the significant floods which have occurred in the past, where significant adverse consequences of similar future events might be envisaged; and, depending on the specific needs of Member States, it shall include:
+(d) an assessment of the potential adverse consequences of future floods for human health, the environment, cultural heritage and economic activity, taking into account as far as possible issues such as the topography, the position of watercourses and their general hydrological and geomorphological
+characteristics, including floodplains as natural retention areas, the effectiveness of existing manmade
+flood defence infrastructures, the position of populated areas, areas of economic activity and long-term developments including impacts of climate change on the occurrence of floods.</documentation>
+    </annotation>
+  </element>
+  <complexType name="PreliminaryFRAssessmentType">
+    <sequence>
+      <element name="beginLifespanVersion" nillable="true">
+        <annotation>
+          <documentation>-- Definition --
+Date and time at which this version of the spatial object was inserted or changed in the spatial data set.</documentation>
+        </annotation>
+        <complexType>
+          <simpleContent>
+            <extension base="dateTime">
+              <attribute name="nilReason" type="gml:NilReasonType"/>
+            </extension>
+          </simpleContent>
+        </complexType>
+      </element>
+      <element minOccurs="0" name="endLifespanVersion" nillable="true">
+        <annotation>
+          <documentation>-- Definition --
+Date and time at which this version of the spatial object was superseded or retired in the spatial data set.</documentation>
+        </annotation>
+        <complexType>
+          <simpleContent>
+            <extension base="dateTime">
+              <attribute name="nilReason" type="gml:NilReasonType"/>
+            </extension>
+          </simpleContent>
+        </complexType>
+      </element>
+      <element name="inspireId" type="base:IdentifierPropertyType">
+        <annotation>
+          <documentation>-- Definition --
+External object identifier of the preliminary flood risk assessment.
+
+-- Description --
+An external object identifier is a unique object identifier published by the responsible body, which may be used by external applications to reference the spatial object. The identifier is an identifier of the spatial object, not an identifier of the real-world phenomenon.</documentation>
+        </annotation>
+      </element>
+      <element name="reference" nillable="true">
+        <annotation>
+          <documentation>-- Definition --
+A reference to the Prelininary Flood Risk Assessment document.</documentation>
+        </annotation>
+        <complexType>
+          <sequence>
+            <element ref="nz-core:DocumentReference"/>
+          </sequence>
+          <attribute name="nilReason" type="gml:NilReasonType"/>
+        </complexType>
+      </element>
+      <element maxOccurs="unbounded" minOccurs="0" name="exposedElementPFRA">
+        <annotation>
+          <documentation>-- Definition --
+The exposed element that is in a preliminary flood risk assessment.</documentation>
+          <appinfo>
+            <reversePropertyName xmlns="http://www.opengis.net/gml/3.2">nz-core:pFRA</reversePropertyName>
+          </appinfo>
+        </annotation>
+        <complexType>
+          <complexContent>
+            <extension base="gml:AbstractMemberType">
+              <sequence minOccurs="0">
+                <element ref="nz-core:ExposedElements"/>
+              </sequence>
+              <attributeGroup ref="gml:AssociationAttributeGroup"/>
+            </extension>
+          </complexContent>
+        </complexType>
+      </element>
+      <element maxOccurs="unbounded" name="componentOf">
+        <annotation>
+          <documentation>-- Definition --
+The inundated land that is in a preliminary flood risk assessment.</documentation>
+          <appinfo>
+            <reversePropertyName xmlns="http://www.opengis.net/gml/3.2">nz-f:contains</reversePropertyName>
+          </appinfo>
+        </annotation>
+        <complexType>
+          <complexContent>
+            <extension base="gml:AbstractMemberType">
+              <sequence minOccurs="0">
+                <element ref="nz-f:InundatedLand"/>
+              </sequence>
+              <attributeGroup ref="gml:AssociationAttributeGroup"/>
+            </extension>
+          </complexContent>
+        </complexType>
+      </element>
+      <element maxOccurs="unbounded" name="result" type="nz-f:PotentialFloodedAreaPropertyType">
+        <annotation>
+          <documentation>-- Definition --
+The potential flooded area that is designed aftyer a prliminary flood risk assessment.</documentation>
+          <appinfo>
+            <reversePropertyName xmlns="http://www.opengis.net/gml/3.2">nz-f:origin</reversePropertyName>
+          </appinfo>
+        </annotation>
+      </element>
+    </sequence>
+  </complexType>
+  <complexType name="PreliminaryFRAssessmentPropertyType">
+    <sequence>
+      <element ref="nz-f:PreliminaryFRAssessment"/>
+    </sequence>
+  </complexType>
+  <simpleType name="ProbabilityOfFloodType">
+    <annotation>
+      <documentation>-- Definition --
+An assessment of the level probability the flood can occur on the area.
+
+-- Description --
+[2007/60/EC]. A flood can have a low probability of occurence, a medium probability of occurence or a high probability of occurence.</documentation>
+    </annotation>
+    <restriction base="string">
+      <enumeration value="low">
+        <annotation>
+          <documentation>-- Definition --
+Floods with a likely return period usually between 200 and 1000 years (or extreme events).</documentation>
+        </annotation>
+      </enumeration>
+      <enumeration value="medium">
+        <annotation>
+          <documentation>-- Definition --
+Floods with a likely return period usually between 100 and 200 years (2007/60/EC = 100 years).</documentation>
+        </annotation>
+      </enumeration>
+      <enumeration value="high">
+        <annotation>
+          <documentation>-- Definition --
+Floods with a likely return period usually between 5 and 50 years.</documentation>
+        </annotation>
+      </enumeration>
+    </restriction>
+  </simpleType>
+  <element name="PotentialFloodedAreaElement" substitutionGroup="gml:AbstractFeature" type="nz-f:PotentialFloodedAreaElementType">
+    <annotation>
+      <documentation>-- Definition --
+SOURCE : [Flood Directive 2007/60/CE]
+
+An element of a potential flooded area, for which data about water height and/or water level, flood of flow and / or velocity of flow, is provided.</documentation>
+    </annotation>
+  </element>
+  <complexType name="PotentialFloodedAreaElementType">
+    <complexContent>
+      <extension base="gml:AbstractFeatureType">
+        <sequence>
+          <element name="beginLifespanVersion" nillable="true">
+            <annotation>
+              <documentation>-- Definition --
+Date and time at which this version of the spatial object was inserted or changed in the spatial data set.</documentation>
+            </annotation>
+            <complexType>
+              <simpleContent>
+                <extension base="dateTime">
+                  <attribute name="nilReason" type="gml:NilReasonType"/>
+                </extension>
+              </simpleContent>
+            </complexType>
+          </element>
+          <element minOccurs="0" name="endLifespanVersion" nillable="true">
+            <annotation>
+              <documentation>--Definition--
+Date and time at which this version of the spatial object was superseded or retired in the spatial data set.</documentation>
+            </annotation>
+            <complexType>
+              <simpleContent>
+                <extension base="dateTime">
+                  <attribute name="nilReason" type="gml:NilReasonType"/>
+                </extension>
+              </simpleContent>
+            </complexType>
+          </element>
+          <element name="floodFlow" nillable="true">
+            <annotation>
+              <documentation>-- Definition --
+Stream discharge during a flood (expressed by volume per unit of time, usually m³/s).</documentation>
+            </annotation>
+            <complexType>
+              <simpleContent>
+                <extension base="gml:MeasureType">
+                  <attribute name="nilReason" type="gml:NilReasonType"/>
+                </extension>
+              </simpleContent>
+            </complexType>
+          </element>
+          <element name="inspireId" type="base:IdentifierPropertyType">
+            <annotation>
+              <documentation>-- Definition --
+External object identifier of the potential flooded area.
+
+-- Description --
+An external object identifier is a unique object identifier published by the responsible body, which may be used by external applications to reference the spatial object. The identifier is an identifier of the spatial object, not an identifier of the real-world phenomenon.</documentation>
+            </annotation>
+          </element>
+          <element name="velocityOfFlow" nillable="true">
+            <annotation>
+              <documentation>-- Definition --
+average speed (velocity) of the water, usually expressed by m/s.</documentation>
+            </annotation>
+            <complexType>
+              <simpleContent>
+                <extension base="gml:SpeedType">
+                  <attribute name="nilReason" type="gml:NilReasonType"/>
+                </extension>
+              </simpleContent>
+            </complexType>
+          </element>
+          <element name="waterHeight" nillable="true">
+            <annotation>
+              <documentation>-- Definition --
+Vertical distance between the water surface and the stream bed or the land surface in a flooded area.</documentation>
+            </annotation>
+            <complexType>
+              <simpleContent>
+                <extension base="gml:MeasureType">
+                  <attribute name="nilReason" type="gml:NilReasonType"/>
+                </extension>
+              </simpleContent>
+            </complexType>
+          </element>
+          <element name="waterlevel" nillable="true">
+            <annotation>
+              <documentation>-- Definition --
+The elevation at which water stands respectively the level of the surface of a body of water.</documentation>
+            </annotation>
+            <complexType>
+              <simpleContent>
+                <extension base="gml:LengthType">
+                  <attribute name="nilReason" type="gml:NilReasonType"/>
+                </extension>
+              </simpleContent>
+            </complexType>
+          </element>
+          <element maxOccurs="unbounded" minOccurs="0" name="contains" type="nz-f:PotentialFloodedAreaPropertyType">
+            <annotation>
+              <documentation>-- Definition --
+The potential flooded area that is composed of elements.</documentation>
+              <appinfo>
+                <reversePropertyName xmlns="http://www.opengis.net/gml/3.2">nz-f:componentOf</reversePropertyName>
+              </appinfo>
+            </annotation>
+          </element>
+        </sequence>
+      </extension>
+    </complexContent>
+  </complexType>
+  <complexType name="PotentialFloodedAreaElementPropertyType">
+    <sequence minOccurs="0">
+      <element ref="nz-f:PotentialFloodedAreaElement"/>
+    </sequence>
+    <attributeGroup ref="gml:AssociationAttributeGroup"/>
+    <attributeGroup ref="gml:OwnershipAttributeGroup"/>
+  </complexType>
+  <element name="FloodHazardMap" substitutionGroup="gml:AbstractObject" type="nz-f:FloodHazardMapType">
+    <annotation>
+      <documentation>-- Definition --
+SOURCE : [Flood Directive 2007/60/CE]
+
+Map as defined in Chapter III, article 6, paragraph 3 of Directive 2007/60/CE.</documentation>
+    </annotation>
+  </element>
+  <complexType name="FloodHazardMapType">
+    <sequence>
+      <element name="beginLifespanVersion" nillable="true">
+        <annotation>
+          <documentation>-- Definition --
+Date and time at which this version of the spatial object was inserted or changed in the spatial data set.</documentation>
+        </annotation>
+        <complexType>
+          <simpleContent>
+            <extension base="dateTime">
+              <attribute name="nilReason" type="gml:NilReasonType"/>
+            </extension>
+          </simpleContent>
+        </complexType>
+      </element>
+      <element minOccurs="0" name="endLifespanVersion" nillable="true">
+        <annotation>
+          <documentation>-- Definition --
+Date and time at which this version of the spatial object was superseded or retired in the spatial data set.</documentation>
+        </annotation>
+        <complexType>
+          <simpleContent>
+            <extension base="dateTime">
+              <attribute name="nilReason" type="gml:NilReasonType"/>
+            </extension>
+          </simpleContent>
+        </complexType>
+      </element>
+      <element name="inspireId" type="base:IdentifierPropertyType">
+        <annotation>
+          <documentation>-- Definition --
+External object identifier of the flood hazard map.
+
+-- Description --
+An external object identifier is a unique object identifier published by the responsible body, which may be used by external applications to reference the spatial object. The identifier is an identifier of the spatial object, not an identifier of the real-world phenomenon.</documentation>
+        </annotation>
+      </element>
+      <element name="reference" nillable="true">
+        <annotation>
+          <documentation>-- Definition --
+A reference to the Flood Hazard Map document.</documentation>
+        </annotation>
+        <complexType>
+          <sequence>
+            <element ref="nz-core:DocumentReference"/>
+          </sequence>
+          <attribute name="nilReason" type="gml:NilReasonType"/>
+        </complexType>
+      </element>
+      <element maxOccurs="unbounded" minOccurs="0" name="frMap" type="nz-f:FloodRiskMapPropertyType">
+        <annotation>
+          <documentation>-- Definition --
+The flood risk map that is linked to the flood hazard map.</documentation>
+          <appinfo>
+            <reversePropertyName xmlns="http://www.opengis.net/gml/3.2">nz-f:fhMap</reversePropertyName>
+          </appinfo>
+        </annotation>
+      </element>
+      <element maxOccurs="3" name="componentOf">
+        <annotation>
+          <documentation>-- Definition --
+The potential flooded area is designed and is integrated in a flood hazard map.</documentation>
+          <appinfo>
+            <reversePropertyName xmlns="http://www.opengis.net/gml/3.2">nz-f:contains</reversePropertyName>
+          </appinfo>
+        </annotation>
+        <complexType>
+          <complexContent>
+            <extension base="gml:AbstractMemberType">
+              <sequence minOccurs="0">
+                <element ref="nz-f:PotentialFloodedArea"/>
+              </sequence>
+              <attributeGroup ref="gml:AssociationAttributeGroup"/>
+            </extension>
+          </complexContent>
+        </complexType>
+      </element>
+    </sequence>
+  </complexType>
+  <complexType name="FloodHazardMapPropertyType">
+    <sequence>
+      <element ref="nz-f:FloodHazardMap"/>
+    </sequence>
+  </complexType>
+  <element name="FloodRiskMap" substitutionGroup="gml:AbstractObject" type="nz-f:FloodRiskMapType">
+    <annotation>
+      <documentation>-- Definition --
+SOURCE : [Chapter III, article 6, paragraph 5 of Directive 2007/60/CE]
+
+Flood risk maps show the potential adverse consequences expressed in terms of the type of the economic activity affected under each flood scenario (defined as 'potential flooded area' in the model).</documentation>
+    </annotation>
+  </element>
+  <complexType name="FloodRiskMapType">
+    <sequence>
+      <element name="beginLifespanVersion" nillable="true">
+        <annotation>
+          <documentation>-- Definition --
+Date and time at which this version of the spatial object was inserted or changed in the spatial data set.</documentation>
+        </annotation>
+        <complexType>
+          <simpleContent>
+            <extension base="dateTime">
+              <attribute name="nilReason" type="gml:NilReasonType"/>
+            </extension>
+          </simpleContent>
+        </complexType>
+      </element>
+      <element minOccurs="0" name="endLifespanVersion" nillable="true">
+        <annotation>
+          <documentation>-- Definition --
+Date and time at which this version of the spatial object was superseded or retired in the spatial data set.</documentation>
+        </annotation>
+        <complexType>
+          <simpleContent>
+            <extension base="dateTime">
+              <attribute name="nilReason" type="gml:NilReasonType"/>
+            </extension>
+          </simpleContent>
+        </complexType>
+      </element>
+      <element name="inspireId" type="base:IdentifierPropertyType">
+        <annotation>
+          <documentation>-- Definition --
+External object identifier of the flood risk map.
+
+-- Description --
+"An external object identifier is a unique object identifier published by the responsible body, which may be used by external applications to reference the spatial object. The identifier is an identifier of the spatial object, not an identifier of the real-world phenomenon.</documentation>
+        </annotation>
+      </element>
+      <element name="reference" nillable="true">
+        <annotation>
+          <documentation>-- Definition --
+A reference to the Flood Risk map document.</documentation>
+        </annotation>
+        <complexType>
+          <sequence>
+            <element ref="nz-core:DocumentReference"/>
+          </sequence>
+          <attribute name="nilReason" type="gml:NilReasonType"/>
+        </complexType>
+      </element>
+      <element maxOccurs="unbounded" name="vulnElement" type="nz-core:ExposedElementsPropertyType">
+        <annotation>
+          <documentation>-- Definition --
+The exposed element that is on a flood risk map.</documentation>
+          <appinfo>
+            <reversePropertyName xmlns="http://www.opengis.net/gml/3.2">nz-core:frMap</reversePropertyName>
+          </appinfo>
+        </annotation>
+      </element>
+      <element maxOccurs="unbounded" minOccurs="0" name="fhMap" type="nz-f:FloodHazardMapPropertyType">
+        <annotation>
+          <documentation>-- Definition --
+The flood hazard map that linked to the flood risk map.</documentation>
+          <appinfo>
+            <reversePropertyName xmlns="http://www.opengis.net/gml/3.2">nz-f:frMap</reversePropertyName>
+          </appinfo>
+        </annotation>
+      </element>
+    </sequence>
+  </complexType>
+  <complexType name="FloodRiskMapPropertyType">
+    <sequence>
+      <element ref="nz-f:FloodRiskMap"/>
+    </sequence>
+  </complexType>
+  <element name="PotentialFloodedArea" substitutionGroup="nz-core:ModelledOrDeterminedHazard" type="nz-f:PotentialFloodedAreaType">
+    <annotation>
+      <documentation>--Definition--
+SOURCE : [Flood Directive 2007/60/CE]
+
+Potential flooded areas as defined in Chapter III, article 6, paragraph 3 of Directive 2007/60/CE</documentation>
+    </annotation>
+  </element>
+  <complexType name="PotentialFloodedAreaType">
+    <complexContent>
+      <extension base="nz-core:ModelledOrDeterminedHazardType">
+        <sequence>
+          <element maxOccurs="unbounded" minOccurs="0" name="componentOf">
+            <annotation>
+              <documentation>-- Definition --
+the element of a potential flooded area.</documentation>
+              <appinfo>
+                <reversePropertyName xmlns="http://www.opengis.net/gml/3.2">nz-f:contains</reversePropertyName>
+              </appinfo>
+            </annotation>
+            <complexType>
+              <complexContent>
+                <extension base="gml:AbstractMemberType">
+                  <sequence minOccurs="0">
+                    <element ref="nz-f:PotentialFloodedAreaElement"/>
+                  </sequence>
+                  <attributeGroup ref="gml:AssociationAttributeGroup"/>
+                </extension>
+              </complexContent>
+            </complexType>
+          </element>
+          <element name="contains" type="nz-f:FloodHazardMapPropertyType">
+            <annotation>
+              <documentation>-- Definition --
+The flood hazard map contains between 1 and 3 potential flooded areas.</documentation>
+              <appinfo>
+                <reversePropertyName xmlns="http://www.opengis.net/gml/3.2">nz-f:componentOf</reversePropertyName>
+              </appinfo>
+            </annotation>
+          </element>
+          <element maxOccurs="unbounded" minOccurs="0" name="origin" type="nz-f:PreliminaryFRAssessmentPropertyType">
+            <annotation>
+              <documentation>-- Definition --
+The preliminary flood risk assessment that backed the design of the potential flooded area.</documentation>
+              <appinfo>
+                <reversePropertyName xmlns="http://www.opengis.net/gml/3.2">nz-f:result</reversePropertyName>
+              </appinfo>
+            </annotation>
+          </element>
+        </sequence>
+      </extension>
+    </complexContent>
+  </complexType>
+  <complexType name="PotentialFloodedAreaPropertyType">
+    <sequence minOccurs="0">
+      <element ref="nz-f:PotentialFloodedArea"/>
+    </sequence>
+    <attributeGroup ref="gml:AssociationAttributeGroup"/>
+    <attributeGroup ref="gml:OwnershipAttributeGroup"/>
+  </complexType>
+  <element name="InundatedLand" substitutionGroup="nz-core:ObservedHazard" type="nz-f:InundatedLandType">
+    <annotation>
+      <documentation>-- Definition --
+A tract periodically covered by flood water, excluding tidal waters.
+
+-- Description --
+SOURCE [DFDD].
+
+NOTE 1 It may be caused by either uncontrolled inundation (for example: flooding due to a river overflowing its banks or low-lying regions accumulating standing water following severe rainfall) or controlled inundation (for example: flooded by the regulation of the level of a reservoir). [DFDD].
+
+NOTE 2 Inundation for irrigation purposes is excluded.
+
+NOTE 3 Regarded as a candidate spatial object in Annex III theme 'Natural risk zones' due to the relationship (by definition) with flooding.</documentation>
+    </annotation>
+  </element>
+  <complexType name="InundatedLandType">
+    <complexContent>
+      <extension base="nz-core:ObservedHazardType">
+        <sequence>
+          <element maxOccurs="unbounded" minOccurs="0" name="geographicalName" nillable="true">
+            <annotation>
+              <documentation>-- Definition --
+A geographical name that is used to identify a hydrographic object in the real world. It provides a 'key' for implicitly associating different representations of the object.
+
+-- Description --
+EXAMPLE A standing water in a mapping view may share the same geographical name as a WFD lake in a reporting view, implying they are both representations of the same real world object.</documentation>
+            </annotation>
+            <complexType>
+              <sequence>
+                <element ref="gn:GeographicalName"/>
+              </sequence>
+              <attribute name="nilReason" type="gml:NilReasonType"/>
+            </complexType>
+          </element>
+          <element maxOccurs="unbounded" minOccurs="0" name="hydroId" nillable="true">
+            <annotation>
+              <documentation>-- Definition --
+An identifier that is used to identify a hydrographic object in the real world. It provides a 'key' for implicitly associating different representations of the object.
+
+-- Description --
+NOTE 1 The identifier may be a national hydrological identification code.
+
+NOTE 2 More than one identifier may be required, for instance a watercourse may be assigned different identifying codes under national and European schemes.
+
+EXAMPLE A lock in a mapping view may share the same identifier as a hydro node in a network view, implying they are both representations of the same real world object.</documentation>
+            </annotation>
+            <complexType>
+              <sequence>
+                <element ref="hy:HydroIdentifier"/>
+              </sequence>
+              <attribute name="nilReason" type="gml:NilReasonType"/>
+            </complexType>
+          </element>
+          <element maxOccurs="unbounded" minOccurs="0" name="relatedHydroObject" type="gml:ReferenceType">
+            <annotation>
+              <documentation>-- Definition --
+A related hydrographic object representing the same real-world entity.</documentation>
+              <appinfo>
+                <targetElement xmlns="http://www.opengis.net/gml/3.2">hy:HydroObject</targetElement>
+              </appinfo>
+            </annotation>
+          </element>
+          <element name="dateOfObservation" type="dateTime">
+            <annotation>
+              <documentation>-- Definition --
+Date of commencement.</documentation>
+            </annotation>
+          </element>
+          <element name="inundationReturnPeriod" nillable="true">
+            <annotation>
+              <documentation>-- Definition --
+The average period (in years) between the occurences of an inundation event.</documentation>
+            </annotation>
+            <complexType>
+              <simpleContent>
+                <extension base="double">
+                  <attribute name="nilReason" type="gml:NilReasonType"/>
+                </extension>
+              </simpleContent>
+            </complexType>
+          </element>
+          <element name="inundationType" nillable="true">
+            <annotation>
+              <documentation>-- Definition --
+The type of a land subject to inundation based on the cause of its flooding.
+
+-- Description --
+SOURCE [DFDD].</documentation>
+            </annotation>
+            <complexType>
+              <simpleContent>
+                <extension base="gml:CodeType">
+                  <attribute name="nilReason" type="gml:NilReasonType"/>
+                </extension>
+              </simpleContent>
+            </complexType>
+          </element>
+          <element maxOccurs="unbounded" minOccurs="0" name="contains" type="nz-f:PreliminaryFRAssessmentPropertyType">
+            <annotation>
+              <documentation>-- Definition --
+The preliminary flood risk assessment contains the delineation of the inundated lands that are on the area of interest of the preliminary flood assessment and the description of the exposed elements the inundated land is related to.</documentation>
+              <appinfo>
+                <reversePropertyName xmlns="http://www.opengis.net/gml/3.2">nz-f:componentOf</reversePropertyName>
+              </appinfo>
+            </annotation>
+          </element>
+        </sequence>
+      </extension>
+    </complexContent>
+  </complexType>
+  <complexType name="InundatedLandPropertyType">
+    <sequence minOccurs="0">
+      <element ref="nz-f:InundatedLand"/>
+    </sequence>
+    <attributeGroup ref="gml:AssociationAttributeGroup"/>
+    <attributeGroup ref="gml:OwnershipAttributeGroup"/>
+  </complexType>
+</schema>

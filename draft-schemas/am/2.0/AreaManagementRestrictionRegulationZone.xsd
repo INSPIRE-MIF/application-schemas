@@ -1,0 +1,652 @@
+<?xml version="1.0" encoding="UTF-8"?><schema xmlns="http://www.w3.org/2001/XMLSchema" xmlns:am="http://inspire.jrc.ec.europa.eu/schemas/am/2.0" xmlns:base="urn:x-inspire:specification:gmlas:BaseTypes:3.2" xmlns:base2="http://inspire.jrc.ec.europa.eu/schemas/base2/0.1" xmlns:ef="http://inspire.jrc.ec.europa.eu/schemas/ef/2.0" xmlns:gmd="http://www.isotc211.org/2005/gmd" xmlns:gml="http://www.opengis.net/gml/3.2" xmlns:gn="urn:x-inspire:specification:gmlas:GeographicalNames:3.0" elementFormDefault="qualified" targetNamespace="http://inspire.jrc.ec.europa.eu/schemas/am/2.0" version="2.0">
+  <annotation>
+    <documentation>Application Schema for Area Management, Restriction and Regulation Zones</documentation>
+  </annotation>
+  <import namespace="http://inspire.jrc.ec.europa.eu/schemas/base2/0.1" schemaLocation="https://inspire.ec.europa.eu/draft-schemas/base2/0.1/BaseTypes2.xsd"/>
+  <import namespace="http://inspire.jrc.ec.europa.eu/schemas/ef/2.0" schemaLocation="https://inspire.ec.europa.eu/draft-schemas/ef/2.0/EnvironmentalMonitoringFacilities.xsd"/>
+  <import namespace="http://www.isotc211.org/2005/gmd" schemaLocation="http://schemas.opengis.net/iso/19139/20070417/gmd/gmd.xsd"/>
+  <import namespace="http://www.opengis.net/gml/3.2" schemaLocation="http://schemas.opengis.net/gml/3.2.1/gml.xsd"/>
+  <import namespace="urn:x-inspire:specification:gmlas:BaseTypes:3.2" schemaLocation="https://inspire.ec.europa.eu/schemas/base/3.2/BaseTypes.xsd"/>
+  <import namespace="urn:x-inspire:specification:gmlas:GeographicalNames:3.0" schemaLocation="https://inspire.ec.europa.eu/schemas/gn/3.0/GeographicalNames.xsd"/>
+  <!--XML Schema document created by ShapeChange-->
+  <element name="ManagementRegulationOrRestrictionZoneCollection" substitutionGroup="gml:AbstractFeature" type="am:ManagementRegulationOrRestrictionZoneCollectionType">
+    <annotation>
+      <documentation>-- Definition --
+Identifiable collection of ManagementRestrictionOrRegulationZone spatial objects.
+
+-- Description --
+A collection of ManagementRestrictionOrRegulationZone is provided to enable inclusion of a collection level legalBasis property which shall be inherited by all spatial objects. This can be used instead of the feature level legalBasis property to prevent un-necessary data redunancy.</documentation>
+    </annotation>
+  </element>
+  <complexType name="ManagementRegulationOrRestrictionZoneCollectionType">
+    <complexContent>
+      <extension base="gml:AbstractFeatureType">
+        <sequence>
+          <element minOccurs="0" name="inspireID" nillable="true">
+            <annotation>
+              <documentation>-- Definition --
+External object identifier of the spatial object.
+
+-- Description -- 
+An external object identifier is a unique object identifier published by the responsible body, which may be used by external application to reference the spatial object. The identifier is an identifier of the spatial object, not an identifier of the real-world phenomenon.</documentation>
+            </annotation>
+            <complexType>
+              <sequence>
+                <element ref="base:Identifier"/>
+              </sequence>
+              <attribute name="nilReason" type="gml:NilReasonType"/>
+            </complexType>
+          </element>
+          <element maxOccurs="unbounded" name="legalBasis" nillable="true">
+            <annotation>
+              <documentation>-- Definition --
+Legislative instrument that required the establishment of the Management, Restriction or Regulation Zone.
+
+-- Description --
+NOTE 1 A Management, Restriction or Regulation Zone is an area that has been defined by law to delimit where specific control measures have been established to protect the environment.
+
+NOTE 2 The latest legislative information should be recorded.
+
+NOTE 3 This attribute does not need to be provided if the legalBasis shall be been defined at the feature level.</documentation>
+            </annotation>
+            <complexType>
+              <sequence>
+                <element ref="base2:LegislationReference"/>
+              </sequence>
+              <attribute name="nilReason" type="gml:NilReasonType"/>
+            </complexType>
+          </element>
+          <element maxOccurs="unbounded" name="member" type="am:ManagementRegulationOrRestrictionZonePropertyType"/>
+        </sequence>
+      </extension>
+    </complexContent>
+  </complexType>
+  <complexType name="ManagementRegulationOrRestrictionZoneCollectionPropertyType">
+    <sequence minOccurs="0">
+      <element ref="am:ManagementRegulationOrRestrictionZoneCollection"/>
+    </sequence>
+    <attributeGroup ref="gml:AssociationAttributeGroup"/>
+    <attributeGroup ref="gml:OwnershipAttributeGroup"/>
+  </complexType>
+  <element name="EnvironmentalObjective" substitutionGroup="gml:AbstractObject" type="am:EnvironmentalObjectiveType">
+    <annotation>
+      <documentation>-- Definition --
+Summary of the key environmental objectives established within the management plan or action programme to protect environmental.
+
+-- Description --
+The types of environmental objective shall vary depending on the domain.</documentation>
+    </annotation>
+  </element>
+  <complexType name="EnvironmentalObjectiveType">
+    <sequence>
+      <element maxOccurs="unbounded" name="objective" type="gml:CodeType">
+        <annotation>
+          <documentation>-- Definition --
+Value summarising the key objective(s) established within the management area
+
+-- Description --
+The objective may be:
+&lt;ul&gt;
+	&lt;li&gt;key pollutants monitored with the zone&lt;/li&gt;
+	&lt;li&gt;harmful organisms&lt;/li&gt;
+&lt;/ul&gt;
+
+EXAMPLE: Air Quality objectives may be  PM10, PM 2.5, O3
+
+EXAMPLE: Plant Health objectives may be &lt;i&gt;Cephalcia lariciphila (Larch Sawfly), Gremmeniella abietina (Brunchorstia disease) etc.&lt;/i&gt;</documentation>
+        </annotation>
+      </element>
+      <element minOccurs="0" name="target" nillable="true">
+        <annotation>
+          <documentation>-- Definition --
+Value summarising the key target that is being protected.
+
+-- Description --
+The environmental objectives for which control measures are defined may be established specifically to protect specific targets.
+
+EXAMPLE: Air Quality protection target may be humanHealth, vegetation, ecosystems for specific pollutant values
+
+EXAMPLE: Plant Health Protection target may be:
+&lt;ul&gt;
+	&lt;li&gt;Larch for &lt;i&gt;Cephalcia lariciphila &lt;/i&gt;(Larch Sawfly)&lt;i&gt;,  &lt;/i&gt;&lt;/li&gt;
+	&lt;li&gt;Coniferous forest for&lt;i&gt; Gremmeniella abietina &lt;/i&gt;(Brunchorstia disease)&lt;/li&gt;
+&lt;/ul&gt;</documentation>
+        </annotation>
+        <complexType>
+          <simpleContent>
+            <extension base="gml:CodeType">
+              <attribute name="nilReason" type="gml:NilReasonType"/>
+            </extension>
+          </simpleContent>
+        </complexType>
+      </element>
+    </sequence>
+  </complexType>
+  <complexType name="EnvironmentalObjectivePropertyType">
+    <sequence>
+      <element ref="am:EnvironmentalObjective"/>
+    </sequence>
+  </complexType>
+  <simpleType name="ControlTypeCodeType">
+    <annotation>
+      <documentation>-- Definition --
+Types of control used to manage activities within the zone.</documentation>
+    </annotation>
+    <restriction base="string">
+      <enumeration value="permitted">
+        <annotation>
+          <documentation>-- Definition --
+The activity is allowed to be performed within the zone. 
+
+-- Description --
+NOTE 1: To achieve or maintain good environmental status only a specific activity or activities may be allowed to be performed in the zone.
+
+NOTE 2: If an activity is only allowed between a particular time period then this should be documented in the validTime attribute.</documentation>
+        </annotation>
+      </enumeration>
+      <enumeration value="restricted">
+        <annotation>
+          <documentation>-- Definition --
+An activity is limited to only be performed within specific bounds. 
+
+-- Description --
+NOTE 1: To achieve or maintain good environmental status an activity may be restricted to mitigate the risk of environmental degradation. 
+
+NOTE 2: If an activity is restricted between a particular time period then this should be documented in the validTime attribute
+
+EXAMPLE: Water abstraction: is restricted and controlled by licence where the operator may be limited to abstracting a specific amount of water per day.</documentation>
+        </annotation>
+      </enumeration>
+      <enumeration value="prohibited">
+        <annotation>
+          <documentation>-- Definition --
+An activity is not allowed to be performed within the zone. 
+
+-- Description --
+NOTE 1:To achieve or maintain good environmental status specific activity or activities may not be allowed to be performed in the zone.
+
+NOTE 2: If an activity is prohibited within a particular time period then this should be documented in the validTime attribute.</documentation>
+        </annotation>
+      </enumeration>
+      <enumeration value="promoted">
+        <annotation>
+          <documentation>-- Definition --
+An activity that is positively promoted or introduced within the zone to achieve good environmental status.</documentation>
+        </annotation>
+      </enumeration>
+    </restriction>
+  </simpleType>
+  <element name="ControlledActivityInformation" substitutionGroup="gml:AbstractObject" type="am:ControlledActivityInformationType">
+    <annotation>
+      <documentation>-- Definition --
+Information describing the type of measure or activity that is controlled (restricted, promoted, regulated) within the zone.
+
+-- Description --
+The ManagementRestrictionOrRegulationZone has been established to achieve or maintain good environmental status. To achieve this goal Public Authorities must establish a range of measures. These measures may include controlling particular activities within the zone. Examples include:
+&lt;ul&gt;
+	&lt;li&gt;controlling emissions to the environment&lt;/li&gt;
+	&lt;li&gt;restricting movements within the zone&lt;/li&gt;
+	&lt;li&gt;limiting pollutant values to protect health&lt;/li&gt;
+	&lt;li&gt;controlling urban or industrial development to protect cultural heritage, nature and biodiversity and greenspaces&lt;/li&gt;
+&lt;/ul&gt;</documentation>
+    </annotation>
+  </element>
+  <complexType name="ControlledActivityInformationType">
+    <sequence>
+      <element name="controlMeasure" type="am:ControlTypeCodeType">
+        <annotation>
+          <documentation>-- Definition --
+Type of control method used to manage activities or measures within the zone.
+
+-- Description --
+An activity can be controlled using different types of method to achieve different types of objective.
+
+EXAMPLES:
+&lt;ul&gt;
+	&lt;li&gt;Air quality may be regulated to protect human health&lt;/li&gt;
+	&lt;li&gt;Water abstraction or mineral extraction may be regulated (i.e. require a permit) to avoid over-utilisation of a resource&lt;/li&gt;
+	&lt;li&gt;Animal movements may be restricted or prohibited in the instance of an animal health epidemic (e.g. blue tongue or avian influenza)&lt;/li&gt;
+	&lt;li&gt;Hunting may be permitted or prohibited during a specific time.&lt;/li&gt;
+&lt;/ul&gt;</documentation>
+        </annotation>
+      </element>
+      <element maxOccurs="unbounded" name="activity" type="gml:CodeType">
+        <annotation>
+          <documentation>-- Definition --
+Type of activity that is controlled or promoted within the zone.</documentation>
+        </annotation>
+      </element>
+      <element maxOccurs="unbounded" minOccurs="0" name="specialisedActivity" nillable="true">
+        <annotation>
+          <documentation>-- Definition --
+Domain specific activity type controlled or promoted in the zone.
+
+-- Description --
+To enable data providers to more specifically define the types of activity or measure controlled in the zone relative to their domain. The values to be used in the specialisedActivty should be derived from a domain specific or Member State codelist.</documentation>
+        </annotation>
+        <complexType>
+          <simpleContent>
+            <extension base="gml:CodeType">
+              <attribute name="nilReason" type="gml:NilReasonType"/>
+            </extension>
+          </simpleContent>
+        </complexType>
+      </element>
+      <element minOccurs="0" name="description" nillable="true">
+        <annotation>
+          <documentation>-- Definition --
+Narrative summary providing more detailed information describing the controlled activity or measure. 
+
+-- Description --
+NOTE: The description shall include any additional information that explain the objectives that are to be achieved by the controlling measures.</documentation>
+        </annotation>
+        <complexType>
+          <simpleContent>
+            <extension base="string">
+              <attribute name="nilReason" type="gml:NilReasonType"/>
+            </extension>
+          </simpleContent>
+        </complexType>
+      </element>
+      <element maxOccurs="unbounded" minOccurs="0" name="restrictionPeriod" nillable="true">
+        <annotation>
+          <documentation>-- Definition --
+Time period or scheduled time defining when the controls apply to the activity or measure. 
+
+-- Description --
+NOTE: Specific controls may apply to the activities or measures within specified time periods.</documentation>
+        </annotation>
+        <complexType>
+          <sequence>
+            <element ref="am:RestrictedPeriod"/>
+          </sequence>
+          <attribute name="nilReason" type="gml:NilReasonType"/>
+        </complexType>
+      </element>
+    </sequence>
+  </complexType>
+  <complexType name="ControlledActivityInformationPropertyType">
+    <sequence>
+      <element ref="am:ControlledActivityInformation"/>
+    </sequence>
+  </complexType>
+  <element name="ManagementInformation" substitutionGroup="gml:AbstractObject" type="am:ManagementInformationType">
+    <annotation>
+      <documentation>-- Definition --
+Information describing the authority responsible for the Management, Regulation or Reporting Zone and any management plans defining the objectives and measures that will be undertaken in the zone to protect the environment.</documentation>
+    </annotation>
+  </element>
+  <complexType name="ManagementInformationType">
+    <sequence>
+      <element maxOccurs="unbounded" name="managementPlan" nillable="true">
+        <annotation>
+          <documentation>-- Definition --
+Reference to the management plan or action programme describing the objectives and measures that shall be undertaken in the zone to protect the environment.</documentation>
+        </annotation>
+        <complexType>
+          <complexContent>
+            <extension base="gml:AbstractMetadataPropertyType">
+              <sequence>
+                <element ref="gmd:CI_Citation"/>
+              </sequence>
+              <attribute name="nilReason" type="gml:NilReasonType"/>
+            </extension>
+          </complexContent>
+        </complexType>
+      </element>
+      <element maxOccurs="unbounded" minOccurs="0" name="environmentalObjectives" nillable="true">
+        <annotation>
+          <documentation>-- Definition --
+Key environmental objectives established to protect environmental status.
+
+-- Description --
+Specific environmental objectives may be defined within a management area or zone. This is a generic data type that shall enable domains to define a wide range of environmental objectives. 
+
+Where available, these values should be taken from existing domain or MS codelists.</documentation>
+        </annotation>
+        <complexType>
+          <sequence>
+            <element ref="am:EnvironmentalObjective"/>
+          </sequence>
+          <attribute name="nilReason" type="gml:NilReasonType"/>
+        </complexType>
+      </element>
+    </sequence>
+  </complexType>
+  <complexType name="ManagementInformationPropertyType">
+    <sequence>
+      <element ref="am:ManagementInformation"/>
+    </sequence>
+  </complexType>
+  <element name="ManagementRegulationOrRestrictionZone" substitutionGroup="gml:AbstractFeature" type="am:ManagementRegulationOrRestrictionZoneType">
+    <annotation>
+      <documentation>-- Definition --
+Area managed, regulated or used for reporting at international, European, national, regional and local levels.
+
+-- Description --
+SOURCE [INSPIRE Directive]</documentation>
+    </annotation>
+  </element>
+  <complexType name="ManagementRegulationOrRestrictionZoneType">
+    <complexContent>
+      <extension base="gml:AbstractFeatureType">
+        <sequence>
+          <element name="inspireId" type="base:IdentifierPropertyType">
+            <annotation>
+              <documentation>-- Definition --
+External object identifier of the spatial object.
+
+-- Description -- 
+An external object identifier is a unique object identifier published by the responsible body, which may be used by external application to reference the spatial object. The identifier is an identifier of the spatial object, not an identifier of the real-world phenomenon.</documentation>
+            </annotation>
+          </element>
+          <element maxOccurs="unbounded" minOccurs="0" name="thematicId" type="am:AlternateIdentifierPropertyType">
+            <annotation>
+              <documentation>-- Definition --
+Alternative thematic identifier to uniquely identify the spatial object.
+
+-- Description --
+Some management, restriction or regulation zones may be assigned multiple identifiers. These may have been established to meet the reporting requirements of different legislative instruments at International, European or at Member State levels.</documentation>
+            </annotation>
+          </element>
+          <element maxOccurs="unbounded" minOccurs="0" name="name" nillable="true">
+            <annotation>
+              <documentation>-- Name --
+common name
+
+-- Definition --
+Common name used to identify the management area, regulation or restriction zone.</documentation>
+            </annotation>
+            <complexType>
+              <sequence>
+                <element ref="gn:GeographicalName"/>
+              </sequence>
+              <attribute name="nilReason" type="gml:NilReasonType"/>
+            </complexType>
+          </element>
+          <element name="geometry" type="gml:GeometryPropertyType">
+            <annotation>
+              <documentation>-- Definition --
+The geometry representing the spatial extent of the spatial object.
+
+-- Description --
+NOTE 1:The geometry of a Management Area, Restriction or Regulation Zone shall be either a GM_Surface or GM_MultiSurface.
+
+NOTE 2: The geometry shall be encoded directly as coordinates and not by reference to natural, cadastral or administrative boundaries, although it may originally have been defined from these.
+
+NOTE 3: It is recommended that a data provider should provide information describing which dataset (and version) that the geometry was derived from.</documentation>
+            </annotation>
+          </element>
+          <element name="zoneType" nillable="true">
+            <annotation>
+              <documentation>- Name --
+Type of management area, regulation or restriction zone.
+
+-- Definition --
+High level classification defining the type of management area, regulation or restriction zone.</documentation>
+            </annotation>
+            <complexType>
+              <simpleContent>
+                <extension base="gml:CodeType">
+                  <attribute name="nilReason" type="gml:NilReasonType"/>
+                </extension>
+              </simpleContent>
+            </complexType>
+          </element>
+          <element minOccurs="0" name="specialisedZoneType" nillable="true">
+            <annotation>
+              <documentation>-- Definition --
+Additional classification value which further specialises the type of management, regulation or restriction zone relevant to the domain. 
+
+-- Description -- 
+While the zoneType provides a high-level classification of the type of management, regulation or restriction zone,  the specialisedZoneType can be used to provide further domain specific classification of the zone.
+
+EXAMPLE: An airQualityManagementZone can be further classified as either an agglomeration or nonAgglomeration
+
+NOTE: This value should be derived from a relevant domain-specific controlled vocabulary, where available.</documentation>
+            </annotation>
+            <complexType>
+              <simpleContent>
+                <extension base="gml:CodeType">
+                  <attribute name="nilReason" type="gml:NilReasonType"/>
+                </extension>
+              </simpleContent>
+            </complexType>
+          </element>
+          <element name="validTime" nillable="true" type="gml:TimePeriodPropertyType">
+            <annotation>
+              <documentation>-- Definition --
+Time period defining when the Management Area, Regulation or Restriction Zone was in force.
+
+-- Description --
+NOTE 1: validTime uses the ISO 19107 TM_Period which is comprised of two properties - beginPosition and endPosition. If the zone shall remain in force for an indefinite period of time then the endPosition value can be set to "indeterminate".</documentation>
+            </annotation>
+          </element>
+          <element name="competentAuthority" nillable="true">
+            <annotation>
+              <documentation>-- Definition --
+Organisation responsible for managing/restricting or regulating measures or activities within the zone or for delivering measures established to protect the environment.</documentation>
+            </annotation>
+            <complexType>
+              <complexContent>
+                <extension base="gml:AbstractMetadataPropertyType">
+                  <sequence>
+                    <element ref="gmd:CI_ResponsibleParty"/>
+                  </sequence>
+                  <attribute name="nilReason" type="gml:NilReasonType"/>
+                </extension>
+              </complexContent>
+            </complexType>
+          </element>
+          <element maxOccurs="unbounded" minOccurs="0" name="legalBasis" nillable="true">
+            <annotation>
+              <documentation>-- Definition --
+Legislative instrument that required the establishment of the Management, Restriction or Regulation Zone.
+
+-- Description --
+NOTE 1 A Management, Restriction or Regulation Zone is an area that has been defined by law to delimit where specific control measures have been established to protect the environment.
+
+NOTE 2 The latest legislative information should be recorded.
+
+NOTE 3 This attribute does not need to be provided if the legalBasis has been defined at the SpatialDataset level.</documentation>
+            </annotation>
+            <complexType>
+              <sequence>
+                <element ref="base2:LegislationReference"/>
+              </sequence>
+              <attribute name="nilReason" type="gml:NilReasonType"/>
+            </complexType>
+          </element>
+          <element name="beginLifespanVersion" nillable="true">
+            <annotation>
+              <documentation>-- Definition --
+Date and time at which this version of the spatial object was inserted or changed in the spatial data set.</documentation>
+            </annotation>
+            <complexType>
+              <simpleContent>
+                <extension base="dateTime">
+                  <attribute name="nilReason" type="gml:NilReasonType"/>
+                </extension>
+              </simpleContent>
+            </complexType>
+          </element>
+          <element minOccurs="0" name="endLifespanVersion" nillable="true">
+            <annotation>
+              <documentation>-- Definition --
+Date and time at which this version of the spatial object was superseded or retired in the spatial data set.</documentation>
+            </annotation>
+            <complexType>
+              <simpleContent>
+                <extension base="dateTime">
+                  <attribute name="nilReason" type="gml:NilReasonType"/>
+                </extension>
+              </simpleContent>
+            </complexType>
+          </element>
+          <element maxOccurs="unbounded" minOccurs="0" name="monitoringFacility" nillable="true">
+            <annotation>
+              <documentation>-- Definition --
+Reference to the monitoring facilities that are established within the ManagementRestrictionOrRegulationZone to monitor the state of the environment to enable assessment</documentation>
+            </annotation>
+            <complexType>
+              <sequence minOccurs="0">
+                <element ref="ef:EnvironmentalMonitoringFacility"/>
+              </sequence>
+              <attributeGroup ref="gml:AssociationAttributeGroup"/>
+              <attributeGroup ref="gml:OwnershipAttributeGroup"/>
+            </complexType>
+          </element>
+          <element maxOccurs="unbounded" minOccurs="0" name="relatedZone" type="am:ManagementRegulationOrRestrictionZonePropertyType">
+            <annotation>
+              <documentation>-- Definition --
+A zone within the managed, regulated or reporting unit, for which specific management, restriction or regulation  measures apply.
+
+-- Description --
+EXAMPLE Add some zone example here.</documentation>
+            </annotation>
+          </element>
+        </sequence>
+      </extension>
+    </complexContent>
+  </complexType>
+  <complexType name="ManagementRegulationOrRestrictionZonePropertyType">
+    <sequence minOccurs="0">
+      <element ref="am:ManagementRegulationOrRestrictionZone"/>
+    </sequence>
+    <attributeGroup ref="gml:AssociationAttributeGroup"/>
+    <attributeGroup ref="gml:OwnershipAttributeGroup"/>
+  </complexType>
+  <element name="RestrictedPeriod" substitutionGroup="gml:AbstractObject" type="am:RestrictedPeriodType">
+    <annotation>
+      <documentation>-- Definition --
+The RestrictedPeriod defines the either:
+&lt;ol&gt;
+	&lt;li&gt;Time period (e.g. 01 Jan 2011 to 31 March 2011) when an activity is restricted, prohibited or permitted, or&lt;/li&gt;
+	&lt;li&gt;Scheduled time period when an activity is restricted, prohibited or permitted. &lt;/li&gt;
+&lt;/ol&gt;</documentation>
+    </annotation>
+  </element>
+  <complexType name="RestrictedPeriodType">
+    <choice>
+      <element name="validTime" type="gml:TimePeriodPropertyType">
+        <annotation>
+          <documentation>-- Definition --
+Contiguous time period over which the restriction applies. 
+
+-- Description --
+EXAMPLE 1: startPosition = Jan 2010 
+	        endPosition = Jan 2020
+
+EXAMPLE 2: startPosition = 01 January 2010 
+	        endPosition = 31 December 2010
+
+EXAMPLE 3: startPosition = 2010-01-01T00:00:00
+	        endPosition = 2010-01-31T23:59:00
+
+To support the wide range of possible data and time encodings TM_Period is used which is a union of ISO 8601 DateTime, Date and Time and other TM_TemporalPosition.</documentation>
+        </annotation>
+      </element>
+      <element name="scheduledPeriod" type="am:SchedulePropertyType">
+        <annotation>
+          <documentation>-- Definition --
+Definition of the temporality of an activity where the restrictions are not applied continuously.
+
+-- Description --
+EXAMPLE:  Weekdays from 09:00 to 17:00.</documentation>
+        </annotation>
+      </element>
+    </choice>
+  </complexType>
+  <complexType name="RestrictedPeriodPropertyType">
+    <sequence>
+      <element ref="am:RestrictedPeriod"/>
+    </sequence>
+  </complexType>
+  <element name="Schedule" substitutionGroup="gml:AbstractObject" type="am:ScheduleType">
+    <annotation>
+      <documentation>-- Definition --
+Temporality of an activity where the restrictions are not applied continuously.
+
+-- Description --
+EXAMPLE:  Weekdays from 09:00 to 17:00</documentation>
+    </annotation>
+  </element>
+  <complexType name="ScheduleType">
+    <sequence>
+      <element name="day" type="gml:CodeType">
+        <annotation>
+          <documentation>-- Definition --
+Day or days to which the restriction applies.</documentation>
+        </annotation>
+      </element>
+      <element name="startTime" type="gml:TimePositionType">
+        <annotation>
+          <documentation>-- Definition --
+Time defining when the restriction starts.
+
+-- Description --
+NOTE: The time should be defined as an ISO 8601 time:
+&lt;ul&gt;
+	&lt;li&gt;hh&lt;/li&gt;
+	&lt;li&gt;hh:mm&lt;/li&gt;
+	&lt;li&gt;hh:mm:ss&lt;/li&gt;
+&lt;/ul&gt;</documentation>
+        </annotation>
+      </element>
+      <element name="endTime" type="gml:TimePositionType">
+        <annotation>
+          <documentation>-- Definition --
+Time defining when the restriction ends.
+
+-- Description --
+NOTE: The time should be defined as an ISO 8601 time:
+&lt;ul&gt;
+	&lt;li&gt;hh&lt;/li&gt;
+	&lt;li&gt;hh:mm&lt;/li&gt;
+	&lt;li&gt;hh:mm:ss&lt;/li&gt;
+&lt;/ul&gt;</documentation>
+        </annotation>
+      </element>
+    </sequence>
+  </complexType>
+  <complexType name="SchedulePropertyType">
+    <sequence>
+      <element ref="am:Schedule"/>
+    </sequence>
+  </complexType>
+  <element name="AlternateIdentifier" substitutionGroup="gml:AbstractObject" type="am:AlternateIdentifierType">
+    <annotation>
+      <documentation>-- Definition --
+Alternative thematic identifier to uniquely identify the spatial object 
+
+-- Description --
+Some management, restriction or regulation zones may be assigned multiple identifiers. These may have been established to meet the reporting requirements of different legislative instruments at International, European or at Member State levels.</documentation>
+    </annotation>
+  </element>
+  <complexType name="AlternateIdentifierType">
+    <sequence>
+      <element name="identifier" type="string">
+        <annotation>
+          <documentation>-- Definition --
+Unique identifier used to identify the spatial object within the specified identification scheme.</documentation>
+        </annotation>
+      </element>
+      <element name="identifierScheme" type="string">
+        <annotation>
+          <documentation>-- Definition --
+Identifier defining the scheme used to assign the identifier.
+
+-- Description --
+NOTE 1: Reporting requirements for different environmental legislation mandate that each spatial object is assigned an identifier conforming to specific lexical rules. 
+
+NOTE 2: These rules are often inconsistent so a spatial object may be assigned multiple identifiers which are used for object referencing to link information to the spatial object.</documentation>
+        </annotation>
+      </element>
+    </sequence>
+  </complexType>
+  <complexType name="AlternateIdentifierPropertyType">
+    <sequence>
+      <element ref="am:AlternateIdentifier"/>
+    </sequence>
+  </complexType>
+</schema>

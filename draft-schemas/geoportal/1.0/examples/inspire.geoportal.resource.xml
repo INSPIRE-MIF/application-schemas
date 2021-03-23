@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<ns2:Resource xmlns:ns2="http://inspire.ec.europa.eu/schemas/geoportal/1.0" xmlns="http://inspire.ec.europa.eu/schemas/common/1.0" xmlns:ns4="http://www.w3.org/1999/xlink" xmlns:ns3="http://www.opengis.net/ows" xmlns:ns9="http://inspire.ec.europa.eu/schemas/inspire_vs/1.0" xmlns:ns5="http://inspire.ec.europa.eu/schemas/inspire_ds/1.0" xmlns:ns6="http://www.opengis.net/ows/1.1" xmlns:ns7="http://inspire.ec.europa.eu/schemas/inspire_vs_ows11/1.0" xmlns:ns8="http://www.opengis.net/wms" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="https://inspire.ec.europa.eu/schemas/geoportal/1.0 file:///E:/schemas/inspire/geoportal/1.0/geoportal.xsd">
+	<ns2:PullBatchReportResource>
+		<ns2:MatchedRecordsCount>39</ns2:MatchedRecordsCount>
+		<ns2:FromRecordNumber>21</ns2:FromRecordNumber>
+		<ns2:ToRecordNumber>40</ns2:ToRecordNumber>
+		<ns2:ExpectedRecordsCount>19</ns2:ExpectedRecordsCount>
+		<ns2:FoundResourcesCount>19</ns2:FoundResourcesCount>
+		<ns2:PerResourceTypeCounts>
+		<ns2:count resourceType="dataset"  number="10000"></ns2:count>
+		<ns2:count resourceType="series"  number="20000"></ns2:count>
+		<ns2:count resourceType="service"  number="20000"></ns2:count>
+		<ns2:count resourceType="unknown"  number="20000"></ns2:count>
+		</ns2:PerResourceTypeCounts>
+	</ns2:PullBatchReportResource>
+	<ns2:SourceMetadataLocator>
+		<URL></URL>
+	</ns2:SourceMetadataLocator>
+	<ns2:GeoportalMetadataLocator>
+		<URL>/INSPIRE-325b29be-c1c8-11e0-895f-00e081b628c8/services/downloaded/PullResults/21-40</URL>
+		<MediaType>application/vnd.eu.europa.ec.inspire.resource+xml</MediaType>
+	</ns2:GeoportalMetadataLocator>
+	<ns2:MemberStateCountryCode>UK</ns2:MemberStateCountryCode>
+</ns2:Resource>

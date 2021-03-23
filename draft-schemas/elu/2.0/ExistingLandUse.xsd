@@ -1,0 +1,154 @@
+<?xml version="1.0" encoding="UTF-8"?><schema xmlns="http://www.w3.org/2001/XMLSchema" xmlns:elu="http://inspire.jrc.ec.europa.eu/schemas/elu/2.0" xmlns:gml="http://www.opengis.net/gml/3.2" xmlns:lucm="http://inspire.jrc.ec.europa.eu/schemas/lucm/2.0" elementFormDefault="qualified" targetNamespace="http://inspire.jrc.ec.europa.eu/schemas/elu/2.0" version="2.0">
+  <import namespace="http://inspire.jrc.ec.europa.eu/schemas/lucm/2.0" schemaLocation="https://inspire.ec.europa.eu/draft-schemas/lucm/2.0/LandUseCoreModel.xsd"/>
+  <import namespace="http://www.opengis.net/gml/3.2" schemaLocation="http://schemas.opengis.net/gml/3.2.1/gml.xsd"/>
+  <!--XML Schema document created by ShapeChange-->
+  <element name="LandUsePresenceValue" substitutionGroup="gml:AbstractObject" type="elu:LandUsePresenceValueType">
+    <annotation>
+      <documentation>-- Name --
+land use presence
+-- Definition --
+Indication of the presence of a non-dominant land use category in an ExistingLandUseObject.</documentation>
+    </annotation>
+  </element>
+  <complexType name="LandUsePresenceValueType">
+    <sequence>
+      <element name="percentageHILUCS" nillable="true">
+        <annotation>
+          <documentation>-- Definition --
+Percentage of the existing land use object that is covered by this land use presence.</documentation>
+        </annotation>
+        <complexType>
+          <simpleContent>
+            <extension base="integer">
+              <attribute name="nilReason" type="gml:NilReasonType"/>
+            </extension>
+          </simpleContent>
+        </complexType>
+      </element>
+      <element name="presenceHILUCSValue" type="gml:CodeType">
+        <annotation>
+          <documentation>-- Name --
+presence HILUCS value
+-- Definition --
+HILUCS category for this land use presence.</documentation>
+        </annotation>
+      </element>
+      <element name="presenceSpecificValue" nillable="true">
+        <annotation>
+          <documentation>-- Definition --
+specific land use category for the land use presence.</documentation>
+        </annotation>
+        <complexType>
+          <simpleContent>
+            <extension base="gml:CodeType">
+              <attribute name="nilReason" type="gml:NilReasonType"/>
+            </extension>
+          </simpleContent>
+        </complexType>
+      </element>
+      <element name="percentageSpecific" nillable="true">
+        <annotation>
+          <documentation>-- Definition --
+Percentage of the existing land use object that is covered by this land use presence.</documentation>
+        </annotation>
+        <complexType>
+          <simpleContent>
+            <extension base="integer">
+              <attribute name="nilReason" type="gml:NilReasonType"/>
+            </extension>
+          </simpleContent>
+        </complexType>
+      </element>
+    </sequence>
+  </complexType>
+  <complexType name="LandUsePresenceValuePropertyType">
+    <sequence>
+      <element ref="elu:LandUsePresenceValue"/>
+    </sequence>
+  </complexType>
+  <element name="ExistingLandUseObject" substitutionGroup="lucm:CoreLandUseObject" type="elu:ExistingLandUseObjectType">
+    <annotation>
+      <documentation>-- Name --
+existing land use object
+-- Definition --
+An existing land use object describes the land use for a homogeneous area. In addition to the core land use object it has an observation date.</documentation>
+    </annotation>
+  </element>
+  <complexType name="ExistingLandUseObjectType">
+    <complexContent>
+      <extension base="lucm:CoreLandUseObjectType">
+        <sequence>
+          <element maxOccurs="unbounded" minOccurs="0" name="landUsePresence" nillable="true">
+            <annotation>
+              <documentation>-- Name --
+land use presence
+-- Definition --
+Actual presence of a land use category wihtin the object.</documentation>
+            </annotation>
+            <complexType>
+              <sequence>
+                <element ref="elu:LandUsePresenceValue"/>
+              </sequence>
+              <attribute name="nilReason" type="gml:NilReasonType"/>
+            </complexType>
+          </element>
+          <element name="observationDate" nillable="true">
+            <annotation>
+              <documentation>-- Name --
+Observation Date.
+-- Definition --
+The observation date associated to a description.
+-- Description --
+Defines the observation date of the description. It could be the date of an aerial/satellital acquisition or a field survey. The observation date allows the user to have accurate date of when the description was made in the real word. In a database, not all object informations are necessarily captured at the same time.</documentation>
+            </annotation>
+            <complexType>
+              <simpleContent>
+                <extension base="date">
+                  <attribute name="nilReason" type="gml:NilReasonType"/>
+                </extension>
+              </simpleContent>
+            </complexType>
+          </element>
+        </sequence>
+      </extension>
+    </complexContent>
+  </complexType>
+  <complexType name="ExistingLandUseObjectPropertyType">
+    <sequence minOccurs="0">
+      <element ref="elu:ExistingLandUseObject"/>
+    </sequence>
+    <attributeGroup ref="gml:AssociationAttributeGroup"/>
+    <attributeGroup ref="gml:OwnershipAttributeGroup"/>
+  </complexType>
+  <element name="ExistingLandUseCoverage" substitutionGroup="lucm:CoreLandUseCoverage" type="elu:ExistingLandUseCoverageType">
+    <annotation>
+      <documentation>-- Name --
+existing land use coverage
+-- Definition --
+An existing land use coverage is a core land use coverage with the additional constraint that the rangeSet should only contain ExistingLandUseObjects.</documentation>
+    </annotation>
+  </element>
+  <complexType name="ExistingLandUseCoverageType">
+    <complexContent>
+      <extension base="lucm:CoreLandUseCoverageType">
+        <sequence>
+          <element name="minimumUnitOfInterest" type="integer">
+            <annotation>
+              <documentation>-- Name --
+minimum unit of interest
+-- Definition --
+The smallest size of the land use objects taken into consideration in the dataset (expressed in Ha.).</documentation>
+            </annotation>
+          </element>
+        </sequence>
+      </extension>
+    </complexContent>
+  </complexType>
+  <complexType name="ExistingLandUseCoveragePropertyType">
+    <sequence minOccurs="0">
+      <element ref="elu:ExistingLandUseCoverage"/>
+    </sequence>
+    <attributeGroup ref="gml:AssociationAttributeGroup"/>
+    <attributeGroup ref="gml:OwnershipAttributeGroup"/>
+  </complexType>
+</schema>

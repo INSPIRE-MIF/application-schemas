@@ -1,0 +1,232 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- edited with XMLSpy v2014 sp1 (x64) (http://www.altova.com) by Chris Schubert (European Commission DG JRC - IES) -->
+<schema xmlns="http://www.w3.org/2001/XMLSchema" xmlns:am="http://inspire.ec.europa.eu/schemas/am/3.0" xmlns:am-ca="http://inspire.ec.europa.eu/schemas/am-ca/3.0" xmlns:gml="http://www.opengis.net/gml/3.2" targetNamespace="http://inspire.ec.europa.eu/schemas/am-ca/3.0" elementFormDefault="qualified" version="3.0">
+	<import namespace="http://inspire.ec.europa.eu/schemas/am/3.0" schemaLocation="AreaManagementRestrictionRegulationZone.xsd"/>
+	<import namespace="http://www.opengis.net/gml/3.2" schemaLocation="http://schemas.opengis.net/gml/3.2.1/gml.xsd"/>
+	<!--XML Schema document created by ShapeChange-->
+	<element name="ControlledActivityInformation" type="am-ca:ControlledActivityInformationType" substitutionGroup="gml:AbstractObject">
+		<annotation>
+			<documentation>-- Definition --
+Information describing the type of activity that is controlled within the zone.</documentation>
+		</annotation>
+	</element>
+	<complexType name="ControlledActivityInformationType">
+		<sequence>
+			<element name="controlMeasure" type="gml:ReferenceType">
+				<annotation>
+					<documentation>-- Definition --
+Type of control method used to manage activities or measures within the zone.
+
+-- Description --
+An activity can be controlled using different types of method to achieve different types of objective.
+
+EXAMPLES:
+&lt;ul&gt;
+	&lt;li&gt;Water abstraction or mineral extraction may be regulated (i.e. require a permit) to avoid over-utilisation of a resource&lt;/li&gt;
+	&lt;li&gt;Animal movements may be restricted or prohibited in the instance of an animal health epidemic (e.g. blue tongue or avian influenza)&lt;/li&gt;
+	&lt;li&gt;Hunting may be permitted or prohibited during a specific time.&lt;/li&gt;
+&lt;/ul&gt;</documentation>
+				</annotation>
+			</element>
+			<element name="activity" type="gml:ReferenceType" maxOccurs="unbounded">
+				<annotation>
+					<documentation>-- Definition --
+Type of activity that is controlled within the zone.
+
+-- Description --
+This is an extensible INSPIRE codelist containing high-level classification of activity areas. The specific type of activity that this controlled should be defined using the specialisedActivity.</documentation>
+				</annotation>
+			</element>
+			<element name="specialisedActivity" type="gml:ReferenceType" nillable="true" minOccurs="0" maxOccurs="unbounded">
+				<annotation>
+					<documentation>-- Definition --
+Specific activity type defining the activity that is controlled in the zone.
+
+-- Description --
+The specialisedActivity is a codelist value that should be derived from thematic or Member State codelist. The specialisedActivity should be an relevant activity that has a narrower definition than the ControlledActivityType.
+
+Example:
+
+If the ControlledActivityType is "plantAndAnimalHealth" the specialisedActivity could be "movement" or more specifically "animalMovement" and "humanMovement" (if human movements into an out of a restricted zone apply as was the case with Foot and Mouth disease outbreak in the UK).</documentation>
+				</annotation>
+			</element>
+			<element name="description" nillable="true" minOccurs="0">
+				<annotation>
+					<documentation>-- Definition --
+Narrative summary providing any additional information that explains what controls apply to the activity.</documentation>
+				</annotation>
+				<complexType>
+					<simpleContent>
+						<extension base="string">
+							<attribute name="nilReason" type="gml:NilReasonType"/>
+						</extension>
+					</simpleContent>
+				</complexType>
+			</element>
+			<element name="restrictionPeriod" nillable="true" minOccurs="0" maxOccurs="unbounded">
+				<annotation>
+					<documentation>-- Definition --
+Time period defining when restrictions apply.
+
+-- Description --
+NOTE: Specific controls may apply to the activities or measures within specified time periods. 
+
+There are several key use cases for defining a schedule for an activity such as a restriction:
+
+Define a day or set of days: Monday or Weekends or Public Holidays
+Define a range of days: Monday to Thursday
+Define a set of days: Monday, Tuesday, Thursday
+Define a date or range of dates: 2010-10-01 or 2010-04-01 to 2010-04-30
+Define a day/range or set of days and time period: Monday between 12:30-13:30, Monday to Thursday 9am to 5pm 2010-10-01 between 12:30 and 17:00</documentation>
+				</annotation>
+				<complexType>
+					<sequence>
+						<element ref="am-ca:Schedule"/>
+					</sequence>
+					<attribute name="nilReason" type="gml:NilReasonType"/>
+				</complexType>
+			</element>
+		</sequence>
+	</complexType>
+	<complexType name="ControlledActivityInformationPropertyType">
+		<sequence>
+			<element ref="am-ca:ControlledActivityInformation"/>
+		</sequence>
+	</complexType>
+	<element name="ManagementRestrictionOrRegulationZone" type="am-ca:ManagementRestrictionOrRegulationZoneType" substitutionGroup="am:ManagementRestrictionOrRegulationZone">
+		<annotation>
+			<documentation>-- Definition --
+Area managed, regulated or used for reporting at international, European, national, regional and local levels.
+
+-- Description --
+Extended to include information describing activities that are controlled to achieve specific environment  objectives within the zone.</documentation>
+		</annotation>
+	</element>
+	<complexType name="ManagementRestrictionOrRegulationZoneType">
+		<complexContent>
+			<extension base="am:ManagementRestrictionOrRegulationZoneType">
+				<sequence>
+					<element name="controlledActivity" nillable="true" minOccurs="0" maxOccurs="unbounded">
+						<annotation>
+							<documentation>-- Definition --
+A controlled activity is an activity that is either permitted, prohibited, promoted or restricted within the zone.
+
+-- Description --
+The ManagementRestrictionOrRegulationZone has been established to achieve or maintain good environmental status. To achieve this goal Public Authorities must establish a range of measures. These measures may include controlling particular activities within the zone. Examples include:
+&lt;ul&gt;
+	&lt;li&gt;controlling emissions to the environment&lt;/li&gt;
+	&lt;li&gt;restricting movements within the zone&lt;/li&gt;
+	&lt;li&gt;limiting pollutant values to protect health&lt;/li&gt;
+	&lt;li&gt;controlling urban or industrial development to protect cultural heritage, nature and biodiversity and greenspaces&lt;/li&gt;
+&lt;/ul&gt;</documentation>
+						</annotation>
+						<complexType>
+							<sequence>
+								<element ref="am-ca:ControlledActivityInformation"/>
+							</sequence>
+							<attribute name="nilReason" type="gml:NilReasonType"/>
+						</complexType>
+					</element>
+				</sequence>
+			</extension>
+		</complexContent>
+	</complexType>
+	<complexType name="ManagementRestrictionOrRegulationZonePropertyType">
+		<sequence minOccurs="0">
+			<element ref="am-ca:ManagementRestrictionOrRegulationZone"/>
+		</sequence>
+		<attributeGroup ref="gml:AssociationAttributeGroup"/>
+		<attributeGroup ref="gml:OwnershipAttributeGroup"/>
+	</complexType>
+	<element name="Schedule" type="am-ca:ScheduleType" substitutionGroup="gml:AbstractObject">
+		<annotation>
+			<documentation>-- Definition --
+Reoccurring time period defining when an activity is controlled.</documentation>
+		</annotation>
+	</element>
+	<complexType name="ScheduleType">
+		<sequence>
+			<element name="day" type="am-ca:DayOrDatePropertyType" minOccurs="0" maxOccurs="unbounded">
+				<annotation>
+					<documentation>-- Definition --
+Day on which the restriction starts or days on which the restriction occurs.
+
+-- Description --
+The day could either be defined as either a Date or as a Day.</documentation>
+				</annotation>
+			</element>
+			<element name="startDate" type="am-ca:DayOrDatePropertyType" minOccurs="0">
+				<annotation>
+					<documentation>-- Definition --
+Day on which the restriction ends.</documentation>
+				</annotation>
+			</element>
+			<element name="endDate" type="am-ca:DayOrDatePropertyType" minOccurs="0">
+				<annotation>
+					<documentation>-- Definition --
+Day on which the restriction ends.</documentation>
+				</annotation>
+			</element>
+			<element name="startTime" minOccurs="0">
+				<annotation>
+					<documentation>-- Definition --
+Time defining when the controlled activity starts.
+
+
+-- Description --
+EXAMPLE: Valid values include:
+&lt;ul&gt;
+	&lt;li&gt;21:32:52&lt;/li&gt;
+	&lt;li&gt;21:32:52+02:00&lt;/li&gt;
+	&lt;li&gt;19:32:52Z&lt;/li&gt;
+	&lt;li&gt;19:32:52+00:00&lt;/li&gt;
+	&lt;li&gt;21:32:52.12679&lt;/li&gt;
+&lt;/ul&gt;
+
+NOTE: if the startTime is empty then it shall be inferred that the restriction applies for 24 hours.</documentation>
+				</annotation>
+			</element>
+			<element name="endTime" minOccurs="0">
+				<annotation>
+					<documentation>-- Definition --
+Time defining when the controlled activity starts.
+
+--Description
+NOTE: if the endTime is empty then it shall be inferred that the restriction applies for 24 hours.</documentation>
+				</annotation>
+			</element>
+		</sequence>
+	</complexType>
+	<complexType name="SchedulePropertyType">
+		<sequence>
+			<element ref="am-ca:Schedule"/>
+		</sequence>
+	</complexType>
+	<element name="DayOrDate" type="am-ca:DayOrDateType" substitutionGroup="gml:AbstractObject">
+		<annotation>
+			<documentation>-- Definition --
+Choice to specify either the day or start day on which a restriction applies if it is a reoccurring scheduled restriction or a specific date or start date on which a restriction applies.</documentation>
+		</annotation>
+	</element>
+	<complexType name="DayOrDateType">
+		<choice>
+			<element name="day" type="gml:ReferenceType">
+				<annotation>
+					<documentation>-- Definition --
+A specified day</documentation>
+				</annotation>
+			</element>
+			<element name="date" type="date">
+				<annotation>
+					<documentation>-- Definition --
+A specified date</documentation>
+				</annotation>
+			</element>
+		</choice>
+	</complexType>
+	<complexType name="DayOrDatePropertyType">
+		<sequence>
+			<element ref="am-ca:DayOrDate"/>
+		</sequence>
+	</complexType>
+</schema>

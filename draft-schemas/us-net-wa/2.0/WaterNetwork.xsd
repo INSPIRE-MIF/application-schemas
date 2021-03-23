@@ -1,0 +1,597 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<schema xmlns="http://www.w3.org/2001/XMLSchema" xmlns:gml="http://www.opengis.net/gml/3.2" xmlns:us-net-wa="http://inspire.jrc.ec.europa.eu/schemas/us-net-wa/2.0" xmlns:us-network="http://inspire.jrc.ec.europa.eu/schemas/us-network/2.0" targetNamespace="http://inspire.jrc.ec.europa.eu/schemas/us-net-wa/2.0" elementFormDefault="qualified" version="2.0">
+	<annotation>
+		<documentation>-- Definition --
+Water network sub-domain.</documentation>
+	</annotation>
+	<import namespace="http://www.opengis.net/gml/3.2" schemaLocation="http://schemas.opengis.net/gml/3.2.1/gml.xsd"/>
+	<import namespace="http://inspire.jrc.ec.europa.eu/schemas/us-network/2.0" schemaLocation="https://inspire.ec.europa.eu/draft-schemas/us-network/2.0/UtilitiesAndGovernmentalServicesNetworks.xsd"/>
+	<!--XML Schema document created by ShapeChange-->
+	<element name="WaterNetwork" type="us-net-wa:WaterNetworkType" substitutionGroup="us-network:UtilityNetwork">
+		<annotation>
+			<documentation>-- Definition --
+Collection of water network elements.</documentation>
+		</annotation>
+	</element>
+	<complexType name="WaterNetworkType">
+		<complexContent>
+			<extension base="us-network:UtilityNetworkType">
+				<sequence/>
+			</extension>
+		</complexContent>
+	</complexType>
+	<complexType name="WaterNetworkPropertyType">
+		<sequence minOccurs="0">
+			<element ref="us-net-wa:WaterNetwork"/>
+		</sequence>
+		<attributeGroup ref="gml:AssociationAttributeGroup"/>
+		<attributeGroup ref="gml:OwnershipAttributeGroup"/>
+	</complexType>
+	<simpleType name="WaterPipeWaterTypeValueType">
+		<annotation>
+			<documentation>-- Definition --
+Water lines classification based on water type.</documentation>
+		</annotation>
+		<union memberTypes="us-net-wa:WaterPipeWaterTypeValueEnumerationType us-net-wa:WaterPipeWaterTypeValueOtherType"/>
+	</simpleType>
+	<simpleType name="WaterPipeWaterTypeValueEnumerationType">
+		<annotation>
+			<documentation>-- Definition --
+Water lines classification based on water type.</documentation>
+		</annotation>
+		<restriction base="string">
+			<enumeration value="potable">
+				<annotation>
+					<documentation>-- Definition --
+Potable water.
+
+-- Description --
+&lt;i&gt;P&lt;/i&gt;&lt;i&gt;otable water&lt;/i&gt; or drinking water is water of sufficiently high quality that can be consumed or used without risk of immediate or long term harm.</documentation>
+				</annotation>
+			</enumeration>
+			<enumeration value="raw">
+				<annotation>
+					<documentation>-- Definition --
+Raw water.
+
+-- Description --
+&lt;i&gt;Raw water &lt;/i&gt;is water taken from the environment, and is subsequently treated or purified to produce potable water in a water purification works. Raw water should not be considered safe for drinking or washing without further treatment.</documentation>
+				</annotation>
+			</enumeration>
+			<enumeration value="salt">
+				<annotation>
+					<documentation>-- Definition --
+Salt water.
+
+-- Description --
+&lt;i&gt;Salt water&lt;/i&gt; or saline water is a general term for water that contains a significant concentration of dissolved salts (NaCl).</documentation>
+				</annotation>
+			</enumeration>
+			<enumeration value="treated">
+				<annotation>
+					<documentation>-- Definition --
+Treated water.
+
+-- Description --
+&lt;i&gt;Treated water&lt;/i&gt; is the water that went throgh treatment proces.Treatment processes are the ones commonly used in water purification plants.</documentation>
+				</annotation>
+			</enumeration>
+		</restriction>
+	</simpleType>
+	<simpleType name="WaterPipeWaterTypeValueOtherType">
+		<restriction base="string">
+			<pattern value="other: \w{2,}"/>
+		</restriction>
+	</simpleType>
+	<element name="WaterManhole" type="us-net-wa:WaterManholeType" substitutionGroup="us-network:Manhole">
+		<annotation>
+			<documentation>-- Definition --
+Manhole used exclusively in water networks.</documentation>
+		</annotation>
+	</element>
+	<complexType name="WaterManholeType">
+		<complexContent>
+			<extension base="us-network:ManholeType">
+				<sequence/>
+			</extension>
+		</complexContent>
+	</complexType>
+	<complexType name="WaterManholePropertyType">
+		<sequence minOccurs="0">
+			<element ref="us-net-wa:WaterManhole"/>
+		</sequence>
+		<attributeGroup ref="gml:AssociationAttributeGroup"/>
+		<attributeGroup ref="gml:OwnershipAttributeGroup"/>
+	</complexType>
+	<element name="WaterPipe" type="us-net-wa:WaterPipeType" substitutionGroup="us-network:Pipe">
+		<annotation>
+			<documentation>-- Definition --
+A water pipe used to convey water from one location to another</documentation>
+		</annotation>
+	</element>
+	<complexType name="WaterPipeType">
+		<complexContent>
+			<extension base="us-network:PipeType">
+				<sequence>
+					<element name="averageVolume" nillable="true">
+						<annotation>
+							<documentation>-- Definition --
+Average volume of the pipe.</documentation>
+						</annotation>
+						<complexType>
+							<simpleContent>
+								<extension base="gml:VolumeType">
+									<attribute name="nilReason" type="gml:NilReasonType"/>
+								</extension>
+							</simpleContent>
+						</complexType>
+					</element>
+					<element name="maxCapacity" nillable="true">
+						<annotation>
+							<documentation>-- Definition --
+Maximum capacity of the pipe.</documentation>
+						</annotation>
+						<complexType>
+							<simpleContent>
+								<extension base="gml:MeasureType">
+									<attribute name="nilReason" type="gml:NilReasonType"/>
+								</extension>
+							</simpleContent>
+						</complexType>
+					</element>
+					<element name="type" nillable="true">
+						<annotation>
+							<documentation>-- Definition --
+Type of water pipe.</documentation>
+						</annotation>
+						<complexType>
+							<simpleContent>
+								<extension base="us-net-wa:WaterPipeTypeValueType">
+									<attribute name="nilReason" type="gml:NilReasonType"/>
+								</extension>
+							</simpleContent>
+						</complexType>
+					</element>
+					<element name="waterType" nillable="true">
+						<annotation>
+							<documentation>-- Definition --
+Type of water pipe based on water type.</documentation>
+						</annotation>
+						<complexType>
+							<simpleContent>
+								<extension base="us-net-wa:WaterPipeWaterTypeValueType">
+									<attribute name="nilReason" type="gml:NilReasonType"/>
+								</extension>
+							</simpleContent>
+						</complexType>
+					</element>
+				</sequence>
+			</extension>
+		</complexContent>
+	</complexType>
+	<complexType name="WaterPipePropertyType">
+		<sequence minOccurs="0">
+			<element ref="us-net-wa:WaterPipe"/>
+		</sequence>
+		<attributeGroup ref="gml:AssociationAttributeGroup"/>
+		<attributeGroup ref="gml:OwnershipAttributeGroup"/>
+	</complexType>
+	<element name="WaterAppurtenance" type="us-net-wa:WaterAppurtenanceType" substitutionGroup="us-network:UtilityNode">
+		<annotation>
+			<documentation>-- Definition --
+A node (point) appurtenance in water networks.</documentation>
+		</annotation>
+	</element>
+	<complexType name="WaterAppurtenanceType">
+		<complexContent>
+			<extension base="us-network:UtilityNodeType">
+				<sequence>
+					<element name="type" nillable="true">
+						<annotation>
+							<documentation>-- Definition --
+Type of the water network appurtenance.</documentation>
+						</annotation>
+						<complexType>
+							<simpleContent>
+								<extension base="us-net-wa:WaterAppurtenanceValueType">
+									<attribute name="nilReason" type="gml:NilReasonType"/>
+								</extension>
+							</simpleContent>
+						</complexType>
+					</element>
+				</sequence>
+			</extension>
+		</complexContent>
+	</complexType>
+	<complexType name="WaterAppurtenancePropertyType">
+		<sequence minOccurs="0">
+			<element ref="us-net-wa:WaterAppurtenance"/>
+		</sequence>
+		<attributeGroup ref="gml:AssociationAttributeGroup"/>
+		<attributeGroup ref="gml:OwnershipAttributeGroup"/>
+	</complexType>
+	<simpleType name="WaterPipeTypeValueType">
+		<annotation>
+			<documentation>-- Definition --
+Running water classification.</documentation>
+		</annotation>
+		<union memberTypes="us-net-wa:WaterPipeTypeValueEnumerationType us-net-wa:WaterPipeTypeValueOtherType"/>
+	</simpleType>
+	<simpleType name="WaterPipeTypeValueEnumerationType">
+		<annotation>
+			<documentation>-- Definition --
+Running water classification.</documentation>
+		</annotation>
+		<restriction base="string">
+			<enumeration value="LL">
+				<annotation>
+					<documentation>-- Definition --
+Lateral line.
+
+-- Description --
+A &lt;i&gt;lateral line &lt;/i&gt;is a small-diameter pipe that runs from the main line to the customer premises. &lt;i&gt;LateralLine&lt;/i&gt;&lt;i&gt; &lt;/i&gt;is a concrete class. The types of lateral lines are Combination, Commercial, Domestic, Fire, HydrantLateral, Industrial, and Irrigation.</documentation>
+				</annotation>
+			</enumeration>
+			<enumeration value="LL_Commercial">
+				<annotation>
+					<documentation>-- Definition --
+Commercial lateral line.
+
+-- Description --
+Lateral line that transport water to commercial facilities.</documentation>
+				</annotation>
+			</enumeration>
+			<enumeration value="LL_Domestic">
+				<annotation>
+					<documentation>-- Definition --
+Domestic lateral line.
+
+-- Description --
+Lateral line that transports water to domestic users.</documentation>
+				</annotation>
+			</enumeration>
+			<enumeration value="LL_Fire">
+				<annotation>
+					<documentation>-- Definition --
+Fire lateral line.
+
+-- Description --
+Lateral line that transports water for the purposes of distinguishing fire.</documentation>
+				</annotation>
+			</enumeration>
+			<enumeration value="LL_HydrantLaterals">
+				<annotation>
+					<documentation>-- Definition --
+Hydrant laterals.
+
+-- Description --
+Lateral line that transports water to the hydrants.</documentation>
+				</annotation>
+			</enumeration>
+			<enumeration value="LL_Industrial">
+				<annotation>
+					<documentation>-- Definition --
+Industrial lateral line.
+
+-- Description --
+Lateral line that transports water to the industrial facilities.</documentation>
+				</annotation>
+			</enumeration>
+			<enumeration value="LL_Irrigation">
+				<annotation>
+					<documentation>-- Definition --
+Irrigation lateral line.
+
+-- Description --
+Lateral line that transports water for the irrigation purposes.</documentation>
+				</annotation>
+			</enumeration>
+			<enumeration value="ML">
+				<annotation>
+					<documentation>-- Definition --
+Main line.
+
+-- Description --
+A &lt;i&gt;main line &lt;/i&gt;is a large-diameter pipe that carries water from the source through the network.</documentation>
+				</annotation>
+			</enumeration>
+			<enumeration value="ML_GM">
+				<annotation>
+					<documentation>-- Definition --
+Main line's gravity main.
+
+-- Description --
+A &lt;i&gt;gravity main &lt;/i&gt;is a type of main line that is unpressurized and relies on gravity to move the water through the main. 
+
+NOTE For the water distribution model, the types of gravity mains are Carrier, InlineStorage, and TransportPipe.</documentation>
+				</annotation>
+			</enumeration>
+			<enumeration value="ML_GM_Carrier">
+				<annotation>
+					<documentation>-- Definition --
+Main line's gravity main's carrier.
+
+-- Description --
+A &lt;i&gt;carrier pipe&lt;/i&gt; is an inner pipe, or a hollow cylindrical tube contained inside an outer sheath. Responsible for carrying fluids, the carrier pipe runs through an outer, insulated casing that acts as a containment system that protects against spills.</documentation>
+				</annotation>
+			</enumeration>
+			<enumeration value="ML_GM_InLineStorage">
+				<annotation>
+					<documentation>-- Definition --
+Main line's gravity main's in-line storage.</documentation>
+				</annotation>
+			</enumeration>
+			<enumeration value="ML_GM_TransportPipe">
+				<annotation>
+					<documentation>-- Definition --
+Main line's gravity main's transport pipe.</documentation>
+				</annotation>
+			</enumeration>
+			<enumeration value="ML_PM">
+				<annotation>
+					<documentation>-- Definition --
+Main line's pressurized main.
+
+-- Description --
+A &lt;i&gt;pressurized main &lt;/i&gt;is a type of main line that is pressurized.
+There are numerous types of PressurizedMains in the water distribution model; they include AirRelease, BlowOff, Bypass, ChemicalInjection, DistributionMain, Interconnect, PipeBridge, SamplingStation, and TransmissionMain.</documentation>
+				</annotation>
+			</enumeration>
+			<enumeration value="ML_PM_AirRelease">
+				<annotation>
+					<documentation>-- Definition --
+Main line's pressurized main's air release.</documentation>
+				</annotation>
+			</enumeration>
+			<enumeration value="ML_PM_BlowOff">
+				<annotation>
+					<documentation>-- Definition --
+Main line's pressurized main's blow off.</documentation>
+				</annotation>
+			</enumeration>
+			<enumeration value="ML_PM_Bypass">
+				<annotation>
+					<documentation>-- Definition --
+Main line's pressurized main's bypass.</documentation>
+				</annotation>
+			</enumeration>
+			<enumeration value="ML_PM_ChemicalInjection">
+				<annotation>
+					<documentation>-- Definition --
+Main line's pressurized main's chemical injection.</documentation>
+				</annotation>
+			</enumeration>
+			<enumeration value="ML_PM_DistributionMain">
+				<annotation>
+					<documentation>-- Definition --
+Main line's pressurized main's distribution main.</documentation>
+				</annotation>
+			</enumeration>
+			<enumeration value="ML_PM_Interconnect">
+				<annotation>
+					<documentation>-- Definition --
+Main line's pressurized main's interconnect.</documentation>
+				</annotation>
+			</enumeration>
+			<enumeration value="ML_PM_PipeBridge">
+				<annotation>
+					<documentation>-- Definition --
+Main line's pressurized main's pipe bridge.</documentation>
+				</annotation>
+			</enumeration>
+			<enumeration value="ML_PM_SamplingStation">
+				<annotation>
+					<documentation>-- Definition --
+Main line's pressurized main's sampling station.</documentation>
+				</annotation>
+			</enumeration>
+			<enumeration value="ML_PM_TransmissionMain">
+				<annotation>
+					<documentation>-- Definition --
+Main line's pressurized main's transmission main.</documentation>
+				</annotation>
+			</enumeration>
+		</restriction>
+	</simpleType>
+	<simpleType name="WaterPipeTypeValueOtherType">
+		<restriction base="string">
+			<pattern value="other: \w{2,}"/>
+		</restriction>
+	</simpleType>
+	<simpleType name="WaterAppurtenanceValueType">
+		<annotation>
+			<documentation>-- Definition --
+Possible node (point) appurtenance values in water networks.</documentation>
+		</annotation>
+		<union memberTypes="us-net-wa:WaterAppurtenanceValueEnumerationType us-net-wa:WaterAppurtenanceValueOtherType"/>
+	</simpleType>
+	<simpleType name="WaterAppurtenanceValueEnumerationType">
+		<annotation>
+			<documentation>-- Definition --
+Possible node (point) appurtenance values in water networks.</documentation>
+		</annotation>
+		<restriction base="string">
+			<enumeration value="anode">
+				<annotation>
+					<documentation>-- Definition --
+Anode.
+
+-- Description --
+An &lt;i&gt;anode &lt;/i&gt;is a feature (specifically, an electrical mechanism) that&amp;rsquo;s applied to system components for the prevention of rust, pitting, and the corrosion of metal surfaces that are in contact with water or soil. A low-voltage current is applied to the water or soil in contact with the metal, such that the
+electromotive force renders the metal component cathodic. Corrosion is concentrated on the anodes instead of on the associated (and protected) water system components. This type of corrosion may occur in copper, steel, stainless steel, cast iron, and ductile iron pipes.</documentation>
+				</annotation>
+			</enumeration>
+			<enumeration value="clearWell">
+				<annotation>
+					<documentation>-- Definition --
+Clear well.
+
+-- Description --
+A &lt;i&gt;clear well &lt;/i&gt;is an enclosed tank that is associated with a treatment plant. Clear wells are used to store filtered water of sufficient capacity to prevent the need to vary the filtration rate with variations in demand. Clear wells are also used to provide chlorine contact time for disinfection. Pumps are
+used to move the water from the clear well to the treatment plant or to a distribution system.</documentation>
+				</annotation>
+			</enumeration>
+			<enumeration value="controlValve">
+				<annotation>
+					<documentation>-- Definition --
+Control valve.
+
+-- Description --
+&lt;i&gt;Control valves &lt;/i&gt;represent set of valves that operate in special ways. There are three fundamental types of control valves: backflow control, air control, and altitude.</documentation>
+				</annotation>
+			</enumeration>
+			<enumeration value="fitting">
+				<annotation>
+					<documentation>-- Definition --
+Fitting.
+
+-- Description --
+The &lt;i&gt;fitting &lt;/i&gt;represents the facility found at the joint between two lines where a transition of some sort must occur. The basic connecting devices between pipes; fittings are rarely used to control the flow of water through the network.</documentation>
+				</annotation>
+			</enumeration>
+			<enumeration value="hydrant">
+				<annotation>
+					<documentation>-- Definition --
+Hydrant.
+
+-- Description --
+A &lt;i&gt;hydrant &lt;/i&gt;enables fire fighters to attach fire hoses to the distribution network. Hydrants also have secondary uses that include flushing main lines and laterals, filling tank trucks, and providing a temporary water source for construction jobs.</documentation>
+				</annotation>
+			</enumeration>
+			<enumeration value="junction">
+				<annotation>
+					<documentation>-- Definition --
+Junction.
+
+-- Description --
+The &lt;i&gt;junction &lt;/i&gt;is a water network node where two or more pipes combine, or a point where water consumption is allocated and defined as demand.</documentation>
+				</annotation>
+			</enumeration>
+			<enumeration value="lateralPoint">
+				<annotation>
+					<documentation>-- Definition --
+Lateral point.
+
+-- Description --
+A &lt;i&gt;lateral point &lt;/i&gt;represents the location of the connection between the customer and the distribution system.</documentation>
+				</annotation>
+			</enumeration>
+			<enumeration value="meter">
+				<annotation>
+					<documentation>-- Definition --
+Meter.
+
+-- Description --
+A &lt;i&gt;meter &lt;/i&gt;is a facility that is used to measure water consumption (volume). Being a facility, a meter plays the role of a junction on the active network. 
+
+NOTE Meters are also much like hydrants as they also have an associated warehouse object, namely, a WarehouseMeter.</documentation>
+				</annotation>
+			</enumeration>
+			<enumeration value="pump">
+				<annotation>
+					<documentation>-- Definition --
+Pump.
+
+-- Description --
+A &lt;i&gt;pump &lt;/i&gt;is a piece of equipment that moves, compresses, or alters the pressure of a fluid, such as water or air, being conveyed through a natural or artificial channel. 
+
+NOTE Pump types include AxialFlow, Centrifugal, Jet, Reciprocating, Rotary,
+Screw, and Turbine.</documentation>
+				</annotation>
+			</enumeration>
+			<enumeration value="pumpStation">
+				<annotation>
+					<documentation>-- Definition --
+Pump station.
+
+-- Description --
+A &lt;i&gt;pump station &lt;/i&gt;is a facility for pumping water on the network to transport to another part of the network (lift pump).</documentation>
+				</annotation>
+			</enumeration>
+			<enumeration value="samplingStation">
+				<annotation>
+					<documentation>-- Definition --
+Sampling station.
+
+-- Description --
+A &lt;i&gt;sampling station &lt;/i&gt;is a facility that is used for collecting water samples. Sampling stations may be dedicated sampling devices, or they may be other devices of the system where a sample may be obtained.</documentation>
+				</annotation>
+			</enumeration>
+			<enumeration value="scadaSensor">
+				<annotation>
+					<documentation>-- Definition --
+SCADA sensor.
+
+-- Description --
+The &lt;i&gt;SCADA sensor &lt;/i&gt;is a feature that&amp;rsquo;s used to remotely measure the status of network components as part of a supervisory control and data acquisition (SCADA) system. SCADA systems provide alarms, responses, data acquisition, and control for collection and distribution systems. Operators use the SCADA system to monitor and
+adjust processes and facilities.</documentation>
+				</annotation>
+			</enumeration>
+			<enumeration value="storageBasin">
+				<annotation>
+					<documentation>-- Definition --
+Storage basin.
+
+-- Description --
+A &lt;i&gt;storage basin&lt;/i&gt; represents artificially enclosed area of a river or harbor designed so that the water level remains unaffected by tidal changes.</documentation>
+				</annotation>
+			</enumeration>
+			<enumeration value="storageFacility">
+				<annotation>
+					<documentation>-- Definition --
+Enclosed storage facility.</documentation>
+				</annotation>
+			</enumeration>
+			<enumeration value="surgeReliefTank">
+				<annotation>
+					<documentation>-- Definition --
+Surge relief tank.
+
+-- Description --
+A &lt;i&gt;surge relief tank &lt;/i&gt;is a piece of equipment used to absorb pressure increases in the water system. Surge relief tanks provide a buffer against throttling within the system by accepting water into a tank through a pressure valve.</documentation>
+				</annotation>
+			</enumeration>
+			<enumeration value="systemValve">
+				<annotation>
+					<documentation>-- Definition --
+System valve.
+
+-- Description --
+A &lt;i&gt;system valve &lt;/i&gt;is a facility that is fitted to a pipeline or orifice in which the closure member is either rotated or moved transversely or longitudinally in the waterway so as to control or stop the flow. System valves are used to regulate pressure, isolate, throttle flow, prevent backflow, and relieve
+pressure.
+
+NOTE System valve types include Gate, Plug, Ball, Cone, and Butterfly. These specific types may be classified as isolation valves.</documentation>
+				</annotation>
+			</enumeration>
+			<enumeration value="thrustProtection">
+				<annotation>
+					<documentation>-- Definition --
+Thrust protection.
+
+-- Description --
+The &lt;i&gt;thrust protection &lt;/i&gt;represents a type of line protector that&amp;rsquo;s used to prevent pipe movement. Thrust protection is commonly implemented as thrust blocks (masses of concrete material) that are placed at bends and around valve structures. 
+
+NOTE The types of thrust protection include Anchor,
+Blocking, Deadman, and Kicker.</documentation>
+				</annotation>
+			</enumeration>
+			<enumeration value="treatmentPlant">
+				<annotation>
+					<documentation>-- Definition --
+Treatment plant.</documentation>
+				</annotation>
+			</enumeration>
+			<enumeration value="well">
+				<annotation>
+					<documentation>-- Definition --
+Production well.</documentation>
+				</annotation>
+			</enumeration>
+		</restriction>
+	</simpleType>
+	<simpleType name="WaterAppurtenanceValueOtherType">
+		<restriction base="string">
+			<pattern value="other: \w{2,}"/>
+		</restriction>
+	</simpleType>
+</schema>

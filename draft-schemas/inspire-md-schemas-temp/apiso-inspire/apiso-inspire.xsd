@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:gmd="http://www.isotc211.org/2005/gmd" xmlns:srv="http://www.isotc211.org/2005/srv" xmlns:gmx="http://www.isotc211.org/2005/gmx" targetNamespace="http://www.isotc211.org/2005/gmd" elementFormDefault="qualified" version="1.0.0">
+	<!-- 
+    Copyright (c) 2007,2010 Open Geospatial Consortium.
+    To obtain additional rights of use, visit http://www.opengeospatial.org/legal/ .
+
+    Updated: 2010-01-22
+-->
+	<!-- ================================= Annotation ================================ -->
+	<xs:annotation>
+		<xs:documentation>2019-05-13 Update of schemalocation statements to refer to ISO/TC 211 XML Schemas available on the OGC schema repository instaed of the ISO repository (where resources have been moved to HTTPS).</xs:documentation>
+		<xs:documentation>ISO Wrapper to include service related type to GMD</xs:documentation>
+	</xs:annotation>
+	<!-- ================================== Imports & Includes ================================== -->
+	<xs:include schemaLocation="http://schemas.opengis.net/iso/19139/20070417/gmd/gmd.xsd"/>
+	<xs:import namespace="http://www.isotc211.org/2005/srv" schemaLocation="../srv/1.0/srv.xsd"/>
+	<xs:import namespace="http://www.isotc211.org/2005/gmx" schemaLocation="http://schemas.opengis.net/iso/19139/20070417/gmx/gmx.xsd"/>
+</xs:schema>

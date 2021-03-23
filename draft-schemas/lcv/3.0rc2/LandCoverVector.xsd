@@ -1,0 +1,509 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- edited with XMLSpy v2012 sp1 (x64) (http://www.altova.com) by Chris Schubert (European Commission Digit) -->
+<schema xmlns="http://www.w3.org/2001/XMLSchema" xmlns:base="urn:x-inspire:specification:gmlas:BaseTypes:3.2" xmlns:gmd="http://www.isotc211.org/2005/gmd" xmlns:gml="http://www.opengis.net/gml/3.2" xmlns:lcv="http://inspire.ec.europa.eu/schemas/lcv/3.0rc2" xmlns:sc="http://www.interactive-instruments.de/ShapeChange/AppInfo" targetNamespace="http://inspire.ec.europa.eu/schemas/lcv/3.0rc2" elementFormDefault="qualified" version="3.0rc2">
+	<annotation>
+		<documentation>application schema for Land Cover - Vector</documentation>
+	</annotation>
+	<import namespace="http://www.interactive-instruments.de/ShapeChange/AppInfo" schemaLocation="http://portele.de/ShapeChangeAppinfo.xsd"/>
+	<import namespace="http://www.isotc211.org/2005/gmd" schemaLocation="http://schemas.opengis.net/iso/19139/20070417/gmd/gmd.xsd"/>
+	<import namespace="http://www.opengis.net/gml/3.2" schemaLocation="http://schemas.opengis.net/gml/3.2.1/gml.xsd"/>
+	<import namespace="urn:x-inspire:specification:gmlas:BaseTypes:3.2" schemaLocation="https://inspire.ec.europa.eu/schemas/base/3.2/BaseTypes.xsd"/>
+	<!--XML Schema document created by ShapeChange-->
+	<simpleType name="LandCoverClassValueType">
+		<annotation>
+			<documentation>-- Name --
+class Value Type.
+
+-- Definition --
+Empty code list.
+
+-- Description --</documentation>
+			<appinfo>
+				<taggedValue xmlns="http://www.interactive-instruments.de/ShapeChange/AppInfo" tag="extensibility">any</taggedValue>
+			</appinfo>
+		</annotation>
+		<union memberTypes="lcv:LandCoverClassValueEnumerationType lcv:LandCoverClassValueOtherType"/>
+	</simpleType>
+	<simpleType name="LandCoverClassValueEnumerationType">
+		<annotation>
+			<documentation>-- Name --
+class Value Type.
+
+-- Definition --
+Empty code list.
+
+-- Description --</documentation>
+			<appinfo>
+				<taggedValue xmlns="http://www.interactive-instruments.de/ShapeChange/AppInfo" tag="extensibility">any</taggedValue>
+			</appinfo>
+		</annotation>
+		<restriction base="string"/>
+	</simpleType>
+	<simpleType name="LandCoverClassValueOtherType">
+		<restriction base="string">
+			<pattern value="other: \w{2,}"/>
+		</restriction>
+	</simpleType>
+	<element name="LandCoverValue" type="lcv:LandCoverValueType" substitutionGroup="gml:AbstractObject">
+		<annotation>
+			<documentation>-- Name --
+Land Cover Value.
+
+-- Definition --
+Generic class supporting Land Cover value and percentage.</documentation>
+		</annotation>
+	</element>
+	<complexType name="LandCoverValueType">
+		<sequence>
+			<element name="class" type="lcv:LandCoverClassValueType">
+				<annotation>
+					<documentation>-- Name --
+classValue.
+
+-- Definition --
+Assignment of a land cover spatial object to a land
+cover class through a classification code identifier.
+
+-- Description --
+The identifier, eg 1, 1.1.2, ... (for CORINE LC classes) allow to access to the value and the definition or narrative description of the corresponding class.</documentation>
+					<appinfo>
+						<taggedValue xmlns="http://www.interactive-instruments.de/ShapeChange/AppInfo" tag="extensibility">any</taggedValue>
+					</appinfo>
+				</annotation>
+			</element>
+			<element name="coveredPercentage" nillable="true">
+				<annotation>
+					<documentation>-- Name --
+coveredPercentage.
+
+-- Definition --
+Fraction of the LandCoverUnit being concerned with the classification vlaue.</documentation>
+				</annotation>
+				<complexType>
+					<simpleContent>
+						<extension base="integer">
+							<attribute name="nilReason" type="gml:NilReasonType"/>
+						</extension>
+					</simpleContent>
+				</complexType>
+			</element>
+		</sequence>
+	</complexType>
+	<complexType name="LandCoverValuePropertyType">
+		<sequence>
+			<element ref="lcv:LandCoverValue"/>
+		</sequence>
+	</complexType>
+	<element name="LandCoverNomenclature" type="lcv:LandCoverNomenclatureType" substitutionGroup="gml:AbstractObject">
+		<annotation>
+			<documentation>-- Name --
+Land Cover Nomenclature.
+
+-- Definition --
+Informations about reference national, intitutional or local Land Cover nomenclature.
+
+-- Description --
+Land Cover Nomenclature allows to reference nomenclatures documentation and asociated code list, and to define them trough an online reference or included within the data according 19144-2.</documentation>
+		</annotation>
+	</element>
+	<complexType name="LandCoverNomenclatureType">
+		<sequence>
+			<element name="inspireId" type="base:IdentifierPropertyType">
+				<annotation>
+					<documentation>-- Name --
+inspireId.
+
+-- Definition --
+External object identifier of the spatial object.
+
+-- Description --
+NOTE An external object identifier is a unique object identifier published by the responsible body, which may be used by external applications to reference the spatial object. The identifier is an identifier of the spatial object, not an identifier of the real-world phenomenon.</documentation>
+				</annotation>
+			</element>
+			<element name="source">
+				<annotation>
+					<documentation>-- Name --
+source.
+
+-- Definition --
+Information about the nomenclature used in this dataset.
+
+-- Description --
+Allows to describe the source the nomenclature (EEA, nation, local agency, ...).</documentation>
+				</annotation>
+				<complexType>
+					<complexContent>
+						<extension base="gml:AbstractMetadataPropertyType">
+							<sequence>
+								<element ref="gmd:CI_Citation"/>
+							</sequence>
+						</extension>
+					</complexContent>
+				</complexType>
+			</element>
+			<element name="onlineDescription" nillable="true" minOccurs="0" maxOccurs="unbounded">
+				<annotation>
+					<documentation>-- Name --
+onlineDescription.
+
+-- Definition --
+An online link providing description of the classification systel used.</documentation>
+				</annotation>
+				<complexType>
+					<complexContent>
+						<extension base="gml:AbstractMetadataPropertyType">
+							<sequence>
+								<element ref="gmd:CI_OnlineResource"/>
+							</sequence>
+							<attribute name="nilReason" type="gml:NilReasonType"/>
+						</extension>
+					</complexContent>
+				</complexType>
+			</element>
+			<element name="embeddedDescription" nillable="true" minOccurs="0">
+				<annotation>
+					<documentation>-- Name --
+embedded Description.
+
+-- Definition --
+An embedded encoding of the classification system according to ISO 19144-2.</documentation>
+				</annotation>
+				<complexType>
+					<complexContent>
+						<extension base="anyType">
+							<attribute name="nilReason" type="gml:NilReasonType"/>
+						</extension>
+					</complexContent>
+				</complexType>
+			</element>
+			<element name="nomenclatureCodeList" type="anyURI">
+				<annotation>
+					<documentation>-- Name --
+nomenclatureCodeList.
+
+-- Definition --
+An http URI pointing to the codelist attaeched to the nomenclature used.</documentation>
+				</annotation>
+			</element>
+		</sequence>
+	</complexType>
+	<complexType name="LandCoverNomenclaturePropertyType">
+		<sequence>
+			<element ref="lcv:LandCoverNomenclature"/>
+		</sequence>
+	</complexType>
+	<element name="LandCoverObservation" type="lcv:LandCoverObservationType" substitutionGroup="gml:AbstractObject">
+		<annotation>
+			<documentation>-- Name --
+Land Cover Observation.
+
+-- Definition --
+Land Cover information interpreted at a specific time and place.</documentation>
+		</annotation>
+	</element>
+	<complexType name="LandCoverObservationType">
+		<sequence>
+			<element name="class" type="lcv:LandCoverClassValueType">
+				<annotation>
+					<documentation>-- Name -- 
+class.
+
+-- Definition --
+The assignment of a land cover class to a land cover unit through a classification code identifier
+
+-- Description --
+The identifier, eg 1, 1.1.2, ... (for CORINE LC classes) allow to access to the value and the definition or narrative description of the corresponding class.</documentation>
+					<appinfo>
+						<taggedValue xmlns="http://www.interactive-instruments.de/ShapeChange/AppInfo" tag="extensibility">any</taggedValue>
+					</appinfo>
+				</annotation>
+			</element>
+			<element name="observationDate" nillable="true">
+				<annotation>
+					<documentation>-- Name --
+observationDate.
+
+-- Definition --
+The observation date associated of an observation.
+
+-- Description --
+Defines the observation date of the classification value. It could be the date of an aerial/satellital acquisition or of an update on the field. The observation date allows the user to have accurate date of when each value was observed in the real word. In a database, not all polygon informations are necessarily updated at the same time.</documentation>
+				</annotation>
+				<complexType>
+					<simpleContent>
+						<extension base="dateTime">
+							<attribute name="nilReason" type="gml:NilReasonType"/>
+						</extension>
+					</simpleContent>
+				</complexType>
+			</element>
+			<element name="mosaic" nillable="true" maxOccurs="unbounded">
+				<annotation>
+					<documentation>-- Name --
+mosaic.
+
+-- Definition --
+List of classification values describing into details a land cover unit, associated with percentages.</documentation>
+				</annotation>
+				<complexType>
+					<sequence>
+						<element ref="lcv:LandCoverValue"/>
+					</sequence>
+					<attribute name="nilReason" type="gml:NilReasonType"/>
+				</complexType>
+			</element>
+		</sequence>
+	</complexType>
+	<complexType name="LandCoverObservationPropertyType">
+		<sequence>
+			<element ref="lcv:LandCoverObservation"/>
+		</sequence>
+	</complexType>
+	<element name="LandCoverUnit" type="lcv:LandCoverUnitType" substitutionGroup="gml:AbstractFeature">
+		<annotation>
+			<documentation>-- Name --
+Land Cover Unit.
+
+-- Definition --
+An individual element of the LC dataset represented by  a point or polygon.
+
+-- Description --
+Every unit support Land Cover information.</documentation>
+		</annotation>
+	</element>
+	<complexType name="LandCoverUnitType">
+		<complexContent>
+			<extension base="gml:AbstractFeatureType">
+				<sequence>
+					<element name="inspireId" type="base:IdentifierPropertyType">
+						<annotation>
+							<documentation>-- Name --
+inspireId.
+
+-- Definition --
+External object identifier of the spatial object.
+
+-- Description --
+NOTE An external object identifier is a unique object identifier published by the responsible body, which may be used by external applications to reference the spatial object. The identifier is an identifier of the spatial object, not an identifier of the real-world phenomenon.</documentation>
+						</annotation>
+					</element>
+					<element name="beginLifespanVersion" nillable="true">
+						<annotation>
+							<documentation>-- Name --
+beginLifespanVersion.
+
+-- Definition --
+Date and time at which this version of the spatial object was inserted or changed in the spatial data set.</documentation>
+						</annotation>
+						<complexType>
+							<simpleContent>
+								<extension base="dateTime">
+									<attribute name="nilReason" type="gml:NilReasonType"/>
+								</extension>
+							</simpleContent>
+						</complexType>
+					</element>
+					<element name="endLifespanVersion" nillable="true" minOccurs="0">
+						<annotation>
+							<documentation>-- Name --
+endLifespanVersion.
+
+-- Definition --
+Date and time at which this version of the spatial object was superseded or retired in the spatial data set.</documentation>
+						</annotation>
+						<complexType>
+							<simpleContent>
+								<extension base="dateTime">
+									<attribute name="nilReason" type="gml:NilReasonType"/>
+								</extension>
+							</simpleContent>
+						</complexType>
+					</element>
+					<element name="geometry" type="gml:GeometryPropertyType">
+						<annotation>
+							<documentation>-- Name --
+geometry.
+
+-- Definition --
+Spatial representation of the LC data.
+
+-- Description --
+NOTE REstricted to point or surface.</documentation>
+						</annotation>
+					</element>
+					<element name="landCoverObservation" type="lcv:LandCoverObservationPropertyType" maxOccurs="unbounded">
+						<annotation>
+							<documentation>-- Name --
+landCoverObservation.
+
+-- Definition --
+Land cover information at a specific time and place.</documentation>
+						</annotation>
+					</element>
+				</sequence>
+			</extension>
+		</complexContent>
+	</complexType>
+	<complexType name="LandCoverUnitPropertyType">
+		<sequence minOccurs="0">
+			<element ref="lcv:LandCoverUnit"/>
+		</sequence>
+		<attributeGroup ref="gml:AssociationAttributeGroup"/>
+		<attributeGroup ref="gml:OwnershipAttributeGroup"/>
+	</complexType>
+	<element name="LandCoverDataset" type="lcv:LandCoverDatasetType" substitutionGroup="gml:AbstractFeature">
+		<annotation>
+			<documentation>-- Name --
+Land Cover Dataset.
+
+-- Definition --
+A vector representation for Land Cover data.
+
+-- Description --
+This representation allows Land Cover data being supported by a vector geometry.</documentation>
+		</annotation>
+	</element>
+	<complexType name="LandCoverDatasetType">
+		<complexContent>
+			<extension base="gml:AbstractFeatureType">
+				<sequence>
+					<element name="name" type="string">
+						<annotation>
+							<documentation>-- Name --
+name.
+
+-- Definition --
+Name of the Land Cover dataset.</documentation>
+						</annotation>
+					</element>
+					<element name="inspireId" type="base:IdentifierPropertyType">
+						<annotation>
+							<documentation>-- Name --
+inspireId.
+
+-- Definition --
+External object identifier of the spatial object.
+
+-- Description --
+NOTE An external object identifier is a unique object identifier published by the responsible body, which may be used by external applications to reference the spatial object. The identifier is an identifier of the spatial object, not an identifier of the real-world phenomenon.</documentation>
+						</annotation>
+					</element>
+					<element name="extent">
+						<annotation>
+							<documentation>-- Name --
+extent.
+
+-- Definition --
+Contains the extent of the dataset.
+
+-- Description --
+NOTE	Extents may be specified in space, time or space-time.</documentation>
+						</annotation>
+						<complexType>
+							<complexContent>
+								<extension base="gml:AbstractMetadataPropertyType">
+									<sequence minOccurs="0">
+										<element ref="gmd:EX_Extent"/>
+									</sequence>
+									<attributeGroup ref="gml:AssociationAttributeGroup"/>
+								</extension>
+							</complexContent>
+						</complexType>
+					</element>
+					<element name="nomenclatureDocumentation" type="lcv:LandCoverNomenclaturePropertyType">
+						<annotation>
+							<documentation>-- Name --
+nomenclatureDocumentation.
+
+-- Definition --
+Information about the nomenclature used in this dataset.</documentation>
+						</annotation>
+					</element>
+					<element name="beginLifespanVersion" nillable="true">
+						<annotation>
+							<documentation>-- Name --
+beginLifespanVersion.
+
+-- Definition --
+Date and time at which this version of the spatial object was inserted or changed in the spatial data set.</documentation>
+						</annotation>
+						<complexType>
+							<simpleContent>
+								<extension base="dateTime">
+									<attribute name="nilReason" type="gml:NilReasonType"/>
+								</extension>
+							</simpleContent>
+						</complexType>
+					</element>
+					<element name="endLifespanVersion" nillable="true" minOccurs="0">
+						<annotation>
+							<documentation>-- Name --
+endLifespanVersion.
+
+-- Definition --
+Date and time at which this version of the spatial object was superseded or retired in the spatial data set.</documentation>
+						</annotation>
+						<complexType>
+							<simpleContent>
+								<extension base="dateTime">
+									<attribute name="nilReason" type="gml:NilReasonType"/>
+								</extension>
+							</simpleContent>
+						</complexType>
+					</element>
+					<element name="validFrom" nillable="true">
+						<annotation>
+							<documentation>-- Name --
+validFrom.
+
+-- Definition --
+The time when the phenomenon started to exist in the real world.</documentation>
+						</annotation>
+						<complexType>
+							<simpleContent>
+								<extension base="date">
+									<attribute name="nilReason" type="gml:NilReasonType"/>
+								</extension>
+							</simpleContent>
+						</complexType>
+					</element>
+					<element name="validTo" nillable="true">
+						<annotation>
+							<documentation>-- Name --
+validTo.
+
+-- Definition --
+The time from which the phenomenon no longer exists in the real world.</documentation>
+						</annotation>
+						<complexType>
+							<simpleContent>
+								<extension base="date">
+									<attribute name="nilReason" type="gml:NilReasonType"/>
+								</extension>
+							</simpleContent>
+						</complexType>
+					</element>
+					<element name="member" type="lcv:LandCoverUnitPropertyType" maxOccurs="unbounded">
+						<annotation>
+							<documentation>-- Name --
+element.
+
+-- Definition --
+A Land Cover Unit being part of the dataset.
+
+-- Description --
+A Land Cover dataset is a collection of LandCover units, each one being called an element.</documentation>
+						</annotation>
+					</element>
+				</sequence>
+			</extension>
+		</complexContent>
+	</complexType>
+	<complexType name="LandCoverDatasetPropertyType">
+		<sequence minOccurs="0">
+			<element ref="lcv:LandCoverDataset"/>
+		</sequence>
+		<attributeGroup ref="gml:AssociationAttributeGroup"/>
+		<attributeGroup ref="gml:OwnershipAttributeGroup"/>
+	</complexType>
+</schema>

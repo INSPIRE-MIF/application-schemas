@@ -1,0 +1,448 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+	Inspire Registry Schemas V 1.0
+
+	Licensed under the EUPL, Version 1.1 or - as soon they will be approved by
+	the European Commission - subsequent versions of the EUPL (the "Licence");
+	You may not use this work except in compliance with the Licence.
+	You may obtain a copy of the Licence at:
+ 
+	http://ec.europa.eu/idabc/eupl
+ 
+	Unless required by applicable law or agreed to in writing, software
+	distributed under the Licence is distributed on an "AS IS" basis,
+	WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+	See the Licence for the specific language governing permissions and
+	limitations under the Licence.
+ 
+	Date: 10/11/2014
+	Authors: European Commission, Joint Research Centre
+	Daniele Francioli, Emanuela Epure
+	inspire-registry-info@jrc.ec.europa.eu
+ 
+        This work was supported by the EU  Interoperability Solutions for
+        European Public Administrations Programme (http://ec.europa.eu/isa)
+        through Action 1.17: Re-usable INSPIRE Reference Platform 
+        (http://ec.europa.eu/isa/actions/01-trusted-information-exchange/1-17action_en.htm).
+-->
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns="http://inspire.ec.europa.eu/metadata-codelist_register/metadata-codelist" targetNamespace="http://inspire.ec.europa.eu/metadata-codelist_register/metadata-codelist" elementFormDefault="qualified" attributeFormDefault="unqualified" version="1.0">
+	<xs:import namespace="http://www.w3.org/XML/1998/namespace" schemaLocation="http://www.w3.org/2001/xml.xsd"/>
+	<xs:element name="metadata-codelist">
+		<xs:complexType>
+			<xs:choice maxOccurs="unbounded">
+				<xs:element name="thisversion" minOccurs="1" maxOccurs="1"/>
+				<xs:element name="latestversion" minOccurs="1" maxOccurs="1"/>
+				<xs:element name="previousversions" minOccurs="0" maxOccurs="1">
+					<xs:complexType>
+						<xs:sequence>
+							<xs:element name="version" minOccurs="0" maxOccurs="unbounded"/>
+						</xs:sequence>
+					</xs:complexType>
+				</xs:element>
+				<xs:element name="language" minOccurs="0" maxOccurs="1"/>
+				<xs:element name="label" minOccurs="1" maxOccurs="1">
+					<xs:complexType>
+						<xs:simpleContent>
+							<xs:extension base="xs:string">
+								<xs:attribute ref="xml:lang" use="required"/>
+							</xs:extension>
+						</xs:simpleContent>
+					</xs:complexType>
+				</xs:element>
+				<xs:element name="definition" minOccurs="0" maxOccurs="1">
+					<xs:complexType>
+						<xs:simpleContent>
+							<xs:extension base="xs:string">
+								<xs:attribute ref="xml:lang" use="required"/>
+							</xs:extension>
+						</xs:simpleContent>
+					</xs:complexType>
+				</xs:element>
+				<xs:element name="description" minOccurs="0" maxOccurs="1">
+					<xs:complexType>
+						<xs:simpleContent>
+							<xs:extension base="xs:string">
+								<xs:attribute ref="xml:lang" use="required"/>
+							</xs:extension>
+						</xs:simpleContent>
+					</xs:complexType>
+				</xs:element>
+				<xs:element name="itemclass" minOccurs="1" maxOccurs="1">
+					<xs:complexType>
+						<xs:all>
+							<xs:element name="label" minOccurs="1" maxOccurs="1">
+								<xs:complexType>
+									<xs:simpleContent>
+										<xs:extension base="xs:string">
+											<xs:attribute ref="xml:lang" use="required"/>
+										</xs:extension>
+									</xs:simpleContent>
+								</xs:complexType>
+							</xs:element>
+						</xs:all>
+						<xs:attribute name="uriname" type="xs:anyURI" use="required"/>
+					</xs:complexType>
+				</xs:element>
+				<xs:element name="status" minOccurs="1" maxOccurs="1">
+					<xs:complexType>
+						<xs:all>
+							<xs:element name="label" minOccurs="1" maxOccurs="1">
+								<xs:complexType>
+									<xs:simpleContent>
+										<xs:extension base="xs:string">
+											<xs:attribute ref="xml:lang" use="required"/>
+										</xs:extension>
+									</xs:simpleContent>
+								</xs:complexType>
+							</xs:element>
+						</xs:all>
+						<xs:attribute name="id" type="xs:anyURI" use="required"/>
+					</xs:complexType>
+				</xs:element>
+				<xs:element name="governance-level" minOccurs="1" maxOccurs="unbounded">
+					<xs:complexType>
+						<xs:all>
+							<xs:element name="label" minOccurs="1" maxOccurs="1"/>
+						</xs:all>
+						<xs:attribute name="id" type="xs:anyURI" use="required"/>
+					</xs:complexType>
+				</xs:element>
+				<xs:element name="parents" minOccurs="0" maxOccurs="1">
+					<xs:complexType>
+						<xs:sequence>
+							<xs:element name="parent" minOccurs="0" maxOccurs="unbounded">
+								<xs:complexType>
+									<xs:all>
+										<xs:element name="label" minOccurs="1" maxOccurs="1">
+											<xs:complexType>
+												<xs:simpleContent>
+													<xs:extension base="xs:string">
+														<xs:attribute ref="xml:lang" use="required"/>
+													</xs:extension>
+												</xs:simpleContent>
+											</xs:complexType>
+										</xs:element>
+									</xs:all>
+									<xs:attribute name="id" type="xs:anyURI" use="required"/>
+								</xs:complexType>
+							</xs:element>
+						</xs:sequence>
+					</xs:complexType>
+				</xs:element>
+				<xs:element name="successors" minOccurs="0" maxOccurs="1">
+					<xs:complexType>
+						<xs:sequence>
+							<xs:element name="successor" minOccurs="0" maxOccurs="unbounded">
+								<xs:complexType>
+									<xs:all>
+										<xs:element name="label" minOccurs="1" maxOccurs="1">
+											<xs:complexType>
+												<xs:simpleContent>
+													<xs:extension base="xs:string">
+														<xs:attribute ref="xml:lang" use="required"/>
+													</xs:extension>
+												</xs:simpleContent>
+											</xs:complexType>
+										</xs:element>
+									</xs:all>
+									<xs:attribute name="id" type="xs:anyURI" use="required"/>
+								</xs:complexType>
+							</xs:element>
+						</xs:sequence>
+					</xs:complexType>
+				</xs:element>
+				<xs:element name="predecessors" minOccurs="0" maxOccurs="1">
+					<xs:complexType>
+						<xs:sequence>
+							<xs:element name="predecessor" minOccurs="0" maxOccurs="unbounded">
+								<xs:complexType>
+									<xs:all>
+										<xs:element name="label" minOccurs="1" maxOccurs="1">
+											<xs:complexType>
+												<xs:simpleContent>
+													<xs:extension base="xs:string">
+														<xs:attribute ref="xml:lang" use="required"/>
+													</xs:extension>
+												</xs:simpleContent>
+											</xs:complexType>
+										</xs:element>
+									</xs:all>
+									<xs:attribute name="id" type="xs:anyURI" use="required"/>
+								</xs:complexType>
+							</xs:element>
+						</xs:sequence>
+					</xs:complexType>
+				</xs:element>
+				<xs:element name="register" minOccurs="1" maxOccurs="1">
+					<xs:complexType>
+						<xs:all>
+							<xs:element name="label" minOccurs="1" maxOccurs="1">
+								<xs:complexType>
+									<xs:simpleContent>
+										<xs:extension base="xs:string">
+											<xs:attribute ref="xml:lang" use="required"/>
+										</xs:extension>
+									</xs:simpleContent>
+								</xs:complexType>
+							</xs:element>
+							<xs:element name="registry" minOccurs="1" maxOccurs="1">
+								<xs:complexType>
+									<xs:all>
+										<xs:element name="label" minOccurs="1" maxOccurs="1">
+											<xs:complexType>
+												<xs:simpleContent>
+													<xs:extension base="xs:string">
+														<xs:attribute ref="xml:lang" use="required"/>
+													</xs:extension>
+												</xs:simpleContent>
+											</xs:complexType>
+										</xs:element>
+									</xs:all>
+									<xs:attribute name="id" type="xs:anyURI" use="required"/>
+								</xs:complexType>
+							</xs:element>
+						</xs:all>
+						<xs:attribute name="id" type="xs:anyURI" use="required"/>
+					</xs:complexType>
+				</xs:element>
+				<xs:element name="document" minOccurs="0" maxOccurs="1">
+					<xs:complexType>
+						<xs:all>
+							<xs:element name="label" minOccurs="0" maxOccurs="1">
+								<xs:complexType>
+									<xs:simpleContent>
+										<xs:extension base="xs:string">
+											<xs:attribute ref="xml:lang" use="required"/>
+										</xs:extension>
+									</xs:simpleContent>
+								</xs:complexType>
+							</xs:element>
+						</xs:all>
+						<xs:attribute name="id" type="xs:anyURI" use="required"/>
+					</xs:complexType>
+				</xs:element>
+				<xs:element name="containeditems" minOccurs="0" maxOccurs="1">
+					<xs:complexType>
+						<xs:sequence>
+							<xs:element name="value" minOccurs="0" maxOccurs="unbounded">
+								<xs:complexType>
+									<xs:choice maxOccurs="unbounded">
+										<xs:element name="thisversion" minOccurs="0" maxOccurs="1"/>
+										<xs:element name="latestversion" minOccurs="0" maxOccurs="1"/>
+										<xs:element name="previousversions" minOccurs="0" maxOccurs="1">
+											<xs:complexType>
+												<xs:sequence>
+													<xs:element name="version" minOccurs="0" maxOccurs="unbounded"/>
+												</xs:sequence>
+											</xs:complexType>
+										</xs:element>
+										<xs:element name="language" minOccurs="0" maxOccurs="1"/>
+										<xs:element name="label" minOccurs="0" maxOccurs="1">
+											<xs:complexType>
+												<xs:simpleContent>
+													<xs:extension base="xs:string">
+														<xs:attribute ref="xml:lang" use="required"/>
+													</xs:extension>
+												</xs:simpleContent>
+											</xs:complexType>
+										</xs:element>
+										<xs:element name="definition" minOccurs="0" maxOccurs="1">
+											<xs:complexType>
+												<xs:simpleContent>
+													<xs:extension base="xs:string">
+														<xs:attribute ref="xml:lang" use="required"/>
+													</xs:extension>
+												</xs:simpleContent>
+											</xs:complexType>
+										</xs:element>
+										<xs:element name="description" minOccurs="0" maxOccurs="1">
+											<xs:complexType>
+												<xs:simpleContent>
+													<xs:extension base="xs:string">
+														<xs:attribute ref="xml:lang" use="required"/>
+													</xs:extension>
+												</xs:simpleContent>
+											</xs:complexType>
+										</xs:element>
+										<xs:element name="itemclass" minOccurs="1" maxOccurs="1">
+											<xs:complexType>
+												<xs:all>
+													<xs:element name="label" minOccurs="1" maxOccurs="1">
+														<xs:complexType>
+															<xs:simpleContent>
+																<xs:extension base="xs:string">
+																	<xs:attribute ref="xml:lang" use="required"/>
+																</xs:extension>
+															</xs:simpleContent>
+														</xs:complexType>
+													</xs:element>
+												</xs:all>
+												<xs:attribute name="uriname" type="xs:anyURI" use="required"/>
+											</xs:complexType>
+										</xs:element>
+										<xs:element name="status" minOccurs="0" maxOccurs="1">
+											<xs:complexType>
+												<xs:all>
+													<xs:element name="label" minOccurs="1" maxOccurs="1">
+														<xs:complexType>
+															<xs:simpleContent>
+																<xs:extension base="xs:string">
+																	<xs:attribute ref="xml:lang" use="required"/>
+																</xs:extension>
+															</xs:simpleContent>
+														</xs:complexType>
+													</xs:element>
+												</xs:all>
+												<xs:attribute name="id" type="xs:anyURI" use="required"/>
+											</xs:complexType>
+										</xs:element>
+										<xs:element name="governance-level" minOccurs="0" maxOccurs="1">
+											<xs:complexType>
+												<xs:all>
+													<xs:element name="label" minOccurs="1" maxOccurs="1"/>
+												</xs:all>
+												<xs:attribute name="id" type="xs:anyURI" use="required"/>
+											</xs:complexType>
+										</xs:element>
+										<xs:element name="parents" minOccurs="0" maxOccurs="1">
+											<xs:complexType>
+												<xs:sequence>
+													<xs:element name="parent" minOccurs="0" maxOccurs="unbounded">
+														<xs:complexType>
+															<xs:all>
+																<xs:element name="label" minOccurs="1" maxOccurs="1">
+																	<xs:complexType>
+																		<xs:simpleContent>
+																			<xs:extension base="xs:string">
+																				<xs:attribute ref="xml:lang" use="required"/>
+																			</xs:extension>
+																		</xs:simpleContent>
+																	</xs:complexType>
+																</xs:element>
+															</xs:all>
+															<xs:attribute name="id" type="xs:anyURI" use="required"/>
+														</xs:complexType>
+													</xs:element>
+												</xs:sequence>
+											</xs:complexType>
+										</xs:element>
+										<xs:element name="successors" minOccurs="0" maxOccurs="1">
+											<xs:complexType>
+												<xs:sequence>
+													<xs:element name="successor" minOccurs="0" maxOccurs="unbounded">
+														<xs:complexType>
+															<xs:all>
+																<xs:element name="label" minOccurs="1" maxOccurs="1">
+																	<xs:complexType>
+																		<xs:simpleContent>
+																			<xs:extension base="xs:string">
+																				<xs:attribute ref="xml:lang" use="required"/>
+																			</xs:extension>
+																		</xs:simpleContent>
+																	</xs:complexType>
+																</xs:element>
+															</xs:all>
+															<xs:attribute name="id" type="xs:anyURI" use="required"/>
+														</xs:complexType>
+													</xs:element>
+												</xs:sequence>
+											</xs:complexType>
+										</xs:element>
+										<xs:element name="predecessors" minOccurs="0" maxOccurs="1">
+											<xs:complexType>
+												<xs:sequence>
+													<xs:element name="predecessor" minOccurs="0" maxOccurs="unbounded">
+														<xs:complexType>
+															<xs:all>
+																<xs:element name="label" minOccurs="1" maxOccurs="1">
+																	<xs:complexType>
+																		<xs:simpleContent>
+																			<xs:extension base="xs:string">
+																				<xs:attribute ref="xml:lang" use="required"/>
+																			</xs:extension>
+																		</xs:simpleContent>
+																	</xs:complexType>
+																</xs:element>
+															</xs:all>
+															<xs:attribute name="id" type="xs:anyURI" use="required"/>
+														</xs:complexType>
+													</xs:element>
+												</xs:sequence>
+											</xs:complexType>
+										</xs:element>
+										<xs:element name="register" minOccurs="1" maxOccurs="1">
+											<xs:complexType>
+												<xs:all>
+													<xs:element name="label" minOccurs="1" maxOccurs="1">
+														<xs:complexType>
+															<xs:simpleContent>
+																<xs:extension base="xs:string">
+																	<xs:attribute ref="xml:lang" use="required"/>
+																</xs:extension>
+															</xs:simpleContent>
+														</xs:complexType>
+													</xs:element>
+													<xs:element name="registry" minOccurs="1" maxOccurs="1">
+														<xs:complexType>
+															<xs:all>
+																<xs:element name="label" minOccurs="1" maxOccurs="1">
+																	<xs:complexType>
+																		<xs:simpleContent>
+																			<xs:extension base="xs:string">
+																				<xs:attribute ref="xml:lang" use="required"/>
+																			</xs:extension>
+																		</xs:simpleContent>
+																	</xs:complexType>
+																</xs:element>
+															</xs:all>
+															<xs:attribute name="id" type="xs:anyURI" use="required"/>
+														</xs:complexType>
+													</xs:element>
+												</xs:all>
+												<xs:attribute name="id" type="xs:anyURI" use="required"/>
+											</xs:complexType>
+										</xs:element>
+										<xs:element name="metadata-codelist" minOccurs="1" maxOccurs="1">
+											<xs:complexType>
+												<xs:all>
+													<xs:element name="label" minOccurs="1" maxOccurs="1">
+														<xs:complexType>
+															<xs:simpleContent>
+																<xs:extension base="xs:string">
+																	<xs:attribute ref="xml:lang" use="required"/>
+																</xs:extension>
+															</xs:simpleContent>
+														</xs:complexType>
+													</xs:element>
+												</xs:all>
+												<xs:attribute name="id" type="xs:anyURI" use="required"/>
+											</xs:complexType>
+										</xs:element>
+										<xs:element name="document" minOccurs="0" maxOccurs="unbounded">
+											<xs:complexType>
+												<xs:all>
+													<xs:element name="label" minOccurs="0" maxOccurs="1">
+														<xs:complexType>
+															<xs:simpleContent>
+																<xs:extension base="xs:string">
+																	<xs:attribute ref="xml:lang" use="required"/>
+																</xs:extension>
+															</xs:simpleContent>
+														</xs:complexType>
+													</xs:element>
+												</xs:all>
+												<xs:attribute name="id" type="xs:anyURI" use="required"/>
+											</xs:complexType>
+										</xs:element>
+									</xs:choice>
+									<xs:attribute name="id" type="xs:anyURI" use="required"/>
+								</xs:complexType>
+							</xs:element>
+						</xs:sequence>
+					</xs:complexType>
+				</xs:element>
+			</xs:choice>
+			<xs:attribute name="id" type="xs:anyURI" use="required"/>
+		</xs:complexType>
+	</xs:element>
+</xs:schema>

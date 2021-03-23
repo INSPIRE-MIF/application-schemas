@@ -1,0 +1,1298 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<schema xmlns="http://www.w3.org/2001/XMLSchema" xmlns:am="http://inspire.jrc.ec.europa.eu/schemas/am/2.0" xmlns:base="urn:x-inspire:specification:gmlas:BaseTypes:3.2" xmlns:base2="http://inspire.jrc.ec.europa.eu/schemas/base2/0.1" xmlns:bu="http://inspire.jrc.ec.europa.eu/schemas/bu/2.0" xmlns:ef="http://inspire.jrc.ec.europa.eu/schemas/ef/2.0" xmlns:gmd="http://www.isotc211.org/2005/gmd" xmlns:gml="http://www.opengis.net/gml/3.2" xmlns:lucm="http://inspire.jrc.ec.europa.eu/schemas/lucm/2.0" xmlns:mr-core="http://inspire.jrc.ec.europa.eu/schemas/mr-core/2.0" xmlns:nz-core="http://inspire.jrc.ec.europa.eu/schemas/nz-core/2.0" xmlns:nz-f="http://inspire.jrc.ec.europa.eu/schemas/nz-f/2.0" xmlns:plu="http://inspire.jrc.ec.europa.eu/schemas/plu/2.0" xmlns:us-govserv="http://inspire.jrc.ec.europa.eu/schemas/us-govserv/2.0" targetNamespace="http://inspire.jrc.ec.europa.eu/schemas/nz-core/2.0" elementFormDefault="qualified" version="2.0">
+	<annotation>
+		<documentation>--Definition--
+
+--Description--</documentation>
+	</annotation>
+	<import namespace="http://inspire.jrc.ec.europa.eu/schemas/am/2.0" schemaLocation="https://inspire.ec.europa.eu/draft-schemas/am/2.0/AreaManagementRestrictionRegulationZone.xsd"/>
+	<import namespace="http://inspire.jrc.ec.europa.eu/schemas/base2/0.1" schemaLocation="https://inspire.ec.europa.eu/draft-schemas/base2/0.1/BaseTypes2.xsd"/>
+	<import namespace="http://inspire.jrc.ec.europa.eu/schemas/bu/2.0" schemaLocation="https://inspire.ec.europa.eu/draft-schemas/bu/2.0/Buildings.xsd"/>
+	<import namespace="http://inspire.jrc.ec.europa.eu/schemas/ef/2.0" schemaLocation="https://inspire.ec.europa.eu/draft-schemas/ef/2.0/EnvironmentalMonitoringFacilities.xsd"/>
+	<import namespace="http://inspire.jrc.ec.europa.eu/schemas/lucm/2.0" schemaLocation="https://inspire.ec.europa.eu/draft-schemas/lucm/2.0/LandUseCoreModel.xsd"/>
+	<import namespace="http://inspire.jrc.ec.europa.eu/schemas/mr-core/2.0" schemaLocation="https://inspire.ec.europa.eu/draft-schemas/mr-core/2.0/MineralResourcesCore.xsd"/>
+	<import namespace="http://inspire.jrc.ec.europa.eu/schemas/nz-f/2.0" schemaLocation="https://inspire.ec.europa.eu/draft-schemas/nz-f/2.0/NaturalRiskZonesFloods.xsd"/>
+	<import namespace="http://inspire.jrc.ec.europa.eu/schemas/plu/2.0" schemaLocation="https://inspire.ec.europa.eu/draft-schemas/plu/2.0/PlannedLandUse.xsd"/>
+	<import namespace="http://inspire.jrc.ec.europa.eu/schemas/us-govserv/2.0" schemaLocation="https://inspire.ec.europa.eu/draft-schemas/us-govserv/2.0/UtilitiesAndGovernmentalServicesGovServ.xsd"/>
+	<import namespace="http://www.isotc211.org/2005/gmd" schemaLocation="http://schemas.opengis.net/iso/19139/20070417/gmd/gmd.xsd"/>
+	<import namespace="http://www.opengis.net/gml/3.2" schemaLocation="http://schemas.opengis.net/gml/3.2.1/gml.xsd"/>
+	<import namespace="urn:x-inspire:specification:gmlas:BaseTypes:3.2" schemaLocation="https://inspire.ec.europa.eu/schemas/base/3.2/BaseTypes.xsd"/>
+	<!--XML Schema document created by ShapeChange-->
+	<element name="contactInformation" type="nz-core:contactInformationType" substitutionGroup="gml:AbstractObject">
+		<annotation>
+			<documentation>-- Definition --
+Data that enable the user to contact a person in order to get more information about a method.</documentation>
+		</annotation>
+	</element>
+	<complexType name="contactInformationType">
+		<sequence>
+			<element name="individualName" nillable="true">
+				<annotation>
+					<documentation>-- Definition --
+Name of the responsible person-  SURNAME, given name, title separated by a delimiter.</documentation>
+				</annotation>
+				<complexType>
+					<simpleContent>
+						<extension base="string">
+							<attribute name="nilReason" type="gml:NilReasonType"/>
+						</extension>
+					</simpleContent>
+				</complexType>
+			</element>
+			<element name="organisationName" nillable="true">
+				<annotation>
+					<documentation>-- Definition --
+Name of the responsible organisation.</documentation>
+				</annotation>
+				<complexType>
+					<simpleContent>
+						<extension base="string">
+							<attribute name="nilReason" type="gml:NilReasonType"/>
+						</extension>
+					</simpleContent>
+				</complexType>
+			</element>
+			<element name="phone" nillable="true">
+				<annotation>
+					<documentation>-- Definition --
+Telephone numbers at which the organisation or individual may be contacted.</documentation>
+				</annotation>
+				<complexType>
+					<complexContent>
+						<extension base="gml:AbstractMetadataPropertyType">
+							<sequence>
+								<element ref="gmd:CI_Telephone"/>
+							</sequence>
+							<attribute name="nilReason" type="gml:NilReasonType"/>
+						</extension>
+					</complexContent>
+				</complexType>
+			</element>
+			<element name="address" nillable="true">
+				<annotation>
+					<documentation>-- Definition --
+Physical and email address at which the organisation or individual may be contacted.</documentation>
+				</annotation>
+				<complexType>
+					<complexContent>
+						<extension base="gml:AbstractMetadataPropertyType">
+							<sequence>
+								<element ref="gmd:CI_Address"/>
+							</sequence>
+							<attribute name="nilReason" type="gml:NilReasonType"/>
+						</extension>
+					</complexContent>
+				</complexType>
+			</element>
+			<element name="onlineRessource" nillable="true">
+				<annotation>
+					<documentation>-- Definition --
+Online information that can be used to contact the individual or organisation.</documentation>
+				</annotation>
+				<complexType>
+					<simpleContent>
+						<extension base="anyURI">
+							<attribute name="nilReason" type="gml:NilReasonType"/>
+						</extension>
+					</simpleContent>
+				</complexType>
+			</element>
+		</sequence>
+	</complexType>
+	<complexType name="contactInformationPropertyType">
+		<sequence>
+			<element ref="nz-core:contactInformation"/>
+		</sequence>
+	</complexType>
+	<element name="RiskHazardGeometry" type="nz-core:RiskHazardGeometryType" substitutionGroup="gml:AbstractObject">
+		<annotation>
+			<documentation>-- Definition --
+Defines the allowed geometries for the hazard area and risk zone features</documentation>
+		</annotation>
+	</element>
+	<complexType name="RiskHazardGeometryType">
+		<choice>
+			<element name="geometryByVolume" type="gml:SolidPropertyType">
+				<annotation>
+					<documentation>-- Definition --
+A feature which geometry is a volume</documentation>
+				</annotation>
+			</element>
+			<element name="geometryBySurface" type="gml:SurfacePropertyType">
+				<annotation>
+					<documentation>-- Definition --
+A feature which geometry is a surface</documentation>
+				</annotation>
+			</element>
+			<element name="geometryByMultiVolume" type="gml:MultiSolidPropertyType">
+				<annotation>
+					<documentation>-- Definition --
+A feature which geometry is composed of several volumes</documentation>
+				</annotation>
+			</element>
+			<element name="geometryByMultiSurface" type="gml:MultiSurfacePropertyType">
+				<annotation>
+					<documentation>-- Definition --
+A feature which geometry is composed of several surfaces</documentation>
+				</annotation>
+			</element>
+		</choice>
+	</complexType>
+	<complexType name="RiskHazardGeometryPropertyType">
+		<sequence>
+			<element ref="nz-core:RiskHazardGeometry"/>
+		</sequence>
+	</complexType>
+	<element name="LevelOfRisk" type="nz-core:LevelOfRiskType" substitutionGroup="gml:AbstractObject">
+		<annotation>
+			<documentation>-- Definition --
+The level of risk is an assessment of the combination of the consequences of an event (hazard) and the associated probability/likelihood of the occurence of the event.</documentation>
+		</annotation>
+	</element>
+	<complexType name="LevelOfRiskType">
+		<sequence>
+			<element name="qualitativeLevelRiskAssessmentMethod" nillable="true">
+				<annotation>
+					<documentation>-- Definition --
+A citation to the method used to express the level of risk qualitatively.</documentation>
+				</annotation>
+				<complexType>
+					<sequence>
+						<element ref="nz-core:DocumentReference"/>
+					</sequence>
+					<attribute name="nilReason" type="gml:NilReasonType"/>
+				</complexType>
+			</element>
+			<element name="qualitativeValue" nillable="true">
+				<annotation>
+					<documentation>-- Definition --
+A qualitative assessment of the level of risk.</documentation>
+				</annotation>
+				<complexType>
+					<simpleContent>
+						<extension base="string">
+							<attribute name="nilReason" type="gml:NilReasonType"/>
+						</extension>
+					</simpleContent>
+				</complexType>
+			</element>
+			<element name="quantitativeLevelRiskAssessmentMethod" nillable="true">
+				<annotation>
+					<documentation>-- Definition --
+A citation to the method used to express the level of risk quantitatively.</documentation>
+				</annotation>
+				<complexType>
+					<sequence>
+						<element ref="nz-core:DocumentReference"/>
+					</sequence>
+					<attribute name="nilReason" type="gml:NilReasonType"/>
+				</complexType>
+			</element>
+			<element name="quantitativeValue" nillable="true">
+				<annotation>
+					<documentation>-- Definition --
+A quantitative assessment of the level of risk.</documentation>
+				</annotation>
+				<complexType>
+					<simpleContent>
+						<extension base="double">
+							<attribute name="nilReason" type="gml:NilReasonType"/>
+						</extension>
+					</simpleContent>
+				</complexType>
+			</element>
+		</sequence>
+	</complexType>
+	<complexType name="LevelOfRiskPropertyType">
+		<sequence>
+			<element ref="nz-core:LevelOfRisk"/>
+		</sequence>
+	</complexType>
+	<element name="VulnerabilityOfElement" type="nz-core:VulnerabilityOfElementType" substitutionGroup="gml:AbstractGML">
+		<annotation>
+			<documentation>-- Definition --
+SOURCE : [UNISDR, 2009]
+
+The characteristics and circumstances of a community, system or asset that make it susceptible  to the damaging effect of a hazard. 
+NOTE : It can also adress exposure.
+
+-- Description --
+SOURCE : [Council of The European Union - Commission Staff Working Paper - Risk Assessment and Mapping Guidelines for Disaster Management]
+
+In probablistic/quantitative risk assessments the term vulnerability expresses the part of percentage of Exposure that is likely to be lost due to a certain hazard.</documentation>
+		</annotation>
+	</element>
+	<complexType name="VulnerabilityOfElementType">
+		<complexContent>
+			<extension base="gml:AbstractGMLType">
+				<sequence>
+					<element name="qualitativeVulnerability" nillable="true">
+						<annotation>
+							<documentation>--Definition--
+A qualitative assessment of the vulnerability.</documentation>
+						</annotation>
+						<complexType>
+							<simpleContent>
+								<extension base="string">
+									<attribute name="nilReason" type="gml:NilReasonType"/>
+								</extension>
+							</simpleContent>
+						</complexType>
+					</element>
+					<element name="qualitativeVulnerabilityAssessmentMethod" nillable="true">
+						<annotation>
+							<documentation>-- Definition --
+A citation to the method used to assess the qualitative vulnerability.</documentation>
+						</annotation>
+						<complexType>
+							<sequence>
+								<element ref="nz-core:DocumentReference"/>
+							</sequence>
+							<attribute name="nilReason" type="gml:NilReasonType"/>
+						</complexType>
+					</element>
+					<element name="quantitativeVulnerability" nillable="true">
+						<annotation>
+							<documentation>-- Definition --
+A quantitative assessment of the vulnerability.</documentation>
+						</annotation>
+						<complexType>
+							<simpleContent>
+								<extension base="double">
+									<attribute name="nilReason" type="gml:NilReasonType"/>
+								</extension>
+							</simpleContent>
+						</complexType>
+					</element>
+					<element name="quantitativeVulnerabilityAssessmentMethod" nillable="true">
+						<annotation>
+							<documentation>-- Definition --
+A citation to the method used to assess the quantitative vulnerability.</documentation>
+						</annotation>
+						<complexType>
+							<sequence>
+								<element ref="nz-core:DocumentReference"/>
+							</sequence>
+							<attribute name="nilReason" type="gml:NilReasonType"/>
+						</complexType>
+					</element>
+					<element name="riskZone" nillable="true">
+						<annotation>
+							<documentation>-- Definition --
+The risk zone that is linked to an exposed element.</documentation>
+							<appinfo>
+								<reversePropertyName xmlns="http://www.opengis.net/gml/3.2">nz-core:exposedElement</reversePropertyName>
+							</appinfo>
+						</annotation>
+						<complexType>
+							<sequence minOccurs="0">
+								<element ref="nz-core:RiskZone"/>
+							</sequence>
+							<attributeGroup ref="gml:AssociationAttributeGroup"/>
+							<attributeGroup ref="gml:OwnershipAttributeGroup"/>
+						</complexType>
+					</element>
+					<element name="exposedElement" nillable="true">
+						<annotation>
+							<documentation>-- Definition --
+The exposed element that is linked to the risk zone.</documentation>
+							<appinfo>
+								<reversePropertyName xmlns="http://www.opengis.net/gml/3.2">nz-core:riskZone</reversePropertyName>
+							</appinfo>
+						</annotation>
+						<complexType>
+							<sequence minOccurs="0">
+								<element ref="nz-core:ExposedElements"/>
+							</sequence>
+							<attributeGroup ref="gml:AssociationAttributeGroup"/>
+							<attributeGroup ref="gml:OwnershipAttributeGroup"/>
+						</complexType>
+					</element>
+				</sequence>
+			</extension>
+		</complexContent>
+	</complexType>
+	<complexType name="VulnerabilityOfElementPropertyType">
+		<sequence minOccurs="0">
+			<element ref="nz-core:VulnerabilityOfElement"/>
+		</sequence>
+		<attributeGroup ref="gml:AssociationAttributeGroup"/>
+		<attributeGroup ref="gml:OwnershipAttributeGroup"/>
+	</complexType>
+	<element name="QuantitativeLikelihood" type="nz-core:QuantitativeLikelihoodType" substitutionGroup="gml:AbstractObject">
+		<annotation>
+			<documentation>-- Definition --
+
+A frequency of occurence or return period of a hazard phenomenon.</documentation>
+		</annotation>
+	</element>
+	<complexType name="QuantitativeLikelihoodType">
+		<sequence>
+			<element name="probabilityOfOccurence" nillable="true">
+				<annotation>
+					<documentation>-- Definition --
+The probability of occurence of a hazard event, expressed as a value between 0 and 1. This is the inverse value of the return period.</documentation>
+				</annotation>
+				<complexType>
+					<simpleContent>
+						<extension base="double">
+							<attribute name="nilReason" type="gml:NilReasonType"/>
+						</extension>
+					</simpleContent>
+				</complexType>
+			</element>
+			<element name="returnPeriod" nillable="true">
+				<annotation>
+					<documentation>-- Definition --
+Long-term average interval of time or number of years within which an event will be equalled or exceeded [UNESCO].</documentation>
+				</annotation>
+				<complexType>
+					<simpleContent>
+						<extension base="double">
+							<attribute name="nilReason" type="gml:NilReasonType"/>
+						</extension>
+					</simpleContent>
+				</complexType>
+			</element>
+		</sequence>
+	</complexType>
+	<complexType name="QuantitativeLikelihoodPropertyType">
+		<sequence>
+			<element ref="nz-core:QuantitativeLikelihood"/>
+		</sequence>
+	</complexType>
+	<element name="LikelihoodOfOccurence" type="nz-core:LikelihoodOfOccurenceType" substitutionGroup="gml:AbstractObject">
+		<annotation>
+			<documentation>-- Definition --
+SOURCE : [EXCIFF]
+
+Likelihood is a general concept relating to the chance of an event occuring. Likelihood is generally expressed as a probability or a frequency.</documentation>
+		</annotation>
+	</element>
+	<complexType name="LikelihoodOfOccurenceType">
+		<sequence>
+			<element name="qualitativeLikelihood" nillable="true">
+				<annotation>
+					<documentation>-- Definition --
+A qualitative assessment of the likelihood of occurence of a hazard. Sometimes, this is known as susceptibility.</documentation>
+				</annotation>
+				<complexType>
+					<simpleContent>
+						<extension base="string">
+							<attribute name="nilReason" type="gml:NilReasonType"/>
+						</extension>
+					</simpleContent>
+				</complexType>
+			</element>
+			<element name="qualitativeLikelihoodAssessmentMethod" nillable="true">
+				<annotation>
+					<documentation>-- Definition --
+A citation to the method used to express the likelihood qualitatively, along to a predefined scale.</documentation>
+				</annotation>
+				<complexType>
+					<sequence>
+						<element ref="nz-core:DocumentReference"/>
+					</sequence>
+					<attribute name="nilReason" type="gml:NilReasonType"/>
+				</complexType>
+			</element>
+			<element name="quantitativeLikelihood" nillable="true">
+				<annotation>
+					<documentation>-- Definition --
+A frequency of occurence or return period of a hazard phenomenon. Sometimes, this is known as susceptibility.</documentation>
+				</annotation>
+				<complexType>
+					<sequence>
+						<element ref="nz-core:QuantitativeLikelihood"/>
+					</sequence>
+					<attribute name="nilReason" type="gml:NilReasonType"/>
+				</complexType>
+			</element>
+			<element name="quantitativeLikelihoodAssessmentMethod" nillable="true">
+				<annotation>
+					<documentation>-- Definition --
+A citation to the method used to express the likelihood quantitatively.</documentation>
+				</annotation>
+				<complexType>
+					<sequence>
+						<element ref="nz-core:DocumentReference"/>
+					</sequence>
+					<attribute name="nilReason" type="gml:NilReasonType"/>
+				</complexType>
+			</element>
+			<element name="validityPeriod" type="gml:TimePeriodPropertyType" nillable="true" minOccurs="0" maxOccurs="unbounded">
+				<annotation>
+					<documentation>-- Definition --
+Future finite time frame where likelihood of occurrence assessment applies. It is an interval of dates, or the expression of a time frame for which the estimates are meant (eg: until 2090; summer of 2011; winter seasons until 2015).</documentation>
+				</annotation>
+			</element>
+		</sequence>
+	</complexType>
+	<complexType name="LikelihoodOfOccurencePropertyType">
+		<sequence>
+			<element ref="nz-core:LikelihoodOfOccurence"/>
+		</sequence>
+	</complexType>
+	<element name="LevelOfHazard" type="nz-core:LevelOfHazardType" substitutionGroup="gml:AbstractObject">
+		<annotation>
+			<documentation>-- Definition --
+Assessment of the level of the hazard.</documentation>
+		</annotation>
+	</element>
+	<complexType name="LevelOfHazardType">
+		<sequence>
+			<element name="qualitativeLevelHazardAssessmentMethod" nillable="true">
+				<annotation>
+					<documentation>-- Definition --
+A reference to the method used to express the level of hazard or risk qualitatively.</documentation>
+				</annotation>
+				<complexType>
+					<sequence>
+						<element ref="nz-core:DocumentReference"/>
+					</sequence>
+					<attribute name="nilReason" type="gml:NilReasonType"/>
+				</complexType>
+			</element>
+			<element name="qualitativeValue" nillable="true">
+				<annotation>
+					<documentation>-- Definition --
+A qualitative assessment of the level of hazard.</documentation>
+				</annotation>
+				<complexType>
+					<simpleContent>
+						<extension base="string">
+							<attribute name="nilReason" type="gml:NilReasonType"/>
+						</extension>
+					</simpleContent>
+				</complexType>
+			</element>
+			<element name="quantitativeLevelHazardAssessmentMethod" nillable="true">
+				<annotation>
+					<documentation>-- Definition --
+A citation to the method used to express the level of hazard quantitatively.</documentation>
+				</annotation>
+				<complexType>
+					<sequence>
+						<element ref="nz-core:DocumentReference"/>
+					</sequence>
+					<attribute name="nilReason" type="gml:NilReasonType"/>
+				</complexType>
+			</element>
+			<element name="quantitativeValue" nillable="true">
+				<annotation>
+					<documentation>-- Definition --
+A quantitative assessment of the level of hazard.</documentation>
+				</annotation>
+				<complexType>
+					<simpleContent>
+						<extension base="double">
+							<attribute name="nilReason" type="gml:NilReasonType"/>
+						</extension>
+					</simpleContent>
+				</complexType>
+			</element>
+		</sequence>
+	</complexType>
+	<complexType name="LevelOfHazardPropertyType">
+		<sequence>
+			<element ref="nz-core:LevelOfHazard"/>
+		</sequence>
+	</complexType>
+	<element name="RiskZone" type="nz-core:RiskZoneType" substitutionGroup="gml:AbstractFeature">
+		<annotation>
+			<documentation>-- Definition --
+A risk zone is the spatial extent of a combination of the consequences of an event (hazard) and the associated probability/likelihood of its occurence.</documentation>
+		</annotation>
+	</element>
+	<complexType name="RiskZoneType">
+		<complexContent>
+			<extension base="gml:AbstractFeatureType">
+				<sequence>
+					<element name="beginLifespanVersion" nillable="true">
+						<annotation>
+							<documentation>-- Definition --
+Date and time at which this version of the spatial object was inserted or changed in the spatial data set.</documentation>
+						</annotation>
+						<complexType>
+							<simpleContent>
+								<extension base="dateTime">
+									<attribute name="nilReason" type="gml:NilReasonType"/>
+								</extension>
+							</simpleContent>
+						</complexType>
+					</element>
+					<element name="determinationMethod" nillable="true">
+						<annotation>
+							<documentation>-- Definition --
+A simplified enumeration to describe the method used to define the area of risk.</documentation>
+						</annotation>
+						<complexType>
+							<simpleContent>
+								<extension base="nz-core:DeterminationMethodValueType">
+									<attribute name="nilReason" type="gml:NilReasonType"/>
+								</extension>
+							</simpleContent>
+						</complexType>
+					</element>
+					<element name="endLifespanVersion" nillable="true" minOccurs="0">
+						<annotation>
+							<documentation>-- Definition --
+Date and time at which this version of the spatial object was superseded or retired in the spatial data set.</documentation>
+						</annotation>
+						<complexType>
+							<simpleContent>
+								<extension base="dateTime">
+									<attribute name="nilReason" type="gml:NilReasonType"/>
+								</extension>
+							</simpleContent>
+						</complexType>
+					</element>
+					<element name="geometry" type="nz-core:RiskHazardGeometryPropertyType">
+						<annotation>
+							<documentation>-- Definition --
+Geometric representation of spatial extent covered by this risk zone.</documentation>
+						</annotation>
+					</element>
+					<element name="inspireId" type="base:IdentifierPropertyType">
+						<annotation>
+							<documentation>-- Definition --
+External object identifier of the risk zone.
+
+-- Description --
+An external object identifier is a unique object identifier published by the responsible body, which may be used by external applications to reference the spatial object. The identifier is an identifier of the spatial object, not an identifier of the real-world phenomenon.</documentation>
+						</annotation>
+					</element>
+					<element name="legalBasis" nillable="true" minOccurs="0" maxOccurs="unbounded">
+						<annotation>
+							<documentation>-- Definition --
+Legal basis upon which the risk zone coverage is based (if any).</documentation>
+						</annotation>
+						<complexType>
+							<sequence>
+								<element ref="base2:LegislationReference"/>
+							</sequence>
+							<attribute name="nilReason" type="gml:NilReasonType"/>
+						</complexType>
+					</element>
+					<element name="legallyBindingZone" nillable="true">
+						<annotation>
+							<documentation>-- Definition --
+A boolean to express wether the risk zone feature has an impact on the use of the zone, based on a legal basis.</documentation>
+						</annotation>
+						<complexType>
+							<simpleContent>
+								<extension base="boolean">
+									<attribute name="nilReason" type="gml:NilReasonType"/>
+								</extension>
+							</simpleContent>
+						</complexType>
+					</element>
+					<element name="levelOfRisk" nillable="true">
+						<annotation>
+							<documentation>-- Definition --
+The level of risk is an assessment of the combination of the consequences of an event (hazard) and the associated probability/likelihood of the occurence of the event.</documentation>
+						</annotation>
+						<complexType>
+							<sequence>
+								<element ref="nz-core:LevelOfRisk"/>
+							</sequence>
+							<attribute name="nilReason" type="gml:NilReasonType"/>
+						</complexType>
+					</element>
+					<element name="typeOfRisk" type="nz-core:NaturalRiskOrHazardClassificationPropertyType">
+						<annotation>
+							<documentation>-- Definition --
+A generic classification and a specific classification of the type of risk.</documentation>
+						</annotation>
+					</element>
+					<element name="validFrom" nillable="true">
+						<annotation>
+							<documentation>-- Definition --
+The time when the phenomenon started to exist in the real world.</documentation>
+						</annotation>
+						<complexType>
+							<simpleContent>
+								<extension base="dateTime">
+									<attribute name="nilReason" type="gml:NilReasonType"/>
+								</extension>
+							</simpleContent>
+						</complexType>
+					</element>
+					<element name="validTo" nillable="true" minOccurs="0">
+						<annotation>
+							<documentation>-- Definition --
+The time from which the phenomenon no longer exists in the real world.</documentation>
+						</annotation>
+						<complexType>
+							<simpleContent>
+								<extension base="dateTime">
+									<attribute name="nilReason" type="gml:NilReasonType"/>
+								</extension>
+							</simpleContent>
+						</complexType>
+					</element>
+					<element name="areaManagement" nillable="true" minOccurs="0" maxOccurs="unbounded">
+						<annotation>
+							<documentation>-- Definition --
+The area management to which the risk zone is linked.</documentation>
+						</annotation>
+						<complexType>
+							<sequence minOccurs="0">
+								<element ref="am:ManagementRegulationOrRestrictionZone"/>
+							</sequence>
+							<attributeGroup ref="gml:AssociationAttributeGroup"/>
+							<attributeGroup ref="gml:OwnershipAttributeGroup"/>
+						</complexType>
+					</element>
+					<element name="coreLandUseObject" nillable="true" minOccurs="0" maxOccurs="unbounded">
+						<annotation>
+							<documentation>-- Definition --
+The land use object to which the risk zone is linked.</documentation>
+						</annotation>
+						<complexType>
+							<sequence minOccurs="0">
+								<element ref="lucm:CoreLandUseObject"/>
+							</sequence>
+							<attributeGroup ref="gml:AssociationAttributeGroup"/>
+							<attributeGroup ref="gml:OwnershipAttributeGroup"/>
+						</complexType>
+					</element>
+					<element name="zoningElement" type="plu:ZoningElementPropertyType" minOccurs="0" maxOccurs="unbounded">
+						<annotation>
+							<documentation>-- Definition --
+The zoning element which has been created by taking the risk zone into account.</documentation>
+							<appinfo>
+								<reversePropertyName xmlns="http://www.opengis.net/gml/3.2">plu:sourceForZoningElement</reversePropertyName>
+							</appinfo>
+						</annotation>
+					</element>
+					<element name="exposedElement" nillable="true" maxOccurs="unbounded">
+						<annotation>
+							<documentation>-- Definition --
+The exposed element that is linked to the risk zone.</documentation>
+							<appinfo>
+								<reversePropertyName xmlns="http://www.opengis.net/gml/3.2">nz-core:riskZone</reversePropertyName>
+							</appinfo>
+						</annotation>
+						<complexType>
+							<sequence minOccurs="0">
+								<element ref="nz-core:VulnerabilityOfElement"/>
+							</sequence>
+							<attributeGroup ref="gml:AssociationAttributeGroup"/>
+							<attributeGroup ref="gml:OwnershipAttributeGroup"/>
+						</complexType>
+					</element>
+					<element name="source" nillable="true">
+						<annotation>
+							<documentation>-- Definition --
+The hazard area that is linked to the risk zone.</documentation>
+							<appinfo>
+								<reversePropertyName xmlns="http://www.opengis.net/gml/3.2">nz-core:result</reversePropertyName>
+							</appinfo>
+						</annotation>
+						<complexType>
+							<sequence minOccurs="0">
+								<element ref="nz-core:HazardArea"/>
+							</sequence>
+							<attributeGroup ref="gml:AssociationAttributeGroup"/>
+							<attributeGroup ref="gml:OwnershipAttributeGroup"/>
+						</complexType>
+					</element>
+					<element name="contains" type="nz-f:FloodRiskMapPropertyType" minOccurs="0">
+						<annotation>
+							<documentation>-- Definition --
+The flood risk map contains between 1 and 3 risk zones, each of them corresponding to a potential floooded area.</documentation>
+						</annotation>
+					</element>
+					<element name="monitors" nillable="true" minOccurs="0" maxOccurs="unbounded">
+						<annotation>
+							<documentation>-- Definition --
+The monitoring features that monitors the risk zone.</documentation>
+						</annotation>
+						<complexType>
+							<sequence minOccurs="0">
+								<element ref="ef:AbstractMonitoringFeature"/>
+							</sequence>
+							<attributeGroup ref="gml:AssociationAttributeGroup"/>
+							<attributeGroup ref="gml:OwnershipAttributeGroup"/>
+						</complexType>
+					</element>
+				</sequence>
+			</extension>
+		</complexContent>
+	</complexType>
+	<complexType name="RiskZonePropertyType">
+		<sequence minOccurs="0">
+			<element ref="nz-core:RiskZone"/>
+		</sequence>
+		<attributeGroup ref="gml:AssociationAttributeGroup"/>
+		<attributeGroup ref="gml:OwnershipAttributeGroup"/>
+	</complexType>
+	<simpleType name="DeterminationMethodValueType">
+		<annotation>
+			<documentation>-- Definition --
+An enumeration to describe the method used to define the area of hazard or risk.
+
+-- Description --
+There are several ways to delineate the perimeter of a hazard or a risk : to model it, or to assess it using indirect parameters or evidence.</documentation>
+		</annotation>
+		<restriction base="string">
+			<enumeration value="modelling">
+				<annotation>
+					<documentation>-- Definition --
+The area as it could -or would- have been after having modelled the occurence of the event.</documentation>
+				</annotation>
+			</enumeration>
+			<enumeration value="indirectDetermination">
+				<annotation>
+					<documentation>-- Definition --
+The area as it has been identified by artifacts or other indirect methods.</documentation>
+				</annotation>
+			</enumeration>
+		</restriction>
+	</simpleType>
+	<element name="ModelledOrDeterminedHazard" type="nz-core:ModelledOrDeterminedHazardType" substitutionGroup="nz-core:HazardArea">
+		<annotation>
+			<documentation>-- Definition --
+A hazard which extent is modeled, or inferred by the interpretation of indirect artefacts.</documentation>
+		</annotation>
+	</element>
+	<complexType name="ModelledOrDeterminedHazardType">
+		<complexContent>
+			<extension base="nz-core:HazardAreaType">
+				<sequence>
+					<element name="determinationMethod" nillable="true">
+						<annotation>
+							<documentation>-- Definition --
+Specifies if the hazard area results is delineated after a modelling or determined after interpretation of indirect artefacts.</documentation>
+						</annotation>
+						<complexType>
+							<simpleContent>
+								<extension base="nz-core:DeterminationMethodValueType">
+									<attribute name="nilReason" type="gml:NilReasonType"/>
+								</extension>
+							</simpleContent>
+						</complexType>
+					</element>
+				</sequence>
+			</extension>
+		</complexContent>
+	</complexType>
+	<complexType name="ModelledOrDeterminedHazardPropertyType">
+		<sequence minOccurs="0">
+			<element ref="nz-core:ModelledOrDeterminedHazard"/>
+		</sequence>
+		<attributeGroup ref="gml:AssociationAttributeGroup"/>
+		<attributeGroup ref="gml:OwnershipAttributeGroup"/>
+	</complexType>
+	<element name="HazardArea" type="nz-core:HazardAreaType" abstract="true" substitutionGroup="gml:AbstractFeature">
+		<annotation>
+			<documentation>-- Definition --
+Area affected by a hazard. 
+
+
+-- Description --
+A natural hazard is a natural process or phenomenon that may cause loss of life, injury or other impacts, property damage, loss livelihoods and services, social and economic disruption, or environmental damage. [Council of The European Union - Commission Staff Working Paper - Risk Assessment and Mapping Guidelines for Disaster Management].</documentation>
+		</annotation>
+	</element>
+	<complexType name="HazardAreaType" abstract="true">
+		<complexContent>
+			<extension base="gml:AbstractFeatureType">
+				<sequence>
+					<element name="beginLifespanVersion" nillable="true">
+						<annotation>
+							<documentation>-- Definition --
+Date and time at which this version of the spatial object was inserted or changed in the spatial data set.</documentation>
+						</annotation>
+						<complexType>
+							<simpleContent>
+								<extension base="dateTime">
+									<attribute name="nilReason" type="gml:NilReasonType"/>
+								</extension>
+							</simpleContent>
+						</complexType>
+					</element>
+					<element name="endLifespanVersion" nillable="true" minOccurs="0">
+						<annotation>
+							<documentation>-- Definition --
+Date and time at which this version of the spatial object was superseded or retired in the spatial data set.</documentation>
+						</annotation>
+						<complexType>
+							<simpleContent>
+								<extension base="dateTime">
+									<attribute name="nilReason" type="gml:NilReasonType"/>
+								</extension>
+							</simpleContent>
+						</complexType>
+					</element>
+					<element name="geometry" type="nz-core:RiskHazardGeometryPropertyType">
+						<annotation>
+							<documentation>-- Definition --
+Geometric representation of spatial extent covered by the hazard area.</documentation>
+						</annotation>
+					</element>
+					<element name="inspireId" type="base:IdentifierPropertyType">
+						<annotation>
+							<documentation>-- Definition --
+External object identifier of the hazard area.
+
+-- Description --
+An external object identifier is a unique object identifier published by the responsible body, which may be used by external applications to reference the spatial object. The identifier is an identifier of the spatial object, not an identifier of the real-world phenomenon.</documentation>
+						</annotation>
+					</element>
+					<element name="levelOfHazard" nillable="true">
+						<annotation>
+							<documentation>-- Definition --
+Assessment of the level of the hazard.
+
+-- Description --
+The level of hazard can either be described quantitatively or qualitative. This notion can integrate the notion of intensity. When described qualitatively, it can also adress susceptibility.</documentation>
+						</annotation>
+						<complexType>
+							<sequence>
+								<element ref="nz-core:LevelOfHazard"/>
+							</sequence>
+							<attribute name="nilReason" type="gml:NilReasonType"/>
+						</complexType>
+					</element>
+					<element name="likelihoodOfOccurence" nillable="true">
+						<annotation>
+							<documentation>-- Definition --
+Likelihood is a general concept relating to the chance of an event occuring. Likelihood is generally expressed as a probability or a frequency. [EXCIFF].</documentation>
+						</annotation>
+						<complexType>
+							<sequence>
+								<element ref="nz-core:LikelihoodOfOccurence"/>
+							</sequence>
+							<attribute name="nilReason" type="gml:NilReasonType"/>
+						</complexType>
+					</element>
+					<element name="typeOfHazard" type="nz-core:NaturalRiskOrHazardClassificationPropertyType">
+						<annotation>
+							<documentation>-- Definition --
+A generic classification and a specific classification of the type of hazard.</documentation>
+						</annotation>
+					</element>
+					<element name="result" nillable="true" minOccurs="0" maxOccurs="unbounded">
+						<annotation>
+							<documentation>-- Definition --
+The risk zone that result from the hazard area.</documentation>
+							<appinfo>
+								<reversePropertyName xmlns="http://www.opengis.net/gml/3.2">nz-core:source</reversePropertyName>
+							</appinfo>
+						</annotation>
+						<complexType>
+							<sequence minOccurs="0">
+								<element ref="nz-core:RiskZone"/>
+							</sequence>
+							<attributeGroup ref="gml:AssociationAttributeGroup"/>
+							<attributeGroup ref="gml:OwnershipAttributeGroup"/>
+						</complexType>
+					</element>
+					<element name="sourceHazard" nillable="true" minOccurs="0" maxOccurs="unbounded">
+						<annotation>
+							<documentation>-- Definition --
+The natural hazard that is the source of another natural hazard.</documentation>
+							<appinfo>
+								<reversePropertyName xmlns="http://www.opengis.net/gml/3.2">nz-core:resultHazard</reversePropertyName>
+							</appinfo>
+						</annotation>
+						<complexType>
+							<sequence minOccurs="0">
+								<element ref="nz-core:HazardArea"/>
+							</sequence>
+							<attributeGroup ref="gml:AssociationAttributeGroup"/>
+							<attributeGroup ref="gml:OwnershipAttributeGroup"/>
+						</complexType>
+					</element>
+					<element name="resultHazard" nillable="true" minOccurs="0" maxOccurs="unbounded">
+						<annotation>
+							<documentation>-- Definition --
+The hazard that results from the occurence of another hazard.</documentation>
+							<appinfo>
+								<reversePropertyName xmlns="http://www.opengis.net/gml/3.2">nz-core:sourceHazard</reversePropertyName>
+							</appinfo>
+						</annotation>
+						<complexType>
+							<sequence minOccurs="0">
+								<element ref="nz-core:HazardArea"/>
+							</sequence>
+							<attributeGroup ref="gml:AssociationAttributeGroup"/>
+							<attributeGroup ref="gml:OwnershipAttributeGroup"/>
+						</complexType>
+					</element>
+				</sequence>
+			</extension>
+		</complexContent>
+	</complexType>
+	<complexType name="HazardAreaPropertyType">
+		<sequence minOccurs="0">
+			<element ref="nz-core:HazardArea"/>
+		</sequence>
+		<attributeGroup ref="gml:AssociationAttributeGroup"/>
+		<attributeGroup ref="gml:OwnershipAttributeGroup"/>
+	</complexType>
+	<element name="ExposedElements" type="nz-core:ExposedElementsType" substitutionGroup="gml:AbstractFeature">
+		<annotation>
+			<documentation>-- Definition --
+SOURCE : [UNISDR, 2009]
+
+People, property, systems, or other elements present in hazard zones that are thereby subject to potential losses.</documentation>
+		</annotation>
+	</element>
+	<complexType name="ExposedElementsType">
+		<complexContent>
+			<extension base="gml:AbstractFeatureType">
+				<sequence>
+					<element name="beginLifespanVersion" nillable="true">
+						<annotation>
+							<documentation>-- Definition --
+Date and time at which this version of the spatial object was inserted or changed in the spatial data set.</documentation>
+						</annotation>
+						<complexType>
+							<simpleContent>
+								<extension base="dateTime">
+									<attribute name="nilReason" type="gml:NilReasonType"/>
+								</extension>
+							</simpleContent>
+						</complexType>
+					</element>
+					<element name="endLifespanVersion" nillable="true" minOccurs="0">
+						<annotation>
+							<documentation>-- Definition --
+Date and time at which this version of the spatial object was superseded or retired in the spatial data set.</documentation>
+						</annotation>
+						<complexType>
+							<simpleContent>
+								<extension base="dateTime">
+									<attribute name="nilReason" type="gml:NilReasonType"/>
+								</extension>
+							</simpleContent>
+						</complexType>
+					</element>
+					<element name="geometry" type="gml:GeometryPropertyType">
+						<annotation>
+							<documentation>-- Definition --
+Geometric representation of the exposed element.</documentation>
+						</annotation>
+					</element>
+					<element name="inspireId" type="base:IdentifierPropertyType">
+						<annotation>
+							<documentation>-- Definition --
+External object identifier of the spatial object.
+
+-- Description --
+An external object identifier is a unique object identifier published by the responsible body, which may be used by external applications to reference the spatial object. The identifier is an identifier of the spatial object, not an identifier of the real-world phenomenon.
+
+--Description --
+An external object identifier is a unique object identifier published by the responsible body, which may be used by external applications to reference the spatial object. The identifier is an identifier of the spatial object, not an identifier of the real-world phenomenon</documentation>
+						</annotation>
+					</element>
+					<element name="typeOfElement" type="gml:CodeType">
+						<annotation>
+							<documentation>-- Definition --
+A denomination of the exposed element.</documentation>
+						</annotation>
+					</element>
+					<element name="validFrom" nillable="true">
+						<annotation>
+							<documentation>-- Definition --
+The time when the phenomenon started to exist in the real world.</documentation>
+						</annotation>
+						<complexType>
+							<simpleContent>
+								<extension base="dateTime">
+									<attribute name="nilReason" type="gml:NilReasonType"/>
+								</extension>
+							</simpleContent>
+						</complexType>
+					</element>
+					<element name="validTo" nillable="true" minOccurs="0">
+						<annotation>
+							<documentation>-- Definition --
+The time from which the phenomenon no longer exists in the real world.</documentation>
+						</annotation>
+						<complexType>
+							<simpleContent>
+								<extension base="dateTime">
+									<attribute name="nilReason" type="gml:NilReasonType"/>
+								</extension>
+							</simpleContent>
+						</complexType>
+					</element>
+					<element name="vulnerableMiningFeature" nillable="true" minOccurs="0" maxOccurs="unbounded">
+						<annotation>
+							<documentation>-- Definition --
+A feature that can be considered as vulnerable compared to the risk zone or the observed hazard area.</documentation>
+						</annotation>
+						<complexType>
+							<sequence minOccurs="0">
+								<element ref="mr-core:MiningFeature"/>
+							</sequence>
+							<attributeGroup ref="gml:AssociationAttributeGroup"/>
+							<attributeGroup ref="gml:OwnershipAttributeGroup"/>
+						</complexType>
+					</element>
+					<element name="riskZone" nillable="true" minOccurs="0" maxOccurs="unbounded">
+						<annotation>
+							<documentation>-- Definition --
+The risk zone that is linked to an exposed element.</documentation>
+							<appinfo>
+								<reversePropertyName xmlns="http://www.opengis.net/gml/3.2">nz-core:exposedElement</reversePropertyName>
+							</appinfo>
+						</annotation>
+						<complexType>
+							<sequence minOccurs="0">
+								<element ref="nz-core:VulnerabilityOfElement"/>
+							</sequence>
+							<attributeGroup ref="gml:AssociationAttributeGroup"/>
+							<attributeGroup ref="gml:OwnershipAttributeGroup"/>
+						</complexType>
+					</element>
+					<element name="observedHazard" nillable="true" minOccurs="0" maxOccurs="unbounded">
+						<annotation>
+							<documentation>-- Definition --
+The observed hazard to which some elements may have been exposed in the past.</documentation>
+							<appinfo>
+								<reversePropertyName xmlns="http://www.opengis.net/gml/3.2">nz-core:exposedElement</reversePropertyName>
+							</appinfo>
+						</annotation>
+						<complexType>
+							<sequence minOccurs="0">
+								<element ref="nz-core:ObservedHazard"/>
+							</sequence>
+							<attributeGroup ref="gml:AssociationAttributeGroup"/>
+							<attributeGroup ref="gml:OwnershipAttributeGroup"/>
+						</complexType>
+					</element>
+					<element name="vulnerableGovernmentalService" nillable="true" minOccurs="0" maxOccurs="unbounded">
+						<annotation>
+							<documentation>A feature that can be considered as vulnerable compared to the risk zone or the observed hazard area.</documentation>
+						</annotation>
+						<complexType>
+							<sequence minOccurs="0">
+								<element ref="us-govserv:GovernmentalService"/>
+							</sequence>
+							<attributeGroup ref="gml:AssociationAttributeGroup"/>
+							<attributeGroup ref="gml:OwnershipAttributeGroup"/>
+						</complexType>
+					</element>
+					<element name="pFRA" type="nz-f:PreliminaryFRAssessmentPropertyType" minOccurs="0" maxOccurs="unbounded">
+						<annotation>
+							<documentation>-- Definition --
+The preliminary flood risk assessment that contains the exposed element.</documentation>
+							<appinfo>
+								<reversePropertyName xmlns="http://www.opengis.net/gml/3.2">nz-f:exposedElementPFRA</reversePropertyName>
+							</appinfo>
+						</annotation>
+					</element>
+					<element name="vulnerableBuilding" nillable="true" minOccurs="0" maxOccurs="unbounded">
+						<annotation>
+							<documentation>-- Definition --
+A feature that can be considered as vulnerable compared to the risk zone or the observed hazard area.</documentation>
+						</annotation>
+						<complexType>
+							<sequence minOccurs="0">
+								<element ref="bu:Building"/>
+							</sequence>
+							<attributeGroup ref="gml:AssociationAttributeGroup"/>
+							<attributeGroup ref="gml:OwnershipAttributeGroup"/>
+						</complexType>
+					</element>
+					<element name="frMap" type="nz-f:FloodRiskMapPropertyType" minOccurs="0" maxOccurs="unbounded">
+						<annotation>
+							<documentation>-- Definition --
+The flood risk map upon which is an exposed element.</documentation>
+							<appinfo>
+								<reversePropertyName xmlns="http://www.opengis.net/gml/3.2">nz-f:vulnElement</reversePropertyName>
+							</appinfo>
+						</annotation>
+					</element>
+				</sequence>
+			</extension>
+		</complexContent>
+	</complexType>
+	<complexType name="ExposedElementsPropertyType">
+		<sequence minOccurs="0">
+			<element ref="nz-core:ExposedElements"/>
+		</sequence>
+		<attributeGroup ref="gml:AssociationAttributeGroup"/>
+		<attributeGroup ref="gml:OwnershipAttributeGroup"/>
+	</complexType>
+	<element name="NaturalRiskOrHazardClassification" type="nz-core:NaturalRiskOrHazardClassificationType" substitutionGroup="gml:AbstractObject">
+		<annotation>
+			<documentation>-- Definition --
+This class provides piece of information about the nature of the natural risk or hazard.</documentation>
+		</annotation>
+	</element>
+	<complexType name="NaturalRiskOrHazardClassificationType">
+		<sequence>
+			<element name="riskOrHazardCategory" type="gml:CodeType">
+				<annotation>
+					<documentation>-- Definition --
+A generic classification of types of natural risks or hazards.</documentation>
+				</annotation>
+			</element>
+			<element name="specificRiskOrHazardType" nillable="true">
+				<annotation>
+					<documentation>-- Definition --
+A classification of the natural risk or hazard according to a nomenclature that is specific to this dataset.</documentation>
+				</annotation>
+				<complexType>
+					<simpleContent>
+						<extension base="gml:CodeType">
+							<attribute name="nilReason" type="gml:NilReasonType"/>
+						</extension>
+					</simpleContent>
+				</complexType>
+			</element>
+		</sequence>
+	</complexType>
+	<complexType name="NaturalRiskOrHazardClassificationPropertyType">
+		<sequence>
+			<element ref="nz-core:NaturalRiskOrHazardClassification"/>
+		</sequence>
+	</complexType>
+	<element name="ObservedHazard" type="nz-core:ObservedHazardType" substitutionGroup="nz-core:HazardArea">
+		<annotation>
+			<documentation>-- Definition --
+A hazard which occurred, or is currently occuring, and which has been observed.</documentation>
+		</annotation>
+	</element>
+	<complexType name="ObservedHazardType">
+		<complexContent>
+			<extension base="nz-core:HazardAreaType">
+				<sequence>
+					<element name="nameOfEvent" nillable="true">
+						<annotation>
+							<documentation>-- Definition --
+common name of the observed hazard.</documentation>
+						</annotation>
+						<complexType>
+							<simpleContent>
+								<extension base="string">
+									<attribute name="nilReason" type="gml:NilReasonType"/>
+								</extension>
+							</simpleContent>
+						</complexType>
+					</element>
+					<element name="validFrom" nillable="true">
+						<annotation>
+							<documentation>-- Definition --
+The time when the phenomenon started to exist in the real world.</documentation>
+						</annotation>
+						<complexType>
+							<simpleContent>
+								<extension base="dateTime">
+									<attribute name="nilReason" type="gml:NilReasonType"/>
+								</extension>
+							</simpleContent>
+						</complexType>
+					</element>
+					<element name="validTo" nillable="true" minOccurs="0">
+						<annotation>
+							<documentation>-- Definition --
+The time from which the phenomenon no longer exists in the real world.</documentation>
+						</annotation>
+						<complexType>
+							<simpleContent>
+								<extension base="dateTime">
+									<attribute name="nilReason" type="gml:NilReasonType"/>
+								</extension>
+							</simpleContent>
+						</complexType>
+					</element>
+					<element name="exposedElement" nillable="true" minOccurs="0" maxOccurs="unbounded">
+						<annotation>
+							<documentation>-- Definition --
+The element that was exposed to a hazard that has been observed.</documentation>
+							<appinfo>
+								<reversePropertyName xmlns="http://www.opengis.net/gml/3.2">nz-core:observedHazard</reversePropertyName>
+							</appinfo>
+						</annotation>
+						<complexType>
+							<sequence minOccurs="0">
+								<element ref="nz-core:ExposedElements"/>
+							</sequence>
+							<attributeGroup ref="gml:AssociationAttributeGroup"/>
+							<attributeGroup ref="gml:OwnershipAttributeGroup"/>
+						</complexType>
+					</element>
+				</sequence>
+			</extension>
+		</complexContent>
+	</complexType>
+	<complexType name="ObservedHazardPropertyType">
+		<sequence minOccurs="0">
+			<element ref="nz-core:ObservedHazard"/>
+		</sequence>
+		<attributeGroup ref="gml:AssociationAttributeGroup"/>
+		<attributeGroup ref="gml:OwnershipAttributeGroup"/>
+	</complexType>
+	<element name="DocumentReference" type="nz-core:DocumentReferenceType" substitutionGroup="gml:AbstractObject">
+		<annotation>
+			<documentation>-- Definition --
+the piece of information which is required to get further information about a method that is described and explained in a paper.</documentation>
+		</annotation>
+	</element>
+	<complexType name="DocumentReferenceType">
+		<sequence>
+			<element name="title" nillable="true">
+				<annotation>
+					<documentation>-- Definition --
+Name by which the cited information is known.</documentation>
+				</annotation>
+				<complexType>
+					<simpleContent>
+						<extension base="string">
+							<attribute name="nilReason" type="gml:NilReasonType"/>
+						</extension>
+					</simpleContent>
+				</complexType>
+			</element>
+			<element name="dateOfPublication" nillable="true">
+				<annotation>
+					<documentation>-- Definition --
+Date when the reference was published.</documentation>
+				</annotation>
+				<complexType>
+					<simpleContent>
+						<extension base="dateTime">
+							<attribute name="nilReason" type="gml:NilReasonType"/>
+						</extension>
+					</simpleContent>
+				</complexType>
+			</element>
+			<element name="locationOfMethod" nillable="true">
+				<annotation>
+					<documentation>-- Definition --
+A URI that enables to locate and get the reference document.</documentation>
+				</annotation>
+				<complexType>
+					<simpleContent>
+						<extension base="anyURI">
+							<attribute name="nilReason" type="gml:NilReasonType"/>
+						</extension>
+					</simpleContent>
+				</complexType>
+			</element>
+			<element name="contactInformation" nillable="true">
+				<annotation>
+					<documentation>-- Definition --
+Data that enable the user to contact a person in order to get more information about a method.</documentation>
+				</annotation>
+				<complexType>
+					<sequence>
+						<element ref="nz-core:contactInformation"/>
+					</sequence>
+					<attribute name="nilReason" type="gml:NilReasonType"/>
+				</complexType>
+			</element>
+		</sequence>
+	</complexType>
+	<complexType name="DocumentReferencePropertyType">
+		<sequence>
+			<element ref="nz-core:DocumentReference"/>
+		</sequence>
+	</complexType>
+</schema>

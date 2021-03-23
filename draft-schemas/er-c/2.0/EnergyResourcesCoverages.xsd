@@ -1,0 +1,155 @@
+<?xml version="1.0" encoding="UTF-8"?><schema xmlns="http://www.w3.org/2001/XMLSchema" xmlns:base="urn:x-inspire:specification:gmlas:BaseTypes:3.2" xmlns:er-b="http://inspire.jrc.ec.europa.eu/schemas/er-b/2.0" xmlns:er-c="http://inspire.jrc.ec.europa.eu/schemas/er-c/2.0" xmlns:gmd="http://www.isotc211.org/2005/gmd" xmlns:gml="http://www.opengis.net/gml/3.2" xmlns:gmlcov="http://www.opengis.net/gmlcov/1.0" elementFormDefault="qualified" targetNamespace="http://inspire.jrc.ec.europa.eu/schemas/er-c/2.0" version="2.0">
+  <import namespace="http://inspire.jrc.ec.europa.eu/schemas/er-b/2.0" schemaLocation="https://inspire.ec.europa.eu/draft-schemas/er-b/2.0/EnergyResourcesBase.xsd"/>
+  <import namespace="http://www.isotc211.org/2005/gmd" schemaLocation="http://schemas.opengis.net/iso/19139/20070417/gmd/gmd.xsd"/>
+  <import namespace="http://www.opengis.net/gml/3.2" schemaLocation="http://schemas.opengis.net/gml/3.2.1/gml.xsd"/>
+  <import namespace="http://www.opengis.net/gmlcov/1.0" schemaLocation="http://schemas.opengis.net/gmlcov/1.0/coverage.xsd"/>
+  <import namespace="urn:x-inspire:specification:gmlas:BaseTypes:3.2" schemaLocation="https://inspire.ec.europa.eu/schemas/base/3.2/BaseTypes.xsd"/>
+  <!--XML Schema document created by ShapeChange-->
+  <element name="RenewableEnergyPotentialCoverage" substitutionGroup="gmlcov:AbstractCoverage" type="er-c:RenewableEnergyPotentialCoverageType">
+    <annotation>
+      <documentation>-- Definition --
+Feature type that acts as a function to return an energy potential property value from its range for any direct position within its spatial, temporal or spatiotemporal domain.
+
+-- Description --
+SOURCE Adapted from "Coverage" [ISO 19123:2005].</documentation>
+    </annotation>
+  </element>
+  <complexType name="RenewableEnergyPotentialCoverageType">
+    <complexContent>
+      <extension base="gmlcov:AbstractCoverageType">
+        <sequence>
+          <element name="assessmentMethod">
+            <annotation>
+              <documentation>-- Definition --
+A citation to the method used to assess the energy resource potential.</documentation>
+            </annotation>
+            <complexType>
+              <complexContent>
+                <extension base="gml:AbstractMetadataPropertyType">
+                  <sequence>
+                    <element ref="gmd:CI_Citation"/>
+                  </sequence>
+                </extension>
+              </complexContent>
+            </complexType>
+          </element>
+          <element name="beginLifespanVersion" nillable="true">
+            <annotation>
+              <documentation>-- Definition --
+Date and time at which this version of the spatial object was inserted or changed in the spatial data set.</documentation>
+            </annotation>
+            <complexType>
+              <simpleContent>
+                <extension base="dateTime">
+                  <attribute name="nilReason" type="gml:NilReasonType"/>
+                </extension>
+              </simpleContent>
+            </complexType>
+          </element>
+          <element maxOccurs="unbounded" name="domainExtent">
+            <annotation>
+              <documentation>-- Name --
+Domain extent.
+
+-- Definition --
+The attribute domainExtent shall contain the extent of the spatiotemporal domain of the coverage.  The data type EX_Extent, is defined in ISO 19103.  Extents may be specified in both space and time. 
+
+-- Description --
+SOURCE Adapted from [ISO 19123:2005].</documentation>
+            </annotation>
+            <complexType>
+              <complexContent>
+                <extension base="gml:AbstractMetadataPropertyType">
+                  <sequence minOccurs="0">
+                    <element ref="gmd:EX_Extent"/>
+                  </sequence>
+                  <attributeGroup ref="gml:AssociationAttributeGroup"/>
+                </extension>
+              </complexContent>
+            </complexType>
+          </element>
+          <element minOccurs="0" name="endLifespanVersion" nillable="true">
+            <annotation>
+              <documentation>-- Definition --
+Date and time at which this version of the spatial object was superseded or retired in the spatial data set.</documentation>
+            </annotation>
+            <complexType>
+              <simpleContent>
+                <extension base="dateTime">
+                  <attribute name="nilReason" type="gml:NilReasonType"/>
+                </extension>
+              </simpleContent>
+            </complexType>
+          </element>
+          <element name="inspireId" type="base:IdentifierPropertyType">
+            <annotation>
+              <documentation>-- Definition --
+External object identifier of the spatial object.
+
+-- Description --
+NOTE An external object identifier is a unique object identifier published by the responsible body, which may be used by external applications to reference the spatial object. The identifier is an identifier of the spatial object, not an identifier of the real-world phenomenon.</documentation>
+            </annotation>
+          </element>
+          <element minOccurs="0" name="name" nillable="true">
+            <annotation>
+              <documentation>-- Definition --
+Name of the Energy Resource coverage.
+
+-- Description --
+EXAMPLE The name of the catchment area for which a coverage has been extracted to represent Hydroelectric potential.</documentation>
+            </annotation>
+            <complexType>
+              <simpleContent>
+                <extension base="string">
+                  <attribute name="nilReason" type="gml:NilReasonType"/>
+                </extension>
+              </simpleContent>
+            </complexType>
+          </element>
+          <element name="resourceType" type="gml:CodeType">
+            <annotation>
+              <documentation>-- Definition --
+Type of Energy Resource.
+
+-- Description --
+NOTE Most detailed classification must be provided.</documentation>
+            </annotation>
+          </element>
+          <element name="validTimeFrom" nillable="true">
+            <annotation>
+              <documentation>-- Definition --
+The ValidTime specifies the time window for which measurements have been captured to calculate the average energy potential corresponding to that period. The start time defines when the period began.</documentation>
+            </annotation>
+            <complexType>
+              <simpleContent>
+                <extension base="date">
+                  <attribute name="nilReason" type="gml:NilReasonType"/>
+                </extension>
+              </simpleContent>
+            </complexType>
+          </element>
+          <element name="validTimeTo" nillable="true">
+            <annotation>
+              <documentation>-- Definition --
+The ValidTime specifies the time window for which measurements have been captured to calculate the average energy potential corresponding to that period. The end time defines when the period stopped.</documentation>
+            </annotation>
+            <complexType>
+              <simpleContent>
+                <extension base="date">
+                  <attribute name="nilReason" type="gml:NilReasonType"/>
+                </extension>
+              </simpleContent>
+            </complexType>
+          </element>
+        </sequence>
+      </extension>
+    </complexContent>
+  </complexType>
+  <complexType name="RenewableEnergyPotentialCoveragePropertyType">
+    <sequence minOccurs="0">
+      <element ref="er-c:RenewableEnergyPotentialCoverage"/>
+    </sequence>
+    <attributeGroup ref="gml:AssociationAttributeGroup"/>
+    <attributeGroup ref="gml:OwnershipAttributeGroup"/>
+  </complexType>
+</schema>

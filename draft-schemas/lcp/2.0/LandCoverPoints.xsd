@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?><schema xmlns="http://www.w3.org/2001/XMLSchema" xmlns:cvgvp="http://inspire.jrc.ec.europa.eu/schemas/cvgvp/0.1" xmlns:gml="http://www.opengis.net/gml/3.2" xmlns:lcb="http://inspire.jrc.ec.europa.eu/schemas/lcb/2.0" xmlns:lcp="http://inspire.jrc.ec.europa.eu/schemas/lcp/2.0" elementFormDefault="qualified" targetNamespace="http://inspire.jrc.ec.europa.eu/schemas/lcp/2.0" version="2.0">
+  <annotation>
+    <documentation>application schema for Land Cover - Base</documentation>
+  </annotation>
+  <import namespace="http://inspire.jrc.ec.europa.eu/schemas/cvgvp/0.1" schemaLocation="https://inspire.ec.europa.eu/draft-schemas/cvgvp/0.1/CoverageGVP.xsd"/>
+  <import namespace="http://inspire.jrc.ec.europa.eu/schemas/lcb/2.0" schemaLocation="https://inspire.ec.europa.eu/draft-schemas/lcb/2.0/LandCoverBase.xsd"/>
+  <import namespace="http://www.opengis.net/gml/3.2" schemaLocation="http://schemas.opengis.net/gml/3.2.1/gml.xsd"/>
+  <!--XML Schema document created by ShapeChange-->
+  <element name="LandCoverPointCoverage" substitutionGroup="lcb:LandCoverCoverage" type="lcp:LandCoverPointCoverageType">
+    <annotation>
+      <documentation>-- Name --
+Land Cover point coverage
+
+-- Definition --
+A realization of a discrete point coverage (CV_DiscretePointCoverage from ISO 19123)  to support Land Cover Information.
+
+-- Description --
+This coverage is the representation used to represent Land Cover information supported by points for INSPIRE.</documentation>
+    </annotation>
+  </element>
+  <complexType name="LandCoverPointCoverageType">
+    <complexContent>
+      <extension base="lcb:LandCoverCoverageType">
+        <sequence/>
+      </extension>
+    </complexContent>
+  </complexType>
+  <complexType name="LandCoverPointCoveragePropertyType">
+    <sequence minOccurs="0">
+      <element ref="lcp:LandCoverPointCoverage"/>
+    </sequence>
+    <attributeGroup ref="gml:AssociationAttributeGroup"/>
+    <attributeGroup ref="gml:OwnershipAttributeGroup"/>
+  </complexType>
+</schema>

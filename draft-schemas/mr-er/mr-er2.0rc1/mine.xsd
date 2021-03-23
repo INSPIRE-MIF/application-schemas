@@ -1,0 +1,590 @@
+<?xml version="1.0" encoding="UTF-8"?><schema xmlns="http://www.w3.org/2001/XMLSchema" xmlns:er="http://inspire.ec.europa.eu/schemas/er/2.0" xmlns:gmd="http://www.isotc211.org/2005/gmd" xmlns:gml="http://www.opengis.net/gml/3.2" xmlns:swe="http://www.opengis.net/swe/2.0" elementFormDefault="qualified" targetNamespace="http://inspire.ec.europa.eu/schemas/er/2.0" version="1.1.0">
+  <annotation>
+    <documentation>The Mine package describes a Mine as made up of a number of MiningActivities, which take RawMaterial to produce Products from some Commodity.  The Commodity is associated with a MineralOccurrence, the geological description of the economic resource.</documentation>
+  </annotation>
+  <include schemaLocation="earthResource.xsd"/>
+  <import namespace="http://www.isotc211.org/2005/gmd" schemaLocation="http://schemas.opengis.net/iso/19139/20070417/gmd/gmd.xsd"/>
+  <import namespace="http://www.opengis.net/gml/3.2" schemaLocation="http://schemas.opengis.net/gml/3.2.1/gml.xsd"/>
+  <import namespace="http://www.opengis.net/swe/2.0" schemaLocation="http://schemas.opengis.net/sweCommon/2.0/swe.xsd"/>
+  <!--XML Schema document created by ShapeChange-->
+  <simpleType name="MiningActivityTypeCodeType">
+    <annotation>
+      <documentation>-- Definition --
+The type of mining activity, processing activity, or production.</documentation>
+    </annotation>
+    <union memberTypes="er:MiningActivityTypeCodeEnumerationType er:MiningActivityTypeCodeOtherType"/>
+  </simpleType>
+  <simpleType name="MiningActivityTypeCodeEnumerationType">
+    <annotation>
+      <documentation>-- Definition --
+The type of mining activity, processing activity, or production.</documentation>
+    </annotation>
+    <restriction base="string"/>
+  </simpleType>
+  <simpleType name="MiningActivityTypeCodeOtherType">
+    <restriction base="string">
+      <pattern value="other: \w{2,}"/>
+    </restriction>
+  </simpleType>
+  <element name="MinedMaterial" substitutionGroup="gml:AbstractObject" type="er:MinedMaterialType">
+    <annotation>
+      <documentation>-- Definition --
+A data type to describe the raw material of a mining activity</documentation>
+    </annotation>
+  </element>
+  <complexType name="MinedMaterialType">
+    <sequence>
+      <element name="material">
+        <annotation>
+          <documentation>Uses EarthMaterial to describe the RawMaterial material</documentation>
+        </annotation>
+      </element>
+      <element name="rawMaterialRole" type="er:RawMaterialRoleCodeType">
+        <annotation>
+          <documentation>Role the EarthMaterial plays in the MiningActivity (eg gangue, ore)</documentation>
+        </annotation>
+      </element>
+      <element name="proportion" nillable="true">
+        <annotation>
+          <documentation>Proportion of the RawMaterial playing the rawMaterialRole in the MiningActivity</documentation>
+        </annotation>
+      </element>
+    </sequence>
+  </complexType>
+  <complexType name="MinedMaterialPropertyType">
+    <sequence>
+      <element ref="er:MinedMaterial"/>
+    </sequence>
+  </complexType>
+  <element name="MiningWaste" substitutionGroup="er:MiningFeature" type="er:MiningWasteType">
+    <annotation>
+      <documentation>-- Definition --
+Mining-selected waste (or simply mining waste) can be defined as a part of the materials that result from the exploration, mining and processing of substances governed by legislation on mines and quarries.</documentation>
+    </annotation>
+  </element>
+  <complexType name="MiningWasteType">
+    <complexContent>
+      <extension base="er:MiningFeatureType">
+        <sequence>
+          <element maxOccurs="unbounded" name="material" nillable="true">
+            <annotation>
+              <documentation>-- Definition --
+The material of which the mining waste is composed</documentation>
+            </annotation>
+          </element>
+          <element maxOccurs="unbounded" name="storageType" nillable="true">
+            <annotation>
+              <documentation>-- Definition --
+The storage type of the waste eg surface storage, tailings pond, waste dump, covered storage etc</documentation>
+            </annotation>
+            <complexType>
+              <simpleContent>
+                <extension base="er:WasteStorageTypeCodeType">
+                  <attribute name="nilReason" type="gml:NilReasonType"/>
+                </extension>
+              </simpleContent>
+            </complexType>
+          </element>
+          <element name="wasteMeasure" nillable="true">
+            <annotation>
+              <documentation>-- Definition --
+The measure of mining waste</documentation>
+            </annotation>
+            <complexType>
+              <sequence>
+                <element ref="er:MiningWasteMeasure"/>
+              </sequence>
+              <attribute name="nilReason" type="gml:NilReasonType"/>
+            </complexType>
+          </element>
+          <element name="wasteType" type="er:MiningWasteTypeCodeType">
+            <annotation>
+              <documentation>-- Definition --
+The type of mining waste</documentation>
+            </annotation>
+          </element>
+          <element maxOccurs="unbounded" name="environmentalImpact" nillable="true">
+            <annotation>
+              <documentation>-- Definition --
+The potential environmental impact of the mining waste</documentation>
+            </annotation>
+            <complexType>
+              <simpleContent>
+                <extension base="anyURI">
+                  <attribute name="nilReason" type="gml:NilReasonType"/>
+                </extension>
+              </simpleContent>
+            </complexType>
+          </element>
+        </sequence>
+      </extension>
+    </complexContent>
+  </complexType>
+  <complexType name="MiningWastePropertyType">
+    <sequence minOccurs="0">
+      <element ref="er:MiningWaste"/>
+    </sequence>
+    <attributeGroup ref="gml:AssociationAttributeGroup"/>
+    <attributeGroup ref="gml:OwnershipAttributeGroup"/>
+  </complexType>
+  <simpleType name="ProcessingActivityTypeCodeType">
+    <annotation>
+      <documentation>List of post-extraction processing terms such as 'heap leaching', 'gravity concentration', 'froth flotation', 'magnetic separation', 'smelting'.</documentation>
+    </annotation>
+    <union memberTypes="er:ProcessingActivityTypeCodeEnumerationType er:ProcessingActivityTypeCodeOtherType"/>
+  </simpleType>
+  <simpleType name="ProcessingActivityTypeCodeEnumerationType">
+    <annotation>
+      <documentation>List of post-extraction processing terms such as 'heap leaching', 'gravity concentration', 'froth flotation', 'magnetic separation', 'smelting'.</documentation>
+    </annotation>
+    <restriction base="string"/>
+  </simpleType>
+  <simpleType name="ProcessingActivityTypeCodeOtherType">
+    <restriction base="string">
+      <pattern value="other: \w{2,}"/>
+    </restriction>
+  </simpleType>
+  <simpleType name="MiningWasteTypeCodeType">
+    <annotation>
+      <documentation>-- Definition --
+The type of mining waste</documentation>
+    </annotation>
+    <union memberTypes="er:MiningWasteTypeCodeEnumerationType er:MiningWasteTypeCodeOtherType"/>
+  </simpleType>
+  <simpleType name="MiningWasteTypeCodeEnumerationType">
+    <annotation>
+      <documentation>-- Definition --
+The type of mining waste</documentation>
+    </annotation>
+    <restriction base="string"/>
+  </simpleType>
+  <simpleType name="MiningWasteTypeCodeOtherType">
+    <restriction base="string">
+      <pattern value="other: \w{2,}"/>
+    </restriction>
+  </simpleType>
+  <element name="MiningWasteMeasure" substitutionGroup="gml:AbstractObject" type="er:MiningWasteMeasureType">
+    <annotation>
+      <documentation>The evaluation of the potential of a mining waste in terms of base-, precious-, and strategic metals requires an estimation of the volume of the waste, its density, and the grade of remaining commodities, the tonnage figure being most of the time unknown. This calculation should be accompanied by a confidence index.</documentation>
+    </annotation>
+  </element>
+  <complexType name="MiningWasteMeasureType">
+    <sequence>
+      <element name="density" nillable="true" type="swe:QuantityPropertyType">
+        <annotation>
+          <documentation>-- Definition --
+The density of mining waste</documentation>
+        </annotation>
+      </element>
+      <element name="volume" nillable="true" type="swe:QuantityPropertyType">
+        <annotation>
+          <documentation>-- Definition --
+The volume of mining waste</documentation>
+        </annotation>
+      </element>
+      <element name="grade" nillable="true" type="swe:QuantityPropertyType">
+        <annotation>
+          <documentation>-- Definition --
+The grade of mining waste</documentation>
+        </annotation>
+      </element>
+    </sequence>
+  </complexType>
+  <complexType name="MiningWasteMeasurePropertyType">
+    <sequence>
+      <element ref="er:MiningWasteMeasure"/>
+    </sequence>
+  </complexType>
+  <element name="MiningActivity" substitutionGroup="er:MiningFeature" type="er:MiningActivityType">
+    <annotation>
+      <documentation>The process of extracting metallic or non-metallic mineral deposits from the Earth. The term may also include preliminary treatment eg. cleaning or sizing.</documentation>
+    </annotation>
+  </element>
+  <complexType name="MiningActivityType">
+    <complexContent>
+      <extension base="er:MiningFeatureType">
+        <sequence>
+          <element name="processingType" type="er:ProcessingActivityTypeCodeType">
+            <annotation>
+              <documentation>Code to indicate the type of processing (eg heap leach, froth flotation)</documentation>
+            </annotation>
+          </element>
+          <element name="deposit" type="er:EarthResourcePropertyType">
+            <annotation>
+              <documentation>To which deposit a mining activity is associated.</documentation>
+            </annotation>
+          </element>
+          <element maxOccurs="unbounded" name="producedMaterial" type="er:ProductPropertyType">
+            <annotation>
+              <documentation>Product(s) elaborated from mining activity, through a processing phase. Usually in the form of concentrates containing one or several commodities at various grades for metallic ores.</documentation>
+            </annotation>
+          </element>
+          <element maxOccurs="unbounded" name="rawMaterial" nillable="true">
+            <annotation>
+              <documentation>An ore is rarely extracted or mined alone. It is most of the time accompanied by a variable quantity of gangue, very slightly mineralized or completely barren, composed of non-metallic minerals (sometimes of interest) and/or altered host-rock(s).</documentation>
+            </annotation>
+            <complexType>
+              <sequence>
+                <element ref="er:MinedMaterial"/>
+              </sequence>
+              <attribute name="nilReason" type="gml:NilReasonType"/>
+            </complexType>
+          </element>
+          <element maxOccurs="unbounded" name="producedWaste" nillable="true">
+            <annotation>
+              <documentation>Waste products from a mining activity, through a processing phase.</documentation>
+            </annotation>
+            <complexType>
+              <sequence minOccurs="0">
+                <element ref="er:MiningWaste"/>
+              </sequence>
+              <attributeGroup ref="gml:AssociationAttributeGroup"/>
+              <attributeGroup ref="gml:OwnershipAttributeGroup"/>
+            </complexType>
+          </element>
+          <element name="associatedMine" nillable="true">
+            <annotation>
+              <documentation>The mine that the MiningActivity occurred in</documentation>
+            </annotation>
+            <complexType>
+              <sequence minOccurs="0">
+                <element ref="er:Mine"/>
+              </sequence>
+              <attributeGroup ref="gml:AssociationAttributeGroup"/>
+              <attributeGroup ref="gml:OwnershipAttributeGroup"/>
+            </complexType>
+          </element>
+          <element name="activityDuration" type="gml:TimePeriodPropertyType">
+            <annotation>
+              <documentation>Period, or extent in time, of  the mining activity. The beginning of the activity links the TM_Period to the TM_Instant at which it starts.  The ending links the TM_Period to the TM_Instant at which it ends.  For a variety of reasons, the position of the TM_Instant designated by 'begin' or 'end' may be inderterminate.</documentation>
+            </annotation>
+          </element>
+          <element name="activityType" type="er:MiningActivityTypeCodeType">
+            <annotation>
+              <documentation>The type of mining activity (eg Open Cut, Underground Mine, multiple, unspecified) or processing activity (eg Ore Processing) or production.  Using activity to distinguish between the extraction, processing and production activities allows distinguishing between ore mined/grade/recovery, ore treated/grade/recovery and produced payable/plant recovery.</documentation>
+            </annotation>
+          </element>
+          <element name="oreProcessed" nillable="true" type="swe:QuantityPropertyType">
+            <annotation>
+              <documentation>The amount of ore processed by the activity</documentation>
+            </annotation>
+          </element>
+        </sequence>
+      </extension>
+    </complexContent>
+  </complexType>
+  <complexType name="MiningActivityPropertyType">
+    <sequence minOccurs="0">
+      <element ref="er:MiningActivity"/>
+    </sequence>
+    <attributeGroup ref="gml:AssociationAttributeGroup"/>
+    <attributeGroup ref="gml:OwnershipAttributeGroup"/>
+  </complexType>
+  <element name="MiningFeatureOccurrence" substitutionGroup="gml:AbstractFeature" type="er:MiningFeatureOccurrenceType">
+    <annotation>
+      <documentation>-- Definition --
+A MiningFeatureOccurrence provides a link between a notional feature (description package) and one spatial representation of it, or part of it. The MiningFeatureOccurrence carries a geometry or location and the association with a Mining Feature provides specification of all the other descriptors</documentation>
+    </annotation>
+  </element>
+  <complexType name="MiningFeatureOccurrenceType">
+    <complexContent>
+      <extension base="gml:AbstractFeatureType">
+        <sequence>
+          <element name="resolutionScale" nillable="true">
+            <annotation>
+              <documentation>-- Definition --
+NOTE: this attribute type will be mapped to a temporary proxy for MD_RepresentativeFraction until support for GML3.2 is achieved.</documentation>
+            </annotation>
+            <complexType>
+              <complexContent>
+                <extension base="gml:AbstractMetadataPropertyType">
+                  <sequence minOccurs="0">
+                    <element ref="gmd:MD_RepresentativeFraction"/>
+                  </sequence>
+                  <attributeGroup ref="gml:AssociationAttributeGroup"/>
+                </extension>
+              </complexContent>
+            </complexType>
+          </element>
+          <element name="specification" type="er:MiningFeaturePropertyType">
+            <annotation>
+              <documentation>Indicates the MiningFeature that the occurrence specifies
+Points to any number of MiningFeatureOccurrences which are occurrences of the Miningfeature.  MiningFeatureOccurrences may all be from a single map or from several maps, or reflect different levels of detail, eg point, area, 3D volume.</documentation>
+              <appinfo>
+                <reversePropertyName xmlns="http://www.opengis.net/gml/3.2">er:occurrence</reversePropertyName>
+              </appinfo>
+            </annotation>
+          </element>
+          <element maxOccurs="unbounded" name="observationMethod">
+            <annotation>
+              <documentation>Specifies the method that was used to identify the MiningFeatureOccurrence. Examples: digitised,  Global Positioning System, published map, fieldObservation, downhole survey, aerial photography, field survey. This corresponds (loosely) to ISO19115 Lineage.Statement</documentation>
+            </annotation>
+          </element>
+          <element name="positionalAccuracy" nillable="true" type="swe:QuantityPropertyType">
+            <annotation>
+              <documentation>Quantitative values define the radius of an uncertainty buffer around a mappedFeature (eg: a positionAccuracy of 100 m for a line feature defines a buffer polygon of total width 200 m centred on the line).  Corresponds to ISO19115 DQ_PositionalAccuracy.</documentation>
+            </annotation>
+          </element>
+        </sequence>
+      </extension>
+    </complexContent>
+  </complexType>
+  <complexType name="MiningFeatureOccurrencePropertyType">
+    <sequence minOccurs="0">
+      <element ref="er:MiningFeatureOccurrence"/>
+    </sequence>
+    <attributeGroup ref="gml:AssociationAttributeGroup"/>
+    <attributeGroup ref="gml:OwnershipAttributeGroup"/>
+  </complexType>
+  <element name="Mine" substitutionGroup="er:MiningFeature" type="er:MineType">
+    <annotation>
+      <documentation>(A) An underground excavation for the extraction of mineral deposits, in contrast to surficial excavations such as quarries. The term is also applied to various types of open-pit workings. (B) The area or property of a mineral deposit that is being excavated; a mining claim.</documentation>
+    </annotation>
+  </element>
+  <complexType name="MineType">
+    <complexContent>
+      <extension base="er:MiningFeatureType">
+        <sequence>
+          <element maxOccurs="unbounded" name="relatedActivity" type="er:MiningActivityPropertyType">
+            <annotation>
+              <documentation>The MiningActivity associated with the Mine</documentation>
+            </annotation>
+          </element>
+          <element maxOccurs="unbounded" name="relatedMine" nillable="true">
+            <annotation>
+              <documentation>A mine currently exploited may result from the resumption and the extension of a – or several – former or older (abandoned) mine(s).</documentation>
+            </annotation>
+            <complexType>
+              <sequence minOccurs="0">
+                <element ref="er:Mine"/>
+              </sequence>
+              <attributeGroup ref="gml:AssociationAttributeGroup"/>
+              <attributeGroup ref="gml:OwnershipAttributeGroup"/>
+            </complexType>
+          </element>
+          <element name="startDate" nillable="true" type="gml:TimeInstantPropertyType">
+            <annotation>
+              <documentation>Date the mine commenced.</documentation>
+            </annotation>
+          </element>
+          <element name="endDate" nillable="true" type="gml:TimeInstantPropertyType">
+            <annotation>
+              <documentation>Date the mine ceased.</documentation>
+            </annotation>
+          </element>
+          <element maxOccurs="unbounded" name="mineName" type="er:MineNamePropertyType">
+            <annotation>
+              <documentation>-- Definition --
+Data type to indicate whether the Mine Name is the preferred name</documentation>
+            </annotation>
+          </element>
+          <element maxOccurs="unbounded" name="sourceReference" nillable="true">
+            <annotation>
+              <documentation>Allows citing mine plans etc</documentation>
+            </annotation>
+            <complexType>
+              <complexContent>
+                <extension base="gml:AbstractMetadataPropertyType">
+                  <sequence/>
+                  <attributeGroup ref="gml:AssociationAttributeGroup"/>
+                </extension>
+              </complexContent>
+            </complexType>
+          </element>
+          <element name="status" type="er:MineStatusCodeType">
+            <annotation>
+              <documentation>Operational status (eg Care &amp; Maintenance, Pending Approval, operating continually)</documentation>
+            </annotation>
+          </element>
+        </sequence>
+      </extension>
+    </complexContent>
+  </complexType>
+  <complexType name="MinePropertyType">
+    <sequence minOccurs="0">
+      <element ref="er:Mine"/>
+    </sequence>
+    <attributeGroup ref="gml:AssociationAttributeGroup"/>
+    <attributeGroup ref="gml:OwnershipAttributeGroup"/>
+  </complexType>
+  <element abstract="true" name="MiningFeature" substitutionGroup="gml:AbstractFeature" type="er:MiningFeatureType">
+    <annotation>
+      <documentation>The abstract MiningFeature class represents a conceptual feature that exists coherently in the world.
+   * this corresponds with a "Mine" or a "MiningActivity",  locatable and identifiable features in time and/or space</documentation>
+    </annotation>
+  </element>
+  <complexType abstract="true" name="MiningFeatureType">
+    <complexContent>
+      <extension base="gml:AbstractFeatureType">
+        <sequence>
+          <element maxOccurs="unbounded" minOccurs="0" name="occurrence" nillable="true">
+            <annotation>
+              <documentation>Point to the single MiningFeature which describes the Mining feature Occurrence</documentation>
+              <appinfo>
+                <reversePropertyName xmlns="http://www.opengis.net/gml/3.2">er:specification</reversePropertyName>
+              </appinfo>
+            </annotation>
+            <complexType>
+              <sequence minOccurs="0">
+                <element ref="er:MiningFeatureOccurrence"/>
+              </sequence>
+              <attributeGroup ref="gml:AssociationAttributeGroup"/>
+              <attributeGroup ref="gml:OwnershipAttributeGroup"/>
+            </complexType>
+          </element>
+        </sequence>
+      </extension>
+    </complexContent>
+  </complexType>
+  <complexType name="MiningFeaturePropertyType">
+    <sequence minOccurs="0">
+      <element ref="er:MiningFeature"/>
+    </sequence>
+    <attributeGroup ref="gml:AssociationAttributeGroup"/>
+    <attributeGroup ref="gml:OwnershipAttributeGroup"/>
+  </complexType>
+  <simpleType name="MineStatusCodeType">
+    <annotation>
+      <documentation>-- Definition --
+Operational status values</documentation>
+    </annotation>
+    <union memberTypes="er:MineStatusCodeEnumerationType er:MineStatusCodeOtherType"/>
+  </simpleType>
+  <simpleType name="MineStatusCodeEnumerationType">
+    <annotation>
+      <documentation>-- Definition --
+Operational status values</documentation>
+    </annotation>
+    <restriction base="string"/>
+  </simpleType>
+  <simpleType name="MineStatusCodeOtherType">
+    <restriction base="string">
+      <pattern value="other: \w{2,}"/>
+    </restriction>
+  </simpleType>
+  <element name="MineName" substitutionGroup="gml:AbstractObject" type="er:MineNameType">
+    <annotation>
+      <documentation>Data type to indicate whether the Mine Name is the preferred name</documentation>
+    </annotation>
+  </element>
+  <complexType name="MineNameType">
+    <sequence>
+      <element name="isPreferred" type="boolean">
+        <annotation>
+          <documentation>-- Definition --
+A boolean operator to indicate if the value in mineName is the preferred name of the mine</documentation>
+        </annotation>
+      </element>
+      <element name="mineName" type="string">
+        <annotation>
+          <documentation>-- Definition --
+The name of the mine</documentation>
+        </annotation>
+      </element>
+    </sequence>
+  </complexType>
+  <complexType name="MineNamePropertyType">
+    <sequence>
+      <element ref="er:MineName"/>
+    </sequence>
+  </complexType>
+  <element name="Product" substitutionGroup="gml:AbstractFeature" type="er:ProductType">
+    <annotation>
+      <documentation>Identifes the type and amount of products associated with production</documentation>
+    </annotation>
+  </element>
+  <complexType name="ProductType">
+    <complexContent>
+      <extension base="gml:AbstractFeatureType">
+        <sequence>
+          <element name="sourceCommodity" type="er:CommodityPropertyType">
+            <annotation>
+              <documentation>On which commodity(ies) contained in the ore, the elaborated product is based.</documentation>
+            </annotation>
+          </element>
+          <element maxOccurs="unbounded" name="product" type="gml:CodeType">
+            <annotation>
+              <documentation>Commodity that has been processed to create a value-added product. In some cases the commodity and the product may be the same (e.g. gold).</documentation>
+              <appinfo>
+                <targetElement xmlns="http://www.opengis.net/gml/3.2">er:ProductTerm</targetElement>
+              </appinfo>
+            </annotation>
+          </element>
+          <element maxOccurs="unbounded" name="sourceReference">
+            <annotation>
+              <documentation>The reference(s) for the product information.  CI_Citation data type cannot be serialised in GML 3.1, only as an xlink reference.</documentation>
+            </annotation>
+            <complexType>
+              <complexContent>
+                <extension base="gml:AbstractMetadataPropertyType">
+                  <sequence/>
+                  <attributeGroup ref="gml:AssociationAttributeGroup"/>
+                </extension>
+              </complexContent>
+            </complexType>
+          </element>
+          <element name="grade" nillable="true" type="swe:QuantityPropertyType">
+            <annotation>
+              <documentation>he relative quantity or percentage of ore mineral content in an orebody. (Could be Feed Grade, ore grade)</documentation>
+            </annotation>
+          </element>
+          <element name="production" nillable="true" type="swe:QuantityPropertyType">
+            <annotation>
+              <documentation>Quantity of product produced during the activity</documentation>
+            </annotation>
+          </element>
+          <element name="recovery" nillable="true" type="swe:QuantityPropertyType">
+            <annotation>
+              <documentation>The percentage of valuable constituent derived from an ore, or of coal from a coal seam; a measure of mining or extraction efficency. (Recovery rate is usually expressed as a percent).</documentation>
+            </annotation>
+          </element>
+        </sequence>
+      </extension>
+    </complexContent>
+  </complexType>
+  <complexType name="ProductPropertyType">
+    <sequence minOccurs="0">
+      <element ref="er:Product"/>
+    </sequence>
+    <attributeGroup ref="gml:AssociationAttributeGroup"/>
+    <attributeGroup ref="gml:OwnershipAttributeGroup"/>
+  </complexType>
+  <simpleType name="RawMaterialRoleCodeType">
+    <annotation>
+      <documentation>-- Definition --
+Role the EarthMaterial plays in the MiningActivity (eg gangue, ore)</documentation>
+    </annotation>
+    <union memberTypes="er:RawMaterialRoleCodeEnumerationType er:RawMaterialRoleCodeOtherType"/>
+  </simpleType>
+  <simpleType name="RawMaterialRoleCodeEnumerationType">
+    <annotation>
+      <documentation>-- Definition --
+Role the EarthMaterial plays in the MiningActivity (eg gangue, ore)</documentation>
+    </annotation>
+    <restriction base="string"/>
+  </simpleType>
+  <simpleType name="RawMaterialRoleCodeOtherType">
+    <restriction base="string">
+      <pattern value="other: \w{2,}"/>
+    </restriction>
+  </simpleType>
+  <simpleType name="WasteStorageTypeCodeType">
+    <annotation>
+      <documentation>-- Definition --
+The type of mining waste storage</documentation>
+    </annotation>
+    <union memberTypes="er:WasteStorageTypeCodeEnumerationType er:WasteStorageTypeCodeOtherType"/>
+  </simpleType>
+  <simpleType name="WasteStorageTypeCodeEnumerationType">
+    <annotation>
+      <documentation>-- Definition --
+The type of mining waste storage</documentation>
+    </annotation>
+    <restriction base="string"/>
+  </simpleType>
+  <simpleType name="WasteStorageTypeCodeOtherType">
+    <restriction base="string">
+      <pattern value="other: \w{2,}"/>
+    </restriction>
+  </simpleType>
+</schema>

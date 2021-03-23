@@ -1,0 +1,223 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- edited with XMLSpy v2014 sp1 (x64) (http://www.altova.com) by Chris Schubert (European Commission DG JRC - IES) -->
+<schema xmlns="http://www.w3.org/2001/XMLSchema" xmlns:au="urn:x-inspire:specification:gmlas:AdministrativeUnits:3.0" xmlns:gml="http://www.opengis.net/gml/3.2" xmlns:su-ua="http://inspire.ec.europa.eu/schemas/su-ua/3.0" xmlns:su-vector="http://inspire.ec.europa.eu/schemas/su-vector/3.0" targetNamespace="http://inspire.ec.europa.eu/schemas/su-ua/3.0" elementFormDefault="qualified" version="3.0">
+	<annotation>
+		<documentation>-- Name --
+Urban audit 2009
+
+-- Definition --
+Example of INSPIRE compliant view of the Urban Audit model (produced by Eurostat).</documentation>
+	</annotation>
+	<import namespace="http://inspire.ec.europa.eu/schemas/su-vector/3.0" schemaLocation="https://inspire.ec.europa.eu/schemas/su-vector/3.0StatisticalUnitVector.xsd"/>
+	<import namespace="http://www.opengis.net/gml/3.2" schemaLocation="http://schemas.opengis.net/gml/3.2.1/gml.xsd"/>
+	<import namespace="urn:x-inspire:specification:gmlas:AdministrativeUnits:3.0" schemaLocation="https://inspire.ec.europa.eu/schemas/au/3.0/AdministrativeUnits.xsd"/>
+	<!--XML Schema document created by ShapeChange-->
+	<element name="LargerUrbanZone" type="su-ua:LargerUrbanZoneType" substitutionGroup="su-vector:AreaStatisticalUnit">
+		<annotation>
+			<documentation>-- Name --
+Larger urban zone
+
+-- Definition --
+Urban audit 2009 larger urban zone.
+
+-- Description --
+SOURCE [http://www.urbanaudit.org/].</documentation>
+		</annotation>
+	</element>
+	<complexType name="LargerUrbanZoneType">
+		<complexContent>
+			<extension base="su-vector:AreaStatisticalUnitType">
+				<sequence>
+					<element name="city" nillable="true" maxOccurs="unbounded">
+						<annotation>
+							<documentation>-- Definition --
+The city linked to the larger urban zone.</documentation>
+							<appinfo>
+								<reversePropertyName xmlns="http://www.opengis.net/gml/3.2">su-ua:LUZ</reversePropertyName>
+							</appinfo>
+						</annotation>
+						<complexType>
+							<sequence minOccurs="0">
+								<element ref="su-ua:City"/>
+							</sequence>
+							<attributeGroup ref="gml:AssociationAttributeGroup"/>
+							<attributeGroup ref="gml:OwnershipAttributeGroup"/>
+						</complexType>
+					</element>
+					<element name="kernel" type="su-ua:KernelPropertyType" minOccurs="0">
+						<annotation>
+							<documentation>-- Definition --
+The kernel linked to the larger urban zone.</documentation>
+							<appinfo>
+								<reversePropertyName xmlns="http://www.opengis.net/gml/3.2">su-ua:LUZ</reversePropertyName>
+							</appinfo>
+						</annotation>
+					</element>
+				</sequence>
+			</extension>
+		</complexContent>
+	</complexType>
+	<complexType name="LargerUrbanZonePropertyType">
+		<sequence minOccurs="0">
+			<element ref="su-ua:LargerUrbanZone"/>
+		</sequence>
+		<attributeGroup ref="gml:AssociationAttributeGroup"/>
+		<attributeGroup ref="gml:OwnershipAttributeGroup"/>
+	</complexType>
+	<element name="Kernel" type="su-ua:KernelType" substitutionGroup="su-vector:AreaStatisticalUnit">
+		<annotation>
+			<documentation>-- Name --
+Kernel
+
+-- Definition --
+Urban audit 2009 kernel
+
+-- Description --
+SOURCE [http://www.urbanaudit.org/].</documentation>
+		</annotation>
+	</element>
+	<complexType name="KernelType">
+		<complexContent>
+			<extension base="su-vector:AreaStatisticalUnitType">
+				<sequence>
+					<element name="city" type="su-ua:CityPropertyType">
+						<annotation>
+							<documentation>-- Definition --
+The city of the kernel.</documentation>
+							<appinfo>
+								<reversePropertyName xmlns="http://www.opengis.net/gml/3.2">su-ua:kernel</reversePropertyName>
+							</appinfo>
+						</annotation>
+					</element>
+					<element name="LUZ" type="su-ua:LargerUrbanZonePropertyType" minOccurs="0">
+						<annotation>
+							<documentation>-- Definition --
+The larger urban zone of the kernel.</documentation>
+							<appinfo>
+								<reversePropertyName xmlns="http://www.opengis.net/gml/3.2">su-ua:kernel</reversePropertyName>
+							</appinfo>
+						</annotation>
+					</element>
+				</sequence>
+			</extension>
+		</complexContent>
+	</complexType>
+	<complexType name="KernelPropertyType">
+		<sequence minOccurs="0">
+			<element ref="su-ua:Kernel"/>
+		</sequence>
+		<attributeGroup ref="gml:AssociationAttributeGroup"/>
+		<attributeGroup ref="gml:OwnershipAttributeGroup"/>
+	</complexType>
+	<element name="CityDistrict" type="su-ua:CityDistrictType" substitutionGroup="su-vector:AreaStatisticalUnit">
+		<annotation>
+			<documentation>-- Name --
+City district
+
+-- Definition --
+Urban audit 2009 city district.
+
+-- Description --
+SOURCE [http://www.urbanaudit.org/].</documentation>
+		</annotation>
+	</element>
+	<complexType name="CityDistrictType">
+		<complexContent>
+			<extension base="su-vector:AreaStatisticalUnitType">
+				<sequence/>
+			</extension>
+		</complexContent>
+	</complexType>
+	<complexType name="CityDistrictPropertyType">
+		<sequence minOccurs="0">
+			<element ref="su-ua:CityDistrict"/>
+		</sequence>
+		<attributeGroup ref="gml:AssociationAttributeGroup"/>
+		<attributeGroup ref="gml:OwnershipAttributeGroup"/>
+	</complexType>
+	<element name="SubDistrict" type="su-ua:SubDistrictType" substitutionGroup="su-vector:AreaStatisticalUnit">
+		<annotation>
+			<documentation>-- Name --
+Sub district
+
+-- Definition --
+Urban audit 2009 sub-district.
+
+-- Description --
+SOURCE [http://www.urbanaudit.org/].</documentation>
+		</annotation>
+	</element>
+	<complexType name="SubDistrictType">
+		<complexContent>
+			<extension base="su-vector:AreaStatisticalUnitType">
+				<sequence>
+					<element name="city" type="su-ua:CityPropertyType">
+						<annotation>
+							<documentation>-- Definition --
+The city the sub district belong to.</documentation>
+						</annotation>
+					</element>
+				</sequence>
+			</extension>
+		</complexContent>
+	</complexType>
+	<complexType name="SubDistrictPropertyType">
+		<sequence minOccurs="0">
+			<element ref="su-ua:SubDistrict"/>
+		</sequence>
+		<attributeGroup ref="gml:AssociationAttributeGroup"/>
+		<attributeGroup ref="gml:OwnershipAttributeGroup"/>
+	</complexType>
+	<element name="City" type="su-ua:CityType" substitutionGroup="su-vector:AreaStatisticalUnit">
+		<annotation>
+			<documentation>-- Name --
+City
+
+-- Definition --
+Urban audit 2009 city.
+
+-- Description --
+SOURCE [http://www.urbanaudit.org/].</documentation>
+		</annotation>
+	</element>
+	<complexType name="CityType">
+		<complexContent>
+			<extension base="su-vector:AreaStatisticalUnitType">
+				<sequence>
+					<element name="LUZ" nillable="true" minOccurs="0">
+						<annotation>
+							<documentation>-- Definition --
+The larger urban zone linked to the city.</documentation>
+							<appinfo>
+								<reversePropertyName xmlns="http://www.opengis.net/gml/3.2">su-ua:city</reversePropertyName>
+							</appinfo>
+						</annotation>
+						<complexType>
+							<sequence minOccurs="0">
+								<element ref="su-ua:LargerUrbanZone"/>
+							</sequence>
+							<attributeGroup ref="gml:AssociationAttributeGroup"/>
+							<attributeGroup ref="gml:OwnershipAttributeGroup"/>
+						</complexType>
+					</element>
+					<element name="kernel" type="su-ua:KernelPropertyType" minOccurs="0">
+						<annotation>
+							<documentation>-- Definition --
+The kernel of the city.</documentation>
+							<appinfo>
+								<reversePropertyName xmlns="http://www.opengis.net/gml/3.2">su-ua:city</reversePropertyName>
+							</appinfo>
+						</annotation>
+					</element>
+				</sequence>
+			</extension>
+		</complexContent>
+	</complexType>
+	<complexType name="CityPropertyType">
+		<sequence minOccurs="0">
+			<element ref="su-ua:City"/>
+		</sequence>
+		<attributeGroup ref="gml:AssociationAttributeGroup"/>
+		<attributeGroup ref="gml:OwnershipAttributeGroup"/>
+	</complexType>
+</schema>

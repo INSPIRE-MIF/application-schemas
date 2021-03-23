@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<schema xmlns="http://www.w3.org/2001/XMLSchema" xmlns:af-core="http://inspire.jrc.ec.europa.eu/schemas/af-core/2.0" xmlns:af-ext="http://inspire.jrc.ec.europa.eu/schemas/af-ext/2.0" xmlns:base="urn:x-inspire:specification:gmlas:BaseTypes:3.2" xmlns:gml="http://www.opengis.net/gml/3.2" targetNamespace="http://inspire.jrc.ec.europa.eu/schemas/af-core/2.0" elementFormDefault="qualified" version="2.0">
+	<annotation>
+		<documentation>-- Description --
+Includes a very basic  data model and specification.</documentation>
+	</annotation>
+	<import namespace="http://www.opengis.net/gml/3.2" schemaLocation="http://schemas.opengis.net/gml/3.2.1/gml.xsd"/>
+	<import namespace="urn:x-inspire:specification:gmlas:BaseTypes:3.2" schemaLocation="https://inspire.ec.europa.eu/schemas/base/3.2/BaseTypes.xsd"/>
+	<import namespace="http://inspire.jrc.ec.europa.eu/schemas/af-ext/2.0" schemaLocation="https://inspire.ec.europa.eu/draft-schemas/af-ext/2.0/AgriculturalAndAquacultureFacilitiesExtension.xsd"/>
+	<!--XML Schema document created by ShapeChange-->
+	<element name="SiteCM" type="af-core:SiteCMType" substitutionGroup="gml:AbstractFeature"/>
+	<complexType name="SiteCMType">
+		<complexContent>
+			<extension base="gml:AbstractFeatureType">
+				<sequence>
+					<element name="geometry" type="gml:GeometryPropertyType"/>
+					<element name="activity" nillable="true" maxOccurs="unbounded">
+						<complexType>
+							<simpleContent>
+								<extension base="gml:CodeType">
+									<attribute name="nilReason" type="gml:NilReasonType"/>
+								</extension>
+							</simpleContent>
+						</complexType>
+					</element>
+					<element name="contains" type="af-core:FarmAnimalCMPropertyType" minOccurs="0" maxOccurs="unbounded"/>
+				</sequence>
+			</extension>
+		</complexContent>
+	</complexType>
+	<complexType name="SiteCMPropertyType">
+		<sequence minOccurs="0">
+			<element ref="af-core:SiteCM"/>
+		</sequence>
+		<attributeGroup ref="gml:AssociationAttributeGroup"/>
+		<attributeGroup ref="gml:OwnershipAttributeGroup"/>
+	</complexType>
+	<element name="FarmAnimalCM" type="af-core:FarmAnimalCMType" substitutionGroup="gml:AbstractFeature"/>
+	<complexType name="FarmAnimalCMType">
+		<complexContent>
+			<extension base="gml:AbstractFeatureType">
+				<sequence>
+					<element name="livestockSpeciesCM" type="af-ext:LivestockSpeciesValueType" minOccurs="0" maxOccurs="unbounded"/>
+					<element name="aquacultureSpeciesCM" type="af-ext:AquacultureSpeciesValueType" minOccurs="0" maxOccurs="unbounded"/>
+				</sequence>
+			</extension>
+		</complexContent>
+	</complexType>
+	<complexType name="FarmAnimalCMPropertyType">
+		<sequence minOccurs="0">
+			<element ref="af-core:FarmAnimalCM"/>
+		</sequence>
+		<attributeGroup ref="gml:AssociationAttributeGroup"/>
+		<attributeGroup ref="gml:OwnershipAttributeGroup"/>
+	</complexType>
+	<element name="HoldingCM" type="af-core:HoldingCMType" substitutionGroup="gml:AbstractFeature"/>
+	<complexType name="HoldingCMType">
+		<complexContent>
+			<extension base="gml:AbstractFeatureType">
+				<sequence>
+					<element name="inspire_Id" nillable="true" minOccurs="0">
+						<complexType>
+							<sequence>
+								<element ref="base:Identifier"/>
+							</sequence>
+							<attribute name="nilReason" type="gml:NilReasonType"/>
+						</complexType>
+					</element>
+					<element name="geometry" type="gml:GeometryPropertyType"/>
+					<element name="activity" type="gml:CodeType" maxOccurs="unbounded"/>
+					<element name="validFrom" type="dateTime" minOccurs="0"/>
+					<element name="beginLifeSpanVersion" nillable="true">
+						<complexType>
+							<simpleContent>
+								<extension base="dateTime">
+									<attribute name="nilReason" type="gml:NilReasonType"/>
+								</extension>
+							</simpleContent>
+						</complexType>
+					</element>
+					<element name="validTo" type="dateTime" minOccurs="0"/>
+					<element name="endLifeSpanVersion" nillable="true">
+						<complexType>
+							<simpleContent>
+								<extension base="dateTime">
+									<attribute name="nilReason" type="gml:NilReasonType"/>
+								</extension>
+							</simpleContent>
+						</complexType>
+					</element>
+					<element name="contains" type="af-core:SiteCMPropertyType" maxOccurs="unbounded"/>
+				</sequence>
+			</extension>
+		</complexContent>
+	</complexType>
+	<complexType name="HoldingCMPropertyType">
+		<sequence minOccurs="0">
+			<element ref="af-core:HoldingCM"/>
+		</sequence>
+		<attributeGroup ref="gml:AssociationAttributeGroup"/>
+		<attributeGroup ref="gml:OwnershipAttributeGroup"/>
+	</complexType>
+</schema>

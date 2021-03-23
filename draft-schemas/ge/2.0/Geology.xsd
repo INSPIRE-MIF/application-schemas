@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="UTF-8"?><schema xmlns="http://www.w3.org/2001/XMLSchema" xmlns:ge="http://inspire.jrc.ec.europa.eu/schemas/ge/2.0" xmlns:ge-core="http://inspire.jrc.ec.europa.eu/schemas/ge-core/2.0" xmlns:ge-ext="http://inspire.jrc.ec.europa.eu/schemas/ge-ext/2.0" elementFormDefault="qualified" targetNamespace="http://inspire.jrc.ec.europa.eu/schemas/ge/2.0" version="2.0">
+  <import namespace="http://inspire.jrc.ec.europa.eu/schemas/ge-core/2.0" schemaLocation="https://inspire.ec.europa.eu/draft-schemas/ge-core/2.0/GeologyCore.xsd"/>
+  <import namespace="http://inspire.jrc.ec.europa.eu/schemas/ge-ext/2.0" schemaLocation="https://inspire.ec.europa.eu/draft-schemas/ge-ext/2.0/GeologyExtension.xsd"/>
+  <!--XML Schema document created by ShapeChange-->
+</schema>

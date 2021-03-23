@@ -1,0 +1,296 @@
+<?xml version="1.0" encoding="UTF-8"?><schema xmlns="http://www.w3.org/2001/XMLSchema" xmlns:base="urn:x-inspire:specification:gmlas:BaseTypes:3.2" xmlns:gml="http://www.opengis.net/gml/3.2" xmlns:pd="http://inspire.jrc.ec.europa.eu/schemas/pd/2.0" xmlns:su-core="http://inspire.jrc.ec.europa.eu/schemas/su-core/2.0" elementFormDefault="qualified" targetNamespace="http://inspire.jrc.ec.europa.eu/schemas/pd/2.0" version="2.0.1">
+  <import namespace="http://inspire.jrc.ec.europa.eu/schemas/su-core/2.0" schemaLocation="https://inspire.ec.europa.eu/draft-schemas/su-core/2.0/StatisticalUnitCore.xsd"/>
+  <import namespace="http://www.opengis.net/gml/3.2" schemaLocation="http://schemas.opengis.net/gml/3.2.1/gml.xsd"/>
+  <import namespace="urn:x-inspire:specification:gmlas:BaseTypes:3.2" schemaLocation="https://inspire.ec.europa.eu/schemas/base/3.2/BaseTypes.xsd"/>
+  <!--XML Schema document created by ShapeChange-->
+  <element name="StatisticalDataDimensions" substitutionGroup="gml:AbstractObject" type="pd:StatisticalDataDimensionsType">
+    <annotation>
+      <documentation>-- Definition --
+The identification of what the piece of datum refers to in terms of geographic location or individual characteristics.</documentation>
+    </annotation>
+  </element>
+  <complexType name="StatisticalDataDimensionsType">
+    <sequence>
+      <element maxOccurs="unbounded" minOccurs="0" name="classifications" type="gml:CodeType">
+        <annotation>
+          <documentation>-- Definition --
+A set of individual characteristics.
+
+-- Description --
+The actual value are codelists items taken from the classifications codelists that are listed in the &amp;lsquo;classifications&amp;rsquo; attribute of the StatisticalData object.
+
+EXAMPLE: A StatisticalDataDistribution is delivered as a dataset containing separately the spatial distribution of the male persons and of the female persons. The &amp;lsquo;classifications&amp;rsquo; attribute of the StatisticalDataDistribution object will be &amp;lsquo;Sex&amp;rsquo;, while for each elementary spatial component data will be provided alternatively with the attribute classificationItem&amp;rsquo; having the value &amp;lsquo;male&amp;rsquo; and the value &amp;lsquo;female&amp;rsquo;.</documentation>
+        </annotation>
+      </element>
+      <element name="geoReference">
+        <annotation>
+          <documentation>-- Definition --
+The location the piece of datum refers to.</documentation>
+        </annotation>
+        <complexType>
+          <complexContent>
+            <extension base="gml:AbstractMemberType">
+              <sequence minOccurs="0">
+                <element ref="su-core:StatisticalUnit"/>
+              </sequence>
+              <attributeGroup ref="gml:AssociationAttributeGroup"/>
+            </extension>
+          </complexContent>
+        </complexType>
+      </element>
+    </sequence>
+  </complexType>
+  <complexType name="StatisticalDataDimensionsPropertyType">
+    <sequence>
+      <element ref="pd:StatisticalDataDimensions"/>
+    </sequence>
+  </complexType>
+  <element name="Universe" substitutionGroup="gml:AbstractObject" type="pd:UniverseType">
+    <annotation>
+      <documentation>-- Definition --
+The universe.</documentation>
+    </annotation>
+  </element>
+  <complexType name="UniverseType">
+    <sequence>
+      <element name="name" type="string">
+        <annotation>
+          <documentation>-- Definition --
+The name of the universe.</documentation>
+        </annotation>
+      </element>
+    </sequence>
+  </complexType>
+  <complexType name="UniversePropertyType">
+    <sequence>
+      <element ref="pd:Universe"/>
+    </sequence>
+  </complexType>
+  <element name="StatisticalDataValue" substitutionGroup="gml:AbstractObject" type="pd:StatisticalDataValueType">
+    <annotation>
+      <documentation>-- Definition --
+The pieces of datum of the distribution.</documentation>
+    </annotation>
+  </element>
+  <complexType name="StatisticalDataValueType">
+    <sequence>
+      <element minOccurs="0" name="approximatelyLocatedPopulationProportion" type="double">
+        <annotation>
+          <documentation>-- Definition --
+The proportion of population count that doesn&amp;rsquo;t follow the common rule for location. &amp;ldquo;Population&amp;rdquo; has here a general meaning : it can be perons if persons are counted, dwellings if the StatisticalDatadistribution is about dwellings&amp;hellip;
+
+EXAMPLE : A statistical distribution of the people is supposed to have been produced after the people were located in the cadastral parcel they live in. For some incorrectness in the registers used, the actual location of the cadastral parcel was not found fro some of them and an estimated location was computed. The number of people in this case must be reported in the attribute.</documentation>
+        </annotation>
+      </element>
+      <element minOccurs="0" name="comment" type="string">
+        <annotation>
+          <documentation>-- Definition --
+Some free style comment about the piece of datum.</documentation>
+        </annotation>
+      </element>
+      <element minOccurs="0" name="conventionallyLocatedProportion" type="double">
+        <annotation>
+          <documentation>-- Definition --
+The proportion of population counted in the piece of datum but that cannot actually be physically located anywhere within the area of interest.
+
+EXAMPLE: This proportion will include homeless people who where given the address of the organisation that distributes social benefis to them.</documentation>
+        </annotation>
+      </element>
+      <element minOccurs="0" name="dimensions" type="pd:StatisticalDataDimensionsPropertyType">
+        <annotation>
+          <documentation>-- Definition --
+The part of the world the piece of datum refers to. Dimensions contains a description of the geographic location (2D dimension) together with possible additional dimensions when population counts are produced simultaneously for different individual characteristics.
+
+EXAMPLE: A simple population count for each part of the area of Dissemination will need only identification of these parts, while population count by sex will require and additional dimension (sex) to make a difference between the male and the female distributions.</documentation>
+        </annotation>
+      </element>
+      <element minOccurs="0" name="flags" type="string">
+        <annotation>
+          <documentation>-- Definition --
+A set of one-character encoded comments about the piece of datum.</documentation>
+        </annotation>
+      </element>
+      <element minOccurs="0" name="periodOfMeasurement" nillable="true" type="gml:TimePeriodPropertyType">
+        <annotation>
+          <documentation>-- Definition --
+The period of data collection for the piece of datum, when this one differs from the one of the other pieces of datum of the distribution.</documentation>
+        </annotation>
+      </element>
+      <element minOccurs="0" name="specialValue" type="gml:CodeType">
+        <annotation>
+          <documentation>-- Definition --
+Some conventional string when value for the piece of datum cannot be provided: Missing value, value hidden because of confidentiality&amp;hellip;
+
+-- Description --
+Either value of specialValue must be provided.</documentation>
+        </annotation>
+      </element>
+      <element minOccurs="0" name="value" type="double">
+        <annotation>
+          <documentation>-- Definition --
+The value for the piece of datum.
+
+-- Description --
+Either value of specialValue must be provided.</documentation>
+        </annotation>
+      </element>
+    </sequence>
+  </complexType>
+  <complexType name="StatisticalDataValuePropertyType">
+    <sequence>
+      <element ref="pd:StatisticalDataValue"/>
+    </sequence>
+  </complexType>
+  <element name="StatisticalDataDistribution" substitutionGroup="gml:AbstractFeature" type="pd:StatisticalDataDistributionType">
+    <annotation>
+      <documentation>-- Definition --
+Entire set of measures describing how a phenomenon is spread within some part of the 2D world.</documentation>
+    </annotation>
+  </element>
+  <complexType name="StatisticalDataDistributionType">
+    <complexContent>
+      <extension base="gml:AbstractFeatureType">
+        <sequence>
+          <element name="inspireId" type="base:IdentifierPropertyType">
+            <annotation>
+              <documentation>-- Definition --
+External object identifier of the spatial object.
+
+-- Description --
+An external object identifier is a unique object identifier published by the responsible body, which may be used by external applications to reference the spatial object. The identifier is an identifier of the spatial object, not an identifier of the real-world phenomenon.</documentation>
+            </annotation>
+          </element>
+          <element name="areaOfDissemination">
+            <annotation>
+              <documentation>-- Definition --
+The part of the 2D world the StatisticalDataDistribution describes.
+
+-- Description --
+This attribute links to some StatisticalUnit as described in the &amp;ldquo;Statistical Units&amp;rdquo; guidelines.</documentation>
+            </annotation>
+            <complexType>
+              <complexContent>
+                <extension base="gml:AbstractMemberType">
+                  <sequence minOccurs="0">
+                    <element ref="su-core:StatisticalUnit"/>
+                  </sequence>
+                  <attributeGroup ref="gml:AssociationAttributeGroup"/>
+                </extension>
+              </complexContent>
+            </complexType>
+          </element>
+          <element name="beginLifeSpanVersion" nillable="true">
+            <annotation>
+              <documentation>-- Definition --
+Date and time at which this version of the spatial object was inserted or changed in the spatial data set.</documentation>
+            </annotation>
+            <complexType>
+              <simpleContent>
+                <extension base="dateTime">
+                  <attribute name="nilReason" type="gml:NilReasonType"/>
+                </extension>
+              </simpleContent>
+            </complexType>
+          </element>
+          <element maxOccurs="unbounded" minOccurs="0" name="classifications" type="gml:CodeType">
+            <annotation>
+              <documentation>-- Definition --
+Additional classifications used to split a total value of the described phenomenon. In this way the StatisticalDistribution object will provide actually several distributions, one for each item of the used classification.</documentation>
+            </annotation>
+          </element>
+          <element name="domain" type="gml:CodeType">
+            <annotation>
+              <documentation>-- Definition --
+The part of statistical knowledge the data refers to.
+
+-- Description --
+EXAMPLES: Demography, activity, etc.</documentation>
+            </annotation>
+          </element>
+          <element minOccurs="0" name="endLifeSpanVersion" nillable="true">
+            <annotation>
+              <documentation>-- Definition --
+Date and time at which this version of the spatial object was superseded or retired in the spatial data set.</documentation>
+            </annotation>
+            <complexType>
+              <simpleContent>
+                <extension base="dateTime">
+                  <attribute name="nilReason" type="gml:NilReasonType"/>
+                </extension>
+              </simpleContent>
+            </complexType>
+          </element>
+          <element name="measure" type="gml:CodeType">
+            <annotation>
+              <documentation>-- Definition --
+What the distribution measures.
+
+-- Description --
+EXAMPLE: Population by age and sex, households by size, etc.</documentation>
+            </annotation>
+          </element>
+          <element name="measurementUnit" type="gml:UnitOfMeasureType">
+            <annotation>
+              <documentation>-- Definition --
+The unit of the measurement.</documentation>
+            </annotation>
+          </element>
+          <element minOccurs="0" name="notCountedPopulationProportion" type="double">
+            <annotation>
+              <documentation>-- Definition --
+The proportion of population of the area of interest that is not counted in any of its spatial components.
+
+-- Description --
+EXAMPLE: This situation can occur when the total population of the area of interest is collected by some process (e.g. administrative register) but population in the spatial components of the area of interest by another process (e.g. estimation).</documentation>
+            </annotation>
+          </element>
+          <element name="periodOfMeasurement" type="gml:TimePeriodPropertyType">
+            <annotation>
+              <documentation>-- Definition --
+The time period when the data was collected.</documentation>
+            </annotation>
+          </element>
+          <element name="periodOfReference" type="gml:TimePeriodPropertyType">
+            <annotation>
+              <documentation>-- Definition --
+The time period to which the data is supposed to give a picture of the area of interest.</documentation>
+            </annotation>
+          </element>
+          <element minOccurs="0" name="periodOfValidity" type="gml:TimePeriodPropertyType">
+            <annotation>
+              <documentation>-- Definition --
+The time period during which the data is usable. Outside this period the data should not be used and must be replaced by a fresher one.</documentation>
+            </annotation>
+          </element>
+          <element name="statisticMeasurementMethod" type="gml:CodeType">
+            <annotation>
+              <documentation>-- Definition --
+The description of the statistic measurement method.</documentation>
+            </annotation>
+          </element>
+          <element minOccurs="0" name="universe" type="pd:UniversePropertyType">
+            <annotation>
+              <documentation>-- Definition --
+When distribution is related to a subset of the population and not the population in its whole, the literal description of the way this subset was defined.
+
+EXAMPLE : A dataset can give the population distribution of the unemployed persons under 25. The variable will be &amp;ldquo;unemployedPopulation&amp;rdquo;, the measure a &amp;ldquo;count &amp;ldquo; and the measurementUnit &amp;ldquo;person&amp;rdquo;. The only way to express that the distribution doesn&amp;rsquo;t cover the whole unemployed population would be to describe that situation in the Unviverse attribute.</documentation>
+            </annotation>
+          </element>
+          <element maxOccurs="unbounded" name="values" type="pd:StatisticalDataValuePropertyType">
+            <annotation>
+              <documentation>-- Definition --
+The pieces of datum of the distribution.</documentation>
+            </annotation>
+          </element>
+        </sequence>
+      </extension>
+    </complexContent>
+  </complexType>
+  <complexType name="StatisticalDataDistributionPropertyType">
+    <sequence minOccurs="0">
+      <element ref="pd:StatisticalDataDistribution"/>
+    </sequence>
+    <attributeGroup ref="gml:AssociationAttributeGroup"/>
+    <attributeGroup ref="gml:OwnershipAttributeGroup"/>
+  </complexType>
+</schema>

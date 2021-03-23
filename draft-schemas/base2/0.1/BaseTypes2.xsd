@@ -1,0 +1,226 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<schema xmlns="http://www.w3.org/2001/XMLSchema" xmlns:base2="http://inspire.jrc.ec.europa.eu/schemas/base2/0.1" xmlns:gml="http://www.opengis.net/gml/3.2" targetNamespace="http://inspire.jrc.ec.europa.eu/schemas/base2/0.1" elementFormDefault="qualified" version="0.1">
+	<annotation>
+		<documentation>-- Definition --
+schema for additional basic types used by multiple themes
+
+-- Description --
+NOTE	The additional types specified with Annex II/III data specifications are placed in a separate schema to maintain backwards compatibility.</documentation>
+	</annotation>
+	<import namespace="http://www.opengis.net/gml/3.2" schemaLocation="http://schemas.opengis.net/gml/3.2.1/gml.xsd"/>
+	<!--XML Schema document created by ShapeChange-->
+	<element name="OfficialJournalInformation" type="base2:OfficialJournalInformationType" substitutionGroup="gml:AbstractObject">
+		<annotation>
+			<documentation>-- Name --
+official journal information
+
+-- Definition --
+Full citation to the location of the legislative instrument within the Official Journal.</documentation>
+		</annotation>
+	</element>
+	<complexType name="OfficialJournalInformationType">
+		<sequence>
+			<element name="officialJournalIdentification" type="string">
+				<annotation>
+					<documentation>-- Name --
+official journal identification
+
+-- Definition --
+Reference to the location within the official journal within which the legislative instrument was published. This reference shall be comprised of three parts:
+&lt;ol&gt;
+	&lt;li&gt;Journal title&lt;/li&gt;
+	&lt;li&gt;Journal volume and/or series number&lt;/li&gt;
+	&lt;li&gt;Page number(s)&lt;/li&gt;
+&lt;/ol&gt;
+
+-- Description --
+EXAMPLE: Official Journal of European Union (OJEU),  L108, Volume 50, 1-14</documentation>
+				</annotation>
+			</element>
+			<element name="ISSN" type="string" minOccurs="0">
+				<annotation>
+					<documentation>-- Name --
+ISSN
+
+-- Definition --
+The International Standard Serial Number (ISSN) is an eight-digit number that identifies the periodical publication in which the legislative instrument was published.
+
+-- Description --
+NOTE: Periodical publilcations are issued in successive parts, usually having numerical or chronological designations and required that each serial publication can be uniquely identified.
+
+EXAMPLE: OJ Series in which INSPIRE Directive is published has been assigned the ISSN: 1725-2555</documentation>
+				</annotation>
+			</element>
+			<element name="ISBN" type="string" minOccurs="0">
+				<annotation>
+					<documentation>-- Name --
+ISBN
+
+-- Definition --
+International Standard Book Number (ISBN) is an nine-digit number that uniquely identifies the book in which the legislative instrument was published.</documentation>
+				</annotation>
+			</element>
+			<element name="linkToJournal" type="anyURI" minOccurs="0">
+				<annotation>
+					<documentation>-- Name --
+link to online version
+
+-- Definition --
+Link to an online version of the official journal</documentation>
+				</annotation>
+			</element>
+		</sequence>
+	</complexType>
+	<complexType name="OfficialJournalInformationPropertyType">
+		<sequence>
+			<element ref="base2:OfficialJournalInformation"/>
+		</sequence>
+	</complexType>
+	<element name="LegislationReference" type="base2:LegislationReferenceType" substitutionGroup="gml:AbstractObject">
+		<annotation>
+			<documentation>-- Name --
+legislation reference
+
+-- Definition --
+information to unambiguously reference a legal act or a specific part of a legal act</documentation>
+		</annotation>
+	</element>
+	<complexType name="LegislationReferenceType">
+		<sequence>
+			<element name="legalName" type="string">
+				<annotation>
+					<documentation>-- Name --
+legal name
+
+-- Definition --
+Official name assigned to the legislative instrument
+
+-- Description --
+EXAMPLE: The official legal name for the INSPIRE Directive is "Directive 2007/2/EC of the European Parliament and of the Council of 14 March 2007 establishing an Infrastructure for Spatial Information in the European Community (INSPIRE)"</documentation>
+				</annotation>
+			</element>
+			<element name="shortName" type="string" minOccurs="0">
+				<annotation>
+					<documentation>-- Name --
+short name
+
+-- Definition --
+Short name or alternative title commonly used to identify the legislation
+
+-- Description --
+EXAMPLE 1: INSPIRE Directive is the short name for "Directive 2007/2/EC of the European Parliament and of the Council of 14 March 2007 establishing an Infrastructure for Spatial Information in the European Community (INSPIRE)"
+
+EXAMPLE 2: CAFE Directive is the short name for the Directive 2008/50/EC of the European Parliament and of the Council of 21 May 2008 on ambient air quality and cleaner air for Europe" 
+
+EXAMPLE  3: Water Framework Directive the short name for "Directive 2000/60/EC of the European Parliament and of the Council establishing a framework for the Community action in the field of water policy"</documentation>
+				</annotation>
+			</element>
+			<element name="identificationNumber" type="string" minOccurs="0">
+				<annotation>
+					<documentation>-- Name --
+identification number
+
+-- Definition --
+Code used to identify the legislative instrument
+
+-- Description --
+
+EXAMPLE 1: 2007/2/EC is the identification number for the INSPIRE Directive
+
+EXAMPLE 2: 2008/50/EC is the identification number for the CAFE Directive
+
+EXAMPLE 3: 2000/60/EC is the identification number for the  Water Framework Directive</documentation>
+				</annotation>
+			</element>
+			<element name="articleReference" type="string" minOccurs="0" maxOccurs="unbounded">
+				<annotation>
+					<documentation>-- Name --
+article reference
+
+-- Definition --
+Reference to article(s) that specify the specific requirement or obligation to establish the object.</documentation>
+				</annotation>
+			</element>
+			<element name="officialDocumentNumber" type="string" minOccurs="0">
+				<annotation>
+					<documentation>-- Name --
+official document number
+
+-- Definition --
+Official document number used to uniquely identify the legislative instrument.
+
+-- Description --
+NOTE: An official document number may be assigned to uniquely identify the legislative instrument.
+
+EXAMPLE: CELEX Number used to uniquely identify European Union Legislation</documentation>
+				</annotation>
+			</element>
+			<element name="linkToLegislativeInstrument" nillable="true">
+				<annotation>
+					<documentation>-- Name --
+link to online version
+
+-- Definition --
+Link to an online version of the legislative instrument</documentation>
+				</annotation>
+				<complexType>
+					<simpleContent>
+						<extension base="anyURI">
+							<attribute name="nilReason" type="gml:NilReasonType"/>
+						</extension>
+					</simpleContent>
+				</complexType>
+			</element>
+			<element name="publicationDate" type="gml:TimePositionType">
+				<annotation>
+					<documentation>-- Name --
+publication date
+
+-- Definition --
+Date the legislative instrument was published in an official journal.</documentation>
+				</annotation>
+			</element>
+			<element name="dateEnteredIntoForce" type="gml:TimePositionType" minOccurs="0">
+				<annotation>
+					<documentation>-- Name --
+date entered into force
+
+-- Definition --
+Date the legislative instrument entered into force.</documentation>
+				</annotation>
+			</element>
+			<element name="dateRepealed" type="gml:TimePositionType" minOccurs="0">
+				<annotation>
+					<documentation>-- Name --
+date repealed
+
+-- Definition --
+Date the legislative instrument was repealed.</documentation>
+				</annotation>
+			</element>
+			<element name="level" type="gml:CodeType">
+				<annotation>
+					<documentation>-- Name --
+name
+
+-- Definition --
+The level at which the legislative instrument is adopted.</documentation>
+				</annotation>
+			</element>
+			<element name="journalCitation" type="base2:OfficialJournalInformationPropertyType" minOccurs="0">
+				<annotation>
+					<documentation>-- Name --
+journal citation
+
+-- Definition --
+Citation to the Official Journal in which the legislation is published.</documentation>
+				</annotation>
+			</element>
+		</sequence>
+	</complexType>
+	<complexType name="LegislationReferencePropertyType">
+		<sequence>
+			<element ref="base2:LegislationReference"/>
+		</sequence>
+	</complexType>
+</schema>

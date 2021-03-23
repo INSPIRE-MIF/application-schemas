@@ -1,0 +1,1268 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<schema xmlns="http://www.w3.org/2001/XMLSchema" xmlns:base="urn:x-inspire:specification:gmlas:BaseTypes:3.2" xmlns:bu-base="http://inspire.ec.europa.eu/schemas/bu/3.0rc2" xmlns:el-bas="http://inspire.ec.europa.eu/schemas/el-bas/3.0rc2" xmlns:gmd="http://www.isotc211.org/2005/gmd" xmlns:gml="http://www.opengis.net/gml/3.2" xmlns:gn="urn:x-inspire:specification:gmlas:GeographicalNames:3.0" xmlns:pf-core="http://inspire.ec.europa.eu/schemas/pf-core/3.0rc2" xmlns:sc="http://www.interactive-instruments.de/ShapeChange/AppInfo" targetNamespace="http://inspire.ec.europa.eu/schemas/bu/3.0rc2" elementFormDefault="qualified" version="3.0rc2">
+	<import namespace="http://inspire.ec.europa.eu/schemas/el-bas/3.0rc2" schemaLocation="https://inspire.ec.europa.eu/draft-schemas/el-bas/3.0rc2/ElevationBaseTypes.xsd"/>
+	<import namespace="http://inspire.ec.europa.eu/schemas/pf-core/3.0rc2" schemaLocation="https://inspire.ec.europa.eu/draft-schemas/pf-core/3.0rc2/ProductionAndIndustrialFacilitiesCore.xsd"/>
+	<import namespace="http://www.interactive-instruments.de/ShapeChange/AppInfo" schemaLocation="http://portele.de/ShapeChangeAppinfo.xsd"/>
+	<import namespace="http://www.isotc211.org/2005/gmd" schemaLocation="http://schemas.opengis.net/iso/19139/20070417/gmd/gmd.xsd"/>
+	<import namespace="http://www.opengis.net/gml/3.2" schemaLocation="http://schemas.opengis.net/gml/3.2.1/gml.xsd"/>
+	<import namespace="urn:x-inspire:specification:gmlas:BaseTypes:3.2" schemaLocation="https://inspire.ec.europa.eu/schemas/base/3.2/BaseTypes.xsd"/>
+	<import namespace="urn:x-inspire:specification:gmlas:GeographicalNames:3.0" schemaLocation="https://inspire.ec.europa.eu/schemas/gn/3.0/GeographicalNames.xsd"/>
+	<!--XML Schema document created by ShapeChange-->
+	<element name="AbstractBuilding" type="bu-base:AbstractBuildingType" abstract="true" substitutionGroup="bu-base:AbstractConstruction">
+		<annotation>
+			<documentation>-- Definition --
+Abstract feature type grouping the common properties of instanciable feature types Building and BuildingPart.
+
+-- Description --
+NOTE: In base application schema, feature type AbstractBuilding includes only the common semantic properties of Building and BuildingPart.</documentation>
+		</annotation>
+	</element>
+	<complexType name="AbstractBuildingType" abstract="true">
+		<complexContent>
+			<extension base="bu-base:AbstractConstructionType">
+				<sequence>
+					<element name="buildingNature" nillable="true" minOccurs="0" maxOccurs="unbounded">
+						<annotation>
+							<documentation>-- Definition --
+Characteristic of the building that makes it generally of interest for mappings applications.
+
+-- Description --
+This attribute focuses on the physical aspect of the building; however, this physical aspect is often expressed as a function (e.g. stadium, silo, windmill); this attribute aims to fulfil mainly mapping purposes and addresses only specific, noticeable buildings. Currently, there is a very short and quite simple list of possible values, with focus on two international use cases: Air flights where buildings may be obstacles and marine navigation where buildings may be landmarks.
+
+NOTE: the characteristic may be related to the physical aspect and/or to the function of the building.</documentation>
+							<appinfo>
+								<taggedValue xmlns="http://www.interactive-instruments.de/ShapeChange/AppInfo" tag="obligation">IR</taggedValue>
+							</appinfo>
+						</annotation>
+						<complexType>
+							<simpleContent>
+								<extension base="bu-base:BuildingNatureValueType">
+									<attribute name="nilReason" type="gml:NilReasonType"/>
+								</extension>
+							</simpleContent>
+						</complexType>
+					</element>
+					<element name="currentUse" nillable="true" minOccurs="0" maxOccurs="unbounded">
+						<annotation>
+							<documentation>-- Definition --
+Activity hosted by the real world object.
+-- Description --
+NOTE: This attribute addresses mainly the buildings hosting human activities. This attribute aims to fulfill management requirements, such as computation of population or spatial planning ; this classification aims to be exhaustive for the functional buildings hosting human activities.</documentation>
+							<appinfo>
+								<taggedValue xmlns="http://www.interactive-instruments.de/ShapeChange/AppInfo" tag="obligation">IR</taggedValue>
+							</appinfo>
+						</annotation>
+						<complexType>
+							<sequence>
+								<element ref="bu-base:CurrentUse"/>
+							</sequence>
+							<attribute name="nilReason" type="gml:NilReasonType"/>
+						</complexType>
+					</element>
+					<element name="numberOfDwellings" nillable="true" minOccurs="0">
+						<annotation>
+							<documentation>-- Definition --
+Number of dwellings in the real world object.</documentation>
+						</annotation>
+						<complexType>
+							<simpleContent>
+								<extension base="integer">
+									<attribute name="nilReason" type="gml:NilReasonType"/>
+								</extension>
+							</simpleContent>
+						</complexType>
+					</element>
+					<element name="numberOfBuildingUnits" nillable="true" minOccurs="0">
+						<annotation>
+							<documentation>-- Definition --
+Number of building units in the building. A BuildingUnit is a subdivision of Building with its own lockable access from the outside or from a common area (i.e. not from another BuildingUnit), which is atomic, functionally independent, and may be separately sold, rented out, inherited, etc.
+-- Description --
+BuildingUnit is a feature type aimed at subdividing a whole building or a building part into smaller parts that are treated as seperate entities in daily life. A BuildingUnit is homogeneous, regarding management aspects.
+EXAMPLES:It may be e.g. an apartment in a condominium, a terraced house, or a shop inside a shopping arcade.
+NOTE: According to national regulations, a building unit may be a flat, a cellar, a garage, or set of a flat, a cellar and a garage.</documentation>
+						</annotation>
+						<complexType>
+							<simpleContent>
+								<extension base="integer">
+									<attribute name="nilReason" type="gml:NilReasonType"/>
+								</extension>
+							</simpleContent>
+						</complexType>
+					</element>
+					<element name="numberOfFloorsAboveGround" nillable="true" minOccurs="0">
+						<annotation>
+							<documentation>-- Definition --
+Number of floors above ground of the real world object.</documentation>
+						</annotation>
+						<complexType>
+							<simpleContent>
+								<extension base="integer">
+									<attribute name="nilReason" type="gml:NilReasonType"/>
+								</extension>
+							</simpleContent>
+						</complexType>
+					</element>
+				</sequence>
+			</extension>
+		</complexContent>
+	</complexType>
+	<complexType name="AbstractBuildingPropertyType">
+		<sequence minOccurs="0">
+			<element ref="bu-base:AbstractBuilding"/>
+		</sequence>
+		<attributeGroup ref="gml:AssociationAttributeGroup"/>
+		<attributeGroup ref="gml:OwnershipAttributeGroup"/>
+	</complexType>
+	<element name="DateOfEvent" type="bu-base:DateOfEventType" substitutionGroup="gml:AbstractObject">
+		<annotation>
+			<documentation>-- Definition --
+This data type includes the different possible ways to define the date of an event.</documentation>
+		</annotation>
+	</element>
+	<complexType name="DateOfEventType">
+		<sequence>
+			<element name="anyPoint" nillable="true" minOccurs="0">
+				<annotation>
+					<documentation>-- Definition --
+A date and time of any point of the event, between its beginning and its end.</documentation>
+				</annotation>
+				<complexType>
+					<simpleContent>
+						<extension base="dateTime">
+							<attribute name="nilReason" type="gml:NilReasonType"/>
+						</extension>
+					</simpleContent>
+				</complexType>
+			</element>
+			<element name="beginning" nillable="true" minOccurs="0">
+				<annotation>
+					<documentation>-- Definition --
+Date and time when the event begun.</documentation>
+				</annotation>
+				<complexType>
+					<simpleContent>
+						<extension base="dateTime">
+							<attribute name="nilReason" type="gml:NilReasonType"/>
+						</extension>
+					</simpleContent>
+				</complexType>
+			</element>
+			<element name="end" nillable="true" minOccurs="0">
+				<annotation>
+					<documentation>-- Definition --
+Date and time when the event ended.</documentation>
+				</annotation>
+				<complexType>
+					<simpleContent>
+						<extension base="dateTime">
+							<attribute name="nilReason" type="gml:NilReasonType"/>
+						</extension>
+					</simpleContent>
+				</complexType>
+			</element>
+		</sequence>
+	</complexType>
+	<complexType name="DateOfEventPropertyType">
+		<sequence>
+			<element ref="bu-base:DateOfEvent"/>
+		</sequence>
+	</complexType>
+	<element name="HeightAboveGround" type="bu-base:HeightAboveGroundType" substitutionGroup="gml:AbstractObject">
+		<annotation>
+			<documentation>-- Definition --
+This data type includes the height above ground of the real world object and information about how this height was captured.</documentation>
+		</annotation>
+	</element>
+	<complexType name="HeightAboveGroundType">
+		<sequence>
+			<element name="heightReference" nillable="true">
+				<annotation>
+					<documentation>-- Definition --
+Element of the real world object used as the high reference for capturing its height.
+-- Description --
+EXAMPLE: The height of the building has been captured up to the top of building.</documentation>
+					<appinfo>
+						<taggedValue xmlns="http://www.interactive-instruments.de/ShapeChange/AppInfo" tag="obligation">IR</taggedValue>
+					</appinfo>
+				</annotation>
+				<complexType>
+					<simpleContent>
+						<extension base="bu-base:ElevationReferenceValueType">
+							<attribute name="nilReason" type="gml:NilReasonType"/>
+						</extension>
+					</simpleContent>
+				</complexType>
+			</element>
+			<element name="lowReference" nillable="true">
+				<annotation>
+					<documentation>-- Definition --
+Element of the real world object used as the low reference for capturing its height.
+-- Description --
+EXAMPLE: the height of the building has been captured from its the lowest ground point.</documentation>
+					<appinfo>
+						<taggedValue xmlns="http://www.interactive-instruments.de/ShapeChange/AppInfo" tag="obligation">IR</taggedValue>
+					</appinfo>
+				</annotation>
+				<complexType>
+					<simpleContent>
+						<extension base="bu-base:ElevationReferenceValueType">
+							<attribute name="nilReason" type="gml:NilReasonType"/>
+						</extension>
+					</simpleContent>
+				</complexType>
+			</element>
+			<element name="status" nillable="true">
+				<annotation>
+					<documentation>-- Definition --
+The way the height has been captured.</documentation>
+					<appinfo>
+						<taggedValue xmlns="http://www.interactive-instruments.de/ShapeChange/AppInfo" tag="obligation">IR</taggedValue>
+					</appinfo>
+				</annotation>
+				<complexType>
+					<simpleContent>
+						<extension base="bu-base:HeightStatusValueType">
+							<attribute name="nilReason" type="gml:NilReasonType"/>
+						</extension>
+					</simpleContent>
+				</complexType>
+			</element>
+			<element name="value" type="gml:LengthType">
+				<annotation>
+					<documentation>-- Definition --
+Value of the height above ground of the real world object.</documentation>
+				</annotation>
+			</element>
+		</sequence>
+	</complexType>
+	<complexType name="HeightAboveGroundPropertyType">
+		<sequence>
+			<element ref="bu-base:HeightAboveGround"/>
+		</sequence>
+	</complexType>
+	<element name="Elevation" type="bu-base:ElevationType" substitutionGroup="gml:AbstractObject">
+		<annotation>
+			<documentation>-- Definition --
+This data types includes the elevation of the real world object and information about how this elevation was measured.</documentation>
+		</annotation>
+	</element>
+	<complexType name="ElevationType">
+		<sequence>
+			<element name="elevationReference" type="bu-base:ElevationReferenceValueType">
+				<annotation>
+					<documentation>-- Definition --
+Element of the real world object where the elevation was measured.</documentation>
+					<appinfo>
+						<taggedValue xmlns="http://www.interactive-instruments.de/ShapeChange/AppInfo" tag="obligation">IR</taggedValue>
+					</appinfo>
+				</annotation>
+			</element>
+			<element name="elevationReferenceSystem" type="el-bas:VerticalCRSIdentifierPropertyType">
+				<annotation>
+					<documentation>-- Definition --
+
+The vertical coordinate reference system used to measure the elevation.</documentation>
+				</annotation>
+			</element>
+			<element name="value" type="gml:LengthType">
+				<annotation>
+					<documentation>-- Definition --
+Value of the Elevation of the real world object.</documentation>
+				</annotation>
+			</element>
+		</sequence>
+	</complexType>
+	<complexType name="ElevationPropertyType">
+		<sequence>
+			<element ref="bu-base:Elevation"/>
+		</sequence>
+	</complexType>
+	<simpleType name="CurrentUseValueType">
+		<annotation>
+			<documentation>-- Definition --
+List of possible values for the current use of the real world object.
+-- Description --
+SOURCE: This code list is partly based on and adapted from the Eurostat classification of types of constructions (for the classification of residential buildings).</documentation>
+			<appinfo>
+				<taggedValue xmlns="http://www.interactive-instruments.de/ShapeChange/AppInfo" tag="obligation">IR</taggedValue>
+				<taggedValue xmlns="http://www.interactive-instruments.de/ShapeChange/AppInfo" tag="vocabulary">http://inspire.ec.europa.eu/codeList/CurrentUseValue</taggedValue>
+			</appinfo>
+		</annotation>
+		<union memberTypes="bu-base:CurrentUseValueEnumerationType bu-base:CurrentUseValueOtherType"/>
+	</simpleType>
+	<simpleType name="CurrentUseValueEnumerationType">
+		<annotation>
+			<documentation>-- Definition --
+List of possible values for the current use of the real world object.
+-- Description --
+SOURCE: This code list is partly based on and adapted from the Eurostat classification of types of constructions (for the classification of residential buildings).</documentation>
+			<appinfo>
+				<taggedValue xmlns="http://www.interactive-instruments.de/ShapeChange/AppInfo" tag="obligation">IR</taggedValue>
+				<taggedValue xmlns="http://www.interactive-instruments.de/ShapeChange/AppInfo" tag="vocabulary">http://inspire.ec.europa.eu/codeList/CurrentUseValue</taggedValue>
+			</appinfo>
+		</annotation>
+		<restriction base="string">
+			<enumeration value="residential">
+				<annotation>
+					<documentation>-- Definition --
+The real world object is used for residential purpose.</documentation>
+				</annotation>
+			</enumeration>
+			<enumeration value="individualResidence">
+				<annotation>
+					<documentation>-- Definition --
+The real world object hosts only one dwelling.
+
+-- Description --
+NOTE: This value includes detached houses such as bungalows, villas, chalets, forest lodges, farmhouses, country houses, summer houses, weekend houses &amp;hellip; and semi-detached or terraced houses, with each dwelling having its own roof &lt;i&gt;and&lt;/i&gt; its own entrance directly from ground surface.
+&lt;u&gt;Parent:&lt;/u&gt; residential</documentation>
+				</annotation>
+			</enumeration>
+			<enumeration value="collectiveResidence">
+				<annotation>
+					<documentation>-- Definition --
+The real world object hosts more than one dwelling.
+&lt;u&gt;Parent:&lt;/u&gt; residential</documentation>
+				</annotation>
+			</enumeration>
+			<enumeration value="twoDwellings">
+				<annotation>
+					<documentation>-- Definition --
+The real world object hosts two dwellings.
+-- Description --
+NOTE: This class includes detached houses, semi-detached or terraced houses, with two dwellings.
+&lt;u&gt;Parent:&lt;/u&gt; collectiveResidence</documentation>
+				</annotation>
+			</enumeration>
+			<enumeration value="moreThanTwoDwellings">
+				<annotation>
+					<documentation>-- Definition --
+The real world object hosts at least 3 dwellings.
+-- Description --
+NOTE: This class includes flat blocks, apartment houses, with three or more dwellings but excludes residence for communities.
+&lt;u&gt;Parent: &lt;/u&gt;collectiveResidence</documentation>
+				</annotation>
+			</enumeration>
+			<enumeration value="residenceForCommunities">
+				<annotation>
+					<documentation>-- Definition --
+The real world object hosts a residence for communities.
+
+-- Description --
+This class includes residential buildings for communities, including residences and service residences for the elderly, students, children and other social groups.
+&lt;u&gt;Parent:&lt;/u&gt; residential</documentation>
+				</annotation>
+			</enumeration>
+			<enumeration value="agriculture">
+				<annotation>
+					<documentation>-- Definition --
+The real world object is used for agricultural activities.</documentation>
+				</annotation>
+			</enumeration>
+			<enumeration value="industrial">
+				<annotation>
+					<documentation>-- Definition --
+The real world object is used for secondary sector activities (industrial).</documentation>
+				</annotation>
+			</enumeration>
+			<enumeration value="commerceAndServices">
+				<annotation>
+					<documentation>-- Definition -- 
+The real world object is used for any service activities. This value addresses the buildings and building components dedicated to tertiary sector activities (commercial and services).
+-- Description --
+NOTE: This value includes both ternary sector (commercial activities) and quaternary sector (non-commercial, charity sector).</documentation>
+				</annotation>
+			</enumeration>
+			<enumeration value="office">
+				<annotation>
+					<documentation>-- Definition --
+The real world object hosts offices.
+&lt;u&gt;Parent:&lt;/u&gt; commerceAndServices</documentation>
+				</annotation>
+			</enumeration>
+			<enumeration value="trade">
+				<annotation>
+					<documentation>-- Definition --
+The real world object hosts trade activities.
+&lt;u&gt;Parent:&lt;/u&gt; commerceAndServices
+
+-- Description --
+EXAMPLE: Shops, supermarkets, hotels, restaurants.</documentation>
+				</annotation>
+			</enumeration>
+			<enumeration value="publicServices">
+				<annotation>
+					<documentation>-- Definition --
+The real world object hosts public services. Public services are tertiary services provided for the benefit of the citizens.
+-- Description --
+Public services are often ruled by public governments or on behalf of them.
+EXAMPLES: Schools, hospitals, governmental buildings, prisons, rescue stations, transport station.
+NOTE: in case of a building being both office and public service (e.g. a city hall), the building should be classified preferably as public service.
+&lt;u&gt;Parent:&lt;/u&gt; commerceAndServices</documentation>
+				</annotation>
+			</enumeration>
+			<enumeration value="ancilllary">
+				<annotation>
+					<documentation>-- Definition --
+A real world object of small size that is used only in connection with another larger real world object and generally does not inherit the same function and characteristics as the real world object to which it is linked.
+-- Description --
+EXAMPLES : A summer house or garage (ancillary use) in the garden of a dwelling (residential use).</documentation>
+				</annotation>
+			</enumeration>
+		</restriction>
+	</simpleType>
+	<simpleType name="CurrentUseValueOtherType">
+		<restriction base="string">
+			<pattern value="other: \w{2,}"/>
+		</restriction>
+	</simpleType>
+	<simpleType name="HeightStatusValueType">
+		<annotation>
+			<documentation>-- Definition --
+List of possible values for the method used to capture height of the real world object.</documentation>
+			<appinfo>
+				<taggedValue xmlns="http://www.interactive-instruments.de/ShapeChange/AppInfo" tag="extensibility">none</taggedValue>
+				<taggedValue xmlns="http://www.interactive-instruments.de/ShapeChange/AppInfo" tag="obligation">IR</taggedValue>
+				<taggedValue xmlns="http://www.interactive-instruments.de/ShapeChange/AppInfo" tag="vocabulary">http://inspire.ec.europa.eu/codeList/HeightStatusValue</taggedValue>
+			</appinfo>
+		</annotation>
+		<union memberTypes="bu-base:HeightStatusValueEnumerationType bu-base:HeightStatusValueOtherType"/>
+	</simpleType>
+	<simpleType name="HeightStatusValueEnumerationType">
+		<annotation>
+			<documentation>-- Definition --
+List of possible values for the method used to capture height of the real world object.</documentation>
+			<appinfo>
+				<taggedValue xmlns="http://www.interactive-instruments.de/ShapeChange/AppInfo" tag="extensibility">none</taggedValue>
+				<taggedValue xmlns="http://www.interactive-instruments.de/ShapeChange/AppInfo" tag="obligation">IR</taggedValue>
+				<taggedValue xmlns="http://www.interactive-instruments.de/ShapeChange/AppInfo" tag="vocabulary">http://inspire.ec.europa.eu/codeList/HeightStatusValue</taggedValue>
+			</appinfo>
+		</annotation>
+		<restriction base="string">
+			<enumeration value="estimated">
+				<annotation>
+					<documentation>-- Definition --
+The height has been estimated and not measured.
+-- Description --
+EXAMPLE 1: Typically, the height has been estimated from the number of floors.
+EXAMPLE 2: In some cases, the height has been estimated by interpolation of a set of heights of adjacent buildings.</documentation>
+				</annotation>
+			</enumeration>
+			<enumeration value="measured">
+				<annotation>
+					<documentation>-- Definition --
+The height has been (directly or indirectly) measured.
+-- Description --
+EXAMPLE: typically, the elevation at ground level and at roof level has been measured by stereo-plotting or by field survey or by cross-referencing with DTM (Digital Terrain Model).</documentation>
+				</annotation>
+			</enumeration>
+		</restriction>
+	</simpleType>
+	<simpleType name="HeightStatusValueOtherType">
+		<restriction base="string">
+			<pattern value="other: \w{2,}"/>
+		</restriction>
+	</simpleType>
+	<simpleType name="HorizontalGeometryReferenceValueType">
+		<annotation>
+			<documentation>-- Definition -- 
+List of possible values for the element of the real world object that has been considered to capture its horizontal geometry.
+-- Description --
+NOTE: The building component may be a BuildingPart or a BuildingUnit or a Room.</documentation>
+			<appinfo>
+				<taggedValue xmlns="http://www.interactive-instruments.de/ShapeChange/AppInfo" tag="extensibility">none</taggedValue>
+				<taggedValue xmlns="http://www.interactive-instruments.de/ShapeChange/AppInfo" tag="obligation">IR</taggedValue>
+				<taggedValue xmlns="http://www.interactive-instruments.de/ShapeChange/AppInfo" tag="vocabulary">http://inspire.ec.europa.eu/codeList/HorizontalGeometryRefrenceValue</taggedValue>
+			</appinfo>
+		</annotation>
+		<union memberTypes="bu-base:HorizontalGeometryReferenceValueEnumerationType bu-base:HorizontalGeometryReferenceValueOtherType"/>
+	</simpleType>
+	<simpleType name="HorizontalGeometryReferenceValueEnumerationType">
+		<annotation>
+			<documentation>-- Definition -- 
+List of possible values for the element of the real world object that has been considered to capture its horizontal geometry.
+-- Description --
+NOTE: The building component may be a BuildingPart or a BuildingUnit or a Room.</documentation>
+			<appinfo>
+				<taggedValue xmlns="http://www.interactive-instruments.de/ShapeChange/AppInfo" tag="extensibility">none</taggedValue>
+				<taggedValue xmlns="http://www.interactive-instruments.de/ShapeChange/AppInfo" tag="obligation">IR</taggedValue>
+				<taggedValue xmlns="http://www.interactive-instruments.de/ShapeChange/AppInfo" tag="vocabulary">http://inspire.ec.europa.eu/codeList/HorizontalGeometryRefrenceValue</taggedValue>
+			</appinfo>
+		</annotation>
+		<restriction base="string">
+			<enumeration value="aboveGroundEnvelope">
+				<annotation>
+					<documentation>-- Definition --
+The real world object horizontal geometry has been captured using the above ground envelope of the real world object, i.e. the maximum extent of the real world object above ground.</documentation>
+				</annotation>
+			</enumeration>
+			<enumeration value="combined">
+				<annotation>
+					<documentation>-- Definition --
+The building horizontal geometry has been obtained from the combination of the geometries of its building parts with the building parts geometries using different horizontal geometry references.
+-- Description --
+EXAMPLE: A building with two building parts, one captured by its footprint and the other by its lowest floor above ground, and whose geometry is obtained by merging the geometries of the building parts.</documentation>
+				</annotation>
+			</enumeration>
+			<enumeration value="entrancePoint">
+				<annotation>
+					<documentation>-- Definition --
+The real world object geometry is represented by a point located at  the entrance of the the real world object.</documentation>
+				</annotation>
+			</enumeration>
+			<enumeration value="envelope">
+				<annotation>
+					<documentation>-- Definition --
+The real world object horizontal geometry has been captured using the whole envelope  of the real world object, i.e. the maximum extent of the real world object above and under ground.</documentation>
+				</annotation>
+			</enumeration>
+			<enumeration value="footPrint">
+				<annotation>
+					<documentation>-- Definition -- 
+The real world object horizontal geometry has been captured using the footprint of the real world object, i.e. its extent at ground level.</documentation>
+				</annotation>
+			</enumeration>
+			<enumeration value="lowestFloorAboveGround">
+				<annotation>
+					<documentation>-- Definition --
+The real world object component horizontal geometry has been captured using the lowest floor above ground of the real world object.
+-- Description --
+This value is of interest for over-hanging buildings or for buildings on pilotis.</documentation>
+				</annotation>
+			</enumeration>
+			<enumeration value="pointInsideBuilding">
+				<annotation>
+					<documentation>-- Definition --
+The real world object horizontal geometry is represented by a point located within the real world object.</documentation>
+				</annotation>
+			</enumeration>
+			<enumeration value="pointInsideCadastralParcel">
+				<annotation>
+					<documentation>-- Definition --
+The real world object horizontal geometry is represented by a point located within the parcel the real world object belongs to.</documentation>
+				</annotation>
+			</enumeration>
+			<enumeration value="roofEdge">
+				<annotation>
+					<documentation>-- Definition --
+The real world object horizontal geometry has been captured using the roof edges of the real world object.
+-- Description --
+NOTE: This value may be used more generally when the building horizontal geometry has been captured by the roof extent.</documentation>
+				</annotation>
+			</enumeration>
+		</restriction>
+	</simpleType>
+	<simpleType name="HorizontalGeometryReferenceValueOtherType">
+		<restriction base="string">
+			<pattern value="other: \w{2,}"/>
+		</restriction>
+	</simpleType>
+	<simpleType name="ElevationReferenceValueType">
+		<annotation>
+			<documentation>-- Definition --
+List of possible values for the element of the real world object that has been considered to capture its vertical geometry.
+-- Description --
+NOTE: The values of this code list are used to describe the reference of elevation both where elevation has been captured as attribute or as Z coordinate.</documentation>
+			<appinfo>
+				<taggedValue xmlns="http://www.interactive-instruments.de/ShapeChange/AppInfo" tag="extensibility">none</taggedValue>
+				<taggedValue xmlns="http://www.interactive-instruments.de/ShapeChange/AppInfo" tag="obligation">IR</taggedValue>
+				<taggedValue xmlns="http://www.interactive-instruments.de/ShapeChange/AppInfo" tag="vocabulary">http://inspire.ec.europa.eu/codeList/ElevationReferenceValue</taggedValue>
+			</appinfo>
+		</annotation>
+		<union memberTypes="bu-base:ElevationReferenceValueEnumerationType bu-base:ElevationReferenceValueOtherType"/>
+	</simpleType>
+	<simpleType name="ElevationReferenceValueEnumerationType">
+		<annotation>
+			<documentation>-- Definition --
+List of possible values for the element of the real world object that has been considered to capture its vertical geometry.
+-- Description --
+NOTE: The values of this code list are used to describe the reference of elevation both where elevation has been captured as attribute or as Z coordinate.</documentation>
+			<appinfo>
+				<taggedValue xmlns="http://www.interactive-instruments.de/ShapeChange/AppInfo" tag="extensibility">none</taggedValue>
+				<taggedValue xmlns="http://www.interactive-instruments.de/ShapeChange/AppInfo" tag="obligation">IR</taggedValue>
+				<taggedValue xmlns="http://www.interactive-instruments.de/ShapeChange/AppInfo" tag="vocabulary">http://inspire.ec.europa.eu/codeList/ElevationReferenceValue</taggedValue>
+			</appinfo>
+		</annotation>
+		<restriction base="string">
+			<enumeration value="aboveGroundEnvelope">
+				<annotation>
+					<documentation>-- Definition --
+The elevation has been captured at the level of the maximum extend of the above ground envelope of the real world object.</documentation>
+				</annotation>
+			</enumeration>
+			<enumeration value="bottomOfConstruction">
+				<annotation>
+					<documentation>-- Definition --
+The elevation has been captured at the bottom of the usable part of the real world object.
+-- Description --
+Note: The bottom of usable part of  a building is generally its lowest underground floor.</documentation>
+				</annotation>
+			</enumeration>
+			<enumeration value="entrancePoint">
+				<annotation>
+					<documentation>-- Definition --
+The elevation has been captured at the entrance of the real world object, generally the bottom of the main entrance door.</documentation>
+				</annotation>
+			</enumeration>
+			<enumeration value="generalEave">
+				<annotation>
+					<documentation>-- Definition --
+The elevation has been captured at eave level, anywhere between the lowest and the highest eave levels of the real world object.
+-- Description --
+NOTE: in case ofa roof having a symetry axis, values generalEave, lowestEave and highestEave are equivalent.</documentation>
+				</annotation>
+			</enumeration>
+			<enumeration value="generalGround">
+				<annotation>
+					<documentation>-- Definition --
+The elevation has been captured at ground level, anywhere between the lowest and the highest ground points of the real world object.
+-- Description --
+NOTE: In case of buildings located on flat areas, values generalGround, lowestGroundPoint and highestGroundPoint are equivalent</documentation>
+				</annotation>
+			</enumeration>
+			<enumeration value="generalRoof">
+				<annotation>
+					<documentation>-- Definition --
+The elevation has been captured at roof level, anywhere between the lowest edge roof level and the top of the real world object.</documentation>
+				</annotation>
+			</enumeration>
+			<enumeration value="generalRoofEdge">
+				<annotation>
+					<documentation>-- Definition --
+The elevation has been captured at roof edge level, anywhere between the lowest and the highest roof edges of the real world object.
+
+-- Description --
+NOTE: in case ofa roof having a symetry axis, values generalRoofEdge, lowestRoofEdge and highestRoofEdge are equivalent.</documentation>
+				</annotation>
+			</enumeration>
+			<enumeration value="highestEave">
+				<annotation>
+					<documentation>-- Definition --
+The elevation has been captured at the highest eave level of the real world object.</documentation>
+				</annotation>
+			</enumeration>
+			<enumeration value="highestGroundPoint">
+				<annotation>
+					<documentation>-- Definition --
+The elevation has been captured at the highest ground point of the real world object.</documentation>
+				</annotation>
+			</enumeration>
+			<enumeration value="highestPoint">
+				<annotation>
+					<documentation>-- Definition --
+The elevation has been captured at the highest point of the real world object, including the installations, such as chimneys and antennas.</documentation>
+				</annotation>
+			</enumeration>
+			<enumeration value="highestRoofEdge">
+				<annotation>
+					<documentation>-- Definition --
+The elevation has been captured at the highest roof edge level of the real world object.</documentation>
+				</annotation>
+			</enumeration>
+			<enumeration value="lowestEave">
+				<annotation>
+					<documentation>-- Definition --
+The elevation has been captured at the lowest eave level of the real world object.</documentation>
+				</annotation>
+			</enumeration>
+			<enumeration value="lowestFloorAboveGround">
+				<annotation>
+					<documentation>-- Definition --
+The elevation has been captured at the level of the lowest floor above ground of the real world object.
+-- Description --
+This value is of interest for over-hanging buildings or for buildings on pilotis.</documentation>
+				</annotation>
+			</enumeration>
+			<enumeration value="lowestGroundPoint">
+				<annotation>
+					<documentation>-- Definition --
+The elevation has been captured at the lowest ground point level of the real world object.</documentation>
+				</annotation>
+			</enumeration>
+			<enumeration value="lowestRoofEdge">
+				<annotation>
+					<documentation>-- Definition --
+The elevation has been captured at the lowest roof edge level of the real world object.</documentation>
+				</annotation>
+			</enumeration>
+			<enumeration value="topOfConstruction">
+				<annotation>
+					<documentation>-- Definition --
+The elevation has been captured at the  top level of the real world object.
+-- Description --
+NOTE: for buildings, it is generally top of the roof.</documentation>
+				</annotation>
+			</enumeration>
+		</restriction>
+	</simpleType>
+	<simpleType name="ElevationReferenceValueOtherType">
+		<restriction base="string">
+			<pattern value="other: \w{2,}"/>
+		</restriction>
+	</simpleType>
+	<element name="BuildingGeometry2D" type="bu-base:BuildingGeometry2DType" substitutionGroup="gml:AbstractObject">
+		<annotation>
+			<documentation>-- Definition --
+This data types includes the geometry of the building and metadata information about which element of the building was captured and how.</documentation>
+		</annotation>
+	</element>
+	<complexType name="BuildingGeometry2DType">
+		<sequence>
+			<element name="geometry" type="gml:GeometryPropertyType">
+				<annotation>
+					<documentation>-- Definition --
+Geometric representation of the building as 2D or 2,5D data.</documentation>
+				</annotation>
+			</element>
+			<element name="referenceGeometry">
+				<annotation>
+					<documentation>-- Definition --
+The geometry to be taken into account by view services, for portrayal.
+-- Description --
+NOTE 1: In case of multiple representation by point and by surface, it is recommended to provide the surface as reference geometry.
+NOTE 2: The referenceGeometry may also be used preferably for spatial queries by download services (WFS) or by Geographical Information System (GIS).</documentation>
+				</annotation>
+			</element>
+			<element name="horizontalGeometryReference" type="bu-base:HorizontalGeometryReferenceValueType">
+				<annotation>
+					<documentation>-- Definition --
+Element of the building that was captured by (X,Y) coordinates.</documentation>
+					<appinfo>
+						<taggedValue xmlns="http://www.interactive-instruments.de/ShapeChange/AppInfo" tag="obligation">IR</taggedValue>
+					</appinfo>
+				</annotation>
+			</element>
+			<element name="verticalGeometryReference" type="bu-base:ElevationReferenceValueType" minOccurs="0">
+				<annotation>
+					<documentation>-- Definition --
+Element of the building that was captured by vertical coordinates.</documentation>
+					<appinfo>
+						<taggedValue xmlns="http://www.interactive-instruments.de/ShapeChange/AppInfo" tag="obligation">IR</taggedValue>
+					</appinfo>
+				</annotation>
+			</element>
+			<element name="horizontalGeometryEstimatedAccuracy" nillable="true">
+				<annotation>
+					<documentation>-- Definition --
+The estimated absolute positional accuracy of the (X,Y) coordinates of the geometry of the building, in the INSPIRE official Coordinate Reference System. Absolute positional accuracy is defined as the mean value of the positional uncertainties for a set of positions where the positional uncertainties are defined as the distance between a measured position and what is considered as the corresponding true position.
+-- Description --
+NOTE: This mean value may come from quality measures on a homogeneous population of buildings or from an estimation based on the knowledge of the production processes and of their accuracy.</documentation>
+				</annotation>
+				<complexType>
+					<simpleContent>
+						<extension base="gml:LengthType">
+							<attribute name="nilReason" type="gml:NilReasonType"/>
+						</extension>
+					</simpleContent>
+				</complexType>
+			</element>
+			<element name="verticalGeometryEstimatedAccuracy" nillable="true" minOccurs="0">
+				<annotation>
+					<documentation>-- Definition --
+The estimated absolute positional accuracy of the Z coordinates of the geometry of the building, in the INSPIRE official Coordinate Reference System. Absolute positional accuracy is defined as the mean value of the positional uncertainties for a set of positions where the positional uncertainties are defined as the distance between a measured position and what is considered as the corresponding true position.
+-- Description --
+NOTE: This mean value may come from quality measures on a homogeneous population of buildings or from an estimation based on the knowledge of the production processes and of their accuracy.</documentation>
+				</annotation>
+				<complexType>
+					<simpleContent>
+						<extension base="gml:LengthType">
+							<attribute name="nilReason" type="gml:NilReasonType"/>
+						</extension>
+					</simpleContent>
+				</complexType>
+			</element>
+		</sequence>
+	</complexType>
+	<complexType name="BuildingGeometry2DPropertyType">
+		<sequence>
+			<element ref="bu-base:BuildingGeometry2D"/>
+		</sequence>
+	</complexType>
+	<element name="ExternalReference" type="bu-base:ExternalReferenceType" substitutionGroup="gml:AbstractObject">
+		<annotation>
+			<documentation>-- Definition --
+Reference to an external information system containing any piece of information related to the spatial object.</documentation>
+		</annotation>
+	</element>
+	<complexType name="ExternalReferenceType">
+		<sequence>
+			<element name="informationSystem" type="anyURI">
+				<annotation>
+					<documentation>-- Definition --
+Uniform Resource Identifier of the external information system.</documentation>
+				</annotation>
+			</element>
+			<element name="informationSystemName" type="gmd:PT_FreeText_PropertyType">
+				<annotation>
+					<documentation>-- Definition --
+The name of the external information system.
+-- Description --
+EXAMPLES: Danish Register of Dwellings, Spanish Cadastre.</documentation>
+				</annotation>
+			</element>
+			<element name="reference" type="string">
+				<annotation>
+					<documentation>-- Definition --
+Thematic identifier of the spatial object or of any piece of information related to the spatial object.
+-- Description --
+NOTE: This reference will act as a foreign key to implement the association between the spatial object in the INSPIRE data set and in the external information system.
+EXAMPLE: The cadastral reference of a given building in the national cadastral register.</documentation>
+				</annotation>
+			</element>
+		</sequence>
+	</complexType>
+	<complexType name="ExternalReferencePropertyType">
+		<sequence>
+			<element ref="bu-base:ExternalReference"/>
+		</sequence>
+	</complexType>
+	<element name="AbstractConstruction" type="bu-base:AbstractConstructionType" abstract="true" substitutionGroup="gml:AbstractFeature">
+		<annotation>
+			<documentation>-- Definition --
+Abstract feature type grouping the semantic properties of  building, building parts and of some optional feature types that may be added to core profile, in order to provide more information about theme Buildings.
+
+-- Description --
+The optional feature types that may be added to core profile are described in the extended profile. The ones inheriting from the attributes of AbstractConstruction are Installation and OtherConstruction.</documentation>
+		</annotation>
+	</element>
+	<complexType name="AbstractConstructionType" abstract="true">
+		<complexContent>
+			<extension base="gml:AbstractFeatureType">
+				<sequence>
+					<element name="beginLifespanVersion" nillable="true">
+						<annotation>
+							<documentation>-- Definition --
+Date and time at which this version of the spatial object was inserted or changed in the spatial data set.</documentation>
+						</annotation>
+						<complexType>
+							<simpleContent>
+								<extension base="dateTime">
+									<attribute name="nilReason" type="gml:NilReasonType"/>
+								</extension>
+							</simpleContent>
+						</complexType>
+					</element>
+					<element name="conditionOfConstruction" nillable="true">
+						<annotation>
+							<documentation>-- Definition --
+Status of  construction  of the real-world object.</documentation>
+							<appinfo>
+								<taggedValue xmlns="http://www.interactive-instruments.de/ShapeChange/AppInfo" tag="obligation">IR</taggedValue>
+							</appinfo>
+						</annotation>
+						<complexType>
+							<simpleContent>
+								<extension base="bu-base:ConditionOfConstructionValueType">
+									<attribute name="nilReason" type="gml:NilReasonType"/>
+								</extension>
+							</simpleContent>
+						</complexType>
+					</element>
+					<element name="dateOfConstruction" nillable="true" minOccurs="0">
+						<annotation>
+							<documentation>&lt;font color="#008000"&gt;-&lt;/font&gt;- Definition --
+Date of construction of the real-world object.</documentation>
+						</annotation>
+						<complexType>
+							<sequence>
+								<element ref="bu-base:DateOfEvent"/>
+							</sequence>
+							<attribute name="nilReason" type="gml:NilReasonType"/>
+						</complexType>
+					</element>
+					<element name="dateOfDemolition" nillable="true" minOccurs="0">
+						<annotation>
+							<documentation>-- Definition --
+Date of demolition of the real world object.</documentation>
+						</annotation>
+						<complexType>
+							<sequence>
+								<element ref="bu-base:DateOfEvent"/>
+							</sequence>
+							<attribute name="nilReason" type="gml:NilReasonType"/>
+						</complexType>
+					</element>
+					<element name="dateOfRenovation" nillable="true" minOccurs="0">
+						<annotation>
+							<documentation>-- Definition --
+Date of last major renovation of the real world object.</documentation>
+						</annotation>
+						<complexType>
+							<sequence>
+								<element ref="bu-base:DateOfEvent"/>
+							</sequence>
+							<attribute name="nilReason" type="gml:NilReasonType"/>
+						</complexType>
+					</element>
+					<element name="elevation" nillable="true" minOccurs="0" maxOccurs="unbounded">
+						<annotation>
+							<documentation>-- Definition --
+Vertical-constrained dimensional property of the real world object consisting of an absolute measure referenced to a well-defined surface which is commonly taken as origin (geoïd, water level, etc.)
+-- Description --
+Source: adapted from the definition given in the data specification of theme Elevation.</documentation>
+						</annotation>
+						<complexType>
+							<sequence>
+								<element ref="bu-base:Elevation"/>
+							</sequence>
+							<attribute name="nilReason" type="gml:NilReasonType"/>
+						</complexType>
+					</element>
+					<element name="endLifespanVersion" nillable="true" minOccurs="0">
+						<annotation>
+							<documentation>-- Definition --
+Date and time at which this version of the spatial object was superseded or retired in the spatial data set.</documentation>
+						</annotation>
+						<complexType>
+							<simpleContent>
+								<extension base="dateTime">
+									<attribute name="nilReason" type="gml:NilReasonType"/>
+								</extension>
+							</simpleContent>
+						</complexType>
+					</element>
+					<element name="externalReference" nillable="true" minOccurs="0" maxOccurs="unbounded">
+						<annotation>
+							<documentation>-- Definition --
+Reference to an external information system containing any piece of information related to the spatial object.
+-- Description --
+EXAMPLE 1: Reference to another spatial data set containing another view on buildings; the externalReference may be used for instance to ensure consistency between 2D and 3D representations of the same buildings
+EXAMPLE 2: Reference to cadastral or dwelling register. The reference to this register may enable to find legal information related to the building, such as the owner(s)or valuation criteria (e.g. type of heating, toilet, kitchen &amp;hellip;)
+EXAMPLE 3: Reference to the system recording the building permits. The reference to the building permits may be used to find detailed information about the building physical and temporal aspects.</documentation>
+						</annotation>
+						<complexType>
+							<sequence>
+								<element ref="bu-base:ExternalReference"/>
+							</sequence>
+							<attribute name="nilReason" type="gml:NilReasonType"/>
+						</complexType>
+					</element>
+					<element name="heightAboveGround" nillable="true" minOccurs="0" maxOccurs="unbounded">
+						<annotation>
+							<documentation>-- Definition --
+Height above ground of the real world object.
+-- Description --
+NOTE: height above ground may be defined as the difference between elevation at a low reference (ground level) and elevation as a high reference (e.g. roof level, top of construction)</documentation>
+						</annotation>
+						<complexType>
+							<sequence>
+								<element ref="bu-base:HeightAboveGround"/>
+							</sequence>
+							<attribute name="nilReason" type="gml:NilReasonType"/>
+						</complexType>
+					</element>
+					<element name="inspireId" type="base:IdentifierPropertyType">
+						<annotation>
+							<documentation>-- Definition --
+External unique object identifier published by the responsible body, which may be used by external applications to reference the spatial object.
+-- Description --
+NOTE 1: External object identifiers are distinct from thematic object identifiers.
+NOTE 2: The voidable version identifier attribute is not part of the unique identifier of a spatial object and may be used to distinguish two versions of the same spatial object.
+NOTE 3: The unique identifier will not change during the life-time of a spatial object.</documentation>
+						</annotation>
+					</element>
+					<element name="name" nillable="true" minOccurs="0" maxOccurs="unbounded">
+						<annotation>
+							<documentation>-- Definition --
+Name of the real world object.
+-- Description --
+Examples:  Big Ben, Eiffel Tower, Sacrada Familia</documentation>
+						</annotation>
+						<complexType>
+							<sequence>
+								<element ref="gn:GeographicalName"/>
+							</sequence>
+							<attribute name="nilReason" type="gml:NilReasonType"/>
+						</complexType>
+					</element>
+					<element name="groupingFacility" type="pf-core:ProductionFacilityPropertyType" minOccurs="0" maxOccurs="unbounded"/>
+				</sequence>
+			</extension>
+		</complexContent>
+	</complexType>
+	<complexType name="AbstractConstructionPropertyType">
+		<sequence minOccurs="0">
+			<element ref="bu-base:AbstractConstruction"/>
+		</sequence>
+		<attributeGroup ref="gml:AssociationAttributeGroup"/>
+		<attributeGroup ref="gml:OwnershipAttributeGroup"/>
+	</complexType>
+	<simpleType name="BuildingNatureValueType">
+		<annotation>
+			<documentation>-- Definition --
+List of possible values for the nature of a building.</documentation>
+			<appinfo>
+				<taggedValue xmlns="http://www.interactive-instruments.de/ShapeChange/AppInfo" tag="extensibility">any</taggedValue>
+				<taggedValue xmlns="http://www.interactive-instruments.de/ShapeChange/AppInfo" tag="obligation">IR</taggedValue>
+				<taggedValue xmlns="http://www.interactive-instruments.de/ShapeChange/AppInfo" tag="vocabulary">http://inspire.ec.europa.eu/codeList/BuildingNatureValue</taggedValue>
+			</appinfo>
+		</annotation>
+		<union memberTypes="bu-base:BuildingNatureValueEnumerationType bu-base:BuildingNatureValueOtherType"/>
+	</simpleType>
+	<simpleType name="BuildingNatureValueEnumerationType">
+		<annotation>
+			<documentation>-- Definition --
+List of possible values for the nature of a building.</documentation>
+			<appinfo>
+				<taggedValue xmlns="http://www.interactive-instruments.de/ShapeChange/AppInfo" tag="extensibility">any</taggedValue>
+				<taggedValue xmlns="http://www.interactive-instruments.de/ShapeChange/AppInfo" tag="obligation">IR</taggedValue>
+				<taggedValue xmlns="http://www.interactive-instruments.de/ShapeChange/AppInfo" tag="vocabulary">http://inspire.ec.europa.eu/codeList/BuildingNatureValue</taggedValue>
+			</appinfo>
+		</annotation>
+		<restriction base="string">
+			<enumeration value="arch">
+				<annotation>
+					<documentation>-- Definition --
+A man-made structure in the form of an arch.
+-- Description --
+EXAMPLES: city gates, triumph archs.</documentation>
+				</annotation>
+			</enumeration>
+			<enumeration value="bunker">
+				<annotation>
+					<documentation>-- Definition --
+A facility, partly underground, intended or used by the military either for location of command/control centers or for troop encampment.</documentation>
+				</annotation>
+			</enumeration>
+			<enumeration value="canopy">
+				<annotation>
+					<documentation>-- Definition --
+An overhead roof providing shelter to things below. Canopies may be free standing frameworks over which a covering is attached or may be linked or suspended to the outside of a building.</documentation>
+				</annotation>
+			</enumeration>
+			<enumeration value="castle">
+				<annotation>
+					<documentation>-- Definition --
+A large ornate or fortified building usually constructed for the purpose of a private residence or security.
+-- Description --
+Includes palaces, forts and castles.</documentation>
+				</annotation>
+			</enumeration>
+			<enumeration value="caveBuilding">
+				<annotation>
+					<documentation>-- Definition --
+A space hosting human or economic activity which is usually enclosed within rock with the addition of man-made exterior walls and which may contain structures comparable to the interior structures of freestanding buildings.</documentation>
+				</annotation>
+			</enumeration>
+			<enumeration value="chapel">
+				<annotation>
+					<documentation>-- Definition --
+A Christian place of worship, usually smaller than a church.</documentation>
+				</annotation>
+			</enumeration>
+			<enumeration value="church">
+				<annotation>
+					<documentation>-- Definition --
+A  building or structure whose primary purpose is to facilitate the catholic or orthodox cult.
+-- Description --
+Includes churches and cathedrals.</documentation>
+				</annotation>
+			</enumeration>
+			<enumeration value="dam">
+				<annotation>
+					<documentation>-- Definition --
+A permanent barrier across a watercourse used to impound water or to control its flow.
+-- Description --
+Only dams hosting rooms for workers and/or machinery are under scope of theme Buildings.</documentation>
+				</annotation>
+			</enumeration>
+			<enumeration value="greenhouse">
+				<annotation>
+					<documentation>-- Definition --
+A building that is often constructed primarily of transparent material (for example: glass), in which temperature and humidity can be controlled for the cultivation and/or protection of plants.</documentation>
+				</annotation>
+			</enumeration>
+			<enumeration value="lighthouse">
+				<annotation>
+					<documentation>-- Definition --
+A tower designed to emit light from a system of lamps and lenses.</documentation>
+				</annotation>
+			</enumeration>
+			<enumeration value="mosque">
+				<annotation>
+					<documentation>-- Definition --
+A building or structure whose primary purpose is to facilitate the muslim cult.</documentation>
+				</annotation>
+			</enumeration>
+			<enumeration value="shed">
+				<annotation>
+					<documentation>-- Definition --
+A building of light construction, which usually has one or more open sides, that is typically used for storage.</documentation>
+				</annotation>
+			</enumeration>
+			<enumeration value="silo">
+				<annotation>
+					<documentation>-- Definition --
+A large storage structure, generally cylindrical,  used for&lt;i&gt; &lt;/i&gt;storing loose materials.
+-- Description --
+EXAMPLES: Grain, cement storage.</documentation>
+				</annotation>
+			</enumeration>
+			<enumeration value="stadium">
+				<annotation>
+					<documentation>-- Definition --
+A place or venue for sports, concerts or other events and consists of a field or stage either partly or completely surrounded by a structure designed to allow spectators to stand or sit and view the event.
+-- Description --
+EXAMPLES: Arena, amphitheatre, stadium.</documentation>
+				</annotation>
+			</enumeration>
+			<enumeration value="storageTank">
+				<annotation>
+					<documentation>-- Definition --
+A container usually for holding liquids and compressed gases.</documentation>
+				</annotation>
+			</enumeration>
+			<enumeration value="synagogue">
+				<annotation>
+					<documentation>-- Definition --
+A building or structure whose primary purpose is to facilitate the israelit cult.</documentation>
+				</annotation>
+			</enumeration>
+			<enumeration value="temple">
+				<annotation>
+					<documentation>-- Definition --
+A building or structure whose primary purpose is to facilitate the meeting of a religious sect.
+-- Description --
+Temples dedicated to catholique/orthodox, muslim or israelit cults should preferebly be classified as church, mosque or synagogue.</documentation>
+				</annotation>
+			</enumeration>
+			<enumeration value="tower">
+				<annotation>
+					<documentation>-- Definition -- 
+A relatively tall, narrow structure that may either stand alone or may form part of another structure.
+-- Description --
+EXAMPLES: Clock tower, church tower, control tower, minaret, cooling tower, fire look-out tower, mirador, telecommunication tower.</documentation>
+				</annotation>
+			</enumeration>
+			<enumeration value="windmill">
+				<annotation>
+					<documentation>-- Definition --
+A building which converts the energy of the wind into rotational motion by means of adjustable sails or blades.</documentation>
+				</annotation>
+			</enumeration>
+			<enumeration value="windTurbine">
+				<annotation>
+					<documentation>-- Definition --
+A tower and associated equipment that generates electrical power from wind.</documentation>
+				</annotation>
+			</enumeration>
+		</restriction>
+	</simpleType>
+	<simpleType name="BuildingNatureValueOtherType">
+		<restriction base="string">
+			<pattern value="other: \w{2,}"/>
+		</restriction>
+	</simpleType>
+	<element name="CurrentUse" type="bu-base:CurrentUseType" substitutionGroup="gml:AbstractObject">
+		<annotation>
+			<documentation>-- Definition --
+This data type enables to detail the current use(s) of the real world object.</documentation>
+		</annotation>
+	</element>
+	<complexType name="CurrentUseType">
+		<sequence>
+			<element name="currentUse" type="bu-base:CurrentUseValueType">
+				<annotation>
+					<documentation>-- Definition --
+The current use or one of the current uses of the real world object.
+-- Description --
+EXAMPLE: trade</documentation>
+					<appinfo>
+						<taggedValue xmlns="http://www.interactive-instruments.de/ShapeChange/AppInfo" tag="obligation">IR</taggedValue>
+					</appinfo>
+				</annotation>
+			</element>
+			<element name="percentage" nillable="true">
+				<annotation>
+					<documentation>-- Definition --
+The proportion of the real world object, given as a percentage, devoted to this current use.
+-- Description --
+NOTE: The percentage of use is generally the percentage of floor area dedicated to this given use. If it is not the case, it is recommended to explain what the percentage refers to in metadata (template for additional information)
+EXAMPLE: 30 (if 30% of the building is occupied by trade activity).</documentation>
+				</annotation>
+				<complexType>
+					<simpleContent>
+						<extension base="integer">
+							<attribute name="nilReason" type="gml:NilReasonType"/>
+						</extension>
+					</simpleContent>
+				</complexType>
+			</element>
+		</sequence>
+	</complexType>
+	<complexType name="CurrentUsePropertyType">
+		<sequence>
+			<element ref="bu-base:CurrentUse"/>
+		</sequence>
+	</complexType>
+	<simpleType name="ConditionOfConstructionValueType">
+		<annotation>
+			<documentation>-- Definition --
+List of possible values for the condition of a construction of a real world object.</documentation>
+			<appinfo>
+				<taggedValue xmlns="http://www.interactive-instruments.de/ShapeChange/AppInfo" tag="extensibility">none</taggedValue>
+				<taggedValue xmlns="http://www.interactive-instruments.de/ShapeChange/AppInfo" tag="obligation">IR</taggedValue>
+				<taggedValue xmlns="http://www.interactive-instruments.de/ShapeChange/AppInfo" tag="vocabulary">http://inspire.ec.europa.eu/codeList/ConditionOfConstructionValue</taggedValue>
+			</appinfo>
+		</annotation>
+		<union memberTypes="bu-base:ConditionOfConstructionValueEnumerationType bu-base:ConditionOfConstructionValueOtherType"/>
+	</simpleType>
+	<simpleType name="ConditionOfConstructionValueEnumerationType">
+		<annotation>
+			<documentation>-- Definition --
+List of possible values for the condition of a construction of a real world object.</documentation>
+			<appinfo>
+				<taggedValue xmlns="http://www.interactive-instruments.de/ShapeChange/AppInfo" tag="extensibility">none</taggedValue>
+				<taggedValue xmlns="http://www.interactive-instruments.de/ShapeChange/AppInfo" tag="obligation">IR</taggedValue>
+				<taggedValue xmlns="http://www.interactive-instruments.de/ShapeChange/AppInfo" tag="vocabulary">http://inspire.ec.europa.eu/codeList/ConditionOfConstructionValue</taggedValue>
+			</appinfo>
+		</annotation>
+		<restriction base="string">
+			<enumeration value="declined">
+				<annotation>
+					<documentation>-- Definition --
+The real world object can not be used under normal conditions, though its main elements (walls, roof) are still present.
+-- Description --
+EXAMPLE: A house whose windows have been for a long time broken or walled up (even if occupied by squatters).</documentation>
+				</annotation>
+			</enumeration>
+			<enumeration value="demolished">
+				<annotation>
+					<documentation>-- Definition --
+The real world object has been demolished. There are no more visible remains.</documentation>
+				</annotation>
+			</enumeration>
+			<enumeration value="functional">
+				<annotation>
+					<documentation>-- Definition --
+The real world object is functional.
+-- Description --
+NOTE: The construction may be used under normal conditions for its current use value(s).</documentation>
+				</annotation>
+			</enumeration>
+			<enumeration value="projected">
+				<annotation>
+					<documentation>-- Definition --
+The real world object is being designed. Construction has not yet started.</documentation>
+				</annotation>
+			</enumeration>
+			<enumeration value="ruin">
+				<annotation>
+					<documentation>-- Definition --
+The real world object has been partly demolished and some main elements (roof, walls) have been destroyed. There are some visible remains of the construction.</documentation>
+				</annotation>
+			</enumeration>
+			<enumeration value="underConstruction">
+				<annotation>
+					<documentation>-- Definition --
+The real world object is under construction and not yet functional. This applies only to the initial construction of the real world object and not to maintenance work.</documentation>
+				</annotation>
+			</enumeration>
+		</restriction>
+	</simpleType>
+	<simpleType name="ConditionOfConstructionValueOtherType">
+		<restriction base="string">
+			<pattern value="other: \w{2,}"/>
+		</restriction>
+	</simpleType>
+</schema>

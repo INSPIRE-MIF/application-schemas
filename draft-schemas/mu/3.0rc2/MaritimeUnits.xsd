@@ -1,0 +1,571 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<schema xmlns="http://www.w3.org/2001/XMLSchema" xmlns:au="urn:x-inspire:specification:gmlas:AdministrativeUnits:3.0" xmlns:base="urn:x-inspire:specification:gmlas:BaseTypes:3.2" xmlns:gmd="http://www.isotc211.org/2005/gmd" xmlns:gml="http://www.opengis.net/gml/3.2" xmlns:gn="urn:x-inspire:specification:gmlas:GeographicalNames:3.0" xmlns:mu="http://inspire.ec.europa.eu/schemas/mu" xmlns:sc="http://www.interactive-instruments.de/ShapeChange/AppInfo" xmlns:sr="http://inspire.ec.europa.eu/schemas/sr/3.0rc2" targetNamespace="http://inspire.ec.europa.eu/schemas/mu" elementFormDefault="qualified" version="3.0rc2">
+	<import namespace="http://inspire.ec.europa.eu/schemas/sr/3.0rc2" schemaLocation="https://inspire.ec.europa.eu/draft-schemas/sr/3.0rc2/SeaRegions.xsd"/>
+	<import namespace="http://www.interactive-instruments.de/ShapeChange/AppInfo" schemaLocation="http://portele.de/ShapeChangeAppinfo.xsd"/>
+	<import namespace="http://www.isotc211.org/2005/gmd" schemaLocation="http://schemas.opengis.net/iso/19139/20070417/gmd/gmd.xsd"/>
+	<import namespace="http://www.opengis.net/gml/3.2" schemaLocation="http://schemas.opengis.net/gml/3.2.1/gml.xsd"/>
+	<import namespace="urn:x-inspire:specification:gmlas:AdministrativeUnits:3.0" schemaLocation="https://inspire.ec.europa.eu/schemas/au/3.0/AdministrativeUnits.xsd"/>
+	<import namespace="urn:x-inspire:specification:gmlas:BaseTypes:3.2" schemaLocation="https://inspire.ec.europa.eu/schemas/base/3.2/BaseTypes.xsd"/>
+	<import namespace="urn:x-inspire:specification:gmlas:GeographicalNames:3.0" schemaLocation="https://inspire.ec.europa.eu/schemas/gn/3.0/GeographicalNames.xsd"/>
+	<!--XML Schema document created by ShapeChange-->
+	<element name="Baseline" type="mu:BaselineType" substitutionGroup="gml:AbstractFeature">
+		<annotation>
+			<documentation>-- Name --
+baseline
+
+-- Definition --
+The line from which the outer limits of the territorial sea and certain other outer limits are measured.
+
+-- Description --
+SOURCE IHO Dictionary, S-32, Fifth Edition
+
+NOTE The baseline comprises of one or more baseline segments.
+According to United Nations Convention on the Law of the Sea (UNCLOS), the baseline segment can be normal, straight or archipelagic depending on the method used to determine the baseline segment. 
+
+COMMENT: For this moment there is no clearly identified use-case that would require Baseline spatial object types, therefore it is not strictly necessary to include these objects in the dataset.</documentation>
+		</annotation>
+	</element>
+	<complexType name="BaselineType">
+		<complexContent>
+			<extension base="gml:AbstractFeatureType">
+				<sequence>
+					<element name="inspireId" type="base:IdentifierPropertyType">
+						<annotation>
+							<documentation>-- Definition --
+External object identifier of the spatial object.
+
+-- Description --
+NOTE An external object identifier is a unique object identifier published by the responsible body, which may be used by external applications to reference the spatial object. The identifier is an identifier of the spatial object, not an identifier of the real-world phenomenon.</documentation>
+						</annotation>
+					</element>
+					<element name="beginLifespanVersion" type="dateTime">
+						<annotation>
+							<documentation>-- Definition --
+Date and time at which this version of the spatial object was inserted or changed in the spatial data set.</documentation>
+						</annotation>
+					</element>
+					<element name="endLifespanVersion" type="dateTime" minOccurs="0">
+						<annotation>
+							<documentation>-- Definition --
+Date and time at which this version of the spatial object was superseded or retired in the spatial data set.</documentation>
+						</annotation>
+					</element>
+					<element name="segment" type="mu:BaselineSegmentPropertyType" maxOccurs="unbounded">
+						<annotation>
+							<documentation>-- Name --
+segment
+
+-- Definition --
+Segment of a baseline.</documentation>
+						</annotation>
+					</element>
+				</sequence>
+			</extension>
+		</complexContent>
+	</complexType>
+	<complexType name="BaselinePropertyType">
+		<sequence minOccurs="0">
+			<element ref="mu:Baseline"/>
+		</sequence>
+		<attributeGroup ref="gml:AssociationAttributeGroup"/>
+		<attributeGroup ref="gml:OwnershipAttributeGroup"/>
+	</complexType>
+	<simpleType name="BaselineSegmentTypeValueType">
+		<annotation>
+			<documentation>-- Definition --
+The types of baselines used to measure the breadth of the territorial sea.</documentation>
+			<appinfo>
+				<taggedValue xmlns="http://www.interactive-instruments.de/ShapeChange/AppInfo" tag="extensibility">none</taggedValue>
+				<taggedValue xmlns="http://www.interactive-instruments.de/ShapeChange/AppInfo" tag="vocabulary">http://inspire.ec.europa.eu/codeList/BaselineSegmentTypeValue</taggedValue>
+			</appinfo>
+		</annotation>
+		<union memberTypes="mu:BaselineSegmentTypeValueEnumerationType mu:BaselineSegmentTypeValueOtherType"/>
+	</simpleType>
+	<simpleType name="BaselineSegmentTypeValueEnumerationType">
+		<annotation>
+			<documentation>-- Definition --
+The types of baselines used to measure the breadth of the territorial sea.</documentation>
+			<appinfo>
+				<taggedValue xmlns="http://www.interactive-instruments.de/ShapeChange/AppInfo" tag="extensibility">none</taggedValue>
+				<taggedValue xmlns="http://www.interactive-instruments.de/ShapeChange/AppInfo" tag="vocabulary">http://inspire.ec.europa.eu/codeList/BaselineSegmentTypeValue</taggedValue>
+			</appinfo>
+		</annotation>
+		<restriction base="string">
+			<enumeration value="normal">
+				<annotation>
+					<documentation>-- Definition --
+The normal baseline for measuring the breadth of the territorial sea is the low-water line along the coast as marked on large-scale charts officially recognized by the coastal State.
+
+-- Description --
+SOURCE Article 5 of the United Nations Convention on the Law of the Sea.</documentation>
+				</annotation>
+			</enumeration>
+			<enumeration value="straight">
+				<annotation>
+					<documentation>--Definition--
+The baseline for measuring the breadth of the territorial sea is the straight baseline established by joining the appropriate points.
+
+-- Description --
+SOURCE Article 7 of the United Nations Convention on the Law of the Sea.</documentation>
+				</annotation>
+			</enumeration>
+			<enumeration value="archipelagic">
+				<annotation>
+					<documentation>-- Definition --
+The baseline for measuring the breadth of the territorial sea is the straight baseline joining the outermost points of the outermost islands and drying reefs of the archipelago.
+
+-- Description --
+SOURCE Article 47 of the United Nations Convention on the Law of the Sea.</documentation>
+				</annotation>
+			</enumeration>
+		</restriction>
+	</simpleType>
+	<simpleType name="BaselineSegmentTypeValueOtherType">
+		<restriction base="string">
+			<pattern value="other: \w{2,}"/>
+		</restriction>
+	</simpleType>
+	<element name="MaritimeZone" type="mu:MaritimeZoneType" abstract="true" substitutionGroup="gml:AbstractFeature">
+		<annotation>
+			<documentation>-- Name --
+maritime zone
+
+-- Definition --
+A belt of sea defined by international treaties and conventions, where coastal State executes jurisdictional rights.
+
+-- Description --
+NOTE 1 The zone is established for e.g. cadastral, administrative, economic, security or safety purposes. It is not established for environmental management or regulation, which is covered by the theme Area management/restriction/regulation zones and reporting areas, or for environmental protection, which is covered by the theme Protected sites.
+
+NOTE 2 The maritime zone can be either internal waters, territorial sea, contiguous zone, exclusive economic zone or continental shelf.</documentation>
+		</annotation>
+	</element>
+	<complexType name="MaritimeZoneType" abstract="true">
+		<complexContent>
+			<extension base="gml:AbstractFeatureType">
+				<sequence>
+					<element name="geometry" type="gml:MultiSurfacePropertyType">
+						<annotation>
+							<documentation>-- Definition --
+Geometric representation of spatial area covered by this maritime zone.</documentation>
+						</annotation>
+					</element>
+					<element name="inspireId" type="base:IdentifierPropertyType">
+						<annotation>
+							<documentation>-- Definition --
+External object identifier of the spatial object.
+
+-- Description --
+NOTE An external object identifier is a unique object identifier published by the responsible body, which may be used by external applications to reference the spatial object. The identifier is an identifier of the spatial object, not an identifier of the real-world phenomenon.</documentation>
+						</annotation>
+					</element>
+					<element name="country" type="gmd:Country_PropertyType">
+						<annotation>
+							<documentation>-- Name --
+country
+
+-- Definition --
+The country that executes jurisdictional rights on the maritime zone.</documentation>
+						</annotation>
+					</element>
+					<element name="name" nillable="true" minOccurs="0" maxOccurs="unbounded">
+						<annotation>
+							<documentation>-- Name --
+name
+
+-- Definition --
+Name(s) of the maritime zone.</documentation>
+						</annotation>
+						<complexType>
+							<sequence>
+								<element ref="gn:GeographicalName"/>
+							</sequence>
+							<attribute name="nilReason" type="gml:NilReasonType"/>
+						</complexType>
+					</element>
+					<element name="beginLifeSpanVersion" nillable="true">
+						<annotation>
+							<documentation>-- Definition --
+Date and time at which this version of the spatial object was inserted or changed in the spatial data set.</documentation>
+						</annotation>
+						<complexType>
+							<simpleContent>
+								<extension base="dateTime">
+									<attribute name="nilReason" type="gml:NilReasonType"/>
+								</extension>
+							</simpleContent>
+						</complexType>
+					</element>
+					<element name="endLifepanVersion" nillable="true" minOccurs="0">
+						<annotation>
+							<documentation>-- Definition --
+Date and time at which this version of the spatial object was superseded or retired in the spatial data set.</documentation>
+						</annotation>
+						<complexType>
+							<simpleContent>
+								<extension base="dateTime">
+									<attribute name="nilReason" type="gml:NilReasonType"/>
+								</extension>
+							</simpleContent>
+						</complexType>
+					</element>
+					<element name="boundary" nillable="true" maxOccurs="unbounded">
+						<annotation>
+							<documentation>-- Name --
+boundary
+
+-- Definition --
+The boundary or boundaries of this maritime zone.</documentation>
+						</annotation>
+						<complexType>
+							<sequence minOccurs="0">
+								<element ref="mu:MaritimeBoundary"/>
+							</sequence>
+							<attributeGroup ref="gml:AssociationAttributeGroup"/>
+							<attributeGroup ref="gml:OwnershipAttributeGroup"/>
+						</complexType>
+					</element>
+					<element name="baseline" nillable="true" maxOccurs="unbounded">
+						<annotation>
+							<documentation>-- Name --
+baseline
+
+-- Definition --
+Baseline or baselines used for the delineation of this maritime zone.</documentation>
+						</annotation>
+						<complexType>
+							<sequence minOccurs="0">
+								<element ref="mu:Baseline"/>
+							</sequence>
+							<attributeGroup ref="gml:AssociationAttributeGroup"/>
+							<attributeGroup ref="gml:OwnershipAttributeGroup"/>
+						</complexType>
+					</element>
+					<element name="Shoreline" type="sr:ShorelinePropertyType" minOccurs="0" maxOccurs="unbounded"/>
+					<element name="seaArea" type="sr:SeaAreaPropertyType" minOccurs="0" maxOccurs="unbounded"/>
+					<element name="sea" type="sr:SeaPropertyType" minOccurs="0" maxOccurs="unbounded"/>
+				</sequence>
+			</extension>
+		</complexContent>
+	</complexType>
+	<complexType name="MaritimeZonePropertyType">
+		<sequence minOccurs="0">
+			<element ref="mu:MaritimeZone"/>
+		</sequence>
+		<attributeGroup ref="gml:AssociationAttributeGroup"/>
+		<attributeGroup ref="gml:OwnershipAttributeGroup"/>
+	</complexType>
+	<element name="ContinentalShelf" type="mu:ContinentalShelfType" substitutionGroup="mu:MaritimeZone">
+		<annotation>
+			<documentation>-- Name --
+continental shelf
+
+-- Definition --
+A maritime zone beyond and adjacent to the a territorial sea of a coastal State whose outer boundary is determined in accordance with Article 76 of the United Nations Convention on the Law of the Sea.
+
+-- Description --
+NOTE 1 The continental shelf is adjacent to the territorial sea of a coastal State. The continental shelf overlaps with the extent of contiguous zone and exclusive economic zone of a coastal State.
+
+NOTE 2 Art. 76 of the United Nations Convention on the Law of the Sea:
+1. The continental shelf of a coastal State comprises the seabed and subsoil of the submarine areas that extend beyond its territorial sea throughout the natural prolongation of its land territory to the outer edge of the continental margin, or to a distance of 200 nautical miles from the baselines from which the breadth of the territorial sea is measured where the outer edge of the continental margin does not extend up to that distance.
+
+2. The continental shelf of a coastal State shall not extend beyond the limits provided for in paragraphs 4 to 6.
+
+3. The continental margin comprises the submerged prolongation of the land mass of the coastal State, and consists of the seabed and subsoil of the shelf, the slope and the rise. It does not include the deep ocean floor with its oceanic ridges or the subsoil thereof.
+
+4. (a) For the purposes of this Convention, the coastal State shall establish the outer edge of the continental margin wherever the margin extends beyond 200 nautical miles from the baselines from which the breadth of the territorial sea is measured, by either:
+    (i) a line delineated in accordance with paragraph 7 by reference to the outermost fixed points at each of which the thickness of sedimentary rocks is at least 1 per cent of the shortest distance from such point to the foot of the continental slope; or
+    (ii) a line delineated in accordance with paragraph 7 by reference to fixed points not more than 60 nautical miles from the foot of the continental slope.
+  (b) In the absence of evidence to the contrary, the foot of the continental slope shall be determined as the point of maximum change in the gradient at its base.
+
+5. The fixed points comprising the line of the outer limits of the continental shelf on the seabed, drawn in accordance with paragraph 4 (a)(i) and (ii), either shall not exceed 350 nautical miles from the baselines from which the breadth of the territorial sea is measured or shall not exceed 100 nautical miles from the 2,500 metre isobath, which is a line connecting the depth of 2,500 metres.
+
+6. Notwithstanding the provisions of paragraph 5, on submarine ridges, the outer limit of the continental shelf shall not exceed 350 nautical miles from the baselines from which the breadth of the territorial sea is measured. This paragraph does not apply to submarine elevations that are natural components of the continental margin, such as its plateaux, rises, caps, banks and spurs.
+
+7. The coastal State shall delineate the outer limits of its continental shelf, where that shelf extends beyond 200 nautical miles from the baselines from which the breadth of the territorial sea is measured, by straight lines not exceeding 60 nautical miles in length, connecting fixed points, defined by coordinates of latitude and longitude.
+
+8. Information on the limits of the continental shelf beyond 200 nautical miles from the baselines from which the breadth of the territorial sea is measured shall be submitted by the coastal State to the Commission on the Limits of the Continental Shelf set up under Annex II on the basis of equitable geographical representation. The Commission shall make recommendations to coastal States on matters related to the establishment of the outer limits of their continental shelf. The limits of the shelf established by a coastal State on the basis of these recommendations shall be final and binding.
+
+9. The coastal State shall deposit with the Secretary-General of the United Nations charts and relevant information, including geodetic data, permanently describing the outer limits of its continental shelf. The Secretary-General shall give due publicity thereto.
+
+10. The provisions of this article are without prejudice to the question of delimitation of the continental shelf between States with opposite or adjacent coasts.</documentation>
+		</annotation>
+	</element>
+	<complexType name="ContinentalShelfType">
+		<complexContent>
+			<extension base="mu:MaritimeZoneType">
+				<sequence/>
+			</extension>
+		</complexContent>
+	</complexType>
+	<complexType name="ContinentalShelfPropertyType">
+		<sequence minOccurs="0">
+			<element ref="mu:ContinentalShelf"/>
+		</sequence>
+		<attributeGroup ref="gml:AssociationAttributeGroup"/>
+		<attributeGroup ref="gml:OwnershipAttributeGroup"/>
+	</complexType>
+	<element name="TerritorialSea" type="mu:TerritorialSeaType" substitutionGroup="mu:MaritimeZone">
+		<annotation>
+			<documentation>-- Name --
+territorial sea
+
+-- Definition -- 
+A belt of sea of a defined breadth not exceeding 12 nautical miles measured from the baselines determined in accordance to the United Nations Convention of Law on the Sea.
+
+-- Description --
+SOURCE IHO Dictionary, S-32, Fifth Edition.
+
+NOTE The sovereignty of a coastal State extends, beyond its land territory and internal waters and, in the case of an archipelagic State, its archipelagic waters, to an adjacent belt of sea, is described as the territorial sea. This sovereignty extends to the air space over the territorial sea as well as to its bed and subsoil.
+The sovereignty over the territorial sea is exercised subject to the United Nations Convention of Law on the Sea (UNCLOS) and to other rules of international law.</documentation>
+		</annotation>
+	</element>
+	<complexType name="TerritorialSeaType">
+		<complexContent>
+			<extension base="mu:MaritimeZoneType">
+				<sequence/>
+			</extension>
+		</complexContent>
+	</complexType>
+	<complexType name="TerritorialSeaPropertyType">
+		<sequence minOccurs="0">
+			<element ref="mu:TerritorialSea"/>
+		</sequence>
+		<attributeGroup ref="gml:AssociationAttributeGroup"/>
+		<attributeGroup ref="gml:OwnershipAttributeGroup"/>
+	</complexType>
+	<element name="MaritimeBoundary" type="mu:MaritimeBoundaryType" substitutionGroup="gml:AbstractFeature">
+		<annotation>
+			<documentation>-- Name --
+maritime boundary
+
+-- Definition --
+A line depicting the separation of any type of maritime jurisdiction.
+
+-- Description --
+SOURCE IHO Dictionary, S-32, Fifth Edition
+
+NOTE 1 Maritime boundary represents either:
+1) the seaward outer limits of the maritime zones of a coastal State, such as territorial sea, contiguous zone, exclusive economic zone and continental shelf;
+2) the limits of the maritime zones of States with opposite or adjacent coasts.
+
+Maritime boundaries are a politically sensitive subject, because it affects coastal State's jurisdiction concerning fishery, petroleum and other resources of the sea as well as other uses of the sea. [Source: "Maritime Boundary", S.P. Jagota]</documentation>
+		</annotation>
+	</element>
+	<complexType name="MaritimeBoundaryType">
+		<complexContent>
+			<extension base="gml:AbstractFeatureType">
+				<sequence>
+					<element name="geometry" type="gml:CurvePropertyType">
+						<annotation>
+							<documentation>-- Definition --
+Geometric representation of the maritime boundary.</documentation>
+						</annotation>
+					</element>
+					<element name="inspireId" type="base:IdentifierPropertyType">
+						<annotation>
+							<documentation>-- Definition --
+External object identifier of the spatial object.
+
+-- Description --
+NOTE An external object identifier is a unique object identifier published by the responsible body, which may be used by external applications to reference the spatial object. The identifier is an identifier of the spatial object, not an identifier of the real-world phenomenon.</documentation>
+						</annotation>
+					</element>
+					<element name="country" type="gmd:Country_PropertyType" maxOccurs="2">
+						<annotation>
+							<documentation>-- Name --
+country
+
+-- Definition --
+The country or countries that execute(s) jurisdictional rights on the maritime zones divided by this boundary.
+
+-- Description --
+NOTE If the boundary divides two maritime zones belonging to the same country, only this country should be specified. If the boundary divides maritime zones belonging to neigbouring countries, both countries should be specified.</documentation>
+						</annotation>
+					</element>
+					<element name="legalStatus" nillable="true">
+						<annotation>
+							<documentation>-- Definition --
+Legal status of this maritime boundary. 
+
+-- Description --
+NOTE The legal status is considered in terms of political agreement or disagreement of the maritime boundary.</documentation>
+						</annotation>
+						<complexType>
+							<simpleContent>
+								<extension base="au:LegalStatusValueType">
+									<attribute name="nilReason" type="gml:NilReasonType"/>
+								</extension>
+							</simpleContent>
+						</complexType>
+					</element>
+					<element name="technicalStatus" nillable="true">
+						<annotation>
+							<documentation>-- Definition --
+The technical status of the maritime boundary.
+
+-- Description --
+NOTE The technical status of the maritime boundary is considered in terms of its topological matching or not-matching with the borders of maritime zones separated by this boundary. Edge-matched means that the same set of coordinates is used.</documentation>
+						</annotation>
+						<complexType>
+							<simpleContent>
+								<extension base="au:TechnicalStatusValueType">
+									<attribute name="nilReason" type="gml:NilReasonType"/>
+								</extension>
+							</simpleContent>
+						</complexType>
+					</element>
+					<element name="beginLifespanVersion" type="dateTime">
+						<annotation>
+							<documentation>-- Definition --
+Date and time at which this version of the spatial object was inserted or changed in the spatial data set.</documentation>
+						</annotation>
+					</element>
+					<element name="endLifespanVersion" type="dateTime" minOccurs="0">
+						<annotation>
+							<documentation>-- Definition --
+Date and time at which this version of the spatial object was superseded or retired in the spatial data set.</documentation>
+						</annotation>
+					</element>
+				</sequence>
+			</extension>
+		</complexContent>
+	</complexType>
+	<complexType name="MaritimeBoundaryPropertyType">
+		<sequence minOccurs="0">
+			<element ref="mu:MaritimeBoundary"/>
+		</sequence>
+		<attributeGroup ref="gml:AssociationAttributeGroup"/>
+		<attributeGroup ref="gml:OwnershipAttributeGroup"/>
+	</complexType>
+	<element name="BaselineSegment" type="mu:BaselineSegmentType" substitutionGroup="gml:AbstractObject">
+		<annotation>
+			<documentation>-- Name --
+baseline segment
+
+-- Definition --
+Segment of the baseline from which the outer limits of the territorial sea and certain other outer limits are measured.</documentation>
+		</annotation>
+	</element>
+	<complexType name="BaselineSegmentType">
+		<sequence>
+			<element name="geometry" type="gml:CurvePropertyType">
+				<annotation>
+					<documentation>-- Definition --
+Geometric representation of the baseline segment.</documentation>
+				</annotation>
+			</element>
+			<element name="segmentType" type="mu:BaselineSegmentTypeValueType">
+				<annotation>
+					<documentation>-- Name --
+segment type
+
+-- Definition --
+The baseline type used for this segment.
+
+-- Description --
+The type can be 'normal', 'straight' or 'archipelagic'.</documentation>
+					<appinfo>
+						<taggedValue xmlns="http://www.interactive-instruments.de/ShapeChange/AppInfo" tag="obligation">implementingRule</taggedValue>
+					</appinfo>
+				</annotation>
+			</element>
+		</sequence>
+	</complexType>
+	<complexType name="BaselineSegmentPropertyType">
+		<sequence>
+			<element ref="mu:BaselineSegment"/>
+		</sequence>
+	</complexType>
+	<element name="InternalWaters" type="mu:InternalWatersType" substitutionGroup="mu:MaritimeZone">
+		<annotation>
+			<documentation>--Name--
+internal waters
+
+--Definition--
+The waters on the landward side of the baselines of the territorial sea of the coastal State.
+
+--Description--
+SOURCE Article 5 of United Nations Convention of Law on the Sea.
+
+NOTE 1 The internal waters is the zone between the shoreline and the baseline (see the Data Specification for „Sea Regions&amp;rdquo; INSPIRE theme). The delineation of the landward boundary of the internal waters is regulated differently in different countries.
+
+NOTE 2 The internal waters can include waterways, mouths of the rivers and bays.</documentation>
+		</annotation>
+	</element>
+	<complexType name="InternalWatersType">
+		<complexContent>
+			<extension base="mu:MaritimeZoneType">
+				<sequence/>
+			</extension>
+		</complexContent>
+	</complexType>
+	<complexType name="InternalWatersPropertyType">
+		<sequence minOccurs="0">
+			<element ref="mu:InternalWaters"/>
+		</sequence>
+		<attributeGroup ref="gml:AssociationAttributeGroup"/>
+		<attributeGroup ref="gml:OwnershipAttributeGroup"/>
+	</complexType>
+	<element name="ExclusiveEconomicZone" type="mu:ExclusiveEconomicZoneType" substitutionGroup="mu:MaritimeZone">
+		<annotation>
+			<documentation>-- Name --
+exclusive economic zone
+
+-- Definition --
+An area beyond and adjacent to the territorial sea of a coastal State, subject to the specific legal regime under which the rights and jurisdiction of the coastal State and the rights and freedoms of other States are governed by the relevant provisions of the United Nations Convention on Law of the Sea.
+
+-- Description -- 
+SOURCE Article 55 of United Nations Convention on the Law of the Sea.
+
+NOTE 1 The exclusive economic zone is adjacent to the territorial sea of a coastal State. Exclusive economic zone overlaps with the extent of contiguous zone of a coastal State.
+
+NOTE 2 Under the United Nations Convention on the Law of the Sea (UNCLOS), the coastal States are entitled to an exclusive economic zone extending no further than 200 nautical miles from the baselines from which the breadth of the Member State's territorial sea is measured.
+
+NOTE 3 In contrast to the continental shelf, an exclusive economic zone must be explicitly proclaimed or installed by the coastal state and includes, besides the seabed and its subsoil, the waters super-adjacent to the seabed.</documentation>
+		</annotation>
+	</element>
+	<complexType name="ExclusiveEconomicZoneType">
+		<complexContent>
+			<extension base="mu:MaritimeZoneType">
+				<sequence/>
+			</extension>
+		</complexContent>
+	</complexType>
+	<complexType name="ExclusiveEconomicZonePropertyType">
+		<sequence minOccurs="0">
+			<element ref="mu:ExclusiveEconomicZone"/>
+		</sequence>
+		<attributeGroup ref="gml:AssociationAttributeGroup"/>
+		<attributeGroup ref="gml:OwnershipAttributeGroup"/>
+	</complexType>
+	<element name="ContiguousZone" type="mu:ContiguousZoneType" substitutionGroup="mu:MaritimeZone">
+		<annotation>
+			<documentation>-- Name --
+contiguous zone
+
+-- Definition --
+A zone contiguous to a territorial sea of a coastal State, which may not extend beyond 24 nautical miles from the baselines from which the breadth of the territorial sea is measured. 
+
+-- Description --
+SOURCE IHO Dictionary,S-32, 5th Edition.
+
+NOTE 1 The contiguous zone is adjacent to the territorial sea of a coastal State. 
+
+NOTE 2 In the contiguous zone a coastal State may exercise the control necessary to prevent and punish infringements of its customs, fiscal, immigration, or sanitary laws and regulations within its territory or territorial sea. See also Article 33 of United Nations Convention on the Law of the Sea.</documentation>
+		</annotation>
+	</element>
+	<complexType name="ContiguousZoneType">
+		<complexContent>
+			<extension base="mu:MaritimeZoneType">
+				<sequence/>
+			</extension>
+		</complexContent>
+	</complexType>
+	<complexType name="ContiguousZonePropertyType">
+		<sequence minOccurs="0">
+			<element ref="mu:ContiguousZone"/>
+		</sequence>
+		<attributeGroup ref="gml:AssociationAttributeGroup"/>
+		<attributeGroup ref="gml:OwnershipAttributeGroup"/>
+	</complexType>
+</schema>

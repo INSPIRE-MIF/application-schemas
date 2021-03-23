@@ -1,0 +1,216 @@
+<?xml version="1.0" encoding="UTF-8"?><schema xmlns="http://www.w3.org/2001/XMLSchema" xmlns:base="urn:x-inspire:specification:gmlas:BaseTypes:3.2" xmlns:gmd="http://www.isotc211.org/2005/gmd" xmlns:gml="http://www.opengis.net/gml/3.2" xmlns:gmlcov="http://www.opengis.net/gmlcov/1.0" xmlns:lucm="http://inspire.jrc.ec.europa.eu/schemas/lucm/2.0" elementFormDefault="qualified" targetNamespace="http://inspire.jrc.ec.europa.eu/schemas/lucm/2.0" version="2.0">
+  <import namespace="http://www.isotc211.org/2005/gmd" schemaLocation="http://schemas.opengis.net/iso/19139/20070417/gmd/gmd.xsd"/>
+  <import namespace="http://www.opengis.net/gml/3.2" schemaLocation="http://schemas.opengis.net/gml/3.2.1/gml.xsd"/>
+  <import namespace="http://www.opengis.net/gmlcov/1.0" schemaLocation="http://schemas.opengis.net/gmlcov/1.0/coverage.xsd"/>
+  <import namespace="urn:x-inspire:specification:gmlas:BaseTypes:3.2" schemaLocation="https://inspire.ec.europa.eu/schemas/base/3.2/BaseTypes.xsd"/>
+  <!--XML Schema document created by ShapeChange-->
+  <element abstract="true" name="CoreLandUseObject" substitutionGroup="gml:AbstractFeature" type="lucm:CoreLandUseObjectType">
+    <annotation>
+      <documentation>-- Name --
+Core land use object
+-- Definition --
+Object that is associated with an area that has a dominant homogeneous land use in a LandUseCoverage.</documentation>
+    </annotation>
+  </element>
+  <complexType abstract="true" name="CoreLandUseObjectType">
+    <complexContent>
+      <extension base="gml:AbstractFeatureType">
+        <sequence>
+          <element name="beginLifespanVersion" nillable="true">
+            <annotation>
+              <documentation>-- Definition --
+Date and time at which this version of the spatial object was inserted or changed in the spatial data set.</documentation>
+            </annotation>
+            <complexType>
+              <simpleContent>
+                <extension base="dateTime">
+                  <attribute name="nilReason" type="gml:NilReasonType"/>
+                </extension>
+              </simpleContent>
+            </complexType>
+          </element>
+          <element name="dominantLandUse" type="gml:CodeType">
+            <annotation>
+              <documentation>-- Definition --
+Land use class that is dominant in this LandUseObject.</documentation>
+            </annotation>
+          </element>
+          <element minOccurs="0" name="endLifespanVersion" nillable="true">
+            <annotation>
+              <documentation>-- Definition --
+Date and time at which this version of the spatial object was superseded or retired in the spatial data set.</documentation>
+            </annotation>
+            <complexType>
+              <simpleContent>
+                <extension base="dateTime">
+                  <attribute name="nilReason" type="gml:NilReasonType"/>
+                </extension>
+              </simpleContent>
+            </complexType>
+          </element>
+          <element name="inspireId" type="base:IdentifierPropertyType">
+            <annotation>
+              <documentation>-- Definition --
+External object identifier of the spatial object.
+-- Description --
+An external object identifier is a unique object identifier published by the responsible body, which may be used by external applications to reference the spatial object. The identifier is an identifier of the spatial object, not an identifier of the real-world phenomenon.</documentation>
+            </annotation>
+          </element>
+          <element name="specificLandUse" nillable="true">
+            <annotation>
+              <documentation>-- Definition --
+Land Use Category according to the nomenclature specific to this dataset.
+-- Description --
+Reference to an entry in the classfication that is part of the SpecificLandUseClassification.</documentation>
+            </annotation>
+            <complexType>
+              <simpleContent>
+                <extension base="gml:CodeType">
+                  <attribute name="nilReason" type="gml:NilReasonType"/>
+                </extension>
+              </simpleContent>
+            </complexType>
+          </element>
+          <element minOccurs="0" name="validFrom" nillable="true">
+            <annotation>
+              <documentation>-- Definition --
+The time when the phenomenon started to exist in the real world.</documentation>
+            </annotation>
+            <complexType>
+              <simpleContent>
+                <extension base="date">
+                  <attribute name="nilReason" type="gml:NilReasonType"/>
+                </extension>
+              </simpleContent>
+            </complexType>
+          </element>
+          <element minOccurs="0" name="validTo" nillable="true">
+            <annotation>
+              <documentation>-- Definition --
+First date at which this version of this LandUseObject is valid in reality.</documentation>
+            </annotation>
+            <complexType>
+              <simpleContent>
+                <extension base="date">
+                  <attribute name="nilReason" type="gml:NilReasonType"/>
+                </extension>
+              </simpleContent>
+            </complexType>
+          </element>
+        </sequence>
+      </extension>
+    </complexContent>
+  </complexType>
+  <complexType name="CoreLandUseObjectPropertyType">
+    <sequence minOccurs="0">
+      <element ref="lucm:CoreLandUseObject"/>
+    </sequence>
+    <attributeGroup ref="gml:AssociationAttributeGroup"/>
+    <attributeGroup ref="gml:OwnershipAttributeGroup"/>
+  </complexType>
+  <element abstract="true" name="CoreLandUseCoverage" substitutionGroup="gmlcov:AbstractDiscreteCoverage" type="lucm:CoreLandUseCoverageType">
+    <annotation>
+      <documentation>-- Name --
+core land use coverage
+-- Definition --
+The class CoreLandUseCoverage describes a dataset that contains a set of objects discribing land use (CoreLandUseObject): Each point in its extent belongs to exactly one CoreLandUseObject. The DiscreteCoverage superclass implements the Mapping between the featureType CoreLandUseCoverage and the featureType CoreLandUseObject.</documentation>
+    </annotation>
+  </element>
+  <complexType abstract="true" name="CoreLandUseCoverageType">
+    <complexContent>
+      <extension base="gmlcov:AbstractDiscreteCoverageType">
+        <sequence>
+          <element name="beginLifespanVersion" nillable="true">
+            <annotation>
+              <documentation>-- Definition --
+Date and time at which this version of the spatial object was inserted or changed in the spatial data set.</documentation>
+            </annotation>
+            <complexType>
+              <simpleContent>
+                <extension base="dateTime">
+                  <attribute name="nilReason" type="gml:NilReasonType"/>
+                </extension>
+              </simpleContent>
+            </complexType>
+          </element>
+          <element minOccurs="0" name="endLifespanVersion" nillable="true">
+            <annotation>
+              <documentation>-- Definition --
+Date and time at which this version of the spatial object was superseded or retired in the spatial data set.</documentation>
+            </annotation>
+            <complexType>
+              <simpleContent>
+                <extension base="dateTime">
+                  <attribute name="nilReason" type="gml:NilReasonType"/>
+                </extension>
+              </simpleContent>
+            </complexType>
+          </element>
+          <element name="extent">
+            <annotation>
+              <documentation>-- Definition --
+Geographic extent of the area that is covered by this dataset.</documentation>
+            </annotation>
+            <complexType>
+              <complexContent>
+                <extension base="gml:AbstractMetadataPropertyType">
+                  <sequence minOccurs="0">
+                    <element ref="gmd:EX_BoundingPolygon"/>
+                  </sequence>
+                  <attributeGroup ref="gml:AssociationAttributeGroup"/>
+                </extension>
+              </complexContent>
+            </complexType>
+          </element>
+          <element name="name" type="string">
+            <annotation>
+              <documentation>-- Definition --
+Human readable name of the dataset.</documentation>
+            </annotation>
+          </element>
+          <element minOccurs="0" name="validFrom" nillable="true">
+            <annotation>
+              <documentation>-- Definition --
+First date at which this Coverage is valid in reality.</documentation>
+            </annotation>
+            <complexType>
+              <simpleContent>
+                <extension base="date">
+                  <attribute name="nilReason" type="gml:NilReasonType"/>
+                </extension>
+              </simpleContent>
+            </complexType>
+          </element>
+          <element minOccurs="0" name="validTo" nillable="true">
+            <annotation>
+              <documentation>-- Definition --
+The time from which the coverage no longer exists in the real world.</documentation>
+            </annotation>
+            <complexType>
+              <simpleContent>
+                <extension base="date">
+                  <attribute name="nilReason" type="gml:NilReasonType"/>
+                </extension>
+              </simpleContent>
+            </complexType>
+          </element>
+          <element name="inspireId" type="base:IdentifierPropertyType">
+            <annotation>
+              <documentation>-- Definition --
+External object identifier of the spatial object.
+-- Description --
+NOTE An external object identifier is a unique object identifier published by the responsible body, which may be used by external applications to reference the spatial object. The identifier is an identifier of the spatial object, not an identifier of the real-world phenomenon.</documentation>
+            </annotation>
+          </element>
+        </sequence>
+      </extension>
+    </complexContent>
+  </complexType>
+  <complexType name="CoreLandUseCoveragePropertyType">
+    <sequence minOccurs="0">
+      <element ref="lucm:CoreLandUseCoverage"/>
+    </sequence>
+    <attributeGroup ref="gml:AssociationAttributeGroup"/>
+    <attributeGroup ref="gml:OwnershipAttributeGroup"/>
+  </complexType>
+</schema>

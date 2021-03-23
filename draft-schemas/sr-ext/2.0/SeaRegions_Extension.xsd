@@ -1,0 +1,219 @@
+<?xml version="1.0" encoding="UTF-8"?><schema xmlns="http://www.w3.org/2001/XMLSchema" xmlns:gml="http://www.opengis.net/gml/3.2" xmlns:sr-ext="http://inspire.jrc.ec.europa.eu/schemas/sr-ext/2.0" elementFormDefault="qualified" targetNamespace="http://inspire.jrc.ec.europa.eu/schemas/sr-ext/2.0" version="2.0">
+  <annotation>
+    <documentation>-- Definition --
+
+Application schema containing non-core parts of the SR model, such as sea bed, surface areas and marine isolines.</documentation>
+  </annotation>
+  <import namespace="http://www.opengis.net/gml/3.2" schemaLocation="http://schemas.opengis.net/gml/3.2.1/gml.xsd"/>
+  <!--XML Schema document created by ShapeChange-->
+  <element name="SeaBedArea" substitutionGroup="sr-ext:MarineLayer" type="sr-ext:SeaBedAreaType">
+    <annotation>
+      <documentation>-- Name --
+Sea Bed Area
+
+-- Definition -- 
+An area of the sea bed with some identified type of cover. e.g. an area of vegetation or sediment type.
+-- Description --
+This describes a sea region according to the characteristics of the sea bed  rather than characteristics of the water column in general.  It does not include the subsea geology and is analogous to the concept of LandCover (INSPIRE Annex III).</documentation>
+    </annotation>
+  </element>
+  <complexType name="SeaBedAreaType">
+    <complexContent>
+      <extension base="sr-ext:MarineLayerType">
+        <sequence/>
+      </extension>
+    </complexContent>
+  </complexType>
+  <complexType name="SeaBedAreaPropertyType">
+    <sequence minOccurs="0">
+      <element ref="sr-ext:SeaBedArea"/>
+    </sequence>
+    <attributeGroup ref="gml:AssociationAttributeGroup"/>
+    <attributeGroup ref="gml:OwnershipAttributeGroup"/>
+  </complexType>
+  <element name="MarineIsoLine" substitutionGroup="gml:AbstractFeature" type="sr-ext:MarineIsoLineType">
+    <annotation>
+      <documentation>-- Name --
+Marine Iso Line
+
+-- Definition --
+A set of contours representing the value of some phenomenon at a particular time.
+-- Description --
+A representation of any physical or chemical phenomeon related to the SeaArea.  MarineIsoLine should be derived from an OceanGeographicFeature of the same phenomenon.  MarineIsoLine is an abstraction of the &amp;lsquo;real world&amp;rsquo; to provide an overview of the expected conditions of a SeaArea.  Examples would include salinity contours, depth contours, significant wave height.</documentation>
+    </annotation>
+  </element>
+  <complexType name="MarineIsoLineType">
+    <complexContent>
+      <extension base="gml:AbstractFeatureType">
+        <sequence>
+          <element name="numberOfContours" type="integer">
+            <annotation>
+              <documentation>-- Name --
+Number of Contours
+
+-- Definition --
+Number of contours.</documentation>
+            </annotation>
+          </element>
+          <element name="contourValues" type="gml:MeasureListType">
+            <annotation>
+              <documentation>-- Name --
+Contour Values
+
+--- Definition --
+Values attributed to the contour lines.</documentation>
+            </annotation>
+          </element>
+          <element name="geometry" type="gml:MultiCurvePropertyType">
+            <annotation>
+              <documentation>-- Name --
+Geometry
+
+-- Definition --
+Geometry of the contours.</documentation>
+            </annotation>
+          </element>
+          <element name="phenomenon">
+            <annotation>
+              <documentation>-- Name --
+Phenomeneon
+
+-- Definition --
+The property represented by the contours (e..g wave height).</documentation>
+            </annotation>
+            <complexType>
+              <complexContent>
+                <extension base="gml:AbstractMemberType">
+                  <sequence minOccurs="0">
+                    <element ref="sr-ext:SimpleObservableProperty_Stub"/>
+                  </sequence>
+                  <attributeGroup ref="gml:AssociationAttributeGroup"/>
+                </extension>
+              </complexContent>
+            </complexType>
+          </element>
+          <element name="validTime" type="gml:TimeInstantPropertyType">
+            <annotation>
+              <documentation>-- Name --
+Valid Time
+
+-- Definition --
+The time at which this isoline is representative.</documentation>
+            </annotation>
+          </element>
+        </sequence>
+      </extension>
+    </complexContent>
+  </complexType>
+  <complexType name="MarineIsoLinePropertyType">
+    <sequence minOccurs="0">
+      <element ref="sr-ext:MarineIsoLine"/>
+    </sequence>
+    <attributeGroup ref="gml:AssociationAttributeGroup"/>
+    <attributeGroup ref="gml:OwnershipAttributeGroup"/>
+  </complexType>
+  <element name="SimpleObservableProperty_Stub" substitutionGroup="gml:AbstractFeature" type="sr-ext:SimpleObservableProperty_StubType">
+    <annotation>
+      <documentation>-- Name --
+Simple Observable Property (Stub)
+
+-- Definition -- 
+Placeholder for observable property class.
+
+-- Definition --</documentation>
+    </annotation>
+  </element>
+  <complexType name="SimpleObservableProperty_StubType">
+    <complexContent>
+      <extension base="gml:AbstractFeatureType">
+        <sequence/>
+      </extension>
+    </complexContent>
+  </complexType>
+  <complexType name="SimpleObservableProperty_StubPropertyType">
+    <sequence minOccurs="0">
+      <element ref="sr-ext:SimpleObservableProperty_Stub"/>
+    </sequence>
+    <attributeGroup ref="gml:AssociationAttributeGroup"/>
+    <attributeGroup ref="gml:OwnershipAttributeGroup"/>
+  </complexType>
+  <element abstract="true" name="MarineLayer" substitutionGroup="gml:AbstractFeature" type="sr-ext:MarineLayerType">
+    <annotation>
+      <documentation>-- Name --
+Marine Layer
+-- Definition --
+A MarineLayer describes any layer that may cover any part of a sea surface or sea bottom.
+-- Description --
+
+Examples of surface layers identified in the reference material include oil, algal blooms and ice.  Examples of seabed layer identified in the reference material include sediment type and presence or absence of vegetation.
+As these phenomena have a dynamic characteristic, the extent they describe (GM_Surface) has a validity period. A marineLayer may not be associated with a particular SeaArea. A SeaArea may have multiple MarineLayers and MarineLayers can overlap each other.</documentation>
+    </annotation>
+  </element>
+  <complexType abstract="true" name="MarineLayerType">
+    <complexContent>
+      <extension base="gml:AbstractFeatureType">
+        <sequence>
+          <element name="validTime" type="gml:TimePeriodPropertyType">
+            <annotation>
+              <documentation>-- Name --
+Valid Time
+
+-- Definition --
+Time period for which the marine layer is valid.</documentation>
+            </annotation>
+          </element>
+          <element minOccurs="0" name="geometry" type="gml:GeometryPropertyType">
+            <annotation>
+              <documentation>-- Name --
+Geometry
+
+-- Definition --
+Geometry of the Marine Layer.</documentation>
+            </annotation>
+          </element>
+          <element name="surfaceType" type="string">
+            <annotation>
+              <documentation>-- Name --
+Surface Type
+
+-- Definition --
+Surface type of the Marine Layer.</documentation>
+            </annotation>
+          </element>
+        </sequence>
+      </extension>
+    </complexContent>
+  </complexType>
+  <complexType name="MarineLayerPropertyType">
+    <sequence minOccurs="0">
+      <element ref="sr-ext:MarineLayer"/>
+    </sequence>
+    <attributeGroup ref="gml:AssociationAttributeGroup"/>
+    <attributeGroup ref="gml:OwnershipAttributeGroup"/>
+  </complexType>
+  <element name="SeaSurfaceArea" substitutionGroup="sr-ext:MarineLayer" type="sr-ext:SeaSurfaceAreaType">
+    <annotation>
+      <documentation>-- Name --
+Sea Surface Area
+
+-- Definition -- 
+An area of the sea surface with some type of cover e.g. an area of sea ice.
+-- Description --
+This describes a sea region according to the characteristics of the sea surface rather than characteristics of the water column in general. It is analogous to the concept of LandCover (INSPIRE Annex III).</documentation>
+    </annotation>
+  </element>
+  <complexType name="SeaSurfaceAreaType">
+    <complexContent>
+      <extension base="sr-ext:MarineLayerType">
+        <sequence/>
+      </extension>
+    </complexContent>
+  </complexType>
+  <complexType name="SeaSurfaceAreaPropertyType">
+    <sequence minOccurs="0">
+      <element ref="sr-ext:SeaSurfaceArea"/>
+    </sequence>
+    <attributeGroup ref="gml:AssociationAttributeGroup"/>
+    <attributeGroup ref="gml:OwnershipAttributeGroup"/>
+  </complexType>
+</schema>

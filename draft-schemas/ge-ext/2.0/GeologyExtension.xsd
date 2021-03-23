@@ -1,0 +1,114 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<schema xmlns="http://www.w3.org/2001/XMLSchema" xmlns:cgu="http://xmlns.geosciml.org/Utilities/3.0" xmlns:ge-ext="http://inspire.jrc.ec.europa.eu/schemas/ge-ext/2.0" xmlns:gmd="http://www.isotc211.org/2005/gmd" xmlns:gml="http://www.opengis.net/gml/3.2" xmlns:gsml="http://xmlns.geosciml.org/GeoSciML-Core/3.0" xmlns:gbh="http://xmlns.geosciml.org/Borehole/3.0" targetNamespace="http://inspire.jrc.ec.europa.eu/schemas/ge-ext/2.0" elementFormDefault="qualified" version="2.0">
+	<import namespace="http://www.isotc211.org/2005/gmd" schemaLocation="http://schemas.opengis.net/iso/19139/20070417/gmd/gmd.xsd"/>
+	<import namespace="http://www.opengis.net/gml/3.2" schemaLocation="http://schemas.opengis.net/gml/3.2.1/gml.xsd"/>
+	<import namespace="http://xmlns.geosciml.org/GeoSciML-Core/3.0" schemaLocation="http://inspire-twg.jrc.ec.europa.eu/annexII+III/schemas/geosciml-core/3.0/geosciml-core.xsd"/>
+	<import namespace="http://xmlns.geosciml.org/Utilities/3.0" schemaLocation="http://inspire-twg.jrc.ec.europa.eu/annexII+III/schemas/cgiutilities/3.0/cgiUtilities.xsd"/>
+	<import namespace="http://xmlns.geosciml.org/Borehole/3.0" schemaLocation="http://inspire-twg.jrc.ec.europa.eu/annexII+III/schemas/borehole/3.0/borehole.xsd"/>
+	<!--XML Schema document created by ShapeChange-->
+	<simpleType name="BoreholePurposeCodeType">
+		<annotation>
+			<documentation>&lt;font color="#400040"&gt;-- Definition --&lt;/font&gt;
+&lt;font color="#400040"&gt;The purpose for which a borehole was drilled eg site investigation, resource exploration etc&lt;/font&gt;</documentation>
+		</annotation>
+		<union memberTypes="ge-ext:BoreholePurposeCodeEnumerationType ge-ext:BoreholePurposeCodeOtherType"/>
+	</simpleType>
+	<simpleType name="BoreholePurposeCodeEnumerationType">
+		<annotation>
+			<documentation>&lt;font color="#400040"&gt;-- Definition --&lt;/font&gt;
+&lt;font color="#400040"&gt;The purpose for which a borehole was drilled eg site investigation, resource exploration etc&lt;/font&gt;</documentation>
+		</annotation>
+		<restriction base="string"/>
+	</simpleType>
+	<simpleType name="BoreholePurposeCodeOtherType">
+		<restriction base="string">
+			<pattern value="other: \w{2,}"/>
+		</restriction>
+	</simpleType>
+	<element name="ExtendedBoreholeDetails" type="ge-ext:ExtendedBoreholeDetailsType" substitutionGroup="gbh:BoreholeDetails">
+		<annotation>
+			<documentation>-- Definition --
+Extended borehole specific index (or metadata) information</documentation>
+		</annotation>
+	</element>
+	<complexType name="ExtendedBoreholeDetailsType">
+		<complexContent>
+			<extension base="gbh:BoreholeDetailsType">
+				<sequence>
+					<element name="purpose" nillable="true" maxOccurs="unbounded">
+						<annotation>
+							<documentation>-- Definition --
+&lt;font color="#400040"&gt;The purpose for which the borehole was drilled eg site investigation, resource exploration etc&lt;/font&gt;</documentation>
+						</annotation>
+						<complexType>
+							<simpleContent>
+								<extension base="ge-ext:BoreholePurposeCodeType">
+									<attribute name="nilReason" type="gml:NilReasonType"/>
+								</extension>
+							</simpleContent>
+						</complexType>
+					</element>
+					<element name="dataCustodian" nillable="true" maxOccurs="unbounded">
+						<annotation>
+							<documentation>-- Definition --
+&lt;font color="#400040"&gt;Organisation that is custodian of data derived from the borehole&lt;/font&gt;</documentation>
+						</annotation>
+						<complexType>
+							<complexContent>
+								<extension base="gml:AbstractMetadataPropertyType">
+									<sequence>
+										<element ref="gmd:CI_ResponsibleParty"/>
+									</sequence>
+									<attribute name="nilReason" type="gml:NilReasonType"/>
+								</extension>
+							</complexContent>
+						</complexType>
+					</element>
+					<element name="boreholeLength" type="cgu:CGI_NumericRangePropertyType" nillable="true">
+						<annotation>
+							<documentation>-- Definition --
+&lt;font color="#400040"&gt;The total length of the borehole&lt;/font&gt;</documentation>
+						</annotation>
+					</element>
+					<element name="baseQuaternary" type="cgu:CGI_NumericRangePropertyType" nillable="true" minOccurs="0">
+						<annotation>
+							<documentation>&lt;font color="#400040"&gt;-- Definition --&lt;/font&gt;
+&lt;font color="#400040"&gt;The length along the borehole until the base of the Quaternary is reached&lt;/font&gt;</documentation>
+						</annotation>
+					</element>
+					<element name="unavailableData" nillable="true">
+						<annotation>
+							<documentation>&lt;font color="#400040"&gt;-- Definition --&lt;/font&gt;
+&lt;font color="#400040"&gt;Data exists that is not available online, for example because it is legally restricted or it has not been digitised&lt;/font&gt;</documentation>
+						</annotation>
+						<complexType>
+							<simpleContent>
+								<extension base="boolean">
+									<attribute name="nilReason" type="gml:NilReasonType"/>
+								</extension>
+							</simpleContent>
+						</complexType>
+					</element>
+					<element name="basalUnit" nillable="true">
+						<annotation>
+							<documentation>-- Definition --
+The unit proved at the base of the borehole</documentation>
+						</annotation>
+						<complexType>
+							<sequence minOccurs="0">
+								<element ref="gsml:GeologicUnit"/>
+							</sequence>
+							<attributeGroup ref="gml:AssociationAttributeGroup"/>
+							<attributeGroup ref="gml:OwnershipAttributeGroup"/>
+						</complexType>
+					</element>
+				</sequence>
+			</extension>
+		</complexContent>
+	</complexType>
+	<complexType name="ExtendedBoreholeDetailsPropertyType">
+		<sequence>
+			<element ref="ge-ext:ExtendedBoreholeDetails"/>
+		</sequence>
+	</complexType>
+</schema>

@@ -1,0 +1,374 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<schema xmlns="http://www.w3.org/2001/XMLSchema" xmlns:base2="http://inspire.ec.europa.eu/schemas/base2/1.0rc3" xmlns:gmd="http://www.isotc211.org/2005/gmd" xmlns:gml="http://www.opengis.net/gml/3.2" xmlns:gn="urn:x-inspire:specification:gmlas:GeographicalNames:3.0" xmlns:us-govserv="http://inspire.ec.europa.eu/schemas/us-govserv/3.0rc3" targetNamespace="http://inspire.ec.europa.eu/schemas/us-govserv/3.0rc3" elementFormDefault="qualified" version="3.0rc3">
+	<import namespace="http://inspire.ec.europa.eu/schemas/base2/1.0rc3" schemaLocation="https://inspire.ec.europa.eu/draft-schemas/base2/1.0rc3/BaseTypes2.xsd"/>
+	<import namespace="http://www.isotc211.org/2005/gmd" schemaLocation="http://schemas.opengis.net/iso/19139/20070417/gmd/gmd.xsd"/>
+	<import namespace="http://www.opengis.net/gml/3.2" schemaLocation="http://schemas.opengis.net/gml/3.2.1/gml.xsd"/>
+	<import namespace="urn:x-inspire:specification:gmlas:GeographicalNames:3.0" schemaLocation="https://inspire.ec.europa.eu/schemas/gn/3.0/GeographicalNames.xsd"/>
+	<!--XML Schema document created by ShapeChange-->
+	<element name="GovernmentalServiceExtension" type="us-govserv:GovernmentalServiceExtensionType" substitutionGroup="gml:AbstractGML">
+		<annotation>
+			<documentation>-- Name --
+governmental service extension</documentation>
+		</annotation>
+	</element>
+	<complexType name="GovernmentalServiceExtensionType">
+		<complexContent>
+			<extension base="gml:AbstractGMLType">
+				<sequence>
+					<element name="additionalLocationDescription" type="gmd:PT_FreeText_PropertyType" nillable="true" minOccurs="0">
+						<annotation>
+							<documentation>-- Name --
+additional location description
+
+-- Definition --
+Additional description of the service location which helps to easily find the specific governmental service (i.e. correct level in a building, prefered entrance, etc.).
+
+-- Description --
+EXAMPLE: A heart defibrillator is located at the &amp;ldquo;information desk, ground floor".</documentation>
+						</annotation>
+					</element>
+					<element name="hoursOfService" type="gmd:PT_FreeText_PropertyType" nillable="true">
+						<annotation>
+							<documentation>-- Name --
+hours of service
+
+-- Definition --
+Time, when the service is available and can be used.
+
+-- Description --
+This attribute states the temporal availability of the service itself. It can differ from the temporal availability of the belonging point of contact (see attribute pointOfContact).</documentation>
+						</annotation>
+					</element>
+					<element name="name" nillable="true" minOccurs="0" maxOccurs="unbounded">
+						<annotation>
+							<documentation>-- Name --
+name
+
+-- Definition --
+Usual name (designation of an object by a linguistic expression) of the service.
+
+-- Description --
+EXAMPLE: "Hotel de ville".
+
+The name can be refering:
+(a) to the description of the type of governmental service, if providing more detailled information than the ServiceTypeValue (e.g. "Mental clinic" when the value in the codelist is only " specialized hospital ");
+(b) to a proper noun, given to the service (e.g. Elysee Palace"); or
+(c) to a mix of both solutions (a) and (b) (e.g. "Lycee Professionnel Jean Jaures" or "Kindergarten W.A. Mozart"). 
+
+NOTE 1: It's useless to have a name only repeating the value of the codelist ServiceTypeValue.
+
+NOTE 2: Names can be provided in different languages due to the modeling of GeographicalName (Tour Eiffel (FR), Eiffel Tower (EN), EiffelTurm (DE), etc.).</documentation>
+						</annotation>
+						<complexType>
+							<sequence>
+								<element ref="gn:GeographicalName"/>
+							</sequence>
+							<attribute name="nilReason" type="gml:NilReasonType"/>
+						</complexType>
+					</element>
+					<element name="note" type="gmd:PT_FreeText_PropertyType" nillable="true" minOccurs="0" maxOccurs="unbounded">
+						<annotation>
+							<documentation>-- Name --
+note
+
+-- Definition --
+Any comment that help the user to better understand what the governmental service is (i.e. a literal description of the service).
+
+-- Description --
+This atribute is not used for internal matters, such as database management, but to provide more detailled information that cannot be included in other attributes.
+
+EXAMPLE: This home for the handicapped is speciallized for the blind people only.</documentation>
+						</annotation>
+					</element>
+					<element name="occupancy" nillable="true" minOccurs="0" maxOccurs="unbounded">
+						<annotation>
+							<documentation>-- Name --
+occupancy
+
+-- Definition --
+Capacity of a governmental service with the purpose of accommodation (e.g. home for the elderly) or attendance of persons (e.g. workshop for the handicapped).
+
+-- Description --
+The capacity of the service shall be provided, not the current occupancy.</documentation>
+						</annotation>
+						<complexType>
+							<sequence>
+								<element ref="us-govserv:OccupancyType"/>
+							</sequence>
+							<attribute name="nilReason" type="gml:NilReasonType"/>
+						</complexType>
+					</element>
+					<element name="relatedParty" nillable="true" minOccurs="0" maxOccurs="unbounded">
+						<annotation>
+							<documentation>-- Name --
+related party
+
+-- Definition --
+Information regarding the authority, owner or operator of a service including contact information.
+
+-- Description --
+In some cases this information will coincide with the contact information of the service (see attribute pointOfContact).</documentation>
+						</annotation>
+						<complexType>
+							<sequence>
+								<element ref="base2:RelatedParty"/>
+							</sequence>
+							<attribute name="nilReason" type="gml:NilReasonType"/>
+						</complexType>
+					</element>
+					<element name="resources" nillable="true" minOccurs="0" maxOccurs="unbounded">
+						<annotation>
+							<documentation>-- Name --
+resources
+
+-- Definition --
+Description of technical resources of services.</documentation>
+						</annotation>
+						<complexType>
+							<sequence>
+								<element ref="us-govserv:ResourceType"/>
+							</sequence>
+							<attribute name="nilReason" type="gml:NilReasonType"/>
+						</complexType>
+					</element>
+					<element name="serviceLevel" nillable="true" minOccurs="0" maxOccurs="unbounded">
+						<annotation>
+							<documentation>-- Name --
+service level
+
+-- Definition --
+Allowed types for the administrative level where the service is provided from.</documentation>
+						</annotation>
+						<complexType>
+							<simpleContent>
+								<extension base="us-govserv:ServiceLevelValueType">
+									<attribute name="nilReason" type="gml:NilReasonType"/>
+								</extension>
+							</simpleContent>
+						</complexType>
+					</element>
+					<element name="validFrom" nillable="true">
+						<annotation>
+							<documentation>-- Name --
+valid from
+
+-- Definition --
+The time when the phenomenon started to exist in the real world.
+
+-- Description --
+Related to the existence of the phenomenon in the real world.</documentation>
+						</annotation>
+						<complexType>
+							<simpleContent>
+								<extension base="dateTime">
+									<attribute name="nilReason" type="gml:NilReasonType"/>
+								</extension>
+							</simpleContent>
+						</complexType>
+					</element>
+					<element name="validTo" nillable="true" minOccurs="0">
+						<annotation>
+							<documentation>-- Name --
+valid to
+
+-- Definition --
+The time from which the phenomenon no longer exists in the real world.
+
+-- Description --
+Related to the existence of the phenomenon in the real world.</documentation>
+						</annotation>
+						<complexType>
+							<simpleContent>
+								<extension base="dateTime">
+									<attribute name="nilReason" type="gml:NilReasonType"/>
+								</extension>
+							</simpleContent>
+						</complexType>
+					</element>
+				</sequence>
+			</extension>
+		</complexContent>
+	</complexType>
+	<complexType name="GovernmentalServiceExtensionPropertyType">
+		<sequence minOccurs="0">
+			<element ref="us-govserv:GovernmentalServiceExtension"/>
+		</sequence>
+		<attributeGroup ref="gml:AssociationAttributeGroup"/>
+		<attributeGroup ref="gml:OwnershipAttributeGroup"/>
+	</complexType>
+	<element name="ResourceType" type="us-govserv:ResourceTypeType" substitutionGroup="gml:AbstractObject">
+		<annotation>
+			<documentation>-- Name --
+resource type
+
+-- Definition --
+Description of a single technical resource.
+
+-- Description --
+EXAMPLE: Capacity of a fire water reservoir.</documentation>
+		</annotation>
+	</element>
+	<complexType name="ResourceTypeType">
+		<sequence>
+			<element name="amount" nillable="true">
+				<annotation>
+					<documentation>-- Name --
+amount
+
+-- Definition --
+Quantitative description of a technical resource.</documentation>
+				</annotation>
+				<complexType>
+					<simpleContent>
+						<extension base="gml:MeasureType">
+							<attribute name="nilReason" type="gml:NilReasonType"/>
+						</extension>
+					</simpleContent>
+				</complexType>
+			</element>
+			<element name="typeOfTechnicalMeans" type="gmd:PT_FreeText_PropertyType">
+				<annotation>
+					<documentation>-- Name --
+type of technical means
+
+-- Definition --
+Qualitative description of a technical resource.</documentation>
+				</annotation>
+			</element>
+		</sequence>
+	</complexType>
+	<complexType name="ResourceTypePropertyType">
+		<sequence>
+			<element ref="us-govserv:ResourceType"/>
+		</sequence>
+	</complexType>
+	<simpleType name="ServiceLevelValueType">
+		<annotation>
+			<documentation>-- Name --
+service level value
+
+-- Definition --
+Classification of European territorial units, based on EUROSTAT values (extension to sub-national levels).</documentation>
+		</annotation>
+		<restriction base="string">
+			<enumeration value="GLB">
+				<annotation>
+					<documentation>-- Name --
+global
+
+-- Definition --
+Global, supra-European level.</documentation>
+				</annotation>
+			</enumeration>
+			<enumeration value="EUR">
+				<annotation>
+					<documentation>-- Name --
+european
+
+-- Definition --
+Pan-European level.</documentation>
+				</annotation>
+			</enumeration>
+			<enumeration value="STA">
+				<annotation>
+					<documentation>-- Name --
+state
+
+-- Definition --
+Member State or national level.</documentation>
+				</annotation>
+			</enumeration>
+			<enumeration value="NUTS1">
+				<annotation>
+					<documentation>-- Name --
+NUTS 1
+
+-- Definition --
+Major socio-economic region level.</documentation>
+				</annotation>
+			</enumeration>
+			<enumeration value="NUTS2">
+				<annotation>
+					<documentation>-- Name --
+NUTS 2
+
+-- Definition --
+Basic region level (for the aplication of regional policies).</documentation>
+				</annotation>
+			</enumeration>
+			<enumeration value="NUTS3">
+				<annotation>
+					<documentation>-- Name --
+NUTS 3
+
+-- Definition --
+Small region level (for specific diagnoses).</documentation>
+				</annotation>
+			</enumeration>
+			<enumeration value="LAU1">
+				<annotation>
+					<documentation>-- Name --
+LAU 1
+
+-- Definition --
+Local administrative units at the supramunicipal level.</documentation>
+				</annotation>
+			</enumeration>
+			<enumeration value="LAU2">
+				<annotation>
+					<documentation>-- Name --
+LAU 2
+
+-- Definition --
+Local administrative units at the municipal level.</documentation>
+				</annotation>
+			</enumeration>
+		</restriction>
+	</simpleType>
+	<element name="OccupancyType" type="us-govserv:OccupancyTypeType" substitutionGroup="gml:AbstractObject">
+		<annotation>
+			<documentation>-- Name --
+occupancy type
+
+-- Definition --
+Description of a group of occupants.</documentation>
+		</annotation>
+	</element>
+	<complexType name="OccupancyTypeType">
+		<sequence>
+			<element name="numberOfOccupants" nillable="true">
+				<annotation>
+					<documentation>-- Name --
+number of occupants
+
+-- Definition --
+Number of occupants.</documentation>
+				</annotation>
+				<complexType>
+					<simpleContent>
+						<extension base="integer">
+							<attribute name="nilReason" type="gml:NilReasonType"/>
+						</extension>
+					</simpleContent>
+				</complexType>
+			</element>
+			<element name="typeOfOccupant" type="gmd:PT_FreeText_PropertyType">
+				<annotation>
+					<documentation>-- Name --
+type of occupant
+
+-- Definition --
+Qualitative description of a group of occupants.
+
+-- Description --
+EXAMPLE: Elderly people, partly immobile.</documentation>
+				</annotation>
+			</element>
+		</sequence>
+	</complexType>
+	<complexType name="OccupancyTypePropertyType">
+		<sequence>
+			<element ref="us-govserv:OccupancyType"/>
+		</sequence>
+	</complexType>
+</schema>

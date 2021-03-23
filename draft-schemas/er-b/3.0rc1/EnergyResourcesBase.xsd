@@ -1,0 +1,249 @@
+<?xml version="1.0" encoding="UTF-8"?><schema xmlns="http://www.w3.org/2001/XMLSchema" xmlns:base="urn:x-inspire:specification:gmlas:BaseTypes:3.2" xmlns:base2="http://inspire.ec.europa.eu/schemas/base2/0.1" xmlns:er-b="http://inspire.ec.europa.eu/schemas/er-b/3.0" xmlns:gml="http://www.opengis.net/gml/3.2" xmlns:sc="http://www.interactive-instruments.de/ShapeChange/AppInfo" elementFormDefault="qualified" targetNamespace="http://inspire.ec.europa.eu/schemas/er-b/3.0" version="3.0">
+  <annotation>
+    <documentation>-- Name --
+Energy Resources Base application schema</documentation>
+  </annotation>
+  <import namespace="http://inspire.ec.europa.eu/schemas/base2/0.1" schemaLocation="https://inspire.ec.europa.eu/draft-schemas/base2/0.1rc1/BaseTypes2.xsd"/>
+  <import namespace="http://www.interactive-instruments.de/ShapeChange/AppInfo" schemaLocation="http://portele.de/ShapeChangeAppinfo.xsd"/>
+  <import namespace="http://www.opengis.net/gml/3.2" schemaLocation="http://schemas.opengis.net/gml/3.2.1/gml.xsd"/>
+  <import namespace="urn:x-inspire:specification:gmlas:BaseTypes:3.2" schemaLocation="https://inspire.ec.europa.eu/schemas/base/3.2/BaseTypes.xsd"/>
+  <!--XML Schema document created by ShapeChange-->
+  <element name="VerticalExtentValue" substitutionGroup="gml:AbstractObject" type="er-b:VerticalExtentValueType">
+    <annotation>
+      <documentation>-- Name --
+Vertical extent value
+
+-- Definition --
+Either a single number or a range of height/depth values to describe the height/depth position of an Energy Resource.</documentation>
+    </annotation>
+  </element>
+  <complexType name="VerticalExtentValueType">
+    <choice>
+      <element name="range" type="er-b:VerticalExtentRangeTypePropertyType">
+        <annotation>
+          <documentation>-- Name --
+Range
+
+-- Definition --
+Range of numbers representing the height or depth range of an Energy Resource.
+
+-- Description --
+NOTE depth values are represented by negative numbers.</documentation>
+        </annotation>
+      </element>
+      <element name="scalar" type="gml:LengthType">
+        <annotation>
+          <documentation>-- Name --
+Scalar
+
+-- Definition --
+Number representing the height or depth of an Energy Resource.
+
+-- Description --
+NOTE depth values are represented by negative numbers.</documentation>
+        </annotation>
+      </element>
+    </choice>
+  </complexType>
+  <complexType name="VerticalExtentValuePropertyType">
+    <sequence>
+      <element ref="er-b:VerticalExtentValue"/>
+    </sequence>
+  </complexType>
+  <element abstract="true" name="EnergyResource" substitutionGroup="gml:AbstractFeature" type="er-b:EnergyResourceType">
+    <annotation>
+      <documentation>-- Name --
+Energy Resource
+
+-- Definition --
+A feature defining an inferred or observable spatial extent of a resource that can be, or has been, used as a source of energy.
+
+-- Description --
+SOURCE Adapted from [DER 2011].</documentation>
+    </annotation>
+  </element>
+  <complexType abstract="true" name="EnergyResourceType">
+    <complexContent>
+      <extension base="gml:AbstractFeatureType">
+        <sequence>
+          <element name="beginLifespanVersion" nillable="true">
+            <annotation>
+              <documentation>-- Definition --
+Date and time at which this version of the spatial object was inserted or changed in the spatial data set.</documentation>
+            </annotation>
+            <complexType>
+              <simpleContent>
+                <extension base="dateTime">
+                  <attribute name="nilReason" type="gml:NilReasonType"/>
+                </extension>
+              </simpleContent>
+            </complexType>
+          </element>
+          <element minOccurs="0" name="endLifespanVersion" nillable="true">
+            <annotation>
+              <documentation>-- Definition --
+Date and time at which this version of the spatial object was superseded or retired in the spatial data set.</documentation>
+            </annotation>
+            <complexType>
+              <simpleContent>
+                <extension base="dateTime">
+                  <attribute name="nilReason" type="gml:NilReasonType"/>
+                </extension>
+              </simpleContent>
+            </complexType>
+          </element>
+          <element minOccurs="0" name="inspireId" type="base:IdentifierPropertyType">
+            <annotation>
+              <documentation>-- Definition --
+External object identifier of the spatial object.
+
+-- Description --
+NOTE An external object identifier is a unique object identifier published by the responsible body, which may be used by external applications to reference the spatial object. The identifier is an identifier of the spatial object, not an identifier of the real-world phenomenon.</documentation>
+            </annotation>
+          </element>
+        </sequence>
+      </extension>
+    </complexContent>
+  </complexType>
+  <complexType name="EnergyResourcePropertyType">
+    <sequence minOccurs="0">
+      <element ref="er-b:EnergyResource"/>
+    </sequence>
+    <attributeGroup ref="gml:AssociationAttributeGroup"/>
+    <attributeGroup ref="gml:OwnershipAttributeGroup"/>
+  </complexType>
+  <element name="VerticalExtentType" substitutionGroup="gml:AbstractObject" type="er-b:VerticalExtentTypeType">
+    <annotation>
+      <documentation>-- Name --
+Vertical extent type
+
+-- Definition --
+Vertical dimensional property consisting of an absolute measure or range of measures referenced to a well-defined vertical reference level which is commonly taken as origin (ground level, mean sea level, etc.).</documentation>
+    </annotation>
+  </element>
+  <complexType name="VerticalExtentTypeType">
+    <sequence>
+      <element name="verticalExtent" type="er-b:VerticalExtentValuePropertyType">
+        <annotation>
+          <documentation>-- Name --
+Vertical extent
+
+-- Definition --
+Extent of the vertical dimension, either represented by a scalar or range of values.</documentation>
+        </annotation>
+      </element>
+      <element name="verticalReference" type="gml:ReferenceType">
+        <annotation>
+          <documentation>-- Name --
+Vertical Reference
+
+-- Definition --
+Reference level that was chosen to determine the vertical height/depth.</documentation>
+          <appinfo>
+            <taggedValue xmlns="http://www.interactive-instruments.de/ShapeChange/AppInfo" tag="obligation">technicalGuidance</taggedValue>
+          </appinfo>
+        </annotation>
+      </element>
+    </sequence>
+  </complexType>
+  <complexType name="VerticalExtentTypePropertyType">
+    <sequence>
+      <element ref="er-b:VerticalExtentType"/>
+    </sequence>
+  </complexType>
+  <element name="VerticalExtentRangeType" substitutionGroup="gml:AbstractObject" type="er-b:VerticalExtentRangeTypeType">
+    <annotation>
+      <documentation>-- Name --
+Vertical extent range type
+
+-- Definition --
+Value indicating the upper and lower bounds of the height/depth range.
+
+-- Description --
+In the case of depth, the range between the deepest (lower bound) and most shallow (upper bound) aspect of the deposit body, where the depth is true vertical depth below the Earth&amp;rsquo;s surface or mean sea level.</documentation>
+    </annotation>
+  </element>
+  <complexType name="VerticalExtentRangeTypeType">
+    <sequence>
+      <element name="lowerBound" nillable="true">
+        <annotation>
+          <documentation>-- Name --
+Lower bound
+
+-- Definition --
+True vertical depth from the Earth's surface or mean sea level to the deepest vertex of the deposit body.</documentation>
+        </annotation>
+        <complexType>
+          <simpleContent>
+            <extension base="gml:LengthType">
+              <attribute name="nilReason" type="gml:NilReasonType"/>
+            </extension>
+          </simpleContent>
+        </complexType>
+      </element>
+      <element name="upperBound" type="gml:LengthType">
+        <annotation>
+          <documentation>-- Name --
+Upper bound
+
+-- Definition --
+True vertical depth from the Earth's surface or mean sea level to the shallowest vertex of the deposit body.</documentation>
+        </annotation>
+      </element>
+    </sequence>
+  </complexType>
+  <complexType name="VerticalExtentRangeTypePropertyType">
+    <sequence>
+      <element ref="er-b:VerticalExtentRangeType"/>
+    </sequence>
+  </complexType>
+  <element name="OtherClassificationInformationType" substitutionGroup="gml:AbstractObject" type="er-b:OtherClassificationInformationTypeType">
+    <annotation>
+      <documentation>-- Name --
+Other Classification information type
+
+-- Definition --
+Energy resource classification information defining the  classification framework, if another classification framework applies besides the ones listed in the Classification Framework code list.</documentation>
+    </annotation>
+  </element>
+  <complexType name="OtherClassificationInformationTypeType">
+    <sequence>
+      <element name="classificationFramework" type="string">
+        <annotation>
+          <documentation>-- Name --
+Classification framework
+
+-- Definition --
+Name of the classification framework.</documentation>
+          <appinfo>
+            <taggedValue xmlns="http://www.interactive-instruments.de/ShapeChange/AppInfo" tag="obligation">technicalGuidance</taggedValue>
+          </appinfo>
+        </annotation>
+      </element>
+      <element name="classificationSource">
+        <annotation>
+          <documentation>-- Name --
+Classification source
+
+-- Definition --
+A link to an external document providing further information about the classification framework.</documentation>
+        </annotation>
+        <complexType>
+          <complexContent>
+            <extension base="gml:AbstractMemberType">
+              <sequence minOccurs="0">
+                <element ref="base2:DocumentCitation"/>
+              </sequence>
+              <attributeGroup ref="gml:AssociationAttributeGroup"/>
+            </extension>
+          </complexContent>
+        </complexType>
+      </element>
+    </sequence>
+  </complexType>
+  <complexType name="OtherClassificationInformationTypePropertyType">
+    <sequence>
+      <element ref="er-b:OtherClassificationInformationType"/>
+    </sequence>
+  </complexType>
+</schema>

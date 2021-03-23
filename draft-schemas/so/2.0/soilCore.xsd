@@ -1,0 +1,2228 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<schema xmlns="http://www.w3.org/2001/XMLSchema" xmlns:base="urn:x-inspire:specification:gmlas:BaseTypes:3.2" xmlns:cp="urn:x-inspire:specification:gmlas:CadastralParcels:3.0" xmlns:elu="http://inspire.jrc.ec.europa.eu/schemas/elu/2.0" xmlns:gmd="http://www.isotc211.org/2005/gmd" xmlns:gml="http://www.opengis.net/gml/3.2" xmlns:ps="urn:x-inspire:specification:gmlas:ProtectedSites:3.0" xmlns:so="http://inspire.jrc.ec.europa.eu/schemas/so/2.0" xmlns:spec="http://www.opengis.net/samplingSpecimen/2.0" targetNamespace="http://inspire.jrc.ec.europa.eu/schemas/so/2.0" elementFormDefault="qualified" version="2.0">
+	<annotation>
+		<documentation>Application schema for Soil Core</documentation>
+	</annotation>
+	<import namespace="http://inspire.jrc.ec.europa.eu/schemas/elu/2.0" schemaLocation="https://inspire.ec.europa.eu/draft-schemas/elu/2.0/ExistingLandUse.xsd"/>
+	<import namespace="http://www.isotc211.org/2005/gmd" schemaLocation="http://schemas.opengis.net/iso/19139/20070417/gmd/gmd.xsd"/>
+	<import namespace="http://www.opengis.net/gml/3.2" schemaLocation="http://schemas.opengis.net/gml/3.2.1/gml.xsd"/>
+	<import namespace="http://www.opengis.net/samplingSpecimen/2.0" schemaLocation="http://schemas.opengis.net/samplingSpecimen/2.0/specimen.xsd"/>
+	<import namespace="urn:x-inspire:specification:gmlas:BaseTypes:3.2" schemaLocation="https://inspire.ec.europa.eu/schemas/base/3.2/BaseTypes.xsd"/>
+	<import namespace="urn:x-inspire:specification:gmlas:CadastralParcels:3.0" schemaLocation="https://inspire.ec.europa.eu/schemas/cp/3.0/CadastralParcels.xsd"/>
+	<import namespace="urn:x-inspire:specification:gmlas:ProtectedSites:3.0" schemaLocation="https://inspire.ec.europa.eu/schemas/ps/3.0/ProtectedSites.xsd"/>
+	<!--XML Schema document created by ShapeChange-->
+	<element name="HorizonNotationType" type="so:HorizonNotationTypeType" substitutionGroup="gml:AbstractObject">
+		<annotation>
+			<documentation>-- Name --
+horizon notation type
+
+-- Definition --
+classification of a horizon according to a specific classification system other than FAO.
+
+-- Description --
+A code system representing horizons where the same dominant soil forming processes have been active. This code summarizes many observations of the soil description and gives an impression about the genetic processes that have formed the soil under observation.</documentation>
+		</annotation>
+	</element>
+	<complexType name="HorizonNotationTypeType">
+		<sequence>
+			<element name="horizonNotation" type="string">
+				<annotation>
+					<documentation>-- Name --
+horizon notation
+
+-- Definition --
+notation characterizing the soil horizon according to a specified classification system other than FAO.
+
+-- Description --
+NOTE It is the horizon designation value.
+EXAMPLE Ap: A horizon which has been ploughed.</documentation>
+				</annotation>
+			</element>
+			<element name="soilDescriptionReference">
+				<annotation>
+					<documentation>-- Name --
+soil description reference
+
+-- Definition --
+reference to a soil profile description guideline (other than FAO) in which the system of horizon designations is defined.</documentation>
+				</annotation>
+				<complexType>
+					<complexContent>
+						<extension base="gml:AbstractMetadataPropertyType">
+							<sequence>
+								<element ref="gmd:CI_Citation"/>
+							</sequence>
+						</extension>
+					</complexContent>
+				</complexType>
+			</element>
+		</sequence>
+	</complexType>
+	<complexType name="HorizonNotationTypePropertyType">
+		<sequence>
+			<element ref="so:HorizonNotationType"/>
+		</sequence>
+	</complexType>
+	<element name="SoilHorizon" type="so:SoilHorizonType" substitutionGroup="so:ProfileElement">
+		<annotation>
+			<documentation>-- Name --
+soil horizon
+
+-- Definition -- 
+domain of a soil with a certain vertical extension, which is more or less parallel to the surface and is homogeneous for most morphological and analytical characteristics, developed in a parent material layer through pedogenic processes or made up of in-situ sedimented organic residues of up-growing plants (peat).
+
+-- Description --
+SOURCE ISO/WD 28258
+NOTE Horizons may be part of a layer.</documentation>
+		</annotation>
+	</element>
+	<complexType name="SoilHorizonType">
+		<complexContent>
+			<extension base="so:ProfileElementType">
+				<sequence>
+					<element name="FAOHorizonNotation" nillable="true">
+						<annotation>
+							<documentation>-- Name --
+FAO horizon notation
+
+-- Definition --
+classification of a horizon according to the FAO classification system.
+
+-- Description --
+A code system representing horizons where the same dominant soil forming processes have been active. This code summarizes many observations of the soil description and gives an impression about the genetic processes that have formed the soil under observation. 
+
+NOTE The horizon notation is a combination of several symbols.
+
+SOURCE Guidelines for Soil description. FAO, 2006
+
+EXAMPLE Bw: meaning B horizon with a development of colour and/or structure.</documentation>
+						</annotation>
+						<complexType>
+							<sequence>
+								<element ref="so:FAOHorizonNotationType"/>
+							</sequence>
+							<attribute name="nilReason" type="gml:NilReasonType"/>
+						</complexType>
+					</element>
+					<element name="localHorizonNotation" nillable="true" maxOccurs="unbounded">
+						<annotation>
+							<documentation>-- Name --
+local horizon notation
+
+-- Definition --
+classification of a horizon according to a specific classification system other than FAO.
+
+-- Description --
+A code system representing horizons where the same dominant soil forming processes have been active. This code summarizes many observations of the soil description and gives an impression about the genetic processes that have formed the soil under observation.</documentation>
+						</annotation>
+						<complexType>
+							<sequence>
+								<element ref="so:HorizonNotationType"/>
+							</sequence>
+							<attribute name="nilReason" type="gml:NilReasonType"/>
+						</complexType>
+					</element>
+				</sequence>
+			</extension>
+		</complexContent>
+	</complexType>
+	<complexType name="SoilHorizonPropertyType">
+		<sequence minOccurs="0">
+			<element ref="so:SoilHorizon"/>
+		</sequence>
+		<attributeGroup ref="gml:AssociationAttributeGroup"/>
+		<attributeGroup ref="gml:OwnershipAttributeGroup"/>
+	</complexType>
+	<element name="SoilThematicObject" type="so:SoilThematicObjectType" substitutionGroup="gml:AbstractFeature">
+		<annotation>
+			<documentation>-- Name --
+soil thematic object
+
+-- Definition --
+spatial object representing a soil related property derived from one or more soil properties.
+
+-- Description --
+NOTE Soil thematic maps can be derived directly from the involved soil database (organic matter content, pH, texture, etc.) or they can be derived by using Pedotransfer Functions (water availability&amp;hellip;).</documentation>
+		</annotation>
+	</element>
+	<complexType name="SoilThematicObjectType">
+		<complexContent>
+			<extension base="gml:AbstractFeatureType">
+				<sequence>
+					<element name="inspireId" type="base:IdentifierPropertyType">
+						<annotation>
+							<documentation>-- Name --
+inspire Id
+
+-- Definition --
+external object identifier of the soil thematic object.
+
+-- Description --
+NOTE An external object identifier is a unique object identifier published by the responsible body, which may be used by external applications to reference the spatial object. The identifier is an identifier of the spatial object, not an identifier of the real-world phenomenon.</documentation>
+						</annotation>
+					</element>
+					<element name="geometry" type="gml:GeometryPropertyType">
+						<annotation>
+							<documentation>-- Name --
+geometry
+
+-- Definition --
+the geometry defining the soil thematic object.</documentation>
+						</annotation>
+					</element>
+					<element name="depthInterval" nillable="true" minOccurs="0">
+						<annotation>
+							<documentation>-- Name --
+depth interval
+
+-- Definition --
+range of depth from the surface to which the Soil Thematic Object is referring to.
+
+-- Description --
+A Soil Thematic Object can refer to a soil property for a particular depth range. For example, the texture class from 0 to 30 cm. Thus the DepthRange value will refer to the 0-30 cm depth range.</documentation>
+						</annotation>
+						<complexType>
+							<sequence>
+								<element ref="so:RangeType"/>
+							</sequence>
+							<attribute name="nilReason" type="gml:NilReasonType"/>
+						</complexType>
+					</element>
+					<element name="soilThematicResult">
+						<annotation>
+							<documentation>-- Name --
+soil thematic result/property
+
+-- Definition --
+collection of values of the soil related property within the soil thematic object.
+&lt;font color="#ff0000"&gt;
+&lt;/font&gt;-- Description --
+NOTE 1 Soil thematic maps can be derived directly from the involved soil database (organic matter content, pH, texture, etc.) or they can be derived by using Pedotransfer Functions (water availability&amp;hellip;).
+
+EXAMPLE Land irrigation suitability, pH in the topsoil, etc
+
+NOTE 2 one or more values can be associated to the soil thematic object</documentation>
+						</annotation>
+						<complexType>
+							<complexContent>
+								<extension base="gml:AbstractMemberType">
+									<sequence minOccurs="0">
+										<element ref="gml:AbstractObject"/>
+									</sequence>
+									<attributeGroup ref="gml:AssociationAttributeGroup"/>
+								</extension>
+							</complexContent>
+						</complexType>
+					</element>
+					<element name="beginLifespanVersion" nillable="true">
+						<annotation>
+							<documentation>-- Name --
+begin lifespan version
+
+-- Definition --
+Date and time at which this version of the spatial object was inserted or changed in the spatial data set.</documentation>
+						</annotation>
+						<complexType>
+							<simpleContent>
+								<extension base="dateTime">
+									<attribute name="nilReason" type="gml:NilReasonType"/>
+								</extension>
+							</simpleContent>
+						</complexType>
+					</element>
+					<element name="endLifespanVersion" nillable="true" minOccurs="0">
+						<annotation>
+							<documentation>-- Name --
+end lifespan version
+
+-- Definition --
+Date and time at which this version of the spatial object was superseded or retired in the spatial data set.</documentation>
+						</annotation>
+						<complexType>
+							<simpleContent>
+								<extension base="dateTime">
+									<attribute name="nilReason" type="gml:NilReasonType"/>
+								</extension>
+							</simpleContent>
+						</complexType>
+					</element>
+					<element name="basedOnSoilSample" nillable="true" minOccurs="0" maxOccurs="unbounded">
+						<annotation>
+							<documentation>-- Definition --
+a soil thematic object can be created based on the soil properties of (many) soil samples.</documentation>
+						</annotation>
+						<complexType>
+							<sequence minOccurs="0">
+								<element ref="so:SoilSample"/>
+							</sequence>
+							<attributeGroup ref="gml:AssociationAttributeGroup"/>
+							<attributeGroup ref="gml:OwnershipAttributeGroup"/>
+						</complexType>
+					</element>
+					<element name="basedOnSoilProfile" nillable="true" minOccurs="0" maxOccurs="unbounded">
+						<annotation>
+							<documentation>-- Definition --
+a soil thematic object can be created based on the soil properties of (many) observed soil profiles.</documentation>
+						</annotation>
+						<complexType>
+							<sequence minOccurs="0">
+								<element ref="so:ObservedSoilProfile"/>
+							</sequence>
+							<attributeGroup ref="gml:AssociationAttributeGroup"/>
+							<attributeGroup ref="gml:OwnershipAttributeGroup"/>
+						</complexType>
+					</element>
+					<element name="basedOnSoilComplex" nillable="true" minOccurs="0" maxOccurs="unbounded">
+						<annotation>
+							<documentation>-- Definition --
+a soil thematic object can be created based on the soil properties of (many) soil complexes.</documentation>
+						</annotation>
+						<complexType>
+							<sequence minOccurs="0">
+								<element ref="so:SoilComplex"/>
+							</sequence>
+							<attributeGroup ref="gml:AssociationAttributeGroup"/>
+							<attributeGroup ref="gml:OwnershipAttributeGroup"/>
+						</complexType>
+					</element>
+				</sequence>
+			</extension>
+		</complexContent>
+	</complexType>
+	<complexType name="SoilThematicObjectPropertyType">
+		<sequence minOccurs="0">
+			<element ref="so:SoilThematicObject"/>
+		</sequence>
+		<attributeGroup ref="gml:AssociationAttributeGroup"/>
+		<attributeGroup ref="gml:OwnershipAttributeGroup"/>
+	</complexType>
+	<element name="DerivedProfilePresenceInSoilComplex" type="so:DerivedProfilePresenceInSoilComplexType" substitutionGroup="gml:AbstractGML">
+		<annotation>
+			<documentation>-- Name --
+derived profile presence in soil complex
+
+-- Definition --
+indicates the percentages (lower and upper boundary) that the derived profile takes part in the Soil complex.
+
+-- Description --
+NOTE 1 A Soil Complex is a group of derived profiles in a defined geographic area. These derived profiles are not spatially defined, but their presence is indicated by a range of percentages.
+
+NOTE 2 The sum of upper/lower boundary parts should not necessarily add up to 100%. 
+
+NOTE 3 If not a range, but a specific percentage is used then the lower and upper boundary are equal.</documentation>
+		</annotation>
+	</element>
+	<complexType name="DerivedProfilePresenceInSoilComplexType">
+		<complexContent>
+			<extension base="gml:AbstractGMLType">
+				<sequence>
+					<element name="derivedProfilePercentageRange" nillable="true">
+						<annotation>
+							<documentation>-- Name --
+derived profile percentage range
+-- Definition --
+interval that defines the minumim and maximum percentage of the area of the soilcomplex covered by a specific derived soil profile.</documentation>
+						</annotation>
+						<complexType>
+							<sequence>
+								<element ref="so:RangeType"/>
+							</sequence>
+							<attribute name="nilReason" type="gml:NilReasonType"/>
+						</complexType>
+					</element>
+					<element name="isDescribedBy" nillable="true">
+						<annotation>
+							<documentation>-- Definition --
+the derived soil profiles that take part in the Soil Complex.</documentation>
+						</annotation>
+						<complexType>
+							<sequence minOccurs="0">
+								<element ref="so:DerivedSoilProfile"/>
+							</sequence>
+							<attributeGroup ref="gml:AssociationAttributeGroup"/>
+							<attributeGroup ref="gml:OwnershipAttributeGroup"/>
+						</complexType>
+					</element>
+				</sequence>
+			</extension>
+		</complexContent>
+	</complexType>
+	<complexType name="DerivedProfilePresenceInSoilComplexPropertyType">
+		<sequence minOccurs="0">
+			<element ref="so:DerivedProfilePresenceInSoilComplex"/>
+		</sequence>
+		<attributeGroup ref="gml:AssociationAttributeGroup"/>
+		<attributeGroup ref="gml:OwnershipAttributeGroup"/>
+	</complexType>
+	<element name="PhysicalParametersType" type="so:PhysicalParametersTypeType" substitutionGroup="gml:AbstractObject">
+		<annotation>
+			<documentation>-- Name --
+physical parameters type
+
+-- Definition --
+set of relevant qualitative and quantitative physical properties of the profile element (layer or horizon).
+
+-- Description --
+soil physical properties
+EXAMPLE bulk density</documentation>
+		</annotation>
+	</element>
+	<complexType name="PhysicalParametersTypeType">
+		<sequence>
+			<element name="particleSizeFraction" nillable="true" maxOccurs="unbounded">
+				<annotation>
+					<documentation>-- Name --
+particle size fraction
+
+-- Definition --
+mineral part of the soil, fractioned on the basis of size (diameter), limits of the particles. Indicates how fine earth is divided. 
+
+-- Description --
+SOURCE Soil survey laboratory information manual version 1.0</documentation>
+				</annotation>
+				<complexType>
+					<sequence>
+						<element ref="so:ParticleSizeFractionType"/>
+					</sequence>
+					<attribute name="nilReason" type="gml:NilReasonType"/>
+				</complexType>
+			</element>
+		</sequence>
+	</complexType>
+	<complexType name="PhysicalParametersTypePropertyType">
+		<sequence>
+			<element ref="so:PhysicalParametersType"/>
+		</sequence>
+	</complexType>
+	<element name="SoilProfile" type="so:SoilProfileType" abstract="true" substitutionGroup="gml:AbstractFeature">
+		<annotation>
+			<documentation>-- Name --
+soil profile
+
+-- Definition -- 
+description of the soil that is characterized by a vertical succession of profile elements.
+
+-- Description --
+NOTE The soil profile is abstracted from observations in a trial pit or a boring, or derived from expert knowledge using other soil profiles.</documentation>
+		</annotation>
+	</element>
+	<complexType name="SoilProfileType" abstract="true">
+		<complexContent>
+			<extension base="gml:AbstractFeatureType">
+				<sequence>
+					<element name="inspireId" type="base:IdentifierPropertyType">
+						<annotation>
+							<documentation>-- Name --
+inspire Id
+
+-- Definition --
+External object identifier of the soil profile.
+
+-- Description --
+NOTE An external object identifier is a unique object identifier published by the responsible body, which may be used by external applications to reference the spatial object. The identifier is an identifier of the spatial object, not an identifier of the real-world phenomenon.</documentation>
+						</annotation>
+					</element>
+					<element name="WRBSoilType" nillable="true">
+						<annotation>
+							<documentation>-- Name --
+WRB soil type
+
+-- Definition --
+identification of the soil profile according to the WRB 2006 classification schema.
+
+-- Description --
+EXAMPLE  Lixic Vetic Ferralsol (Ferric, Rhodic) soilClassificationSchema: WRB 2006.</documentation>
+						</annotation>
+						<complexType>
+							<sequence>
+								<element ref="so:WRBSoilType"/>
+							</sequence>
+							<attribute name="nilReason" type="gml:NilReasonType"/>
+						</complexType>
+					</element>
+					<element name="localSoilType" nillable="true" maxOccurs="unbounded">
+						<annotation>
+							<documentation>-- Name --
+local soil type
+
+-- Definition --
+identification of the soil profile according to a specific classification schema other than WRB 2006.</documentation>
+						</annotation>
+						<complexType>
+							<sequence>
+								<element ref="so:SoilType"/>
+							</sequence>
+							<attribute name="nilReason" type="gml:NilReasonType"/>
+						</complexType>
+					</element>
+					<element name="availableWaterCapacity" nillable="true">
+						<annotation>
+							<documentation>-- Name --
+available water capacity
+
+-- Definition --
+amount of water that a soil can store that is usable by plants, based on the effective root penetration depth.
+
+-- Description --
+the amount of water that a soil can store that is available for use by plants. It is the water held between field capacity and the wilting point adjusted downward for rock fragments and for salts in solution. 
+
+DEFINITION Field capacity: maximum water content expressed in percent (mass fraction or volume fraction), that an unsaturated soil can retain against gravity under undisturbed soil conditions (conventionally stated as the water content 2 to 3 days after full saturation with water). 
+
+DEFINITION Wilting point: water content of the soil below which the plants are not able to uptake water with their root system.
+
+SOURCE ISO 11074</documentation>
+						</annotation>
+						<complexType>
+							<simpleContent>
+								<extension base="gml:MeasureType">
+									<attribute name="nilReason" type="gml:NilReasonType"/>
+								</extension>
+							</simpleContent>
+						</complexType>
+					</element>
+					<element name="localIdentifier" nillable="true" minOccurs="0">
+						<annotation>
+							<documentation>-- Name --
+profile identifier
+
+-- Definition --
+unique identifier of the soil profile given by the data provider of the dataset.</documentation>
+						</annotation>
+						<complexType>
+							<simpleContent>
+								<extension base="string">
+									<attribute name="nilReason" type="gml:NilReasonType"/>
+								</extension>
+							</simpleContent>
+						</complexType>
+					</element>
+					<element name="beginLifespanVersion" nillable="true">
+						<annotation>
+							<documentation>-- Name --
+begin lifespan version
+
+-- Definition --
+Date and time at which this version of the spatial object was inserted or changed in the spatial data set.</documentation>
+						</annotation>
+						<complexType>
+							<simpleContent>
+								<extension base="dateTime">
+									<attribute name="nilReason" type="gml:NilReasonType"/>
+								</extension>
+							</simpleContent>
+						</complexType>
+					</element>
+					<element name="endLifespanVersion" nillable="true" minOccurs="0">
+						<annotation>
+							<documentation>-- Name --
+end lifespan version
+
+-- Definition --
+Date and time at which this version of the spatial object was superseded or retired in the spatial data set.</documentation>
+						</annotation>
+						<complexType>
+							<simpleContent>
+								<extension base="dateTime">
+									<attribute name="nilReason" type="gml:NilReasonType"/>
+								</extension>
+							</simpleContent>
+						</complexType>
+					</element>
+				</sequence>
+			</extension>
+		</complexContent>
+	</complexType>
+	<complexType name="SoilProfilePropertyType">
+		<sequence minOccurs="0">
+			<element ref="so:SoilProfile"/>
+		</sequence>
+		<attributeGroup ref="gml:AssociationAttributeGroup"/>
+		<attributeGroup ref="gml:OwnershipAttributeGroup"/>
+	</complexType>
+	<element name="SoilSite" type="so:SoilSiteType" substitutionGroup="gml:AbstractFeature">
+		<annotation>
+			<documentation>-- Name --
+soil site
+
+-- Definition -- 
+area within a larger survey, study or monitored area, where a specific soil investigation is carried out.
+
+-- Description --
+Site provides the object to describe the surroundings of the plot, date and time information on validity, etc. It is especially used in the inventory of contaminated areas.
+
+NOTE Any plot can be linked to one specific site only, but several plots to one site. 
+
+SOURCE GS Soil</documentation>
+		</annotation>
+	</element>
+	<complexType name="SoilSiteType">
+		<complexContent>
+			<extension base="gml:AbstractFeatureType">
+				<sequence>
+					<element name="inspireId" type="base:IdentifierPropertyType">
+						<annotation>
+							<documentation>-- Name --
+inspire Id
+
+-- Definition --
+External object identifier of the soil site.
+
+-- Description --
+NOTE An external object identifier is a unique object identifier published by the responsible body, which may be used by external applications to reference the spatial object. The identifier is an identifier of the spatial object, not an identifier of the real-world phenomenon.</documentation>
+						</annotation>
+					</element>
+					<element name="geometry" type="gml:SurfacePropertyType">
+						<annotation>
+							<documentation>-- Name --
+geometry
+
+-- Definition --
+the geometry defining the soil site.</documentation>
+						</annotation>
+					</element>
+					<element name="soilInvestigationPurpose" type="gml:CodeType">
+						<annotation>
+							<documentation>-- Name --
+soil investigation purpose
+
+-- Definition --
+indicates why an observation is made within a survey.
+
+-- Description --
+Two main purposes are identified to carry out soil surveys. One is to classify the soil as a result of soil forming processes (soil characterization reconnaissance) and the other, to investigate possible contamination as a result of contaminating activities (soil contamination reconnaissance).</documentation>
+						</annotation>
+					</element>
+					<element name="beginLifespanVersion" nillable="true">
+						<annotation>
+							<documentation>-- Name --
+begin lifespan version
+
+-- Definition --
+Date and time at which this version of the spatial object was inserted or changed in the spatial data set.</documentation>
+						</annotation>
+						<complexType>
+							<simpleContent>
+								<extension base="dateTime">
+									<attribute name="nilReason" type="gml:NilReasonType"/>
+								</extension>
+							</simpleContent>
+						</complexType>
+					</element>
+					<element name="endLifespanVersion" nillable="true" minOccurs="0">
+						<annotation>
+							<documentation>-- Name --
+end lifespan version
+
+-- Definition --
+Date and time at which this version of the spatial object was superseded or retired in the spatial data set.</documentation>
+						</annotation>
+						<complexType>
+							<simpleContent>
+								<extension base="dateTime">
+									<attribute name="nilReason" type="gml:NilReasonType"/>
+								</extension>
+							</simpleContent>
+						</complexType>
+					</element>
+					<element name="validFrom" nillable="true">
+						<annotation>
+							<documentation>-- Name --
+valid from
+
+-- Definition --
+The time when the phenomenon started to exist in the real world.</documentation>
+						</annotation>
+						<complexType>
+							<simpleContent>
+								<extension base="dateTime">
+									<attribute name="nilReason" type="gml:NilReasonType"/>
+								</extension>
+							</simpleContent>
+						</complexType>
+					</element>
+					<element name="validTo" nillable="true" minOccurs="0">
+						<annotation>
+							<documentation>-- Name --
+valid to
+
+-- Definition --
+The time from which the phenomenon no longer exists in the real world.</documentation>
+						</annotation>
+						<complexType>
+							<simpleContent>
+								<extension base="dateTime">
+									<attribute name="nilReason" type="gml:NilReasonType"/>
+								</extension>
+							</simpleContent>
+						</complexType>
+					</element>
+					<element name="isObservedOnLocation" nillable="true" minOccurs="0" maxOccurs="unbounded">
+						<annotation>
+							<documentation>-- Definition --
+a soil site with a specific investigation purpose can be observed on serveral locations (soil plots) inside that site area.</documentation>
+							<appinfo>
+								<reversePropertyName xmlns="http://www.opengis.net/gml/3.2">so:locatedOn</reversePropertyName>
+							</appinfo>
+						</annotation>
+						<complexType>
+							<sequence minOccurs="0">
+								<element ref="so:SoilPlot"/>
+							</sequence>
+							<attributeGroup ref="gml:AssociationAttributeGroup"/>
+							<attributeGroup ref="gml:OwnershipAttributeGroup"/>
+						</complexType>
+					</element>
+				</sequence>
+			</extension>
+		</complexContent>
+	</complexType>
+	<complexType name="SoilSitePropertyType">
+		<sequence minOccurs="0">
+			<element ref="so:SoilSite"/>
+		</sequence>
+		<attributeGroup ref="gml:AssociationAttributeGroup"/>
+		<attributeGroup ref="gml:OwnershipAttributeGroup"/>
+	</complexType>
+	<element name="ParticleSizeFractionType" type="so:ParticleSizeFractionTypeType" substitutionGroup="gml:AbstractObject">
+		<annotation>
+			<documentation>-- Name --
+particle size fraction type
+
+-- Definition --
+mineral part of the soil, fractioned on the basis of size (diameter), limits of the particles.
+It is the fine earth fraction. That is, the portion of the soil that passes through a 2 mm diameter sieve opening.
+
+-- Description --
+SOURCE1 Soil survey laboratory information manual version 1.0
+SOURCE2 GLOSSARY OF SOIL SCIENCE TERMS
+NOTE &amp;ldquo;The term particle-size class is used to characterize the grain-size composition of the whole soil, including both the fine earth and the rock and pararock fragments up to the size of a pedon, but it excludes organic matter and salts more soluble than gypsum&amp;rdquo; (USDA Soil Taxonomy, 2006, chapter 17)</documentation>
+		</annotation>
+	</element>
+	<complexType name="ParticleSizeFractionTypeType">
+		<sequence>
+			<element name="fractionContent" type="anyURI">
+				<annotation>
+					<documentation>-- Name --
+fraction content
+
+-- Definition --
+percentage of the defined fraction.
+
+-- Description --
+SOURCE Soil survey laboratory information manual version 1.0
+NOTE sum of the percentages of all the fractions should be equal to 100 percentage
+EXAMPLE percentage value (weight/weight)</documentation>
+				</annotation>
+			</element>
+			<element name="fractionParticleSizeRange" type="so:RangeTypePropertyType">
+				<annotation>
+					<documentation>-- Name --
+fraction particle size range
+
+-- Definition --
+upper and lower limit of the particle size of the defined fraction (expressed in µm)
+
+-- Description --
+SOURCE Soil survey laboratory information manual version 1.0
+EXAMPLE upper limit = 63µm , lower limit =20µm</documentation>
+				</annotation>
+			</element>
+		</sequence>
+	</complexType>
+	<complexType name="ParticleSizeFractionTypePropertyType">
+		<sequence>
+			<element ref="so:ParticleSizeFractionType"/>
+		</sequence>
+	</complexType>
+	<element name="ProfileElement" type="so:ProfileElementType" abstract="true" substitutionGroup="gml:AbstractFeature">
+		<annotation>
+			<documentation>-- Name --
+profile element
+
+-- Definition --
+abstract feature type grouping layers and horizons. Profile element may be considered as a horizontal feature that is parallel to the earth surface and that is part of the profile.
+
+-- Description --
+It is the general term for both horizons and layers.</documentation>
+		</annotation>
+	</element>
+	<complexType name="ProfileElementType" abstract="true">
+		<complexContent>
+			<extension base="gml:AbstractFeatureType">
+				<sequence>
+					<element name="inspireId" type="base:IdentifierPropertyType">
+						<annotation>
+							<documentation>-- Name --
+inspire Id
+
+-- Definition --
+External object identifier of the soil plot.
+
+-- Description --
+NOTE An external object identifier is a unique object identifier published by the responsible body, which may be used by external applications to reference the spatial object. The identifier is an identifier of the spatial object, not an identifier of the real-world phenomenon.</documentation>
+						</annotation>
+					</element>
+					<element name="profileElementDepthRange" type="so:RangeTypePropertyType">
+						<annotation>
+							<documentation>-- Name --
+profile element depth range
+
+-- Definition --
+Upper and lower depth of the profile element (layer or horizon) measured from the surface (0 cm) of a soil profile (in cm).
+
+-- Description --
+This depth range consist of the average upper and lower depth of appearance of the profile element from the surface.
+
+NOTE Most soil boundaries are zones of transition rather than sharp lines of division.The average depth of the upper boundary and the average depth of the lower boundaries of each horizon are given in centimetres, measured from the surface (including organic and mineral covers) of the soil downwards, i.e. all depth values are positive numbers. 
+EXAMPLE H horizon 0-5 cm, A horizon 5-30 cm, B horizon 30-80 cm
+
+NOTE Following rules should be taken into account
+&lt;ul&gt;
+	&lt;li&gt;lowerBoundary and upperBoundary:  should be positive values,  &lt;/li&gt;
+	&lt;li&gt;lowerBoundary is the depth from the top of the element (e.g. 20)&lt;/li&gt;
+	&lt;li&gt;upperBoundary is the depth of the bottom of the element (e.g. 40)&lt;/li&gt;
+	&lt;li&gt;lowerBoundary must be smaller than or equal to upperBoundary&lt;/li&gt;
+	&lt;li&gt;if only lowerBoundary is indicated: it is assumed that the upperBoundary is unknown; this is only possible for the deepest layer or horizon of a profile.&lt;/li&gt;
+	&lt;li&gt;if only upperBoundary is indicated: it is assumed that the lowerBoundary equals 0, and thus the range is between 0 and the upperBoundary value&lt;/li&gt;
+&lt;/ul&gt;</documentation>
+						</annotation>
+					</element>
+					<element name="chemicalParameters" nillable="true">
+						<annotation>
+							<documentation>-- Name --
+chemical parameters
+
+-- Definition --
+set of relevant quantitative chemical properties of the profile element (layer or horizon).
+
+-- Description --
+soil chemical properties</documentation>
+						</annotation>
+						<complexType>
+							<sequence>
+								<element ref="so:ChemicalParametersType"/>
+							</sequence>
+							<attribute name="nilReason" type="gml:NilReasonType"/>
+						</complexType>
+					</element>
+					<element name="beginLifespanVersion" nillable="true">
+						<annotation>
+							<documentation>-- Name --
+begin lifespan version
+
+-- Definition --
+Date and time at which this version of the spatial object was inserted or changed in the spatial data set.</documentation>
+						</annotation>
+						<complexType>
+							<simpleContent>
+								<extension base="dateTime">
+									<attribute name="nilReason" type="gml:NilReasonType"/>
+								</extension>
+							</simpleContent>
+						</complexType>
+					</element>
+					<element name="physicalParameters" nillable="true">
+						<annotation>
+							<documentation>-- Name --
+physical parameters
+-- Definition --
+set of relevant qualitative and quantitative physical properties of the profile element (layer or horizon).
+-- Description --
+soil physical properties</documentation>
+						</annotation>
+						<complexType>
+							<sequence>
+								<element ref="so:PhysicalParametersType"/>
+							</sequence>
+							<attribute name="nilReason" type="gml:NilReasonType"/>
+						</complexType>
+					</element>
+					<element name="contaminant" nillable="true" minOccurs="0" maxOccurs="unbounded">
+						<annotation>
+							<documentation>-- Name --
+contaminant
+
+-- Definition --
+substance or agent present in the profile element as a result of human activity cf. pollutant.
+
+-- Description --
+NOTE: may be  heavy metals, and/or organic pollutants
+EXAMPLE: Dioxin
+SOURCE ISO 15799:2003</documentation>
+						</annotation>
+						<complexType>
+							<sequence>
+								<element ref="so:ContaminationType"/>
+							</sequence>
+							<attribute name="nilReason" type="gml:NilReasonType"/>
+						</complexType>
+					</element>
+					<element name="endLifespanVersion" nillable="true" minOccurs="0">
+						<annotation>
+							<documentation>-- Name --
+end lifespan version
+
+-- Definition --
+Date and time at which this version of the spatial object was superseded or retired in the spatial data set.</documentation>
+						</annotation>
+						<complexType>
+							<simpleContent>
+								<extension base="dateTime">
+									<attribute name="nilReason" type="gml:NilReasonType"/>
+								</extension>
+							</simpleContent>
+						</complexType>
+					</element>
+					<element name="isPartOf" type="so:SoilProfilePropertyType">
+						<annotation>
+							<documentation>-- Definition --
+a profile element is always part of a soil profile.</documentation>
+						</annotation>
+					</element>
+				</sequence>
+			</extension>
+		</complexContent>
+	</complexType>
+	<complexType name="ProfileElementPropertyType">
+		<sequence minOccurs="0">
+			<element ref="so:ProfileElement"/>
+		</sequence>
+		<attributeGroup ref="gml:AssociationAttributeGroup"/>
+		<attributeGroup ref="gml:OwnershipAttributeGroup"/>
+	</complexType>
+	<element name="WRBSoilType" type="so:WRBSoilTypeType" substitutionGroup="gml:AbstractObject">
+		<annotation>
+			<documentation>-- Name --
+WRB soil type
+
+-- Definition --
+identification of the soil profile according to the WRB 2006 classification schema.
+
+-- Description --
+EXAMPLE  Lixic Vetic Ferralsol (Ferric, Rhodic) soilClassificationSchema: WRB 2006.
+
+NOTE this data type is a simplification of the more complex WRB classification system, this generalisation is also used in the project BIOSOILS.</documentation>
+		</annotation>
+	</element>
+	<complexType name="WRBSoilTypeType">
+		<sequence>
+			<element name="referenceSoilGroup" type="gml:CodeType">
+				<annotation>
+					<documentation>-- Name --
+WRB reference soilgroup (RSG)
+
+-- Definition --
+first level of classification of the World Reference Base for Soil Resources.
+
+-- Description --
+&lt;i&gt;Reference Soil Groups&lt;/i&gt; are distinguished by the presence (or absence) of specific &lt;i&gt;diagnostic horizons, properties &lt;/i&gt;and/or&lt;i&gt; materials.&lt;/i&gt;
+NOTE The WRB soil classification system comprises 32 different RSGs.
+SOURCE World reference base for soil resources 2006.
+EXAMPLE Podzol</documentation>
+				</annotation>
+			</element>
+			<element name="qualifier_1" type="gml:CodeType" minOccurs="0">
+				<annotation>
+					<documentation>-- Name --
+qualifier_1
+
+-- Definition --
+first adjective describing the reference soil group.
+
+
+-- Description --
+comprises those qualifiers that are typically associated with the Reference Soil Group (RSG) (in order of their importance) and the intergrades to other RSGs (in order of the key).
+&lt;i&gt;Typically associated &lt;/i&gt;qualifiers are referred to in the WRB Key to the particular RSGs. &lt;i&gt;Intergrade &lt;/i&gt;qualifiers are those that reflect important diagnostic criteria of another RSG. The WRB Key will, in that case, dictate the choice of the RSG and the intergrade qualifier will provide the bridge to the other RSG.
+NOTE Prefix qualifier names are always put before the RSG.
+SOURCE World reference base for soil reusources 2006.</documentation>
+				</annotation>
+			</element>
+			<element name="specifier_1" type="gml:CodeType" minOccurs="0" maxOccurs="2">
+				<annotation>
+					<documentation>-- Name --
+specifier_1
+
+-- Definition --
+specifier for the adjective 1. Code that indicates the degree of expression of a qualifier or the depth range to which the qualifier applies.
+
+-- Description --
+Specifiers may be used to indicate depth of occurrence, or to express the intensity of soil characteristics. 
+EXAMPLE Buried layers can be indicated by the specifier &amp;ldquo;Thapto&amp;rdquo;.
+
+NOTE 1 The specifier code is always added after the qualifier code.
+
+NOTE 2 Some specifiers can be combined with each other for one qualifier.
+
+SOURCE World reference base for soil resources 2006.</documentation>
+				</annotation>
+			</element>
+			<element name="qualifier_2" type="gml:CodeType" minOccurs="0">
+				<annotation>
+					<documentation>-- Name --
+qualifier_2
+
+-- Definition --
+second adjective describing the reference soil group.
+
+
+-- Description --
+comprises those qualifiers that are typically associated with the Reference Soil Group (RSG) (in order of their importance) and the intergrades to other RSGs (in order of the key).
+&lt;i&gt;Typically associated &lt;/i&gt;qualifiers are referred to in the WRB Key to the particular RSGs. &lt;i&gt;Intergrade &lt;/i&gt;qualifiers are those that reflect important diagnostic criteria of another RSG. The WRB Key will, in that case, dictate the choice of the RSG and the intergrade qualifier will provide the bridge to the other RSG.
+NOTE Prefix qualifier names are always put before the RSG.
+SOURCE World reference base for soil reusources 2006.</documentation>
+				</annotation>
+			</element>
+			<element name="specifier_2" type="gml:CodeType" minOccurs="0" maxOccurs="2">
+				<annotation>
+					<documentation>-- Name --
+specifier_2
+
+-- Definition --
+specifier for the adjective 2. Code that indicates the degree of expression of a qualifier or the depth range to which the qualifier applies.
+
+-- Description --
+Specifiers may be used to indicate depth of occurrence, or to express the intensity of soil characteristics. 
+EXAMPLE Buried layers can be indicated by the specifier &amp;ldquo;Thapto&amp;rdquo;.
+
+NOTE 1 The specifier code is always added after the qualifier code.
+
+NOTE 2 Some specifiers can be combined with each other for one qualifier.
+
+SOURCE World reference base for soil resources 2006.</documentation>
+				</annotation>
+			</element>
+			<element name="qualifier_3" type="gml:CodeType" minOccurs="0">
+				<annotation>
+					<documentation>-- Name --
+qualifier_3
+
+-- Definition --
+third adjective describing the reference soil group.
+
+
+-- Description --
+comprises those qualifiers that are typically associated with the Reference Soil Group (RSG) (in order of their importance) and the intergrades to other RSGs (in order of the key).
+&lt;i&gt;Typically associated &lt;/i&gt;qualifiers are referred to in the WRB Key to the particular RSGs. &lt;i&gt;Intergrade &lt;/i&gt;qualifiers are those that reflect important diagnostic criteria of another RSG. The WRB Key will, in that case, dictate the choice of the RSG and the intergrade qualifier will provide the bridge to the other RSG.
+NOTE Prefix qualifier names are always put before the RSG.
+SOURCE World reference base for soil reusources 2006.</documentation>
+				</annotation>
+			</element>
+			<element name="specifier_3" type="gml:CodeType" minOccurs="0" maxOccurs="2">
+				<annotation>
+					<documentation>-- Name --
+specifier_3
+
+-- Definition --
+specifier for the adjective 3. Code that indicates the degree of expression of a qualifier or the depth range to which the qualifier applies.
+
+-- Description --
+Specifiers may be used to indicate depth of occurrence, or to express the intensity of soil characteristics. 
+EXAMPLE Buried layers can be indicated by the specifier &amp;ldquo;Thapto&amp;rdquo;.
+
+NOTE 1 The specifier code is always added after the qualifier code.
+
+NOTE 2 Some specifiers can be combined with each other for one qualifier.
+
+SOURCE World reference base for soil resources 2006.</documentation>
+				</annotation>
+			</element>
+			<element name="qualifier_4" type="gml:CodeType" minOccurs="0">
+				<annotation>
+					<documentation>-- Name --
+qualifier_4
+
+-- Definition --
+fourth adjective describing the reference soil group.
+
+
+-- Description --
+comprises those qualifiers that are typically associated with the Reference Soil Group (RSG) (in order of their importance) and the intergrades to other RSGs (in order of the key).
+&lt;i&gt;Typically associated &lt;/i&gt;qualifiers are referred to in the WRB Key to the particular RSGs. &lt;i&gt;Intergrade &lt;/i&gt;qualifiers are those that reflect important diagnostic criteria of another RSG. The WRB Key will, in that case, dictate the choice of the RSG and the intergrade qualifier will provide the bridge to the other RSG.
+NOTE Prefix qualifier names are always put before the RSG.
+SOURCE World reference base for soil reusources 2006.</documentation>
+				</annotation>
+			</element>
+			<element name="specifier_4" type="gml:CodeType" minOccurs="0" maxOccurs="2">
+				<annotation>
+					<documentation>-- Name --
+specifier_4
+
+-- Definition --
+specifier for the adjective 4. Code that indicates the degree of expression of a qualifier or the depth range to which the qualifier applies.
+
+-- Description --
+Specifiers may be used to indicate depth of occurrence, or to express the intensity of soil characteristics. 
+EXAMPLE Buried layers can be indicated by the specifier &amp;ldquo;Thapto&amp;rdquo;.
+
+NOTE 1 The specifier code is always added after the qualifier code.
+
+NOTE 2 Some specifiers can be combined with each other for one qualifier.
+
+SOURCE World reference base for soil resources 2006.</documentation>
+				</annotation>
+			</element>
+			<element name="qualifier_5" type="gml:CodeType" minOccurs="0">
+				<annotation>
+					<documentation>-- Name --
+qualifier_5
+
+-- Definition --
+fifth adjective describing the reference soil group.
+
+
+-- Description --
+comprises those qualifiers that are typically associated with the Reference Soil Group (RSG) (in order of their importance) and the intergrades to other RSGs (in order of the key).
+&lt;i&gt;Typically associated &lt;/i&gt;qualifiers are referred to in the WRB Key to the particular RSGs. &lt;i&gt;Intergrade &lt;/i&gt;qualifiers are those that reflect important diagnostic criteria of another RSG. The WRB Key will, in that case, dictate the choice of the RSG and the intergrade qualifier will provide the bridge to the other RSG.
+NOTE Prefix qualifier names are always put before the RSG.
+SOURCE World reference base for soil reusources 2006.</documentation>
+				</annotation>
+			</element>
+			<element name="specifier_5" type="gml:CodeType" minOccurs="0" maxOccurs="2">
+				<annotation>
+					<documentation>-- Name --
+specifier_5
+
+-- Definition --
+specifier for the adjective 5. Code that indicates the degree of expression of a qualifier or the depth range to which the qualifier applies.
+
+-- Description --
+Specifiers may be used to indicate depth of occurrence, or to express the intensity of soil characteristics. 
+EXAMPLE Buried layers can be indicated by the specifier &amp;ldquo;Thapto&amp;rdquo;.
+
+NOTE 1 The specifier code is always added after the qualifier code.
+
+NOTE 2 Some specifiers can be combined with each other for one qualifier.
+
+SOURCE World reference base for soil resources 2006.</documentation>
+				</annotation>
+			</element>
+			<element name="qualifier_6" type="gml:CodeType" minOccurs="0">
+				<annotation>
+					<documentation>-- Name --
+qualifier_6
+
+-- Definition --
+sixth adjective describing the reference soil group.
+
+
+-- Description --
+comprises those qualifiers that are typically associated with the Reference Soil Group (RSG) (in order of their importance) and the intergrades to other RSGs (in order of the key).
+&lt;i&gt;Typically associated &lt;/i&gt;qualifiers are referred to in the WRB Key to the particular RSGs. &lt;i&gt;Intergrade &lt;/i&gt;qualifiers are those that reflect important diagnostic criteria of another RSG. The WRB Key will, in that case, dictate the choice of the RSG and the intergrade qualifier will provide the bridge to the other RSG.
+NOTE Prefix qualifier names are always put before the RSG.
+SOURCE World reference base for soil reusources 2006.</documentation>
+				</annotation>
+			</element>
+			<element name="specifier_6" type="gml:CodeType" minOccurs="0" maxOccurs="2">
+				<annotation>
+					<documentation>-- Name --
+specifier_6
+
+-- Definition --
+specifier for the adjective 6. Code that indicates the degree of expression of a qualifier or the depth range to which the qualifier applies.
+
+-- Description --
+Specifiers may be used to indicate depth of occurrence, or to express the intensity of soil characteristics. 
+EXAMPLE Buried layers can be indicated by the specifier &amp;ldquo;Thapto&amp;rdquo;.
+
+NOTE 1 The specifier code is always added after the qualifier code.
+
+NOTE 2 Some specifiers can be combined with each other for one qualifier.
+
+SOURCE World reference base for soil resources 2006.</documentation>
+				</annotation>
+			</element>
+		</sequence>
+	</complexType>
+	<complexType name="WRBSoilTypePropertyType">
+		<sequence>
+			<element ref="so:WRBSoilType"/>
+		</sequence>
+	</complexType>
+	<element name="ObservedSoilProfile" type="so:ObservedSoilProfileType" substitutionGroup="so:SoilProfile">
+		<annotation>
+			<documentation>-- Name --
+observed soil profile
+
+-- Definition -- 
+a representation of a soil profile found on a specific location which is described based on observations in a trial pit or a borehole.
+
+-- Description --
+The observed soil profile corresponds to a set of data taken directly from a georeferenced&lt;b&gt; &lt;/b&gt;soil profile, described in the field, and often sampled, and analysed in the laboratory.</documentation>
+		</annotation>
+	</element>
+	<complexType name="ObservedSoilProfileType">
+		<complexContent>
+			<extension base="so:SoilProfileType">
+				<sequence>
+					<element name="potentialRootDepth" nillable="true">
+						<annotation>
+							<documentation>-- Name --
+potential root depth
+
+-- Definition --
+potential depth of the soil profile where roots develop (in cm).
+
+-- Description --
+This depth must take in account the presence of obstacle to roots.
+An obstacle can be:
+&lt;ul&gt;
+	&lt;li&gt;a toxic layer resulting from low pH values and associated high concentrations of Al and heavy metals, or a high salt content, etc.;&lt;/li&gt;
+	&lt;li&gt;a layer with few oxygen available for plant roots resulting from the presence of permanent or a perched water table, or the presence of a decomposing peat layer, etc;&lt;/li&gt;
+	&lt;li&gt;a hard rock;&lt;/li&gt;
+	&lt;li&gt;an impermeable layer such as a fragipan, an iron pan, clay layers in sediments or as result of pedogenesis.&lt;/li&gt;
+&lt;/ul&gt;</documentation>
+						</annotation>
+						<complexType>
+							<simpleContent>
+								<extension base="gml:MeasureType">
+									<attribute name="nilReason" type="gml:NilReasonType"/>
+								</extension>
+							</simpleContent>
+						</complexType>
+					</element>
+					<element name="location" type="so:SoilPlotPropertyType">
+						<annotation>
+							<documentation>-- Definition --
+the location of an observed profile is the soilplot.</documentation>
+							<appinfo>
+								<reversePropertyName xmlns="http://www.opengis.net/gml/3.2">so:observedProfile</reversePropertyName>
+							</appinfo>
+						</annotation>
+					</element>
+				</sequence>
+			</extension>
+		</complexContent>
+	</complexType>
+	<complexType name="ObservedSoilProfilePropertyType">
+		<sequence minOccurs="0">
+			<element ref="so:ObservedSoilProfile"/>
+		</sequence>
+		<attributeGroup ref="gml:AssociationAttributeGroup"/>
+		<attributeGroup ref="gml:OwnershipAttributeGroup"/>
+	</complexType>
+	<element name="SoilType" type="so:SoilTypeType" substitutionGroup="gml:AbstractObject">
+		<annotation>
+			<documentation>-- Name --
+local soil type
+
+-- Definition --
+identification of the soil profile according to a specific classification schema other than WRB 2006.
+
+-- Description --
+EXAMPLE Fluventic Haploxerept, according to Soil Taxonomy (USDA 2006).</documentation>
+		</annotation>
+	</element>
+	<complexType name="SoilTypeType">
+		<sequence>
+			<element name="soilName" type="string">
+				<annotation>
+					<documentation>-- Name --
+soil name
+
+-- Definition --
+name of the soil profile according to a specific classification schema other than WRB 2006.
+
+-- Description --
+EXAMPLE Fluventic Haploxerept, according to Soil Taxonomy (USDA 2006).</documentation>
+				</annotation>
+			</element>
+			<element name="soilClassificationScheme">
+				<annotation>
+					<documentation>-- Name --
+soil classification scheme
+
+-- Definition --
+the name of the soil classification which is used to classify the soil.
+
+-- Description --
+EXAMPLE Soil Taxonomy (USDA 2006)</documentation>
+				</annotation>
+				<complexType>
+					<complexContent>
+						<extension base="gml:AbstractMetadataPropertyType">
+							<sequence>
+								<element ref="gmd:CI_Citation"/>
+							</sequence>
+						</extension>
+					</complexContent>
+				</complexType>
+			</element>
+		</sequence>
+	</complexType>
+	<complexType name="SoilTypePropertyType">
+		<sequence>
+			<element ref="so:SoilType"/>
+		</sequence>
+	</complexType>
+	<element name="SoilSample" type="so:SoilSampleType" substitutionGroup="gml:AbstractFeature">
+		<annotation>
+			<documentation>-- Name --
+soil sample
+-- Definition --
+certain quantity of soil taken at a specific location and depth from which one or more soil properties will be observed.</documentation>
+		</annotation>
+	</element>
+	<complexType name="SoilSampleType">
+		<complexContent>
+			<extension base="gml:AbstractFeatureType">
+				<sequence>
+					<element name="inspireId" type="base:IdentifierPropertyType">
+						<annotation>
+							<documentation>-- Name --
+inspire Id
+
+-- Definition --
+External object identifier of the soil profile.
+
+-- Description --
+NOTE An external object identifier is a unique object identifier published by the responsible body, which may be used by external applications to reference the spatial object. The identifier is an identifier of the spatial object, not an identifier of the real-world phenomenon.</documentation>
+						</annotation>
+					</element>
+					<element name="localIdentifier" nillable="true" minOccurs="0">
+						<annotation>
+							<documentation>-- Name --
+profile identifier
+
+-- Definition --
+unique identifier of the soil profile given by the data provider of the dataset.</documentation>
+						</annotation>
+						<complexType>
+							<simpleContent>
+								<extension base="string">
+									<attribute name="nilReason" type="gml:NilReasonType"/>
+								</extension>
+							</simpleContent>
+						</complexType>
+					</element>
+					<element name="sampledDepthRange" nillable="true">
+						<annotation>
+							<documentation>-- Name --
+sampled depth range
+-- Definition --
+interval that defines the limits of depth (in cm) at which the soil sample is taken.
+-- Description --
+NOTE Following rules should be taken into account:
+&lt;ul&gt;
+	&lt;li&gt;lowerBoundary and upperBoundary:  should be positive values,  &lt;/li&gt;
+	&lt;li&gt;lowerBoundary is the depth of the top of the sample (e.g. 20cm)&lt;/li&gt;
+	&lt;li&gt;upperBoundary is the depth of the bottom of the sample (e.g. 40cm)&lt;/li&gt;
+	&lt;li&gt;lowerBoundary must be smaller than or equal to upperBoundary&lt;/li&gt;
+	&lt;li&gt;if lowerBoundary equals upperBoundary: soil sample is taken at a single depth;&lt;/li&gt;
+	&lt;li&gt;if only lowerBoundary is indicated: it has no meaning&lt;/li&gt;
+	&lt;li&gt;if only upperBoundary is indicated: it is assumed that the lowerBoundary equals 0, and thus the range is between 0 and the upperBoundary value&lt;/li&gt;
+&lt;/ul&gt;</documentation>
+						</annotation>
+						<complexType>
+							<sequence>
+								<element ref="so:RangeType"/>
+							</sequence>
+							<attribute name="nilReason" type="gml:NilReasonType"/>
+						</complexType>
+					</element>
+					<element name="sampledProperty" maxOccurs="unbounded">
+						<annotation>
+							<documentation>-- Name --
+sampled property
+
+-- Definition --
+any kind of soil property which is the subject of sampling.</documentation>
+						</annotation>
+						<complexType>
+							<complexContent>
+								<extension base="gml:AbstractMemberType">
+									<sequence minOccurs="0">
+										<element ref="gml:AbstractObject"/>
+									</sequence>
+									<attributeGroup ref="gml:AssociationAttributeGroup"/>
+								</extension>
+							</complexContent>
+						</complexType>
+					</element>
+					<element name="beginLifespanVersion" nillable="true">
+						<annotation>
+							<documentation>-- Name --
+begin lifespan version
+
+-- Definition --
+Date and time at which this version of the spatial object was inserted or changed in the spatial data set.</documentation>
+						</annotation>
+						<complexType>
+							<simpleContent>
+								<extension base="dateTime">
+									<attribute name="nilReason" type="gml:NilReasonType"/>
+								</extension>
+							</simpleContent>
+						</complexType>
+					</element>
+					<element name="endLifespanVersion" nillable="true" minOccurs="0">
+						<annotation>
+							<documentation>-- Name --
+end lifespan version
+
+-- Definition --
+Date and time at which this version of the spatial object was superseded or retired in the spatial data set.</documentation>
+						</annotation>
+						<complexType>
+							<simpleContent>
+								<extension base="dateTime">
+									<attribute name="nilReason" type="gml:NilReasonType"/>
+								</extension>
+							</simpleContent>
+						</complexType>
+					</element>
+					<element name="isTakenFrom" nillable="true">
+						<annotation>
+							<documentation>-- Definition --
+a soil sample is taken from a location in the field i.e. the soil plot.</documentation>
+							<appinfo>
+								<reversePropertyName xmlns="http://www.opengis.net/gml/3.2">so:isSampledBy</reversePropertyName>
+							</appinfo>
+						</annotation>
+						<complexType>
+							<sequence minOccurs="0">
+								<element ref="so:SoilPlot"/>
+							</sequence>
+							<attributeGroup ref="gml:AssociationAttributeGroup"/>
+							<attributeGroup ref="gml:OwnershipAttributeGroup"/>
+						</complexType>
+					</element>
+				</sequence>
+			</extension>
+		</complexContent>
+	</complexType>
+	<complexType name="SoilSamplePropertyType">
+		<sequence minOccurs="0">
+			<element ref="so:SoilSample"/>
+		</sequence>
+		<attributeGroup ref="gml:AssociationAttributeGroup"/>
+		<attributeGroup ref="gml:OwnershipAttributeGroup"/>
+	</complexType>
+	<element name="FAOHorizonNotationType" type="so:FAOHorizonNotationTypeType" substitutionGroup="gml:AbstractObject">
+		<annotation>
+			<documentation>-- Name --
+horizon notation type
+
+-- Definition --
+classification of a horizon according to FAO classification system.
+
+-- Description --
+A code system representing horizons where the same dominant soil forming processes have been active. This code summarizes many observations of the soil description and gives an impression about the genetic processes that have formed the soil under observation.
+
+NOTE The horizon notation according to FAO is a combination of several symbols:
+&lt;ul&gt;
+	&lt;li&gt;A number that gives information about discontinuities, i.e. the number of materials in which the soil has formed.&lt;/li&gt;
+	&lt;li&gt;One or two capital letters that designate the type of master horizon (or transitional horizon).&lt;/li&gt;
+	&lt;li&gt;Lowercase letters that designate subordinate characteristics of the horizon. &lt;/li&gt;
+	&lt;li&gt;A number that designate vertical subdivisions. &lt;/li&gt;
+&lt;/ul&gt;
+
+EXAMPLE 2Btg1
+
+SOURCE 1 Guidelines for Soil description. FAO, 2006
+
+SOURCE 2 Biosoil project</documentation>
+		</annotation>
+	</element>
+	<complexType name="FAOHorizonNotationTypeType">
+		<sequence>
+			<element name="horizonDiscontinuity" type="gml:CodeType" minOccurs="0">
+				<annotation>
+					<documentation>-- Name --
+horizon discontinuity
+
+-- Definition --
+number used to indicate a discontinuity in the horizon notation.
+
+-- Description --
+When the soil has formed entirely in one kind of material, no number is used (the field is empty). When the soil has formed in several materials:
+&lt;ul&gt;
+	&lt;li&gt;The upper part of the soil profile (corresponding to the first material) will be designated without number.&lt;/li&gt;
+	&lt;li&gt;The part of the soil profile corresponding to the second material will be designated with the number 2.&lt;/li&gt;
+	&lt;li&gt;The part of the soil profile corresponding to the third material will be designated with the number 3.&lt;/li&gt;
+&lt;/ul&gt;</documentation>
+				</annotation>
+			</element>
+			<element name="horizonMaster" type="gml:CodeType">
+				<annotation>
+					<documentation>-- Name --
+horizon master
+
+-- Definition --
+symbol of the master part of the horizon notation.
+
+-- Description --
+NOTE: a non exhaustive list is given
+SOURCE Guidelines for soil description (4th ed.) FAO 2006 p. 67</documentation>
+				</annotation>
+			</element>
+			<element name="horizonSubordinate" type="gml:CodeType" minOccurs="0" maxOccurs="4">
+				<annotation>
+					<documentation>-- Name --
+horizon subordinate
+
+-- Definition --
+designations of subordinate distinctions and features within the master horizons and layers are based on profile characteristics observable in the field and are applied during the description of the soil at the site.
+
+-- Description --
+Lower case letters are used as suffixes to designate specific kinds of master horizons and layers, and other features.
+
+SOURCE Guidelines for soil description (4th ed.) FAO 2006, table 85</documentation>
+				</annotation>
+			</element>
+			<element name="horizonVertical" type="integer" minOccurs="0">
+				<annotation>
+					<documentation>-- Name --
+horizon vertical
+
+-- Definition --
+order number of the vertical subdivision in the horizon notation.
+
+-- Description --
+the number is used to designate the vertical subdivision of a master horizon on the basis of structure, texture, colour, etc. 
+The number 1 is used to designate the upper part of the master horizon. The number 2 the part of the master horizon situated below, etc. If there is no vertical subdivision, no number is given.</documentation>
+				</annotation>
+			</element>
+		</sequence>
+	</complexType>
+	<complexType name="FAOHorizonNotationTypePropertyType">
+		<sequence>
+			<element ref="so:FAOHorizonNotationType"/>
+		</sequence>
+	</complexType>
+	<element name="RangeType" type="so:RangeTypeType" substitutionGroup="gml:AbstractObject">
+		<annotation>
+			<documentation>-- Name --
+range type
+
+-- Definition --
+a range value using upper and lower bounds.</documentation>
+		</annotation>
+	</element>
+	<complexType name="RangeTypeType">
+		<sequence>
+			<element name="upperBoundary" nillable="true">
+				<annotation>
+					<documentation>-- Name --
+upper boundary
+
+-- Definition --
+value defining the upper limit of a specific property.</documentation>
+				</annotation>
+				<complexType>
+					<simpleContent>
+						<extension base="gml:MeasureType">
+							<attribute name="nilReason" type="gml:NilReasonType"/>
+						</extension>
+					</simpleContent>
+				</complexType>
+			</element>
+			<element name="lowerBoundary" nillable="true">
+				<annotation>
+					<documentation>-- Name --
+lower boundary
+
+-- Definition --
+value defining the lower limit of a specific property.</documentation>
+				</annotation>
+				<complexType>
+					<simpleContent>
+						<extension base="gml:MeasureType">
+							<attribute name="nilReason" type="gml:NilReasonType"/>
+						</extension>
+					</simpleContent>
+				</complexType>
+			</element>
+		</sequence>
+	</complexType>
+	<complexType name="RangeTypePropertyType">
+		<sequence>
+			<element ref="so:RangeType"/>
+		</sequence>
+	</complexType>
+	<element name="SoilLayer" type="so:SoilLayerType" substitutionGroup="so:ProfileElement">
+		<annotation>
+			<documentation>-- Name --
+Soil layer
+
+-- Definition --
+domain of a soil with a certain vertical extension developed through non-pedogenic processes, displaying an unconformity to possibly over- or underlying adjacent domains.
+
+-- Description --
+NOTE1 Different kinds of layer concepts are covered by this definition. 
+
+EXAMPLE 1 Geogenic layers: These are domains, resulting from e.g. sedimentation (as non-pedogenic) processes, that display an unconformity to possibly over- or underlying adjacent domains.
+
+EXAMPLE 2 Topsoil and Subsoil: These can be domains that group different soil horizon types (e.g. A vs. B horizons), or a special case of fixed depths with only two depth ranges (e.g. 0-15 cm: topsoil and, 15-75 cm: subsoil).
+
+EXAMPLE 3 Depth intervals: They are often used in soil monitoring, sampling of contaminated sites and in modelling and include: (i) depth increments (also called fixed depths) that are often used for sampling, e.g. 0-30cm, 30-60cm, and so on, (ii) a single depth range in which a soil sample (&amp;rdquo;specimen&amp;rdquo;) is taken and for which the analytical result is valid, and (iii) soil slicing, that is, profile segmentation according to a specified vector, for instance, either regularly spaced intervals (1cm), or a user-defined vector of segment boundaries (i.e. 0-10, 10-25, 25-50, 50-100). Slicing is used in modelling to generate continuous depth functions for soil properties.
+
+EXAMPLE 4: In the framework of soils deeply modified by human activity, artificial layers may be due to different kinds of deposits (concrete, bricks, &amp;hellip;). 
+SOURCE WD ISO28258</documentation>
+		</annotation>
+	</element>
+	<complexType name="SoilLayerType">
+		<complexContent>
+			<extension base="so:ProfileElementType">
+				<sequence>
+					<element name="layerType" type="gml:CodeType">
+						<annotation>
+							<documentation>-- Name --
+layer type
+
+-- Definition --
+classification of a layer according to the concept that fits the purpose.
+
+-- Description --
+EXAMPLE Topsoil: meaning the upper part of the natural soil that is generally dark coloured and has a higher content of organic matter and nutrients when compared to the (mineral ) horizons below excluding the humus layer.</documentation>
+						</annotation>
+					</element>
+					<element name="layerGenesis" nillable="true">
+						<annotation>
+							<documentation>-- Name --
+layer genesis
+
+-- Definition --
+last non-pedogenetic process (geologic or anthropogenic) that coined the material composition and internal structure of the layer.</documentation>
+						</annotation>
+						<complexType>
+							<simpleContent>
+								<extension base="gml:CodeType">
+									<attribute name="nilReason" type="gml:NilReasonType"/>
+								</extension>
+							</simpleContent>
+						</complexType>
+					</element>
+					<element name="layerRockType" nillable="true">
+						<annotation>
+							<documentation>-- Name --
+layer rock type
+&lt;font color="#ff0000"&gt;
+&lt;/font&gt;-- Definition --
+type of the material in which the layer developped.
+
+-- Description --
+simplified list of  terms to &amp;ldquo;classify&amp;rdquo; geologic units</documentation>
+						</annotation>
+						<complexType>
+							<simpleContent>
+								<extension base="gml:CodeType">
+									<attribute name="nilReason" type="gml:NilReasonType"/>
+								</extension>
+							</simpleContent>
+						</complexType>
+					</element>
+				</sequence>
+			</extension>
+		</complexContent>
+	</complexType>
+	<complexType name="SoilLayerPropertyType">
+		<sequence minOccurs="0">
+			<element ref="so:SoilLayer"/>
+		</sequence>
+		<attributeGroup ref="gml:AssociationAttributeGroup"/>
+		<attributeGroup ref="gml:OwnershipAttributeGroup"/>
+	</complexType>
+	<element name="SoilComplex" type="so:SoilComplexType" substitutionGroup="gml:AbstractFeature">
+		<annotation>
+			<documentation>-- Name --
+soil complex
+
+-- Definition --
+part of the soil cover that is delineated and that is homogeneous with regard to certain soil properties and/or spatial patterns.
+
+-- Description --
+The soil complex is characterized by a set of derived soil profiles and represents an association (or other type of spatial interlinkage) of various soil types that are found together in the area specified by the &amp;ldquo;geometry&amp;rdquo; attribute of the SoilComplex.
+
+NOTE 1 These soil types combined to form the soil complex are not spatially defined, but their presence is indicated by a range percentage of area. The underlying reason behind the fact of not delineating the different soil types within a soil complex is the target scale of the map. This means that geographical accuracy and preciseness of soil characterisation depend on and vary with the target scale, i.e. the soil complex can be delineated differently among scales.
+
+NOTE 2 The soil complex is also called: mapping unit, soil association, etc.</documentation>
+		</annotation>
+	</element>
+	<complexType name="SoilComplexType">
+		<complexContent>
+			<extension base="gml:AbstractFeatureType">
+				<sequence>
+					<element name="inspireId" type="base:IdentifierPropertyType">
+						<annotation>
+							<documentation>-- Name --
+inspire Id
+
+-- Definition --
+External object identifier of the soil complex.
+
+-- Description --
+NOTE An external object identifier is a unique object identifier published by the responsible body, which may be used by external applications to reference the spatial object. The identifier is an identifier of the spatial object, not an identifier of the real-world phenomenon.</documentation>
+						</annotation>
+					</element>
+					<element name="geometry" type="gml:MultiSurfacePropertyType">
+						<annotation>
+							<documentation>-- Name --
+geometry
+
+-- Definition --
+The geometry defining the boundary of the Soil Complex.</documentation>
+						</annotation>
+					</element>
+					<element name="soilComplexLabel" nillable="true" minOccurs="0">
+						<annotation>
+							<documentation>-- Name --
+soil complex label
+
+-- Definition --
+name or name-like description of the soil complex.
+
+-- Description --
+It&amp;rsquo;s the explanatory legend unit of the map.
+EXAMPLE Unidad Cartográfica 1: Terrazas altas del Cidacos y del Aragón (70-80 m).</documentation>
+						</annotation>
+						<complexType>
+							<sequence>
+								<element ref="so:SoilComplexLabelType"/>
+							</sequence>
+							<attribute name="nilReason" type="gml:NilReasonType"/>
+						</complexType>
+					</element>
+					<element name="beginLifespanVersion" nillable="true">
+						<annotation>
+							<documentation>-- Name --
+begin lifespan version
+
+-- Definition --
+Date and time at which this version of the spatial object was inserted or changed in the spatial data set.</documentation>
+						</annotation>
+						<complexType>
+							<simpleContent>
+								<extension base="dateTime">
+									<attribute name="nilReason" type="gml:NilReasonType"/>
+								</extension>
+							</simpleContent>
+						</complexType>
+					</element>
+					<element name="endLifespanVersion" nillable="true" minOccurs="0">
+						<annotation>
+							<documentation>-- Name --
+end lifespan version
+
+-- Definition --
+Date and time at which this version of the spatial object was superseded or retired in the spatial data set.</documentation>
+						</annotation>
+						<complexType>
+							<simpleContent>
+								<extension base="dateTime">
+									<attribute name="nilReason" type="gml:NilReasonType"/>
+								</extension>
+							</simpleContent>
+						</complexType>
+					</element>
+					<element name="isDescribedBy" nillable="true" maxOccurs="unbounded">
+						<annotation>
+							<documentation>-- Definition --
+the derived soil profiles that take part in the Soil Complex.</documentation>
+						</annotation>
+						<complexType>
+							<sequence minOccurs="0">
+								<element ref="so:DerivedProfilePresenceInSoilComplex"/>
+							</sequence>
+							<attributeGroup ref="gml:AssociationAttributeGroup"/>
+							<attributeGroup ref="gml:OwnershipAttributeGroup"/>
+						</complexType>
+					</element>
+				</sequence>
+			</extension>
+		</complexContent>
+	</complexType>
+	<complexType name="SoilComplexPropertyType">
+		<sequence minOccurs="0">
+			<element ref="so:SoilComplex"/>
+		</sequence>
+		<attributeGroup ref="gml:AssociationAttributeGroup"/>
+		<attributeGroup ref="gml:OwnershipAttributeGroup"/>
+	</complexType>
+	<element name="ChemicalParametersType" type="so:ChemicalParametersTypeType" substitutionGroup="gml:AbstractObject">
+		<annotation>
+			<documentation>-- Name --
+chemical parameters type
+
+-- Definition --
+set of relevant quantitative chemical properties of the profile element (layer or horizon).
+
+-- Description --
+SOURCE Soil survey laboratory information manual version 1.0
+EXAMPLE pH values</documentation>
+		</annotation>
+	</element>
+	<complexType name="ChemicalParametersTypeType">
+		<sequence>
+			<element name="baseSaturation" nillable="true">
+				<annotation>
+					<documentation>-- Name --
+base saturation
+
+-- Definition --
+the degree of saturation of the adsorption  complex of the soil; that is, its occupation by exchangeable basic cations, or cations other than aluminium and hydrogen, expressed as a percentage of the total cation-exchange capacity.
+
+-- Description --
+SOURCE Dictionary of Plant Sciences 1998
+http://www.encyclopedia.com/A+Dictionary+of+Plant+Sciences/publications.aspx?pageNumber=1</documentation>
+				</annotation>
+				<complexType>
+					<simpleContent>
+						<extension base="gml:MeasureType">
+							<attribute name="nilReason" type="gml:NilReasonType"/>
+						</extension>
+					</simpleContent>
+				</complexType>
+			</element>
+			<element name="carbonateContent" nillable="true">
+				<annotation>
+					<documentation>-- Name --
+carbonate content
+
+-- Definition --
+total calcium carbonate (CaCO3), determined on the &lt;2-mm fine-earth fraction and expressed in a range of percentages. 
+
+-- Description --
+SOURCE Soil survey laboratory information manual version 1.0 pag 109 
+NOTE it is often measured on a gasvolumetric basis and expressed as calcium carbonate equivalent
+EXAMPLE percentage value of calcium carbonate equivalent</documentation>
+				</annotation>
+				<complexType>
+					<simpleContent>
+						<extension base="gml:MeasureType">
+							<attribute name="nilReason" type="gml:NilReasonType"/>
+						</extension>
+					</simpleContent>
+				</complexType>
+			</element>
+			<element name="cationExchangeCapacity" nillable="true">
+				<annotation>
+					<documentation>-- Name --
+cation exchange capacity
+
+-- Definition --
+measure of the quantity of readily exchangeable cations that neutralize negative charges of the soil exchange complex expressed as cmol(+)100g&lt;sup&gt;-1&lt;/sup&gt;
+
+-- Description --
+SOURCE Soil survey laboratory information manual version 2.0 pag 121 
+EXAMPLE 24 centimoles positive charge per 100 g of soil (cmol(+)/100g)</documentation>
+				</annotation>
+				<complexType>
+					<simpleContent>
+						<extension base="gml:MeasureType">
+							<attribute name="nilReason" type="gml:NilReasonType"/>
+						</extension>
+					</simpleContent>
+				</complexType>
+			</element>
+			<element name="organicCarbonContent" nillable="true">
+				<annotation>
+					<documentation>-- Name --
+organic carbon content
+
+-- Definition --
+portion of the soil measured as carbon in organic forms, including dissolved (DOC: Dissolved Organic Carbon) and total organic compounds (TOC: Total Organic Carbon), expressed in a range of percentages.
+
+-- Description --
+SOURCE 1 ISO 11074:2005 
+NOTE Organic carbon content can serve as an indirect determination of organic matter through the use of an approximate correction factor. The &amp;ldquo;Van Bemmelen factor&amp;rdquo; of 1.724 has been used for many years and is based on the assumption that organic matter contains 58 percent organic carbon. The literature indicates that the proportion of organic C in soil organic matter for a range of soils is highly variable. Any constant factor that is selected is only an approximation. 
+The ecuation for the estimation of the organic matter according to this factor is the following one: OM (%) = 1.724 x OC (%)
+SOURCE 2 Soil survey laboratory information manual version 2.0</documentation>
+				</annotation>
+				<complexType>
+					<simpleContent>
+						<extension base="gml:MeasureType">
+							<attribute name="nilReason" type="gml:NilReasonType"/>
+						</extension>
+					</simpleContent>
+				</complexType>
+			</element>
+			<element name="pH" nillable="true">
+				<annotation>
+					<documentation>-- Name --
+pH
+
+-- Definition --
+negative logaritm to the base of 10 of H-ion activity, by using water or dilute salt solution.
+
+-- Description --
+SOURCE Soil survey laboratory information manual version 1.0  (SSL)
+NOTE SSL 1.0 determines the 1 N KCl pH, the 1 N NaF pH, the  1:1 water pH, and 1:2 CaCl2 pH. The SSL also determines the 0.01 M CaCl2 pH for organic materials, saturated paste pH, and oxidized pH.
+EXAMPLE pH value  at 1:2 soil water ratio</documentation>
+				</annotation>
+				<complexType>
+					<simpleContent>
+						<extension base="gml:MeasureType">
+							<attribute name="nilReason" type="gml:NilReasonType"/>
+						</extension>
+					</simpleContent>
+				</complexType>
+			</element>
+		</sequence>
+	</complexType>
+	<complexType name="ChemicalParametersTypePropertyType">
+		<sequence>
+			<element ref="so:ChemicalParametersType"/>
+		</sequence>
+	</complexType>
+	<element name="SoilPlot" type="so:SoilPlotType" substitutionGroup="gml:AbstractFeature">
+		<annotation>
+			<documentation>-- Name --
+soil plot
+
+-- Definition --
+spot where a specific soil investigation is carried out.
+
+-- Description --
+NOTE 1: For observed soil profiles, a spot location has to be defined. It is the place on which the observation is made. The profile is an observation on the plot.
+
+NOTE 2: All types of plots only provide locality, but no soil information itself. 
+
+EXAMPLE A borehole is the location where you gather the information to abstract a profile information from.
+
+SOURCE GS Soil</documentation>
+		</annotation>
+	</element>
+	<complexType name="SoilPlotType">
+		<complexContent>
+			<extension base="gml:AbstractFeatureType">
+				<sequence>
+					<element name="inspireId" type="base:IdentifierPropertyType">
+						<annotation>
+							<documentation>-- Name --
+inspire Id
+
+-- Definition --
+External object identifier of the soil plot.
+
+-- Description --
+NOTE An external object identifier is a unique object identifier published by the responsible body, which may be used by external applications to reference the spatial object. The identifier is an identifier of the spatial object, not an identifier of the real-world phenomenon.</documentation>
+						</annotation>
+					</element>
+					<element name="soilPlotLocation" type="spec:LocationPropertyType">
+						<annotation>
+							<documentation>-- Name --
+soil plot location
+
+-- Definition --
+a reference to a location on the earth; it can be a point location identified by coordinates or a description of the location using text or an identifier.
+
+-- Description --
+EXAMPLE reference to a place name, municipality or reference to an exact X,Y location</documentation>
+						</annotation>
+					</element>
+					<element name="soilPlotType" type="gml:CodeType">
+						<annotation>
+							<documentation>-- Name --
+soil plot type
+
+-- Definition --
+gives information on what kind of plot the observation of the soil is made.
+
+-- Description --
+NOTE Trial pits, boreholes or surfaces can be seen as types of soil plots.</documentation>
+						</annotation>
+					</element>
+					<element name="beginLifespanVersion" nillable="true">
+						<annotation>
+							<documentation>-- Name --
+begin lifespan version
+
+-- Definition --
+Date and time at which this version of the spatial object was inserted or changed in the spatial data set.</documentation>
+						</annotation>
+						<complexType>
+							<simpleContent>
+								<extension base="dateTime">
+									<attribute name="nilReason" type="gml:NilReasonType"/>
+								</extension>
+							</simpleContent>
+						</complexType>
+					</element>
+					<element name="endLifespanVersion" nillable="true" minOccurs="0">
+						<annotation>
+							<documentation>-- Name --
+end lifespan version
+
+-- Definition --
+Date and time at which this version of the spatial object was superseded or retired in the spatial data set.</documentation>
+						</annotation>
+						<complexType>
+							<simpleContent>
+								<extension base="dateTime">
+									<attribute name="nilReason" type="gml:NilReasonType"/>
+								</extension>
+							</simpleContent>
+						</complexType>
+					</element>
+					<element name="observedProfile" nillable="true" minOccurs="0">
+						<annotation>
+							<documentation>-- Definition --
+a soil plot is the location at which a profile can be observed.</documentation>
+							<appinfo>
+								<reversePropertyName xmlns="http://www.opengis.net/gml/3.2">so:location</reversePropertyName>
+							</appinfo>
+						</annotation>
+						<complexType>
+							<sequence minOccurs="0">
+								<element ref="so:ObservedSoilProfile"/>
+							</sequence>
+							<attributeGroup ref="gml:AssociationAttributeGroup"/>
+							<attributeGroup ref="gml:OwnershipAttributeGroup"/>
+						</complexType>
+					</element>
+					<element name="isSampledBy" nillable="true" minOccurs="0" maxOccurs="unbounded">
+						<annotation>
+							<documentation>-- Definition --
+on a Soil Plot several soil samples can be taken to observe one or many soil properties.</documentation>
+							<appinfo>
+								<reversePropertyName xmlns="http://www.opengis.net/gml/3.2">so:isTakenFrom</reversePropertyName>
+							</appinfo>
+						</annotation>
+						<complexType>
+							<sequence minOccurs="0">
+								<element ref="so:SoilSample"/>
+							</sequence>
+							<attributeGroup ref="gml:AssociationAttributeGroup"/>
+							<attributeGroup ref="gml:OwnershipAttributeGroup"/>
+						</complexType>
+					</element>
+					<element name="locatedOn" nillable="true" minOccurs="0">
+						<annotation>
+							<documentation>-- Definition --
+a soil plot (location of a soil observation) is located on maximum 1 soil site.</documentation>
+							<appinfo>
+								<reversePropertyName xmlns="http://www.opengis.net/gml/3.2">so:isObservedOnLocation</reversePropertyName>
+							</appinfo>
+						</annotation>
+						<complexType>
+							<sequence minOccurs="0">
+								<element ref="so:SoilSite"/>
+							</sequence>
+							<attributeGroup ref="gml:AssociationAttributeGroup"/>
+							<attributeGroup ref="gml:OwnershipAttributeGroup"/>
+						</complexType>
+					</element>
+				</sequence>
+			</extension>
+		</complexContent>
+	</complexType>
+	<complexType name="SoilPlotPropertyType">
+		<sequence minOccurs="0">
+			<element ref="so:SoilPlot"/>
+		</sequence>
+		<attributeGroup ref="gml:AssociationAttributeGroup"/>
+		<attributeGroup ref="gml:OwnershipAttributeGroup"/>
+	</complexType>
+	<element name="SoilComplexLabelType" type="so:SoilComplexLabelTypeType" substitutionGroup="gml:AbstractObject">
+		<annotation>
+			<documentation>-- Name --
+soil complex label type
+
+-- Definition --
+name or name-like description of the soil complex according a specific soil complex classification system.
+
+-- Description --
+It&amp;rsquo;s the explanatory legend unit of the map.
+EXAMPLE Unidad Cartográfica 1: Terrazas altas del Cidacos y del Aragón (70-80 m).</documentation>
+		</annotation>
+	</element>
+	<complexType name="SoilComplexLabelTypeType">
+		<sequence>
+			<element name="soilComplexName" type="string">
+				<annotation>
+					<documentation>-- Name --
+soil complex name
+
+-- Definition --
+name that identifies the soil complex according to the specified reference framework.</documentation>
+				</annotation>
+			</element>
+			<element name="soilComplexClassificationScheme">
+				<annotation>
+					<documentation>-- Name --
+soil complex classification scheme
+
+-- Definition --
+identification of and reference to the framework according to which the soil complex is defined.</documentation>
+				</annotation>
+				<complexType>
+					<complexContent>
+						<extension base="gml:AbstractMetadataPropertyType">
+							<sequence>
+								<element ref="gmd:CI_Citation"/>
+							</sequence>
+						</extension>
+					</complexContent>
+				</complexType>
+			</element>
+			<element name="soilComplexDescription" nillable="true">
+				<annotation>
+					<documentation>-- Name --
+soil complex description
+
+-- Definition --
+explanatory notes describing the specific soil complex in more detail.
+
+-- Description --
+This kind of information can be found in the accompanying booklet of a soil map or mapping instructions.</documentation>
+				</annotation>
+				<complexType>
+					<complexContent>
+						<extension base="gml:AbstractMetadataPropertyType">
+							<sequence>
+								<element ref="gmd:CI_Citation"/>
+							</sequence>
+							<attribute name="nilReason" type="gml:NilReasonType"/>
+						</extension>
+					</complexContent>
+				</complexType>
+			</element>
+		</sequence>
+	</complexType>
+	<complexType name="SoilComplexLabelTypePropertyType">
+		<sequence>
+			<element ref="so:SoilComplexLabelType"/>
+		</sequence>
+	</complexType>
+	<element name="DerivedSoilProfile" type="so:DerivedSoilProfileType" substitutionGroup="so:SoilProfile">
+		<annotation>
+			<documentation>-- Name --
+derived soil profile
+
+-- Definition --
+non-point-located soil profile that serves as a reference profile for a specific soil type in a certain geographical area.
+
+-- Description --
+The characteristics of a derived soil profile are mostly derived (e.g. averaged) from one or several observed profiles of the same soil type in the area of interest, or are designed with expert knowledge about the same kind of landscape.
+
+NOTE 1 The derived soil profile represents the average or typical profile that characterises the so called soil typological unit, soil series or soil body.</documentation>
+		</annotation>
+	</element>
+	<complexType name="DerivedSoilProfileType">
+		<complexContent>
+			<extension base="so:SoilProfileType">
+				<sequence>
+					<element name="derivedPotentialRootDepth" nillable="true">
+						<annotation>
+							<documentation>-- Name --
+derived potential root depth
+
+-- Definition --
+potential depth of the derived soil profile where roots develop (in cm).
+
+-- Description --
+This depth is based generally on the average of the effective root depths of the observed profiles from which this soil profile is derived. This depth must take in account the presence of obstacle to roots. 
+An obstacle can be:
+&lt;ul&gt;
+	&lt;li&gt;a toxic layer resulting from low pH values and associated high concentrations of Al and heavy metals, or a high salt content, etc.;&lt;/li&gt;
+	&lt;li&gt;a layer with few oxygen available for plant roots resulting from the presence of permanent or a perched water table, or the presence of a decomposing peat layer, etc;&lt;/li&gt;
+	&lt;li&gt;a hard rock;&lt;/li&gt;
+	&lt;li&gt;an impermeable layer such as a fragipan, an iron pan, clay layers in sediments or as result of pedogenesis.&lt;/li&gt;
+&lt;/ul&gt;</documentation>
+						</annotation>
+						<complexType>
+							<simpleContent>
+								<extension base="gml:MeasureType">
+									<attribute name="nilReason" type="gml:NilReasonType"/>
+								</extension>
+							</simpleContent>
+						</complexType>
+					</element>
+					<element name="isDerivedFrom" nillable="true" minOccurs="0" maxOccurs="unbounded">
+						<annotation>
+							<documentation>-- Definition --
+a derived soil profile can be derived from many observed soil profiles.</documentation>
+						</annotation>
+						<complexType>
+							<sequence minOccurs="0">
+								<element ref="so:ObservedSoilProfile"/>
+							</sequence>
+							<attributeGroup ref="gml:AssociationAttributeGroup"/>
+							<attributeGroup ref="gml:OwnershipAttributeGroup"/>
+						</complexType>
+					</element>
+				</sequence>
+			</extension>
+		</complexContent>
+	</complexType>
+	<complexType name="DerivedSoilProfilePropertyType">
+		<sequence minOccurs="0">
+			<element ref="so:DerivedSoilProfile"/>
+		</sequence>
+		<attributeGroup ref="gml:AssociationAttributeGroup"/>
+		<attributeGroup ref="gml:OwnershipAttributeGroup"/>
+	</complexType>
+	<simpleType name="ContaminationSubjectValueType">
+		<annotation>
+			<documentation>-- Name --
+contamination subject value
+
+-- Definition --
+medium in which the contamination was measured, it can either be soil or groundwater.</documentation>
+		</annotation>
+		<restriction base="string">
+			<enumeration value="soil">
+				<annotation>
+					<documentation>-- Definition --
+contaminant was measured from the dry soil material.</documentation>
+				</annotation>
+			</enumeration>
+			<enumeration value="groundwater">
+				<annotation>
+					<documentation>-- Definition --
+contaminant was measured from the groundwater solution (liquid).</documentation>
+				</annotation>
+			</enumeration>
+		</restriction>
+	</simpleType>
+	<element name="ContaminationType" type="so:ContaminationTypeType" substitutionGroup="gml:AbstractObject">
+		<annotation>
+			<documentation>-- Name --
+contaminant type
+
+-- Definition --
+substance or agent present in the profile element as a result of human activity cf. pollutant.
+
+-- Description --
+NOTE: may be  heavy metals, and/or organic pollutants
+EXAMPLE: Dioxin
+SOURCE ISO 15799:2003</documentation>
+		</annotation>
+	</element>
+	<complexType name="ContaminationTypeType">
+		<sequence>
+			<element name="contaminantName" type="gml:CodeType">
+				<annotation>
+					<documentation>-- Name --
+contaminant name
+
+-- Definition --
+substance or agent present in soil or groundwater layer as a result of human activity cf. pollutant.</documentation>
+				</annotation>
+			</element>
+			<element name="measuredValue" type="gml:MeasureType">
+				<annotation>
+					<documentation>-- Name --
+measured value
+
+-- Definition --
+measured concentration of  the contaminant.</documentation>
+				</annotation>
+			</element>
+			<element name="contaminationSubject" type="so:ContaminationSubjectValueType">
+				<annotation>
+					<documentation>-- Name --
+contamination subject
+
+-- Definition --
+medium in which the contamination was measured, it can either be soil or groundwater.</documentation>
+				</annotation>
+			</element>
+		</sequence>
+	</complexType>
+	<complexType name="ContaminationTypePropertyType">
+		<sequence>
+			<element ref="so:ContaminationType"/>
+		</sequence>
+	</complexType>
+</schema>

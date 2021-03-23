@@ -1,0 +1,760 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<schema xmlns="http://www.w3.org/2001/XMLSchema" xmlns:ac="http://inspire.jrc.ec.europa.eu/schemas/ac/2.0" xmlns:base="urn:x-inspire:specification:gmlas:BaseTypes:3.2" xmlns:gmd="http://www.isotc211.org/2005/gmd" xmlns:gml="http://www.opengis.net/gml/3.2" xmlns:om="http://www.opengis.net/om/2.0" targetNamespace="http://inspire.jrc.ec.europa.eu/schemas/ac/2.0" elementFormDefault="qualified" version="2.0">
+	<import namespace="http://www.isotc211.org/2005/gmd" schemaLocation="http://schemas.opengis.net/iso/19139/20070417/gmd/gmd.xsd"/>
+	<import namespace="http://www.opengis.net/gml/3.2" schemaLocation="http://schemas.opengis.net/gml/3.2.1/gml.xsd"/>
+	<import namespace="http://www.opengis.net/om/2.0" schemaLocation="http://schemas.opengis.net/om/2.0/observation.xsd"/>
+	<import namespace="urn:x-inspire:specification:gmlas:BaseTypes:3.2" schemaLocation="https://inspire.ec.europa.eu/schemas/base/3.2/BaseTypes.xsd"/>
+	<!--XML Schema document created by ShapeChange-->
+	<element name="ScanningRadarObservation" type="ac:ScanningRadarObservationType" substitutionGroup="ac:CSMLObservation">
+		<annotation>
+			<documentation>-- Name --
+scanning radar  observation
+
+-- Definition --
+A CSML observsation measuring a set of backscatter profiles along a radar look direction rotating in azimuth at fixed elevation.
+
+-- Description --
+SOURCE [OGC pending document 11-021]
+
+NOTE The result of a CSML scanning radar observation is a discrete gridded coverage within a compound spatiotemporal CRS, using the radar&amp;rsquo;s azimuth-elevation axes as the spatial coordinate system. As well, successive columns of the grid have a temporal component increasing with the radar scan rotation.
+
+EXAMPLE Weather radar.</documentation>
+		</annotation>
+	</element>
+	<complexType name="ScanningRadarObservationType">
+		<complexContent>
+			<extension base="ac:CSMLObservationType">
+				<sequence/>
+			</extension>
+		</complexContent>
+	</complexType>
+	<complexType name="ScanningRadarObservationPropertyType">
+		<sequence minOccurs="0">
+			<element ref="ac:ScanningRadarObservation"/>
+		</sequence>
+		<attributeGroup ref="gml:AssociationAttributeGroup"/>
+		<attributeGroup ref="gml:OwnershipAttributeGroup"/>
+	</complexType>
+	<element name="GridObservation" type="ac:GridObservationType" substitutionGroup="ac:CSMLStaticObservation">
+		<annotation>
+			<documentation>-- Name --
+grid observation
+
+-- Definition --
+A CSML static observsation representing a gridded field at a single time instant. 
+
+-- Description --
+SOURCE [OGC pending document 11-021]
+
+NOTE The result of a CSML grid  observation is a discrete coverage within a compound spatiotemporal CRS where the domain consists of a two- or three-dimensional grid of points, all having the same time instant temporal component.
+
+EXAMPLE Midnight atmospheric surface pressure field analysed on a grid.</documentation>
+		</annotation>
+	</element>
+	<complexType name="GridObservationType">
+		<complexContent>
+			<extension base="ac:CSMLStaticObservationType">
+				<sequence/>
+			</extension>
+		</complexContent>
+	</complexType>
+	<complexType name="GridObservationPropertyType">
+		<sequence minOccurs="0">
+			<element ref="ac:GridObservation"/>
+		</sequence>
+		<attributeGroup ref="gml:AssociationAttributeGroup"/>
+		<attributeGroup ref="gml:OwnershipAttributeGroup"/>
+	</complexType>
+	<element name="CSMLObservation" type="ac:CSMLObservationType" abstract="true" substitutionGroup="om:OM_Observation">
+		<annotation>
+			<documentation>-- Name --
+CSML observation
+
+-- Definition --
+A base abstract observation class to provide a common root for domain-specific met/ocean sampling coverage observations.
+
+-- Description --
+SOURCE [OGC pending document 11-021]
+
+NOTE CSMLObservation adds nothing to the semantics of the Sampling Coverage(ISO/DIS 19156) from which it derives.</documentation>
+		</annotation>
+	</element>
+	<complexType name="CSMLObservationType" abstract="true">
+		<complexContent>
+			<extension base="om:OM_ObservationType">
+				<sequence/>
+			</extension>
+		</complexContent>
+	</complexType>
+	<complexType name="CSMLObservationPropertyType">
+		<sequence minOccurs="0">
+			<element ref="ac:CSMLObservation"/>
+		</sequence>
+		<attributeGroup ref="gml:AssociationAttributeGroup"/>
+		<attributeGroup ref="gml:OwnershipAttributeGroup"/>
+	</complexType>
+	<element name="AbstractObservableProperty" type="ac:AbstractObservablePropertyType" abstract="true" substitutionGroup="gml:AbstractObject">
+		<annotation>
+			<documentation>-- Name --
+abstract observable property
+
+-- Definition --
+Generalisation of more specific observable property classes: simple observable property, composite observable property.</documentation>
+		</annotation>
+	</element>
+	<complexType name="AbstractObservablePropertyType" abstract="true">
+		<sequence>
+			<element name="description" type="string" minOccurs="0">
+				<annotation>
+					<documentation>-- Name --
+description
+
+-- Definition --
+Human readble description of AbstractObservableProperty.</documentation>
+				</annotation>
+			</element>
+			<element name="label" type="string" minOccurs="0" maxOccurs="unbounded">
+				<annotation>
+					<documentation>-- Name --
+label
+
+-- Definition --
+Human readable name by which  an instance of AbsractObservableProperty is known.
+
+-- Description --
+
+EXAMPLE label can be: rain rate  or rainfall rate whereas basePhenomenon shall be :precipitationIntensity.</documentation>
+				</annotation>
+			</element>
+		</sequence>
+	</complexType>
+	<complexType name="AbstractObservablePropertyPropertyType">
+		<sequence>
+			<element ref="ac:AbstractObservableProperty"/>
+		</sequence>
+	</complexType>
+	<element name="ProfileSeriesObservation" type="ac:ProfileSeriesObservationType" substitutionGroup="ac:CSMLTimeSeriesObservation">
+		<annotation>
+			<documentation>-- Name --
+profile series observation
+
+-- Definition --
+A CSML time series  observsation representing a time-series of  vertical  profiles at a   fixed horizontal location.
+
+-- Description --
+SOURCE [OGC pending document 11-021]
+
+NOTE The result of a CSML profile series observation is a discrete coverage within a compound spatiotemporal CRS where the domain consists of sets of points, or &amp;lsquo;profiles&amp;rsquo;, each profile aligned along the same vertical curve, and at a specific sampling time. The sampling times of successive profiles forms a time-series.
+
+EXAMPLE Radar wind profiler measurement</documentation>
+		</annotation>
+	</element>
+	<complexType name="ProfileSeriesObservationType">
+		<complexContent>
+			<extension base="ac:CSMLTimeSeriesObservationType">
+				<sequence/>
+			</extension>
+		</complexContent>
+	</complexType>
+	<complexType name="ProfileSeriesObservationPropertyType">
+		<sequence minOccurs="0">
+			<element ref="ac:ProfileSeriesObservation"/>
+		</sequence>
+		<attributeGroup ref="gml:AssociationAttributeGroup"/>
+		<attributeGroup ref="gml:OwnershipAttributeGroup"/>
+	</complexType>
+	<element name="CompositeObservableProperty" type="ac:CompositeObservablePropertyType" substitutionGroup="ac:AbstractObservableProperty">
+		<annotation>
+			<documentation>-- Name --
+composite observable property
+
+-- Definition --
+Observable property consisting of two or more simple observable properties.</documentation>
+		</annotation>
+	</element>
+	<complexType name="CompositeObservablePropertyType">
+		<complexContent>
+			<extension base="ac:AbstractObservablePropertyType">
+				<sequence>
+					<element name="component" type="ac:SimpleObservablePropertyPropertyType" minOccurs="2" maxOccurs="unbounded"/>
+				</sequence>
+			</extension>
+		</complexContent>
+	</complexType>
+	<complexType name="CompositeObservablePropertyPropertyType">
+		<sequence>
+			<element ref="ac:CompositeObservableProperty"/>
+		</sequence>
+	</complexType>
+	<element name="PointSeriesObservation" type="ac:PointSeriesObservationType" substitutionGroup="ac:CSMLTimeSeriesObservation">
+		<annotation>
+			<documentation>-- Name --
+point series observation
+
+-- Definition --
+A CSML time series observsation that represents a time-series of point measurements of a property at a fixed location in space.
+
+-- Description --
+SOURCE [OGC pending document 11-021]
+
+NOTE The result of a CSML point  series observation is a discrete coverage within a spatiotemporal CRS, with a series of domain elements at a fixed spatial point location but with temporal components corresponding to the series of sampling times.
+
+EXAMPLE Time-series of daily raingauge precipitation measurements.</documentation>
+		</annotation>
+	</element>
+	<complexType name="PointSeriesObservationType">
+		<complexContent>
+			<extension base="ac:CSMLTimeSeriesObservationType">
+				<sequence/>
+			</extension>
+		</complexContent>
+	</complexType>
+	<complexType name="PointSeriesObservationPropertyType">
+		<sequence minOccurs="0">
+			<element ref="ac:PointSeriesObservation"/>
+		</sequence>
+		<attributeGroup ref="gml:AssociationAttributeGroup"/>
+		<attributeGroup ref="gml:OwnershipAttributeGroup"/>
+	</complexType>
+	<element name="AtmosphericCondition" type="ac:AtmosphericConditionType" substitutionGroup="gml:AbstractFeature">
+		<annotation>
+			<documentation>-- Name --
+Atmospheric condition
+
+-- Definition --
+An identifiable set of estimated values, and their semantics, of a number of atmospheric phenomena.
+
+-- Description --
+A set of estimated values of a range of atmospheric phenomena,  generated by Atmospheric Condition's observation members, describing the state of the atmosphere over a  spatiotemporal extent.
+
+NOTE The estimated values are based on measurements, on models or on a combination.
+
+EXAMPLE  Measured values of air temperature, pressure and relative humidity.</documentation>
+		</annotation>
+	</element>
+	<complexType name="AtmosphericConditionType">
+		<complexContent>
+			<extension base="gml:AbstractFeatureType">
+				<sequence>
+					<element name="extent">
+						<annotation>
+							<documentation>-- Name --
+extent
+
+-- Definition --
+Information about the spatial and temporal extent of AtmosphericCondition.</documentation>
+						</annotation>
+						<complexType>
+							<complexContent>
+								<extension base="gml:AbstractMetadataPropertyType">
+									<sequence minOccurs="0">
+										<element ref="gmd:EX_Extent"/>
+									</sequence>
+									<attributeGroup ref="gml:AssociationAttributeGroup"/>
+								</extension>
+							</complexContent>
+						</complexType>
+					</element>
+					<element name="inspireId" type="base:IdentifierPropertyType">
+						<annotation>
+							<documentation>-- Name --
+inspireId
+
+-- Definition --
+External object identifier.</documentation>
+						</annotation>
+					</element>
+					<element name="member" type="om:OM_ObservationPropertyType" maxOccurs="unbounded">
+						<annotation>
+							<documentation>-- Name --
+member
+
+-- Definition --
+Member of Atmospheric Condition</documentation>
+						</annotation>
+					</element>
+				</sequence>
+			</extension>
+		</complexContent>
+	</complexType>
+	<complexType name="AtmosphericConditionPropertyType">
+		<sequence minOccurs="0">
+			<element ref="ac:AtmosphericCondition"/>
+		</sequence>
+		<attributeGroup ref="gml:AssociationAttributeGroup"/>
+		<attributeGroup ref="gml:OwnershipAttributeGroup"/>
+	</complexType>
+	<element name="CSMLTimeSeriesObservation" type="ac:CSMLTimeSeriesObservationType" abstract="true" substitutionGroup="ac:CSMLObservation">
+		<annotation>
+			<documentation>-- Name --
+CSML time series  observation
+
+-- Definition --
+A base absract observation class for observations made repeatedly on a spatial sampling feature, generating a time-series result. 
+
+-- Description --
+SOURCE [OGC pending document 11-021]
+
+NOTE Mathematically, the spatiotemporal domain of the coverage result is the direct product of the discrete spatial sampling locations and the time-series observation times.</documentation>
+		</annotation>
+	</element>
+	<complexType name="CSMLTimeSeriesObservationType" abstract="true">
+		<complexContent>
+			<extension base="ac:CSMLObservationType">
+				<sequence/>
+			</extension>
+		</complexContent>
+	</complexType>
+	<complexType name="CSMLTimeSeriesObservationPropertyType">
+		<sequence minOccurs="0">
+			<element ref="ac:CSMLTimeSeriesObservation"/>
+		</sequence>
+		<attributeGroup ref="gml:AssociationAttributeGroup"/>
+		<attributeGroup ref="gml:OwnershipAttributeGroup"/>
+	</complexType>
+	<element name="PointObservation" type="ac:PointObservationType" substitutionGroup="ac:CSMLStaticObservation">
+		<annotation>
+			<documentation>-- Name --
+point observation
+
+-- Definition --
+A CSML static observsation that represents a measurement of a property at a single point in time and space.
+
+-- Description --
+SOURCE [OGC pending document 11-021]
+
+NOTE The result of a CSML point&lt;i&gt; &lt;/i&gt;observation is a discrete coverage having a domain of a single point within a compound spatiotemporal CRS.
+
+EXAMPLE Single raingauge precipitation measurement.</documentation>
+		</annotation>
+	</element>
+	<complexType name="PointObservationType">
+		<complexContent>
+			<extension base="ac:CSMLStaticObservationType">
+				<sequence/>
+			</extension>
+		</complexContent>
+	</complexType>
+	<complexType name="PointObservationPropertyType">
+		<sequence minOccurs="0">
+			<element ref="ac:PointObservation"/>
+		</sequence>
+		<attributeGroup ref="gml:AssociationAttributeGroup"/>
+		<attributeGroup ref="gml:OwnershipAttributeGroup"/>
+	</complexType>
+	<element name="CSMLStaticObservation" type="ac:CSMLStaticObservationType" abstract="true" substitutionGroup="ac:CSMLObservation">
+		<annotation>
+			<documentation>-- Name --
+CSML static observation
+
+-- Definition --
+A base absract observation class for  sampling coverage observations which (may be considered to be) made at an instant in time.
+
+-- Description --
+SOURCE [OGC pending document 11-021]</documentation>
+		</annotation>
+	</element>
+	<complexType name="CSMLStaticObservationType" abstract="true">
+		<complexContent>
+			<extension base="ac:CSMLObservationType">
+				<sequence/>
+			</extension>
+		</complexContent>
+	</complexType>
+	<complexType name="CSMLStaticObservationPropertyType">
+		<sequence minOccurs="0">
+			<element ref="ac:CSMLStaticObservation"/>
+		</sequence>
+		<attributeGroup ref="gml:AssociationAttributeGroup"/>
+		<attributeGroup ref="gml:OwnershipAttributeGroup"/>
+	</complexType>
+	<element name="AtmosphericConditionProcess" type="ac:AtmosphericConditionProcessType" substitutionGroup="gml:AbstractGML">
+		<annotation>
+			<documentation>-- Name --
+atmospheric condition process
+
+-- Definition --
+Method, algorithm or instrument, or system of these, which may be used in making an observation.
+
+-- Description --
+SOURCE [ISO 19156:2011]
+
+NOTE 1  An instance of Atmospheric condition process might consist of more than one components in order to generate the  observation result, e.g. component1:  instrument , component2: numerical processing of primitive instrument output. 
+
+NOTE 2 An instance of Atmospheric condition process might be responsible for more than one observation events e.g. a radiometer.</documentation>
+		</annotation>
+	</element>
+	<complexType name="AtmosphericConditionProcessType">
+		<complexContent>
+			<extension base="gml:AbstractGMLType">
+				<sequence>
+					<element name="documentation" nillable="true" minOccurs="0" maxOccurs="unbounded">
+						<annotation>
+							<documentation>-- Name --
+documentation
+
+-- Definition --
+Document(s)  providing further information associated with the atmospheric condition process .</documentation>
+						</annotation>
+						<complexType>
+							<complexContent>
+								<extension base="gml:AbstractMetadataPropertyType">
+									<sequence>
+										<element ref="gmd:CI_Citation"/>
+									</sequence>
+									<attribute name="nilReason" type="gml:NilReasonType"/>
+								</extension>
+							</complexContent>
+						</complexType>
+					</element>
+					<element name="inspireId" nillable="true">
+						<annotation>
+							<documentation>-- Name --
+inspireId
+
+-- Definition --
+External object identifier  by which  an instance of  atmospheric condition process is known.</documentation>
+						</annotation>
+						<complexType>
+							<sequence>
+								<element ref="base:Identifier"/>
+							</sequence>
+							<attribute name="nilReason" type="gml:NilReasonType"/>
+						</complexType>
+					</element>
+					<element name="processParameter" nillable="true" minOccurs="0" maxOccurs="unbounded">
+						<annotation>
+							<documentation>-- Name --
+process parameter
+
+-- Definition --
+Name or other identifier of a parameter controlling the application of the process and as a consequence its output.
+
+-- Description --
+Typical examples of using processParameter are: description of  instrumentation settings for a specific measurement or measurement series ; description of intial contidions in  numerical computations e.g. simulations.  
+
+NOTE  The  values of a procesParameter are stored in  OM_Observation.parameter&gt;NamedValue.value as they are specific to the event of the observation  and not to the  applied process . 
+
+EXAMPLE 1 For information resulting from a numerical simulation process:
+- the analysis time is represented by the OM_Observation attribute &lt;i&gt;parameter:NamedValue &lt;/i&gt;with name= AnalysisTime (TM_Instant)
+- the assimilation window is represented by the OM_Observation attribute &lt;i&gt;parameter:NamedValue &lt;/i&gt;with name= AssimilationWindow (TM_Period).
+
+EXAMPLE 2 Analysis time of a forecast
+&lt;ul&gt;
+	&lt;li&gt;Instance of AtmosphericConditionProcess&lt;/li&gt;
+&lt;/ul&gt;
+AtmosphericConditionProcess.processParameter:
+&lt;i&gt;http://inspire.jrc.ec.europa.eu/inspire/processParameterValue.html#AnalysisTime&lt;/i&gt;
+Instance of OM_Observation
+OM_OObservation.parameter&gt;NamedValue.name:
+&lt;i&gt;http://inspire.jrc.ec.europa.eu/inspire/processParameterValue.html#AnalysisTime&lt;/i&gt;
+OM_Observation.parameter&gt;NamedValue.value:
+&lt;i&gt;00z-15/05/2011&lt;/i&gt;</documentation>
+							<appinfo>
+								<targetElement xmlns="http://www.opengis.net/gml/3.2">null:GenericName</targetElement>
+							</appinfo>
+						</annotation>
+						<complexType>
+							<simpleContent>
+								<extension base="gml:CodeType">
+									<attribute name="nilReason" type="gml:NilReasonType"/>
+								</extension>
+							</simpleContent>
+						</complexType>
+					</element>
+					<element name="responsibleParty" nillable="true" maxOccurs="unbounded">
+						<annotation>
+							<documentation>-- Name --
+responsible party
+
+-- Definition --
+Individual or organisation related to atmospheric condition process.
+
+-- Description --
+EXAMPLE For a numerical simulation a responsible party may be the NWP centre which conducted the simulation.</documentation>
+						</annotation>
+						<complexType>
+							<complexContent>
+								<extension base="gml:AbstractMetadataPropertyType">
+									<sequence>
+										<element ref="gmd:CI_ResponsibleParty"/>
+									</sequence>
+									<attribute name="nilReason" type="gml:NilReasonType"/>
+								</extension>
+							</complexContent>
+						</complexType>
+					</element>
+					<element name="type" nillable="true">
+						<annotation>
+							<documentation>-- Name --
+type
+
+-- Definition --
+Type of process.
+
+-- Description --
+EXAMPLE raingauge, numerical model.</documentation>
+						</annotation>
+						<complexType>
+							<simpleContent>
+								<extension base="string">
+									<attribute name="nilReason" type="gml:NilReasonType"/>
+								</extension>
+							</simpleContent>
+						</complexType>
+					</element>
+				</sequence>
+			</extension>
+		</complexContent>
+	</complexType>
+	<complexType name="AtmosphericConditionProcessPropertyType">
+		<sequence minOccurs="0">
+			<element ref="ac:AtmosphericConditionProcess"/>
+		</sequence>
+		<attributeGroup ref="gml:AssociationAttributeGroup"/>
+		<attributeGroup ref="gml:OwnershipAttributeGroup"/>
+	</complexType>
+	<element name="SectionObservation" type="ac:SectionObservationType" substitutionGroup="ac:CSMLObservation">
+		<annotation>
+			<documentation>-- Name --
+section observation
+
+-- Definition --
+A CSML observsation comprising a series of profiles topologically offset from a trajectory.
+-- Description --
+SOURCE [OGC pending document 11-021]
+
+NOTE The result of a CSML section&lt;i&gt; &lt;/i&gt;observation is a discrete coverage within a compound spatiotemporal CRS where the domain consists of a set of profiles (usually vertical) arranged along the trajectory path of a ship or aircraft (normally).
+
+EXAMPLE Vertical profiles of water current measurements taken by an acoustic doppler current profiler towed along a ship&amp;rsquo;s track</documentation>
+		</annotation>
+	</element>
+	<complexType name="SectionObservationType">
+		<complexContent>
+			<extension base="ac:CSMLObservationType">
+				<sequence/>
+			</extension>
+		</complexContent>
+	</complexType>
+	<complexType name="SectionObservationPropertyType">
+		<sequence minOccurs="0">
+			<element ref="ac:SectionObservation"/>
+		</sequence>
+		<attributeGroup ref="gml:AssociationAttributeGroup"/>
+		<attributeGroup ref="gml:OwnershipAttributeGroup"/>
+	</complexType>
+	<element name="GridSeriesObservation" type="ac:GridSeriesObservationType" substitutionGroup="ac:CSMLTimeSeriesObservation">
+		<annotation>
+			<documentation>-- Name --
+grid series observation
+
+-- Definition --
+A CSML time series observation representing an evolving  gridded field at a succession of time instants. 
+
+-- Description --
+SOURCE [OGC pending document 11-021]
+
+NOTE  The result of a CSML grid series observation is a discrete coverage within a compound spatiotemporal CRS where the domain consists of a series of two- or three-dimensional grids of points, each at a successive time instant.
+
+
+EXAMPLE Time-series of three-dimensional oceanic velocity field from a finite-difference general circulation model.</documentation>
+		</annotation>
+	</element>
+	<complexType name="GridSeriesObservationType">
+		<complexContent>
+			<extension base="ac:CSMLTimeSeriesObservationType">
+				<sequence/>
+			</extension>
+		</complexContent>
+	</complexType>
+	<complexType name="GridSeriesObservationPropertyType">
+		<sequence minOccurs="0">
+			<element ref="ac:GridSeriesObservation"/>
+		</sequence>
+		<attributeGroup ref="gml:AssociationAttributeGroup"/>
+		<attributeGroup ref="gml:OwnershipAttributeGroup"/>
+	</complexType>
+	<element name="SwathObservation" type="ac:SwathObservationType" substitutionGroup="ac:CSMLObservation">
+		<annotation>
+			<documentation>-- Name --
+swath observation
+
+-- Definition --
+A CSML observsation providing a two-dimensional surface grid along a satellite ground path. 
+
+-- Description --
+SOURCE [OGC pending document 11-021]
+
+NOTE The result of a CSML swath&lt;i&gt; &lt;/i&gt;observation is a discrete coverage within a compound spatiotemporal CRS where the domain consists of a quadrilateral grid in the horizontal, but with a varying time along the central ground-path axis.</documentation>
+		</annotation>
+	</element>
+	<complexType name="SwathObservationType">
+		<complexContent>
+			<extension base="ac:CSMLObservationType">
+				<sequence/>
+			</extension>
+		</complexContent>
+	</complexType>
+	<complexType name="SwathObservationPropertyType">
+		<sequence minOccurs="0">
+			<element ref="ac:SwathObservation"/>
+		</sequence>
+		<attributeGroup ref="gml:AssociationAttributeGroup"/>
+		<attributeGroup ref="gml:OwnershipAttributeGroup"/>
+	</complexType>
+	<element name="TrajectoryObservation" type="ac:TrajectoryObservationType" substitutionGroup="ac:CSMLObservation">
+		<annotation>
+			<documentation>-- Name --
+trajectory observation
+
+-- Definition --
+A CSML observsation representing  measurement of a property along a meandering curve in time and space.
+
+-- Description --
+SOURCE [OGC pending document 11-021]
+
+NOTE The result of a CSML trajectory&lt;i&gt; &lt;/i&gt;observation is a discrete coverage within a compound spatiotemporal CRS where the domain consists of a set of points associated with successive sampling times and located along the trajectory path.
+
+EXAMPLE Pollutant concentration from mobile air quality sensor.</documentation>
+		</annotation>
+	</element>
+	<complexType name="TrajectoryObservationType">
+		<complexContent>
+			<extension base="ac:CSMLObservationType">
+				<sequence/>
+			</extension>
+		</complexContent>
+	</complexType>
+	<complexType name="TrajectoryObservationPropertyType">
+		<sequence minOccurs="0">
+			<element ref="ac:TrajectoryObservation"/>
+		</sequence>
+		<attributeGroup ref="gml:AssociationAttributeGroup"/>
+		<attributeGroup ref="gml:OwnershipAttributeGroup"/>
+	</complexType>
+	<element name="ProfileObservation" type="ac:ProfileObservationType" substitutionGroup="ac:CSMLStaticObservation">
+		<annotation>
+			<documentation>-- Name --
+profile observation
+
+-- Definition --
+A CSML static observsation that represents a single  instantaneous 'profile'  of a property along a vertical line in space.
+
+-- Description --
+SOURCE [OGC pending document 11-021]
+
+NOTE The result of a CSML profile observation is a discrete coverage with respective domain elements having the same temporal component (the instantaneous sampling time) and spatial locations laid out along the sampling curve.
+
+EXAMPLE Expendable bathythermograph observation of seawater tempearature.</documentation>
+		</annotation>
+	</element>
+	<complexType name="ProfileObservationType">
+		<complexContent>
+			<extension base="ac:CSMLStaticObservationType">
+				<sequence/>
+			</extension>
+		</complexContent>
+	</complexType>
+	<complexType name="ProfileObservationPropertyType">
+		<sequence minOccurs="0">
+			<element ref="ac:ProfileObservation"/>
+		</sequence>
+		<attributeGroup ref="gml:AssociationAttributeGroup"/>
+		<attributeGroup ref="gml:OwnershipAttributeGroup"/>
+	</complexType>
+	<element name="ObservablePropertyConstraint" type="ac:ObservablePropertyConstraintType" substitutionGroup="gml:AbstractObject">
+		<annotation>
+			<documentation>-- Name --
+observable property constraint
+
+-- Definition --
+Description of further detail for an instance of SimpleObservableProperty required when the description provided by the codelist PropertyCode is not sufficient.</documentation>
+		</annotation>
+	</element>
+	<complexType name="ObservablePropertyConstraintType">
+		<sequence>
+			<element name="description" type="string" minOccurs="0">
+				<annotation>
+					<documentation>-- Name --
+description
+
+-- Definition --
+Meaning added to an instance of SimpleObsrvableProperty by the value of attribute label.</documentation>
+				</annotation>
+			</element>
+			<element name="label" type="string">
+				<annotation>
+					<documentation>-- Name --
+label
+
+-- Definition --
+Text added to the name of an instance of SimpleObservableProperty.</documentation>
+				</annotation>
+			</element>
+			<element name="subConstraint" type="ac:ObservablePropertyConstraintPropertyType" minOccurs="0" maxOccurs="unbounded"/>
+		</sequence>
+	</complexType>
+	<complexType name="ObservablePropertyConstraintPropertyType">
+		<sequence>
+			<element ref="ac:ObservablePropertyConstraint"/>
+		</sequence>
+	</complexType>
+	<element name="SimpleObservableProperty" type="ac:SimpleObservablePropertyType" substitutionGroup="ac:AbstractObservableProperty">
+		<annotation>
+			<documentation>-- Name --
+simple observable property
+
+-- Definition --
+Observable property which cannot  split into components.
+
+-- Description --
+
+EXAMPLE  temperature, total cloud cover, wind direction.</documentation>
+		</annotation>
+	</element>
+	<complexType name="SimpleObservablePropertyType">
+		<complexContent>
+			<extension base="ac:AbstractObservablePropertyType">
+				<sequence>
+					<element name="basePhenomenon" type="gml:CodeType">
+						<annotation>
+							<documentation>-- Name --
+base phenomenon
+
+-- Definition --
+Name of a simple observable property from a controlled vocabulary.
+
+-- Description --
+EXAMPLE  snow depth, precipitation type etc.</documentation>
+						</annotation>
+					</element>
+					<element name="constraint" type="ac:ObservablePropertyConstraintPropertyType" minOccurs="0">
+						<annotation>
+							<documentation>-- Name --
+constraint
+
+-- Definition --
+
+If present, it shall provide further detail required for an instance of the SimpleObservableProperty.
+
+-- Description --
+NOTE It is used when a description of an instance of SimpleObservableProperty from the codelist ObservablePropertyValue is not sufficient.
+
+EXAMPLE For an observation of time series of daily maximum temperature:
+&lt;ul&gt;
+	&lt;li&gt;basePhenomenon&gt;temperature&lt;/li&gt;
+	&lt;li&gt;constraint&gt;ObservablePropertyConstraint.label&gt;Daily maximum&lt;/li&gt;
+	&lt;li&gt;constraint&gt;ObservablePropertyConstraint.description&gt;Maximum temperature recorded for each day.&lt;/li&gt;
+&lt;/ul&gt;</documentation>
+						</annotation>
+					</element>
+				</sequence>
+			</extension>
+		</complexContent>
+	</complexType>
+	<complexType name="SimpleObservablePropertyPropertyType">
+		<sequence>
+			<element ref="ac:SimpleObservableProperty"/>
+		</sequence>
+	</complexType>
+</schema>

@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?><schema xmlns="http://www.w3.org/2001/XMLSchema" xmlns:ac-mf="http://inspire.ec.europa.eu/schemas/ac-mf/3.0rc1" xmlns:base="urn:x-inspire:specification:gmlas:BaseTypes:3.2" elementFormDefault="qualified" targetNamespace="http://inspire.ec.europa.eu/schemas/ac-mf/3.0rc1" version="3.0rc1">
+  <import namespace="urn:x-inspire:specification:gmlas:BaseTypes:3.2" schemaLocation="https://inspire.ec.europa.eu/schemas/base/3.2/BaseTypes.xsd"/>
+  <!--XML Schema document created by ShapeChange-->
+</schema>

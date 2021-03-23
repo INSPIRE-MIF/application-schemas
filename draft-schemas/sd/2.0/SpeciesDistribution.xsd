@@ -1,0 +1,623 @@
+<?xml version="1.0" encoding="UTF-8"?><schema xmlns="http://www.w3.org/2001/XMLSchema" xmlns:base="urn:x-inspire:specification:gmlas:BaseTypes:3.2" xmlns:ef="http://inspire.jrc.ec.europa.eu/schemas/ef/2.0" xmlns:gmd="http://www.isotc211.org/2005/gmd" xmlns:gml="http://www.opengis.net/gml/3.2" xmlns:gmlcov="http://www.opengis.net/gmlcov/1.0" xmlns:sd="http://inspire.jrc.ec.europa.eu/schemas/sd/2.0" elementFormDefault="qualified" targetNamespace="http://inspire.jrc.ec.europa.eu/schemas/sd/2.0" version="2.0">
+  <annotation>
+    <documentation>Application Schema for Species Distribution</documentation>
+  </annotation>
+  <import namespace="http://inspire.jrc.ec.europa.eu/schemas/ef/2.0" schemaLocation="https://inspire.ec.europa.eu/draft-schemas/ef/2.0/EnvironmentalMonitoringFacilities.xsd"/>
+  <import namespace="http://www.isotc211.org/2005/gmd" schemaLocation="http://schemas.opengis.net/iso/19139/20070417/gmd/gmd.xsd"/>
+  <import namespace="http://www.opengis.net/gml/3.2" schemaLocation="http://schemas.opengis.net/gml/3.2.1/gml.xsd"/>
+  <import namespace="http://www.opengis.net/gmlcov/1.0" schemaLocation="http://schemas.opengis.net/gmlcov/1.0/coverage.xsd"/>
+  <import namespace="urn:x-inspire:specification:gmlas:BaseTypes:3.2" schemaLocation="https://inspire.ec.europa.eu/schemas/base/3.2/BaseTypes.xsd"/>
+  <!--XML Schema document created by ShapeChange-->
+  <element name="SpeciesDistributionCoverage" substitutionGroup="gmlcov:AbstractCoverage" type="sd:SpeciesDistributionCoverageType">
+    <annotation>
+      <documentation>-- Name --
+species distribution coverage
+
+-- Definition --
+The spatial representation of a species occurrence.
+
+-- Description --</documentation>
+    </annotation>
+  </element>
+  <complexType name="SpeciesDistributionCoverageType">
+    <complexContent>
+      <extension base="gmlcov:AbstractCoverageType">
+        <sequence>
+          <element name="beginLifespanVersion" nillable="true">
+            <annotation>
+              <documentation>-- Name --
+begin lifespan version
+
+-- Definition --
+Date and time at which this version of the spatial object was inserted or changed in the spatial data set.
+
+-- Description --
+NOTE This date is recorded to enable the generation of change only update files.</documentation>
+            </annotation>
+            <complexType>
+              <simpleContent>
+                <extension base="dateTime">
+                  <attribute name="nilReason" type="gml:NilReasonType"/>
+                </extension>
+              </simpleContent>
+            </complexType>
+          </element>
+          <element name="endLifespanVersion" nillable="true">
+            <annotation>
+              <documentation>-- Name --
+end lifespan version
+
+-- Definition --
+Date and time at which this version of the spatial object was superseded or retired in the spatial data set.
+
+-- Description --
+NOTE This date is recorded primarily for those systems which "close" an entry in the spatial data set in the event of an attribute change.</documentation>
+            </annotation>
+            <complexType>
+              <simpleContent>
+                <extension base="dateTime">
+                  <attribute name="nilReason" type="gml:NilReasonType"/>
+                </extension>
+              </simpleContent>
+            </complexType>
+          </element>
+          <element name="inspireId" type="base:IdentifierPropertyType">
+            <annotation>
+              <documentation>-- Name --
+inspire id
+
+-- Definition --
+External object identifier of the spatial object.
+
+-- Description --
+An external object identifier is a unique object identifier published by the responsible body, which may be used by external applications to reference the spatial object. The identifier is an identifier of the spatial object, not an identifier of the real-world phenomenon.</documentation>
+            </annotation>
+          </element>
+          <element name="referenceSpeciesId" type="string">
+            <annotation>
+              <documentation>-- Name --
+reference species id
+
+-- Definition --
+ID of one of the reference lists given by the referenceSpeciesScheme.</documentation>
+            </annotation>
+          </element>
+          <element name="referenceSpeciesScheme" type="gml:CodeType">
+            <annotation>
+              <documentation>-- Name --
+reference species scheme
+
+-- Definition --
+Reference list defining a nomenclatural and taxonomical standard where all local names and taxonomic concepts have to be mapped to.
+
+-- Description --
+Closed codelist of accepted PAN-european taxonomical reference lists defining the nomenclature and taxonomical concept of a given species name. This must not be regarded as the ultimate taxonomic truth: this will always change. It serves as a definition of a taxonomic concept described by systematic and synonym relations where other names and there inherent taxonomic concepts can be mapped to. The code list comprises of Eu-Nomen, EUNIS and Natura2000. In these sources harmonized species GUIDs and names are maintained by institutions with an assignment outside INSPIRE and the species names are to be retrieved through webservices using GUIDs. Only one of these list must be used for one taxon. The priority is as follows: 1) EU-Nomen, 2) EUNIS, 3) Natura2000. This implies: if a taxon is listed in EU-Nomen, this reference must be used as first choice. If it is not listed in EU-Nomen, the second choice is EUNIS, if not in EUNIS, Natura2000 can be used.</documentation>
+            </annotation>
+          </element>
+          <element name="domainExtent" nillable="true">
+            <annotation>
+              <documentation>-- Name --
+domain extent
+
+-- Definition --
+The geographic extent of the domain of the coverage.</documentation>
+            </annotation>
+            <complexType>
+              <complexContent>
+                <extension base="gml:AbstractMetadataPropertyType">
+                  <sequence minOccurs="0">
+                    <element ref="gmd:AbstractEX_GeographicExtent"/>
+                  </sequence>
+                  <attributeGroup ref="gml:AssociationAttributeGroup"/>
+                </extension>
+              </complexContent>
+            </complexType>
+          </element>
+        </sequence>
+      </extension>
+    </complexContent>
+  </complexType>
+  <complexType name="SpeciesDistributionCoveragePropertyType">
+    <sequence minOccurs="0">
+      <element ref="sd:SpeciesDistributionCoverage"/>
+    </sequence>
+    <attributeGroup ref="gml:AssociationAttributeGroup"/>
+    <attributeGroup ref="gml:OwnershipAttributeGroup"/>
+  </complexType>
+  <element name="RangeType" substitutionGroup="gml:AbstractObject" type="sd:RangeTypeType">
+    <annotation>
+      <documentation>-- Name --
+range type
+
+-- Definition --
+Value indicating the upper and lower bounds of the counting, estimation or calculation of occurences.
+
+-- Description --
+NOTE Only used if the specific numerical count is not known.</documentation>
+    </annotation>
+  </element>
+  <complexType name="RangeTypeType">
+    <sequence>
+      <element minOccurs="0" name="upperBound" type="integer">
+        <annotation>
+          <documentation>-- Name --
+upper bound
+
+-- Definition --
+The upper bound of the range.  If the value of this attribute is null and lowerBound is populated, this implies that the value is between the lowerBound and infinity.</documentation>
+        </annotation>
+      </element>
+      <element minOccurs="0" name="lowerBound" type="integer">
+        <annotation>
+          <documentation>-- Name --
+lower bound
+
+-- Definition --
+The lower bound of the range.  If the value of this attribute is null and upperBound is populated, this implies that the value is between the upperBound and zero.</documentation>
+        </annotation>
+      </element>
+    </sequence>
+  </complexType>
+  <complexType name="RangeTypePropertyType">
+    <sequence>
+      <element ref="sd:RangeType"/>
+    </sequence>
+  </complexType>
+  <element name="SourceInformation" substitutionGroup="gml:AbstractFeature" type="sd:SourceInformationType">
+    <annotation>
+      <documentation>-- Name --
+source information
+
+-- Definition --
+Contains metadata about specific instances of species distribution. 
+
+-- Description --
+May be shared among several species distributions.</documentation>
+    </annotation>
+  </element>
+  <complexType name="SourceInformationType">
+    <complexContent>
+      <extension base="gml:AbstractFeatureType">
+        <sequence>
+          <element maxOccurs="unbounded" name="aggregationMethod" type="gml:CodeType">
+            <annotation>
+              <documentation>-- Name --
+aggregation method
+
+-- Definition --
+Description of how observations are aggregated to the species distribution unit.
+
+-- Description --
+Values are provided by an extensible codelist. 0 to many single observations are usually aggregated within analytical units to provide the information about the distribution in a given area. These analytical units can be regularly shaped polygons like grids or irregular shaped polygons like administrative units, biogeographical regions or with boundaries of their own.</documentation>
+            </annotation>
+          </element>
+          <element minOccurs="0" name="inspireId" nillable="true">
+            <annotation>
+              <documentation>-- Name --
+inspire id
+
+-- Definition --
+External object identifier of the spatial object.
+
+-- Description --
+An external object identifier is a unique object identifier published by the responsible body, which may be used by external applications to reference the spatial object. The identifier is an identifier of the spatial object, not an identifier of the real-world phenomenon.</documentation>
+            </annotation>
+            <complexType>
+              <sequence>
+                <element ref="base:Identifier"/>
+              </sequence>
+              <attribute name="nilReason" type="gml:NilReasonType"/>
+            </complexType>
+          </element>
+          <element minOccurs="0" name="methodReference" nillable="true">
+            <annotation>
+              <documentation>-- Name --
+method reference
+
+-- Definition --
+Bibliographic reference or URL to a description of aggregation method.</documentation>
+            </annotation>
+            <complexType>
+              <simpleContent>
+                <extension base="string">
+                  <attribute name="nilReason" type="gml:NilReasonType"/>
+                </extension>
+              </simpleContent>
+            </complexType>
+          </element>
+          <element name="sourceMethod" type="gml:CodeType">
+            <annotation>
+              <documentation>-- Name --
+source method
+
+-- Definition --
+Method by which the data on species distribution is collected.
+
+-- Description --
+Refers to the methods hows observations have been made or recorded that are aggregated by using a given aggregationMethod assigned to the species distribution unit.</documentation>
+            </annotation>
+          </element>
+          <element maxOccurs="unbounded" name="sourceProvider" nillable="true">
+            <annotation>
+              <documentation>-- Name --
+source provider
+
+-- Definition --
+Name of institution compiling data from source databases to a complete dataset.</documentation>
+            </annotation>
+            <complexType>
+              <sequence>
+                <element ref="sd:SourceProviderType"/>
+              </sequence>
+              <attribute name="nilReason" type="gml:NilReasonType"/>
+            </complexType>
+          </element>
+          <element name="validFrom" nillable="true">
+            <annotation>
+              <documentation>-- Name --
+valid from
+
+-- Definition --
+The time when the phenomenon started to exist in the real world.
+
+-- Description --
+Starting date where observations have been aggregated by the given aggregation method.</documentation>
+            </annotation>
+            <complexType>
+              <simpleContent>
+                <extension base="dateTime">
+                  <attribute name="nilReason" type="gml:NilReasonType"/>
+                </extension>
+              </simpleContent>
+            </complexType>
+          </element>
+          <element minOccurs="0" name="validTo" nillable="true">
+            <annotation>
+              <documentation>-- Name --
+valid to
+
+-- Definition --
+The time from which the phenomenon no longer exists in the real world.
+
+-- Description --
+Ending date where observations have been aggregated by the given aggregation method.</documentation>
+            </annotation>
+            <complexType>
+              <simpleContent>
+                <extension base="dateTime">
+                  <attribute name="nilReason" type="gml:NilReasonType"/>
+                </extension>
+              </simpleContent>
+            </complexType>
+          </element>
+          <element maxOccurs="unbounded" minOccurs="0" name="localSpeciesName" nillable="true">
+            <annotation>
+              <documentation>-- Name --
+local species name
+
+-- Definition --
+Scientific name plus author used in national nomenclature with its national taxonomic concept.
+
+-- Description --
+The LocalSpeciesName provides nomenclatural and taxonomical information about the locally used species name and the taxonomic concepts implied by the use of this name according to a given reference. If omitted the name and concept given by the referenceSpeciesId according to the referenceSpeciesScheme has been used locally.</documentation>
+            </annotation>
+            <complexType>
+              <sequence>
+                <element ref="sd:LocalSpeciesNameType"/>
+              </sequence>
+              <attribute name="nilReason" type="gml:NilReasonType"/>
+            </complexType>
+          </element>
+        </sequence>
+      </extension>
+    </complexContent>
+  </complexType>
+  <complexType name="SourceInformationPropertyType">
+    <sequence minOccurs="0">
+      <element ref="sd:SourceInformation"/>
+    </sequence>
+    <attributeGroup ref="gml:AssociationAttributeGroup"/>
+    <attributeGroup ref="gml:OwnershipAttributeGroup"/>
+  </complexType>
+  <element name="LocalSpeciesNameType" substitutionGroup="gml:AbstractObject" type="sd:LocalSpeciesNameTypeType">
+    <annotation>
+      <documentation>-- Name --
+local species name type
+
+-- Definition --
+Species name in national nomenclature with reference to a taxonomic concept defined by a local species scheme.</documentation>
+    </annotation>
+  </element>
+  <complexType name="LocalSpeciesNameTypeType">
+    <sequence>
+      <element name="localSpeciesNameValue" type="string">
+        <annotation>
+          <documentation>-- Name --
+local species name value
+
+-- Definition --
+Scientific name plus author used in national nomenclature.</documentation>
+        </annotation>
+      </element>
+      <element name="localSpeciesSchemeId" type="string">
+        <annotation>
+          <documentation>-- Name --
+local species scheme id
+
+-- Definition --
+Name of local species classification scheme (bibliographic reference).</documentation>
+        </annotation>
+      </element>
+      <element minOccurs="0" name="qualifier" nillable="true">
+        <annotation>
+          <documentation>-- Name --
+qualifier
+
+-- Definition --
+Specifies how the relationship is to the combination of reference species id plus reference species scheme.</documentation>
+        </annotation>
+        <complexType>
+          <simpleContent>
+            <extension base="gml:CodeType">
+              <attribute name="nilReason" type="gml:NilReasonType"/>
+            </extension>
+          </simpleContent>
+        </complexType>
+      </element>
+    </sequence>
+  </complexType>
+  <complexType name="LocalSpeciesNameTypePropertyType">
+    <sequence>
+      <element ref="sd:LocalSpeciesNameType"/>
+    </sequence>
+  </complexType>
+  <element name="SourceProviderType" substitutionGroup="gml:AbstractObject" type="sd:SourceProviderTypeType">
+    <annotation>
+      <documentation>-- Name --
+source provider type
+
+-- Definition --
+Identifier of the source of data on species distribution.</documentation>
+    </annotation>
+  </element>
+  <complexType name="SourceProviderTypeType">
+    <sequence>
+      <element name="inistitutionName" nillable="true">
+        <annotation>
+          <documentation>-- Name --
+inistitution name
+
+-- Definition --
+Name of the owner or operator of the source database.</documentation>
+        </annotation>
+        <complexType>
+          <complexContent>
+            <extension base="gml:AbstractMetadataPropertyType">
+              <sequence>
+                <element ref="gmd:CI_ResponsibleParty"/>
+              </sequence>
+              <attribute name="nilReason" type="gml:NilReasonType"/>
+            </extension>
+          </complexContent>
+        </complexType>
+      </element>
+      <element maxOccurs="unbounded" minOccurs="0" name="sourceDatabase" nillable="true">
+        <annotation>
+          <documentation>-- Name --
+source database
+
+-- Definition --
+Name of the database where the species distribution data is retrieved from.</documentation>
+        </annotation>
+        <complexType>
+          <simpleContent>
+            <extension base="string">
+              <attribute name="nilReason" type="gml:NilReasonType"/>
+            </extension>
+          </simpleContent>
+        </complexType>
+      </element>
+    </sequence>
+  </complexType>
+  <complexType name="SourceProviderTypePropertyType">
+    <sequence>
+      <element ref="sd:SourceProviderType"/>
+    </sequence>
+  </complexType>
+  <element name="DistributionInfoType" substitutionGroup="gml:AbstractObject" type="sd:DistributionInfoTypeType">
+    <annotation>
+      <documentation>-- Name --
+distribution info type
+
+-- Definition --
+The description of the status of the subject of distribution within the aggregation unit, like the indication of the abundance by counting, estimation or calculation of the number of occurences or populationsize of the particular species.</documentation>
+    </annotation>
+  </element>
+  <complexType name="DistributionInfoTypeType">
+    <sequence>
+      <element name="countingMethod" type="gml:CodeType">
+        <annotation>
+          <documentation>-- Name --
+counting method
+
+-- Definition --
+Method of providing a number for the indication of the abundance of a species.</documentation>
+        </annotation>
+      </element>
+      <element name="countingUnit" type="gml:CodeType">
+        <annotation>
+          <documentation>-- Name --
+counting unit
+
+-- Definition --
+Defines what has been counted, estimated or calculated when compiling information on the abundance of a species within the speciesAggregationUnit.</documentation>
+        </annotation>
+      </element>
+      <element minOccurs="0" name="numericalRange" type="sd:RangeTypePropertyType">
+        <annotation>
+          <documentation>-- Name --
+numerical range
+
+-- Definition --
+A range value indicating the counted, estimated or calculated occurrences or populationsizes using upper and lower bounds.
+
+-- Description --
+NOTE Only used if the specific numerical count is not known.</documentation>
+        </annotation>
+      </element>
+      <element minOccurs="0" name="residencyStatus" nillable="true">
+        <annotation>
+          <documentation>-- Name --
+residency status
+
+-- Definition --
+Information on the status of residency regarding nativeness versus introduction and permanency.</documentation>
+        </annotation>
+        <complexType>
+          <simpleContent>
+            <extension base="gml:CodeType">
+              <attribute name="nilReason" type="gml:NilReasonType"/>
+            </extension>
+          </simpleContent>
+        </complexType>
+      </element>
+      <element minOccurs="0" name="sensitiveInfo" nillable="true">
+        <annotation>
+          <documentation>-- Name --
+sensitive info
+
+-- Definition --
+Indicates whether the combination (location, species) is sensitive. This can be a attribute to filter out sensitive data.
+
+-- Description --
+A species location e.g. breeding location, of vulnerable, endangered or protected species may by law be spatially generalised from detailed locations to lower resolutions in more extensive grid cells to avoid environmental crime.</documentation>
+        </annotation>
+        <complexType>
+          <simpleContent>
+            <extension base="boolean">
+              <attribute name="nilReason" type="gml:NilReasonType"/>
+            </extension>
+          </simpleContent>
+        </complexType>
+      </element>
+      <element minOccurs="0" name="specificNumericalCount" type="integer">
+        <annotation>
+          <documentation>-- Name --
+specific numerical count
+
+-- Definition --
+Number to indicate the count, estimation or calculation of occurrences or population size as described by the counting method.
+
+-- Description --
+If the number is 0 this means that within a given unit the occurrence of the species has been investigated, but no observation has been made.</documentation>
+        </annotation>
+      </element>
+      <element minOccurs="0" name="metadata" nillable="true">
+        <annotation>
+          <documentation>-- Name --
+metadata
+
+-- Definition --
+Contains metadata about specific instances of species distribution.</documentation>
+        </annotation>
+        <complexType>
+          <complexContent>
+            <extension base="gml:AbstractMemberType">
+              <sequence minOccurs="0">
+                <element ref="sd:SourceInformation"/>
+              </sequence>
+              <attributeGroup ref="gml:AssociationAttributeGroup"/>
+            </extension>
+          </complexContent>
+        </complexType>
+      </element>
+    </sequence>
+  </complexType>
+  <complexType name="DistributionInfoTypePropertyType">
+    <sequence>
+      <element ref="sd:DistributionInfoType"/>
+    </sequence>
+  </complexType>
+  <element name="SpeciesDistributionUnit" substitutionGroup="gml:AbstractFeature" type="sd:SpeciesDistributionUnitType">
+    <annotation>
+      <documentation>-- Name --
+species distribution unit
+
+-- Definition --
+Occurrence of animal and plant species aggregated by grid, region, administrative unit or other analytical unit. 
+
+-- Description --
+Pan-European, national or local mapping initiatives, resulting in spatial data for species in terrestrial and marine environments, e.g. for birds, insects, mammals, amphibians, reptiles, fish or vascular plants. 
+
+NOTE 1 The definition in INSPIRE Directive proposal does not include individual observations or other point based data, but focuses on aggregated versions of data about geographical distribution of species. Aggregation can be at any level of resolution, e.g. in geographical grid systems divided into 100x100 meter grid or 50x50km grid cells. Possibly also point-based observations and isolines generation between occurrences should be accepted and included in INSPIRE. Possibly these can be defined as options in the "other analytical unit". Aggregation may also be interpreted not only as space-based aggregation, but time-based aggregation as well. 
+
+NOTE 2 Only species are mentioned in the INSPIRE definition. But earlier INSPIRE documents (INPIRE IMS, 2003) mentions both species or species grouped e.g. to families. So we interprete species as taxa, which means taxonomic units at any systematic rank, like subspecies, species, genus, family etc.</documentation>
+    </annotation>
+  </element>
+  <complexType name="SpeciesDistributionUnitType">
+    <complexContent>
+      <extension base="gml:AbstractFeatureType">
+        <sequence>
+          <element minOccurs="0" name="inspireId" nillable="true">
+            <annotation>
+              <documentation>-- Name --
+inspire id
+
+-- Definition --
+External object identifier of the spatial object.
+
+-- Description --
+An external object identifier is a unique object identifier published by the responsible body, which may be used by external applications to reference the spatial object. The identifier is an identifier of the spatial object, not an identifier of the real-world phenomenon.</documentation>
+            </annotation>
+            <complexType>
+              <sequence>
+                <element ref="base:Identifier"/>
+              </sequence>
+              <attribute name="nilReason" type="gml:NilReasonType"/>
+            </complexType>
+          </element>
+          <element maxOccurs="unbounded" minOccurs="0" name="distributionInfo" nillable="true">
+            <annotation>
+              <documentation>-- Name --
+distribution info
+
+-- Definition --
+The description of the subject of distribution (observations or population), the indication of the count of observations or populationsize of the particular species, species group or taxon rank and its distribution/isolation within the aggregation unit.</documentation>
+            </annotation>
+            <complexType>
+              <sequence>
+                <element ref="sd:DistributionInfoType"/>
+              </sequence>
+              <attribute name="nilReason" type="gml:NilReasonType"/>
+            </complexType>
+          </element>
+          <element maxOccurs="unbounded" minOccurs="0" name="monitoringFacility" nillable="true">
+            <annotation>
+              <documentation>-- Name --
+monitoring facility
+
+-- Definition --
+A link to a monitoring facility and associated observations.
+
+-- Description --</documentation>
+            </annotation>
+            <complexType>
+              <sequence minOccurs="0">
+                <element ref="ef:EnvironmentalMonitoringFacility"/>
+              </sequence>
+              <attributeGroup ref="gml:AssociationAttributeGroup"/>
+              <attributeGroup ref="gml:OwnershipAttributeGroup"/>
+            </complexType>
+          </element>
+        </sequence>
+      </extension>
+    </complexContent>
+  </complexType>
+  <complexType name="SpeciesDistributionUnitPropertyType">
+    <sequence minOccurs="0">
+      <element ref="sd:SpeciesDistributionUnit"/>
+    </sequence>
+    <attributeGroup ref="gml:AssociationAttributeGroup"/>
+    <attributeGroup ref="gml:OwnershipAttributeGroup"/>
+  </complexType>
+</schema>

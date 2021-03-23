@@ -1,0 +1,766 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<schema xmlns="http://www.w3.org/2001/XMLSchema" xmlns:bu-ext3d="http://inspire.jrc.ec.europa.eu/schemas/bu-ext3d/2.0" xmlns:bu-ext2d="http://inspire.jrc.ec.europa.eu/schemas/bu-ext2d/2.0" xmlns:bu-core2d="http://inspire.jrc.ec.europa.eu/schemas/bu-core2d/2.0" xmlns:gml="http://www.opengis.net/gml/3.2" targetNamespace="http://inspire.jrc.ec.europa.eu/schemas/bu-ext3d/2.0" elementFormDefault="qualified" version="2.0">
+	<annotation>
+		<documentation>-- Definition --
+The extended 3D application schema for INSPIRE theme building.</documentation>
+	</annotation>
+	<import namespace="http://www.opengis.net/gml/3.2" schemaLocation="http://schemas.opengis.net/gml/3.2.1/gml.xsd"/>
+	<import namespace="http://inspire.jrc.ec.europa.eu/schemas/bu-core2d/2.0" schemaLocation="https://inspire.ec.europa.eu/draft-schemas/bu-core2d/2.0/BuildingCore2D.xsd"/>
+	<import namespace="http://inspire.jrc.ec.europa.eu/schemas/bu-ext2d/2.0" schemaLocation="https://inspire.ec.europa.eu/draft-schemas/bu-ext2d/2.0/BuildingExtended2D.xsd"/>
+	<!--XML Schema document created by ShapeChange-->
+	<element name="TransformationMatrix3x4Type" type="bu-ext3d:TransformationMatrix3x4TypeType" substitutionGroup="gml:AbstractObject">
+		<annotation>
+			<documentation>-- Definition --
+A matrix.</documentation>
+		</annotation>
+	</element>
+	<complexType name="TransformationMatrix3x4TypeType">
+		<sequence>
+			<element name="elements" type="double" minOccurs="0" maxOccurs="unbounded">
+				<annotation>
+					<documentation>-- Definition --
+The matrix elements.</documentation>
+				</annotation>
+			</element>
+		</sequence>
+	</complexType>
+	<complexType name="TransformationMatrix3x4TypePropertyType">
+		<sequence>
+			<element ref="bu-ext3d:TransformationMatrix3x4Type"/>
+		</sequence>
+	</complexType>
+	<element name="TextCoordList" type="bu-ext3d:TextCoordListType" substitutionGroup="bu-ext3d:TextureParametrization">
+		<annotation>
+			<documentation>-- Definition --
+Way to map a texture file to a surface of the exterior shell of a building, by explicitly relating the coordinates of the image  to the corresponding coordinates on the surface in the building shell.</documentation>
+		</annotation>
+	</element>
+	<complexType name="TextCoordListType">
+		<complexContent>
+			<extension base="bu-ext3d:TextureParametrizationType">
+				<sequence>
+					<element name="ring" type="anyURI">
+						<annotation>
+							<documentation>-- Definition --
+Universal Resource Identifier; gives indication where the ring (limit of image) may be found.</documentation>
+						</annotation>
+					</element>
+					<element name="textureCoordinates" type="double" minOccurs="0" maxOccurs="unbounded">
+						<annotation>
+							<documentation>-- Definition --
+List of coordinates in the texture file.</documentation>
+						</annotation>
+					</element>
+				</sequence>
+			</extension>
+		</complexContent>
+	</complexType>
+	<complexType name="TextCoordListPropertyType">
+		<sequence>
+			<element ref="bu-ext3d:TextCoordList"/>
+		</sequence>
+	</complexType>
+	<element name="BoundarySurface" type="bu-ext3d:BoundarySurfaceType" substitutionGroup="gml:AbstractFeature">
+		<annotation>
+			<documentation>-- Definition --
+BoundarySurface is a part of the building?s exterior shell with a special function like wall (WallSurface), roof (RoofSurface), ground plate (GroundSurface) or ClosureSurface.</documentation>
+		</annotation>
+	</element>
+	<complexType name="BoundarySurfaceType">
+		<complexContent>
+			<extension base="gml:AbstractFeatureType">
+				<sequence>
+					<element name="multiSurfaceLod3" type="gml:MultiSurfacePropertyType" minOccurs="0" maxOccurs="unbounded">
+						<annotation>
+							<documentation>-- Definition --
+The MultiSurface defining the geometry of the boundary surface that partially delimits the LoD3 representation of the building.</documentation>
+						</annotation>
+					</element>
+					<element name="multiSurfaceLod2" type="gml:MultiSurfacePropertyType" minOccurs="0" maxOccurs="unbounded">
+						<annotation>
+							<documentation>-- Definition --
+The MultiSurface defining the geometry of the boundary surface that partially delimits the LoD2 representation of the building.</documentation>
+						</annotation>
+					</element>
+					<element name="opening" type="bu-ext3d:OpeningPropertyType" minOccurs="0" maxOccurs="unbounded">
+						<annotation>
+							<documentation>-- Definition --
+Refers to an opening that is part of the boundary surface.</documentation>
+						</annotation>
+					</element>
+				</sequence>
+			</extension>
+		</complexContent>
+	</complexType>
+	<complexType name="BoundarySurfacePropertyType">
+		<sequence minOccurs="0">
+			<element ref="bu-ext3d:BoundarySurface"/>
+		</sequence>
+		<attributeGroup ref="gml:AssociationAttributeGroup"/>
+		<attributeGroup ref="gml:OwnershipAttributeGroup"/>
+	</complexType>
+	<element name="BuildingPart" type="bu-ext3d:BuildingPartType" substitutionGroup="bu-ext3d:Core2DAbstractBuilding">
+		<annotation>
+			<documentation>-- Definition --
+A BuildingPart is a sub-division of a Building that is homogeneous related to its physical, functional or temporal aspects.
+
+-- Description --
+
+NOTE: A BuildingPart may be considered as a building (as buildings and building parts share same set of properties).
+
+EXAMPLE:A Building may be composed of two BuildingParts having different heights.</documentation>
+		</annotation>
+	</element>
+	<complexType name="BuildingPartType">
+		<complexContent>
+			<extension base="bu-ext3d:Core2DAbstractBuildingType">
+				<sequence/>
+			</extension>
+		</complexContent>
+	</complexType>
+	<complexType name="BuildingPartPropertyType">
+		<sequence minOccurs="0">
+			<element ref="bu-ext3d:BuildingPart"/>
+		</sequence>
+		<attributeGroup ref="gml:AssociationAttributeGroup"/>
+		<attributeGroup ref="gml:OwnershipAttributeGroup"/>
+	</complexType>
+	<simpleType name="TextureTypeTypeType">
+		<annotation>
+			<documentation>-- Definition --
+The texture type type.</documentation>
+		</annotation>
+		<union memberTypes="bu-ext3d:TextureTypeTypeEnumerationType bu-ext3d:TextureTypeTypeOtherType"/>
+	</simpleType>
+	<simpleType name="TextureTypeTypeEnumerationType">
+		<annotation>
+			<documentation>-- Definition --
+The texture type type.</documentation>
+		</annotation>
+		<restriction base="string">
+			<enumeration value="specific">
+				<annotation>
+					<documentation>-- Definition --
+Specific means that the texture has been captured individually for that particular building.</documentation>
+				</annotation>
+			</enumeration>
+			<enumeration value="typical">
+				<annotation>
+					<documentation>-- Definition --
+Typical means that the texture is prototypic and typical for that type of building (e.g. a typical texture for a two storey residential home build in the 1950s.</documentation>
+				</annotation>
+			</enumeration>
+		</restriction>
+	</simpleType>
+	<simpleType name="TextureTypeTypeOtherType">
+		<restriction base="string">
+			<pattern value="other: \w{2,}"/>
+		</restriction>
+	</simpleType>
+	<element name="ParameterizedTexture" type="bu-ext3d:ParameterizedTextureType" substitutionGroup="gml:AbstractFeature">
+		<annotation>
+			<documentation>-- Definition --
+Texture representing the &lt;b&gt;&lt;u&gt;appearance&lt;/u&gt;&lt;/b&gt; aspect o&lt;b&gt;&lt;u&gt;f a surface in &lt;/u&gt;&lt;/b&gt;the exterior shell of the building. The feature type &lt;i&gt;ParameterizedTexture &lt;/i&gt;describes a &lt;b&gt;&lt;u&gt;texture that is mapped to a surface (target)&lt;/u&gt;&lt;/b&gt;. 
+
+-- Description --
+SOURCE: adapted from CityGML.</documentation>
+		</annotation>
+	</element>
+	<complexType name="ParameterizedTextureType">
+		<complexContent>
+			<extension base="gml:AbstractFeatureType">
+				<sequence>
+					<element name="imageURI" type="anyURI">
+						<annotation>
+							<documentation>-- Definition --
+Universal Resource Identifier; gives indication where the image used for the texture may be found.</documentation>
+						</annotation>
+					</element>
+					<element name="mimeType" type="bu-ext3d:MimeFileTypeType">
+						<annotation>
+							<documentation>-- Definition --
+Format of the image used for texture.</documentation>
+						</annotation>
+					</element>
+					<element name="textureType" type="bu-ext3d:TextureTypeTypeType">
+						<annotation>
+							<documentation>-- Definition -- 
+Type of the texture; gives indication if the texture comes from real-worl&lt;b&gt;&lt;u&gt;d&lt;/u&gt;&lt;/b&gt; images or from standards images in libraries.</documentation>
+						</annotation>
+					</element>
+					<element name="construction" type="bu-ext3d:AbstractConstructionPropertyType" minOccurs="0" maxOccurs="unbounded">
+						<annotation>
+							<documentation>-- Definition --
+The construction.</documentation>
+						</annotation>
+					</element>
+				</sequence>
+			</extension>
+		</complexContent>
+	</complexType>
+	<complexType name="ParameterizedTexturePropertyType">
+		<sequence minOccurs="0">
+			<element ref="bu-ext3d:ParameterizedTexture"/>
+		</sequence>
+		<attributeGroup ref="gml:AssociationAttributeGroup"/>
+		<attributeGroup ref="gml:OwnershipAttributeGroup"/>
+	</complexType>
+	<element name="OtherConstruction" type="bu-ext3d:OtherConstructionType" substitutionGroup="bu-ext3d:AbstractConstruction">
+		<annotation>
+			<documentation>-- Definition --
+An OtherConstruction is a construction that is under scope of theme Buildings without being within feature type Building.
+
+-- Description --
+NOTE: In other words, an OtherConstruction is a construction that is generally not considered as a building in common sense but that is required by at least one of the use cases identified by TWG BU.
+
+EXAMPLES: bridge, antenna, acoustic fence.</documentation>
+		</annotation>
+	</element>
+	<complexType name="OtherConstructionType">
+		<complexContent>
+			<extension base="bu-ext3d:AbstractConstructionType">
+				<sequence>
+					<element name="constructionNature" type="bu-core2d:ConstructionNatureValueType">
+						<annotation>
+							<documentation>-- Definition -- 
+A description of the feature that represents its intended nature or current function which differentiates it from that of a Building.</documentation>
+						</annotation>
+					</element>
+					<element name="boundedBy" type="bu-ext3d:BoundarySurfacePropertyType" minOccurs="0" maxOccurs="unbounded">
+						<annotation>
+							<documentation>-- Definition --
+The boundary surface.</documentation>
+						</annotation>
+					</element>
+				</sequence>
+			</extension>
+		</complexContent>
+	</complexType>
+	<complexType name="OtherConstructionPropertyType">
+		<sequence minOccurs="0">
+			<element ref="bu-ext3d:OtherConstruction"/>
+		</sequence>
+		<attributeGroup ref="gml:AssociationAttributeGroup"/>
+		<attributeGroup ref="gml:OwnershipAttributeGroup"/>
+	</complexType>
+	<element name="Opening" type="bu-ext3d:OpeningType" substitutionGroup="gml:AbstractFeature">
+		<annotation>
+			<documentation>-- Definition --
+The feature type &lt;i&gt;Opening &lt;/i&gt;is the (abstract) base class for semantically describing openings like doors or windows in outer or inner walls. Openings only exist in models of LOD3 or LOD4. 
+-- Description --
+NOTE: when using LoD2 or Lod3 of CityGML (as indicated in this INSPIRE Extended3D profile), the feature type Opening is limited to the openings in the outer walls of the building
+Source : adapted from CityGML</documentation>
+		</annotation>
+	</element>
+	<complexType name="OpeningType">
+		<complexContent>
+			<extension base="gml:AbstractFeatureType">
+				<sequence>
+					<element name="multiSurfaceLod3" type="gml:MultiSurfacePropertyType">
+						<annotation>
+							<documentation>-- Definition --
+The LoD3 multi surface.</documentation>
+						</annotation>
+					</element>
+				</sequence>
+			</extension>
+		</complexContent>
+	</complexType>
+	<complexType name="OpeningPropertyType">
+		<sequence minOccurs="0">
+			<element ref="bu-ext3d:Opening"/>
+		</sequence>
+		<attributeGroup ref="gml:AssociationAttributeGroup"/>
+		<attributeGroup ref="gml:OwnershipAttributeGroup"/>
+	</complexType>
+	<simpleType name="MimeFileTypeType">
+		<annotation>
+			<documentation>-- Definition --
+Mime file types code list.</documentation>
+		</annotation>
+		<union memberTypes="bu-ext3d:MimeFileTypeEnumerationType bu-ext3d:MimeFileTypeOtherType"/>
+	</simpleType>
+	<simpleType name="MimeFileTypeEnumerationType">
+		<annotation>
+			<documentation>-- Definition --
+Mime file types code list.</documentation>
+		</annotation>
+		<restriction base="string">
+			<enumeration value="image/gif">
+				<annotation>
+					<documentation>-- Definition --
+*.gif  images</documentation>
+				</annotation>
+			</enumeration>
+			<enumeration value="image/jpeg">
+				<annotation>
+					<documentation>-- Definition --
+*.jpeg, *.jpg  images</documentation>
+				</annotation>
+			</enumeration>
+			<enumeration value="image/png">
+				<annotation>
+					<documentation>-- Definition --
+*.png  images</documentation>
+				</annotation>
+			</enumeration>
+			<enumeration value="image/tiff">
+				<annotation>
+					<documentation>-- Definition --
+*.tiff, *.tif  images</documentation>
+				</annotation>
+			</enumeration>
+			<enumeration value="image/bmp">
+				<annotation>
+					<documentation>-- Definition --
+*.bmp  images</documentation>
+				</annotation>
+			</enumeration>
+		</restriction>
+	</simpleType>
+	<simpleType name="MimeFileTypeOtherType">
+		<restriction base="string">
+			<pattern value="other: \w{2,}"/>
+		</restriction>
+	</simpleType>
+	<element name="WallSurface" type="bu-ext3d:WallSurfaceType" substitutionGroup="bu-ext3d:BoundarySurface">
+		<annotation>
+			<documentation>-- Definition --
+&lt;b&gt;&lt;u&gt;All surfaces that are part &lt;/u&gt;&lt;/b&gt;of the building facade visible from the outside are modelled by the feature type &lt;i&gt;WallSurface&lt;/i&gt;. 
+Source: adapted from CityGML</documentation>
+		</annotation>
+	</element>
+	<complexType name="WallSurfaceType">
+		<complexContent>
+			<extension base="bu-ext3d:BoundarySurfaceType">
+				<sequence>
+					<element name="materialOfWall" nillable="true" minOccurs="0">
+						<annotation>
+							<documentation>-- Definition --
+Material(s) of the building exterior walls.</documentation>
+						</annotation>
+						<complexType>
+							<simpleContent>
+								<extension base="bu-ext2d:MaterialOfFacadeValueType">
+									<attribute name="nilReason" type="gml:NilReasonType"/>
+								</extension>
+							</simpleContent>
+						</complexType>
+					</element>
+				</sequence>
+			</extension>
+		</complexContent>
+	</complexType>
+	<complexType name="WallSurfacePropertyType">
+		<sequence minOccurs="0">
+			<element ref="bu-ext3d:WallSurface"/>
+		</sequence>
+		<attributeGroup ref="gml:AssociationAttributeGroup"/>
+		<attributeGroup ref="gml:OwnershipAttributeGroup"/>
+	</complexType>
+	<element name="Door" type="bu-ext3d:DoorType" substitutionGroup="bu-ext3d:Opening">
+		<annotation>
+			<documentation>-- Definition --
+The class &lt;i&gt;Door &lt;/i&gt;is used for modelling doors in the exterior shell of a building, or between adjacent rooms. Doors can be used by people to enter or leave a building or room. 
+-- Description --
+NOTE: when using Lod2 or Lod3 of CityGML (as indicated in INSPIRE Extended3D profile), the feature type Door is limited to the doors in the exterior shell of the building
+Source: adapted from City GML</documentation>
+		</annotation>
+	</element>
+	<complexType name="DoorType">
+		<complexContent>
+			<extension base="bu-ext3d:OpeningType">
+				<sequence/>
+			</extension>
+		</complexContent>
+	</complexType>
+	<complexType name="DoorPropertyType">
+		<sequence minOccurs="0">
+			<element ref="bu-ext3d:Door"/>
+		</sequence>
+		<attributeGroup ref="gml:AssociationAttributeGroup"/>
+		<attributeGroup ref="gml:OwnershipAttributeGroup"/>
+	</complexType>
+	<element name="Building" type="bu-ext3d:BuildingType" substitutionGroup="bu-ext3d:Core2DAbstractBuilding">
+		<annotation>
+			<documentation>-- Definition --
+A Building is an enclosed construction above and/or underground, used or intended for the shelter of humans, animals or things or for the production of economic goods. A building refers to any structure permanently constructed or erected on its site.</documentation>
+		</annotation>
+	</element>
+	<complexType name="BuildingType">
+		<complexContent>
+			<extension base="bu-ext3d:Core2DAbstractBuildingType">
+				<sequence>
+					<element name="parts" minOccurs="0" maxOccurs="unbounded">
+						<annotation>
+							<documentation>-- Definition --
+The parts.</documentation>
+						</annotation>
+						<complexType>
+							<complexContent>
+								<extension base="gml:AbstractMemberType">
+									<sequence minOccurs="0">
+										<element ref="bu-ext3d:BuildingPart"/>
+									</sequence>
+									<attributeGroup ref="gml:AssociationAttributeGroup"/>
+								</extension>
+							</complexContent>
+						</complexType>
+					</element>
+				</sequence>
+			</extension>
+		</complexContent>
+	</complexType>
+	<complexType name="BuildingPropertyType">
+		<sequence minOccurs="0">
+			<element ref="bu-ext3d:Building"/>
+		</sequence>
+		<attributeGroup ref="gml:AssociationAttributeGroup"/>
+		<attributeGroup ref="gml:OwnershipAttributeGroup"/>
+	</complexType>
+	<element name="TextureParametrization" type="bu-ext3d:TextureParametrizationType" substitutionGroup="gml:AbstractObject">
+		<annotation>
+			<documentation>-- Definition --
+TextureParametrization  is the abstract supertype of TextCoordGen and TextCoordList. Is is used to relate both to a ParametrizedTexture.</documentation>
+		</annotation>
+	</element>
+	<complexType name="TextureParametrizationType">
+		<sequence>
+			<element name="texture" type="bu-ext3d:ParameterizedTexturePropertyType" minOccurs="0" maxOccurs="unbounded">
+				<annotation>
+					<documentation>-- Definition --
+The texture.</documentation>
+				</annotation>
+			</element>
+		</sequence>
+	</complexType>
+	<complexType name="TextureParametrizationPropertyType">
+		<sequence>
+			<element ref="bu-ext3d:TextureParametrization"/>
+		</sequence>
+	</complexType>
+	<element name="Window" type="bu-ext3d:WindowType" substitutionGroup="bu-ext3d:Opening">
+		<annotation>
+			<documentation>-- Definition --
+The feature type &lt;i&gt;Window &lt;/i&gt;is used for modelling windows in the exterior shell of a building, or hatches between adjacent rooms.
+-- Description --
+NOTE 1: The formal difference between the classes &lt;i&gt;Window &lt;/i&gt;and &lt;i&gt;Door &lt;/i&gt;is that &amp;ndash; in normal cases &amp;ndash; &lt;i&gt;Windows &lt;/i&gt;are not specifically intended for the transit of people or vehicles. 
+NOTE 2: when using LoD2 or Lod3 of CityGML (as indicated in INSPIRE Extended3D profile), the feature type Window is limited to the windows in the exterior shell of the building
+Source : adapted from CityGML</documentation>
+		</annotation>
+	</element>
+	<complexType name="WindowType">
+		<complexContent>
+			<extension base="bu-ext3d:OpeningType">
+				<sequence/>
+			</extension>
+		</complexContent>
+	</complexType>
+	<complexType name="WindowPropertyType">
+		<sequence minOccurs="0">
+			<element ref="bu-ext3d:Window"/>
+		</sequence>
+		<attributeGroup ref="gml:AssociationAttributeGroup"/>
+		<attributeGroup ref="gml:OwnershipAttributeGroup"/>
+	</complexType>
+	<element name="Core2DAbstractBuilding" type="bu-ext3d:Core2DAbstractBuildingType" substitutionGroup="bu-ext3d:AbstractConstruction">
+		<annotation>
+			<documentation>-- Definition --
+Abstract feature type grouping the common properties of instanciable feature types Building and BuildingPart.</documentation>
+		</annotation>
+	</element>
+	<complexType name="Core2DAbstractBuildingType">
+		<complexContent>
+			<extension base="bu-ext3d:AbstractConstructionType">
+				<sequence>
+					<element name="currentUse" nillable="true">
+						<annotation>
+							<documentation>-- Definition --
+Activity hosted by the building.
+
+-- Description --
+NOTE: this attribute addresses mainly the buildings hosting human activities.</documentation>
+						</annotation>
+						<complexType>
+							<simpleContent>
+								<extension base="bu-core2d:CurrentUseValueType">
+									<attribute name="nilReason" type="gml:NilReasonType"/>
+								</extension>
+							</simpleContent>
+						</complexType>
+					</element>
+					<element name="specificInterest" nillable="true">
+						<annotation>
+							<documentation>-- Definition --
+Characteristics of the building that makes it generally of interest for mapping purposes.
+
+-- Description --
+NOTE 1: the characteristic may be related to the physical aspect and/or to the function of the building.</documentation>
+						</annotation>
+						<complexType>
+							<simpleContent>
+								<extension base="bu-core2d:SpecificInterestValueType">
+									<attribute name="nilReason" type="gml:NilReasonType"/>
+								</extension>
+							</simpleContent>
+						</complexType>
+					</element>
+					<element name="numberOfBuildingUnits" nillable="true" minOccurs="0">
+						<annotation>
+							<documentation>-- Definition --
+Number of building units in the building. A building unit is the sub-division of the building that is homogeneous related to management aspects.
+
+-- Description --
+EXAMPLE : A building unit may be a flat in a multi-owned building.</documentation>
+						</annotation>
+						<complexType>
+							<simpleContent>
+								<extension base="integer">
+									<attribute name="nilReason" type="gml:NilReasonType"/>
+								</extension>
+							</simpleContent>
+						</complexType>
+					</element>
+					<element name="numberOfDwellings" nillable="true" minOccurs="0">
+						<annotation>
+							<documentation>-- Definition --
+Number of dwellings in the building.</documentation>
+						</annotation>
+						<complexType>
+							<simpleContent>
+								<extension base="integer">
+									<attribute name="nilReason" type="gml:NilReasonType"/>
+								</extension>
+							</simpleContent>
+						</complexType>
+					</element>
+					<element name="numberOfFloorsAboveGround" nillable="true" minOccurs="0">
+						<annotation>
+							<documentation>-- Definition --
+Number of floors above ground of the building.</documentation>
+						</annotation>
+						<complexType>
+							<simpleContent>
+								<extension base="integer">
+									<attribute name="nilReason" type="gml:NilReasonType"/>
+								</extension>
+							</simpleContent>
+						</complexType>
+					</element>
+					<element name="boundedBy" type="bu-ext3d:BoundarySurfacePropertyType" minOccurs="0" maxOccurs="unbounded">
+						<annotation>
+							<documentation>-- Definition --
+The BoundarySurface(s) bounding the OtherConstruction.</documentation>
+						</annotation>
+					</element>
+				</sequence>
+			</extension>
+		</complexContent>
+	</complexType>
+	<complexType name="Core2DAbstractBuildingPropertyType">
+		<sequence minOccurs="0">
+			<element ref="bu-ext3d:Core2DAbstractBuilding"/>
+		</sequence>
+		<attributeGroup ref="gml:AssociationAttributeGroup"/>
+		<attributeGroup ref="gml:OwnershipAttributeGroup"/>
+	</complexType>
+	<element name="TextCoordGen" type="bu-ext3d:TextCoordGenType" substitutionGroup="bu-ext3d:TextureParametrization">
+		<annotation>
+			<documentation>-- Definition --
+Way to map a texture file (2D image coordinates) to a surface of the exterior shell of a building (3D real-world coordinates), by applying a transformation between the two coordinate reference systems.</documentation>
+		</annotation>
+	</element>
+	<complexType name="TextCoordGenType">
+		<complexContent>
+			<extension base="bu-ext3d:TextureParametrizationType">
+				<sequence>
+					<element name="worldToTexture" type="bu-ext3d:TransformationMatrix3x4TypePropertyType">
+						<annotation>
+							<documentation>-- Definition --
+Matrix of the transformation between the file coordinates in an image  to the real-world coordinates of the building</documentation>
+						</annotation>
+					</element>
+				</sequence>
+			</extension>
+		</complexContent>
+	</complexType>
+	<complexType name="TextCoordGenPropertyType">
+		<sequence>
+			<element ref="bu-ext3d:TextCoordGen"/>
+		</sequence>
+	</complexType>
+	<element name="ClosureSurface" type="bu-ext3d:ClosureSurfaceType" substitutionGroup="bu-ext3d:BoundarySurface">
+		<annotation>
+			<documentation>-- Definition --
+ClosureSurfaces are used for buildings which are not enclosed completely, for example airplane hangars or barns. In order to represent those objects as geometrically closed volume object, the open sides are sealed (virtually closed) by ClosureSurfaces.
+
+-- Description --
+NOTE: Those special surfaces are taken into account, when needed to compute volumes and are neglected, when they are irrelevant or not appropriate, for example in visualisations.</documentation>
+		</annotation>
+	</element>
+	<complexType name="ClosureSurfaceType">
+		<complexContent>
+			<extension base="bu-ext3d:BoundarySurfaceType">
+				<sequence/>
+			</extension>
+		</complexContent>
+	</complexType>
+	<complexType name="ClosureSurfacePropertyType">
+		<sequence minOccurs="0">
+			<element ref="bu-ext3d:ClosureSurface"/>
+		</sequence>
+		<attributeGroup ref="gml:AssociationAttributeGroup"/>
+		<attributeGroup ref="gml:OwnershipAttributeGroup"/>
+	</complexType>
+	<element name="RoofSurface" type="bu-ext3d:RoofSurfaceType" substitutionGroup="bu-ext3d:BoundarySurface">
+		<annotation>
+			<documentation>-- Definition --
+The&lt;b&gt;&lt;u&gt; surfaces delimiting &lt;/u&gt;&lt;/b&gt;major roof parts of a building or building part are expressed by the feature type &lt;i&gt;RoofSurface&lt;/i&gt;. 
+-- Description --
+Source: adapted from CityGML</documentation>
+		</annotation>
+	</element>
+	<complexType name="RoofSurfaceType">
+		<complexContent>
+			<extension base="bu-ext3d:BoundarySurfaceType">
+				<sequence>
+					<element name="materialOfRoof" nillable="true" minOccurs="0" maxOccurs="unbounded">
+						<annotation>
+							<documentation>-- Definition --
+Material(s) of the building roof.</documentation>
+						</annotation>
+						<complexType>
+							<simpleContent>
+								<extension base="bu-ext2d:MaterialOfRoofValueType">
+									<attribute name="nilReason" type="gml:NilReasonType"/>
+								</extension>
+							</simpleContent>
+						</complexType>
+					</element>
+				</sequence>
+			</extension>
+		</complexContent>
+	</complexType>
+	<complexType name="RoofSurfacePropertyType">
+		<sequence minOccurs="0">
+			<element ref="bu-ext3d:RoofSurface"/>
+		</sequence>
+		<attributeGroup ref="gml:AssociationAttributeGroup"/>
+		<attributeGroup ref="gml:OwnershipAttributeGroup"/>
+	</complexType>
+	<element name="GroundSurface" type="bu-ext3d:GroundSurfaceType" substitutionGroup="bu-ext3d:BoundarySurface">
+		<annotation>
+			<documentation>-- Definition --
+The ground plate of a building or building part. The polygon defining the ground plate is congruent with the building?s footprint.
+-- Description --
+Source: adapted from City GML</documentation>
+		</annotation>
+	</element>
+	<complexType name="GroundSurfaceType">
+		<complexContent>
+			<extension base="bu-ext3d:BoundarySurfaceType">
+				<sequence/>
+			</extension>
+		</complexContent>
+	</complexType>
+	<complexType name="GroundSurfacePropertyType">
+		<sequence minOccurs="0">
+			<element ref="bu-ext3d:GroundSurface"/>
+		</sequence>
+		<attributeGroup ref="gml:AssociationAttributeGroup"/>
+		<attributeGroup ref="gml:OwnershipAttributeGroup"/>
+	</complexType>
+	<element name="AbstractConstruction" type="bu-ext3d:AbstractConstructionType" substitutionGroup="bu-core2d:AbstractConstruction">
+		<annotation>
+			<documentation>-- Definition --
+Abstract feature type grouping common properties of instanciable feature types Building, BuildingPart and OtherConstruction.</documentation>
+		</annotation>
+	</element>
+	<complexType name="AbstractConstructionType">
+		<complexContent>
+			<extension base="bu-core2d:AbstractConstructionType">
+				<sequence>
+					<element name="horizontalGeometryEstimatedAccuracyLod1" type="gml:LengthType">
+						<annotation>
+							<documentation>-- Definition --
+The estimated absolute &lt;b&gt;&lt;u&gt;planimetric&lt;/u&gt;&lt;/b&gt; accuracy of the Lod1 building representation, in the INSPIRE official Coordinate Reference System. Absolute &lt;b&gt;&lt;u&gt;planimetric&lt;/u&gt;&lt;/b&gt; accuracy is defined as the mean value of the positional uncertainties for a set of positions where the positional uncertainties are defined as the distance between a measured position and what is considered as the corresponding true position.
+
+-- Description --
+NOTE: this mean value may come from quality measures on a homogeneous population of buildings or from an estimation based on the knowledge of the production processes and of their accuracy.</documentation>
+						</annotation>
+					</element>
+					<element name="horizontalGeometryEstimatedAccuracyLod2" type="gml:LengthType">
+						<annotation>
+							<documentation>-- Definition --
+The estimated absolute &lt;b&gt;&lt;u&gt;planimetric&lt;/u&gt;&lt;/b&gt; accuracy of the LoD2 building representation, in the INSPIRE official Coordinate Reference System. Absolute &lt;b&gt;&lt;u&gt;planimetric&lt;/u&gt;&lt;/b&gt; accuracy is defined as the mean value of the positional uncertainties for a set of positions where the positional uncertainties are defined as the distance between a measured position and what is considered as the corresponding true position.
+
+-- Description --
+NOTE: this mean value may come from quality measures on a homogeneous population of buildings or from an estimation based on the knowledge of the production processes and of their accuracy.</documentation>
+						</annotation>
+					</element>
+					<element name="horizontalGeometryEstimatedAccuracyLod3" type="gml:LengthType">
+						<annotation>
+							<documentation>-- Definition --
+The estimated absolute &lt;b&gt;&lt;u&gt;planimetric&lt;/u&gt;&lt;/b&gt; accuracy of the LoD3 building representation, in the INSPIRE official Coordinate Reference System. Absolute &lt;b&gt;&lt;u&gt;planimetric&lt;/u&gt;&lt;/b&gt; accuracy is defined as the mean value of the positional uncertainties for a set of positions where the positional uncertainties are defined as the distance between a measured position and what is considered as the corresponding true position.
+
+-- Description --
+NOTE: this mean value may come from quality measures on a homogeneous population of buildings or from an estimation based on the knowledge of the production processes and of their accuracy.</documentation>
+						</annotation>
+					</element>
+					<element name="verticalGeometryEstimatedAccuracyLod1" type="gml:LengthType" minOccurs="0">
+						<annotation>
+							<documentation>-- Definition --
+The estimated absolute &lt;b&gt;&lt;u&gt;height&lt;/u&gt;&lt;/b&gt; accuracy of the LoD1 building representation, in the INSPIRE official Coordinate Reference System. Absolute &lt;b&gt;&lt;u&gt;height&lt;/u&gt;&lt;/b&gt; accuracy is defined as the mean value of the positional uncertainties for a set of positions where the positional uncertainties are defined as the distance between a measured position and what is considered as the corresponding true position.
+
+-- Description --
+NOTE: this mean value may come from quality measures on a homogeneous population of buildings or from an estimation based on the knowledge of the production processes and of their accuracy.</documentation>
+						</annotation>
+					</element>
+					<element name="verticalGeometryEstimatedAccuracyLod2" type="gml:LengthType" minOccurs="0">
+						<annotation>
+							<documentation>-- Definition --
+The estimated absolute &lt;b&gt;&lt;u&gt;height&lt;/u&gt;&lt;/b&gt; accuracy of the LoD2 building representation, in the INSPIRE official Coordinate Reference System. Absolute &lt;b&gt;&lt;u&gt;height&lt;/u&gt;&lt;/b&gt; accuracy is defined as the mean value of the positional uncertainties for a set of positions where the positional uncertainties are defined as the distance between a measured position and what is considered as the corresponding true position.
+
+-- Description --
+NOTE: this mean value may come from quality measures on a homogeneous population of buildings or from an estimation based on the knowledge of the production processes and of their accuracy.</documentation>
+						</annotation>
+					</element>
+					<element name="verticalGeometryEstimatedAccuracyLod3" type="gml:LengthType" minOccurs="0">
+						<annotation>
+							<documentation>-- Definition --
+The estimated absolute &lt;b&gt;&lt;u&gt;height&lt;/u&gt;&lt;/b&gt; accuracy of the LoD3 building representation in LoD3, in the INSPIRE official Coordinate Reference System. Absolute &lt;b&gt;&lt;u&gt;height&lt;/u&gt;&lt;/b&gt; accuracy is defined as the mean value of the positional uncertainties for a set of positions where the positional uncertainties are defined as the distance between a measured position and what is considered as the corresponding true position.
+
+-- Definition --
+NOTE: this mean value may come from quality measures on a homogeneous population of buildings or from an estimation based on the knowledge of the production processes and of their accuracy.</documentation>
+						</annotation>
+					</element>
+					<element name="lod1Geometry" type="gml:SolidPropertyType" minOccurs="0">
+						<annotation>
+							<documentation>-- Definition --
+The geometric representation of the building, as 3D solid, when the building is represented using LoD1 (level of detail 1) of CityGML.</documentation>
+						</annotation>
+					</element>
+					<element name="lod3Geometry" type="gml:SolidPropertyType" minOccurs="0">
+						<annotation>
+							<documentation>-- Definition --
+The geometric representation of the building, as 3D solid, when the building is represented using LoD3 (level of detail 3) of CityGML.</documentation>
+						</annotation>
+					</element>
+					<element name="lod2Geometry" type="gml:SolidPropertyType" minOccurs="0">
+						<annotation>
+							<documentation>-- Definition --
+The geometric representation of the building, as 3D solid, when the building is represented using LoD2 (level of detail 2) of CityGML.</documentation>
+						</annotation>
+					</element>
+				</sequence>
+			</extension>
+		</complexContent>
+	</complexType>
+	<complexType name="AbstractConstructionPropertyType">
+		<sequence minOccurs="0">
+			<element ref="bu-ext3d:AbstractConstruction"/>
+		</sequence>
+		<attributeGroup ref="gml:AssociationAttributeGroup"/>
+		<attributeGroup ref="gml:OwnershipAttributeGroup"/>
+	</complexType>
+</schema>

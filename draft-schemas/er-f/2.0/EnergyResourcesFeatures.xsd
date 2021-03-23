@@ -1,0 +1,619 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- edited with XMLSpy v2011 (http://www.altova.com) by European Commission DG JRC IES (European Commission DG JRC IES) -->
+<schema xmlns="http://www.w3.org/2001/XMLSchema" xmlns:am="http://inspire.jrc.ec.europa.eu/schemas/am/2.0" xmlns:base="urn:x-inspire:specification:gmlas:BaseTypes:3.2" xmlns:er-b="http://inspire.jrc.ec.europa.eu/schemas/er-b/2.0" xmlns:er-f="http://inspire.jrc.ec.europa.eu/schemas/er-f/2.0" xmlns:gml="http://www.opengis.net/gml/3.2" xmlns:gn="urn:x-inspire:specification:gmlas:GeographicalNames:3.0" xmlns:pf-core="http://inspire.jrc.ec.europa.eu/schemas/pf-core/2.0" elementFormDefault="qualified" targetNamespace="http://inspire.jrc.ec.europa.eu/schemas/er-f/2.0" version="2.0">
+	<import namespace="http://inspire.jrc.ec.europa.eu/schemas/am/2.0" schemaLocation="https://inspire.ec.europa.eu/draft-schemas/am/2.0/AreaManagementRestrictionRegulationZone.xsd"/>
+	<import namespace="http://inspire.jrc.ec.europa.eu/schemas/er-b/2.0" schemaLocation="https://inspire.ec.europa.eu/draft-schemas/er-b/2.0/EnergyResourcesBase.xsd"/>
+	<import namespace="http://inspire.jrc.ec.europa.eu/schemas/pf-core/2.0" schemaLocation="https://inspire.ec.europa.eu/draft-schemas/pf-core/2.0/ProductionAndIndustrialFacilitiesCore.xsd"/>
+	<import namespace="http://www.opengis.net/gml/3.2" schemaLocation="http://schemas.opengis.net/gml/3.2.1/gml.xsd"/>
+	<import namespace="urn:x-inspire:specification:gmlas:BaseTypes:3.2" schemaLocation="https://inspire.ec.europa.eu/schemas/base/3.2/BaseTypes.xsd"/>
+	<import namespace="urn:x-inspire:specification:gmlas:GeographicalNames:3.0" schemaLocation="https://inspire.ec.europa.eu/schemas/gn/3.0/GeographicalNames.xsd"/>
+	<!--XML Schema document created by ShapeChange-->
+	<element name="ResourceInformation" substitutionGroup="gml:AbstractObject" type="er-f:ResourceInformationType">
+		<annotation>
+			<documentation>-- Definition --
+Primary energy resource information detailing the type of resource and the rank of resource.</documentation>
+		</annotation>
+	</element>
+	<complexType name="ResourceInformationType">
+		<sequence>
+			<element minOccurs="0" name="resourceRank" nillable="true">
+				<annotation>
+					<documentation>-- Definition --
+The rank of the energy resource in the order of energy resources that are bounded by the same geometric object.
+
+-- Description --
+NOTE This is mainly applicable to non-renewable energy resources and is used to state where one resource type has more quantity than another.</documentation>
+				</annotation>
+				<complexType>
+					<simpleContent>
+						<extension base="integer">
+							<attribute name="nilReason" type="gml:NilReasonType"/>
+						</extension>
+					</simpleContent>
+				</complexType>
+			</element>
+			<element name="resourceType" type="gml:CodeType">
+				<annotation>
+					<documentation>-- Definition --
+Type of Energy Resource.
+
+-- Description --
+NOTE Only primary energy resource types are considered.</documentation>
+				</annotation>
+			</element>
+			<element name="specialisedResourceType" nillable="true">
+				<annotation>
+					<documentation>-- Definition --
+Specialised type of Energy Resource.
+
+-- Description --
+EXAMPLE 1: Coal resources can be specialised as either:
+&lt;ul&gt;
+	&lt;li&gt;hardCoal &lt;/li&gt;
+	&lt;li&gt;lowRankCoal&lt;/li&gt;
+&lt;/ul&gt;</documentation>
+				</annotation>
+				<complexType>
+					<simpleContent>
+						<extension base="gml:CodeType">
+							<attribute name="nilReason" type="gml:NilReasonType"/>
+						</extension>
+					</simpleContent>
+				</complexType>
+			</element>
+		</sequence>
+	</complexType>
+	<complexType name="ResourceInformationPropertyType">
+		<sequence>
+			<element ref="er-f:ResourceInformation"/>
+		</sequence>
+	</complexType>
+	<element name="ProbabilityType" substitutionGroup="gml:AbstractObject" type="er-f:ProbabilityTypeType">
+		<annotation>
+			<documentation>-- Definition --
+Datatype reflecting the probability model which has been used to determine the amount of energy resources. 
+
+-- Description --
+The probability represents  a &amp;lsquo;confidence&amp;rsquo; level on the stated amount of resources. The probability is based on either a deterministic or stochastic probability model.</documentation>
+		</annotation>
+	</element>
+	<complexType name="ProbabilityTypeType">
+		<sequence>
+			<element minOccurs="0" name="deterministic" nillable="true">
+				<annotation>
+					<documentation>-- Definition --
+Deterministic confidence level.
+
+-- Description --
+Deterministic systems are systems completely described by deterministic information and models. The inputs and initial conditions uniquely determine output processes.</documentation>
+				</annotation>
+				<complexType>
+					<simpleContent>
+						<extension base="gml:CodeType">
+							<attribute name="nilReason" type="gml:NilReasonType"/>
+						</extension>
+					</simpleContent>
+				</complexType>
+			</element>
+			<element minOccurs="0" name="stochastic" nillable="true">
+				<annotation>
+					<documentation>-- Definition --
+Stochastic confidence level.
+
+-- Description --
+Random system. The probabilistic system is defined as the system that consists of at least one probabilistic component.</documentation>
+				</annotation>
+				<complexType>
+					<simpleContent>
+						<extension base="gml:CodeType">
+							<attribute name="nilReason" type="gml:NilReasonType"/>
+						</extension>
+					</simpleContent>
+				</complexType>
+			</element>
+		</sequence>
+	</complexType>
+	<complexType name="ProbabilityTypePropertyType">
+		<sequence>
+			<element ref="er-f:ProbabilityType"/>
+		</sequence>
+	</complexType>
+	<element name="NonRenewableEnergyResource" substitutionGroup="er-f:EnergyResource" type="er-f:NonRenewableEnergyResourceType">
+		<annotation>
+			<documentation>-- Definition --
+A feature defining an inferred or observable spatial extent of a resource that can be, or has been, used as a source of non-renewable energy.
+
+-- Description --
+NOTE It comprises reservoirs (gas, oil) and relevant deposits (peat, coal, uranium, thorium).</documentation>
+		</annotation>
+	</element>
+	<complexType name="NonRenewableEnergyResourceType">
+		<complexContent>
+			<extension base="er-f:EnergyResourceType">
+				<sequence>
+					<element name="dateOfDiscovery" nillable="true" type="gml:TimePositionType">
+						<annotation>
+							<documentation>-- Definition --
+The date the non-renewable energy source was discovered.</documentation>
+						</annotation>
+					</element>
+					<element maxOccurs="unbounded" name="depthRange" nillable="true">
+						<annotation>
+							<documentation>-- Definition --
+The range between the deepest (lower bound) and most shallow (upper bound) aspect of the deposit body, where the depth is true vertical depth below the Earth&amp;rsquo;s surface or average sea level.</documentation>
+						</annotation>
+						<complexType>
+							<sequence>
+								<element ref="er-f:DepthRangeType"/>
+							</sequence>
+							<attribute name="nilReason" type="gml:NilReasonType"/>
+						</complexType>
+					</element>
+					<element maxOccurs="unbounded" minOccurs="0" name="productionFacility" nillable="true">
+						<complexType>
+							<sequence minOccurs="0">
+								<element ref="pf-core:Facility"/>
+							</sequence>
+							<attributeGroup ref="gml:AssociationAttributeGroup"/>
+							<attributeGroup ref="gml:OwnershipAttributeGroup"/>
+						</complexType>
+					</element>
+					<element maxOccurs="unbounded" minOccurs="0" name="reportingInformation" nillable="true">
+						<annotation>
+							<documentation>-- Definition --
+Information describing the classification and estimates on the amount of resources.</documentation>
+						</annotation>
+						<complexType>
+							<sequence>
+								<element ref="er-f:NonRenewableEnergyResourceReportingInformation"/>
+							</sequence>
+							<attribute name="nilReason" type="gml:NilReasonType"/>
+						</complexType>
+					</element>
+					<element maxOccurs="unbounded" minOccurs="0" name="system" nillable="true">
+						<annotation>
+							<documentation>-- Definition --
+Relation to the basin-scale system within which deposits of energy resource accumulate.</documentation>
+						</annotation>
+						<complexType>
+							<sequence minOccurs="0">
+								<element ref="er-f:NonRenewableEnergyResourceRegion"/>
+							</sequence>
+							<attributeGroup ref="gml:AssociationAttributeGroup"/>
+							<attributeGroup ref="gml:OwnershipAttributeGroup"/>
+						</complexType>
+					</element>
+				</sequence>
+			</extension>
+		</complexContent>
+	</complexType>
+	<complexType name="NonRenewableEnergyResourcePropertyType">
+		<sequence minOccurs="0">
+			<element ref="er-f:NonRenewableEnergyResource"/>
+		</sequence>
+		<attributeGroup ref="gml:AssociationAttributeGroup"/>
+		<attributeGroup ref="gml:OwnershipAttributeGroup"/>
+	</complexType>
+	<element name="NonRenewableEnergyResourceReportingInformation" substitutionGroup="gml:AbstractObject" type="er-f:NonRenewableEnergyResourceReportingInformationType">
+		<annotation>
+			<documentation>-- Definition --
+The amount of Energy Resources can be reported through different stages and projects. The reporting information complies with a common generic principle-based system in which quantities are classified on the basis of social-economic  viability, feasibility, and geological knowledge on the fossil resources.
+
+-- Description --
+SOURCE Adapted from Adapted from [RCSEIES 2009].</documentation>
+		</annotation>
+	</element>
+	<complexType name="NonRenewableEnergyResourceReportingInformationType">
+		<sequence>
+			<element maxOccurs="unbounded" name="resourceAmount" nillable="true">
+				<annotation>
+					<documentation>-- Definition --
+Amount of resources.
+
+-- Description --
+NOTE The amount of resources includes an amount (with or without probability statement) for each type of resources.</documentation>
+				</annotation>
+				<complexType>
+					<sequence>
+						<element ref="er-f:ResourceAmountType"/>
+					</sequence>
+					<attribute name="nilReason" type="gml:NilReasonType"/>
+				</complexType>
+			</element>
+			<element name="resourceClassification" nillable="true">
+				<annotation>
+					<documentation>-- Definition --
+Classification system for calculating the measurement. Examples include SPE (PRMS), UNFC, SEC, etc...</documentation>
+				</annotation>
+				<complexType>
+					<simpleContent>
+						<extension base="gml:CodeType">
+							<attribute name="nilReason" type="gml:NilReasonType"/>
+						</extension>
+					</simpleContent>
+				</complexType>
+			</element>
+		</sequence>
+	</complexType>
+	<complexType name="NonRenewableEnergyResourceReportingInformationPropertyType">
+		<sequence>
+			<element ref="er-f:NonRenewableEnergyResourceReportingInformation"/>
+		</sequence>
+	</complexType>
+	<element name="RenewableEnergyResource" substitutionGroup="er-f:EnergyResource" type="er-f:RenewableEnergyResourceType">
+		<annotation>
+			<documentation>-- Definition --
+A feature defining an inferred or observable spatial extent of a resource that can be, or has been used as a source of renewable energy.
+
+-- Description --
+NOTE It comprises existing areas, but may also refer to areas of future interest.</documentation>
+		</annotation>
+	</element>
+	<complexType name="RenewableEnergyResourceType">
+		<complexContent>
+			<extension base="er-f:EnergyResourceType">
+				<sequence>
+					<element name="dateOfIdentification" nillable="true" type="gml:TimePositionType">
+						<annotation>
+							<documentation>-- Definition --
+The date the spatial extent of the renewable energy source was identified.</documentation>
+						</annotation>
+					</element>
+					<element minOccurs="0" name="resourceCapacity" nillable="true">
+						<annotation>
+							<documentation>-- Definition --
+Current generated energy produced from a renewable energy resource within the spatial extent.
+
+-- Description --
+NOTE Measure should be unit of energy. The standard unit of energy in the SI system is Joule. Most common units are volumes (barrels, m³..), tonnes of oil equivalent (toe), Mega Watt hours (MWh), Giga Joules (GJ)</documentation>
+						</annotation>
+						<complexType>
+							<simpleContent>
+								<extension base="gml:MeasureType">
+									<attribute name="nilReason" type="gml:NilReasonType"/>
+								</extension>
+							</simpleContent>
+						</complexType>
+					</element>
+					<element name="resourcePotential" nillable="true">
+						<annotation>
+							<documentation>-- Definition --
+Theoretical average annual energy that can be extracted from a renewable energy resource within the spatial extent.
+
+-- Description --
+NOTE Measure should be unit of energy. The standard unit of energy in the SI system is Joule. Most common units are volumes (barrels, m³..), tonnes of oil equivalent (toe), Mega Watt hours (MWh), Giga Joules (GJ)</documentation>
+						</annotation>
+						<complexType>
+							<simpleContent>
+								<extension base="gml:MeasureType">
+									<attribute name="nilReason" type="gml:NilReasonType"/>
+								</extension>
+							</simpleContent>
+						</complexType>
+					</element>
+				</sequence>
+			</extension>
+		</complexContent>
+	</complexType>
+	<complexType name="RenewableEnergyResourcePropertyType">
+		<sequence minOccurs="0">
+			<element ref="er-f:RenewableEnergyResource"/>
+		</sequence>
+		<attributeGroup ref="gml:AssociationAttributeGroup"/>
+		<attributeGroup ref="gml:OwnershipAttributeGroup"/>
+	</complexType>
+	<element name="NonRenewableEnergyResourceRegion" substitutionGroup="gml:AbstractFeature" type="er-f:NonRenewableEnergyResourceRegionType">
+		<annotation>
+			<documentation>-- Definition --
+A feature defining Geographical area that includes/contains accumulations or deposits of non renewable resources  which are genetically related
+
+-- Description --
+NOTE Occurrence and extent of such a region is predominantly determined by geological conditions, especially by the presence of basis (substance) from which energy resource is generated and, if needed, by the presence of appropriate accumulation/deposit structures in which energy resource(s) is/are trapped.</documentation>
+		</annotation>
+	</element>
+	<complexType name="NonRenewableEnergyResourceRegionType">
+		<complexContent>
+			<extension base="gml:AbstractFeatureType">
+				<sequence>
+					<element name="beginLifespanVersion" nillable="true">
+						<annotation>
+							<documentation>-- Definition --
+Date and time at which this version of the spatial object was inserted or changed in the spatial data set.</documentation>
+						</annotation>
+						<complexType>
+							<simpleContent>
+								<extension base="dateTime">
+									<attribute name="nilReason" type="gml:NilReasonType"/>
+								</extension>
+							</simpleContent>
+						</complexType>
+					</element>
+					<element minOccurs="0" name="endLifespanVersion" nillable="true">
+						<annotation>
+							<documentation>-- Definition --
+Date and time at which this version of the spatial object was superseded or retired in the spatial data set.</documentation>
+						</annotation>
+						<complexType>
+							<simpleContent>
+								<extension base="dateTime">
+									<attribute name="nilReason" type="gml:NilReasonType"/>
+								</extension>
+							</simpleContent>
+						</complexType>
+					</element>
+					<element name="geometry" type="gml:GeometryPropertyType">
+						<annotation>
+							<documentation>-- Definition --
+Geometric representation of spatial extent covered by this energy resource system.</documentation>
+						</annotation>
+					</element>
+					<element name="inspireId" type="base:IdentifierPropertyType">
+						<annotation>
+							<documentation>-- Definition --
+External object identifier of the spatial object.
+
+-- Description --
+NOTE An external object identifier is a unique object identifier published by the responsible body, which may be used by external applications to reference the spatial object. The identifier is an identifier of the spatial object, not an identifier of the real-world phenomenon.</documentation>
+						</annotation>
+					</element>
+					<element name="regionType" type="gml:CodeType">
+						<annotation>
+							<documentation>-- Definition --
+Type of the Energy Resource system</documentation>
+						</annotation>
+					</element>
+					<element maxOccurs="unbounded" minOccurs="0" name="systemName" nillable="true">
+						<annotation>
+							<documentation>-- Definition --
+Name of the Energy Resource System.</documentation>
+						</annotation>
+						<complexType>
+							<sequence>
+								<element ref="gn:GeographicalName"/>
+							</sequence>
+							<attribute name="nilReason" type="gml:NilReasonType"/>
+						</complexType>
+					</element>
+				</sequence>
+			</extension>
+		</complexContent>
+	</complexType>
+	<complexType name="NonRenewableEnergyResourceRegionPropertyType">
+		<sequence minOccurs="0">
+			<element ref="er-f:NonRenewableEnergyResourceRegion"/>
+		</sequence>
+		<attributeGroup ref="gml:AssociationAttributeGroup"/>
+		<attributeGroup ref="gml:OwnershipAttributeGroup"/>
+	</complexType>
+	<element name="ResourceAmountType" substitutionGroup="gml:AbstractObject" type="er-f:ResourceAmountTypeType">
+		<annotation>
+			<documentation>-- Definition --
+Amount of resources.
+
+-- Description --
+NOTE The amount of resources includes an amount (with or without probability statement) for each type of resources.</documentation>
+		</annotation>
+	</element>
+	<complexType name="ResourceAmountTypeType">
+		<sequence>
+			<element name="amount" type="gml:MeasureType">
+				<annotation>
+					<documentation>-- Definition --
+Quantification of resources.
+
+-- Description --
+NOTE Measure should be unit of energy. The standard unit of energy in the SI system is Joule. Most common units are volumes (barrels, m³..), tonnes of oil equivalent (toe), Giga Joules (GJ).</documentation>
+				</annotation>
+			</element>
+			<element name="dateOfEstimation" type="gml:TimePositionType">
+				<annotation>
+					<documentation>-- Definition --
+Date of classification and estimation of resources.</documentation>
+				</annotation>
+			</element>
+			<element minOccurs="0" name="probability" nillable="true">
+				<annotation>
+					<documentation>-- Definition --
+Probability figures on the amount of category of resource. 
+
+-- Description --
+The probability represents  a &amp;lsquo;confidence&amp;rsquo; level on the stated amount of resources. The confidence level can be clarified using either stochastic or deterministic values.</documentation>
+				</annotation>
+				<complexType>
+					<sequence>
+						<element ref="er-f:ProbabilityType"/>
+					</sequence>
+					<attribute name="nilReason" type="gml:NilReasonType"/>
+				</complexType>
+			</element>
+			<element name="resourceClass" type="gml:CodeType">
+				<annotation>
+					<documentation>-- Definition --
+Category or energy resource. 
+
+-- Description --
+The resource categories proposed are common categories to most classification schemes, representing an aggregated quantity at the level of:
+&lt;ul&gt;
+	&lt;li&gt;the production,&lt;/li&gt;
+	&lt;li&gt;the total amount initially in place&lt;/li&gt;
+	&lt;li&gt;the reserves, &lt;/li&gt;
+	&lt;li&gt;the contingent resources and &lt;/li&gt;
+	&lt;li&gt;unrecoverable. &lt;/li&gt;
+&lt;/ul&gt;</documentation>
+				</annotation>
+			</element>
+		</sequence>
+	</complexType>
+	<complexType name="ResourceAmountTypePropertyType">
+		<sequence>
+			<element ref="er-f:ResourceAmountType"/>
+		</sequence>
+	</complexType>
+	<element name="ExploitationPeriodType" substitutionGroup="gml:AbstractObject" type="er-f:ExploitationPeriodTypeType">
+		<annotation>
+			<documentation>-- Definition --
+Exploitation period of the energy resource.</documentation>
+		</annotation>
+	</element>
+	<complexType name="ExploitationPeriodTypeType">
+		<sequence>
+			<element name="beginTime" type="gml:TimePositionType">
+				<annotation>
+					<documentation>-- Definition --
+The time when the exploitation started.
+
+-- Description --
+This is both for renewable and non-renewable energy sources. For non-renewable energy resources exploitation starts with certain mining activities. In the case of renewable energy resources, it starts with the extraction of energy using specific equipment.</documentation>
+				</annotation>
+			</element>
+			<element minOccurs="0" name="endTime" type="gml:TimePositionType">
+				<annotation>
+					<documentation>-- Definition --
+The time when the exploitation has ended.
+
+-- Description --
+This is both for renewable and non-renewable energy sources. For non-renewable energy resources exploitation starts with certain mining activities. In the case of renewable energy resources, it starts with the extraction of energy using specific equipment.</documentation>
+				</annotation>
+			</element>
+		</sequence>
+	</complexType>
+	<complexType name="ExploitationPeriodTypePropertyType">
+		<sequence>
+			<element ref="er-f:ExploitationPeriodType"/>
+		</sequence>
+	</complexType>
+	<element name="DepthRangeType" substitutionGroup="gml:AbstractObject" type="er-f:DepthRangeTypeType">
+		<annotation>
+			<documentation>-- Definition --
+The range between the deepest (lower bound) and most shallow (upper bound) aspect of the deposit body, where the depth is true vertical depth below the Earth&amp;rsquo;s surface or average sea level.</documentation>
+		</annotation>
+	</element>
+	<complexType name="DepthRangeTypeType">
+		<sequence>
+			<element name="depthReference" type="gml:CodeType">
+				<annotation>
+					<documentation>-- Definition --
+Reference level that was chosen to determine the vertical depth.</documentation>
+				</annotation>
+			</element>
+			<element name="lowerBound" type="gml:LengthType">
+				<annotation>
+					<documentation>-- Definition --
+True vertical depth from the earths crust or mean sea level to the deepest vertex of the deposit body.</documentation>
+				</annotation>
+			</element>
+			<element name="upperBound" type="gml:LengthType">
+				<annotation>
+					<documentation>-- Definition --
+True vertical depth from the earths crust or mean sea level to the shallowest vertex of the deposit body.</documentation>
+				</annotation>
+			</element>
+		</sequence>
+	</complexType>
+	<complexType name="DepthRangeTypePropertyType">
+		<sequence>
+			<element ref="er-f:DepthRangeType"/>
+		</sequence>
+	</complexType>
+	<element abstract="true" name="EnergyResource" substitutionGroup="gml:AbstractFeature" type="er-f:EnergyResourceType">
+		<annotation>
+			<documentation>-- Definition --
+A feature defining an inferred or observable spatial extent of a resource that can be, or has been, used as a source of energy.
+
+-- Description --
+SOURCE Adapted from [DER 2011].</documentation>
+		</annotation>
+	</element>
+	<complexType abstract="true" name="EnergyResourceType">
+		<complexContent>
+			<extension base="gml:AbstractFeatureType">
+				<sequence>
+					<element name="beginLifespanVersion" nillable="true">
+						<annotation>
+							<documentation>-- Definition --
+Date and time at which this version of the spatial object was inserted or changed in the spatial data set.</documentation>
+						</annotation>
+						<complexType>
+							<simpleContent>
+								<extension base="dateTime">
+									<attribute name="nilReason" type="gml:NilReasonType"/>
+								</extension>
+							</simpleContent>
+						</complexType>
+					</element>
+					<element minOccurs="0" name="endLifespanVersion" nillable="true">
+						<annotation>
+							<documentation>-- Definition --
+Date and time at which this version of the spatial object was superseded or retired in the spatial data set.</documentation>
+						</annotation>
+						<complexType>
+							<simpleContent>
+								<extension base="dateTime">
+									<attribute name="nilReason" type="gml:NilReasonType"/>
+								</extension>
+							</simpleContent>
+						</complexType>
+					</element>
+					<element maxOccurs="unbounded" minOccurs="0" name="exploitationPeriod" nillable="true">
+						<annotation>
+							<documentation>-- Definition --
+The exploitationPeriod defines the start and, if applicable, the end date of the application
+
+-- Description --
+NOTE For several reasons there might be more than 1 exploitation period</documentation>
+						</annotation>
+						<complexType>
+							<sequence>
+								<element ref="er-f:ExploitationPeriodType"/>
+							</sequence>
+							<attribute name="nilReason" type="gml:NilReasonType"/>
+						</complexType>
+					</element>
+					<element name="geometry" type="gml:GeometryPropertyType">
+						<annotation>
+							<documentation>-- Definition --
+Geometric representation of spatial extent covered by this energy resource.</documentation>
+						</annotation>
+					</element>
+					<element name="inspireId" type="base:IdentifierPropertyType">
+						<annotation>
+							<documentation>-- Definition --
+External object identifier of the spatial object.
+
+-- Description --
+NOTE An external object identifier is a unique object identifier published by the responsible body, which may be used by external applications to reference the spatial object. The identifier is an identifier of the spatial object, not an identifier of the real-world phenomenon.</documentation>
+						</annotation>
+					</element>
+					<element maxOccurs="unbounded" minOccurs="0" name="resourceName" nillable="true">
+						<annotation>
+							<documentation>-- Definition --
+The name of the energy resource
+
+-- Description --
+NOTE For non-renewable energy sources this name is the official name, as it&amp;rsquo;s registered in the national register governed by geological survey or other national authority in charge.</documentation>
+						</annotation>
+						<complexType>
+							<sequence>
+								<element ref="gn:GeographicalName"/>
+							</sequence>
+							<attribute name="nilReason" type="gml:NilReasonType"/>
+						</complexType>
+					</element>
+					<element maxOccurs="unbounded" name="resourceInformation" type="er-f:ResourceInformationPropertyType">
+						<annotation>
+							<documentation>-- Definition --
+Information on the type of Energy resource as a part of the Energy Resource.</documentation>
+						</annotation>
+					</element>
+				</sequence>
+			</extension>
+		</complexContent>
+	</complexType>
+	<complexType name="EnergyResourcePropertyType">
+		<sequence minOccurs="0">
+			<element ref="er-f:EnergyResource"/>
+		</sequence>
+		<attributeGroup ref="gml:AssociationAttributeGroup"/>
+		<attributeGroup ref="gml:OwnershipAttributeGroup"/>
+	</complexType>
+</schema>

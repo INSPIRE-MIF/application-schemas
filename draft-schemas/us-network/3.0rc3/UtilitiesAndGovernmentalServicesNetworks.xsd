@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<schema xmlns="http://www.w3.org/2001/XMLSchema" xmlns:us-net-common="http://inspire.ec.europa.eu/schemas/us-net-common/3.0rc3" xmlns:us-net-el="http://inspire.ec.europa.eu/schemas/us-net-el-core/3.0rc3" xmlns:us-net-ogc="http://inspire.ec.europa.eu/schemas/us-net-ogc/3.0rc3" xmlns:us-net-sw="http://inspire.ec.europa.eu/schemas/us-net-sw/3.0rc3" xmlns:us-net-tc="http://inspire.ec.europa.eu/schemas/us-net-tc/3.0rc3" xmlns:us-net-th="http://inspire.ec.europa.eu/schemas/us-net-th/3.0rc3" xmlns:us-net-wa="http://inspire.ec.europa.eu/schemas/us-net-wa/3.0rc3" xmlns:us-network="http://inspire.ec.europa.eu/schemas/us-network/3.0rc3" targetNamespace="http://inspire.ec.europa.eu/schemas/us-network/3.0rc3" elementFormDefault="qualified" version="3.0rc3">
+	<import namespace="http://inspire.ec.europa.eu/schemas/us-net-common/3.0rc3" schemaLocation="https://inspire.ec.europa.eu/draft-schemas/us-net-common/3.0rc3/UtilityNetworksCommon.xsd"/>
+	<import namespace="http://inspire.ec.europa.eu/schemas/us-net-el-core/3.0rc3" schemaLocation="https://inspire.ec.europa.eu/draft-schemas/us-net-el-core/3.0rc3/ElectricityNetwork.xsd"/>
+	<import namespace="http://inspire.ec.europa.eu/schemas/us-net-ogc/3.0rc3" schemaLocation="https://inspire.ec.europa.eu/draft-schemas/us-net-ogc-core/3.0rc3/OilGasChemicalsNetwork.xsd"/>
+	<import namespace="http://inspire.ec.europa.eu/schemas/us-net-sw/3.0rc3" schemaLocation="https://inspire.ec.europa.eu/draft-schemas/us-net-sw-core/3.0rc3/SewerNetwork.xsd"/>
+	<import namespace="http://inspire.ec.europa.eu/schemas/us-net-tc/3.0rc3" schemaLocation="https://inspire.ec.europa.eu/draft-schemas/us-net-tc-core/3.0rc3/TelecommunicationsNetwork.xsd"/>
+	<import namespace="http://inspire.ec.europa.eu/schemas/us-net-th/3.0rc3" schemaLocation="https://inspire.ec.europa.eu/draft-schemas/us-net-th-core/3.0rc3/ThermalNetwork.xsd"/>
+	<import namespace="http://inspire.ec.europa.eu/schemas/us-net-wa/3.0rc3" schemaLocation="https://inspire.ec.europa.eu/draft-schemas/us-net-wa-core/3.0rc3/WaterNetwork.xsd"/>
+	<!--XML Schema document created by ShapeChange-->
+</schema>

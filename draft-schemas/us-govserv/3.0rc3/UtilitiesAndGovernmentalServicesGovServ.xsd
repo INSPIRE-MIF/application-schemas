@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="UTF-8"?><schema xmlns="http://www.w3.org/2001/XMLSchema" xmlns:us-govserv="http://inspire.ec.europa.eu/schemas/us-govserv/3.0rc3" elementFormDefault="qualified" targetNamespace="http://inspire.ec.europa.eu/schemas/us-govserv/3.0rc3" version="3.0rc3">
+  <include schemaLocation="AdministrativeAndSocialGovernmentalServices.xsd"/>
+  <include schemaLocation="ExtensionAdministrativeAndSocialGovernmentalServices.xsd"/>
+  <!--XML Schema document created by ShapeChange-->
+</schema>

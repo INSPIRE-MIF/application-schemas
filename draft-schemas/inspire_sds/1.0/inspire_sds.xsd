@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:srv="http://www.isotc211.org/2005/srv" xmlns:gco="http://www.isotc211.org/2005/gco" xmlns:inspire_sds="http://inspire.ec.europa.eu/schemas/inspire_sds/1.0" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:gmd="http://www.isotc211.org/2005/gmd" xmlns:ns2="http://www.isotc211.org/2005/gmx" targetNamespace="http://inspire.ec.europa.eu/schemas/inspire_sds/1.0" elementFormDefault="qualified" version="1.0.0">
+	<!-- 
+        /**
+        *
+        * This file is part of metadata profile of ISO 19115 for INSPIRE Spatial Data Services.
+        *
+        * schema version 1.0.0
+        */
+    -->
+	<!-- ================================= Annotation ================================ -->
+	<xs:annotation>
+		<xs:documentation>INSPIRE Spatial Data Services profile schema definition. This version is for local (offline) use only. General users should point to the official schema version.</xs:documentation>
+	</xs:annotation>
+	<!-- ================================== Imports & Includes ================================== -->
+	<!-- Local links to schemas -->
+	<xs:import namespace="http://www.isotc211.org/2005/gmd" schemaLocation="http://schemas.opengis.net/iso/19139/20070417/gmd/gmd.xsd"/>
+	<xs:import namespace="http://www.isotc211.org/2005/gmx" schemaLocation="http://schemas.opengis.net/iso/19139/20070417/gmx/gmx.xsd"/>
+	<xs:import namespace="http://www.isotc211.org/2005/gco" schemaLocation="http://schemas.opengis.net/iso/19139/20070417/gco/gco.xsd"/>
+	<!--	<xs:import namespace="http://www.isotc211.org/2005/srv" schemaLocation="http://schemas.opengis.net/iso/19139/20060504/srv/srv.xsd"/>-->
+	<xs:import namespace="http://www.isotc211.org/2005/srv" schemaLocation="srv/srv.xsd"/>
+	<!-- Extended MD_Metadata element -->
+	<xs:complexType name="SV_ServiceIdentification_Type">
+		<xs:complexContent>
+			<xs:extension base="srv:SV_ServiceIdentification_Type">
+				<xs:sequence>
+					<xs:element name="spatialResolution" type="gmd:MD_Resolution_PropertyType" minOccurs="0" maxOccurs="unbounded"/>
+					<xs:element name="qualityOfService" type="inspire_sds:SV_QualityOfService_PropertyType" minOccurs="0" maxOccurs="unbounded"/>
+					<xs:element name="category" type="inspire_sds:SV_Category_Type" minOccurs="0" maxOccurs="1"/>
+				</xs:sequence>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:element name="SV_ServiceIdentification" type="inspire_sds:SV_ServiceIdentification_Type" substitutionGroup="srv:SV_ServiceIdentification"/>
+	<xs:complexType name="SV_QualityOfService_Type">
+		<xs:complexContent>
+			<xs:extension base="gco:AbstractObject_Type">
+				<xs:sequence>
+					<xs:element name="criterion" type="inspire_sds:SV_QualityOfServiceCriteria_PropertyType"/>
+					<xs:element name="unit" type="gco:CharacterString_PropertyType"/>
+					<xs:element name="value" type="gco:CharacterString_PropertyType"/>
+					<xs:element name="measurementDescription" type="gco:CharacterString_PropertyType"/>
+				</xs:sequence>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<!-- ........................................................................ -->
+	<xs:element name="SV_QualityOfService" type="inspire_sds:SV_QualityOfService_Type"/>
+	<!-- ........................................................................ -->
+	<xs:complexType name="SV_QualityOfService_PropertyType">
+		<xs:sequence>
+			<xs:element ref="inspire_sds:SV_QualityOfService" minOccurs="0" maxOccurs="unbounded"/>
+		</xs:sequence>
+		<xs:attributeGroup ref="gco:ObjectReference"/>
+		<xs:attribute ref="gco:nilReason"/>
+	</xs:complexType>
+	<!-- =========================================================================== -->
+	<xs:simpleType name="SV_QualityOfServiceCriteria_Type">
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="availability"/>
+			<xs:enumeration value="performance"/>
+			<xs:enumeration value="capacity"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<!-- ........................................................................ -->
+	<xs:element name="SV_QualityOfServiceCriteria" type="inspire_sds:SV_QualityOfServiceCriteria_Type" substitutionGroup="gco:CharacterString"/>
+	<!-- ........................................................................ -->
+	<xs:complexType name="SV_QualityOfServiceCriteria_PropertyType">
+		<xs:sequence>
+			<xs:element ref="inspire_sds:SV_QualityOfServiceCriteria" minOccurs="0"/>
+		</xs:sequence>
+		<xs:attribute ref="gco:nilReason"/>
+	</xs:complexType>
+	<!-- =========================================================================== -->
+	<xs:simpleType name="SV_Category_Type">
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="invocable"/>
+			<xs:enumeration value="interoperable"/>
+			<xs:enumeration value="harmonised"/>
+		</xs:restriction>
+	</xs:simpleType>
+</xs:schema>

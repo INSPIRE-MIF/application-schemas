@@ -1,0 +1,365 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<ns2:Resource xmlns:ns2="http://inspire.ec.europa.eu/schemas/geoportal/1.0" xmlns="http://inspire.ec.europa.eu/schemas/common/1.0" xmlns:ns4="http://www.w3.org/1999/xlink" xmlns:ns3="http://www.opengis.net/ows" xmlns:ns9="http://inspire.ec.europa.eu/schemas/inspire_vs/1.0" xmlns:ns5="http://inspire.ec.europa.eu/schemas/inspire_ds/1.0" xmlns:ns6="http://www.opengis.net/ows/1.1" xmlns:ns7="http://inspire.ec.europa.eu/schemas/inspire_vs_ows11/1.0" xmlns:ns8="http://www.opengis.net/wms" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="https://inspire.ec.europa.eu/schemas/geoportal/1.0 file:///E:/schemas/inspire/geoportal/1.0/geoportal.xsd">
+	<ns2:SpatialDataSetResource>
+		<ResourceTitle>Základní mapa ČR 1 : 50 000 - po vrstvách - 13-12</ResourceTitle>
+		<ResourceAbstract>ZM 50 je odvozována z dat ZABAGED®. Data ZABAGED® jsou počítačově zpracovávána s využitím poloautomatické generalizace z měřítka 1 : 10 000 do měřítka 1 : 50 000. Transformací se převádí rastrový obraz státního území, strukturovaný po listech ZM 50, do souřadnicového systému S-JTSK. Obraz mapových listů ZM 50 je rozložen do deseti vrstev, binárních rastrových map s hustotou 400 dpi. Obsah vrstev : černé značky a popis, hranice chráněných území, správní hranice okresní a obecní a hranice KÚ včetně názvu a čísla KÚ, polohopis a šedé značky, výplně bloků zástavby, vodstvo a azurové značky a popis, výškopis, správní hranice krajská a státní, výplně průjezdních komunikací a louky a pastviny, lesy a ostatní zeleň.  Umístění vrstev v souřadnicovém systému je zajištěno textovými soubory (TFW) a to pro zobrazení S-JTSK (F) / Krovak EN a WGS 84 / UTM zone 33N. Data je nutno užít v SW, který umožňuje využití TFW souborů a průhlednost pozadí na sebe skládaných vrstev.</ResourceAbstract>
+		<ResourceType>dataset</ResourceType>
+		<ResourceLocator>
+			<URL>http://geoportal.cuzk.cz/cuzk_wmsklient/Default.aspx?CRS=EPSG:102067&amp;variant=rzm50</URL>
+		</ResourceLocator>
+		<ResourceLocator>
+			<URL>http://geoportal.cuzk.cz/UKAZKOVA_DATA/ZM50.zip</URL>
+		</ResourceLocator>
+		<ResourceLocator>
+			<URL>http://geoportal.cuzk.cz</URL>
+		</ResourceLocator>
+		<MandatoryKeyword xsi:type="inspireTheme_cze" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+			<OriginatingControlledVocabulary>
+				<Title>GEMET - INSPIRE themes</Title>
+				<DateOfPublication>2008-06-01</DateOfPublication>
+			</OriginatingControlledVocabulary>
+			<KeywordValue>Buildings</KeywordValue>
+		</MandatoryKeyword>
+		<MandatoryKeyword xsi:type="inspireTheme_cze" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+			<OriginatingControlledVocabulary>
+				<Title>GEMET - INSPIRE themes</Title>
+				<DateOfPublication>2008-06-01</DateOfPublication>
+			</OriginatingControlledVocabulary>
+			<KeywordValue>Transport networks</KeywordValue>
+		</MandatoryKeyword>
+		<MandatoryKeyword xsi:type="inspireTheme_cze" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+			<OriginatingControlledVocabulary>
+				<Title>GEMET - INSPIRE themes</Title>
+				<DateOfPublication>2008-06-01</DateOfPublication>
+			</OriginatingControlledVocabulary>
+			<KeywordValue>Protected sites</KeywordValue>
+		</MandatoryKeyword>
+		<MandatoryKeyword xsi:type="inspireTheme_cze" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+			<OriginatingControlledVocabulary>
+				<Title>GEMET - INSPIRE themes</Title>
+				<DateOfPublication>2008-06-01</DateOfPublication>
+			</OriginatingControlledVocabulary>
+			<KeywordValue>Land cover</KeywordValue>
+		</MandatoryKeyword>
+		<MandatoryKeyword xsi:type="inspireTheme_cze" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+			<OriginatingControlledVocabulary>
+				<Title>GEMET - INSPIRE themes</Title>
+				<DateOfPublication>2008-06-01</DateOfPublication>
+			</OriginatingControlledVocabulary>
+			<KeywordValue>Administrative units</KeywordValue>
+		</MandatoryKeyword>
+		<MandatoryKeyword xsi:type="inspireTheme_cze" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+			<OriginatingControlledVocabulary>
+				<Title>GEMET - INSPIRE themes</Title>
+				<DateOfPublication>2008-06-01</DateOfPublication>
+			</OriginatingControlledVocabulary>
+			<KeywordValue>Hydrography</KeywordValue>
+		</MandatoryKeyword>
+		<MandatoryKeyword xsi:type="inspireTheme_cze" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+			<OriginatingControlledVocabulary>
+				<Title>GEMET - INSPIRE themes</Title>
+				<DateOfPublication>2008-06-01</DateOfPublication>
+			</OriginatingControlledVocabulary>
+			<KeywordValue>Geographical names</KeywordValue>
+		</MandatoryKeyword>
+		<MandatoryKeyword xsi:type="inspireTheme_cze" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+			<OriginatingControlledVocabulary>
+				<Title>GEMET - INSPIRE themes</Title>
+				<DateOfPublication>2008-06-01</DateOfPublication>
+			</OriginatingControlledVocabulary>
+			<KeywordValue>Elevation</KeywordValue>
+		</MandatoryKeyword>
+		<Keyword>
+			<OriginatingControlledVocabulary>
+				<Title>Terminologický slovník ČÚZK</Title>
+				<DateOfPublication>2009-01-01</DateOfPublication>
+			</OriginatingControlledVocabulary>
+			<KeywordValue>mapa</KeywordValue>
+		</Keyword>
+		<Keyword>
+			<OriginatingControlledVocabulary>
+				<Title>Terminologický slovník ČÚZK</Title>
+				<DateOfPublication>2009-01-01</DateOfPublication>
+			</OriginatingControlledVocabulary>
+			<KeywordValue>základní mapa ČR</KeywordValue>
+		</Keyword>
+		<Keyword>
+			<OriginatingControlledVocabulary>
+				<Title>Terminologický slovník ČÚZK</Title>
+				<DateOfPublication>2009-01-01</DateOfPublication>
+			</OriginatingControlledVocabulary>
+			<KeywordValue>podkladová mapa</KeywordValue>
+		</Keyword>
+		<Keyword>
+			<OriginatingControlledVocabulary>
+				<Title>Terminologický slovník ČÚZK</Title>
+				<DateOfPublication>2009-01-01</DateOfPublication>
+			</OriginatingControlledVocabulary>
+			<KeywordValue>geoprostorová informace</KeywordValue>
+		</Keyword>
+		<Keyword>
+			<OriginatingControlledVocabulary>
+				<Title>Terminologický slovník ČÚZK</Title>
+				<DateOfPublication>2009-01-01</DateOfPublication>
+			</OriginatingControlledVocabulary>
+			<KeywordValue>dopravní infrastruktura</KeywordValue>
+		</Keyword>
+		<Keyword>
+			<OriginatingControlledVocabulary>
+				<Title>Terminologický slovník ČÚZK</Title>
+				<DateOfPublication>2009-01-01</DateOfPublication>
+			</OriginatingControlledVocabulary>
+			<KeywordValue>administrativní hranice</KeywordValue>
+		</Keyword>
+		<Keyword>
+			<OriginatingControlledVocabulary>
+				<Title>Terminologický slovník ČÚZK</Title>
+				<DateOfPublication>2009-01-01</DateOfPublication>
+			</OriginatingControlledVocabulary>
+			<KeywordValue>vodstvo</KeywordValue>
+		</Keyword>
+		<Keyword>
+			<OriginatingControlledVocabulary>
+				<Title>Terminologický slovník ČÚZK</Title>
+				<DateOfPublication>2009-01-01</DateOfPublication>
+			</OriginatingControlledVocabulary>
+			<KeywordValue>geografické názvosloví</KeywordValue>
+		</Keyword>
+		<Keyword>
+			<OriginatingControlledVocabulary>
+				<Title>Terminologický slovník ČÚZK</Title>
+				<DateOfPublication>2009-01-01</DateOfPublication>
+			</OriginatingControlledVocabulary>
+			<KeywordValue>tematická mapa</KeywordValue>
+		</Keyword>
+		<Keyword>
+			<OriginatingControlledVocabulary>
+				<Title>Terminologický slovník ČÚZK</Title>
+				<DateOfPublication>2009-01-01</DateOfPublication>
+			</OriginatingControlledVocabulary>
+			<KeywordValue>chráněná území</KeywordValue>
+		</Keyword>
+		<Keyword>
+			<OriginatingControlledVocabulary>
+				<Title>Terminologický slovník ČÚZK</Title>
+				<DateOfPublication>2009-01-01</DateOfPublication>
+			</OriginatingControlledVocabulary>
+			<KeywordValue>budovy</KeywordValue>
+		</Keyword>
+		<Keyword>
+			<OriginatingControlledVocabulary>
+				<Title>Terminologický slovník ČÚZK</Title>
+				<DateOfPublication>2009-01-01</DateOfPublication>
+			</OriginatingControlledVocabulary>
+			<KeywordValue>využití území</KeywordValue>
+		</Keyword>
+		<Keyword>
+			<OriginatingControlledVocabulary>
+				<Title>Terminologický slovník ČÚZK</Title>
+				<DateOfPublication>2009-01-01</DateOfPublication>
+			</OriginatingControlledVocabulary>
+			<KeywordValue>státní mapové dílo</KeywordValue>
+		</Keyword>
+		<Keyword>
+			<OriginatingControlledVocabulary>
+				<Title>Terminologický slovník ČÚZK</Title>
+				<DateOfPublication>2009-01-01</DateOfPublication>
+			</OriginatingControlledVocabulary>
+			<KeywordValue>JTSK</KeywordValue>
+		</Keyword>
+		<Keyword>
+			<OriginatingControlledVocabulary>
+				<Title>Terminologický slovník ČÚZK</Title>
+				<DateOfPublication>2009-01-01</DateOfPublication>
+			</OriginatingControlledVocabulary>
+			<KeywordValue>základní mapa</KeywordValue>
+		</Keyword>
+		<Keyword>
+			<OriginatingControlledVocabulary>
+				<Title>Terminologický slovník ČÚZK</Title>
+				<DateOfPublication>2009-01-01</DateOfPublication>
+			</OriginatingControlledVocabulary>
+			<KeywordValue>topografická mapa</KeywordValue>
+		</Keyword>
+		<Keyword>
+			<OriginatingControlledVocabulary>
+				<Title>Terminologický slovník ČÚZK</Title>
+				<DateOfPublication>2009-01-01</DateOfPublication>
+			</OriginatingControlledVocabulary>
+			<KeywordValue>topomapa</KeywordValue>
+		</Keyword>
+		<Keyword>
+			<OriginatingControlledVocabulary>
+				<Title>Terminologický slovník ČÚZK</Title>
+				<DateOfPublication>2009-01-01</DateOfPublication>
+			</OriginatingControlledVocabulary>
+			<KeywordValue>rastrová mapa</KeywordValue>
+		</Keyword>
+		<Keyword>
+			<OriginatingControlledVocabulary>
+				<Title>Terminologický slovník ČÚZK</Title>
+				<DateOfPublication>2009-01-01</DateOfPublication>
+			</OriginatingControlledVocabulary>
+			<KeywordValue>mapa České republiky</KeywordValue>
+		</Keyword>
+		<Keyword>
+			<OriginatingControlledVocabulary>
+				<Title>Terminologický slovník ČÚZK</Title>
+				<DateOfPublication>2009-01-01</DateOfPublication>
+			</OriginatingControlledVocabulary>
+			<KeywordValue>mapa středního měřítka</KeywordValue>
+		</Keyword>
+		<Keyword>
+			<OriginatingControlledVocabulary>
+				<Title>Terminologický slovník ČÚZK</Title>
+				<DateOfPublication>2009-01-01</DateOfPublication>
+			</OriginatingControlledVocabulary>
+			<KeywordValue>podrobné měřítko</KeywordValue>
+		</Keyword>
+		<Keyword>
+			<OriginatingControlledVocabulary>
+				<Title>Terminologický slovník ČÚZK</Title>
+				<DateOfPublication>2009-01-01</DateOfPublication>
+			</OriginatingControlledVocabulary>
+			<KeywordValue>měřítko 1:50 000</KeywordValue>
+		</Keyword>
+		<Keyword>
+			<OriginatingControlledVocabulary>
+				<Title>Terminologický slovník ČÚZK</Title>
+				<DateOfPublication>2009-01-01</DateOfPublication>
+			</OriginatingControlledVocabulary>
+			<KeywordValue>měřítko 1:50000</KeywordValue>
+		</Keyword>
+		<Keyword>
+			<OriginatingControlledVocabulary>
+				<Title>Terminologický slovník ČÚZK</Title>
+				<DateOfPublication>2009-01-01</DateOfPublication>
+			</OriginatingControlledVocabulary>
+			<KeywordValue>50 000</KeywordValue>
+		</Keyword>
+		<Keyword>
+			<OriginatingControlledVocabulary>
+				<Title>Terminologický slovník ČÚZK</Title>
+				<DateOfPublication>2009-01-01</DateOfPublication>
+			</OriginatingControlledVocabulary>
+			<KeywordValue>50000</KeywordValue>
+		</Keyword>
+		<Keyword>
+			<OriginatingControlledVocabulary>
+				<Title>Terminologický slovník ČÚZK</Title>
+				<DateOfPublication>2009-01-01</DateOfPublication>
+			</OriginatingControlledVocabulary>
+			<KeywordValue>ZABAGED</KeywordValue>
+		</Keyword>
+		<Keyword>
+			<OriginatingControlledVocabulary>
+				<Title>Terminologický slovník ČÚZK</Title>
+				<DateOfPublication>2009-01-01</DateOfPublication>
+			</OriginatingControlledVocabulary>
+			<KeywordValue>popis</KeywordValue>
+		</Keyword>
+		<Keyword>
+			<OriginatingControlledVocabulary>
+				<Title>Terminologický slovník ČÚZK</Title>
+				<DateOfPublication>2009-01-01</DateOfPublication>
+			</OriginatingControlledVocabulary>
+			<KeywordValue>polohopis</KeywordValue>
+		</Keyword>
+		<Keyword>
+			<OriginatingControlledVocabulary>
+				<Title>Terminologický slovník ČÚZK</Title>
+				<DateOfPublication>2009-01-01</DateOfPublication>
+			</OriginatingControlledVocabulary>
+			<KeywordValue>výškopis</KeywordValue>
+		</Keyword>
+		<Keyword>
+			<OriginatingControlledVocabulary>
+				<Title>Terminologický slovník ČÚZK</Title>
+				<DateOfPublication>2009-01-01</DateOfPublication>
+			</OriginatingControlledVocabulary>
+			<KeywordValue>Geonames</KeywordValue>
+		</Keyword>
+		<Keyword>
+			<OriginatingControlledVocabulary>
+				<Title>Terminologický slovník ČÚZK</Title>
+				<DateOfPublication>2009-01-01</DateOfPublication>
+			</OriginatingControlledVocabulary>
+			<KeywordValue>souvislý klad mapových listů</KeywordValue>
+		</Keyword>
+		<Keyword>
+			<OriginatingControlledVocabulary>
+				<Title>Terminologický slovník ČÚZK</Title>
+				<DateOfPublication>2009-01-01</DateOfPublication>
+			</OriginatingControlledVocabulary>
+			<KeywordValue>značkový klíč</KeywordValue>
+		</Keyword>
+		<GeographicBoundingBox>
+			<East>15.3257925196684</East>
+			<West>14.9902883140729</West>
+			<North>50.3908547529293</North>
+			<South>50.2189128240102</South>
+		</GeographicBoundingBox>
+		<TemporalReference>
+			<DateOfPublication>2011-01-18</DateOfPublication>
+		</TemporalReference>
+		<TemporalReference>
+			<DateOfLastRevision>2008</DateOfLastRevision>
+		</TemporalReference>
+		<SpatialResolution>
+			<EquivalentScale>50000</EquivalentScale>
+		</SpatialResolution>
+		<Conformity>
+			<Specification>
+				<Title>$hodnota neni znama$</Title>
+				<DateOfLastRevision>2010</DateOfLastRevision>
+			</Specification>
+			<Degree>notConformant</Degree>
+		</Conformity>
+		<ConditionsForAccessAndUse>Zpoplatnění dle ceníku : http://geoportal.cuzk.cz/Dokumenty/CENIK.pdf. Poskytování na základě licenční smlouvy. Podmínky užití viz obchodní podmínky : http://geoportal.cuzk.cz/Dokumenty/Podminky.html.</ConditionsForAccessAndUse>
+		<LimitationsOnPublicAccess>http://geoportal.cuzk.cz/Dokumenty/Podminky_studenti.html</LimitationsOnPublicAccess>
+		<ResponsibleOrganisation>
+			<ResponsibleParty>
+				<OrganisationName>Zeměměřický úřad</OrganisationName>
+				<EmailAddress>michal.traurig@cuzk.cz</EmailAddress>
+			</ResponsibleParty>
+			<ResponsiblePartyRole>originator</ResponsiblePartyRole>
+		</ResponsibleOrganisation>
+		<MetadataPointOfContact>
+			<OrganisationName>Zeměměřický úřad</OrganisationName>
+			<EmailAddress>michal.traurig@cuzk.cz</EmailAddress>
+		</MetadataPointOfContact>
+		<MetadataDate>2011-05-31</MetadataDate>
+		<MetadataLanguage>cze</MetadataLanguage>
+		<UniqueResourceIdentifier>
+			<Code>CZ-CUZK-ZM50-RV-1312</Code>
+			<Namespace>ČÚZK</Namespace>
+		</UniqueResourceIdentifier>
+		<UniqueResourceIdentifier>
+			<Code>63162</Code>
+			<Namespace>ČÚZK</Namespace>
+		</UniqueResourceIdentifier>
+		<ResourceLanguage>cze</ResourceLanguage>
+		<TopicCategory>imageryBaseMapsEarthCover</TopicCategory>
+		<TopicCategory>structure</TopicCategory>
+		<TopicCategory>transportation</TopicCategory>
+		<TopicCategory>environment</TopicCategory>
+		<TopicCategory>planningCadastre</TopicCategory>
+		<TopicCategory>boundaries</TopicCategory>
+		<TopicCategory>inlandWaters</TopicCategory>
+		<TopicCategory>location</TopicCategory>
+		<TopicCategory>elevation</TopicCategory>
+		<Lineage>ZM 50 je odvozována z dat ZABAGED®. Data ZABAGED® jsou počítačově zpracovávána s využitím poloautomatické generalizace z měřítka 1 : 10 000 do měřítka 1 : 50 000. Transformací se převádí rastrový obraz státního území, strukturovaný po listech ZM 50, do souřadnicového systému S-JTSK. Obraz mapových listů ZM 50 je rozložen do deseti vrstev, binárních rastrových map s hustotou 400 dpi. Obsah vrstev : černé značky a popis, hranice chráněných území, správní hranice okresní a obecní a hranice KÚ včetně názvu a čísla KÚ, polohopis a šedé značky, výplně bloků zástavby, vodstvo a azurové značky a popis, výškopis, správní hranice krajská a státní, výplně průjezdních komunikací a louky a pastviny, lesy a ostatní zeleň.  Umístění vrstev v souřadnicovém systému je zajištěno textovými soubory (TFW) a to pro zobrazení S-JTSK (F) / Krovak EN a WGS 84 / UTM zone 33N. Data je nutno užít v SW, který umožňuje využití TFW souborů a průhlednost pozadí na sebe skládaných vrstev.</Lineage>
+	</ns2:SpatialDataSetResource>
+	<ns2:GeoportalMetadataLocator>
+		<URL>/INSPIRE-54c40438-bdd9-11e0-985d-d8d3855bd8fc/services/downloaded/PullResults/175801-176100/resources/datasets/1</URL>
+		<MediaType>application/vnd.eu.europa.ec.inspire.resource+xml</MediaType>
+	</ns2:GeoportalMetadataLocator>
+	<ns2:MemberStateCountryCode>CZ</ns2:MemberStateCountryCode>
+	<ns2:MemberStateDiscoveryServiceResourceLocator>
+		<URL>/asldjlkasd/</URL>
+	</ns2:MemberStateDiscoveryServiceResourceLocator>
+    <ns2:ResourceReportLocator>
+        <URL>resourceReport</URL>
+        <MediaType>application/vnd.eu.europa.ec.inspire.resource+xml</MediaType>
+    </ns2:ResourceReportLocator>
+</ns2:Resource>

@@ -1,0 +1,370 @@
+<?xml version="1.0" encoding="UTF-8"?><schema xmlns="http://www.w3.org/2001/XMLSchema" xmlns:cgu="http://xmlns.geosciml.org/Utilities/3.0" xmlns:gml="http://www.opengis.net/gml/3.2" xmlns:gsml="http://xmlns.geosciml.org/GeoSciML-Core/3.0" xmlns:mr-core="http://inspire.jrc.ec.europa.eu/schemas/mr-core/2.0" xmlns:mr-ext="http://inspire.jrc.ec.europa.eu/schemas/mr-ext/2.0" xmlns:swe="http://www.opengis.net/swe/2.0" elementFormDefault="qualified" targetNamespace="http://inspire.jrc.ec.europa.eu/schemas/mr-ext/2.0" version="2.0">
+  <import namespace="http://inspire.jrc.ec.europa.eu/schemas/mr-core/2.0" schemaLocation="https://inspire.ec.europa.eu/draft-schemas/mr-core/2.0/MineralResourcesCore.xsd"/>
+  <import namespace="http://www.opengis.net/gml/3.2" schemaLocation="http://schemas.opengis.net/gml/3.2.1/gml.xsd"/>
+  <import namespace="http://www.opengis.net/swe/2.0" schemaLocation="http://schemas.opengis.net/sweCommon/2.0/swe.xsd"/>
+  <import namespace="http://xmlns.geosciml.org/GeoSciML-Core/3.0" schemaLocation="http://inspire-twg.jrc.ec.europa.eu/annexII+III/schemas/geosciml-core/3.0/geosciml-core.xsd"/>
+  <import namespace="http://xmlns.geosciml.org/Utilities/3.0" schemaLocation="http://inspire-twg.jrc.ec.europa.eu/annexII+III/schemas/cgiutilities/3.0/cgiUtilities.xsd"/>
+  <!--XML Schema document created by ShapeChange-->
+  <element name="SupergeneProcesses" substitutionGroup="gml:AbstractObject" type="mr-ext:SupergeneProcessesType">
+    <annotation>
+      <documentation>-- Definition --
+Metal enrichment produced by the chemical remobilisation of metals in an oxidised or transitional environment. Does a supergene process exist (Y/N)</documentation>
+    </annotation>
+  </element>
+  <complexType name="SupergeneProcessesType">
+    <sequence>
+      <element minOccurs="0" name="depth" type="cgu:CGI_NumericRangePropertyType">
+        <annotation>
+          <documentation>-- Definition --
+The depth at which the supergene processes occurred</documentation>
+        </annotation>
+      </element>
+      <element maxOccurs="unbounded" minOccurs="0" name="material">
+        <annotation>
+          <documentation>-- Definition --
+The description of the material (rock, soil) that constitutes the supergene process</documentation>
+        </annotation>
+        <complexType>
+          <choice minOccurs="0">
+            <element ref="gsml:CompoundMaterial"/>
+            <element ref="gsml:InorganicFluid"/>
+            <element ref="gsml:Mineral"/>
+            <element ref="gsml:OrganicMaterial"/>
+          </choice>
+          <attributeGroup ref="gml:AssociationAttributeGroup"/>
+          <attributeGroup ref="gml:OwnershipAttributeGroup"/>
+        </complexType>
+      </element>
+      <element minOccurs="0" name="type" type="cgu:CGI_TermPropertyType">
+        <annotation>
+          <documentation>-- Definition --
+Type of supergene process. Examples are oxidation, leaching, enrichment etc</documentation>
+        </annotation>
+      </element>
+    </sequence>
+  </complexType>
+  <complexType name="SupergeneProcessesPropertyType">
+    <sequence>
+      <element ref="mr-ext:SupergeneProcesses"/>
+    </sequence>
+  </complexType>
+  <element name="Product" substitutionGroup="gml:AbstractFeature" type="mr-ext:ProductType">
+    <annotation>
+      <documentation>-- Definition --
+Identifes the type and amount of products associated with production</documentation>
+    </annotation>
+  </element>
+  <complexType name="ProductType">
+    <complexContent>
+      <extension base="gml:AbstractFeatureType">
+        <sequence>
+          <element maxOccurs="unbounded" name="product" type="gml:CodeType">
+            <annotation>
+              <documentation>-- Definition --
+Commodity that has been processed to create a value-added product. In some cases the commodity and the product may be the same (e.g. gold).</documentation>
+            </annotation>
+          </element>
+          <element maxOccurs="unbounded" name="sourceReference">
+            <annotation>
+              <documentation>-- Definition --
+The reference(s) for the product information.  CI_Citation data type cannot be serialised in GML 3.1, only as an xlink reference.</documentation>
+              <appinfo>
+                <targetElement xmlns="http://www.opengis.net/gml/3.2">null:CI_Citation</targetElement>
+              </appinfo>
+            </annotation>
+            <complexType>
+              <complexContent>
+                <extension base="gml:AbstractMetadataPropertyType">
+                  <sequence/>
+                  <attributeGroup ref="gml:AssociationAttributeGroup"/>
+                </extension>
+              </complexContent>
+            </complexType>
+          </element>
+          <element minOccurs="0" name="grade" type="swe:QuantityPropertyType">
+            <annotation>
+              <documentation>-- Definition --
+The relative quantity or percentage of ore mineral content in an orebody. (Could be Feed Grade, ore grade)</documentation>
+            </annotation>
+          </element>
+          <element minOccurs="0" name="production" type="swe:QuantityPropertyType">
+            <annotation>
+              <documentation>-- Definition --
+Quantity of product produced during the activity</documentation>
+            </annotation>
+          </element>
+          <element minOccurs="0" name="recovery" type="swe:QuantityPropertyType">
+            <annotation>
+              <documentation>-- Definition --
+The percentage of valuable constituent derived from an ore, or of coal from a coal seam; a measure of mining or extraction efficency. (Recovery rate is usually expressed as a percent).</documentation>
+            </annotation>
+          </element>
+          <element name="sourceCommodity" type="mr-core:CommodityPropertyType">
+            <annotation>
+              <documentation>-- Definition --
+On which commodity(ies) contained in the ore, the elaborated product is based.</documentation>
+            </annotation>
+          </element>
+        </sequence>
+      </extension>
+    </complexContent>
+  </complexType>
+  <complexType name="ProductPropertyType">
+    <sequence minOccurs="0">
+      <element ref="mr-ext:Product"/>
+    </sequence>
+    <attributeGroup ref="gml:AssociationAttributeGroup"/>
+    <attributeGroup ref="gml:OwnershipAttributeGroup"/>
+  </complexType>
+  <element name="MinedMaterial" substitutionGroup="gml:AbstractObject" type="mr-ext:MinedMaterialType">
+    <annotation>
+      <documentation>-- Definition --
+A data type to describe the raw material of a mining activity</documentation>
+    </annotation>
+  </element>
+  <complexType name="MinedMaterialType">
+    <sequence>
+      <element name="material">
+        <annotation>
+          <documentation>-- Definition --
+Uses EarthMaterial to describe the RawMaterial material</documentation>
+        </annotation>
+        <complexType>
+          <choice minOccurs="0">
+            <element ref="gsml:CompoundMaterial"/>
+            <element ref="gsml:InorganicFluid"/>
+            <element ref="gsml:Mineral"/>
+            <element ref="gsml:OrganicMaterial"/>
+          </choice>
+          <attributeGroup ref="gml:AssociationAttributeGroup"/>
+          <attributeGroup ref="gml:OwnershipAttributeGroup"/>
+        </complexType>
+      </element>
+      <element name="rawMaterialRole" type="mr-ext:RawMaterialRoleCodeType">
+        <annotation>
+          <documentation>-- Definition --
+Role the EarthMaterial plays in the MiningActivity (eg gangue, ore)</documentation>
+        </annotation>
+      </element>
+      <element minOccurs="0" name="proportion" type="cgu:CGI_NumericRangePropertyType">
+        <annotation>
+          <documentation>-- Definition --
+Proportion of the RawMaterial playing the rawMaterialRole in the MiningActivity</documentation>
+        </annotation>
+      </element>
+    </sequence>
+  </complexType>
+  <complexType name="MinedMaterialPropertyType">
+    <sequence>
+      <element ref="mr-ext:MinedMaterial"/>
+    </sequence>
+  </complexType>
+  <simpleType name="ERMaterialRoleCodeType">
+    <annotation>
+      <documentation>-- Definition --
+The role the EarthMaterial plays in the EarthResourceDescription</documentation>
+    </annotation>
+    <union memberTypes="mr-ext:ERMaterialRoleCodeEnumerationType mr-ext:ERMaterialRoleCodeOtherType"/>
+  </simpleType>
+  <simpleType name="ERMaterialRoleCodeEnumerationType">
+    <annotation>
+      <documentation>-- Definition --
+The role the EarthMaterial plays in the EarthResourceDescription</documentation>
+    </annotation>
+    <restriction base="string"/>
+  </simpleType>
+  <simpleType name="ERMaterialRoleCodeOtherType">
+    <restriction base="string">
+      <pattern value="other: \w{2,}"/>
+    </restriction>
+  </simpleType>
+  <element name="EarthResourceMaterial" substitutionGroup="gml:AbstractObject" type="mr-ext:EarthResourceMaterialType">
+    <annotation>
+      <documentation>-- Definition --
+Identifies the material found in the earth or produced from earth material that is of economic interest</documentation>
+    </annotation>
+  </element>
+  <complexType name="EarthResourceMaterialType">
+    <sequence>
+      <element name="earthResourceMaterialRole" type="mr-ext:ERMaterialRoleCodeType">
+        <annotation>
+          <documentation>-- Definition --
+The role the EarthMaterial plays in the EarthResourceDescription (eg host rock, alteration product, primary, secondary)</documentation>
+        </annotation>
+      </element>
+      <element name="material">
+        <annotation>
+          <documentation>-- Definition --
+Uses EarthMaterial to describe the EarthResourceMaterial material</documentation>
+        </annotation>
+        <complexType>
+          <choice minOccurs="0">
+            <element ref="gsml:CompoundMaterial"/>
+            <element ref="gsml:InorganicFluid"/>
+            <element ref="gsml:Mineral"/>
+            <element ref="gsml:OrganicMaterial"/>
+          </choice>
+          <attributeGroup ref="gml:AssociationAttributeGroup"/>
+          <attributeGroup ref="gml:OwnershipAttributeGroup"/>
+        </complexType>
+      </element>
+      <element minOccurs="0" name="proportion" type="cgu:CGI_NumericRangePropertyType">
+        <annotation>
+          <documentation>-- Definition --
+The proportion of the EarthRespourceMaterial in the EarthResourceDescription</documentation>
+        </annotation>
+      </element>
+    </sequence>
+  </complexType>
+  <complexType name="EarthResourceMaterialPropertyType">
+    <sequence>
+      <element ref="mr-ext:EarthResourceMaterial"/>
+    </sequence>
+  </complexType>
+  <simpleType name="RawMaterialRoleCodeType">
+    <annotation>
+      <documentation>-- Definition --
+Role the EarthMaterial plays in the MiningActivity (eg gangue, ore)</documentation>
+    </annotation>
+    <union memberTypes="mr-ext:RawMaterialRoleCodeEnumerationType mr-ext:RawMaterialRoleCodeOtherType"/>
+  </simpleType>
+  <simpleType name="RawMaterialRoleCodeEnumerationType">
+    <annotation>
+      <documentation>-- Definition --
+Role the EarthMaterial plays in the MiningActivity (eg gangue, ore)</documentation>
+    </annotation>
+    <restriction base="string"/>
+  </simpleType>
+  <simpleType name="RawMaterialRoleCodeOtherType">
+    <restriction base="string">
+      <pattern value="other: \w{2,}"/>
+    </restriction>
+  </simpleType>
+  <element name="MiningWasteMeasure" substitutionGroup="gml:AbstractObject" type="mr-ext:MiningWasteMeasureType">
+    <annotation>
+      <documentation>-- Definition --
+The evaluation of the potential of a mining waste in terms of base-, precious-, and strategic metals requires an estimation of the volume of the waste, its density, and the grade of remaining commodities, the tonnage figure being most of the time unknown. This calculation should be accompanied by a confidence index.</documentation>
+    </annotation>
+  </element>
+  <complexType name="MiningWasteMeasureType">
+    <sequence>
+      <element minOccurs="0" name="volume" type="swe:QuantityPropertyType">
+        <annotation>
+          <documentation>-- Definition --
+The volume of mining waste</documentation>
+        </annotation>
+      </element>
+      <element minOccurs="0" name="density" type="swe:QuantityPropertyType">
+        <annotation>
+          <documentation>-- Definition --
+The density of mining waste</documentation>
+        </annotation>
+      </element>
+      <element minOccurs="0" name="grade" type="swe:QuantityPropertyType">
+        <annotation>
+          <documentation>-- Definition --
+The grade of mining waste</documentation>
+        </annotation>
+      </element>
+    </sequence>
+  </complexType>
+  <complexType name="MiningWasteMeasurePropertyType">
+    <sequence>
+      <element ref="mr-ext:MiningWasteMeasure"/>
+    </sequence>
+  </complexType>
+  <element name="MiningWaste" substitutionGroup="mr-core:MiningFeature" type="mr-ext:MiningWasteType">
+    <annotation>
+      <documentation>-- Definition --
+Mining-selected waste (or simply mining waste) can be defined as a part of the materials that result from the exploration, mining and processing of substances governed by legislation on mines and quarries.</documentation>
+    </annotation>
+  </element>
+  <complexType name="MiningWasteType">
+    <complexContent>
+      <extension base="mr-core:MiningFeatureType">
+        <sequence>
+          <element name="wasteType" type="gml:CodeType">
+            <annotation>
+              <documentation>-- Definition --
+The type of mining waste</documentation>
+            </annotation>
+          </element>
+          <element maxOccurs="unbounded" minOccurs="0" name="processingType" type="gml:CodeType">
+            <annotation>
+              <documentation>-- Definition --
+The type of processing carried out on the mining waste</documentation>
+            </annotation>
+          </element>
+          <element maxOccurs="unbounded" minOccurs="0" name="storageType" type="gml:CodeType">
+            <annotation>
+              <documentation>-- Definition --
+The storage type of the waste eg surface storage, tailings pond, waste dump, covered storage etc</documentation>
+            </annotation>
+          </element>
+          <element maxOccurs="unbounded" minOccurs="0" name="material">
+            <annotation>
+              <documentation>-- Definition --
+The material of which the mining waste is composed</documentation>
+            </annotation>
+            <complexType>
+              <choice minOccurs="0">
+                <element ref="gsml:CompoundMaterial"/>
+                <element ref="gsml:InorganicFluid"/>
+                <element ref="gsml:Mineral"/>
+                <element ref="gsml:OrganicMaterial"/>
+              </choice>
+              <attributeGroup ref="gml:AssociationAttributeGroup"/>
+              <attributeGroup ref="gml:OwnershipAttributeGroup"/>
+            </complexType>
+          </element>
+          <element minOccurs="0" name="wasteMeasure" type="mr-ext:MiningWasteMeasurePropertyType">
+            <annotation>
+              <documentation>-- Definition --
+The measure of mining waste</documentation>
+            </annotation>
+          </element>
+          <element maxOccurs="unbounded" minOccurs="0" name="environmentalImpact" type="gml:CodeType">
+            <annotation>
+              <documentation>-- Definition --
+The potential environmental impact of the mining waste</documentation>
+            </annotation>
+          </element>
+          <element maxOccurs="unbounded" minOccurs="0" name="associatedMine" type="mr-core:MinePropertyType">
+            <annotation>
+              <documentation>-- Definition --
+Mining wastes may be generated by a single mine. However, a processing plant may also be shared by several closely operating mines, thus generating wastes from different origins.</documentation>
+            </annotation>
+          </element>
+        </sequence>
+      </extension>
+    </complexContent>
+  </complexType>
+  <complexType name="MiningWastePropertyType">
+    <sequence minOccurs="0">
+      <element ref="mr-ext:MiningWaste"/>
+    </sequence>
+    <attributeGroup ref="gml:AssociationAttributeGroup"/>
+    <attributeGroup ref="gml:OwnershipAttributeGroup"/>
+  </complexType>
+  <element name="MineralSystem" substitutionGroup="gml:AbstractObject" type="mr-ext:MineralSystemType">
+    <annotation>
+      <documentation>-- Definition --
+All geological features that control the generation and preservation of mineral deposits.</documentation>
+    </annotation>
+  </element>
+  <complexType name="MineralSystemType">
+    <sequence>
+      <element name="associationType" type="cgu:CGI_TermPropertyType">
+        <annotation>
+          <documentation>-- Definition --
+High level  term describing the characteristics of a mineral system, indicative of the processes involved and resulting deposits</documentation>
+        </annotation>
+      </element>
+    </sequence>
+  </complexType>
+  <complexType name="MineralSystemPropertyType">
+    <sequence>
+      <element ref="mr-ext:MineralSystem"/>
+    </sequence>
+  </complexType>
+</schema>

@@ -1,0 +1,1581 @@
+<?xml version="1.0" encoding="UTF-8"?><schema xmlns="http://www.w3.org/2001/XMLSchema" xmlns:ad="urn:x-inspire:specification:gmlas:Addresses:3.0" xmlns:base="urn:x-inspire:specification:gmlas:BaseTypes:3.2" xmlns:bu-core2d="http://inspire.jrc.ec.europa.eu/schemas/bu-core2d/2.0" xmlns:bu-ext2d="http://inspire.jrc.ec.europa.eu/schemas/bu-ext2d/2.0" xmlns:cp="urn:x-inspire:specification:gmlas:CadastralParcels:3.0" xmlns:gmd="http://www.isotc211.org/2005/gmd" xmlns:gml="http://www.opengis.net/gml/3.2" elementFormDefault="qualified" targetNamespace="http://inspire.jrc.ec.europa.eu/schemas/bu-ext2d/2.0" version="2.0">
+  <annotation>
+    <documentation>-- Definition --
+The extended 2D application schema for INSPIRE theme building.</documentation>
+  </annotation>
+  <import namespace="http://inspire.jrc.ec.europa.eu/schemas/bu-core2d/2.0" schemaLocation="https://inspire.ec.europa.eu/draft-schemas/bu-core2d/2.0/BuildingCore2D.xsd"/>
+  <import namespace="http://www.isotc211.org/2005/gmd" schemaLocation="http://schemas.opengis.net/iso/19139/20070417/gmd/gmd.xsd"/>
+  <import namespace="http://www.opengis.net/gml/3.2" schemaLocation="http://schemas.opengis.net/gml/3.2.1/gml.xsd"/>
+  <import namespace="urn:x-inspire:specification:gmlas:Addresses:3.0" schemaLocation="https://inspire.ec.europa.eu/schemas/ad/3.0/Addresses.xsd"/>
+  <import namespace="urn:x-inspire:specification:gmlas:BaseTypes:3.2" schemaLocation="https://inspire.ec.europa.eu/schemas/base/3.2/BaseTypes.xsd"/>
+  <import namespace="urn:x-inspire:specification:gmlas:CadastralParcels:3.0" schemaLocation="https://inspire.ec.europa.eu/schemas/cp/3.0/CadastralParcels.xsd"/>
+  <!--XML Schema document created by ShapeChange-->
+  <element name="BuildingUnit" substitutionGroup="gml:AbstractFeature" type="bu-ext2d:BuildingUnitType">
+    <annotation>
+      <documentation>-- Definition --
+A BuildingUnit is a subdivion of Building that is homogeneous related to management aspects. A BuildingUnit has the same set of rights, restrictions and/or responsibilities.
+
+-- Description --
+Building Unit is a feature type aimed at describing a whole building or part of a building from management perspective. Usually these building units are separate objects in other data bases and could be reached by an external reference.
+
+EXAMPLE 1: A BuildingUnit may be an apartment in a multi-owner building, i.e. a building unit in a cadastral register. Note that according to national regulations, a building unit may be a flat or a cellar/ a garage or set of flat and cellar/garage.
+EXAMPLE 2: It may be a building unit in another register, such as a register of public property (e.g. a market stall in a market building).</documentation>
+    </annotation>
+  </element>
+  <complexType name="BuildingUnitType">
+    <complexContent>
+      <extension base="gml:AbstractFeatureType">
+        <sequence>
+          <element name="beginLifespanVersion" nillable="true">
+            <annotation>
+              <documentation>-- Definition --
+Date and time at which this version of the spatial object was inserted or changed in the spatial data set.</documentation>
+            </annotation>
+            <complexType>
+              <simpleContent>
+                <extension base="dateTime">
+                  <attribute name="nilReason" type="gml:NilReasonType"/>
+                </extension>
+              </simpleContent>
+            </complexType>
+          </element>
+          <element minOccurs="0" name="endLifespanVersion" nillable="true">
+            <annotation>
+              <documentation>-- Definition --
+Date and time at which this version of the spatial object was superseded or retired in the spatial data set.</documentation>
+            </annotation>
+            <complexType>
+              <simpleContent>
+                <extension base="dateTime">
+                  <attribute name="nilReason" type="gml:NilReasonType"/>
+                </extension>
+              </simpleContent>
+            </complexType>
+          </element>
+          <element name="externalReference" type="bu-core2d:ExternalReferencePropertyType">
+            <annotation>
+              <documentation>-- Definition --
+Reference to an external information system containing any piece of information related to the spatial object.
+
+-- Description --
+Typically, the external reference will be done to the information system where BuildingUnits are defined.
+
+EXAMPLES: the information system will be the cadastral register or an official dwelling register. It may be also a register of public properties.</documentation>
+            </annotation>
+          </element>
+          <element name="geometry" nillable="true" type="gml:GeometricPrimitivePropertyType">
+            <annotation>
+              <documentation>-- Definition --
+The geometric representation of the BuildingUnit as 2D or 2,5D data
+-- Description --
+EXAMPLE: the BuildingUnit may be represented by its floor surface or by a simple point</documentation>
+            </annotation>
+          </element>
+          <element name="inspireId" type="base:IdentifierPropertyType">
+            <annotation>
+              <documentation>-- Definition --
+External unique object identifier published by the responsible body, which may be used by external applications to reference the spatial object.
+-- Description --
+NOTE 1 External object identifiers are distinct from thematic object identifiers.
+NOTE 2 The voidable version identifier attribute is not part of the unique identifier of a spatial object and may be used to distinguish two versions of the same spatial object.
+NOTE 3 The unique identifier will not change during the life-time of a spatial object.</documentation>
+            </annotation>
+          </element>
+          <element maxOccurs="unbounded" minOccurs="0" name="addresses" nillable="true">
+            <annotation>
+              <documentation>-- Definition --
+The address(es) of the building unit.</documentation>
+            </annotation>
+            <complexType>
+              <sequence minOccurs="0">
+                <element ref="ad:Address"/>
+              </sequence>
+              <attributeGroup ref="gml:AssociationAttributeGroup"/>
+              <attributeGroup ref="gml:OwnershipAttributeGroup"/>
+            </complexType>
+          </element>
+        </sequence>
+      </extension>
+    </complexContent>
+  </complexType>
+  <complexType name="BuildingUnitPropertyType">
+    <sequence minOccurs="0">
+      <element ref="bu-ext2d:BuildingUnit"/>
+    </sequence>
+    <attributeGroup ref="gml:AssociationAttributeGroup"/>
+    <attributeGroup ref="gml:OwnershipAttributeGroup"/>
+  </complexType>
+  <simpleType name="CurrencyValueType">
+    <annotation>
+      <documentation>-- Definition --
+Code list for possible values of attribute currency
+-- Description --
+NOTE: include currencies from all European countries, including that are not MS of European Union
+SOURCE: values are extracted from ISO 4217 standard</documentation>
+    </annotation>
+    <union memberTypes="bu-ext2d:CurrencyValueEnumerationType bu-ext2d:CurrencyValueOtherType"/>
+  </simpleType>
+  <simpleType name="CurrencyValueEnumerationType">
+    <annotation>
+      <documentation>-- Definition --
+Code list for possible values of attribute currency
+-- Description --
+NOTE: include currencies from all European countries, including that are not MS of European Union
+SOURCE: values are extracted from ISO 4217 standard</documentation>
+    </annotation>
+    <restriction base="string">
+      <enumeration value="ALL">
+        <annotation>
+          <documentation>-- Definition -- 
+Lek (in Albania)</documentation>
+        </annotation>
+      </enumeration>
+      <enumeration value="BAM">
+        <annotation>
+          <documentation>-- Definition --
+Convertible Mark (in Bosnia &amp; Herzegovina)</documentation>
+        </annotation>
+      </enumeration>
+      <enumeration value="BGN">
+        <annotation>
+          <documentation>-- Definition --
+Bulgarian Lev (in Bulgaria)</documentation>
+        </annotation>
+      </enumeration>
+      <enumeration value="BYR">
+        <annotation>
+          <documentation>-- Definition --
+Belarussian Ruble (in Belarus)</documentation>
+        </annotation>
+      </enumeration>
+      <enumeration value="CHE">
+        <annotation>
+          <documentation>-- Definition --
+WIR Euro (in Switzerland).
+
+-- Description --
+NOTE: "WIR" is both an abbreviation of "Wirtschaftsring Genossenschaft" and
+the word for "we" in German, reminding participants that the economic
+circle is also a community.</documentation>
+        </annotation>
+      </enumeration>
+      <enumeration value="CHF">
+        <annotation>
+          <documentation>-- Definition --
+Swiss Franc (in Switzerland and Liechtenstein)</documentation>
+        </annotation>
+      </enumeration>
+      <enumeration value="CZK">
+        <annotation>
+          <documentation>-- Definition --
+Czech Koruna (in Czech Republic)</documentation>
+        </annotation>
+      </enumeration>
+      <enumeration value="DKK">
+        <annotation>
+          <documentation>-- Definition --
+Danish Krone (in Denmark)</documentation>
+        </annotation>
+      </enumeration>
+      <enumeration value="EUR">
+        <annotation>
+          <documentation>-- Definition --
+euro</documentation>
+        </annotation>
+      </enumeration>
+      <enumeration value="GBP">
+        <annotation>
+          <documentation>-- Definition --
+Pound Sterling (in United Kingdom)</documentation>
+        </annotation>
+      </enumeration>
+      <enumeration value="HRK">
+        <annotation>
+          <documentation>-- Definition --
+Croatian Kuna (in Croatia)</documentation>
+        </annotation>
+      </enumeration>
+      <enumeration value="HUF">
+        <annotation>
+          <documentation>-- Definition --
+Forint (in Hungary)</documentation>
+        </annotation>
+      </enumeration>
+      <enumeration value="ISK">
+        <annotation>
+          <documentation>-- Definition --
+Iceland Krona (in Iceland)</documentation>
+        </annotation>
+      </enumeration>
+      <enumeration value="LTL">
+        <annotation>
+          <documentation>-- Definition --
+Lithuanian Litas (in Lithuania)</documentation>
+        </annotation>
+      </enumeration>
+      <enumeration value="LVL">
+        <annotation>
+          <documentation>-- Definition --
+Latvian Lats (in Latvia)</documentation>
+        </annotation>
+      </enumeration>
+      <enumeration value="MDL">
+        <annotation>
+          <documentation>-- Definition --
+Moldovan Leu (in Republic of Moldavia)</documentation>
+        </annotation>
+      </enumeration>
+      <enumeration value="MKD">
+        <annotation>
+          <documentation>-- Definition --
+Denar (in the former yugoslav republic of Macedonia)</documentation>
+        </annotation>
+      </enumeration>
+      <enumeration value="NOK">
+        <annotation>
+          <documentation>-- Definition --
+Norwegian Krone (in Norway)</documentation>
+        </annotation>
+      </enumeration>
+      <enumeration value="PLN">
+        <annotation>
+          <documentation>-- Definition --
+Zloty (in Poland)</documentation>
+        </annotation>
+      </enumeration>
+      <enumeration value="RON">
+        <annotation>
+          <documentation>-- Definition --
+Leu (in Romania)</documentation>
+        </annotation>
+      </enumeration>
+      <enumeration value="RSD">
+        <annotation>
+          <documentation>-- Definition --
+Serbian Dinar (in Serbia)</documentation>
+        </annotation>
+      </enumeration>
+      <enumeration value="RUB">
+        <annotation>
+          <documentation>-- Definition --
+Russian Ruble (in Russian federation)</documentation>
+        </annotation>
+      </enumeration>
+      <enumeration value="SEK">
+        <annotation>
+          <documentation>-- Definition --
+Swedish Krona (in Sweden)</documentation>
+        </annotation>
+      </enumeration>
+      <enumeration value="TRY">
+        <annotation>
+          <documentation>-- Definition --
+Turkish Lira (in Turkey)</documentation>
+        </annotation>
+      </enumeration>
+      <enumeration value="UAH">
+        <annotation>
+          <documentation>-- Definition --
+Hryvnia (in Ukraine)</documentation>
+        </annotation>
+      </enumeration>
+    </restriction>
+  </simpleType>
+  <simpleType name="CurrencyValueOtherType">
+    <restriction base="string">
+      <pattern value="other: \w{2,}"/>
+    </restriction>
+  </simpleType>
+  <simpleType name="OfficialAreaReferenceValueType">
+    <annotation>
+      <documentation>-- Definition --
+Code list for the possible values of attribute officialAreareference
+-- Description --
+SOURCE: values and definitions are adapted from draft EN 15221-6 standard. This standard deals with area and space measurements.
+NOTE: this standard is prepared by CEN and when adopted, will be mandatory in Europe.</documentation>
+    </annotation>
+    <union memberTypes="bu-ext2d:OfficialAreaReferenceValueEnumerationType bu-ext2d:OfficialAreaReferenceValueOtherType"/>
+  </simpleType>
+  <simpleType name="OfficialAreaReferenceValueEnumerationType">
+    <annotation>
+      <documentation>-- Definition --
+Code list for the possible values of attribute officialAreareference
+-- Description --
+SOURCE: values and definitions are adapted from draft EN 15221-6 standard. This standard deals with area and space measurements.
+NOTE: this standard is prepared by CEN and when adopted, will be mandatory in Europe.</documentation>
+    </annotation>
+    <restriction base="string">
+      <enumeration value="amenityArea">
+        <annotation>
+          <documentation>-- Definition --
+The Amenity Area is the portion of the Net Room Area taken up for amenities.</documentation>
+        </annotation>
+      </enumeration>
+      <enumeration value="circulationArea">
+        <annotation>
+          <documentation>-- Definition --
+The Circulation Area is the portion of the Net Room Area taken up for vertical and horizontal circulation.</documentation>
+        </annotation>
+      </enumeration>
+      <enumeration value="exteriorConstructionArea">
+        <annotation>
+          <documentation>-- Definition --
+Exterior Construction Area is a measured area, consisting of the exterior walls of a building envelope finished surface. This also includes additional bracing for exterior walls, for example flying buttresses and seismic supports.</documentation>
+        </annotation>
+      </enumeration>
+      <enumeration value="grossFloorArea">
+        <annotation>
+          <documentation>-- Definition --
+Gross Floor Area is the calculated area of Total Level Area (TLA) excluding the Non-Functional Level Area (NLA).</documentation>
+        </annotation>
+      </enumeration>
+      <enumeration value="internalConstructionArea">
+        <annotation>
+          <documentation>-- Definition --
+Interior Construction Area is a measured area, consisting of the internal structure of the building (e.g. columns and supporting walls).</documentation>
+        </annotation>
+      </enumeration>
+      <enumeration value="internalFloorArea">
+        <annotation>
+          <documentation>-- Definition --
+Internal Floor Area is the calculated area of Gross Floor Area (GFA) excluding the Exterior Construction Area (ECA).</documentation>
+        </annotation>
+      </enumeration>
+      <enumeration value="netFloorArea">
+        <annotation>
+          <documentation>-- Definition --
+Net Floor Area is the calculated area of Internal Floor Area (IFA) excluding the Interior Construction Area (ICA).</documentation>
+        </annotation>
+      </enumeration>
+      <enumeration value="netRoomArea">
+        <annotation>
+          <documentation>-- Definition --
+Net Room Area is the sum of all floor areas measured to the internal surface of each room. It is the calculated area of Net Floor Area (NFA) excluding the Partition Wall Area (PWA).</documentation>
+        </annotation>
+      </enumeration>
+      <enumeration value="nonFunctionalLevelArea">
+        <annotation>
+          <documentation>-- Definition --
+Non-functional Level Area is a measured area, consisting of voids, atriums and cavities.</documentation>
+        </annotation>
+      </enumeration>
+      <enumeration value="partitionWallArea">
+        <annotation>
+          <documentation>-- Definition --
+Partition Wall Area is a measured area, consisting of non-structural walls as well as flexible and movable partitions.
+-- Description --
+NOTE: If there is any doubt about the quality of a wall, it shall be counted as an interior construction area.</documentation>
+        </annotation>
+      </enumeration>
+      <enumeration value="primaryArea">
+        <annotation>
+          <documentation>-- Definition --
+The Primary Area is the portion of the Net Room Area used for supporting the core business needs, and work processes (including central support, local support and workstations)</documentation>
+        </annotation>
+      </enumeration>
+      <enumeration value="technicalArea">
+        <annotation>
+          <documentation>-- Definition --
+The Technical Area is the portion of the Net Room Area taken up by the rooms for all mechanical installations (including lift rooms and plant rooms, ventilation, air-conditioning and cooling systems, and vertical ducts and pipes) and electrical installations (including electrical conductors, fittings and fixtures for lighting and power purposes).</documentation>
+        </annotation>
+      </enumeration>
+      <enumeration value="totalLevelArea">
+        <annotation>
+          <documentation>-- Definition --
+Total Level Area is a measured area for one building, including the total building/floor area contained inside and measured to the outside permanent finished surface, including all floors, penthouses and mezzanines, basement and enclosed/covered connecting walkways and linkways.</documentation>
+        </annotation>
+      </enumeration>
+    </restriction>
+  </simpleType>
+  <simpleType name="OfficialAreaReferenceValueOtherType">
+    <restriction base="string">
+      <pattern value="other: \w{2,}"/>
+    </restriction>
+  </simpleType>
+  <element name="OtherConstruction" substitutionGroup="bu-core2d:AbstractConstruction" type="bu-ext2d:OtherConstructionType">
+    <annotation>
+      <documentation>-- Definition --
+An OtherConstruction is a construction that is under scope of theme Buildings without being within feature type Building.
+
+-- Description --
+NOTE: In other words, an OtherConstruction is a construction that is generally not considered as a building in common sense but that is required by at least one of the use cases identified by TWG BU.
+
+EXAMPLES: bridge, antenna, acoustic fence.</documentation>
+    </annotation>
+  </element>
+  <complexType name="OtherConstructionType">
+    <complexContent>
+      <extension base="bu-core2d:AbstractConstructionType">
+        <sequence>
+          <element name="constructionNature" type="bu-core2d:ConstructionNatureValueType">
+            <annotation>
+              <documentation>-- Definition -- 
+A description of the feature that represents its intended nature or current function which differentiates it from that of a Building.</documentation>
+            </annotation>
+          </element>
+          <element name="geometry" type="gml:GeometricPrimitivePropertyType">
+            <annotation>
+              <documentation>-- Definition --
+Geometric representation of the OtherConstruction, as 2D or 2,5D data.</documentation>
+            </annotation>
+          </element>
+        </sequence>
+      </extension>
+    </complexContent>
+  </complexType>
+  <complexType name="OtherConstructionPropertyType">
+    <sequence minOccurs="0">
+      <element ref="bu-ext2d:OtherConstruction"/>
+    </sequence>
+    <attributeGroup ref="gml:AssociationAttributeGroup"/>
+    <attributeGroup ref="gml:OwnershipAttributeGroup"/>
+  </complexType>
+  <simpleType name="EnergyPerformanceValueType">
+    <annotation>
+      <documentation>-- Definition --
+Code list for possible values of energy performance of a building</documentation>
+    </annotation>
+    <union memberTypes="bu-ext2d:EnergyPerformanceValueEnumerationType bu-ext2d:EnergyPerformanceValueOtherType"/>
+  </simpleType>
+  <simpleType name="EnergyPerformanceValueEnumerationType">
+    <annotation>
+      <documentation>-- Definition --
+Code list for possible values of energy performance of a building</documentation>
+    </annotation>
+    <restriction base="string">
+      <enumeration value="A">
+        <annotation>
+          <documentation>-- Definition --
+First class according to the energy performance of the building (i.e. the most efficient buildings for energy performance).</documentation>
+        </annotation>
+      </enumeration>
+      <enumeration value="B">
+        <annotation>
+          <documentation>-- Definition --
+Second class according to the energy performance of the building</documentation>
+        </annotation>
+      </enumeration>
+      <enumeration value="C">
+        <annotation>
+          <documentation>-- Definition --
+Third class according to the energy performance of the building</documentation>
+        </annotation>
+      </enumeration>
+      <enumeration value="D">
+        <annotation>
+          <documentation>-- Definition --
+Fourth class according to the energy performance of the building</documentation>
+        </annotation>
+      </enumeration>
+      <enumeration value="E">
+        <annotation>
+          <documentation>-- Definition --
+Fifth class according to the energy performance of the building</documentation>
+        </annotation>
+      </enumeration>
+      <enumeration value="F">
+        <annotation>
+          <documentation>-- Definition --
+Sixth class according to the energy performance of the building</documentation>
+        </annotation>
+      </enumeration>
+      <enumeration value="G">
+        <annotation>
+          <documentation>-- Definition --
+Seventh and last class according to the energy performance of the building (i.e. the most efficient buildings for energy performance).</documentation>
+        </annotation>
+      </enumeration>
+    </restriction>
+  </simpleType>
+  <simpleType name="EnergyPerformanceValueOtherType">
+    <restriction base="string">
+      <pattern value="other: \w{2,}"/>
+    </restriction>
+  </simpleType>
+  <element name="AbstractBuildingExtended2D" substitutionGroup="bu-ext2d:AbstractBuilding" type="bu-ext2d:AbstractBuildingExtended2DType">
+    <annotation>
+      <documentation>-- Definition --
+Abstract feature type grouping the additional properties of Building and Building Unit.
+-- Description --
+The additonal properties are those that are not already included in the core2D profile.</documentation>
+    </annotation>
+  </element>
+  <complexType name="AbstractBuildingExtended2DType">
+    <complexContent>
+      <extension base="bu-ext2d:AbstractBuildingType">
+        <sequence>
+          <element maxOccurs="unbounded" minOccurs="0" name="document" nillable="true">
+            <annotation>
+              <documentation>-- Definition --
+Any document providing information about the building
+-- Description --
+EXAMPLES: the building permit, a photo of facade or inner yard, a sketch of interior, the building code, the energy performance assessment, an emergency plan</documentation>
+            </annotation>
+            <complexType>
+              <sequence>
+                <element ref="bu-ext2d:Document"/>
+              </sequence>
+              <attribute name="nilReason" type="gml:NilReasonType"/>
+            </complexType>
+          </element>
+          <element minOccurs="0" name="energyPerformance" nillable="true">
+            <annotation>
+              <documentation>-- Definition --
+The energy performace of the building
+-- Description --
+The energy performance is required by the Energy Performance of Building Directive for the new buildings being rent or sold.</documentation>
+            </annotation>
+            <complexType>
+              <sequence>
+                <element ref="bu-ext2d:EnergyPerformance"/>
+              </sequence>
+              <attribute name="nilReason" type="gml:NilReasonType"/>
+            </complexType>
+          </element>
+          <element minOccurs="0" name="heightBelowGround" nillable="true">
+            <annotation>
+              <documentation>-- Definition --
+Height below ground of the building</documentation>
+            </annotation>
+            <complexType>
+              <simpleContent>
+                <extension base="gml:LengthType">
+                  <attribute name="nilReason" type="gml:NilReasonType"/>
+                </extension>
+              </simpleContent>
+            </complexType>
+          </element>
+          <element maxOccurs="unbounded" minOccurs="0" name="materialOfFacade" nillable="true">
+            <annotation>
+              <documentation>-- Definition --
+Material(s) of the building facade.</documentation>
+            </annotation>
+            <complexType>
+              <simpleContent>
+                <extension base="bu-ext2d:MaterialOfFacadeValueType">
+                  <attribute name="nilReason" type="gml:NilReasonType"/>
+                </extension>
+              </simpleContent>
+            </complexType>
+          </element>
+          <element maxOccurs="unbounded" minOccurs="0" name="materialOfRoof" nillable="true">
+            <annotation>
+              <documentation>-- Definition --
+Material(s) of the building roof.</documentation>
+            </annotation>
+            <complexType>
+              <simpleContent>
+                <extension base="bu-ext2d:MaterialOfRoofValueType">
+                  <attribute name="nilReason" type="gml:NilReasonType"/>
+                </extension>
+              </simpleContent>
+            </complexType>
+          </element>
+          <element maxOccurs="unbounded" minOccurs="0" name="materialOfStructure" nillable="true">
+            <annotation>
+              <documentation>-- Definition --
+Material(s) of the building structure.
+-- Description --
+NOTE: generally, the building structure consists of the supporting walls or columns.</documentation>
+            </annotation>
+            <complexType>
+              <simpleContent>
+                <extension base="bu-ext2d:MaterialOfStructureValueType">
+                  <attribute name="nilReason" type="gml:NilReasonType"/>
+                </extension>
+              </simpleContent>
+            </complexType>
+          </element>
+          <element minOccurs="0" name="numberOfFloorsBelowGround" nillable="true">
+            <annotation>
+              <documentation>-- Definition --
+The number of floors below ground of the building
+-- Description --
+EXAMPLES: includes cellars, underground carparks ...</documentation>
+            </annotation>
+            <complexType>
+              <simpleContent>
+                <extension base="integer">
+                  <attribute name="nilReason" type="gml:NilReasonType"/>
+                </extension>
+              </simpleContent>
+            </complexType>
+          </element>
+          <element maxOccurs="unbounded" minOccurs="0" name="officialArea" nillable="true">
+            <annotation>
+              <documentation>-- Definition --
+The area of the building as registered in an official information system</documentation>
+            </annotation>
+            <complexType>
+              <sequence>
+                <element ref="bu-ext2d:OfficialArea"/>
+              </sequence>
+              <attribute name="nilReason" type="gml:NilReasonType"/>
+            </complexType>
+          </element>
+          <element maxOccurs="unbounded" minOccurs="0" name="officiaValue" nillable="true">
+            <annotation>
+              <documentation>-- Definition --
+-- The value of the building as registered in official information system</documentation>
+            </annotation>
+            <complexType>
+              <sequence>
+                <element ref="bu-ext2d:OfficialValue"/>
+              </sequence>
+              <attribute name="nilReason" type="gml:NilReasonType"/>
+            </complexType>
+          </element>
+          <element minOccurs="0" name="openGroundFloor" nillable="true">
+            <annotation>
+              <documentation>-- Definition --
+An indication that the building has an open ground floor or not. An openGroundFloor building (or soft storey building) is a multi-storey building in which one or more floors have windows, wide doors, large unobstructed commercial spaces, or other openings in places where a shear wall (or infill masonry) would normally be required for stability.
+-- Description --
+EXAMPLE: Typical soft storey building is an apartment building of three or more storeys located over a ground level with large openings, such as a parking garage or series of retail businesses with large windows.</documentation>
+            </annotation>
+            <complexType>
+              <simpleContent>
+                <extension base="boolean">
+                  <attribute name="nilReason" type="gml:NilReasonType"/>
+                </extension>
+              </simpleContent>
+            </complexType>
+          </element>
+          <element maxOccurs="unbounded" minOccurs="0" name="roofType" nillable="true">
+            <annotation>
+              <documentation>-- Definition -- 
+The shape of the roof.</documentation>
+            </annotation>
+            <complexType>
+              <simpleContent>
+                <extension base="bu-ext2d:RoofTypeValueType">
+                  <attribute name="nilReason" type="gml:NilReasonType"/>
+                </extension>
+              </simpleContent>
+            </complexType>
+          </element>
+        </sequence>
+      </extension>
+    </complexContent>
+  </complexType>
+  <complexType name="AbstractBuildingExtended2DPropertyType">
+    <sequence minOccurs="0">
+      <element ref="bu-ext2d:AbstractBuildingExtended2D"/>
+    </sequence>
+    <attributeGroup ref="gml:AssociationAttributeGroup"/>
+    <attributeGroup ref="gml:OwnershipAttributeGroup"/>
+  </complexType>
+  <simpleType name="MaterialOfRoofValueType">
+    <annotation>
+      <documentation>-- Definition --
+Code list for possible values of attribute MaterialOfRoof</documentation>
+    </annotation>
+    <union memberTypes="bu-ext2d:MaterialOfRoofValueEnumerationType bu-ext2d:MaterialOfRoofValueOtherType"/>
+  </simpleType>
+  <simpleType name="MaterialOfRoofValueEnumerationType">
+    <annotation>
+      <documentation>-- Definition --
+Code list for possible values of attribute MaterialOfRoof</documentation>
+    </annotation>
+    <restriction base="string">
+      <enumeration value="ceramicTile">
+        <annotation>
+          <documentation>-- Definition --
+Tiles made of ceramic material of different colours. They are traditionally of the barrel type, what is referred to today as cap and pan roof tiles.</documentation>
+        </annotation>
+      </enumeration>
+      <enumeration value="clayTile">
+        <annotation>
+          <documentation>-- Definition --
+Is a specific type of ceramic tile, made of fired terracotta. It is generally semi-cylindrical, made by forming clay around a curved surface and laid in alternating columns of convex and concave tiles.</documentation>
+        </annotation>
+      </enumeration>
+      <enumeration value="composition">
+        <annotation>
+          <documentation>-- Definition --
+Composition shingles are the most widely used roofing material. They are also called asphalt shingles that could either be organic fibre mat or fibreglass core. Both types are steeped in asphalt and then coated with mineral granules to add colour and texture. Most shingles have an adhesive back that when reinforced with tacks, staples or nails for attaching on roof frames would result in a tight fit.</documentation>
+        </annotation>
+      </enumeration>
+      <enumeration value="concreteTile">
+        <annotation>
+          <documentation>-- Definition --
+Is a roofing material consisting of shingles, simulated wood shakes, lighter-weight tiles and concrete panels manufactured from a variety of fibre-reinforced cement products.
+-- Description --
+NOTE 1:  Some are coated with plastics, enamels, or thin metals, and some contain recycled material.
+NOTE 2:  Many concrete tiles mimic the appearance of wood shakes, while improving on the durability and fire protection that real wood affords. It can approximate the look of clay tile or slate while mitigating the structural problems caused by the weight of the real material.</documentation>
+        </annotation>
+      </enumeration>
+      <enumeration value="corrugatedSheet">
+        <annotation>
+          <documentation>-- Definition --
+Roofs of corrugated sheet may be of fibreglass, PVC or metal; less frequent is the use of galvanized iron sheet.</documentation>
+        </annotation>
+      </enumeration>
+      <enumeration value="fibreReinforcedConcrete/Asbestos">
+        <annotation>
+          <documentation>-- Definition --
+Fibre reinforced concrete is concrete containing fibrous material which increases its structural integrity. Fibres include steel fibres, glass fibres, synthetic fibres, asbestos and natural fibres. It is commonly used for the agricultural sector, particularly in livestock buildings.</documentation>
+        </annotation>
+      </enumeration>
+      <enumeration value="glass">
+        <annotation>
+          <documentation>-- Definition --
+The surface of the roof is constructed out of glass, typically used in roofs covering internal atriums or in greenhouses.</documentation>
+        </annotation>
+      </enumeration>
+      <enumeration value="hotMoppedAsphalt">
+        <annotation>
+          <documentation>-- Definition --
+Hot mopped asphalt roofing is usually applied to flat or semi-flat residential roofs that have good access and proper drainage. In residential use it is often covered with a layer of decorative stone to improve the appearance.</documentation>
+        </annotation>
+      </enumeration>
+      <enumeration value="metal">
+        <annotation>
+          <documentation>-- Definition --
+Metal roofing comes in the form of galvanized steel with paint, aluminium with paint, stainless steel, zinc, lead or copper. It is also manufactured in the form of imitation wood shingles. 
+-- Description --
+EXAMPLE : Standing-seam steel roofing is the most popular residential metal roofing today (the term standing-seam describes the upturned edge of one metal panel that connects it to adjacent sections, creating distinctive vertical lines and a trendy historical look).
+NOTE: Metal roofing is sturdy, lightweight, and non-combustible</documentation>
+        </annotation>
+      </enumeration>
+      <enumeration value="reinforcedConcrete">
+        <annotation>
+          <documentation>-- Definition --
+Roofs constructed out of reinforced concrete, normally along flat or semi-flat surfaces used in terraces or inclined roofs.</documentation>
+        </annotation>
+      </enumeration>
+      <enumeration value="slate">
+        <annotation>
+          <documentation>-- Definition --
+Slate is a shingle-like sliver of rock or natural stone, offering a natural look laid out in a variety of patterns. It comes in different sizes and colours, although colours are limited to those found in nature.
+-- Description --
+NOTE:  Like tile, slate can be very heavy.</documentation>
+        </annotation>
+      </enumeration>
+      <enumeration value="straw">
+        <annotation>
+          <documentation>-- Definition --
+Straw roofs are built by thatching, which is the craft of building a roof with dry vegetation such as straw, water reed, sedge, rushes and heather, layering the vegetation so as to shed water away from the inner roof.</documentation>
+        </annotation>
+      </enumeration>
+      <enumeration value="vegetatedGreenRoof">
+        <annotation>
+          <documentation>-- Definition --
+Also known as eco-roofs, a vegetated or green roof is a roof of a building that is partially or completely covered with vegetation and a growing medium, planted over a waterproofing membrane. It may also include additional layers such as a root barrier and drainage and irrigation systems.</documentation>
+        </annotation>
+      </enumeration>
+      <enumeration value="woodShinglesOrShakes">
+        <annotation>
+          <documentation>-- Definition --
+Wood shingles or shakes are differentiated by size and texture. Shingles are cut to a specific size and have smooth finish. Shakes are rough-textures and are irregular in shape.</documentation>
+        </annotation>
+      </enumeration>
+    </restriction>
+  </simpleType>
+  <simpleType name="MaterialOfRoofValueOtherType">
+    <restriction base="string">
+      <pattern value="other: \w{2,}"/>
+    </restriction>
+  </simpleType>
+  <simpleType name="DocumentFormatValueType">
+    <annotation>
+      <documentation>-- Definition --
+Code list for the possible values of attribute documentFormat.
+-- Description --
+This code list includes well-known and easy to handle formats, in order to ensure easy use of documents. Code list may be extended by MS but it is recommended to keep the principle of interoperable formats. Formats whose content is unknown (such as .exe or .zip) should be avoided.</documentation>
+    </annotation>
+    <union memberTypes="bu-ext2d:DocumentFormatValueEnumerationType bu-ext2d:DocumentFormatValueOtherType"/>
+  </simpleType>
+  <simpleType name="DocumentFormatValueEnumerationType">
+    <annotation>
+      <documentation>-- Definition --
+Code list for the possible values of attribute documentFormat.
+-- Description --
+This code list includes well-known and easy to handle formats, in order to ensure easy use of documents. Code list may be extended by MS but it is recommended to keep the principle of interoperable formats. Formats whose content is unknown (such as .exe or .zip) should be avoided.</documentation>
+    </annotation>
+    <restriction base="string">
+      <enumeration value="bmp">
+        <annotation>
+          <documentation>-- Definition --
+Bitmap Image File</documentation>
+        </annotation>
+      </enumeration>
+      <enumeration value="doc">
+        <annotation>
+          <documentation>-- Definition --
+Format of Word documents</documentation>
+        </annotation>
+      </enumeration>
+      <enumeration value="gif">
+        <annotation>
+          <documentation>-- Definition --
+Graphics Interchange Format</documentation>
+        </annotation>
+      </enumeration>
+      <enumeration value="jpeg">
+        <annotation>
+          <documentation>-- Definition --
+Compressed format for images from Joint Photographic Expert Group</documentation>
+        </annotation>
+      </enumeration>
+      <enumeration value="pdf">
+        <annotation>
+          <documentation>-- Definition --
+Portable Document Format.</documentation>
+        </annotation>
+      </enumeration>
+      <enumeration value="png">
+        <annotation>
+          <documentation>-- Definition --
+Portable Network Graphics, image format</documentation>
+        </annotation>
+      </enumeration>
+      <enumeration value="tiff">
+        <annotation>
+          <documentation>-- Definition --
+Tagged Image File Format.</documentation>
+        </annotation>
+      </enumeration>
+      <enumeration value="xml">
+        <annotation>
+          <documentation>-- Definition --
+Extensible Markup Language</documentation>
+        </annotation>
+      </enumeration>
+      <enumeration value="xsl">
+        <annotation>
+          <documentation>-- Definition --
+Format of Excel tables.</documentation>
+        </annotation>
+      </enumeration>
+    </restriction>
+  </simpleType>
+  <simpleType name="DocumentFormatValueOtherType">
+    <restriction base="string">
+      <pattern value="other: \w{2,}"/>
+    </restriction>
+  </simpleType>
+  <element name="Building" substitutionGroup="bu-ext2d:AbstractBuildingExtended2D" type="bu-ext2d:BuildingType">
+    <annotation>
+      <documentation>-- Definition --
+A Building is an enclosed construction above and/or underground, used or intended for the shelter of humans, animals or things or for the production of economic goods. A building refers to any structure permanently constructed or erected on its site.</documentation>
+    </annotation>
+  </element>
+  <complexType name="BuildingType">
+    <complexContent>
+      <extension base="bu-ext2d:AbstractBuildingExtended2DType">
+        <sequence>
+          <element maxOccurs="unbounded" minOccurs="0" name="buildingUnit" type="bu-ext2d:BuildingUnitPropertyType">
+            <annotation>
+              <documentation>-- Definition --
+The building unit.</documentation>
+            </annotation>
+          </element>
+          <element maxOccurs="unbounded" minOccurs="0" name="parts">
+            <annotation>
+              <documentation>-- Definition --
+The parts.</documentation>
+            </annotation>
+            <complexType>
+              <complexContent>
+                <extension base="gml:AbstractMemberType">
+                  <sequence minOccurs="0">
+                    <element ref="bu-ext2d:BuildingPart"/>
+                  </sequence>
+                  <attributeGroup ref="gml:AssociationAttributeGroup"/>
+                </extension>
+              </complexContent>
+            </complexType>
+          </element>
+        </sequence>
+      </extension>
+    </complexContent>
+  </complexType>
+  <complexType name="BuildingPropertyType">
+    <sequence minOccurs="0">
+      <element ref="bu-ext2d:Building"/>
+    </sequence>
+    <attributeGroup ref="gml:AssociationAttributeGroup"/>
+    <attributeGroup ref="gml:OwnershipAttributeGroup"/>
+  </complexType>
+  <element name="OfficialArea" substitutionGroup="gml:AbstractObject" type="bu-ext2d:OfficialAreaType">
+    <annotation>
+      <documentation>-- Definition --
+This data types includes the official area of the building and information about the exact meaning of this area.</documentation>
+    </annotation>
+  </element>
+  <complexType name="OfficialAreaType">
+    <sequence>
+      <element name="officialAreaReference" nillable="true">
+        <annotation>
+          <documentation>-- Definition --
+The type of the official area 
+-- Description --
+EXAMPLES: gross floor area, net floor area</documentation>
+        </annotation>
+        <complexType>
+          <simpleContent>
+            <extension base="bu-ext2d:OfficialAreaReferenceValueType">
+              <attribute name="nilReason" type="gml:NilReasonType"/>
+            </extension>
+          </simpleContent>
+        </complexType>
+      </element>
+      <element name="value" nillable="true">
+        <annotation>
+          <documentation>-- Definition --
+The value of the official area</documentation>
+        </annotation>
+        <complexType>
+          <simpleContent>
+            <extension base="gml:AreaType">
+              <attribute name="nilReason" type="gml:NilReasonType"/>
+            </extension>
+          </simpleContent>
+        </complexType>
+      </element>
+    </sequence>
+  </complexType>
+  <complexType name="OfficialAreaPropertyType">
+    <sequence>
+      <element ref="bu-ext2d:OfficialArea"/>
+    </sequence>
+  </complexType>
+  <element name="OfficialValue" substitutionGroup="gml:AbstractObject" type="bu-ext2d:OfficialValueType">
+    <annotation>
+      <documentation>-- Definition --
+This data types includes the official value of the building, the currency in which it is given and the date of assessment.</documentation>
+    </annotation>
+  </element>
+  <complexType name="OfficialValueType">
+    <sequence>
+      <element name="currency" type="bu-ext2d:CurrencyValueType">
+        <annotation>
+          <documentation>-- Definition --
+The currency in which the official value is provided.</documentation>
+        </annotation>
+      </element>
+      <element name="valuationDate" type="dateTime">
+        <annotation>
+          <documentation>-- Definition --
+The date when the official value was assessed.</documentation>
+        </annotation>
+      </element>
+      <element name="value" type="integer">
+        <annotation>
+          <documentation>-- Definition --
+The official value of the building.</documentation>
+        </annotation>
+      </element>
+    </sequence>
+  </complexType>
+  <complexType name="OfficialValuePropertyType">
+    <sequence>
+      <element ref="bu-ext2d:OfficialValue"/>
+    </sequence>
+  </complexType>
+  <simpleType name="SourceStatusValueType">
+    <annotation>
+      <documentation>-- Definition -- 
+Code list for possible values of attribute sourceStatus (of Document).</documentation>
+    </annotation>
+    <union memberTypes="bu-ext2d:SourceStatusValueEnumerationType bu-ext2d:SourceStatusValueOtherType"/>
+  </simpleType>
+  <simpleType name="SourceStatusValueEnumerationType">
+    <annotation>
+      <documentation>-- Definition -- 
+Code list for possible values of attribute sourceStatus (of Document).</documentation>
+    </annotation>
+    <restriction base="string">
+      <enumeration value="NotOfficial">
+        <annotation>
+          <documentation>-- Definition --
+The document initially comes from a non-official source, without validation by a public body.
+-- Description --
+EXAMPLE: the document may provide from the voluntary contribution of citizens (Volonteer Geographic Information) that has been integrated in the data of a public body, without any control process.</documentation>
+        </annotation>
+      </enumeration>
+      <enumeration value="Official">
+        <annotation>
+          <documentation>-- Definition --
+The document is provided from an official source.</documentation>
+        </annotation>
+      </enumeration>
+    </restriction>
+  </simpleType>
+  <simpleType name="SourceStatusValueOtherType">
+    <restriction base="string">
+      <pattern value="other: \w{2,}"/>
+    </restriction>
+  </simpleType>
+  <element name="AbstractBuilding" substitutionGroup="bu-core2d:AbstractConstruction" type="bu-ext2d:AbstractBuildingType">
+    <annotation>
+      <documentation>-- Definition --
+Abstract feature type grouping the common properties of instanciable feature types Building and BuildingPart.</documentation>
+    </annotation>
+  </element>
+  <complexType name="AbstractBuildingType">
+    <complexContent>
+      <extension base="bu-core2d:AbstractConstructionType">
+        <sequence>
+          <element maxOccurs="unbounded" name="geometry" type="bu-core2d:BuildingGeometryPropertyType">
+            <annotation>
+              <documentation>-- Definition --
+&lt;font color="#0f0f0f"&gt;Geometric representation of the building.&lt;/font&gt;</documentation>
+            </annotation>
+          </element>
+          <element maxOccurs="unbounded" minOccurs="0" name="currentUse" nillable="true">
+            <annotation>
+              <documentation>-- Definition --
+Activity hosted by the building.
+
+-- Description --
+NOTE: this attribute addresses mainly the buildings hosting human activities.</documentation>
+            </annotation>
+            <complexType>
+              <simpleContent>
+                <extension base="bu-core2d:CurrentUseValueType">
+                  <attribute name="nilReason" type="gml:NilReasonType"/>
+                </extension>
+              </simpleContent>
+            </complexType>
+          </element>
+          <element minOccurs="0" name="specificInterest" nillable="true">
+            <annotation>
+              <documentation>-- Definition --
+Characteristics of the building that makes it generally of interest for mapping purposes.
+
+-- Description --
+NOTE 1: the characteristic may be related to the physical aspect and/or to the function of the building.</documentation>
+            </annotation>
+            <complexType>
+              <simpleContent>
+                <extension base="bu-core2d:SpecificInterestValueType">
+                  <attribute name="nilReason" type="gml:NilReasonType"/>
+                </extension>
+              </simpleContent>
+            </complexType>
+          </element>
+          <element minOccurs="0" name="numberOfBuildingUnits" nillable="true">
+            <annotation>
+              <documentation>-- Definition --
+Number of building units in the building. A building unit is the sub-division of the building that is homogeneous related to management aspects.
+
+-- Description --
+EXAMPLE : A building unit may be a flat in a multi-owned building.</documentation>
+            </annotation>
+            <complexType>
+              <simpleContent>
+                <extension base="integer">
+                  <attribute name="nilReason" type="gml:NilReasonType"/>
+                </extension>
+              </simpleContent>
+            </complexType>
+          </element>
+          <element minOccurs="0" name="numberOfDwellings" nillable="true">
+            <annotation>
+              <documentation>-- Definition --
+Number of dwellings in the building.</documentation>
+            </annotation>
+            <complexType>
+              <simpleContent>
+                <extension base="integer">
+                  <attribute name="nilReason" type="gml:NilReasonType"/>
+                </extension>
+              </simpleContent>
+            </complexType>
+          </element>
+          <element name="numberOfFloorsAboveGround" nillable="true">
+            <annotation>
+              <documentation>-- Definition --
+Number of floors above ground of the building.</documentation>
+            </annotation>
+            <complexType>
+              <simpleContent>
+                <extension base="integer">
+                  <attribute name="nilReason" type="gml:NilReasonType"/>
+                </extension>
+              </simpleContent>
+            </complexType>
+          </element>
+        </sequence>
+      </extension>
+    </complexContent>
+  </complexType>
+  <complexType name="AbstractBuildingPropertyType">
+    <sequence minOccurs="0">
+      <element ref="bu-ext2d:AbstractBuilding"/>
+    </sequence>
+    <attributeGroup ref="gml:AssociationAttributeGroup"/>
+    <attributeGroup ref="gml:OwnershipAttributeGroup"/>
+  </complexType>
+  <element name="EnergyPerformance" substitutionGroup="gml:AbstractObject" type="bu-ext2d:EnergyPerformanceType">
+    <annotation>
+      <documentation>-- Definition --
+This data type describes the energy performance of the building.</documentation>
+    </annotation>
+  </element>
+  <complexType name="EnergyPerformanceType">
+    <sequence>
+      <element name="dateOfAssessment" type="dateTime">
+        <annotation>
+          <documentation>-- Definition --
+The date when the energy performance of the building was assessed.</documentation>
+        </annotation>
+      </element>
+      <element name="energyPerformanceValue" type="bu-ext2d:EnergyPerformanceValueType">
+        <annotation>
+          <documentation>-- Definition --
+The class of energy performance of the building.</documentation>
+        </annotation>
+      </element>
+    </sequence>
+  </complexType>
+  <complexType name="EnergyPerformancePropertyType">
+    <sequence>
+      <element ref="bu-ext2d:EnergyPerformance"/>
+    </sequence>
+  </complexType>
+  <simpleType name="RoofTypeValueType">
+    <annotation>
+      <documentation>-- Definition --
+Code list for the possible values of attribute roofType.</documentation>
+    </annotation>
+    <union memberTypes="bu-ext2d:RoofTypeValueEnumerationType bu-ext2d:RoofTypeValueOtherType"/>
+  </simpleType>
+  <simpleType name="RoofTypeValueEnumerationType">
+    <annotation>
+      <documentation>-- Definition --
+Code list for the possible values of attribute roofType.</documentation>
+    </annotation>
+    <restriction base="string">
+      <enumeration value="archRoof">
+        <annotation>
+          <documentation>-- Definition --
+A roof taking the form of a semicircular span connected.</documentation>
+        </annotation>
+      </enumeration>
+      <enumeration value="conicalRoof">
+        <annotation>
+          <documentation>-- Definition --
+An inverted cone roof construction usually atop of a cylindrical tower.</documentation>
+        </annotation>
+      </enumeration>
+      <enumeration value="domedRoof">
+        <annotation>
+          <documentation>-- Definition --
+Roof  formed of a thin curved structural slab.
+-- Description --
+NOTE: a slab is a thick, flat or shaped component usually larger than 300 mm square, used to form a covering or projecting from a building.</documentation>
+        </annotation>
+      </enumeration>
+      <enumeration value="dualPentRoof">
+        <annotation>
+          <documentation>-- Definition --
+A roof that has two or more single plane roofs, usually separated or connected by vertical walls.</documentation>
+        </annotation>
+      </enumeration>
+      <enumeration value="flatRoof">
+        <annotation>
+          <documentation>-- Definition --
+Roof either horizontal or with a slope of 10° or less.</documentation>
+        </annotation>
+      </enumeration>
+      <enumeration value="gabledRoof">
+        <annotation>
+          <documentation>-- Definition --
+Pitched roof that terminates at one or both ends as a gable.
+-- Description --
+NOTE 1: a pitched roof is a roof whose  slope&lt;b&gt; &lt;/b&gt;is greater than 10° (approximately 15 %)
+NOTE 2: a gable is portion of a wall above the level of the eaves that encloses the end of the space under a pitched roof</documentation>
+        </annotation>
+      </enumeration>
+      <enumeration value="halfHippedRoof">
+        <annotation>
+          <documentation>-- Definition --
+A roof where all planes slope down to the supporting walls but with the upper point of the gable squared off.</documentation>
+        </annotation>
+      </enumeration>
+      <enumeration value="hippedRoof">
+        <annotation>
+          <documentation>-- Definition --
+Pitched roof  with hip end or ends.
+-- Description --
+NOTE 1: a pitched roof is a roof whose  slope&lt;b&gt; &lt;/b&gt;is greater than 10° (approximately 15 %)
+NOTE 2: a hip is the inclined meeting line of two inclined planes in a pitched roof&lt;b&gt; &lt;/b&gt; which forms a salient angle</documentation>
+        </annotation>
+      </enumeration>
+      <enumeration value="hyperbolicParabaloidalRoof">
+        <annotation>
+          <documentation>-- Definition --
+A roof constructed with two axes with one plane following a convex curve and another a concave curve.</documentation>
+        </annotation>
+      </enumeration>
+      <enumeration value="mansardRoof">
+        <annotation>
+          <documentation>-- Definition --
+Pitched roof&lt;b&gt; &lt;/b&gt;with two inclined planes on each side of the ridge&lt;b&gt; &lt;/b&gt;, the steeper of the two starting at the eaves 
+-- Desription --
+NOTE 1: a ridge is the intersection at the top of two inclined planes in a pitched roof&lt;b&gt; &lt;/b&gt;which forms the apex of the roof&lt;b&gt; &lt;/b&gt;
+NOTE 2: eave is lower edge of a pitched roof&lt;b&gt; &lt;/b&gt;or edge of a flat roof</documentation>
+        </annotation>
+      </enumeration>
+      <enumeration value="monopitchRoof">
+        <annotation>
+          <documentation>-- Definition --
+Pitched roof&lt;b&gt; &lt;/b&gt;that has only a single plane.
+
+-- Description --
+NOTE: a pitched roof is a roof whose slope&lt;b&gt; &lt;/b&gt;is greater than 10° (approximately 15 %).</documentation>
+        </annotation>
+      </enumeration>
+      <enumeration value="pavilionRoof">
+        <annotation>
+          <documentation>-- Definition --
+A roof construction with equal hips on all planes, usually taking the form of a pyramidal shape.</documentation>
+        </annotation>
+      </enumeration>
+      <enumeration value="pyramidalBroachRoof">
+        <annotation>
+          <documentation>-- Definition --
+A suspended roof construction with all four planes meeting at a central point.</documentation>
+        </annotation>
+      </enumeration>
+      <enumeration value="sawToothRoof">
+        <annotation>
+          <documentation>-- Definition --
+Series of pitched roofs&lt;b&gt; &lt;/b&gt;, each with one inclined plane steeper than the other and fully or partially glazed</documentation>
+        </annotation>
+      </enumeration>
+    </restriction>
+  </simpleType>
+  <simpleType name="RoofTypeValueOtherType">
+    <restriction base="string">
+      <pattern value="other: \w{2,}"/>
+    </restriction>
+  </simpleType>
+  <simpleType name="MaterialOfFacadeValueType">
+    <annotation>
+      <documentation>-- Definition --
+Code list for the possible values of MaterialOfFacade</documentation>
+    </annotation>
+    <union memberTypes="bu-ext2d:MaterialOfFacadeValueEnumerationType bu-ext2d:MaterialOfFacadeValueOtherType"/>
+  </simpleType>
+  <simpleType name="MaterialOfFacadeValueEnumerationType">
+    <annotation>
+      <documentation>-- Definition --
+Code list for the possible values of MaterialOfFacade</documentation>
+    </annotation>
+    <restriction base="string">
+      <enumeration value="adobe">
+        <annotation>
+          <documentation>-- Definition --
+Use of a particular type of masonry for the façade, that involves the use of clay bricks (adobe) formed in moulds and (traditionally) dried in the sun.</documentation>
+        </annotation>
+      </enumeration>
+      <enumeration value="ceramicTiles">
+        <annotation>
+          <documentation>-- Definition --
+Ceramic tiles of different colours and design are used for covering the façade of the building.
+-- Description --
+EXAMPLES:  ceramic tiles are commonly used in Portugal.</documentation>
+        </annotation>
+      </enumeration>
+      <enumeration value="composite">
+        <annotation>
+          <documentation>-- Definition --
+Composite material, such as plastics, PVC and fibreglass are used to cover the façade of the building.</documentation>
+        </annotation>
+      </enumeration>
+      <enumeration value="concrete">
+        <annotation>
+          <documentation>-- Definition --
+The surface of the façade is constructed out of (reinforced) concrete.</documentation>
+        </annotation>
+      </enumeration>
+      <enumeration value="glass">
+        <annotation>
+          <documentation>-- Definition --
+Known as structural glass, is used for glazing the façade of buildings through the use of curtain wall systems, frameless glazing systems, polycarbonate sheeting or architectural flat glass.</documentation>
+        </annotation>
+      </enumeration>
+      <enumeration value="limestone">
+        <annotation>
+          <documentation>-- Definition -- 
+The façade of the building is composed of limestone, a sedimentary rock composed largely of calcite and/or aragonite. 
+-- Description -- 
+Limestone was commonly used for the construction of many medieval churches and castles in Europe, it was widely used in the 19&lt;sup&gt;th&lt;/sup&gt; and early 20&lt;sup&gt;th&lt;/sup&gt; centuries, and in countries like Malta, for a long time, the only building material available.</documentation>
+        </annotation>
+      </enumeration>
+      <enumeration value="masonry">
+        <annotation>
+          <documentation>-- Definition --
+The façade consists of individual units laid in and bound together by mortar. Common materials of masonry may be brick, stone or concrete block.</documentation>
+        </annotation>
+      </enumeration>
+      <enumeration value="metal">
+        <annotation>
+          <documentation>-- Definition --
+The surface of the building is covered with metal in the form of galvanized steel with paint, aluminium with paint, stainless steel, zinc, lead or copper.</documentation>
+        </annotation>
+      </enumeration>
+      <enumeration value="naturalStone">
+        <annotation>
+          <documentation>-- Definition --
+The façade is covered with natural stone, such as granite or marble, and may come in different colours and finishing.</documentation>
+        </annotation>
+      </enumeration>
+      <enumeration value="vegetated">
+        <annotation>
+          <documentation>-- Definition --
+The façade is covered with vegetation and a growing medium, planted over a waterproofing membrane</documentation>
+        </annotation>
+      </enumeration>
+      <enumeration value="wood">
+        <annotation>
+          <documentation>-- Definition --
+The façade of the building is covered with wood, timber or lumber.</documentation>
+        </annotation>
+      </enumeration>
+    </restriction>
+  </simpleType>
+  <simpleType name="MaterialOfFacadeValueOtherType">
+    <restriction base="string">
+      <pattern value="other: \w{2,}"/>
+    </restriction>
+  </simpleType>
+  <element name="BuildingPart" substitutionGroup="bu-ext2d:AbstractBuildingExtended2D" type="bu-ext2d:BuildingPartType">
+    <annotation>
+      <documentation>-- Definition --
+A BuildingPart is a sub-division of a Building that is homogeneous related to its physical, functional or temporal aspects.
+
+-- Description --
+
+NOTE: A BuildingPart may be considered as a building (as buildings and building parts share same set of properties).
+
+EXAMPLE:A Building may be composed of two BuildingParts having different heights.</documentation>
+    </annotation>
+  </element>
+  <complexType name="BuildingPartType">
+    <complexContent>
+      <extension base="bu-ext2d:AbstractBuildingExtended2DType">
+        <sequence>
+          <element maxOccurs="unbounded" minOccurs="0" name="buildingUnit" type="bu-ext2d:BuildingUnitPropertyType">
+            <annotation>
+              <documentation>-- Definition --
+The building unit.</documentation>
+            </annotation>
+          </element>
+        </sequence>
+      </extension>
+    </complexContent>
+  </complexType>
+  <complexType name="BuildingPartPropertyType">
+    <sequence minOccurs="0">
+      <element ref="bu-ext2d:BuildingPart"/>
+    </sequence>
+    <attributeGroup ref="gml:AssociationAttributeGroup"/>
+    <attributeGroup ref="gml:OwnershipAttributeGroup"/>
+  </complexType>
+  <simpleType name="MaterialOfStructureValueType">
+    <annotation>
+      <documentation>-- Definition --
+Code list for possible values of attribute MaterialOfStructure.
+
+-- Description --
+SOURCE: possible values adapted from the WHE Pager project</documentation>
+    </annotation>
+    <union memberTypes="bu-ext2d:MaterialOfStructureValueEnumerationType bu-ext2d:MaterialOfStructureValueOtherType"/>
+  </simpleType>
+  <simpleType name="MaterialOfStructureValueEnumerationType">
+    <annotation>
+      <documentation>-- Definition --
+Code list for possible values of attribute MaterialOfStructure.
+
+-- Description --
+SOURCE: possible values adapted from the WHE Pager project</documentation>
+    </annotation>
+    <restriction base="string">
+      <enumeration value="adobeBlockWalls">
+        <annotation>
+          <documentation>-- Definition --
+Also known as moulded earth, is a building technique that involves the use of clay bricks (adobe) formed in moulds and (traditionally) dried in the sun. NOTE 1: These unbaked bricks consist of sand, sometimes gravel, clay, water and often straw or grass mixed together by hand, formed in wooden moulds and dried by the sun. When machinery is not available, earth is manually tamped in the mould; else, mechanical compression is used (manual, or motorized presses), in order to accommodate large production outputs of compressed earth blocks.</documentation>
+        </annotation>
+      </enumeration>
+      <enumeration value="concreteBlockMasonry">
+        <annotation>
+          <documentation>-- Definition --
+Unreinforced concrete block masonry, with lime/cement mortar.
+-- Description --
+Buildings of this type have perimeter walls, and possibly some interior walls, constructed of unreinforced concrete blocks joined with lime/cement mortar. These perimeter walls are sometimes used as load bearing walls and have no internal reinforcing steel rods. Anchor plates are sometimes used to tie the walls to the floors and roof and are conspicuous from the outside of the structure.</documentation>
+        </annotation>
+      </enumeration>
+      <enumeration value="earth">
+        <annotation>
+          <documentation>-- Definition --
+Rammed earth or pneumatically impacted stabilized earth. Rammed earth construction (also referred to as tapial in Spanish, or else, pisé de terre, in France) is conducted by erecting wooden or metal forms for the walls and filling them with a moist cement stabilized earth mix which is compacted by pounding with hand tools (with conical or flat heads) or with a mechanical compactor. Metal rebar is often added to further increase ductility.
+-- Description --
+NOTE 1:  Different kinds of earth or mineral compounds are sometimes added to each earth layer for the sake of decoration. The finished walls are massive and monolithic, offering high strength, high thermal mass and high insulation. 
+NOTE 2: High load bearing strength allows for multi-storey structures, usually based on floor decks supported by massive wood beams. 
+NOTE 3 No surface finishing is used except for aesthetic effect.</documentation>
+        </annotation>
+      </enumeration>
+      <enumeration value="firedBrickMasonry">
+        <annotation>
+          <documentation>-- Definition --
+Unreinforced fired brick masonry. Buildings of this type have perimeter walls, and possibly some interior walls, constructed of unreinforced fired brick blocks. These perimeter walls are sometimes used as load bearing walls and have no internal reinforcing steel rods. Anchor plates are sometimes used to tie the walls to the floors and roof and are conspicuous from the outside of the structure. Unusual brick patterns may also indicate unreinforced fired brick masonry.</documentation>
+        </annotation>
+      </enumeration>
+      <enumeration value="informalConstructions">
+        <annotation>
+          <documentation>-- Definition --
+Parts of slums/squatters. Informal constructions are non-engineered and are built by self-builders without any professional input (i.e. neither during the design phase, nor the construction one).
+-- Description --
+NOTE 1: The whole endeavour is usually based on observation from other nearby building sites, or (in the best of cases) on labour experience gained by the owners during their occupation as construction builders. 
+NOTE 2: This type of buildings are in general of low quality and have many deficiencies that makes them very vulnerable to hazards.</documentation>
+        </annotation>
+      </enumeration>
+      <enumeration value="massiveStoneMasonry">
+        <annotation>
+          <documentation>-- Definition --
+Massive stone masonry with with lime/cement mortar. Is constructed with a coursed double leaf masonry, with the outer layers of stonework levelled as the construction progresses and follows a well established masonry bond. The stone units are cut in regular dimensions. To improve the connection between cross walls better quality units are used for the bond in these areas.</documentation>
+        </annotation>
+      </enumeration>
+      <enumeration value="mobileHomes">
+        <annotation>
+          <documentation>-- Definition --
+A structure designed or adapted for human habitation which is capable of being moved from one place to another (whether by being towed, or by being transported on a motor vehicle or trailer) and any motor vehicle so designed or adapted.
+-- Description --
+NOTE 1: Railway carriages and tents do not count as mobile homes.
+NOTE 2: though mobile in nature, some mobile homes are installed in perennial way and may be considered as under INSPIRE scope</documentation>
+        </annotation>
+      </enumeration>
+      <enumeration value="mudWalls">
+        <annotation>
+          <documentation>-- Definition --
+Mud walls may be made of stacked earth or poured earth. Stacked earth consists in forming balls of plastic soil, which are freshly stacked on each other. Poured earth walls on the other hand are erected between formwork using a sandy material with coarse to fine granular particles. The ultimate finish can be natural - from the formwork- or sand blasted.
+-- Description --
+NOTE 1: The contemporary name of stacked earth is cob ( a name derived from the British Isles). Cob does not use bricks, or blocks. Instead, wall surfaces can be sculpted into smooth, sinuous forms.  A cob home may have sloping walls, arches and lots of wall niches. Modern cob construction may top the walls with a concrete bond beam, use a wooden bond beam, or a separate roof frame supported on a post and beam system.</documentation>
+        </annotation>
+      </enumeration>
+      <enumeration value="precastConcreteTilt-upWalls">
+        <annotation>
+          <documentation>-- Definition --
+Precast Wall Panel Construction. Buildings of this type are low-rise structures with precast reinforced concrete wall panels that are often poured on the ground and tilted into place. Roofs are often composed of either plywood sheathing or metal decking, and glass curtain walls may exist at the building perimeter.</documentation>
+        </annotation>
+      </enumeration>
+      <enumeration value="reinforcedConcrete">
+        <annotation>
+          <documentation>-- Definition --
+The load resisting system is made of reinforced concrete, a combination of steel reinforcement bars embedded in concrete that act together in resisting forces. Reinforced concrete buildings may be constructed as moment resisting frames (beams and columns framing at nodes), or in combination with shear walls.</documentation>
+        </annotation>
+      </enumeration>
+      <enumeration value="reinforcedMasonry">
+        <annotation>
+          <documentation>-- Definition --
+Buildings of this type have exterior walls consisting of grouted (with concrete) masonry (clay brick or concrete block masonry) with internal reinforcing steel rods. 
+-- Description --
+Reinforced masonry buildings are relatively thick walled box-like structures and often have small windows and at least two mostly solid walls.</documentation>
+        </annotation>
+      </enumeration>
+      <enumeration value="rubleStoneMasonry">
+        <annotation>
+          <documentation>-- Definition --
+Ruble stone is field stone. Is a masonry technique that incorporates any material found or recovered, such as dressed blocks, broken fragments, brick or flint.
+-- Description --
+NOTE 1: The success of rubble depends on the thickness of the wall and the strength of the binding mortar. If either is too thin, the structure will fail. As it is almost impossible to construct a thin rubble wall, owing to the irregularity of the material and the size of the gaps to be filled by the mortar, in areas or building traditions lacking dressed stone and ashlar technology, rubble walls are likely to be very thick.</documentation>
+        </annotation>
+      </enumeration>
+      <enumeration value="steel">
+        <annotation>
+          <documentation>-- Definition --
+The load resisting system of the building is made of structural steel, which may be made composite with reinforced concrete at floor slabs. Steel structures may be constructed as moments resisting frames, as concentrically or eccentrically braced frames, or as spatial trusses. The members of the structure may be bolted or welded.</documentation>
+        </annotation>
+      </enumeration>
+      <enumeration value="wood">
+        <annotation>
+          <documentation>-- Definition --
+The load resisting system of the building is made of wood, timber or lumber. 
+-- Description --
+Two systems of construction are possible, one based on a frame, the other on a skeleton. Framing is a building technique based around structural members, usually called studs, which provide a stable frame to which interior and exterior wall coverings are attached. In skeleton houses the posts and the horizontal crossbars form a frame (whose strength is sometimes increased by the use of additional diagonal bracings or stiffeners) that is filled in with wood (post or frame and plank constructions) or other materials such as clay, stone, or brick.</documentation>
+        </annotation>
+      </enumeration>
+    </restriction>
+  </simpleType>
+  <simpleType name="MaterialOfStructureValueOtherType">
+    <restriction base="string">
+      <pattern value="other: \w{2,}"/>
+    </restriction>
+  </simpleType>
+  <element name="Document" substitutionGroup="gml:AbstractObject" type="bu-ext2d:DocumentType">
+    <annotation>
+      <documentation>-- Definition --
+This data types provides the address where the document may be found and a minimum set of metadata elements considered as necessary to exploit the document.</documentation>
+    </annotation>
+  </element>
+  <complexType name="DocumentType">
+    <sequence>
+      <element minOccurs="0" name="date" nillable="true">
+        <annotation>
+          <documentation>-- Definition --
+Date of validity of the document.
+-- Description --
+EXAMPLES: the date the photo was taken, the date the sketch was done or approved, the date the building permit was accepted</documentation>
+        </annotation>
+        <complexType>
+          <simpleContent>
+            <extension base="dateTime">
+              <attribute name="nilReason" type="gml:NilReasonType"/>
+            </extension>
+          </simpleContent>
+        </complexType>
+      </element>
+      <element minOccurs="0" name="documentDescription" nillable="true" type="gmd:PT_FreeText_PropertyType">
+        <annotation>
+          <documentation>-- Definition --
+A short text providing overview of the document content. May be just title of the document.
+-- Description --
+EXAMPLES: "photo of inner yard", "sketch of third floor"</documentation>
+        </annotation>
+      </element>
+      <element name="documentLink" type="anyURI">
+        <annotation>
+          <documentation>-- Definition --
+The Universal Resource Identifier of the document.
+-- Description --
+The Internet address where the document may be found.</documentation>
+        </annotation>
+      </element>
+      <element name="format" nillable="true">
+        <annotation>
+          <documentation>-- Definition --
+The format of the document.</documentation>
+        </annotation>
+        <complexType>
+          <simpleContent>
+            <extension base="bu-ext2d:DocumentFormatValueType">
+              <attribute name="nilReason" type="gml:NilReasonType"/>
+            </extension>
+          </simpleContent>
+        </complexType>
+      </element>
+      <element name="sourceStatus" nillable="true">
+        <annotation>
+          <documentation>-- Definition --
+The status of the document, i.e. this attribute indicates if the document comes from official source or not.</documentation>
+        </annotation>
+        <complexType>
+          <simpleContent>
+            <extension base="bu-ext2d:SourceStatusValueType">
+              <attribute name="nilReason" type="gml:NilReasonType"/>
+            </extension>
+          </simpleContent>
+        </complexType>
+      </element>
+    </sequence>
+  </complexType>
+  <complexType name="DocumentPropertyType">
+    <sequence>
+      <element ref="bu-ext2d:Document"/>
+    </sequence>
+  </complexType>
+</schema>

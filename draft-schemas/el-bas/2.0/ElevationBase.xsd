@@ -1,0 +1,370 @@
+<?xml version="1.0" encoding="UTF-8"?><schema xmlns="http://www.w3.org/2001/XMLSchema" xmlns:base="urn:x-inspire:specification:gmlas:BaseTypes:3.2" xmlns:el-bas="http://inspire.jrc.ec.europa.eu/schemas/el-bas/2.0" xmlns:el-cov="http://inspire.jrc.ec.europa.eu/schemas/el-cov/2.0" xmlns:el-tin="http://inspire.jrc.ec.europa.eu/schemas/el-tin/2.0" xmlns:el-vec="http://inspire.jrc.ec.europa.eu/schemas/el-vec/2.0" xmlns:gmd="http://www.isotc211.org/2005/gmd" xmlns:gml="http://www.opengis.net/gml/3.2" xmlns:hy-p="urn:x-inspire:specification:gmlas:HydroPhysicalWaters:3.0" elementFormDefault="qualified" targetNamespace="http://inspire.jrc.ec.europa.eu/schemas/el-bas/2.0" version="2.0">
+  <annotation>
+    <appinfo>
+      <gmlProfileSchema xmlns="http://www.opengis.net/gml/3.2">EMPTY</gmlProfileSchema>
+    </appinfo>
+  </annotation>
+  <import namespace="http://inspire.jrc.ec.europa.eu/schemas/el-cov/2.0" schemaLocation="https://inspire.ec.europa.eu/draft-schemas/el-cov/2.0/ElevationCoverages.xsd"/>
+  <import namespace="http://inspire.jrc.ec.europa.eu/schemas/el-tin/2.0" schemaLocation="https://inspire.ec.europa.eu/draft-schemas/el-tin/2.0/ElevationTin.xsd"/>
+  <import namespace="http://inspire.jrc.ec.europa.eu/schemas/el-vec/2.0" schemaLocation="https://inspire.ec.europa.eu/draft-schemas/el-vec/2.0/ElevationVectorElements.xsd"/>
+  <import namespace="http://www.isotc211.org/2005/gmd" schemaLocation="http://schemas.opengis.net/iso/19139/20070417/gmd/gmd.xsd"/>
+  <import namespace="http://www.opengis.net/gml/3.2" schemaLocation="http://schemas.opengis.net/gml/3.2.1/gml.xsd"/>
+  <import namespace="urn:x-inspire:specification:gmlas:BaseTypes:3.2" schemaLocation="https://inspire.ec.europa.eu/schemas/base/3.2/BaseTypes.xsd"/>
+  <import namespace="urn:x-inspire:specification:gmlas:HydroPhysicalWaters:3.0" schemaLocation="https://inspire.ec.europa.eu/schemas/hy-p/3.0/HydroPhysicalWaters.xsd"/>
+  <!--XML Schema document created by ShapeChange-->
+  <simpleType name="SurfaceTypeValueType">
+    <annotation>
+      <documentation>-- Name --
+Surface type value.
+
+-- Definition --
+Enumeration types specifying the surface for which elevation property values are provided, with regard to its relative position from the terrain (Earth's surface).</documentation>
+    </annotation>
+    <restriction base="string">
+      <enumeration value="DTM">
+        <annotation>
+          <documentation>-- Name --
+Digital terrain model.
+
+-- Definition --
+Three dimensional surface describing the shape of a part of the Earth's or sea floor bare surfaces, excluding any possible features placed on them (such us buildings, bridges or vegetation).
+
+-- Description --
+NOTE When describing heights of a part of emerged land, all features placed on its surface are excluded except water bodies. Hence it provides information about the height of points located on ground surface or any body of water placed on it with respect to a well-defined datum.</documentation>
+        </annotation>
+      </enumeration>
+      <enumeration value="DSM">
+        <annotation>
+          <documentation>-- Name --
+Digital surface model.
+
+-- Definition --
+Three dimensional surface describing the shape of a part of the Earth's or sea floor surface, including every feature placed on them (such us buildings, bridges or vegetation).
+
+-- Description --
+NOTE 1 It provides information about the highest elevation at a specific location, which may correspond to a point on the ground surface (emerged or submerged) or on any feature above it.
+
+NOTE 2 When describing depths of a part of submerged land (e.g. the sea floor), water bodies are obviously excluded from the surface. Hence it provides information about the depth of points located on the water body floor with respect to a well-defined datum.</documentation>
+        </annotation>
+      </enumeration>
+    </restriction>
+  </simpleType>
+  <simpleType name="ElevationPropertyTypeValueType">
+    <annotation>
+      <documentation>-- Name --
+Measured property type value.
+
+-- Definition --
+Enumeration types which determine the elevation property which have been measured or calculated.
+
+-- Description --
+NOTE 1  An elevation property is a vertically-constrained dimensional property of an element consisting of an absolute measure referenced to a well-defined surface which is commonly taken as origin (geoid, water level, etc.).
+
+NOTE 2  It does not include relative elevations of the element referenced to other spatial objects.
+
+EXAMPLE  Height, depth.</documentation>
+    </annotation>
+    <restriction base="string">
+      <enumeration value="height">
+        <annotation>
+          <documentation>-- Name --
+Height.
+
+-- Definition --
+Elevation property measured along a plumb line in a direction opposite to Earth's gravity field (upwards).
+
+-- Description --
+NOTE This definition intentionally avoids making reference to complex geodetic terms. It is only intended to specify the direction in which the elevation property has been measured.</documentation>
+        </annotation>
+      </enumeration>
+      <enumeration value="depth">
+        <annotation>
+          <documentation>-- Name --
+Depth.
+
+-- Definition --
+Elevation property measured along a plumb line in a direction coincident to Earth's gravity field (downwards).
+
+-- Description --
+NOTE This definition intentionally avoids making reference to complex geodetic terms. It is only intended to specify the direction in which the elevation property has been measured.</documentation>
+        </annotation>
+      </enumeration>
+    </restriction>
+  </simpleType>
+  <element name="VerticalCRSIdentifier" substitutionGroup="gml:AbstractObject" type="el-bas:VerticalCRSIdentifierType">
+    <annotation>
+      <documentation>-- Name --
+Vertical coordinate reference system identifier.
+
+-- Definition --
+Identifier of the vertical reference system.</documentation>
+    </annotation>
+  </element>
+  <complexType name="VerticalCRSIdentifierType">
+    <sequence>
+      <element name="code" type="string">
+        <annotation>
+          <documentation>-- Name --
+Code.
+
+-- Definition --
+Alphanumeric value identifying an instance in the namespace.</documentation>
+        </annotation>
+      </element>
+      <element name="codeSpace" type="string">
+        <annotation>
+          <documentation>-- Name --
+Code space.
+
+-- Definition --
+Name or identifier of the person or organization responsible for the namespace.
+
+-- Description --
+NOTE 1 Ideally the namespace would a registry where it is possible to register the vertical CRS and identify it using the code.
+
+NOTE 2 EPSG is an example of CRS registry, but other registries may be used (e.g. a future INSPIRE CRS registry, in case it is created).</documentation>
+        </annotation>
+      </element>
+      <element minOccurs="0" name="version" type="string">
+        <annotation>
+          <documentation>-- Name --
+Version.
+
+-- Definition --
+Version identifier for the namespace.</documentation>
+        </annotation>
+      </element>
+    </sequence>
+  </complexType>
+  <complexType name="VerticalCRSIdentifierPropertyType">
+    <sequence>
+      <element ref="el-bas:VerticalCRSIdentifier"/>
+    </sequence>
+  </complexType>
+  <element name="ElevationDataSet" substitutionGroup="base:SpatialDataSet" type="el-bas:ElevationDataSetType">
+    <annotation>
+      <documentation>-- Name --
+Elevation data set.
+
+-- Definition --
+Spatial data set representing the surface of land, ice and/or ocean of a specified geographic extent in terms of distribution of a dimensional property linked to the vertical component (height, depth).</documentation>
+    </annotation>
+  </element>
+  <complexType name="ElevationDataSetType">
+    <complexContent>
+      <extension base="base:SpatialDataSetType">
+        <sequence>
+          <element name="dataSetName" nillable="true">
+            <annotation>
+              <documentation>-- Name --
+Data set name.
+
+-- Definition --
+The name which is used to identify the data set.</documentation>
+            </annotation>
+            <complexType>
+              <simpleContent>
+                <extension base="string">
+                  <attribute name="nilReason" type="gml:NilReasonType"/>
+                </extension>
+              </simpleContent>
+            </complexType>
+          </element>
+          <element name="extent">
+            <annotation>
+              <documentation>-- Name --
+Extent.
+
+-- Definition --
+Extent of the spatial data set.</documentation>
+            </annotation>
+            <complexType>
+              <complexContent>
+                <extension base="gml:AbstractMetadataPropertyType">
+                  <sequence minOccurs="0">
+                    <element ref="gmd:EX_Extent"/>
+                  </sequence>
+                  <attributeGroup ref="gml:AssociationAttributeGroup"/>
+                </extension>
+              </complexContent>
+            </complexType>
+          </element>
+        </sequence>
+      </extension>
+    </complexContent>
+  </complexType>
+  <complexType name="ElevationDataSetPropertyType">
+    <sequence minOccurs="0">
+      <element ref="el-bas:ElevationDataSet"/>
+    </sequence>
+    <attributeGroup ref="gml:AssociationAttributeGroup"/>
+    <attributeGroup ref="gml:OwnershipAttributeGroup"/>
+  </complexType>
+  <complexType name="ElevationFeaturePropertyType">
+    <choice minOccurs="0">
+      <element ref="el-cov:ElevationGridCoverage"/>
+      <element ref="el-tin:ElevationTIN"/>
+      <element ref="el-vec:ElevationVectorObject"/>
+    </choice>
+    <attributeGroup ref="gml:AssociationAttributeGroup"/>
+    <attributeGroup ref="gml:OwnershipAttributeGroup"/>
+  </complexType>
+  <element name="ElevationCRSReference" substitutionGroup="gml:AbstractObject" type="el-bas:ElevationCRSReferenceType">
+    <annotation>
+      <documentation>-- Name --
+Elevation coordinate reference system reference.
+
+-- Definition --
+Reference used to identify the vertical coordinate reference system used to refer elevation values of spatial objects.
+
+-- Description --
+NOTE 1 The elevation coordinate reference system (CRS) reference identifies the vertical CRS used to refer the elevation values of spatial objects belonging to any INSPIRE theme. This includes spatial objects and coverages which may compose an elevation data set.
+The European Vertical Reference System (EVRS) shall be used to express gravity-related heights for the vertical component on land, within its geographical scope (continental Europe). Outside the geographical scope of EVRS (e.g. overseas territories), other vertical reference systems related to the Earth gravity field shall be used. The geodetic codes and parameters for these vertical reference systems shall be documented and an identifier shall be created, according to EN ISO 19111 and ISO 19127. 
+In both cases the vertical CRS used shall be properly identified using the elevation CRS reference, which links to a resource where its full definition can be found.
+
+NOTE 2 The elevation CRS reference is not intended to be a full definition / description of a vertical CRS. It is just a link to an existing resource which includes this information. 
+The reference consists of the name and the identifier of the vertical CRS, where the identifier is the code with which the CRS is registered in an external CRS registry (e.g. like EPSG). 
+Exceptions to this are local bathymetric CRSs used to refer depths in lakes. In that cases, there is no point in obliging to register these CRSs. Therefore, the reference consists of the origin point to which depths are referred (attribute 'datumPosition') and the water level corresponding to it (attribute 'datumWaterLevel').
+
+NOTE 3 The attribute 'descriptionRef' may be optionally used to include a reference to an additional resource in which the vertical coordinate reference system is described.
+
+NOTE 4 Two types of vertical CRSs are distinguished in this specification: height and depth CRS. This distinction has to be informed by means of the attribute measuredProperty.
+
+NOTE 5 If the elevation CRS is defined for the measurement of depth values, it should only be used in a region of limited extent, as the related datum is often referred to a local tide level.
+
+NOTE 6 The planimetric position of the point used as datum or origin of depth values in an elevation CRS for depths can be considered as unique identifier for this local datum. A unique identifier is needed to distinguish depth datums corresponding to the same (tidal) water level in different locations (e.g. the level of Lowest Astronomical Tide determines different depth datums in different locations).</documentation>
+    </annotation>
+  </element>
+  <complexType name="ElevationCRSReferenceType">
+    <sequence>
+      <element minOccurs="0" name="datumPosition" nillable="true" type="gml:PointPropertyType">
+        <annotation>
+          <documentation>-- Name--
+Datum position.
+
+-- Definition --
+Geographical position of the point used as origin of depth values in a vertical coordinate reference system for depth measurement. 
+
+-- Description &amp;ndash;
+NOTE 1 This attribute identifies the location of the datum point associated to a coordinate reference system for depth measurement.
+
+NOTE 2 The planimetric position of the datum point may be used as unique identifier for a local coordinate reference system for depth measurement. 
+
+NOTE 3 The altimetric position must be the height of the datum point referred to EVRS. This parameter can be utilised at local level to calculate EVRS heights for those objects whose depth values are referred to the coordinate reference system for depth measurement.
+
+NOTE 4 The level taken as origin of depths changes locally from one chart to another. In order to distinguish between coordinate reference systems for depth measurement corresponding to the same (tidal) water level in different locations (e.g. the level of Lowest Astronomical Tide determines different depth datums in different locations) a unique identifier is needed.</documentation>
+        </annotation>
+      </element>
+      <element minOccurs="0" name="datumWaterLevel" nillable="true">
+        <annotation>
+          <documentation>-- Name --
+Datum water level.
+
+-- Definition --
+Water-level used to define the datum of a vertical coordinate reference system for depth measurement.
+
+-- Description --
+EXAMPLE High water, low water, etc.
+
+NOTE 1 Values in the code list are applicable either for sea or inland waters.
+
+NOTE 2 When defining a depth datum for inland waters, it is recommended the use of "highWater", "lowWater" or "meanWaterLevel" - as applicable. 
+All the other levels in the code list are well defined but usually just locally and do not serve for cross border purposes.</documentation>
+        </annotation>
+        <complexType>
+          <simpleContent>
+            <extension base="gml:CodeType">
+              <attribute name="nilReason" type="gml:NilReasonType"/>
+            </extension>
+          </simpleContent>
+        </complexType>
+      </element>
+      <element minOccurs="0" name="descriptionRef" nillable="true">
+        <annotation>
+          <documentation>-- Name --
+Elevation coordinate reference system description external reference.
+
+-- Definition --
+External reference to an information resource providing the specification and definition of the vertical coordinate reference system.</documentation>
+        </annotation>
+        <complexType>
+          <simpleContent>
+            <extension base="anyURI">
+              <attribute name="nilReason" type="gml:NilReasonType"/>
+            </extension>
+          </simpleContent>
+        </complexType>
+      </element>
+      <element name="measuredProperty" type="el-bas:ElevationPropertyTypeValueType">
+        <annotation>
+          <documentation>-- Name --
+Measured property.
+
+-- Definition --
+Indication of the type of property for whose measurement the vertical coordinate reference system has been designed.</documentation>
+        </annotation>
+      </element>
+      <element minOccurs="0" name="verticalCRSId" type="el-bas:VerticalCRSIdentifierPropertyType">
+        <annotation>
+          <documentation>-- Name --
+Vertical coordinate reference system identifier.
+
+-- Definition --
+Unique identifier of the vertical coordinate reference system within a given namespace.
+
+-- Description --
+NOTE 1If a vertical CRS is used to provide elevation data to INSPIRE, it is recommended to have this vertical CRS registered within a CRS registry (e.g. like EPSG).
+
+NOTE 2 When identifying a local datum for referring depths in a specific lake, there is no point in obliging to register this local vertical CRSs in a registry. This is the reason why the cardinality of this attribute may be 0.</documentation>
+        </annotation>
+      </element>
+      <element name="verticalCRSName" type="string">
+        <annotation>
+          <documentation>-- Name --
+Vertical coordinate reference system name.
+
+-- Definition --
+Character string used as text identifier of the vertical coordinate reference system.</documentation>
+        </annotation>
+      </element>
+    </sequence>
+  </complexType>
+  <complexType name="ElevationCRSReferencePropertyType">
+    <sequence>
+      <element ref="el-bas:ElevationCRSReference"/>
+    </sequence>
+  </complexType>
+  <element name="ElevationReference" substitutionGroup="gml:AbstractFeature" type="el-bas:ElevationReferenceType">
+    <annotation>
+      <documentation>-- Name --
+Elevation Reference.
+
+-- Definition --
+Reference to the origin used to refer the elevation values associated to an object.</documentation>
+    </annotation>
+  </element>
+  <complexType name="ElevationReferenceType">
+    <complexContent>
+      <extension base="gml:AbstractFeatureType">
+        <sequence>
+          <element name="elevationOrigin" type="el-bas:ElevationCRSReferencePropertyType">
+            <annotation>
+              <documentation>-- Name --
+Elevation origin.
+
+-- Definition --
+Vertical coordinate reference system taken as origin to refer the elevation values associated to the object.</documentation>
+            </annotation>
+          </element>
+        </sequence>
+      </extension>
+    </complexContent>
+  </complexType>
+  <complexType name="ElevationReferencePropertyType">
+    <sequence minOccurs="0">
+      <element ref="el-bas:ElevationReference"/>
+    </sequence>
+    <attributeGroup ref="gml:AssociationAttributeGroup"/>
+    <attributeGroup ref="gml:OwnershipAttributeGroup"/>
+  </complexType>
+</schema>

@@ -1,0 +1,829 @@
+<?xml version="1.0" encoding="UTF-8"?><schema xmlns="http://www.w3.org/2001/XMLSchema" xmlns:base="urn:x-inspire:specification:gmlas:BaseTypes:3.2" xmlns:gmd="http://www.isotc211.org/2005/gmd" xmlns:gml="http://www.opengis.net/gml/3.2" xmlns:gmlcov="http://www.opengis.net/gmlcov/1.0" xmlns:hb="http://inspire.jrc.ec.europa.eu/schemas/hb/2.0" xmlns:sd="http://inspire.jrc.ec.europa.eu/schemas/sd/2.0" elementFormDefault="qualified" targetNamespace="http://inspire.jrc.ec.europa.eu/schemas/hb/2.0" version="2.0">
+  <annotation>
+    <documentation>Application schema for Habitats and Biotopes</documentation>
+  </annotation>
+  <import namespace="http://inspire.jrc.ec.europa.eu/schemas/sd/2.0" schemaLocation="https://inspire.ec.europa.eu/draft-schemas/sd/2.0/SpeciesDistribution.xsd"/>
+  <import namespace="http://www.isotc211.org/2005/gmd" schemaLocation="http://schemas.opengis.net/iso/19139/20070417/gmd/gmd.xsd"/>
+  <import namespace="http://www.opengis.net/gml/3.2" schemaLocation="http://schemas.opengis.net/gml/3.2.1/gml.xsd"/>
+  <import namespace="http://www.opengis.net/gmlcov/1.0" schemaLocation="http://schemas.opengis.net/gmlcov/1.0/coverage.xsd"/>
+  <import namespace="urn:x-inspire:specification:gmlas:BaseTypes:3.2" schemaLocation="https://inspire.ec.europa.eu/schemas/base/3.2/BaseTypes.xsd"/>
+  <!--XML Schema document created by ShapeChange-->
+  <element name="SourceInformation" substitutionGroup="gml:AbstractFeature" type="hb:SourceInformationType">
+    <annotation>
+      <documentation>-- Name --
+source information
+
+-- Definition --
+Contains metadata on the information sources of the habitat. 
+
+-- Description --
+Different sources are used to produce data on habitats. This varies from data from extensive surveys to expert knowledge or technical processing and modelling.
+
+May be shared among several Habitat distributions or mapping methods.
+
+EXAMPLE Monitoring programs, etc.</documentation>
+    </annotation>
+  </element>
+  <complexType name="SourceInformationType">
+    <complexContent>
+      <extension base="gml:AbstractFeatureType">
+        <sequence>
+          <element minOccurs="0" name="inspireId" nillable="true">
+            <annotation>
+              <documentation>-- Name --
+inspire id
+
+-- Definition --
+External object identifier of the spatial object.
+
+-- Description --
+An external object identifier is a unique object identifier published by the responsible body, which may be used by external applications to reference the spatial object. The identifier is an identifier of the spatial object, not an identifier of the real-world phenomenon.</documentation>
+            </annotation>
+            <complexType>
+              <sequence>
+                <element ref="base:Identifier"/>
+              </sequence>
+              <attribute name="nilReason" type="gml:NilReasonType"/>
+            </complexType>
+          </element>
+          <element maxOccurs="unbounded" minOccurs="0" name="methodReference" nillable="true">
+            <annotation>
+              <documentation>-- Name --
+method reference
+
+-- Definition --
+References to publications and scientific data concerning the habitat object.
+
+-- Description --
+NOTE 1 This attribute corresponds to item Attribute: documentation of the dataspecitication for annex I Protected Sites and there corresponds to  4.6 of the Natura2000 Standard Data Form: documentation.
+
+NOTE 2 Information entered should be made according to standard conventions for scientific references. Unpublished items or communications referring to the information given in the recording form should be included where ever useful.</documentation>
+            </annotation>
+            <complexType>
+              <simpleContent>
+                <extension base="anyURI">
+                  <attribute name="nilReason" type="gml:NilReasonType"/>
+                </extension>
+              </simpleContent>
+            </complexType>
+          </element>
+          <element name="sourceMethod" type="gml:CodeType">
+            <annotation>
+              <documentation>-- Name --
+source method
+
+-- Definition --
+The method that is applied to collect and produce data on specific habitats.
+
+-- Description --
+EXAMPLE Extensive surveys and monitoring programs or erratic observations or selective mapping etc.</documentation>
+            </annotation>
+          </element>
+          <element minOccurs="0" name="sourceProvider" nillable="true">
+            <annotation>
+              <documentation>-- Name --
+source provider
+
+-- Definition --
+Name, surname and affiliation of the object creator/surveyor/mapper.</documentation>
+            </annotation>
+            <complexType>
+              <sequence>
+                <element ref="sd:SourceProviderType"/>
+              </sequence>
+              <attribute name="nilReason" type="gml:NilReasonType"/>
+            </complexType>
+          </element>
+          <element name="validFrom" nillable="true">
+            <annotation>
+              <documentation>-- Name --
+valid from
+
+-- Definition --
+The time when the phenomenon started to exist in the real world.</documentation>
+            </annotation>
+            <complexType>
+              <simpleContent>
+                <extension base="dateTime">
+                  <attribute name="nilReason" type="gml:NilReasonType"/>
+                </extension>
+              </simpleContent>
+            </complexType>
+          </element>
+          <element minOccurs="0" name="validTo" nillable="true">
+            <annotation>
+              <documentation>-- Name --
+valid to
+
+-- Definition --
+The time from which the phenomenon no longer exists in the real world.</documentation>
+            </annotation>
+            <complexType>
+              <simpleContent>
+                <extension base="dateTime">
+                  <attribute name="nilReason" type="gml:NilReasonType"/>
+                </extension>
+              </simpleContent>
+            </complexType>
+          </element>
+        </sequence>
+      </extension>
+    </complexContent>
+  </complexType>
+  <complexType name="SourceInformationPropertyType">
+    <sequence minOccurs="0">
+      <element ref="hb:SourceInformation"/>
+    </sequence>
+    <attributeGroup ref="gml:AssociationAttributeGroup"/>
+    <attributeGroup ref="gml:OwnershipAttributeGroup"/>
+  </complexType>
+  <element name="SourceProviderType" substitutionGroup="gml:AbstractObject" type="hb:SourceProviderTypeType">
+    <annotation>
+      <documentation>-- Name --
+source provider type
+
+-- Definition --
+Provider of the source of information on habitat.</documentation>
+    </annotation>
+  </element>
+  <complexType name="SourceProviderTypeType">
+    <sequence>
+      <element name="institutionName" nillable="true">
+        <annotation>
+          <documentation>-- Name --
+institution name
+
+-- Definition --
+Name of the institute/agency/person that provided the source of information on habitat.</documentation>
+        </annotation>
+        <complexType>
+          <complexContent>
+            <extension base="gml:AbstractMetadataPropertyType">
+              <sequence>
+                <element ref="gmd:CI_ResponsibleParty"/>
+              </sequence>
+              <attribute name="nilReason" type="gml:NilReasonType"/>
+            </extension>
+          </complexContent>
+        </complexType>
+      </element>
+      <element maxOccurs="unbounded" minOccurs="0" name="sourceDatabase" nillable="true">
+        <annotation>
+          <documentation>-- Name --
+source database
+
+-- Definition --
+Name of the database that contains the sources of information on habitat.</documentation>
+        </annotation>
+        <complexType>
+          <simpleContent>
+            <extension base="string">
+              <attribute name="nilReason" type="gml:NilReasonType"/>
+            </extension>
+          </simpleContent>
+        </complexType>
+      </element>
+    </sequence>
+  </complexType>
+  <complexType name="SourceProviderTypePropertyType">
+    <sequence>
+      <element ref="hb:SourceProviderType"/>
+    </sequence>
+  </complexType>
+  <element abstract="true" name="Habitat" substitutionGroup="gml:AbstractFeature" type="hb:HabitatType">
+    <annotation>
+      <documentation>-- Name --
+habitat
+
+-- Definition --
+Abstract class to cover Geographical areas characterised by specific ecological conditions, processes, structure and (life support) functions that physically support the organisms that live there.
+
+-- Description --
+Includes terrestrial and aquatic areas distinguished by geographical, abiotic and biotic features, whether entirely natural or semi-natural that are characterised by specific ecological conditions, processes, structure and (life support) functions that physically support the organisms that live there. Areas may consist of one or many habitat types, depending on the mapping method. Habitat type encoding generally refers to habitat classification schemes. There are many classification schemes in use, only few of them would allow for cross-boarder comparison and are harmonized on a European level.
+
+Includes areas represented by natural boundaries and classified according to their biodiversity, ecological or (geo-)physical conditions with delineations of their own, rather than being mere attributes for other feature types. Habitats may in total or partly be overlapping with Protected Sites (e.g. for nature conservation purposes), however, they need to have a geometry of their own, because both, Protected Sites and habitats/biotopes features may change over time, without any obligation for change of the other fetaure type.
+
+Habitats are mapped based on remote sensing image interpretation (e.g. aerial photograph interpretation) and/or, most frequently, fieldwork; they are sometimes even based on modelling. Mapping results may be represented by distinct polygons or by Grid coverages.
+Some mapping methods allow for a collection of various habitat types to constitute one feature (complex biotopes/habitats), while others only have one habitat type per feature (typical examples for the latter are habitats derived from remote sensing data and their modelling process). 
+
+Besides their typological reference  representing ecological concepts, habitats support concrete organisms that live there. Thus it is important to know, which species constitute/were found in a given habitat, and for the plant species covering the surface it is helpful to know, in which phytocoenoses they are organized. This information is typical of terrestrial mapping, but will be absent from other mapping methods for obvious reasons. Therefore, this information is voidable.</documentation>
+    </annotation>
+  </element>
+  <complexType abstract="true" name="HabitatType">
+    <complexContent>
+      <extension base="gml:AbstractFeatureType">
+        <sequence>
+          <element minOccurs="0" name="inspireId" nillable="true">
+            <annotation>
+              <documentation>-- Name --
+inspire id
+
+-- Definition --
+External object identifier of the spatial object.
+
+-- Description --
+An external object identifier is a unique object identifier published by the responsible body, which may be used by external applications to reference the spatial object. The identifier is an identifier of the spatial object, not an identifier of the real-world phenomenon.</documentation>
+            </annotation>
+            <complexType>
+              <sequence>
+                <element ref="base:Identifier"/>
+              </sequence>
+              <attribute name="nilReason" type="gml:NilReasonType"/>
+            </complexType>
+          </element>
+          <element minOccurs="0" name="metadata" type="hb:SourceInformationPropertyType">
+            <annotation>
+              <documentation>-- Name --
+metadata
+
+-- Definition --
+Source of information on habitats.
+
+-- Description --
+EXAMPLE Surveys, monitoring programs, etc.</documentation>
+            </annotation>
+          </element>
+        </sequence>
+      </extension>
+    </complexContent>
+  </complexType>
+  <complexType name="HabitatPropertyType">
+    <sequence minOccurs="0">
+      <element ref="hb:Habitat"/>
+    </sequence>
+    <attributeGroup ref="gml:AssociationAttributeGroup"/>
+    <attributeGroup ref="gml:OwnershipAttributeGroup"/>
+  </complexType>
+  <element name="HabitatMappingType" substitutionGroup="hb:HabitatType" type="hb:HabitatMappingTypeType">
+    <annotation>
+      <documentation>-- Name --
+habitat mapping type
+
+-- Definition --
+Habitat type according to a local (often non Pan-European) classification scheme for habitats.
+
+-- Description --
+Includes additional covered area and covered percentage.</documentation>
+    </annotation>
+  </element>
+  <complexType name="HabitatMappingTypeType">
+    <complexContent>
+      <extension base="hb:HabitatTypeType">
+        <sequence>
+          <element minOccurs="0" name="coveredArea" nillable="true">
+            <annotation>
+              <documentation>-- Name --
+covered area
+
+-- Definition --
+The surface of the area (expressed in hectares) covered by a certain habitat (mapping) type within the provided geometry of the habitatMapping feature. 
+
+-- Description --
+In case a habitat is only covered by one habitat type this shall be 100.
+
+It can be used only in the case that the geometry provided in the HabitatMapping feature represents an area in which more than one habitat type exists. In this case, for each habitat type the surface of the covered area can be provided within this attribute. 
+
+Since the geometry provided in the HabitatMapping feature can be larger than the total surface of the habitat types listed within that geometry, the total surface of the habitat types can be smaller than the surface of the provided geometry. On the other hand, since some habitat types may overlap (e.g. subterranean caves / habitat type on top) the total area of the habitat types can be bigger than the surface of the provided geometry.
+
+EXAMPLE Within a given habitat geometry of 30.2 hectares there are several habitat types, out of which two are natural habitat types of community interest, &amp;rdquo;91D0&amp;rdquo; covering 22.5 hectares and &amp;rdquo;7110&amp;rdquo; covering 5.3 hectares, thus in total are smaller than the total area.</documentation>
+            </annotation>
+            <complexType>
+              <simpleContent>
+                <extension base="double">
+                  <attribute name="nilReason" type="gml:NilReasonType"/>
+                </extension>
+              </simpleContent>
+            </complexType>
+          </element>
+          <element minOccurs="0" name="coveredLength" nillable="true">
+            <annotation>
+              <documentation>-- Name --
+covered length
+
+-- Definition --
+The length (expressed in kilometers) covered by a certain habitat (mapping) type within the provided geometry of the habitatMapping feature.
+
+-- Description --
+EXAMPLE Within a given habitat geometry of 30.5 hectares there are several habitat types. Two natural habitat types of community interest, &amp;rdquo;91F0&amp;rdquo; and &amp;rdquo;9160&amp;rdquo; cover this total area. However, a third natural habitat types of community interest &amp;rdquo;3260&amp;rdquo; is listed, which is &amp;rdquo;linear&amp;rdquo; and thus expressed in kilometers of its length (e.g. 1.2 km).</documentation>
+            </annotation>
+            <complexType>
+              <simpleContent>
+                <extension base="double">
+                  <attribute name="nilReason" type="gml:NilReasonType"/>
+                </extension>
+              </simpleContent>
+            </complexType>
+          </element>
+        </sequence>
+      </extension>
+    </complexContent>
+  </complexType>
+  <complexType name="HabitatMappingTypePropertyType">
+    <sequence>
+      <element ref="hb:HabitatMappingType"/>
+    </sequence>
+  </complexType>
+  <element name="HabitatDistributionCoverage" substitutionGroup="gmlcov:AbstractCoverage" type="hb:HabitatDistributionCoverageType">
+    <annotation>
+      <documentation>-- Name --
+habitat distribution coverage
+
+-- Definition --
+Geographical distribution of habitats.
+
+-- Description --</documentation>
+    </annotation>
+  </element>
+  <complexType name="HabitatDistributionCoverageType">
+    <complexContent>
+      <extension base="gmlcov:AbstractCoverageType">
+        <sequence>
+          <element name="beginLifespanVersion" nillable="true">
+            <annotation>
+              <documentation>-- Name --
+begin life span version
+
+-- Definition --
+Date and time at which this version of the spatial object was inserted or changed in the spatial data set.
+
+-- Description --
+NOTE This date is recorded to enable the generation of change only update files.</documentation>
+            </annotation>
+            <complexType>
+              <simpleContent>
+                <extension base="dateTime">
+                  <attribute name="nilReason" type="gml:NilReasonType"/>
+                </extension>
+              </simpleContent>
+            </complexType>
+          </element>
+          <element name="endLifespanVersion" nillable="true">
+            <annotation>
+              <documentation>-- Name --
+end life span version
+
+-- Definition --
+Date and time at which this version of the spatial object was superseded or retired in the spatial data set.
+
+-- Description --
+NOTE This date is recorded primarily for those systems which "close" an entry in the spatial data set in the event of an attribute change.</documentation>
+            </annotation>
+            <complexType>
+              <simpleContent>
+                <extension base="dateTime">
+                  <attribute name="nilReason" type="gml:NilReasonType"/>
+                </extension>
+              </simpleContent>
+            </complexType>
+          </element>
+          <element name="inspireId" type="base:IdentifierPropertyType">
+            <annotation>
+              <documentation>-- Name --
+inspire id
+
+-- Definition --
+External object identifier of the spatial object.
+
+-- Description --
+An external object identifier is a unique object identifier published by the responsible body, which may be used by external applications to reference the spatial object. The identifier is an identifier of the spatial object, not an identifier of the real-world phenomenon.</documentation>
+            </annotation>
+          </element>
+          <element name="habitat" type="hb:HabitatTypePropertyType">
+            <annotation>
+              <documentation>-- Name --
+habitat
+
+-- Definition --
+Identifier for habitat types using one or more classification schemes.
+
+-- Description --
+This Habitat may consist of only one HabitatType according to one or more classification schemes.</documentation>
+            </annotation>
+          </element>
+          <element name="domainExtent" nillable="true">
+            <annotation>
+              <documentation>-- Name --
+domain extent
+
+-- Definition --
+The geographic extent of the domain of the coverage.</documentation>
+            </annotation>
+            <complexType>
+              <complexContent>
+                <extension base="gml:AbstractMetadataPropertyType">
+                  <sequence minOccurs="0">
+                    <element ref="gmd:AbstractEX_GeographicExtent"/>
+                  </sequence>
+                  <attributeGroup ref="gml:AssociationAttributeGroup"/>
+                </extension>
+              </complexContent>
+            </complexType>
+          </element>
+        </sequence>
+      </extension>
+    </complexContent>
+  </complexType>
+  <complexType name="HabitatDistributionCoveragePropertyType">
+    <sequence minOccurs="0">
+      <element ref="hb:HabitatDistributionCoverage"/>
+    </sequence>
+    <attributeGroup ref="gml:AssociationAttributeGroup"/>
+    <attributeGroup ref="gml:OwnershipAttributeGroup"/>
+  </complexType>
+  <element name="HabitatDistributionUnit" substitutionGroup="hb:Habitat" type="hb:HabitatDistributionUnitType">
+    <annotation>
+      <documentation>-- Name --
+habitat distribution unit
+
+-- Definition --
+Occurrence (presence/absence) of a habitat within a certain unit based on reference data (e.g. a geographic grid system).</documentation>
+    </annotation>
+  </element>
+  <complexType name="HabitatDistributionUnitType">
+    <complexContent>
+      <extension base="hb:HabitatType">
+        <sequence>
+          <element minOccurs="0" name="coveragePercentageArea" nillable="true">
+            <annotation>
+              <documentation>-- Name --
+coverage percentage area
+
+-- Definition --
+The area (expressed in percentages) of a habitat within the geometric object that is used to collect, store and present information on the distribution of the habitat (type).
+
+-- Description --
+EXAMPLE Percentage of grid cell.</documentation>
+            </annotation>
+            <complexType>
+              <simpleContent>
+                <extension base="double">
+                  <attribute name="nilReason" type="gml:NilReasonType"/>
+                </extension>
+              </simpleContent>
+            </complexType>
+          </element>
+          <element minOccurs="0" name="coveragePercentageLength" nillable="true">
+            <annotation>
+              <documentation>-- Name --
+coverage percentage length
+
+-- Definition --
+The length (expressed in percentage of the total length of the given habitat type) of a habitat within the geometric object that is used to collect, store and present information on the distribution of the habitat (type).
+
+-- Description --
+EXAMPLE Percentage of total rivers&amp;rsquo; lengths (linear objects) where submerse vegetation of the type Ranunculion fluitantis constitutes the habitat type EmeraldNatura2000 - code: 3260.</documentation>
+            </annotation>
+            <complexType>
+              <simpleContent>
+                <extension base="anyURI">
+                  <attribute name="nilReason" type="gml:NilReasonType"/>
+                </extension>
+              </simpleContent>
+            </complexType>
+          </element>
+          <element minOccurs="0" name="totalArea" nillable="true">
+            <annotation>
+              <documentation>-- Name --
+total area
+
+-- Definition --
+The area of a habitat (expressed in hectares) within the geometric object that is used to collect, store and present information on the distribution of the habitat (type).
+
+-- Description --
+EXAMPLE Area within a grid cell.</documentation>
+            </annotation>
+            <complexType>
+              <simpleContent>
+                <extension base="double">
+                  <attribute name="nilReason" type="gml:NilReasonType"/>
+                </extension>
+              </simpleContent>
+            </complexType>
+          </element>
+          <element minOccurs="0" name="totalLength" nillable="true">
+            <annotation>
+              <documentation>-- Name --
+total length
+
+-- Definition --
+The length of a habitat (expressed in kilometers) within the geometric object that is used to collect, store and present information on the distribution of the habitat (type).
+
+-- Description --
+EXAMPLE Total length where submerse vegetation of the type Ranunculion fluitantis constitutes the habitat type EmeraldNatura2000 - code: 3260.</documentation>
+            </annotation>
+            <complexType>
+              <simpleContent>
+                <extension base="double">
+                  <attribute name="nilReason" type="gml:NilReasonType"/>
+                </extension>
+              </simpleContent>
+            </complexType>
+          </element>
+        </sequence>
+      </extension>
+    </complexContent>
+  </complexType>
+  <complexType name="HabitatDistributionUnitPropertyType">
+    <sequence minOccurs="0">
+      <element ref="hb:HabitatDistributionUnit"/>
+    </sequence>
+    <attributeGroup ref="gml:AssociationAttributeGroup"/>
+    <attributeGroup ref="gml:OwnershipAttributeGroup"/>
+  </complexType>
+  <element name="LocalNameType" substitutionGroup="gml:AbstractObject" type="hb:LocalNameTypeType">
+    <annotation>
+      <documentation>-- Name --
+local name type
+
+-- Definition --
+Name according to local classification scheme.</documentation>
+    </annotation>
+  </element>
+  <complexType name="LocalNameTypeType">
+    <sequence>
+      <element name="lcoalSchemeURI" type="anyURI">
+        <annotation>
+          <documentation>-- Name --
+local scheme uri
+
+-- Definition --
+Uniform resource identifier of a local classification scheme.
+
+-- Description --
+EXAMPLE "http://www.rac-spa.org/sites/default/files/doc_fsd/lchm_en.pdf", for the Classification of Benthic Marine Habitat Types for the Mediterranean Region or "http://www.lifenatura2000.ro/doc/Habitatele din Romania.pdf", for the Romanian habitats classification.</documentation>
+        </annotation>
+      </element>
+      <element name="localNameValue" type="string">
+        <annotation>
+          <documentation>-- Name --
+local name value
+
+-- Definition --
+Natural language name according to a local classification scheme.
+
+-- Description --
+EXAMPLE: "Comunitati vest-pontice cu Camphosma annua si Kochia laniflora" for the habitat &amp;bdquo;R1508" from the Romanian habitat classification or &amp;bdquo;Biocenosis of abyssal muds" for the habitat &amp;bdquo;VI.1.1." from the Classification of Benthic Marine Habitat Types for the Mediterranean Region or "Stellario alsines &amp;ndash; Montietum rivularis (Hinterlang 1992)" for a vegetation type.</documentation>
+        </annotation>
+      </element>
+      <element name="qualifierLocalName" nillable="true">
+        <annotation>
+          <documentation>-- Name --
+qualifier local name
+
+-- Definition --
+The relation between the local name and its related name of the pan-european schema.
+
+-- Description --
+EXAMPLE The local habitat can be the same as the Pan-European habitat, the relationship (congruence) or the local habitat may be a subtype of the Pan-European habitat, therefore the relationship should be "includedIn", etc.</documentation>
+        </annotation>
+        <complexType>
+          <simpleContent>
+            <extension base="gml:CodeType">
+              <attribute name="nilReason" type="gml:NilReasonType"/>
+            </extension>
+          </simpleContent>
+        </complexType>
+      </element>
+    </sequence>
+  </complexType>
+  <complexType name="LocalNameTypePropertyType">
+    <sequence>
+      <element ref="hb:LocalNameType"/>
+    </sequence>
+  </complexType>
+  <element name="HabitatType" substitutionGroup="gml:AbstractObject" type="hb:HabitatTypeType">
+    <annotation>
+      <documentation>-- Name --
+habitat type
+
+-- Definition --
+The identifier for the habitat class using one or more national or international classification schemes.
+
+-- Description --
+Habitat type according to one or more classification schemes. Different classification schemes exists throughout Europe. In many cases a local or national classification schema will be in daily use, however, references to international (european) classification schemas will already frequently be introduced (e.g. Habitat types of community interest, Habitat Directive). It is mandatory to encode at least one habitat type according to a (pan-european) referenceHabitatTypeScheme listed in the referenceHabitatSchemeValue code list. This encoding is intended to allow for queries on habitat types on a pan-european harmonized level. 
+
+It is strongly recommended to refer to the habitatsDirective code list values in the first place, if the habitat meets the definition of one of the habitat types listed in Annex I of the Habitats Directive. If this is not appropriate, a code value from the EUNIS habitats classification code list should be referenced instead. 
+The referenceHabitatSchemeValue code list may be extended over time, covering more pan-european habitat classification schemes which allow for this harmonization purpose. However, the purpose of harmonization by nature restricts this list to a reasonable number.
+
+Furthermore, it is possible (voidable) to encode the habitat type with a localHabitatName derived from a national, regional or local classification schema. This will (by nature) be the most frequent case. Any local classification schemes should (recommendation) be registered on national level (INSPIRE national focal point).</documentation>
+    </annotation>
+  </element>
+  <complexType name="HabitatTypeType">
+    <sequence>
+      <element minOccurs="0" name="localHabitatName" nillable="true">
+        <annotation>
+          <documentation>-- Name --
+local habitat name
+
+-- Definition --
+Habitat type according to a local (often non Pan-European) classification scheme for habitats.
+
+-- Description --
+Habitat types used in a certain area (i.e: Mediterranean Sea), or in a certain country, or even more restricted in a certain region, county or any other local level.
+
+EXAMPLE Classification of Benthic Marine Habitat Types for the Mediterranean Region, Habitats of Romania, German Biotoptypen, Nordic Vegetation types, UK National Vegetation Classification, etc.</documentation>
+        </annotation>
+        <complexType>
+          <sequence>
+            <element ref="hb:LocalNameType"/>
+          </sequence>
+          <attribute name="nilReason" type="gml:NilReasonType"/>
+        </complexType>
+      </element>
+      <element name="referenceHabitatTypeId" type="string">
+        <annotation>
+          <documentation>-- Name --
+reference habitat type id
+
+-- Definition --
+Habitat type unique identifier (code) according to one Pan-European classification scheme.
+
+-- Description --
+EXAMPLE "1110", "40C0", "95A0", etc., if the referenceHabitatScheme is "habitatsDirective", or "A1.111", "A1.1121", "G1.1111", "X34", etc., if the ReferenceHabitatScheme is "eunis".</documentation>
+        </annotation>
+      </element>
+      <element name="referenceHabitatTypeScheme" type="gml:CodeType">
+        <annotation>
+          <documentation>-- Name --
+reference habitat type scheme
+
+-- Definition --
+One of the Pan-European classification schemes, that are widely used in Europe.
+
+-- Description --
+The list includes at least the classification of the natural habitat types of community interest listed in Annex I of the Habitats Directive, as well as the hierarchic classification of the habitat types of interest for biodiversity and nature protection listed in the EUNIS database, which is maintained by the EEA.</documentation>
+        </annotation>
+      </element>
+    </sequence>
+  </complexType>
+  <complexType name="HabitatTypePropertyType">
+    <sequence>
+      <element ref="hb:HabitatType"/>
+    </sequence>
+  </complexType>
+  <element name="HabitatVegetationType" substitutionGroup="gml:AbstractObject" type="hb:HabitatVegetationTypeType">
+    <annotation>
+      <documentation>-- Name --
+habitat vegetation type
+
+-- Definition --
+List of vegetation types which constitute a certain habitat.</documentation>
+    </annotation>
+  </element>
+  <complexType name="HabitatVegetationTypeType">
+    <sequence>
+      <element minOccurs="0" name="localName" type="hb:LocalNameTypePropertyType">
+        <annotation>
+          <documentation>-- Name --
+local name
+
+-- Definition --
+Vegetation class (vegetation type) according to local classification scheme.
+
+-- Description --
+Different classification schemes exists throughout Europe. For better understanding, it is recommended to give the full name of the vegetation type rather than a mere code.
+NOTE  The use of Synbiosys conspectus of European vegetation types. (http://www.synbiosys.alterra.nl/synbiosyseu/) is recommended as a reference list.</documentation>
+        </annotation>
+      </element>
+    </sequence>
+  </complexType>
+  <complexType name="HabitatVegetationTypePropertyType">
+    <sequence>
+      <element ref="hb:HabitatVegetationType"/>
+    </sequence>
+  </complexType>
+  <element name="HabitatSpeciesType" substitutionGroup="gml:AbstractObject" type="hb:HabitatSpeciesTypeType">
+    <annotation>
+      <documentation>-- Name --
+habitat species type
+
+-- Definition --
+List of species which constitutes/occured in a certain habitat at the time of mapping.</documentation>
+    </annotation>
+  </element>
+  <complexType name="HabitatSpeciesTypeType">
+    <sequence>
+      <element minOccurs="0" name="localSpeciesName" nillable="true">
+        <annotation>
+          <documentation>-- Name --
+local species name
+
+-- Definition --
+Local name of the species.</documentation>
+        </annotation>
+        <complexType>
+          <sequence>
+            <element ref="hb:LocalNameType"/>
+          </sequence>
+          <attribute name="nilReason" type="gml:NilReasonType"/>
+        </complexType>
+      </element>
+      <element name="referenceSpeciesScheme" type="gml:CodeType">
+        <annotation>
+          <documentation>-- Name --
+reference species scheme
+
+-- Definition --
+Reference species names schema.</documentation>
+        </annotation>
+      </element>
+      <element name="referenceSpeciesId" type="string">
+        <annotation>
+          <documentation>-- Name --
+reference species id
+
+-- Definition --
+Code from reference species names schema.</documentation>
+        </annotation>
+      </element>
+    </sequence>
+  </complexType>
+  <complexType name="HabitatSpeciesTypePropertyType">
+    <sequence>
+      <element ref="hb:HabitatSpeciesType"/>
+    </sequence>
+  </complexType>
+  <element name="HabitatMapping" substitutionGroup="hb:Habitat" type="hb:HabitatMappingType">
+    <annotation>
+      <documentation>-- Name --
+habitat mapping
+
+-- Definition --
+The extent and location of the habitat represented by natural boundaries, that are characterised by specific ecological conditions, processes, structure and (life support) functions that physically support the organisms that live there.
+
+-- Description --
+A HabitatMapping area, line or point may comprise one or more HabitatMappingTypes according to one or more classification schemes. 
+
+Depending on the data capture process in the member states two types of habitat mapping types must be distinguished: In many cases a habitat/biotope mapping feature will consist of only one habitat type, according to other methods a habitat mapping feature will have one or many habitat types (complex biotopes). Respectively, mapping habitats may be done for one or many (e.g. ecological guild) (animal) species of interest and result in one or many habitat types within a HabitatMapping area.</documentation>
+    </annotation>
+  </element>
+  <complexType name="HabitatMappingType">
+    <complexContent>
+      <extension base="hb:HabitatType">
+        <sequence>
+          <element name="geometry" type="gml:GeometryPropertyType">
+            <annotation>
+              <documentation>-- Name --
+geometry
+
+-- Definition --
+The area (extent) of the habitat based on natural boundaries.</documentation>
+            </annotation>
+          </element>
+          <element maxOccurs="unbounded" name="habitat" type="hb:HabitatMappingTypePropertyType">
+            <annotation>
+              <documentation>-- Name --
+habitat
+
+-- Definition --
+The identifier for the habitat class using one or more national or international classification schemes.
+
+-- Description --
+Habitat  according to one or more classification systems.</documentation>
+            </annotation>
+          </element>
+          <element maxOccurs="unbounded" minOccurs="0" name="habitatSpecies" nillable="true">
+            <annotation>
+              <documentation>-- Name --
+habitat species
+
+-- Definition --
+List of species which constitute a certain habitat.</documentation>
+            </annotation>
+            <complexType>
+              <sequence>
+                <element ref="hb:HabitatSpeciesType"/>
+              </sequence>
+              <attribute name="nilReason" type="gml:NilReasonType"/>
+            </complexType>
+          </element>
+          <element maxOccurs="unbounded" minOccurs="0" name="habitatVegetation" nillable="true">
+            <annotation>
+              <documentation>-- Name --
+habitat species
+
+-- Definition --
+List of vegetation types which constitute a certain habitat.
+
+-- Description --
+Different classification schemes exists throughout Europe. The use of Synbiosys conspectus of European vegetation types (http://www.synbiosys.alterra.nl/synbiosyseu/) as a reference list is recommended.</documentation>
+            </annotation>
+            <complexType>
+              <sequence>
+                <element ref="hb:HabitatVegetationType"/>
+              </sequence>
+              <attribute name="nilReason" type="gml:NilReasonType"/>
+            </complexType>
+          </element>
+        </sequence>
+      </extension>
+    </complexContent>
+  </complexType>
+  <complexType name="HabitatMappingPropertyType">
+    <sequence minOccurs="0">
+      <element ref="hb:HabitatMapping"/>
+    </sequence>
+    <attributeGroup ref="gml:AssociationAttributeGroup"/>
+    <attributeGroup ref="gml:OwnershipAttributeGroup"/>
+  </complexType>
+</schema>

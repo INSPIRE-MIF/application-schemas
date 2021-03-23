@@ -1,0 +1,239 @@
+<?xml version="1.0" encoding="UTF-8"?><schema xmlns="http://www.w3.org/2001/XMLSchema" xmlns:base="urn:x-inspire:specification:gmlas:BaseTypes:3.2" xmlns:gmd="http://www.isotc211.org/2005/gmd" xmlns:gml="http://www.opengis.net/gml/3.2" xmlns:hb="http://inspire.jrc.ec.europa.eu/schemas/hb/2.0" xmlns:hbfc="http://inspire.jrc.ec.europa.eu/schemas/hbfc/2.0" elementFormDefault="qualified" targetNamespace="http://inspire.jrc.ec.europa.eu/schemas/hbfc/2.0" version="2.0">
+  <annotation>
+    <documentation>Application schema for Habitats and Biotopes made for implementation using feature collection pattern.</documentation>
+  </annotation>
+  <import namespace="http://inspire.jrc.ec.europa.eu/schemas/hb/2.0" schemaLocation="https://inspire.ec.europa.eu/draft-schemas/hb/2.0/HabitatsAndBiotopes.xsd"/>
+  <import namespace="http://www.isotc211.org/2005/gmd" schemaLocation="http://schemas.opengis.net/iso/19139/20070417/gmd/gmd.xsd"/>
+  <import namespace="http://www.opengis.net/gml/3.2" schemaLocation="http://schemas.opengis.net/gml/3.2.1/gml.xsd"/>
+  <import namespace="urn:x-inspire:specification:gmlas:BaseTypes:3.2" schemaLocation="https://inspire.ec.europa.eu/schemas/base/3.2/BaseTypes.xsd"/>
+  <!--XML Schema document created by ShapeChange-->
+  <element name="HabitatDistributionFeatureCollection" substitutionGroup="gml:AbstractFeature" type="hbfc:HabitatDistributionFeatureCollectionType">
+    <annotation>
+      <documentation>-- Name --
+habitat distribution feature collection
+
+-- Definition --
+Represents the collection of individual features (units) in a distribution of habitats.
+
+-- Description --</documentation>
+    </annotation>
+  </element>
+  <complexType name="HabitatDistributionFeatureCollectionType">
+    <complexContent>
+      <extension base="gml:AbstractFeatureType">
+        <sequence>
+          <element name="inspireId" type="base:IdentifierPropertyType">
+            <annotation>
+              <documentation>-- Name --
+inspire id
+
+-- Definition --
+External object identifier of the spatial object.
+
+-- Description --
+An external object identifier is a unique object identifier published by the responsible body, which may be used by external applications to reference the spatial object. The identifier is an identifier of the spatial object, not an identifier of the real-world phenomenon.</documentation>
+            </annotation>
+          </element>
+          <element name="domainExtent" nillable="true">
+            <annotation>
+              <documentation>-- Name --
+domain extent
+
+-- Definition --
+The geographic extent of the domain of the coverage.</documentation>
+            </annotation>
+            <complexType>
+              <complexContent>
+                <extension base="gml:AbstractMetadataPropertyType">
+                  <sequence minOccurs="0">
+                    <element ref="gmd:AbstractEX_GeographicExtent"/>
+                  </sequence>
+                  <attributeGroup ref="gml:AssociationAttributeGroup"/>
+                </extension>
+              </complexContent>
+            </complexType>
+          </element>
+          <element maxOccurs="unbounded" minOccurs="0" name="member" type="hbfc:HabitatDistributionUnitFeaturePropertyType">
+            <annotation>
+              <documentation>-- Name --
+member
+
+-- Definition --
+Individual features in a feature collection.
+
+-- Description --</documentation>
+            </annotation>
+          </element>
+        </sequence>
+      </extension>
+    </complexContent>
+  </complexType>
+  <complexType name="HabitatDistributionFeatureCollectionPropertyType">
+    <sequence minOccurs="0">
+      <element ref="hbfc:HabitatDistributionFeatureCollection"/>
+    </sequence>
+    <attributeGroup ref="gml:AssociationAttributeGroup"/>
+    <attributeGroup ref="gml:OwnershipAttributeGroup"/>
+  </complexType>
+  <element name="HabitatDistributionUnitFeature" substitutionGroup="hb:Habitat" type="hbfc:HabitatDistributionUnitFeatureType">
+    <annotation>
+      <documentation>-- Name --
+habitat distribution unit feature
+
+-- Definition --
+Represents individual features (units) in a distribution of habitats.
+
+-- Description --</documentation>
+    </annotation>
+  </element>
+  <complexType name="HabitatDistributionUnitFeatureType">
+    <complexContent>
+      <extension base="hb:HabitatType">
+        <sequence>
+          <element name="beginLifespanVersion" nillable="true">
+            <annotation>
+              <documentation>-- Name --
+begin life span version
+
+-- Definition --
+Date and time at which this version of the spatial object was inserted or changed in the spatial data set.
+
+-- Description --
+NOTE This date is recorded to enable the generation of change only update files.</documentation>
+            </annotation>
+            <complexType>
+              <simpleContent>
+                <extension base="dateTime">
+                  <attribute name="nilReason" type="gml:NilReasonType"/>
+                </extension>
+              </simpleContent>
+            </complexType>
+          </element>
+          <element minOccurs="0" name="coveragePercentageArea" nillable="true">
+            <annotation>
+              <documentation>-- Name --
+coverage percentage area
+
+-- Definition --
+The area (expressed in percentages) of a habitat within the geometric object that is used to collect, store and present information on the distribution of the habitat (type).
+
+-- Description --
+EXAMPLE Percentage of grid cell.</documentation>
+            </annotation>
+            <complexType>
+              <simpleContent>
+                <extension base="double">
+                  <attribute name="nilReason" type="gml:NilReasonType"/>
+                </extension>
+              </simpleContent>
+            </complexType>
+          </element>
+          <element minOccurs="0" name="coveragePercentageLength" nillable="true">
+            <annotation>
+              <documentation>-- Name --
+coverage percentage length
+
+-- Definition --
+The length (expressed in percentages) of a habitat within the geometric object that is used to collect, store and present information on the distribution of the habitat (type).
+
+-- Description --</documentation>
+            </annotation>
+            <complexType>
+              <simpleContent>
+                <extension base="anyURI">
+                  <attribute name="nilReason" type="gml:NilReasonType"/>
+                </extension>
+              </simpleContent>
+            </complexType>
+          </element>
+          <element name="endLifespanVersion" nillable="true">
+            <annotation>
+              <documentation>-- Name --
+end life span version
+
+-- Definition --
+Date and time at which this version of the spatial object was superseded or retired in the spatial data set.
+
+-- Description --
+NOTE This date is recorded primarily for those systems which "close" an entry in the spatial data set in the event of an attribute change.</documentation>
+            </annotation>
+            <complexType>
+              <simpleContent>
+                <extension base="dateTime">
+                  <attribute name="nilReason" type="gml:NilReasonType"/>
+                </extension>
+              </simpleContent>
+            </complexType>
+          </element>
+          <element name="habitat" type="hb:HabitatTypePropertyType">
+            <annotation>
+              <documentation>-- Name --
+habitat
+
+-- Definition --
+Identifier for habitat types using one or more classification schemes.
+
+-- Description --
+This Habitat may consist of only one HabitatType according to one or more classification schemes.</documentation>
+            </annotation>
+          </element>
+          <element minOccurs="0" name="totalArea" nillable="true">
+            <annotation>
+              <documentation>-- Name --
+total area
+
+-- Definition --
+The area of a habitat (expressed in hectares) within the geometric object that is used to collect, store and present information on the distribution of the habitat (type).
+
+-- Description --
+EXAMPLE Area of grid cell.</documentation>
+            </annotation>
+            <complexType>
+              <simpleContent>
+                <extension base="double">
+                  <attribute name="nilReason" type="gml:NilReasonType"/>
+                </extension>
+              </simpleContent>
+            </complexType>
+          </element>
+          <element minOccurs="0" name="totalLength" nillable="true">
+            <annotation>
+              <documentation>-- Name --
+total length
+
+-- Definition --
+The length of a habitat (expressed in meters) within the geometric object that is used to collect, store and present information on the distribution of the habitat (type).
+
+-- Description --</documentation>
+            </annotation>
+            <complexType>
+              <simpleContent>
+                <extension base="double">
+                  <attribute name="nilReason" type="gml:NilReasonType"/>
+                </extension>
+              </simpleContent>
+            </complexType>
+          </element>
+          <element name="geometry" type="gml:GeometryPropertyType">
+            <annotation>
+              <documentation>-- Name --
+geometry
+
+-- Definition --
+The geometry of each unit in a collection.
+
+-- Description --</documentation>
+            </annotation>
+          </element>
+        </sequence>
+      </extension>
+    </complexContent>
+  </complexType>
+  <complexType name="HabitatDistributionUnitFeaturePropertyType">
+    <sequence minOccurs="0">
+      <element ref="hbfc:HabitatDistributionUnitFeature"/>
+    </sequence>
+    <attributeGroup ref="gml:AssociationAttributeGroup"/>
+    <attributeGroup ref="gml:OwnershipAttributeGroup"/>
+  </complexType>
+</schema>

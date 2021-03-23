@@ -1,0 +1,450 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<schema xmlns="http://www.w3.org/2001/XMLSchema" xmlns:gml="http://www.opengis.net/gml/3.2" xmlns:us-net-tc="http://inspire.jrc.ec.europa.eu/schemas/us-net-tc/2.0" xmlns:us-network="http://inspire.jrc.ec.europa.eu/schemas/us-network/2.0" targetNamespace="http://inspire.jrc.ec.europa.eu/schemas/us-net-tc/2.0" elementFormDefault="qualified" version="2.0">
+	<annotation>
+		<documentation>-- Definition --
+Telecommunications network sub-domain.</documentation>
+	</annotation>
+	<import namespace="http://www.opengis.net/gml/3.2" schemaLocation="http://schemas.opengis.net/gml/3.2.1/gml.xsd"/>
+	<import namespace="http://inspire.jrc.ec.europa.eu/schemas/us-network/2.0" schemaLocation="https://inspire.ec.europa.eu/draft-schemas/us-network/2.0/UtilitiesAndGovernmentalServicesNetworks.xsd"/>
+	<!--XML Schema document created by ShapeChange-->
+	<element name="TelecommunicationsNetwork" type="us-net-tc:TelecommunicationsNetworkType" substitutionGroup="us-network:UtilityNetwork">
+		<annotation>
+			<documentation>-- Definition --
+Collection of telecommunications network elements - a system of interconnected elements linked by facilities (i.e., physical connections) over which traffic will flow. The traffic may be conversations, information, or complex video or audio services. The telecommunications network must also be able to control the interconnected elements.</documentation>
+		</annotation>
+	</element>
+	<complexType name="TelecommunicationsNetworkType">
+		<complexContent>
+			<extension base="us-network:UtilityNetworkType">
+				<sequence>
+					<element name="type" nillable="true">
+						<annotation>
+							<documentation>-- Definition --
+Type of telecommunications network.</documentation>
+						</annotation>
+						<complexType>
+							<simpleContent>
+								<extension base="us-net-tc:TelecommunicationsNetworkTypeValueType">
+									<attribute name="nilReason" type="gml:NilReasonType"/>
+								</extension>
+							</simpleContent>
+						</complexType>
+					</element>
+				</sequence>
+			</extension>
+		</complexContent>
+	</complexType>
+	<complexType name="TelecommunicationsNetworkPropertyType">
+		<sequence minOccurs="0">
+			<element ref="us-net-tc:TelecommunicationsNetwork"/>
+		</sequence>
+		<attributeGroup ref="gml:AssociationAttributeGroup"/>
+		<attributeGroup ref="gml:OwnershipAttributeGroup"/>
+	</complexType>
+	<element name="TelecommunicationsLink" type="us-net-tc:TelecommunicationsLinkType" substitutionGroup="us-network:UtilityLink">
+		<annotation>
+			<documentation>-- Definition --
+A radio-relay route for the telecommunications' signal transmission. 
+
+-- Description --
+Wireless (microwave) radio-relay route is most commonly established by means of directed or undirected telecommunications antennas in line of sight.</documentation>
+		</annotation>
+	</element>
+	<complexType name="TelecommunicationsLinkType">
+		<complexContent>
+			<extension base="us-network:UtilityLinkType">
+				<sequence/>
+			</extension>
+		</complexContent>
+	</complexType>
+	<complexType name="TelecommunicationsLinkPropertyType">
+		<sequence minOccurs="0">
+			<element ref="us-net-tc:TelecommunicationsLink"/>
+		</sequence>
+		<attributeGroup ref="gml:AssociationAttributeGroup"/>
+		<attributeGroup ref="gml:OwnershipAttributeGroup"/>
+	</complexType>
+	<simpleType name="TelecommunicationsAppurtenanceValueType">
+		<annotation>
+			<documentation>-- Definition --
+Possible node (point) appurtenance values in telecommunications networks.</documentation>
+		</annotation>
+		<union memberTypes="us-net-tc:TelecommunicationsAppurtenanceValueEnumerationType us-net-tc:TelecommunicationsAppurtenanceValueOtherType"/>
+	</simpleType>
+	<simpleType name="TelecommunicationsAppurtenanceValueEnumerationType">
+		<annotation>
+			<documentation>-- Definition --
+Possible node (point) appurtenance values in telecommunications networks.</documentation>
+		</annotation>
+		<restriction base="string">
+			<enumeration value="antenna">
+				<annotation>
+					<documentation>-- Definition --
+Antenna.
+
+-- Description --
+An &lt;i&gt;antenna &lt;/i&gt;(or aerial) is a transducer that transmits or receives electromagnetic waves. In other words, antennas convert electromagnetic radiation into electric current, or vice versa.</documentation>
+				</annotation>
+			</enumeration>
+			<enumeration value="copperMaintenanceLoop">
+				<annotation>
+					<documentation>-- Definition --
+Copper (twisted-pair) maintenance loop.
+
+-- Description --
+A &lt;i&gt;m&lt;/i&gt;&lt;i&gt;aintenance &lt;/i&gt;&lt;i&gt;l&lt;/i&gt;&lt;i&gt;oop&lt;/i&gt; is a coil of slack copper cable that is used to support future joining or other maintenance activities.</documentation>
+				</annotation>
+			</enumeration>
+			<enumeration value="copperRepeater">
+				<annotation>
+					<documentation>-- Definition --
+Copper repeater.
+
+-- Description --
+A &lt;i&gt;c&lt;/i&gt;&lt;i&gt;opper &lt;/i&gt;&lt;i&gt;r&lt;/i&gt;&lt;i&gt;epeater &lt;/i&gt;is copper line conditioning equipment that amplifies the analog or digital input signal.</documentation>
+				</annotation>
+			</enumeration>
+			<enumeration value="digitalCrossConnect">
+				<annotation>
+					<documentation>-- Definition --
+Digital cross connect (DXC).
+
+-- Description --
+A &lt;i&gt;d&lt;/i&gt;&lt;i&gt;igital &lt;/i&gt;&lt;i&gt;c&lt;/i&gt;&lt;i&gt;ross &lt;/i&gt;&lt;i&gt;c&lt;/i&gt;&lt;i&gt;onnect&lt;/i&gt; is a patch panel for copper cables that are used to provide digital service. Fibers in cables are connected to signal ports in this equipment.</documentation>
+				</annotation>
+			</enumeration>
+			<enumeration value="digitalLoopCarrier">
+				<annotation>
+					<documentation>-- Definition --
+Digital loop carrier (DLC).
+
+-- Description --
+A &lt;i&gt;d&lt;/i&gt;&lt;i&gt;igital &lt;/i&gt;&lt;i&gt;l&lt;/i&gt;&lt;i&gt;oop &lt;/i&gt;&lt;i&gt;c&lt;/i&gt;&lt;i&gt;arrier&lt;/i&gt; is a device that multiplexes an optical signal in to multiple lower level digital signals. Fibers in cables are connected to signal ports in this equipment.</documentation>
+				</annotation>
+			</enumeration>
+			<enumeration value="exchange">
+				<annotation>
+					<documentation>-- Definition --
+Exchange (switch).
+
+-- Description --
+The &lt;i&gt;exchange&lt;/i&gt; (central office) is the physical building used to house the inside plant equipment (distribution frames, lasers, switches etc).</documentation>
+				</annotation>
+			</enumeration>
+			<enumeration value="fiberInterconnect">
+				<annotation>
+					<documentation>-- Definition --
+Fiber interconnect (FIC).
+
+-- Description --
+A &lt;i&gt;f&lt;/i&gt;&lt;i&gt;iber &lt;/i&gt;&lt;i&gt;i&lt;/i&gt;&lt;i&gt;nterconnect &lt;/i&gt;terminates individual fibers or establishes a connection between two or more fiber cables. Fibers in cables are connected to signal ports in the equipment.</documentation>
+				</annotation>
+			</enumeration>
+			<enumeration value="jointClosure">
+				<annotation>
+					<documentation>-- Definition --
+Joint closure (copper of fiber).
+
+-- Description --
+A protective&lt;i&gt; joint closure&lt;/i&gt; for either copper or fiber-optic cable joints. A cable joint consists of spliced conductors and a closure.</documentation>
+				</annotation>
+			</enumeration>
+			<enumeration value="loadCoil">
+				<annotation>
+					<documentation>-- Definition --
+Load coil.
+
+-- Description --
+A &lt;i&gt;l&lt;/i&gt;&lt;i&gt;oad &lt;/i&gt;&lt;i&gt;c&lt;/i&gt;&lt;i&gt;oil&lt;/i&gt; is a copper line conditioning equipment. Standard voice phone calls degrade noticeably when the copper portion of a phone line is greater than 18 kilofeet long. In order to restore call quality, load coils are inserted at specific intervals along the loop.</documentation>
+				</annotation>
+			</enumeration>
+			<enumeration value="mainDistributionFrame">
+				<annotation>
+					<documentation>-- Definition --
+Main distribution frame (MDF).
+
+-- Description --
+A &lt;i&gt;m&lt;/i&gt;&lt;i&gt;ain &lt;/i&gt;&lt;i&gt;d&lt;/i&gt;&lt;i&gt;istribution &lt;/i&gt;&lt;i&gt;f&lt;/i&gt;&lt;i&gt;rame&lt;/i&gt; is often found at the local exchange (Central Office) and is used to terminate the copper cables running from the customer's site. The frame allows these cables to be cross connected using patch cords to other equipment such as a concentrator or switch.</documentation>
+				</annotation>
+			</enumeration>
+			<enumeration value="multiplexer">
+				<annotation>
+					<documentation>-- Definition --
+Multiplexer (MUX).
+
+-- Description --
+A &lt;i&gt;m&lt;/i&gt;&lt;i&gt;ultiplexer&lt;/i&gt; is a device that combines multiple inputs into an aggregate signal to be transported via a single transmission channel. Fibers in cables are connected to signal ports in this equipment.</documentation>
+				</annotation>
+			</enumeration>
+			<enumeration value="opticalMaintenanceLoop">
+				<annotation>
+					<documentation>-- Definition --
+Optical maintenance loop.
+
+-- Description --
+A &lt;i&gt;m&lt;/i&gt;&lt;i&gt;aintenance &lt;/i&gt;&lt;i&gt;l&lt;/i&gt;&lt;i&gt;oop&lt;/i&gt; is a coil of slack fiber cable that is used to support future splicing or other maintenance activities.</documentation>
+				</annotation>
+			</enumeration>
+			<enumeration value="opticalRepeater">
+				<annotation>
+					<documentation>-- Definition --
+Optical repeater.
+
+-- Description --
+An &lt;i&gt;o&lt;/i&gt;&lt;i&gt;ptical &lt;/i&gt;&lt;i&gt;r&lt;/i&gt;&lt;i&gt;epeater &lt;/i&gt;is a device that receives an optical signal, amplifies it (or, in the case of a digital signal, reshapes, retimes, or otherwise reconstructs it), and retransmits it as an optical signal. Fibers in cables are connected to signal ports in this equipment.</documentation>
+				</annotation>
+			</enumeration>
+			<enumeration value="patchPanel">
+				<annotation>
+					<documentation>-- Definition --
+Patch panel.
+
+-- Description --
+A &lt;i&gt;p&lt;/i&gt;&lt;i&gt;atch &lt;/i&gt;&lt;i&gt;p&lt;/i&gt;&lt;i&gt;anel&lt;/i&gt; is device where connections are made between incoming and outgoing fibers. Fibers in cables are connected to signal ports in this equipment.</documentation>
+				</annotation>
+			</enumeration>
+			<enumeration value="spliceClosure">
+				<annotation>
+					<documentation>-- Definition --
+Splice closure.
+
+-- Description --
+A &lt;i&gt;splice closure &lt;/i&gt;is usually a weatherproof encasement, commonly made of tough plastic, that envelops the exposed area between spliced cables, i.e., where the jackets have been removed to expose the individual transmission media, optical or metallic, to be joined. The closure usually contains some device or means to maintain continuity of the tensile strength members of the cables involved, and also may maintain electrical continuity of metallic armor, and/or provide external connectivity to such armor for electrical grounding. In the case of fiber optic cables, it also contains a splice organizer to facilitate the splicing process and protect the exposed fibers from mechanical damage. In addition to the seals at its seams and points of cable entry, the splice closure may be filled with an encapsulate to further retard the entry of water.</documentation>
+				</annotation>
+			</enumeration>
+			<enumeration value="splitter">
+				<annotation>
+					<documentation>-- Definition --
+Splitter.
+
+-- Description --
+A &lt;i&gt;s&lt;/i&gt;&lt;i&gt;plitter &lt;/i&gt;is a transmission coupling device for separately sampling (through a known coupling loss) either the forward (incident) or the backward (reflected) wave in a transmission line. Fibers in cables are connected to signal ports in this equipment.</documentation>
+				</annotation>
+			</enumeration>
+			<enumeration value="terminal">
+				<annotation>
+					<documentation>-- Definition --
+Terminal.
+
+-- Description --
+&lt;i&gt;Terminals &lt;/i&gt;are in-loop plant hardware, specifically designed to facilitate connection and removal of distribution cable, drop or service wire to and from cable pairs at a particular location. Terminals are a class of equipment that establishes the end point of a section of the transmission network between the CO and the customer.</documentation>
+				</annotation>
+			</enumeration>
+			<enumeration value="termination">
+				<annotation>
+					<documentation>-- Definition --
+Termination.
+
+-- Description --
+&lt;i&gt;Terminations &lt;/i&gt;are a generic feature class for the end points of cables. These may be considered similar to service drops to buildings. They represent a point at which the telephone company network ends and connects with the wiring at the customer premises.</documentation>
+				</annotation>
+			</enumeration>
+		</restriction>
+	</simpleType>
+	<simpleType name="TelecommunicationsAppurtenanceValueOtherType">
+		<restriction base="string">
+			<pattern value="other: \w{2,}"/>
+		</restriction>
+	</simpleType>
+	<element name="TelecommunicationsManhole" type="us-net-tc:TelecommunicationsManholeType" substitutionGroup="us-network:Manhole">
+		<annotation>
+			<documentation>-- Definition --
+Manhole used exclusively in telecommunications networks.</documentation>
+		</annotation>
+	</element>
+	<complexType name="TelecommunicationsManholeType">
+		<complexContent>
+			<extension base="us-network:ManholeType">
+				<sequence/>
+			</extension>
+		</complexContent>
+	</complexType>
+	<complexType name="TelecommunicationsManholePropertyType">
+		<sequence minOccurs="0">
+			<element ref="us-net-tc:TelecommunicationsManhole"/>
+		</sequence>
+		<attributeGroup ref="gml:AssociationAttributeGroup"/>
+		<attributeGroup ref="gml:OwnershipAttributeGroup"/>
+	</complexType>
+	<element name="TelecommunicationsCable" type="us-net-tc:TelecommunicationsCableType" substitutionGroup="us-network:UtilityLinkSequence">
+		<annotation>
+			<documentation>-- Definition --
+A utility link sequence used to convey data signals (PSTN, radio or TV) from one location to another.</documentation>
+		</annotation>
+	</element>
+	<complexType name="TelecommunicationsCableType">
+		<complexContent>
+			<extension base="us-network:UtilityLinkSequenceType">
+				<sequence>
+					<element name="material" nillable="true">
+						<annotation>
+							<documentation>-- Definition --
+Cable material.</documentation>
+						</annotation>
+						<complexType>
+							<simpleContent>
+								<extension base="us-net-tc:TelecommunicationsCableMaterialValueType">
+									<attribute name="nilReason" type="gml:NilReasonType"/>
+								</extension>
+							</simpleContent>
+						</complexType>
+					</element>
+					<element name="maxCapacity" nillable="true">
+						<annotation>
+							<documentation>-- Definition --
+Capacity of the cable.
+
+-- Description --
+"Capacity" actually depends on the cable type, but to keep things simple we didn't introduce derived telecommunicaions cables subtypes: copper cable, fiber-optic cable, etc. E.g. for copper cables the "capacity" is expressed in (twisted) pairs or quads. In fiber-optic cables "capacity" is expressed as total number of fibers.</documentation>
+						</annotation>
+						<complexType>
+							<simpleContent>
+								<extension base="gml:MeasureType">
+									<attribute name="nilReason" type="gml:NilReasonType"/>
+								</extension>
+							</simpleContent>
+						</complexType>
+					</element>
+				</sequence>
+			</extension>
+		</complexContent>
+	</complexType>
+	<complexType name="TelecommunicationsCablePropertyType">
+		<sequence minOccurs="0">
+			<element ref="us-net-tc:TelecommunicationsCable"/>
+		</sequence>
+		<attributeGroup ref="gml:AssociationAttributeGroup"/>
+		<attributeGroup ref="gml:OwnershipAttributeGroup"/>
+	</complexType>
+	<simpleType name="TelecommunicationsNetworkTypeValueType">
+		<annotation>
+			<documentation>-- Definition --
+Available types of telecommunications networks.</documentation>
+		</annotation>
+		<union memberTypes="us-net-tc:TelecommunicationsNetworkTypeValueEnumerationType us-net-tc:TelecommunicationsNetworkTypeValueOtherType"/>
+	</simpleType>
+	<simpleType name="TelecommunicationsNetworkTypeValueEnumerationType">
+		<annotation>
+			<documentation>-- Definition --
+Available types of telecommunications networks.</documentation>
+		</annotation>
+		<restriction base="string">
+			<enumeration value="computer">
+				<annotation>
+					<documentation>-- Definition --
+Computer network (e.g. LAN, WAN, MAN...)</documentation>
+				</annotation>
+			</enumeration>
+			<enumeration value="PSTN">
+				<annotation>
+					<documentation>-- Definition --
+Public switched telephone networks (PSTN).</documentation>
+				</annotation>
+			</enumeration>
+			<enumeration value="radio">
+				<annotation>
+					<documentation>-- Definition --
+Radio network.</documentation>
+				</annotation>
+			</enumeration>
+			<enumeration value="television">
+				<annotation>
+					<documentation>-- Definition --
+Television network.</documentation>
+				</annotation>
+			</enumeration>
+		</restriction>
+	</simpleType>
+	<simpleType name="TelecommunicationsNetworkTypeValueOtherType">
+		<restriction base="string">
+			<pattern value="other: \w{2,}"/>
+		</restriction>
+	</simpleType>
+	<element name="TelecommunicationsAppurtenance" type="us-net-tc:TelecommunicationsAppurtenanceType" substitutionGroup="us-network:UtilityNode">
+		<annotation>
+			<documentation>-- Definition --
+A node (point) appurtenance in telecommunications networks.</documentation>
+		</annotation>
+	</element>
+	<complexType name="TelecommunicationsAppurtenanceType">
+		<complexContent>
+			<extension base="us-network:UtilityNodeType">
+				<sequence>
+					<element name="type" nillable="true">
+						<annotation>
+							<documentation>-- Definition --
+Type of the telecommunications network appurtenance.</documentation>
+						</annotation>
+						<complexType>
+							<simpleContent>
+								<extension base="us-net-tc:TelecommunicationsAppurtenanceValueType">
+									<attribute name="nilReason" type="gml:NilReasonType"/>
+								</extension>
+							</simpleContent>
+						</complexType>
+					</element>
+				</sequence>
+			</extension>
+		</complexContent>
+	</complexType>
+	<complexType name="TelecommunicationsAppurtenancePropertyType">
+		<sequence minOccurs="0">
+			<element ref="us-net-tc:TelecommunicationsAppurtenance"/>
+		</sequence>
+		<attributeGroup ref="gml:AssociationAttributeGroup"/>
+		<attributeGroup ref="gml:OwnershipAttributeGroup"/>
+	</complexType>
+	<simpleType name="TelecommunicationsCableMaterialValueType">
+		<annotation>
+			<documentation>-- Definition --
+Available materials of telecommunications cables.</documentation>
+		</annotation>
+		<union memberTypes="us-net-tc:TelecommunicationsCableMaterialValueEnumerationType us-net-tc:TelecommunicationsCableMaterialValueOtherType"/>
+	</simpleType>
+	<simpleType name="TelecommunicationsCableMaterialValueEnumerationType">
+		<annotation>
+			<documentation>-- Definition --
+Available materials of telecommunications cables.</documentation>
+		</annotation>
+		<restriction base="string">
+			<enumeration value="coaxial">
+				<annotation>
+					<documentation>-- Definition --
+Coaxial cable.
+
+-- Description --
+A &lt;i&gt;c&lt;/i&gt;&lt;i&gt;oaxial &lt;/i&gt;&lt;i&gt;c&lt;/i&gt;&lt;i&gt;able&lt;/i&gt;, or coax, is an electrical cable with an inner conductor surrounded by a flexible, tubular insulating layer, surrounded by a tubular conducting shield.</documentation>
+				</annotation>
+			</enumeration>
+			<enumeration value="opticalFiber">
+				<annotation>
+					<documentation>-- Definition --
+Fibre-optic cable.
+
+-- Description --
+A &lt;i&gt;f&lt;/i&gt;&lt;i&gt;iber &lt;/i&gt;&lt;i&gt;o&lt;/i&gt;&lt;i&gt;ptic &lt;/i&gt;&lt;i&gt;c&lt;/i&gt;&lt;i&gt;able&lt;/i&gt; is composed of thin filaments of glass through which light beams are transmitted to carry large amounts of data. The optical fibers are surrounded by buffers, strength members, and jackets for protection, stiffness, and strength. A fiber-optic cable may be an all-fiber cable, or contain both optical fibers and metallic conductors.</documentation>
+				</annotation>
+			</enumeration>
+			<enumeration value="other">
+				<annotation>
+					<documentation>-- Definition --
+Other.</documentation>
+				</annotation>
+			</enumeration>
+			<enumeration value="twistedPair">
+				<annotation>
+					<documentation>-- Definition --
+Twisted pair (copper) cable.
+
+-- Description --
+A &lt;i&gt;c&lt;/i&gt;&lt;i&gt;opper &lt;/i&gt;&lt;i&gt;c&lt;/i&gt;&lt;i&gt;able&lt;/i&gt; is a group of metallic conductors (copper wires) bundled together that are capable of carrying voice and data transmissions. The copper wires are bound together, usually with a protective sheath, a strength member, and insulation between individual conductors and the entire group.</documentation>
+				</annotation>
+			</enumeration>
+		</restriction>
+	</simpleType>
+	<simpleType name="TelecommunicationsCableMaterialValueOtherType">
+		<restriction base="string">
+			<pattern value="other: \w{2,}"/>
+		</restriction>
+	</simpleType>
+</schema>

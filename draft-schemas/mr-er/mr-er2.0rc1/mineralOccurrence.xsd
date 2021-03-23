@@ -1,0 +1,926 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<schema xmlns="http://www.w3.org/2001/XMLSchema" xmlns:er="http://inspire.ec.europa.eu/schemas/er/2.0" xmlns:gml="http://www.opengis.net/gml/3.2" targetNamespace="http://inspire.ec.europa.eu/schemas/er/2.0" elementFormDefault="qualified" version="1.1.0">
+	<annotation>
+		<documentation>The MineralOccurrence package explicitly models the properties of those features commonly stored in mineral resource databases.  These are economic or sub-economic concentrations of commodities that may, but need not, have had mining activity associated with them. 
+
+The MineralOccurrence package key points are:
+1) Describes Earth Resources independent of associated human activities (i.e. mining); 
+2) Caters for description of Earth Resource using mineral deposit models that describe the actual deposit type; mineral systems that describe the processes associated with deposit formation; and supergene processes; 
+3) Utilises GeoSciML Mapped Feature to describe spatial representation and Earth Material to describe host, raw and associated materials; 
+4) Provides the ability to describe commodity resources formally or informally.</documentation>
+	</annotation>
+	<include schemaLocation="earthResource.xsd"/>
+	<import namespace="http://www.opengis.net/gml/3.2" schemaLocation="http://schemas.opengis.net/gml/3.2.1/gml.xsd"/>
+	<!--XML Schema document created by ShapeChange-->
+	<element name="EarthResourceMaterial" type="er:EarthResourceMaterialType" substitutionGroup="gml:AbstractObject">
+		<annotation>
+			<documentation>Identifies the material found in the earth or produced from earth material that is of economic interest</documentation>
+		</annotation>
+	</element>
+	<complexType name="EarthResourceMaterialType">
+		<sequence>
+			<element name="earthResourceMaterialRole" type="er:ERMaterialRoleCodeType">
+				<annotation>
+					<documentation>The role the EarthMaterial plays in the EarthResourceDescription (eg host rock, alteration product, primary, secondary)</documentation>
+				</annotation>
+			</element>
+			<element name="material">
+				<annotation>
+					<documentation>Uses EarthMaterial to describe the EarthResourceMaterial material</documentation>
+				</annotation>
+			</element>
+			<element name="proportion" nillable="true">
+				<annotation>
+					<documentation>The proportion of the EarthRespourceMaterial in the EarthResourceDescription</documentation>
+				</annotation>
+			</element>
+		</sequence>
+	</complexType>
+	<complexType name="EarthResourceMaterialPropertyType">
+		<sequence>
+			<element ref="er:EarthResourceMaterial"/>
+		</sequence>
+	</complexType>
+	<element name="MineralOccurrence" type="er:MineralOccurrenceType" substitutionGroup="er:EarthResource">
+		<annotation>
+			<documentation>Identifes the kinds of observable or inferred phenomena required to classify economic and sub-economic mineral resources</documentation>
+		</annotation>
+	</element>
+	<complexType name="MineralOccurrenceType">
+		<complexContent>
+			<extension base="er:EarthResourceType">
+				<sequence>
+					<element name="type" type="er:MineralOccurrenceTypeCodeType">
+						<annotation>
+							<documentation>Captures the type of mineral occurrence. Examples are prospect, occurrence, mineral deposit, ore deposit, field, district, lode, mineralized zone(?).</documentation>
+						</annotation>
+					</element>
+					<element name="endusePotential" nillable="true" maxOccurs="unbounded">
+						<annotation>
+							<documentation>-- Definition --
+The end-use potential of the mineral (eg for energy, fertilizer, building raw material etc)</documentation>
+						</annotation>
+						<complexType>
+							<simpleContent>
+								<extension base="er:EndusePotentialTypeCodeType">
+									<attribute name="nilReason" type="gml:NilReasonType"/>
+								</extension>
+							</simpleContent>
+						</complexType>
+					</element>
+				</sequence>
+			</extension>
+		</complexContent>
+	</complexType>
+	<complexType name="MineralOccurrencePropertyType">
+		<sequence minOccurs="0">
+			<element ref="er:MineralOccurrence"/>
+		</sequence>
+		<attributeGroup ref="gml:AssociationAttributeGroup"/>
+		<attributeGroup ref="gml:OwnershipAttributeGroup"/>
+	</complexType>
+	<simpleType name="ImportanceCodeType">
+		<annotation>
+			<documentation>-- Definition --
+The importance of the commodity to the earth resource. A subjective classification.</documentation>
+		</annotation>
+		<union memberTypes="er:ImportanceCodeEnumerationType er:ImportanceCodeOtherType"/>
+	</simpleType>
+	<simpleType name="ImportanceCodeEnumerationType">
+		<annotation>
+			<documentation>-- Definition --
+The importance of the commodity to the earth resource. A subjective classification.</documentation>
+		</annotation>
+		<restriction base="string"/>
+	</simpleType>
+	<simpleType name="ImportanceCodeOtherType">
+		<restriction base="string">
+			<pattern value="other: \w{2,}"/>
+		</restriction>
+	</simpleType>
+	<simpleType name="CalculationMethodCodeType">
+		<annotation>
+			<documentation>-- Definition --
+A code for the means used to calculate the ore measurement. Examples include JORC, Unspecified, UNESCO/World Bank and the Canadian CIM.</documentation>
+		</annotation>
+		<union memberTypes="er:CalculationMethodCodeEnumerationType er:CalculationMethodCodeOtherType"/>
+	</simpleType>
+	<simpleType name="CalculationMethodCodeEnumerationType">
+		<annotation>
+			<documentation>-- Definition --
+A code for the means used to calculate the ore measurement. Examples include JORC, Unspecified, UNESCO/World Bank and the Canadian CIM.</documentation>
+		</annotation>
+		<restriction base="string"/>
+	</simpleType>
+	<simpleType name="CalculationMethodCodeOtherType">
+		<restriction base="string">
+			<pattern value="other: \w{2,}"/>
+		</restriction>
+	</simpleType>
+	<simpleType name="ResourceCategoryCodeType">
+		<annotation>
+			<documentation>-- Definition --
+Indicates if the resource is measured, indicated, proved, probable, or inferred</documentation>
+		</annotation>
+		<union memberTypes="er:ResourceCategoryCodeEnumerationType er:ResourceCategoryCodeOtherType"/>
+	</simpleType>
+	<simpleType name="ResourceCategoryCodeEnumerationType">
+		<annotation>
+			<documentation>-- Definition --
+Indicates if the resource is measured, indicated, proved, probable, or inferred</documentation>
+		</annotation>
+		<restriction base="string"/>
+	</simpleType>
+	<simpleType name="ResourceCategoryCodeOtherType">
+		<restriction base="string">
+			<pattern value="other: \w{2,}"/>
+		</restriction>
+	</simpleType>
+	<simpleType name="MineralDepositGroupTermType">
+		<annotation>
+			<documentation>-- Definition --
+Terms for the grouping of mineral deposits defined by generic characteristics e.g. host rock, host structure, commodity, association with similar mineral processes e.g. porphyry.</documentation>
+		</annotation>
+		<union memberTypes="er:MineralDepositGroupTermEnumerationType er:MineralDepositGroupTermOtherType"/>
+	</simpleType>
+	<simpleType name="MineralDepositGroupTermEnumerationType">
+		<annotation>
+			<documentation>-- Definition --
+Terms for the grouping of mineral deposits defined by generic characteristics e.g. host rock, host structure, commodity, association with similar mineral processes e.g. porphyry.</documentation>
+		</annotation>
+		<restriction base="string"/>
+	</simpleType>
+	<simpleType name="MineralDepositGroupTermOtherType">
+		<restriction base="string">
+			<pattern value="other: \w{2,}"/>
+		</restriction>
+	</simpleType>
+	<simpleType name="ReserveCategoryCodeType">
+		<annotation>
+			<documentation>-- Definition --
+Defines the level of confidence of the estimate of the reserve</documentation>
+		</annotation>
+		<union memberTypes="er:ReserveCategoryCodeEnumerationType er:ReserveCategoryCodeOtherType"/>
+	</simpleType>
+	<simpleType name="ReserveCategoryCodeEnumerationType">
+		<annotation>
+			<documentation>-- Definition --
+Defines the level of confidence of the estimate of the reserve</documentation>
+		</annotation>
+		<restriction base="string"/>
+	</simpleType>
+	<simpleType name="ReserveCategoryCodeOtherType">
+		<restriction base="string">
+			<pattern value="other: \w{2,}"/>
+		</restriction>
+	</simpleType>
+	<element name="OreMeasure" type="er:OreMeasureType" abstract="true" substitutionGroup="gml:AbstractObject">
+		<annotation>
+			<documentation>The estimate of the Reserve, Resource or Endowment ore amount</documentation>
+		</annotation>
+	</element>
+	<complexType name="OreMeasureType" abstract="true">
+		<sequence>
+			<element name="measureDetails" type="er:CommodityMeasurePropertyType" maxOccurs="unbounded">
+				<annotation>
+					<documentation>A measure of the amount of each commodity, based on a reserve, resource or endowment calculation. This measure is obtained by multiplying the ore tonnage by the average grade of the commodity within the ore (generally expressed in tons of metal).</documentation>
+				</annotation>
+			</element>
+			<element name="calculationMethod" type="er:CalculationMethodCodeType">
+				<annotation>
+					<documentation>Means of calculating the measurement. Examples include JORC, Unspecified, UNESCO/World Bank and the Canadian CIM.</documentation>
+				</annotation>
+			</element>
+			<element name="date" type="gml:TimePrimitivePropertyType">
+				<annotation>
+					<documentation>Date of calculated/estimated value (single date or range)</documentation>
+				</annotation>
+			</element>
+			<element name="dimension" nillable="true">
+				<annotation>
+					<documentation>Size of the body used in the calculation</documentation>
+				</annotation>
+				<complexType>
+					<sequence>
+						<element ref="er:EarthResourceDimension"/>
+					</sequence>
+					<attribute name="nilReason" type="gml:NilReasonType"/>
+				</complexType>
+			</element>
+			<element name="proposedExtractionMethod" nillable="true">
+				<annotation>
+					<documentation>The method proposed to extract the commodity</documentation>
+				</annotation>
+			</element>
+			<element name="sourceReference" maxOccurs="unbounded">
+				<annotation>
+					<documentation>reference for the values</documentation>
+				</annotation>
+				<complexType>
+					<complexContent>
+						<extension base="gml:AbstractMetadataPropertyType">
+							<sequence/>
+							<attributeGroup ref="gml:AssociationAttributeGroup"/>
+						</extension>
+					</complexContent>
+				</complexType>
+			</element>
+			<element name="ore">
+				<annotation>
+					<documentation>Amount of ore</documentation>
+				</annotation>
+			</element>
+		</sequence>
+	</complexType>
+	<complexType name="OreMeasurePropertyType">
+		<sequence>
+			<element ref="er:OreMeasure"/>
+		</sequence>
+	</complexType>
+	<element name="Reserve" type="er:ReserveType" substitutionGroup="er:OreMeasure">
+		<annotation>
+			<documentation>The economically mineable part of a Measured and/or Indicated Mineral Resource. It includes diluting materials and allowances for losses, which may occur when the material is mined. "Marketable Coal Reserves" maybe reported in conjunction with, but not instead of, reports of Ore (Coal) Reserves. "Saleable product" (e.g. for industrial minerals) can be reported in conjunction with ore reserve.
+Synonyms: Ore Reserve; Coal Reserve (s); Diamond (or gemstone) Ore Reserve; Mineral Reserves (not preferred, should be stated that used to mean the same as JORC&amp;rsquo;s Ore Reserve); Mineable production estimates</documentation>
+		</annotation>
+	</element>
+	<complexType name="ReserveType">
+		<complexContent>
+			<extension base="er:OreMeasureType">
+				<sequence>
+					<element name="category" type="er:ReserveCategoryCodeType">
+						<annotation>
+							<documentation>Defines the level of confidence of the estimate</documentation>
+						</annotation>
+					</element>
+				</sequence>
+			</extension>
+		</complexContent>
+	</complexType>
+	<complexType name="ReservePropertyType">
+		<sequence>
+			<element ref="er:Reserve"/>
+		</sequence>
+	</complexType>
+	<element name="Endowment" type="er:EndowmentType" substitutionGroup="er:OreMeasure">
+		<annotation>
+			<documentation>Endowment refers to that quantity of a mineral in accumulations (deposits) meeting specified physical characteristics such as quality, size and depth.
+Usually includes Resources, as unlike the latter, it does not have to have prospects for "eventual economic extraction". It often includes the total amount of a commodity originally introduced to a particular location during the deposit forming processes - and thus can include resources, reserves, past production and mining and metallurgical losses.</documentation>
+		</annotation>
+	</element>
+	<complexType name="EndowmentType">
+		<complexContent>
+			<extension base="er:OreMeasureType">
+				<sequence>
+					<element name="includesReserves" nillable="true">
+						<annotation>
+							<documentation>Does the estimate include the reserves value (Y/N)</documentation>
+						</annotation>
+						<complexType>
+							<simpleContent>
+								<extension base="boolean">
+									<attribute name="nilReason" type="gml:NilReasonType"/>
+								</extension>
+							</simpleContent>
+						</complexType>
+					</element>
+					<element name="includesResources" nillable="true">
+						<annotation>
+							<documentation>Does the estimate include the resources value (Y/N)</documentation>
+						</annotation>
+						<complexType>
+							<simpleContent>
+								<extension base="boolean">
+									<attribute name="nilReason" type="gml:NilReasonType"/>
+								</extension>
+							</simpleContent>
+						</complexType>
+					</element>
+				</sequence>
+			</extension>
+		</complexContent>
+	</complexType>
+	<complexType name="EndowmentPropertyType">
+		<sequence>
+			<element ref="er:Endowment"/>
+		</sequence>
+	</complexType>
+	<element name="EarthResourceDimension" type="er:EarthResourceDimensionType" substitutionGroup="gml:AbstractObject">
+		<annotation>
+			<documentation>-- Definition --
+Describes the size/volume of the earth resource</documentation>
+		</annotation>
+	</element>
+	<complexType name="EarthResourceDimensionType">
+		<sequence>
+			<element name="area" nillable="true" maxOccurs="unbounded">
+				<annotation>
+					<documentation>-- Definition --
+The area of the Earth Resource</documentation>
+				</annotation>
+			</element>
+			<element name="depth" nillable="true" maxOccurs="unbounded">
+				<annotation>
+					<documentation>-- Definition --
+The depth of the Earth Resource</documentation>
+				</annotation>
+			</element>
+			<element name="length" nillable="true" maxOccurs="unbounded">
+				<annotation>
+					<documentation>-- Definition --
+The length of the Earth Resource</documentation>
+				</annotation>
+			</element>
+			<element name="width" nillable="true" maxOccurs="unbounded">
+				<annotation>
+					<documentation>-- Definition --
+The width of the Earth Resource</documentation>
+				</annotation>
+			</element>
+		</sequence>
+	</complexType>
+	<complexType name="EarthResourceDimensionPropertyType">
+		<sequence>
+			<element ref="er:EarthResourceDimension"/>
+		</sequence>
+	</complexType>
+	<element name="MineralSystem" type="er:MineralSystemType" substitutionGroup="gml:AbstractFeature">
+		<annotation>
+			<documentation>The concept of a mineral system is well established but poorly defined. The MineralSystem class is a placeholder for further work.
+
+The process of mineralisation (magmatic &amp;ndash; fluid/gas &amp;ndash; mechanical) can lead to a single deposit or a range of deposits of differing &amp;ldquo;deposit types&amp;rdquo;.
+
+The complete system is described by a number of workers as a cycle from ore generation, transport, deposition in traps and residual outflow. 
+
+It is therefore possible to describe a mineral system as having a number of characteristics.
+
+It is an &lt;b&gt;event&lt;/b&gt; occurring over a period of time.
+It involves mineral transport by either magmatic, fluid/gas, or sedimentary processes.
+Systems have distinctive characteristics (fluid chemistry etc)
+Systems may include a number of deposit types (traps).</documentation>
+		</annotation>
+	</element>
+	<complexType name="MineralSystemType">
+		<complexContent>
+			<extension base="gml:AbstractFeatureType">
+				<sequence>
+					<element name="resultantResource" nillable="true" maxOccurs="unbounded">
+						<annotation>
+							<appinfo>
+								<reversePropertyName xmlns="http://www.opengis.net/gml/3.2">er:geneticDescription</reversePropertyName>
+							</appinfo>
+						</annotation>
+						<complexType>
+							<sequence minOccurs="0">
+								<element ref="er:EarthResource"/>
+							</sequence>
+							<attributeGroup ref="gml:AssociationAttributeGroup"/>
+							<attributeGroup ref="gml:OwnershipAttributeGroup"/>
+						</complexType>
+					</element>
+					<element name="associationType">
+						<annotation>
+							<documentation>High level  term describing the characteristics of a mineral system, indicative of the processes involved and resulting deposits</documentation>
+						</annotation>
+					</element>
+				</sequence>
+			</extension>
+		</complexContent>
+	</complexType>
+	<complexType name="MineralSystemPropertyType">
+		<sequence minOccurs="0">
+			<element ref="er:MineralSystem"/>
+		</sequence>
+		<attributeGroup ref="gml:AssociationAttributeGroup"/>
+		<attributeGroup ref="gml:OwnershipAttributeGroup"/>
+	</complexType>
+	<simpleType name="MineralOccurrenceTypeCodeType">
+		<annotation>
+			<documentation>-- Definition --
+The type of mineral occurrence</documentation>
+		</annotation>
+		<union memberTypes="er:MineralOccurrenceTypeCodeEnumerationType er:MineralOccurrenceTypeCodeOtherType"/>
+	</simpleType>
+	<simpleType name="MineralOccurrenceTypeCodeEnumerationType">
+		<annotation>
+			<documentation>-- Definition --
+The type of mineral occurrence</documentation>
+		</annotation>
+		<restriction base="string"/>
+	</simpleType>
+	<simpleType name="MineralOccurrenceTypeCodeOtherType">
+		<restriction base="string">
+			<pattern value="other: \w{2,}"/>
+		</restriction>
+	</simpleType>
+	<simpleType name="ERMaterialRoleCodeType">
+		<annotation>
+			<documentation>-- Definition --
+The role the EarthMaterial plays in the EarthResourceDescription</documentation>
+		</annotation>
+		<union memberTypes="er:ERMaterialRoleCodeEnumerationType er:ERMaterialRoleCodeOtherType"/>
+	</simpleType>
+	<simpleType name="ERMaterialRoleCodeEnumerationType">
+		<annotation>
+			<documentation>-- Definition --
+The role the EarthMaterial plays in the EarthResourceDescription</documentation>
+		</annotation>
+		<restriction base="string"/>
+	</simpleType>
+	<simpleType name="ERMaterialRoleCodeOtherType">
+		<restriction base="string">
+			<pattern value="other: \w{2,}"/>
+		</restriction>
+	</simpleType>
+	<element name="Commodity" type="er:CommodityType" substitutionGroup="gml:AbstractFeature">
+		<annotation>
+			<documentation>The material of economic interest in the EarthResource</documentation>
+		</annotation>
+	</element>
+	<complexType name="CommodityType">
+		<complexContent>
+			<extension base="gml:AbstractFeatureType">
+				<sequence>
+					<element name="source" type="er:EarthResourcePropertyType">
+						<annotation>
+							<documentation>The deposit/resource from which the commodity comes.</documentation>
+							<appinfo>
+								<reversePropertyName xmlns="http://www.opengis.net/gml/3.2">er:commodityDescription</reversePropertyName>
+							</appinfo>
+						</annotation>
+					</element>
+					<element name="commodity" type="gml:CodeType" maxOccurs="unbounded">
+						<annotation>
+							<documentation>The earth resource commodity (eg Cu, Au, Dimension Stone).  This should be from a hierarchical controlled vocabulary to handle the group the commodity belongs to (eg base metal, precious metal, industrial mineral, energy).
+
+Refers to a vocabulary of terms that classify the commodity (gold, copper, gravel, base metal, coal etc).
+This is byReference so the xlink:href specifies the (resolvable) identity of the commodity clasifier and the xlink:title provides the prefLabel of the classifier..</documentation>
+							<appinfo>
+								<targetElement xmlns="http://www.opengis.net/gml/3.2">er:CommodityTerm</targetElement>
+							</appinfo>
+						</annotation>
+					</element>
+					<element name="commodityImportance" nillable="true">
+						<annotation>
+							<documentation>The importance of the commodity to the earth resource. A subjective classification (eg minor, major)</documentation>
+						</annotation>
+						<complexType>
+							<simpleContent>
+								<extension base="er:ImportanceCodeType">
+									<attribute name="nilReason" type="gml:NilReasonType"/>
+								</extension>
+							</simpleContent>
+						</complexType>
+					</element>
+					<element name="commodityRank" nillable="true">
+						<annotation>
+							<documentation>The rank the commodity has in the order of commodities that are part of the earth reource (eg 1, 2, 3)</documentation>
+						</annotation>
+						<complexType>
+							<simpleContent>
+								<extension base="integer">
+									<attribute name="nilReason" type="gml:NilReasonType"/>
+								</extension>
+							</simpleContent>
+						</complexType>
+					</element>
+				</sequence>
+			</extension>
+		</complexContent>
+	</complexType>
+	<complexType name="CommodityPropertyType">
+		<sequence minOccurs="0">
+			<element ref="er:Commodity"/>
+		</sequence>
+		<attributeGroup ref="gml:AssociationAttributeGroup"/>
+		<attributeGroup ref="gml:OwnershipAttributeGroup"/>
+	</complexType>
+	<simpleType name="ExplorationResultCodeType">
+		<annotation>
+			<documentation>-- Definition --
+The result of the exploration activity</documentation>
+		</annotation>
+		<union memberTypes="er:ExplorationResultCodeEnumerationType er:ExplorationResultCodeOtherType"/>
+	</simpleType>
+	<simpleType name="ExplorationResultCodeEnumerationType">
+		<annotation>
+			<documentation>-- Definition --
+The result of the exploration activity</documentation>
+		</annotation>
+		<restriction base="string"/>
+	</simpleType>
+	<simpleType name="ExplorationResultCodeOtherType">
+		<restriction base="string">
+			<pattern value="other: \w{2,}"/>
+		</restriction>
+	</simpleType>
+	<element name="Resource" type="er:ResourceType" substitutionGroup="er:OreMeasure">
+		<annotation>
+			<documentation>A concentration or occurrence of material of intrinsic economic interest in or on the Earth&amp;rsquo;s crust in such form, quality and quantity that there are reasonable prospects for eventual economic extraction.
+Synonyms: Mineral Resource; Coal Resource (s); Diamond (Gemstone) Resource; Potentially Mineable Mineralisation</documentation>
+		</annotation>
+	</element>
+	<complexType name="ResourceType">
+		<complexContent>
+			<extension base="er:OreMeasureType">
+				<sequence>
+					<element name="category" type="er:ResourceCategoryCodeType">
+						<annotation>
+							<documentation>Measured, indicated, proved, probable, inferred.</documentation>
+						</annotation>
+					</element>
+					<element name="includesReserves" nillable="true">
+						<annotation>
+							<documentation>Whether estimate of resources uses reserve values (Y/N)</documentation>
+						</annotation>
+						<complexType>
+							<simpleContent>
+								<extension base="boolean">
+									<attribute name="nilReason" type="gml:NilReasonType"/>
+								</extension>
+							</simpleContent>
+						</complexType>
+					</element>
+				</sequence>
+			</extension>
+		</complexContent>
+	</complexType>
+	<complexType name="ResourcePropertyType">
+		<sequence>
+			<element ref="er:Resource"/>
+		</sequence>
+	</complexType>
+	<element name="EarthResource" type="er:EarthResourceType" abstract="true" substitutionGroup="gml:AbstractFeature">
+		<annotation>
+			<documentation>Identifes the kinds of observable or inferred phenomena required to classify economic and sub-economic earth resources</documentation>
+		</annotation>
+	</element>
+	<complexType name="EarthResourceType" abstract="true">
+		<complexContent>
+			<extension base="gml:AbstractFeatureType">
+				<sequence>
+					<element name="supergeneModification" nillable="true" maxOccurs="unbounded">
+						<annotation>
+							<documentation>A supergene process which would allow a metal enrichment produced by the chemical remobilisation of metals in an oxidised or transitional environment.</documentation>
+						</annotation>
+						<complexType>
+							<sequence>
+								<element ref="er:SupergeneProcesses"/>
+							</sequence>
+							<attribute name="nilReason" type="gml:NilReasonType"/>
+						</complexType>
+					</element>
+					<element name="commodityDescription" type="er:CommodityPropertyType" maxOccurs="unbounded">
+						<annotation>
+							<documentation>Exhaustive list of the commodities present in the resource, ranked by importance order. Determining the rank of a commodity is not as simple as it may look: not only the tonnage (expressed in tons of metal) has to be taken into account, but also the scarcity and thus the price of the commodity. A deposit containing 500,000 t Cu and only 50 t Au will be classified as an Au-(Cu) deposit.</documentation>
+							<appinfo>
+								<reversePropertyName xmlns="http://www.opengis.net/gml/3.2">er:source</reversePropertyName>
+							</appinfo>
+						</annotation>
+					</element>
+					<element name="oreAmount" nillable="true" maxOccurs="unbounded">
+						<annotation>
+							<documentation>Gives an estimated or calculated amount of ore with the identification of the commodities contained and their grade.</documentation>
+						</annotation>
+						<complexType>
+							<sequence>
+								<element ref="er:OreMeasure"/>
+							</sequence>
+							<attribute name="nilReason" type="gml:NilReasonType"/>
+						</complexType>
+					</element>
+					<element name="geneticDescription" nillable="true">
+						<annotation>
+							<documentation>Provides a description for how the EarthResource formed</documentation>
+							<appinfo>
+								<reversePropertyName xmlns="http://www.opengis.net/gml/3.2">er:resultantResource</reversePropertyName>
+							</appinfo>
+						</annotation>
+						<complexType>
+							<sequence minOccurs="0">
+								<element ref="er:MineralSystem"/>
+							</sequence>
+							<attributeGroup ref="gml:AssociationAttributeGroup"/>
+							<attributeGroup ref="gml:OwnershipAttributeGroup"/>
+						</complexType>
+					</element>
+					<element name="composition" nillable="true" maxOccurs="unbounded">
+						<annotation>
+							<documentation>The material forming the EarthResource</documentation>
+						</annotation>
+						<complexType>
+							<sequence>
+								<element ref="er:EarthResourceMaterial"/>
+							</sequence>
+							<attribute name="nilReason" type="gml:NilReasonType"/>
+						</complexType>
+					</element>
+					<element name="classification" nillable="true">
+						<annotation>
+							<documentation>Classifies the EarthResource
+Systematically arranged information describing the essential attributes of a class of mineral deposits. May be empirical (descriptive) or theoretical (genetic).</documentation>
+						</annotation>
+						<complexType>
+							<sequence minOccurs="0">
+								<element ref="er:MineralDepositModel"/>
+							</sequence>
+							<attributeGroup ref="gml:AssociationAttributeGroup"/>
+							<attributeGroup ref="gml:OwnershipAttributeGroup"/>
+						</complexType>
+					</element>
+					<element name="explorationHistory" nillable="true" maxOccurs="unbounded">
+						<annotation>
+							<documentation>Recaps the work which has been done from regional reconnaissance, surface detailed prospecting, subsurface prospecting, assessment of the resource, to evaluation of the ore deposit. Depending on the work done on occurrences and prospects, allows an estimate of the 'still to be discovered' potential of an area. A detailed assessment with no result would lead to a pessimistic opinion.</documentation>
+						</annotation>
+						<complexType>
+							<sequence minOccurs="0">
+								<element ref="er:ExplorationActivity"/>
+							</sequence>
+							<attributeGroup ref="gml:AssociationAttributeGroup"/>
+							<attributeGroup ref="gml:OwnershipAttributeGroup"/>
+						</complexType>
+					</element>
+					<element name="child" nillable="true" maxOccurs="unbounded">
+						<annotation>
+							<appinfo>
+								<reversePropertyName xmlns="http://www.opengis.net/gml/3.2">er:parent</reversePropertyName>
+							</appinfo>
+						</annotation>
+						<complexType>
+							<complexContent>
+								<extension base="gml:AbstractMemberType">
+									<sequence minOccurs="0">
+										<element ref="er:EarthResource"/>
+									</sequence>
+									<attributeGroup ref="gml:AssociationAttributeGroup"/>
+								</extension>
+							</complexContent>
+						</complexType>
+					</element>
+					<element name="parent" nillable="true">
+						<annotation>
+							<appinfo>
+								<reversePropertyName xmlns="http://www.opengis.net/gml/3.2">er:child</reversePropertyName>
+							</appinfo>
+						</annotation>
+						<complexType>
+							<sequence minOccurs="0">
+								<element ref="er:EarthResource"/>
+							</sequence>
+							<attributeGroup ref="gml:AssociationAttributeGroup"/>
+							<attributeGroup ref="gml:OwnershipAttributeGroup"/>
+						</complexType>
+					</element>
+					<element name="resourceExtraction" nillable="true" maxOccurs="unbounded">
+						<annotation>
+							<documentation>Indicates if this resource is the subject of exploitation, and if so of which type. Depending on several factors (type of mineralization, size, grade, shape, depth, etc.) one or several (combined) methods may be used, including off site methods, surface mining (among which methods related to the exploitation of alluvial/elluvial deposits), underground mining. Knowledge about these methods is important as it may be strongly related to the quantity and type of wastes and environmental impacts generated by the extraction.</documentation>
+						</annotation>
+						<complexType>
+							<sequence minOccurs="0">
+								<element ref="er:MiningActivity"/>
+							</sequence>
+							<attributeGroup ref="gml:AssociationAttributeGroup"/>
+							<attributeGroup ref="gml:OwnershipAttributeGroup"/>
+						</complexType>
+					</element>
+					<element name="sourceReference" nillable="true" maxOccurs="unbounded">
+						<annotation>
+							<documentation>The source or reference for the Earth Resource. CI_Citation can not be serialised in-line for GML3.1 but as an xlink reference.</documentation>
+						</annotation>
+						<complexType>
+							<complexContent>
+								<extension base="gml:AbstractMetadataPropertyType">
+									<sequence/>
+									<attributeGroup ref="gml:AssociationAttributeGroup"/>
+								</extension>
+							</complexContent>
+						</complexType>
+					</element>
+					<element name="dimension" nillable="true">
+						<annotation>
+							<documentation>Describes the size/volume of the earth resource</documentation>
+						</annotation>
+						<complexType>
+							<sequence>
+								<element ref="er:EarthResourceDimension"/>
+							</sequence>
+							<attribute name="nilReason" type="gml:NilReasonType"/>
+						</complexType>
+					</element>
+					<element name="expression" nillable="true" maxOccurs="unbounded">
+						<annotation>
+							<documentation>Whether an EarthResource has a surface expression or has been detected under cover rocks.</documentation>
+						</annotation>
+					</element>
+					<element name="form" nillable="true" maxOccurs="unbounded">
+						<annotation>
+							<documentation>The orebodies typical physical and structural relationship to wallrocks and associated rocks (e.g. strataform, stratabound, cross-cutting, vein, intrusive contact etc)</documentation>
+						</annotation>
+					</element>
+					<element name="linearOrientation" nillable="true" maxOccurs="unbounded">
+						<annotation>
+							<documentation>Captures linear orientation of the Earth Resource (Plunge etc)</documentation>
+						</annotation>
+					</element>
+					<element name="planarOrientation" nillable="true" maxOccurs="unbounded">
+						<annotation>
+							<documentation>Captures planar orientation of the Earth Resource (Dip/Dip Direction etc)</documentation>
+						</annotation>
+					</element>
+					<element name="shape" nillable="true" maxOccurs="unbounded">
+						<annotation>
+							<documentation>The typical geometrical shape of the Earth Resource (e.g. lenticular, pipelike, irregular etc)</documentation>
+						</annotation>
+					</element>
+				</sequence>
+			</extension>
+		</complexContent>
+	</complexType>
+	<complexType name="EarthResourcePropertyType">
+		<sequence minOccurs="0">
+			<element ref="er:EarthResource"/>
+		</sequence>
+		<attributeGroup ref="gml:AssociationAttributeGroup"/>
+		<attributeGroup ref="gml:OwnershipAttributeGroup"/>
+	</complexType>
+	<simpleType name="EndusePotentialTypeCodeType">
+		<annotation>
+			<documentation>&lt;font color="#211d1e"&gt;There is no single classification for industrial minerals since different end-users divide them according to their own needs and disciplines. Industrial minerals have been classified according to their geological settings, chemistry or physical characteristics. Another classification, widely used, is based on their end-use (e.g., chemicals, fertilizers, ceramics, refractories, abrasives, etc.).&lt;/font&gt;</documentation>
+		</annotation>
+		<union memberTypes="er:EndusePotentialTypeCodeEnumerationType er:EndusePotentialTypeCodeOtherType"/>
+	</simpleType>
+	<simpleType name="EndusePotentialTypeCodeEnumerationType">
+		<annotation>
+			<documentation>&lt;font color="#211d1e"&gt;There is no single classification for industrial minerals since different end-users divide them according to their own needs and disciplines. Industrial minerals have been classified according to their geological settings, chemistry or physical characteristics. Another classification, widely used, is based on their end-use (e.g., chemicals, fertilizers, ceramics, refractories, abrasives, etc.).&lt;/font&gt;</documentation>
+		</annotation>
+		<restriction base="string"/>
+	</simpleType>
+	<simpleType name="EndusePotentialTypeCodeOtherType">
+		<restriction base="string">
+			<pattern value="other: \w{2,}"/>
+		</restriction>
+	</simpleType>
+	<element name="SupergeneProcesses" type="er:SupergeneProcessesType" substitutionGroup="gml:AbstractObject">
+		<annotation>
+			<documentation>Metal enrichment produced by the chemical remobilisation of metals in an oxidised or transitional environment. Does a supergene process exist (Y/N)</documentation>
+		</annotation>
+	</element>
+	<complexType name="SupergeneProcessesType">
+		<sequence>
+			<element name="depth" nillable="true">
+				<annotation>
+					<documentation>-- Definition --
+The depth at which the supergene processes occurred</documentation>
+				</annotation>
+			</element>
+			<element name="material" nillable="true" maxOccurs="unbounded">
+				<annotation>
+					<documentation>The description of the material (rock, soil) that constitutes the supergene process</documentation>
+				</annotation>
+			</element>
+			<element name="type" nillable="true">
+				<annotation>
+					<documentation>Type of supergene process. Examples are oxidation, leaching, enrichment etc</documentation>
+				</annotation>
+			</element>
+		</sequence>
+	</complexType>
+	<complexType name="SupergeneProcessesPropertyType">
+		<sequence>
+			<element ref="er:SupergeneProcesses"/>
+		</sequence>
+	</complexType>
+	<simpleType name="MineralDepositTypeTermType">
+		<annotation>
+			<documentation>-- Definition --
+Terms for the atyle of mineral occurrence or deposit. Generally a local or regional term. Should be referenced for definitions and descriptions. Single deposit terms may form member of a Mineral Deposit Group in local and regional schemas.</documentation>
+		</annotation>
+		<union memberTypes="er:MineralDepositTypeTermEnumerationType er:MineralDepositTypeTermOtherType"/>
+	</simpleType>
+	<simpleType name="MineralDepositTypeTermEnumerationType">
+		<annotation>
+			<documentation>-- Definition --
+Terms for the atyle of mineral occurrence or deposit. Generally a local or regional term. Should be referenced for definitions and descriptions. Single deposit terms may form member of a Mineral Deposit Group in local and regional schemas.</documentation>
+		</annotation>
+		<restriction base="string"/>
+	</simpleType>
+	<simpleType name="MineralDepositTypeTermOtherType">
+		<restriction base="string">
+			<pattern value="other: \w{2,}"/>
+		</restriction>
+	</simpleType>
+	<element name="ExplorationActivity" type="er:ExplorationActivityType" substitutionGroup="gml:AbstractFeature">
+		<annotation>
+			<documentation>-- Definition --
+Chronological list of surveys undertaken to better define the potential of a mineral occurrence</documentation>
+		</annotation>
+	</element>
+	<complexType name="ExplorationActivityType">
+		<complexContent>
+			<extension base="gml:AbstractFeatureType">
+				<sequence>
+					<element name="activityDuration" type="gml:TimePeriodPropertyType"/>
+					<element name="activityType" type="er:ExplorationActivityTypeCodeType"/>
+					<element name="explorationResult" type="er:ExplorationResultCodeType" maxOccurs="unbounded"/>
+				</sequence>
+			</extension>
+		</complexContent>
+	</complexType>
+	<complexType name="ExplorationActivityPropertyType">
+		<sequence minOccurs="0">
+			<element ref="er:ExplorationActivity"/>
+		</sequence>
+		<attributeGroup ref="gml:AssociationAttributeGroup"/>
+		<attributeGroup ref="gml:OwnershipAttributeGroup"/>
+	</complexType>
+	<element name="CommodityMeasure" type="er:CommodityMeasureType" substitutionGroup="gml:AbstractObject">
+		<annotation>
+			<documentation>A measure of the amount of the commodity based on a Reserve, Resource or Endowment calculation.</documentation>
+		</annotation>
+	</element>
+	<complexType name="CommodityMeasureType">
+		<sequence>
+			<element name="commodityOfInterest" type="er:CommodityPropertyType" maxOccurs="unbounded">
+				<annotation>
+					<documentation>Several commodities may be of interest inside a deposit. A deposit may be a very large deposit for one commodity (this commodity is the main one) and only a medium-sized deposit for some other commodities. Such a ranking necessitates a (statistical) comparison with a large set of deposits throughout the world to ensure that it is valid.</documentation>
+				</annotation>
+			</element>
+			<element name="commodityAmount" nillable="true">
+				<annotation>
+					<documentation>Amount of commodity</documentation>
+				</annotation>
+			</element>
+			<element name="cutOffGrade" nillable="true">
+				<annotation>
+					<documentation>Cut off grade used for calculation</documentation>
+				</annotation>
+			</element>
+			<element name="grade" nillable="true">
+				<annotation>
+					<documentation>grade of commodity
+Where OreMeasure is Resource or Reserve CommodityMeasure::grade is mandatory</documentation>
+				</annotation>
+			</element>
+		</sequence>
+	</complexType>
+	<complexType name="CommodityMeasurePropertyType">
+		<sequence>
+			<element ref="er:CommodityMeasure"/>
+		</sequence>
+	</complexType>
+	<simpleType name="ExplorationActivityTypeCodeType">
+		<annotation>
+			<documentation>-- Definition --
+The type of exploration activity carried out</documentation>
+		</annotation>
+		<union memberTypes="er:ExplorationActivityTypeCodeEnumerationType er:ExplorationActivityTypeCodeOtherType"/>
+	</simpleType>
+	<simpleType name="ExplorationActivityTypeCodeEnumerationType">
+		<annotation>
+			<documentation>-- Definition --
+The type of exploration activity carried out</documentation>
+		</annotation>
+		<restriction base="string"/>
+	</simpleType>
+	<simpleType name="ExplorationActivityTypeCodeOtherType">
+		<restriction base="string">
+			<pattern value="other: \w{2,}"/>
+		</restriction>
+	</simpleType>
+	<element name="MineralDepositModel" type="er:MineralDepositModelType" substitutionGroup="gml:AbstractGML">
+		<annotation>
+			<documentation>Systematically arranged information describing the essential attributes of a class of mineral deposits. May be empirical (descriptive) or theoretical (genetic).</documentation>
+		</annotation>
+	</element>
+	<complexType name="MineralDepositModelType">
+		<complexContent>
+			<extension base="gml:AbstractGMLType">
+				<sequence>
+					<element name="mineralDepositGroup" type="er:MineralDepositGroupTermType" maxOccurs="unbounded">
+						<annotation>
+							<documentation>A grouping of mineral deposits defined by generic characteristics e.g. host rock, host structure, commodity, association with similar mineral processes e.g. porphyry. Regional, national and more universal lists e.g. Cox and Singer 1986 (modified by GA)</documentation>
+						</annotation>
+					</element>
+					<element name="mineralDepositType" nillable="true" maxOccurs="unbounded">
+						<annotation>
+							<documentation>Style of mineral occurrence or deposit. Generally a local or regional term. Should be referenced for definitions and descriptions. Single deposit terms may form member of a Mineral Deposit Group in local and regional schemas.</documentation>
+						</annotation>
+						<complexType>
+							<simpleContent>
+								<extension base="er:MineralDepositTypeTermType">
+									<attribute name="nilReason" type="gml:NilReasonType"/>
+								</extension>
+							</simpleContent>
+						</complexType>
+					</element>
+				</sequence>
+			</extension>
+		</complexContent>
+	</complexType>
+	<complexType name="MineralDepositModelPropertyType">
+		<sequence minOccurs="0">
+			<element ref="er:MineralDepositModel"/>
+		</sequence>
+		<attributeGroup ref="gml:AssociationAttributeGroup"/>
+		<attributeGroup ref="gml:OwnershipAttributeGroup"/>
+	</complexType>
+</schema>

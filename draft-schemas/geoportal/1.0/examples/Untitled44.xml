@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<ns2:Resource xmlns:ns2="http://inspire.ec.europa.eu/schemas/geoportal/1.0" xmlns="http://inspire.ec.europa.eu/schemas/common/1.0" xmlns:ns4="http://www.w3.org/1999/xlink" xmlns:ns3="http://www.opengis.net/ows" xmlns:ns9="http://inspire.ec.europa.eu/schemas/inspire_vs/1.0" xmlns:ns5="http://inspire.ec.europa.eu/schemas/inspire_ds/1.0" xmlns:ns6="http://www.opengis.net/ows/1.1" xmlns:ns7="http://inspire.ec.europa.eu/schemas/inspire_vs_ows11/1.0" xmlns:ns8="http://www.opengis.net/wms" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="https://inspire.ec.europa.eu/schemas/geoportal/1.0 file:///E:/schemas/inspire/geoportal/1.0/geoportal.xsd">
+	<SpatialDataSet>
+		<ResourceTitle>Ground Water (Whole)</ResourceTitle>
+		<ResourceAbstract>This layer shows the results of a pan-European screening exercise on unfiltered groundwater samples. The exercise was run in 2008 using simple grab samples (1L). For further details please consult R. Loos et al / Water Research 44 (2010) 4115-4126.</ResourceAbstract>
+		<ResourceType>dataset</ResourceType>
+		<ResourceLocator>
+			<URL>http://fate-gis.jrc.ec.europa.eu/geohub/service/monitoring/ogc.ashx?service=WMS</URL>
+		</ResourceLocator>
+		<MandatoryKeyword xsi:type="inspireTheme_eng" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+			<OriginatingControlledVocabulary>
+				<Title>GEMET - INSPIRE themes</Title>
+				<DateOfPublication>2008-06-01</DateOfPublication>
+			</OriginatingControlledVocabulary>
+			<KeywordValue>Hydrography</KeywordValue>
+		</MandatoryKeyword>
+		<Keyword>
+			<KeywordValue>GROWS</KeywordValue>
+		</Keyword>
+		<Keyword>
+			<KeywordValue>monitoring campaign</KeywordValue>
+		</Keyword>
+		<Keyword>
+			<KeywordValue>FATE</KeywordValue>
+		</Keyword>
+		<Keyword>
+			<KeywordValue>chemicals monitoring</KeywordValue>
+		</Keyword>
+		<Keyword>
+			<KeywordValue>JRC</KeywordValue>
+		</Keyword>
+		<Keyword>
+			<KeywordValue>RWER</KeywordValue>
+		</Keyword>
+		<GeographicBoundingBox>
+			<East>57.22</East>
+			<West>-29.22</West>
+			<North>76.44</North>
+			<South>25.55</South>
+		</GeographicBoundingBox>
+		<TemporalReference>
+			<TemporalExtent>
+				<IntervalOfDates>
+					<StartingDate>2008-01-01</StartingDate>
+					<EndDate>2008-12-31</EndDate>
+				</IntervalOfDates>
+			</TemporalExtent>
+		</TemporalReference>
+		<TemporalReference>
+			<DateOfCreation>2011-05-24</DateOfCreation>
+		</TemporalReference>
+		<SpatialResolution>
+			<EquivalentScale>433344</EquivalentScale>
+		</SpatialResolution>
+		<Conformity>
+			<Specification>
+				<Title>COMMISSION REGULATION (EU) No 268/2010 of 29 March 2010 implementing Directive 2007/2/EC of the European Parliament and of the Council as regards the access to spatial data sets and services of the Member States by Community institutions and bodies under harmonised conditions</Title>
+				<DateOfCreation>2010-03-30</DateOfCreation>
+			</Specification>
+			<Degree>notEvaluated</Degree>
+		</Conformity>
+		<ConditionsForAccessAndUse>No conditions apply</ConditionsForAccessAndUse>
+		<LimitationsOnPublicAccess>(h) the protection of the environment to which such information relates, such as the location of rare species.</LimitationsOnPublicAccess>
+		<ResponsibleOrganisation>
+			<ResponsibleParty>
+				<OrganisationName>European Commission, Joint Research Centre</OrganisationName>
+				<EmailAddress>fate@jrc.ec.europa.eu</EmailAddress>
+			</ResponsibleParty>
+			<ResponsiblePartyRole>originator</ResponsiblePartyRole>
+		</ResponsibleOrganisation>
+		<MetadataPointOfContact>
+			<OrganisationName>European Commission, Joint Research Centre</OrganisationName>
+			<EmailAddress>konstantins.bogucarskis@jrc.ec.europa.eu</EmailAddress>
+		</MetadataPointOfContact>
+		<MetadataDate>2011-07-14</MetadataDate>
+		<MetadataLanguage>eng</MetadataLanguage>
+		<UniqueResourceIdentifier>
+			<Code>monitoring:GW_whole</Code>
+			<Namespace>http://fate.jrc.ec.europa.eu</Namespace>
+		</UniqueResourceIdentifier>
+		<ResourceLanguage>eng</ResourceLanguage>
+		<TopicCategory>environment</TopicCategory>
+		<TopicCategory>inlandWaters</TopicCategory>
+		<Lineage>Sampling points GPS coordinates converted to WKT WGS84; Some sampling points coordinates identified using Google Earth</Lineage>
+	</SpatialDataSet>
+	<ns2:SourceMetadataLocator>
+		<URL>http://www.ww.ww</URL>
+	</ns2:SourceMetadataLocator>
+	<ns2:GeoportalMetadataLocator>
+		<URL>http://www.ww.ww</URL>
+	</ns2:GeoportalMetadataLocator>
+</ns2:Resource>

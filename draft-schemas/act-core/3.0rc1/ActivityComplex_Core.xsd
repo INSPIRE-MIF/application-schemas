@@ -1,0 +1,253 @@
+<?xml version="1.0" encoding="UTF-8"?><schema xmlns="http://www.w3.org/2001/XMLSchema" xmlns:act-core="http://inspire.ec.europa.eu/schemas/act-core/3.0rc1" xmlns:base="urn:x-inspire:specification:gmlas:BaseTypes:3.2" xmlns:base2="http://inspire.ec.europa.eu/schemas/base2/0.1" xmlns:gmd="http://www.isotc211.org/2005/gmd" xmlns:gml="http://www.opengis.net/gml/3.2" xmlns:sc="http://www.interactive-instruments.de/ShapeChange/AppInfo" elementFormDefault="qualified" targetNamespace="http://inspire.ec.europa.eu/schemas/act-core/3.0rc1" version="v3.0rc1">
+  <import namespace="http://inspire.ec.europa.eu/schemas/base2/0.1" schemaLocation="https://inspire.ec.europa.eu/draft-schemas/base2/0.1rc1/BaseTypes2.xsd"/>
+  <import namespace="http://www.interactive-instruments.de/ShapeChange/AppInfo" schemaLocation="http://portele.de/ShapeChangeAppinfo.xsd"/>
+  <import namespace="http://www.isotc211.org/2005/gmd" schemaLocation="http://schemas.opengis.net/iso/19139/20070417/gmd/gmd.xsd"/>
+  <import namespace="http://www.opengis.net/gml/3.2" schemaLocation="http://schemas.opengis.net/gml/3.2.1/gml.xsd"/>
+  <import namespace="urn:x-inspire:specification:gmlas:BaseTypes:3.2" schemaLocation="https://inspire.ec.europa.eu/schemas/base/3.2/BaseTypes.xsd"/>
+  <!--XML Schema document created by ShapeChange-->
+  <element name="ActivityComplex" substitutionGroup="gml:AbstractFeature" type="act-core:ActivityComplexType">
+    <annotation>
+      <documentation>-- Name --
+activity complex
+
+-- Definition --
+A "single unit", both technically and economically, under the management control of the same legal entity (operator), covering activities as those listed in the Eurostat NACE classification, products and services. Activity Complex includes all infrastructure, equipment and materials. It must represent the whole area, at the same or different geographical location, managed by a "single unit".
+
+-- Description --
+NOTE 1 This class describes the minimal set of elements necessary to describe and identify geographically a legal entity and the activities taken place on it under the context of a Environmental purposes.
+
+NOTE 2 "Activity Complex" could be assimilated to terms described on the legislation as Facility, Establishment, Plant, Holding, Organization ,Farm, Extractive Industries or Aquaculture Production Business among others
+
+EXAMPLE i.e. an Agro-business that is legally registered under the Emissions Directive.</documentation>
+    </annotation>
+  </element>
+  <complexType name="ActivityComplexType">
+    <complexContent>
+      <extension base="gml:AbstractFeatureType">
+        <sequence>
+          <element name="inspireId" type="base:IdentifierPropertyType">
+            <annotation>
+              <documentation>-- Name --
+INSPIRE identifier
+
+-- Definition --
+External object identifier of the “Activity Complex”.
+
+-- Description --
+
+NOTE  An external object identifier is a unique object identifier published by the responsible body, which may be used by external applications to reference the spatial object. The identifier is an identifier of the spatial object, not an identifier of the real-world phenomenon.</documentation>
+            </annotation>
+          </element>
+          <element maxOccurs="unbounded" minOccurs="0" name="thematicId" type="base2:ThematicIdentifierPropertyType">
+            <annotation>
+              <documentation>-- Name --
+thematic identifier
+
+-- Definition --
+Thematic Activity Complex identifier.
+
+-- Description --
+NOTE  It may be the identification code provided or maintained by the Member States public authority to identify the object in the context of specific or general thematic scopes. 
+
+EXAMPLE  Assigned National PRTR Code.</documentation>
+            </annotation>
+          </element>
+          <element minOccurs="0" name="name" type="string">
+            <annotation>
+              <documentation>-- Name --
+name
+
+-- Definition --
+Descriptive name of the “Activity Complex”.
+
+-- Description --
+NOTE 1 Several names in different languages may be expressed.
+
+NOTE 2 It is recommended that the language of the name (part of the Geographical/Name data type) be filled whenever possible.</documentation>
+            </annotation>
+          </element>
+          <element name="geometry" type="gml:GeometryPropertyType">
+            <annotation>
+              <documentation>-- Name --
+geometry
+
+-- Definition --
+The geometry used to define the extent or position of the “Activity Complex”.
+
+-- Description --
+NOTE 1 Based on the provided description, different geometries could be used to represent the Activity Complex as a one legal whole.
+EXAMPLE  1 E-prtr geometry is given by a single point based on Geographical Coordinates (see below). In other levels of detail or depending on the Data Provider this could be represented [e.g.] by a Multi-poligon.
+
+EXAMPLE 2 PRTR - Legal act example: “ … the latitude and longitude coordinates within an arc of 5 minutes that avoid the direct identification of an individual holding….”.</documentation>
+            </annotation>
+          </element>
+          <element maxOccurs="unbounded" name="function" type="act-core:FunctionPropertyType">
+            <annotation>
+              <documentation>-- Name --
+function
+
+-- Definition --
+Activities performed by the “Activity Complex”. Function is as minimum described by a reference to the Activity and potentially complemented by information about Inputs and Outputs involved depending on the context in which is being described.
+
+-- Description -- 
+NOTE  The Activity described as part of the Function “Activity Complex” should be recorded using a controlled vocabulary where a particular controlled vocabulary is in use within a given context, such as SIC codes in the UK, it is acceptable to use these, however, the preferred choice for European interoperability is whenever possible NACE [NACE].</documentation>
+            </annotation>
+          </element>
+          <element name="validFrom" nillable="true">
+            <annotation>
+              <documentation>-- Name --
+valid from
+
+-- Definition --
+The time when the activity complex started to exist in the real world.</documentation>
+            </annotation>
+            <complexType>
+              <simpleContent>
+                <extension base="dateTime">
+                  <attribute name="nilReason" type="gml:NilReasonType"/>
+                </extension>
+              </simpleContent>
+            </complexType>
+          </element>
+          <element minOccurs="0" name="validTo" nillable="true">
+            <annotation>
+              <documentation>-- Name --
+valid to
+
+-- Definition --
+The time when the activity complex no longer exists in the real world.</documentation>
+            </annotation>
+            <complexType>
+              <simpleContent>
+                <extension base="dateTime">
+                  <attribute name="nilReason" type="gml:NilReasonType"/>
+                </extension>
+              </simpleContent>
+            </complexType>
+          </element>
+          <element name="beginLifespanVersion" nillable="true">
+            <annotation>
+              <documentation>-- Name --
+begin lifespan version
+
+-- Definition --
+Date and time at which this version of the spatial object was inserted or changed in the spatial data set.
+
+-- Description --
+NOTE This date is recorded to enable the generation of change only update files.</documentation>
+            </annotation>
+            <complexType>
+              <simpleContent>
+                <extension base="dateTime">
+                  <attribute name="nilReason" type="gml:NilReasonType"/>
+                </extension>
+              </simpleContent>
+            </complexType>
+          </element>
+          <element minOccurs="0" name="endLifespanVersion" nillable="true">
+            <annotation>
+              <documentation>-- Name --
+end lifespan version
+
+-- Definition --
+Date and time at which this version of the spatial object was superseded or retired in the spatial data set.
+
+-- Description --
+NOTE This date is recorded primarily for those systems which "close" an entry in the spatial data set in the event of an attribute change.</documentation>
+            </annotation>
+            <complexType>
+              <simpleContent>
+                <extension base="dateTime">
+                  <attribute name="nilReason" type="gml:NilReasonType"/>
+                </extension>
+              </simpleContent>
+            </complexType>
+          </element>
+        </sequence>
+      </extension>
+    </complexContent>
+  </complexType>
+  <complexType name="ActivityComplexPropertyType">
+    <sequence minOccurs="0">
+      <element ref="act-core:ActivityComplex"/>
+    </sequence>
+    <attributeGroup ref="gml:AssociationAttributeGroup"/>
+    <attributeGroup ref="gml:OwnershipAttributeGroup"/>
+  </complexType>
+  <element name="Function" substitutionGroup="gml:AbstractObject" type="act-core:FunctionType">
+    <annotation>
+      <documentation>-- Name --
+function
+
+-- Definition --
+The function of something expressed as an activity and optional input and/or output.
+
+-- Description -- 
+NOTE  Depending on the scope it can refer to different activities (co-incineration, Collection, exploration, incineration, interim disposal, management, recycling, primary production, primary treatment, recovery , recycling, release, storage, use, waste management, etc) and Inputs and Outputs (sludge, substance, tailings, technical products, urban waste water, volatile organic compound, waste, WEEE from private households, etc).</documentation>
+    </annotation>
+  </element>
+  <complexType name="FunctionType">
+    <sequence>
+      <element maxOccurs="unbounded" name="activity" type="gml:ReferenceType">
+        <annotation>
+          <documentation>-- Name --
+activity
+
+-- Definition --
+Classified description to define the major final economical objective something (Activity Complex) has being constructed or built for.
+Means any activity carried out in the course of an economic activity, a business or an undertaking, irrespectively of its private or public, profit or non-profit character;
+
+-- Description --
+NOTE  The Activity described as part of the Function for “Activity Complex” should be recorded using a controlled vocabulary where a particular controlled vocabulary is in use within a given context, such as SIC codes in the UK, it is acceptable to use these, however, the preferred choice for European interoperability is whenever possible NACE [NACE].</documentation>
+          <appinfo>
+            <taggedValue xmlns="http://www.interactive-instruments.de/ShapeChange/AppInfo" tag="obligation">IR</taggedValue>
+          </appinfo>
+        </annotation>
+      </element>
+      <element maxOccurs="unbounded" minOccurs="0" name="input" nillable="true" type="gml:ReferenceType">
+        <annotation>
+          <documentation>-- Name --
+input
+
+-- Definition --
+A [classified/registered] type of material or something immaterial, that enters a technical and economical unit according to its function.
+
+-- Description --
+NOTE  Depending on the thematic scope it can contain different values including terms as Biomass, Bio-Waste, Fuel, Organic Solvents, Waste Water, Waste for disposal or recovery, Primary Materials, ..</documentation>
+          <appinfo>
+            <taggedValue xmlns="http://www.interactive-instruments.de/ShapeChange/AppInfo" tag="obligation">IR</taggedValue>
+          </appinfo>
+        </annotation>
+      </element>
+      <element maxOccurs="unbounded" minOccurs="0" name="output" nillable="true" type="gml:ReferenceType">
+        <annotation>
+          <documentation>-- Name --
+output
+
+-- Definition --
+A [classified/registered] type of material or something immaterial, that leaves a technical and economical unit according to its function, ".
+
+-- Description --
+NOTE Depending on the thematic scope it can contain different values including terms as Registered Pollutants, Waste, Processed Products, leakage, etc.</documentation>
+          <appinfo>
+            <taggedValue xmlns="http://www.interactive-instruments.de/ShapeChange/AppInfo" tag="obligation">IR</taggedValue>
+          </appinfo>
+        </annotation>
+      </element>
+      <element minOccurs="0" name="description" nillable="true" type="gmd:PT_FreeText_PropertyType">
+        <annotation>
+          <documentation>-- Name --
+description
+
+-- Definition --
+A more detailed description of the function and the activities taken place on the "Activity Complex".</documentation>
+        </annotation>
+      </element>
+    </sequence>
+  </complexType>
+  <complexType name="FunctionPropertyType">
+    <sequence>
+      <element ref="act-core:Function"/>
+    </sequence>
+  </complexType>
+</schema>

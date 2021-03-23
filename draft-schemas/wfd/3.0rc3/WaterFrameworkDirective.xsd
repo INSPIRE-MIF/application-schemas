@@ -1,0 +1,296 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<schema xmlns="http://www.w3.org/2001/XMLSchema" xmlns:am="http://inspire.ec.europa.eu/schemas/am/3.0rc3" xmlns:base="http://inspire.ec.europa.eu/schemas/base/3.3rc3/" xmlns:ge_hg="http://inspire.ec.europa.eu/schemas/ge_hg/3.0rc3" xmlns:gml="http://www.opengis.net/gml/3.2" xmlns:hy="urn:x-inspire:specification:gmlas:HydroBase:3.0" xmlns:hy-n="urn:x-inspire:specification:gmlas:HydroNetwork:3.0" xmlns:hy-p="urn:x-inspire:specification:gmlas:HydroPhysicalWaters:3.0" xmlns:sr="http://inspire.ec.europa.eu/schemas/sr/3.0rc3" xmlns:wfd="http://inspire.ec.europa.eu/schemas/wfd/3.0rc3" targetNamespace="http://inspire.ec.europa.eu/schemas/wfd/3.0rc3" elementFormDefault="qualified" version="3.0rc3">
+	<annotation>
+		<documentation>-- Name --
+Water Framework Directive
+
+-- Definition --
+The 'Water Framework Directive' application schema contains spatial objects associated with reporting under European Directive 2000/60/EC "establishing a framework for Community action in the field of water policy".</documentation>
+	</annotation>
+	<import namespace="http://inspire.ec.europa.eu/schemas/base/3.3rc3/" schemaLocation="https://inspire.ec.europa.eu/draft-schemas/base/3.3rc3/BaseTypes.xsd"/>
+	<import namespace="http://inspire.ec.europa.eu/schemas/am/3.0rc3" schemaLocation="https://inspire.ec.europa.eu/draft-schemas/am/3.0rc3/AreaManagementRestrictionRegulationZone.xsd"/>
+	<import namespace="http://inspire.ec.europa.eu/schemas/ge_hg/3.0rc3" schemaLocation="https://inspire.ec.europa.eu/draft-schemas/ge_hg/3.0rc3/HydrogeologyCore.xsd"/>
+	<import namespace="http://inspire.ec.europa.eu/schemas/sr/3.0rc3" schemaLocation="https://inspire.ec.europa.eu/draft-schemas/sr/3.0rc3/SeaRegions.xsd"/>
+	<import namespace="http://www.opengis.net/gml/3.2" schemaLocation="http://schemas.opengis.net/gml/3.2.1/gml.xsd"/>
+	<import namespace="urn:x-inspire:specification:gmlas:HydroBase:3.0" schemaLocation="https://inspire.ec.europa.eu/schemas/hy/3.0/HydroBase.xsd"/>
+	<import namespace="urn:x-inspire:specification:gmlas:HydroNetwork:3.0" schemaLocation="https://inspire.ec.europa.eu/schemas/hy-n/3.0/HydroNetwork.xsd"/>
+	<import namespace="urn:x-inspire:specification:gmlas:HydroPhysicalWaters:3.0" schemaLocation="https://inspire.ec.europa.eu/schemas/hy-p/3.0/HydroPhysicalWaters.xsd"/>
+	<!--XML Schema document created by ShapeChange-->
+	<element name="WFDGroundWaterBody" type="wfd:WFDGroundWaterBodyType" substitutionGroup="am:ManagementRestrictionOrRegulationZone">
+		<annotation>
+			<documentation>-- Definition --
+A distinct volume of groundwater within an aquifer or aquifers.
+
+-- Description --
+SOURCE [2000/60/EC Art. 2(12)].
+
+NOTE All WFD spatial object types are regarded as example extensions of the ManagementAreaRestrictionOrRegulationZone spatial object type whose content needs to be further discussed with the relevant WISE and WFD reporting working groups.</documentation>
+		</annotation>
+	</element>
+	<complexType name="WFDGroundWaterBodyType">
+		<complexContent>
+			<extension base="am:ManagementRestrictionOrRegulationZoneType">
+				<sequence>
+					<element name="relatedGroundWaterBody" nillable="true" maxOccurs="unbounded">
+						<annotation>
+							<documentation>-- Name --
+related groundwater body
+
+-- Definition --
+The natural groundwater body that the WFDGroundWaterBody is related to.
+
+-- Description --
+Based on the different assumptions established in Member States the delineation of a WFDGroundWaterBody boundary can differ from the natural GroundWaterBody extent.</documentation>
+						</annotation>
+						<complexType>
+							<sequence minOccurs="0">
+								<element ref="ge_hg:GroundWaterBody"/>
+							</sequence>
+							<attributeGroup ref="gml:AssociationAttributeGroup"/>
+							<attributeGroup ref="gml:OwnershipAttributeGroup"/>
+						</complexType>
+					</element>
+				</sequence>
+			</extension>
+		</complexContent>
+	</complexType>
+	<complexType name="WFDGroundWaterBodyPropertyType">
+		<sequence minOccurs="0">
+			<element ref="wfd:WFDGroundWaterBody"/>
+		</sequence>
+		<attributeGroup ref="gml:AssociationAttributeGroup"/>
+		<attributeGroup ref="gml:OwnershipAttributeGroup"/>
+	</complexType>
+	<element name="WFDRiver" type="wfd:WFDRiverType" substitutionGroup="wfd:WFDRiverOrLake">
+		<annotation>
+			<documentation>-- Definition --
+A body of inland water flowing for the most part on the surface of the land but which may flow underground for part of its course.
+
+-- Description --
+SOURCE [2000/60/EC Art. 2(4)].
+
+NOTE All WFD spatial object types are regarded as example extensions of the ManagementAreaRestrictionOrRegulationZone spatial object type whose content needs to be further discussed with the relevant WISE and WFD reporting working groups.</documentation>
+		</annotation>
+	</element>
+	<complexType name="WFDRiverType">
+		<complexContent>
+			<extension base="wfd:WFDRiverOrLakeType">
+				<sequence/>
+			</extension>
+		</complexContent>
+	</complexType>
+	<complexType name="WFDRiverPropertyType">
+		<sequence minOccurs="0">
+			<element ref="wfd:WFDRiver"/>
+		</sequence>
+		<attributeGroup ref="gml:AssociationAttributeGroup"/>
+		<attributeGroup ref="gml:OwnershipAttributeGroup"/>
+	</complexType>
+	<element name="WFDLake" type="wfd:WFDLakeType" substitutionGroup="wfd:WFDRiverOrLake">
+		<annotation>
+			<documentation>-- Definition --
+A body of standing inland surface water.
+
+-- Description --
+SOURCE [2000/60/EC Art. 2(5)].
+
+NOTE All WFD spatial object types are regarded as example extensions of the ManagementAreaRestrictionOrRegulationZone spatial object type whose content needs to be further discussed with the relevant WISE and WFD reporting working groups.</documentation>
+		</annotation>
+	</element>
+	<complexType name="WFDLakeType">
+		<complexContent>
+			<extension base="wfd:WFDRiverOrLakeType">
+				<sequence/>
+			</extension>
+		</complexContent>
+	</complexType>
+	<complexType name="WFDLakePropertyType">
+		<sequence minOccurs="0">
+			<element ref="wfd:WFDLake"/>
+		</sequence>
+		<attributeGroup ref="gml:AssociationAttributeGroup"/>
+		<attributeGroup ref="gml:OwnershipAttributeGroup"/>
+	</complexType>
+	<element name="WFDCoastalWater" type="wfd:WFDCoastalWaterType" substitutionGroup="wfd:WFDSurfaceWaterBody">
+		<annotation>
+			<documentation>-- Definition --
+Surface water on the landward side of a line, every point of which is at a distance of one nautical mile on the seaward side from the nearest point of the baseline from which the breadth of territorial waters is measured, extending where appropriate up to the outer limit of transitional waters.
+
+-- Description --
+SOURCE [2000/60/EC Art. 2(7)].
+
+NOTE All WFD spatial object types are regarded as example extensions of the ManagementAreaRestrictionOrRegulationZone spatial object type whose content needs to be further discussed with the relevant WISE and WFD reporting working groups.</documentation>
+		</annotation>
+	</element>
+	<complexType name="WFDCoastalWaterType">
+		<complexContent>
+			<extension base="wfd:WFDSurfaceWaterBodyType">
+				<sequence/>
+			</extension>
+		</complexContent>
+	</complexType>
+	<complexType name="WFDCoastalWaterPropertyType">
+		<sequence minOccurs="0">
+			<element ref="wfd:WFDCoastalWater"/>
+		</sequence>
+		<attributeGroup ref="gml:AssociationAttributeGroup"/>
+		<attributeGroup ref="gml:OwnershipAttributeGroup"/>
+	</complexType>
+	<element name="WFDTransitionalWater" type="wfd:WFDTransitionalWaterType" substitutionGroup="wfd:WFDSurfaceWaterBody">
+		<annotation>
+			<documentation>-- Definition --
+Bodies of surface water in the vicinity of river mouths which are partly saline in character as a result of their proximity to coastal waters but which are substantially influenced by freshwater flows.
+
+-- Description --
+SOURCE [2000/60/EC Art. 2(6)].
+
+NOTE All WFD spatial object types are regarded as example extensions of the ManagementAreaRestrictionOrRegulationZone spatial object type whose content needs to be further discussed with the relevant WISE and WFD reporting working groups.</documentation>
+		</annotation>
+	</element>
+	<complexType name="WFDTransitionalWaterType">
+		<complexContent>
+			<extension base="wfd:WFDSurfaceWaterBodyType">
+				<sequence/>
+			</extension>
+		</complexContent>
+	</complexType>
+	<complexType name="WFDTransitionalWaterPropertyType">
+		<sequence minOccurs="0">
+			<element ref="wfd:WFDTransitionalWater"/>
+		</sequence>
+		<attributeGroup ref="gml:AssociationAttributeGroup"/>
+		<attributeGroup ref="gml:OwnershipAttributeGroup"/>
+	</complexType>
+	<element name="WFDSurfaceWaterBody" type="wfd:WFDSurfaceWaterBodyType" abstract="true" substitutionGroup="am:ManagementRestrictionOrRegulationZone">
+		<annotation>
+			<documentation>-- Definition --
+A discrete and significant element of surface water.
+
+-- Description --
+SOURCE [Based on 2000/60/EC Art. 2(10)].
+
+EXAMPLE A lake, a reservoir, a stream, river or canal, part of a stream, river or canal, a transitional water or a stretch of coastal water.
+
+NOTE 1 The surface water bodies shall be identified as falling within either one of the following surface water categories - rivers, lakes, transitional waters or coastal waters - or as artificial surface water bodies or heavily modified surface water bodies. [2000/60/EC Ann. II 1.1(ii)]
+
+NOTE 2 All WFD spatial object types are regarded as example extensions of the ManagementAreaRestrictionOrRegulationZone spatial object type whose content needs to be further discussed with the relevant WISE and WFD reporting working groups.</documentation>
+		</annotation>
+	</element>
+	<complexType name="WFDSurfaceWaterBodyType" abstract="true">
+		<complexContent>
+			<extension base="am:ManagementRestrictionOrRegulationZoneType">
+				<sequence>
+					<element name="artificial" type="boolean">
+						<annotation>
+							<documentation>-- Definition --
+'Artificial water body' means a body of surface water created by human activity.
+
+-- Description --
+SOURCE [2000/60/EC Art. 2(8)].</documentation>
+						</annotation>
+					</element>
+					<element name="heavilyModified" type="boolean" minOccurs="0">
+						<annotation>
+							<documentation>-- Definition --
+'Heavily modified water body' means a body of surface water which as a result of physical alterations by human activity is substantially changed in character, as designated by the Member State in accordance with the provisions of WFD Annex II.
+
+-- Description --
+SOURCE [2000/60/EC Art. 2(9)].</documentation>
+						</annotation>
+					</element>
+					<element name="representativePoint" type="gml:PointPropertyType" nillable="true">
+						<annotation>
+							<documentation>-- Definition --
+Representative point of the WFD water body.</documentation>
+						</annotation>
+					</element>
+					<element name="relatedSurfaceWaterBody" nillable="true" maxOccurs="unbounded">
+						<complexType>
+							<choice minOccurs="0">
+								<element ref="hy-p:DrainageBasin"/>
+								<element ref="hy-n:HydroNode"/>
+								<element ref="hy-p:HydroPointOfInterest"/>
+								<element ref="hy-p:ManMadeObject"/>
+								<element ref="sr:SeaArea"/>
+								<element ref="sr:Shoreline"/>
+								<element ref="hy-p:SurfaceWater"/>
+								<element ref="hy-n:WatercourseLink"/>
+								<element ref="hy-n:WatercourseLinkSequence"/>
+								<element ref="hy-n:WatercourseSeparatedCrossing"/>
+							</choice>
+							<attributeGroup ref="gml:AssociationAttributeGroup"/>
+							<attributeGroup ref="gml:OwnershipAttributeGroup"/>
+						</complexType>
+					</element>
+				</sequence>
+			</extension>
+		</complexContent>
+	</complexType>
+	<complexType name="WFDSurfaceWaterBodyPropertyType">
+		<sequence minOccurs="0">
+			<element ref="wfd:WFDSurfaceWaterBody"/>
+		</sequence>
+		<attributeGroup ref="gml:AssociationAttributeGroup"/>
+		<attributeGroup ref="gml:OwnershipAttributeGroup"/>
+	</complexType>
+	<element name="WFDRiverOrLake" type="wfd:WFDRiverOrLakeType" abstract="true" substitutionGroup="wfd:WFDSurfaceWaterBody">
+		<annotation>
+			<documentation>-- Definition --
+Abstract class containing common attributes for a WFD river or lake.
+
+-- Description --
+NOTE All WFD spatial object types are regarded as example extensions of the ManagementAreaRestrictionOrRegulationZone spatial object type whose content needs to be further discussed with the relevant WISE and WFD reporting working groups.</documentation>
+		</annotation>
+	</element>
+	<complexType name="WFDRiverOrLakeType" abstract="true">
+		<complexContent>
+			<extension base="wfd:WFDSurfaceWaterBodyType">
+				<sequence>
+					<element name="large" nillable="true">
+						<annotation>
+							<documentation>-- Definition --
+Rivers with a catchment area &gt; 50,000 km&lt;sup&gt;2&lt;/sup&gt;; or rivers and main tributaries that have a catchment area between 5,000 km&lt;sup&gt;2&lt;/sup&gt; and 50,000 km&lt;sup&gt;2&lt;/sup&gt;.
+
+Lakes that have a surface area &gt; 500 km&lt;sup&gt;2&lt;/sup&gt;.
+
+-- Description --
+SOURCE [WISE GIS Guidance].</documentation>
+						</annotation>
+						<complexType>
+							<simpleContent>
+								<extension base="boolean">
+									<attribute name="nilReason" type="gml:NilReasonType"/>
+								</extension>
+							</simpleContent>
+						</complexType>
+					</element>
+					<element name="main" nillable="true">
+						<annotation>
+							<documentation>-- Definition --
+Rivers that have a catchment area &gt; 500 km&lt;sup&gt;2&lt;/sup&gt;.
+
+Lakes that have a surface area &gt; 10 km&lt;sup&gt;2&lt;/sup&gt;.
+
+-- Description --
+SOURCE [WISE GIS Guidance].</documentation>
+						</annotation>
+						<complexType>
+							<simpleContent>
+								<extension base="boolean">
+									<attribute name="nilReason" type="gml:NilReasonType"/>
+								</extension>
+							</simpleContent>
+						</complexType>
+					</element>
+				</sequence>
+			</extension>
+		</complexContent>
+	</complexType>
+	<complexType name="WFDRiverOrLakePropertyType">
+		<sequence minOccurs="0">
+			<element ref="wfd:WFDRiverOrLake"/>
+		</sequence>
+		<attributeGroup ref="gml:AssociationAttributeGroup"/>
+		<attributeGroup ref="gml:OwnershipAttributeGroup"/>
+	</complexType>
+</schema>

@@ -1,0 +1,314 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<schema xmlns="http://www.w3.org/2001/XMLSchema" xmlns:bu-base="http://inspire.ec.europa.eu/schemas/bu/3.0rc2" xmlns:bu-core3d="http://inspire.ec.europa.eu/schemas/bu-core3d/3.0rc2" xmlns:gml="http://www.opengis.net/gml/3.2" xmlns:sc="http://www.interactive-instruments.de/ShapeChange/AppInfo" targetNamespace="http://inspire.ec.europa.eu/schemas/bu-core3d/3.0rc2" elementFormDefault="qualified" version="3.0rc2">
+	<annotation>
+		<documentation>-- Definition --
+The core 3D application schema for INSPIRE theme building.</documentation>
+	</annotation>
+	<import namespace="http://inspire.ec.europa.eu/schemas/bu/3.0rc2" schemaLocation="https://inspire.ec.europa.eu/draft-schemas/bu-base/3.0rc2/BuildingsBase.xsd"/>
+	<import namespace="http://www.interactive-instruments.de/ShapeChange/AppInfo" schemaLocation="http://portele.de/ShapeChangeAppinfo.xsd"/>
+	<import namespace="http://www.opengis.net/gml/3.2" schemaLocation="http://schemas.opengis.net/gml/3.2.1/gml.xsd"/>
+	<!--XML Schema document created by ShapeChange-->
+	<element name="BuildingPart" type="bu-core3d:BuildingPartType" substitutionGroup="bu-core3d:AbstractBuilding">
+		<annotation>
+			<documentation>-- Definition --
+A BuildingPart is a sub-division of a Building that might be considered itself as a building.
+-- Description --
+NOTE 1:A building part is homogeneous related to its physical, functional and temporal aspects.
+
+EXAMPLE: A Building may be composed of two BuildingParts having different heights above ground.</documentation>
+		</annotation>
+	</element>
+	<complexType name="BuildingPartType">
+		<complexContent>
+			<extension base="bu-core3d:AbstractBuildingType">
+				<sequence/>
+			</extension>
+		</complexContent>
+	</complexType>
+	<complexType name="BuildingPartPropertyType">
+		<sequence minOccurs="0">
+			<element ref="bu-core3d:BuildingPart"/>
+		</sequence>
+		<attributeGroup ref="gml:AssociationAttributeGroup"/>
+		<attributeGroup ref="gml:OwnershipAttributeGroup"/>
+	</complexType>
+	<element name="Building" type="bu-core3d:BuildingType" substitutionGroup="bu-core3d:AbstractBuilding">
+		<annotation>
+			<documentation>-- Definition --
+A Building is an enclosed construction above and/or underground, used or intended for the shelter of humans, animals or things or for the production of economic goods. A building refers to any structure permanently constructed or erected on its site.</documentation>
+		</annotation>
+	</element>
+	<complexType name="BuildingType">
+		<complexContent>
+			<extension base="bu-core3d:AbstractBuildingType">
+				<sequence>
+					<element name="parts" nillable="true" minOccurs="0" maxOccurs="unbounded">
+						<annotation>
+							<documentation>-- Definition --
+The building parts composing the building.
+-- Description --
+A building may be a simple building (with no BuildingPart) or a composed building (with several BuildingParts).</documentation>
+						</annotation>
+						<complexType>
+							<complexContent>
+								<extension base="gml:AbstractMemberType">
+									<sequence minOccurs="0">
+										<element ref="bu-core3d:BuildingPart"/>
+									</sequence>
+									<attributeGroup ref="gml:AssociationAttributeGroup"/>
+								</extension>
+							</complexContent>
+						</complexType>
+					</element>
+				</sequence>
+			</extension>
+		</complexContent>
+	</complexType>
+	<complexType name="BuildingPropertyType">
+		<sequence minOccurs="0">
+			<element ref="bu-core3d:Building"/>
+		</sequence>
+		<attributeGroup ref="gml:AssociationAttributeGroup"/>
+		<attributeGroup ref="gml:OwnershipAttributeGroup"/>
+	</complexType>
+	<element name="BuildingGeometry3DLoD" type="bu-core3d:BuildingGeometry3DLoDType" substitutionGroup="gml:AbstractObject">
+		<annotation>
+			<documentation>-- Definition --
+Data type grouping the different ways to provide the 3D geometry of a building or building part.</documentation>
+		</annotation>
+	</element>
+	<complexType name="BuildingGeometry3DLoDType">
+		<sequence>
+			<element name="geometryMultiSurface" type="gml:MultiSurfacePropertyType" minOccurs="0">
+				<annotation>
+					<documentation>-- Definition --
+Representation of the outer boundary of the real world object. The outer boundary is represented by a Multi Surface, which may - in contrast to a solid representation - not be topologically clean. In particular, the ground surface may be missing.</documentation>
+				</annotation>
+			</element>
+			<element name="geometrySolid" type="gml:SolidPropertyType" minOccurs="0">
+				<annotation>
+					<documentation>-- Definition --
+Representation of the generalized outer boundary of the real world object by a solid.</documentation>
+				</annotation>
+			</element>
+			<element name="terrainIntersection" type="gml:MultiCurvePropertyType" nillable="true" minOccurs="0">
+				<annotation>
+					<documentation>-- Definition --
+Line or multi-line where the spatial object  (Building, BuildingPart, ...) touches the terrain representation.</documentation>
+				</annotation>
+			</element>
+			<element name="verticalGeometryReference3DBottom" nillable="true" minOccurs="0">
+				<annotation>
+					<documentation>-- Definition --
+Height level of the real world object to which the lower height of the model (z-value of the lower horizontal polygon) refers to. 
+-- Description --
+EXAMPLE: generalGround, bottomOfConstruction.</documentation>
+					<appinfo>
+						<taggedValue xmlns="http://www.interactive-instruments.de/ShapeChange/AppInfo" tag="obligation">IR</taggedValue>
+					</appinfo>
+				</annotation>
+				<complexType>
+					<simpleContent>
+						<extension base="bu-base:ElevationReferenceValueType">
+							<attribute name="nilReason" type="gml:NilReasonType"/>
+						</extension>
+					</simpleContent>
+				</complexType>
+			</element>
+			<element name="horizontalGeometryEstimatedAccuracy" nillable="true" minOccurs="0">
+				<annotation>
+					<documentation>-- Definition --
+The estimated absolute positional accuracy of the(X,Y) coordinates of the real world object representation, in the INSPIRE official Coordinate Reference System. Absolute positional accuracy is defined as the mean value of the positional uncertainties for a set of positions where the positional uncertainties are defined as the distance between a measured position and what is considered as the corresponding true position.
+
+-- Description --
+NOTE: this mean value may come from quality measures on a homogeneous population of buildings or from an estimation based on the knowledge of the production processes and of their accuracy.</documentation>
+				</annotation>
+				<complexType>
+					<simpleContent>
+						<extension base="gml:LengthType">
+							<attribute name="nilReason" type="gml:NilReasonType"/>
+						</extension>
+					</simpleContent>
+				</complexType>
+			</element>
+			<element name="verticalGeometryEstimatedAccuracy" nillable="true" minOccurs="0">
+				<annotation>
+					<documentation>-- Definition --
+The estimated absolute positional accuracy of the Z- coordinate of the real world object representation, in the INSPIRE official Coordinate Reference System. Absolute positional accuracy is defined as the mean value of the positional uncertainties for a set of positions where the positional uncertainties are defined as the distance between a measured position and what is considered as the corresponding true position.
+
+-- Description --
+NOTE: this mean value may come from quality measures on a homogeneous population of buildings or from an estimation based on the knowledge of the production processes and of their accuracy.</documentation>
+				</annotation>
+				<complexType>
+					<simpleContent>
+						<extension base="gml:LengthType">
+							<attribute name="nilReason" type="gml:NilReasonType"/>
+						</extension>
+					</simpleContent>
+				</complexType>
+			</element>
+		</sequence>
+	</complexType>
+	<complexType name="BuildingGeometry3DLoDPropertyType">
+		<sequence>
+			<element ref="bu-core3d:BuildingGeometry3DLoD"/>
+		</sequence>
+	</complexType>
+	<element name="AbstractBuilding" type="bu-core3d:AbstractBuildingType" abstract="true" substitutionGroup="bu-base:AbstractBuilding">
+		<annotation>
+			<documentation>-- Definition --
+Abstract feature type grouping the common properties of instanciable feature types Building and BuildingPart.
+-- Description --
+In core 3D application schema, feature type AbstractBuilding includes both the common semantic properties of Building and BuildingPart (by inheritance from feature type AbstractBuilding of base application schema) and the common geometric properties of Building and BuildingPart.</documentation>
+		</annotation>
+	</element>
+	<complexType name="AbstractBuildingType" abstract="true">
+		<complexContent>
+			<extension base="bu-base:AbstractBuildingType">
+				<sequence>
+					<element name="geometry2D" nillable="true" minOccurs="0" maxOccurs="unbounded">
+						<annotation>
+							<documentation>-- Definition --
+&lt;font color="#0f0f0f"&gt;Geometric representation of the building as 2D or 2,5D data.&lt;/font&gt;
+&lt;font color="#0f0f0f"&gt;-- Description --&lt;/font&gt;
+&lt;font color="#0f0f0f"&gt;NOTE: Multiple representations of the geometry are possible (e.g. by surface and by point).&lt;/font&gt;</documentation>
+						</annotation>
+						<complexType>
+							<sequence>
+								<element ref="bu-base:BuildingGeometry2D"/>
+							</sequence>
+							<attribute name="nilReason" type="gml:NilReasonType"/>
+						</complexType>
+					</element>
+					<element name="geometry3DLoD1" type="bu-core3d:BuildingGeometry3DLoD1PropertyType" minOccurs="0">
+						<annotation>
+							<documentation>-- Definition --
+Geometric representation of the building as 3D data at level of detail (LoD) 1, as defined in City GML. LoD1 consists in the representation of the generalized outer boundary of the real world object by vertical lateral surfaces and horizontal base polygons.</documentation>
+						</annotation>
+					</element>
+					<element name="geometry3DLoD2" type="bu-core3d:BuildingGeometry3DLoD2PropertyType" minOccurs="0">
+						<annotation>
+							<documentation>-- Definition --
+Geometric representation of the building as 3D data at level of detail (LoD) 2, as defined in City GML. LoD2 consists in the representation of the generalized outer boundary of the real world objectby vertical lateral surfaces and a prototypical roof shape or cover (from a defined list of roof shapes)
+NOTE: The prototypical roof shapes come from a defined list of roof shapes, in City GML; this list is equivalent to the code list RoofTypeValue, provided in the extended2D profile (without the hyperbolic parabaloidal roof).</documentation>
+						</annotation>
+					</element>
+					<element name="geometry3DLoD3" type="bu-core3d:BuildingGeometry3DLoDPropertyType" minOccurs="0">
+						<annotation>
+							<documentation>-- Definition --
+Geometric representation of the building as 3D data at level of detail (LoD) 3, as defined in City GML. LoD3 consists in the representation of the detailed outer boundary (including protrusions, facade elements and window recesses) of the real world object as well as of the actual roof shape (including dormers, chimneys).</documentation>
+						</annotation>
+					</element>
+					<element name="geometry3DLoD4" type="bu-core3d:BuildingGeometry3DLoDPropertyType" minOccurs="0">
+						<annotation>
+							<documentation>-- Definition --
+Geometric representation of the building as 3D data at level of detail (LoD) 4, as defined in City GML. LoD4 consists in the representation of the detailed outer boundary (including protrusions, facade elements, and window recesses) of the real world object as well as of the actual roof shape (including dormers, chimneys).
+
+-- Description --
+NOTE: The LoD4 representation  is equivalent to the LoD3 representation in core 3D application schema. The LoD 4 representation is more meaningful in extended 3D application schema, with the optional description of building interior.</documentation>
+						</annotation>
+					</element>
+				</sequence>
+			</extension>
+		</complexContent>
+	</complexType>
+	<complexType name="AbstractBuildingPropertyType">
+		<sequence minOccurs="0">
+			<element ref="bu-core3d:AbstractBuilding"/>
+		</sequence>
+		<attributeGroup ref="gml:AssociationAttributeGroup"/>
+		<attributeGroup ref="gml:OwnershipAttributeGroup"/>
+	</complexType>
+	<element name="BuildingGeometry3DLoD1" type="bu-core3d:BuildingGeometry3DLoD1Type" substitutionGroup="bu-core3d:BuildingGeometry3DLoD">
+		<annotation>
+			<documentation>-- Definition --
+Data type grouping the different ways to provide the 3D geometry of a building or building part, using LoD1 representation.</documentation>
+		</annotation>
+	</element>
+	<complexType name="BuildingGeometry3DLoD1Type">
+		<complexContent>
+			<extension base="bu-core3d:BuildingGeometry3DLoDType">
+				<sequence>
+					<element name="horizontalGeometryReference" nillable="true" minOccurs="0">
+						<annotation>
+							<documentation>-- Definition --
+Element of the real world object that was captured by the (X,Y) coordinates of the LoD1 Multisurface or Solid geometry.
+-- Description --
+EXAMPLE: footprint, roof edge</documentation>
+							<appinfo>
+								<taggedValue xmlns="http://www.interactive-instruments.de/ShapeChange/AppInfo" tag="obligation">IR</taggedValue>
+							</appinfo>
+						</annotation>
+						<complexType>
+							<simpleContent>
+								<extension base="bu-base:HorizontalGeometryReferenceValueType">
+									<attribute name="nilReason" type="gml:NilReasonType"/>
+								</extension>
+							</simpleContent>
+						</complexType>
+					</element>
+					<element name="verticalGeometryReference3DTop" nillable="true" minOccurs="0">
+						<annotation>
+							<documentation>-- Definition --
+Height level of the real world object to which the upper height of the model (z-value of the upper horizontal polygon) refers to.
+-- Description --
+EXAMPLE: generalRoof, lowestRoof Edge</documentation>
+							<appinfo>
+								<taggedValue xmlns="http://www.interactive-instruments.de/ShapeChange/AppInfo" tag="obligation">IR</taggedValue>
+							</appinfo>
+						</annotation>
+						<complexType>
+							<simpleContent>
+								<extension base="bu-base:ElevationReferenceValueType">
+									<attribute name="nilReason" type="gml:NilReasonType"/>
+								</extension>
+							</simpleContent>
+						</complexType>
+					</element>
+				</sequence>
+			</extension>
+		</complexContent>
+	</complexType>
+	<complexType name="BuildingGeometry3DLoD1PropertyType">
+		<sequence>
+			<element ref="bu-core3d:BuildingGeometry3DLoD1"/>
+		</sequence>
+	</complexType>
+	<element name="BuildingGeometry3DLoD2" type="bu-core3d:BuildingGeometry3DLoD2Type" substitutionGroup="bu-core3d:BuildingGeometry3DLoD">
+		<annotation>
+			<documentation>-- Definition --
+Data type grouping the different ways to provide the 3D geometry of a building or building part, using LoD2 representation.</documentation>
+		</annotation>
+	</element>
+	<complexType name="BuildingGeometry3DLoD2Type">
+		<complexContent>
+			<extension base="bu-core3d:BuildingGeometry3DLoDType">
+				<sequence>
+					<element name="horizontalGeometryReference" nillable="true" minOccurs="0">
+						<annotation>
+							<documentation>-- Definition --
+Element of the real world object that was captured by the (X,Y) coordinates of the LoD2 Multisurface or Solid geometry.
+-- Description --
+EXAMPLE: footprint, roof edge</documentation>
+							<appinfo>
+								<taggedValue xmlns="http://www.interactive-instruments.de/ShapeChange/AppInfo" tag="obligation">IR</taggedValue>
+							</appinfo>
+						</annotation>
+						<complexType>
+							<simpleContent>
+								<extension base="bu-base:HorizontalGeometryReferenceValueType">
+									<attribute name="nilReason" type="gml:NilReasonType"/>
+								</extension>
+							</simpleContent>
+						</complexType>
+					</element>
+				</sequence>
+			</extension>
+		</complexContent>
+	</complexType>
+	<complexType name="BuildingGeometry3DLoD2PropertyType">
+		<sequence>
+			<element ref="bu-core3d:BuildingGeometry3DLoD2"/>
+		</sequence>
+	</complexType>
+</schema>

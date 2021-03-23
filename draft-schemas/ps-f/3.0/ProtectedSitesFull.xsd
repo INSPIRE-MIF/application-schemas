@@ -1,0 +1,730 @@
+<?xml version="1.0" encoding="UTF-8"?><schema xmlns="http://www.w3.org/2001/XMLSchema" xmlns:base="urn:x-inspire:specification:gmlas:BaseTypes:3.2" xmlns:bu="http://inspire.jrc.ec.europa.eu/schemas/bu/2.0" xmlns:gmd="http://www.isotc211.org/2005/gmd" xmlns:gml="http://www.opengis.net/gml/3.2" xmlns:ps="urn:x-inspire:specification:gmlas:ProtectedSites:3.0" xmlns:ps-f="urn:x-inspire:specification:gmlas:ProtectedSitesFull:3.0" elementFormDefault="qualified" targetNamespace="urn:x-inspire:specification:gmlas:ProtectedSitesFull:3.0" version="3.0">
+  <import namespace="http://inspire.jrc.ec.europa.eu/schemas/bu/2.0" schemaLocation="https://inspire.ec.europa.eu/draft-schemas/bu/2.0/Buildings.xsd"/>
+  <import namespace="http://www.isotc211.org/2005/gmd" schemaLocation="http://schemas.opengis.net/iso/19139/20070417/gmd/gmd.xsd"/>
+  <import namespace="http://www.opengis.net/gml/3.2" schemaLocation="http://schemas.opengis.net/gml/3.2.1/gml.xsd"/>
+  <import namespace="urn:x-inspire:specification:gmlas:BaseTypes:3.2" schemaLocation="https://inspire.ec.europa.eu/schemas/base/3.2/BaseTypes.xsd"/>
+  <import namespace="urn:x-inspire:specification:gmlas:ProtectedSites:3.0" schemaLocation="https://inspire.ec.europa.eu/schemas/ps/3.0/ProtectedSites.xsd"/>
+  <!--XML Schema document created by ShapeChange-->
+  <element name="PresentHabitatType" substitutionGroup="gml:AbstractObject" type="ps-f:PresentHabitatTypeType">
+    <annotation>
+      <documentation>-- Definition --
+A habitat that exists on the Protected Site.
+
+-- Description --
+NOTE This is distinct from the Habitats for which the Site is protected (see ProtectedEntityType).</documentation>
+    </annotation>
+  </element>
+  <complexType name="PresentHabitatTypeType">
+    <sequence>
+      <element minOccurs="0" name="percentageUnderHabitat" nillable="true">
+        <annotation>
+          <documentation>-- Definition --
+The percentage of the total protected site that is covered by the Habitat.
+
+-- Description --
+NOTE This may include part or all of the specified Habitat. The percentages for all the habitats present on a protected site should add up to 100%.</documentation>
+        </annotation>
+        <complexType>
+          <simpleContent>
+            <extension base="anyURI">
+              <attribute name="nilReason" type="gml:NilReasonType"/>
+            </extension>
+          </simpleContent>
+        </complexType>
+      </element>
+      <element name="hasHabitat">
+        <annotation>
+          <documentation>-- Definition --
+The relationship between a protected site and a habitat that exists on that Site.</documentation>
+          <appinfo>
+            <targetElement xmlns="http://www.opengis.net/gml/3.2">null:Habitat</targetElement>
+          </appinfo>
+        </annotation>
+      </element>
+    </sequence>
+  </complexType>
+  <complexType name="PresentHabitatTypePropertyType">
+    <sequence>
+      <element ref="ps-f:PresentHabitatType"/>
+    </sequence>
+  </complexType>
+  <simpleType name="ActivityIntensityValueType">
+    <annotation>
+      <documentation>-- Definition --
+A code indicating the level of intensity of the influence of the activities in and around the site.</documentation>
+    </annotation>
+    <restriction base="string">
+      <enumeration value="high">
+        <annotation>
+          <documentation>-- Definition --
+The impacts and activities carried out on and around the Protected Site have a high intensity of influence.</documentation>
+        </annotation>
+      </enumeration>
+      <enumeration value="medium">
+        <annotation>
+          <documentation>-- Definition --
+The impacts and activities carried out on and around the Protected Site have a medium intensity of influence.</documentation>
+        </annotation>
+      </enumeration>
+      <enumeration value="low">
+        <annotation>
+          <documentation>-- Definition --
+The impacts and activities carried out on and around the Protected Site have a low intensity of influence.</documentation>
+        </annotation>
+      </enumeration>
+    </restriction>
+  </simpleType>
+  <element name="SiteManagementPlanType" substitutionGroup="gml:AbstractObject" type="ps-f:SiteManagementPlanTypeType">
+    <annotation>
+      <documentation>-- Definition --
+Site Management Plans are descriptions that set out practical actions and measures that are needed to ensure that the features for which the site is designated are maintained.</documentation>
+    </annotation>
+  </element>
+  <complexType name="SiteManagementPlanTypeType">
+    <sequence>
+      <element name="siteManagementPlanReference">
+        <annotation>
+          <documentation>-- Definition --
+The URL or citation for a document that describes the site management plans.</documentation>
+        </annotation>
+        <complexType>
+          <complexContent>
+            <extension base="gml:AbstractMetadataPropertyType">
+              <sequence>
+                <element ref="gmd:CI_Citation"/>
+              </sequence>
+            </extension>
+          </complexContent>
+        </complexType>
+      </element>
+      <element maxOccurs="unbounded" minOccurs="0" name="isExecutedBy" nillable="true" type="gml:ReferenceType">
+        <annotation>
+          <documentation>-- Definition --
+The Agency that is responsible (either in part or in total) for executing the Site Management Plan.</documentation>
+          <appinfo>
+            <targetElement xmlns="http://www.opengis.net/gml/3.2">ps-f:ResponsibleAgency</targetElement>
+          </appinfo>
+        </annotation>
+      </element>
+    </sequence>
+  </complexType>
+  <complexType name="SiteManagementPlanTypePropertyType">
+    <sequence>
+      <element ref="ps-f:SiteManagementPlanType"/>
+    </sequence>
+  </complexType>
+  <element name="ProtectedSite" substitutionGroup="ps:ProtectedSite" type="ps-f:ProtectedSiteType">
+    <annotation>
+      <documentation>-- Definition --
+An area designated or managed within a framework of international, Community and Member States' legislation to achieve specific conservation objectives.
+
+-- Description --
+Each protected site has a boundary defined through formal, legal or administrative agreements or decisions. The establishment of a protected site is normally underpinned by legislation and thus given weight in decisions about land use change and spatial planning. Each Site is normally selected as a representative example of a wider resource and selected through a formal criterion based approach. A protected site can be a contiguous extent of land/sea or a collection of discrete areas that together represent a single formal Protected Site.  This class has the attributes, constraints and associations that are part of the Full application schema.</documentation>
+    </annotation>
+  </element>
+  <complexType name="ProtectedSiteType">
+    <complexContent>
+      <extension base="ps:ProtectedSiteType">
+        <sequence>
+          <element maxOccurs="unbounded" minOccurs="0" name="siteIdentifier" nillable="true">
+            <annotation>
+              <documentation>-- Definition --
+The identifier for the Site using some national or international identification scheme.
+
+-- Description --
+This is distinct from the inspireID, which is a unique identifier for the record.</documentation>
+            </annotation>
+            <complexType>
+              <sequence>
+                <element ref="ps-f:SiteIdentifierType"/>
+              </sequence>
+              <attribute name="nilReason" type="gml:NilReasonType"/>
+            </complexType>
+          </element>
+          <element maxOccurs="unbounded" minOccurs="0" name="activitiesAndImpacts" nillable="true">
+            <annotation>
+              <documentation>-- Definition --
+Impacts resulting from human activities or natural processes that positively or negatively affect the conservation status of the protected site.
+
+-- Description --
+This information is needed to inform evaluation of conservation status of a Protected Site. This includes management activities such as grazing or cutting, land uses such as mineral extraction or transport and natural processes such as disease fluvial erosion.</documentation>
+            </annotation>
+            <complexType>
+              <sequence>
+                <element ref="ps-f:ActivitiesAndImpactsType"/>
+              </sequence>
+              <attribute name="nilReason" type="gml:NilReasonType"/>
+            </complexType>
+          </element>
+          <element minOccurs="0" name="spatialResolution" nillable="true">
+            <annotation>
+              <documentation>-- Definition --
+The spatial resolution of the protected site geometry. This may relate to a scale of capture value.</documentation>
+            </annotation>
+            <complexType>
+              <complexContent>
+                <extension base="gml:AbstractMetadataPropertyType">
+                  <sequence>
+                    <element ref="gmd:MD_Resolution"/>
+                  </sequence>
+                  <attribute name="nilReason" type="gml:NilReasonType"/>
+                </extension>
+              </complexContent>
+            </complexType>
+          </element>
+          <element minOccurs="0" name="siteDescription" nillable="true" type="gmd:LocalisedCharacterString_PropertyType">
+            <annotation>
+              <documentation>-- Definition --
+A general description of the Site and its characteristics.
+
+-- Description --
+NOTE This attribute corresponds to item 4.1 of the Natura2000 SDF.</documentation>
+            </annotation>
+          </element>
+          <element minOccurs="0" name="qualityAndImportance" nillable="true" type="gmd:LocalisedCharacterString_PropertyType">
+            <annotation>
+              <documentation>-- Definition --
+An overall indication of the quality and importance of the Site, in view of the conservation objectives of the various Directives.
+
+-- Description --
+NOTE This attribute corresponds to item 4.2 of the Natura2000 SDF.</documentation>
+            </annotation>
+          </element>
+          <element minOccurs="0" name="vulnerability" nillable="true" type="gmd:LocalisedCharacterString_PropertyType">
+            <annotation>
+              <documentation>-- Definition --
+The nature and extent of pressures on the Site from human and other influences and the fragility of habitats and ecosystems found there.
+
+-- Description --
+NOTE This attribute corresponds to item 4.3 of the Natura2000 SDF.</documentation>
+            </annotation>
+          </element>
+          <element minOccurs="0" name="ownership" nillable="true" type="gmd:LocalisedCharacterString_PropertyType">
+            <annotation>
+              <documentation>-- Definition --
+A general description of the site ownership.
+
+-- Description --
+NOTE This attribute corresponds to item 4.5 of the Natura2000 SDF.
+
+EXAMPLES Private, State, conservation NGO.</documentation>
+            </annotation>
+          </element>
+          <element minOccurs="0" name="documentation" nillable="true" type="gmd:LocalisedCharacterString_PropertyType">
+            <annotation>
+              <documentation>-- Definition --
+References to publications and scientific data concerning the Protected Site.
+
+-- Description --
+NOTE 1 This attribute corresponds to item 4.6 of the Natura2000 SDF.
+
+NOTE 2 Information entered should be made according to standard conventions for scientific references. Unpublished items or communications referring to the information given in the recording form should be included where ever useful.</documentation>
+            </annotation>
+          </element>
+          <element minOccurs="0" name="legalExpiryDate" nillable="true">
+            <annotation>
+              <documentation>-- Definition --
+The date that the protected site was legally destroyed. This is the date that the real world object was destroyed, not the date that its representation in an information system was destroyed or changed.</documentation>
+            </annotation>
+            <complexType>
+              <simpleContent>
+                <extension base="dateTime">
+                  <attribute name="nilReason" type="gml:NilReasonType"/>
+                </extension>
+              </simpleContent>
+            </complexType>
+          </element>
+          <element name="beginLifespanVersion" nillable="true">
+            <annotation>
+              <documentation>-- Definition --
+Date and time at which this version of the spatial object was inserted or changed in the spatial data set.
+
+-- Description --
+NOTE This date is recorded to enable the generation of change only update files.</documentation>
+            </annotation>
+            <complexType>
+              <simpleContent>
+                <extension base="dateTime">
+                  <attribute name="nilReason" type="gml:NilReasonType"/>
+                </extension>
+              </simpleContent>
+            </complexType>
+          </element>
+          <element minOccurs="0" name="endLifespanVersion" nillable="true">
+            <annotation>
+              <documentation>-- Definition --
+Date and time at which this version of the spatial object was superseded or retired in the spatial data set.
+
+-- Description --
+NOTE This date is recorded primarily for those systems which "close" an entry in the spatial data set in the event of an attribute change.</documentation>
+            </annotation>
+            <complexType>
+              <simpleContent>
+                <extension base="dateTime">
+                  <attribute name="nilReason" type="gml:NilReasonType"/>
+                </extension>
+              </simpleContent>
+            </complexType>
+          </element>
+          <element minOccurs="0" name="dataSource" nillable="true">
+            <annotation>
+              <documentation>-- Definition --
+The agency or organisation that is responsible for maintaining and providing the data about the Protected Site. This may be represented in the form of the URL or name and address of the organisation.</documentation>
+            </annotation>
+            <complexType>
+              <simpleContent>
+                <extension base="string">
+                  <attribute name="nilReason" type="gml:NilReasonType"/>
+                </extension>
+              </simpleContent>
+            </complexType>
+          </element>
+          <element minOccurs="0" name="officialsiteArea" nillable="true">
+            <annotation>
+              <documentation>-- Definition --
+The official area of the site in hectares. This may not the same as area calculated from the geometry.</documentation>
+            </annotation>
+            <complexType>
+              <simpleContent>
+                <extension base="gml:AreaType">
+                  <attribute name="nilReason" type="gml:NilReasonType"/>
+                </extension>
+              </simpleContent>
+            </complexType>
+          </element>
+          <element minOccurs="0" name="siteLength" nillable="true">
+            <annotation>
+              <documentation>-- Definition --
+The length of the site, normally used if the area is not populated.</documentation>
+            </annotation>
+            <complexType>
+              <simpleContent>
+                <extension base="gml:LengthType">
+                  <attribute name="nilReason" type="gml:NilReasonType"/>
+                </extension>
+              </simpleContent>
+            </complexType>
+          </element>
+          <element maxOccurs="unbounded" minOccurs="0" name="fundingSource" nillable="true">
+            <annotation>
+              <documentation>-- Definition --
+The source(s) of financial support that are being used to implement the management plan on a Protected Site.
+
+-- Description --
+NOTE Funding of management on Protected Sites is critical to securing desired conservation status. The resources are supplied from a variety of sources, ranging from private land owners to European funding schemes.</documentation>
+            </annotation>
+            <complexType>
+              <sequence>
+                <element ref="ps-f:FundingSourceType"/>
+              </sequence>
+              <attribute name="nilReason" type="gml:NilReasonType"/>
+            </complexType>
+          </element>
+          <element maxOccurs="unbounded" minOccurs="0" name="siteManagementPlan" nillable="true">
+            <annotation>
+              <documentation>-- Definition --
+The Site Management Plans that set out practical actions and measures that are needed to ensure that the features for which the site is designated are maintained.</documentation>
+            </annotation>
+            <complexType>
+              <sequence>
+                <element ref="ps-f:SiteManagementPlanType"/>
+              </sequence>
+              <attribute name="nilReason" type="gml:NilReasonType"/>
+            </complexType>
+          </element>
+          <element minOccurs="0" name="natura2000Respondent" nillable="true">
+            <annotation>
+              <documentation>-- Definition --
+The person responsible for completing Natura2000 reporting on the Site.
+
+-- Description --
+NOTE This is likely to be a person from the ResponsibeAgency, but may not be.</documentation>
+            </annotation>
+            <complexType>
+              <complexContent>
+                <extension base="gml:AbstractMetadataPropertyType">
+                  <sequence>
+                    <element ref="gmd:CI_ResponsibleParty"/>
+                  </sequence>
+                  <attribute name="nilReason" type="gml:NilReasonType"/>
+                </extension>
+              </complexContent>
+            </complexType>
+          </element>
+          <element maxOccurs="unbounded" minOccurs="0" name="protectedEntity" nillable="true">
+            <annotation>
+              <documentation>-- Definition --
+An entity that is protected by a designated protected site (that is, the object or reason for protection).
+
+-- Description --
+EXAMPLE Such entities may include habitats, species and geological, archaeological, cultural and other types of entities.</documentation>
+            </annotation>
+            <complexType>
+              <sequence>
+                <element ref="ps-f:ProtectedEntityType"/>
+              </sequence>
+              <attribute name="nilReason" type="gml:NilReasonType"/>
+            </complexType>
+          </element>
+          <element maxOccurs="unbounded" minOccurs="0" name="presentHabitat" nillable="true">
+            <annotation>
+              <documentation>-- Definition --
+A habitat that exists on the Site.
+
+-- Description --
+NOTE This is distinct from the Habitats for which the Site is protected. These are represented in the protectedEntity attribute.</documentation>
+            </annotation>
+            <complexType>
+              <sequence>
+                <element ref="ps-f:PresentHabitatType"/>
+              </sequence>
+              <attribute name="nilReason" type="gml:NilReasonType"/>
+            </complexType>
+          </element>
+          <element minOccurs="0" name="timePeriod" nillable="true" type="gml:TimeOrdinalEraPropertyType">
+            <annotation>
+              <documentation>-- Definition --
+For historical or archaeological Sites, the era in which the Site is thought to originate.</documentation>
+            </annotation>
+          </element>
+          <element maxOccurs="unbounded" minOccurs="0" name="isManagedBy" type="ps-f:ResponsibleAgencyPropertyType">
+            <annotation>
+              <documentation>-- Definition --
+The Agency that is responsible (either entirely or in combination with other agencies) for the management of the Protected Site.</documentation>
+            </annotation>
+          </element>
+        </sequence>
+      </extension>
+    </complexContent>
+  </complexType>
+  <complexType name="ProtectedSitePropertyType">
+    <sequence minOccurs="0">
+      <element ref="ps-f:ProtectedSite"/>
+    </sequence>
+    <attributeGroup ref="gml:AssociationAttributeGroup"/>
+    <attributeGroup ref="gml:OwnershipAttributeGroup"/>
+  </complexType>
+  <element name="FundingSourceType" substitutionGroup="gml:AbstractObject" type="ps-f:FundingSourceTypeType">
+    <annotation>
+      <documentation>-- Definition --
+The source(s) of financial support that are being used to implement the management plan on a protected site.
+
+-- Description --
+NOTE Funding of management on protected sites is critical to securing desired conservation status. The resources are supplied from a variety of sources, ranging from private land owners to European funding schemes.</documentation>
+    </annotation>
+  </element>
+  <complexType name="FundingSourceTypeType">
+    <sequence>
+      <element minOccurs="0" name="projectName" nillable="true" type="gmd:LocalisedCharacterString_PropertyType">
+        <annotation>
+          <documentation>-- Definition --
+The name and reference to the project that funds management of the Protected Site.</documentation>
+        </annotation>
+      </element>
+      <element name="fundingType" type="gml:CodeType">
+        <annotation>
+          <documentation>-- Definition --
+The funding type.</documentation>
+        </annotation>
+      </element>
+    </sequence>
+  </complexType>
+  <complexType name="FundingSourceTypePropertyType">
+    <sequence>
+      <element ref="ps-f:FundingSourceType"/>
+    </sequence>
+  </complexType>
+  <element name="ProtectedEntityType" substitutionGroup="gml:AbstractObject" type="ps-f:ProtectedEntityTypeType">
+    <annotation>
+      <documentation>-- Definition --
+An entity that is protected by a designated protected site (that is, the object or reason for protection).
+
+-- Description --
+EXAMPLE Such entities may include habitats, species and geological, archaeological, cultural and other types of entities.</documentation>
+    </annotation>
+  </element>
+  <complexType name="ProtectedEntityTypeType">
+    <sequence>
+      <element minOccurs="0" name="globalAssessment" nillable="true">
+        <annotation>
+          <documentation>-- Definition --
+The value of the Site for conservation of the protected entity (species, habitat, etc) concerned.</documentation>
+        </annotation>
+        <complexType>
+          <simpleContent>
+            <extension base="ps-f:GlobalAssessmentValueType">
+              <attribute name="nilReason" type="gml:NilReasonType"/>
+            </extension>
+          </simpleContent>
+        </complexType>
+      </element>
+      <element minOccurs="0" name="percentageOfSiteCoveredByProtectedEntity" nillable="true">
+        <annotation>
+          <documentation>-- Definition --
+The percentage of the total area of the protected site that is covered by the protected entity (habitat, species, etc).
+
+-- Description --
+NOTE Protected entities may not cover the entire protected site, so these percentages may not add up to 100 for a given site.</documentation>
+        </annotation>
+        <complexType>
+          <simpleContent>
+            <extension base="anyURI">
+              <attribute name="nilReason" type="gml:NilReasonType"/>
+            </extension>
+          </simpleContent>
+        </complexType>
+      </element>
+      <element minOccurs="0" name="percentageOfNationalTerritoryUnderProtectedEntity" nillable="true">
+        <annotation>
+          <documentation>-- Definition --
+The percentage of the total occurrence of the protected entity in the national territory that appears on the Protected Site.</documentation>
+        </annotation>
+        <complexType>
+          <simpleContent>
+            <extension base="anyURI">
+              <attribute name="nilReason" type="gml:NilReasonType"/>
+            </extension>
+          </simpleContent>
+        </complexType>
+      </element>
+      <element maxOccurs="unbounded" minOccurs="0" name="isABuilding" nillable="true" type="gml:ReferenceType">
+        <annotation>
+          <documentation>-- Definition --
+The role of a building as a protected entity.</documentation>
+          <appinfo>
+            <targetElement xmlns="http://www.opengis.net/gml/3.2">bu:Building</targetElement>
+          </appinfo>
+        </annotation>
+      </element>
+      <element maxOccurs="unbounded" minOccurs="0" name="isAHabitat" nillable="true">
+        <annotation>
+          <documentation>-- Definition --
+The role of a Habitat as a protected entity</documentation>
+          <appinfo>
+            <targetElement xmlns="http://www.opengis.net/gml/3.2">null:Habitat</targetElement>
+          </appinfo>
+        </annotation>
+      </element>
+    </sequence>
+  </complexType>
+  <complexType name="ProtectedEntityTypePropertyType">
+    <sequence>
+      <element ref="ps-f:ProtectedEntityType"/>
+    </sequence>
+  </complexType>
+  <element name="ActivitiesAndImpactsType" substitutionGroup="gml:AbstractObject" type="ps-f:ActivitiesAndImpactsTypeType">
+    <annotation>
+      <documentation>-- Definition --
+Impacts resulting from human activities or natural process that positively or negatively affect the conservation status of the Protected Site. Information needed to inform evaluation of conservation status of a Protected Site.
+
+-- Description --
+EXAMPLE This includes management activities such as grazing or cutting, land uses such as mineral extraction or transport and natural processes such as disease fluvial erosion.</documentation>
+    </annotation>
+  </element>
+  <complexType name="ActivitiesAndImpactsTypeType">
+    <sequence>
+      <element minOccurs="0" name="activityIntensity" nillable="true">
+        <annotation>
+          <documentation>-- Definition --
+The intensity of the activity's influence on the site.</documentation>
+        </annotation>
+        <complexType>
+          <simpleContent>
+            <extension base="ps-f:ActivityIntensityValueType">
+              <attribute name="nilReason" type="gml:NilReasonType"/>
+            </extension>
+          </simpleContent>
+        </complexType>
+      </element>
+      <element minOccurs="0" name="natureOfInfluence" nillable="true">
+        <annotation>
+          <documentation>-- Definition --
+The nature of the influence of the activity on the site (positive, negative or neutral).</documentation>
+        </annotation>
+        <complexType>
+          <simpleContent>
+            <extension base="ps-f:NatureOfInfluenceValueType">
+              <attribute name="nilReason" type="gml:NilReasonType"/>
+            </extension>
+          </simpleContent>
+        </complexType>
+      </element>
+      <element name="activity" type="gml:CodeType">
+        <annotation>
+          <documentation>-- Definition --
+The activities that occur on the site using the Natura2000 activity types from Appendix E in the Natura 2000 explanatory notes (Standard Data Form Item 6.1).</documentation>
+        </annotation>
+      </element>
+      <element minOccurs="0" name="percentageUnderActivity" nillable="true">
+        <annotation>
+          <documentation>-- Definition --
+The percentage of the protected site over which the activity occurs.</documentation>
+        </annotation>
+        <complexType>
+          <simpleContent>
+            <extension base="anyURI">
+              <attribute name="nilReason" type="gml:NilReasonType"/>
+            </extension>
+          </simpleContent>
+        </complexType>
+      </element>
+    </sequence>
+  </complexType>
+  <complexType name="ActivitiesAndImpactsTypePropertyType">
+    <sequence>
+      <element ref="ps-f:ActivitiesAndImpactsType"/>
+    </sequence>
+  </complexType>
+  <simpleType name="NatureOfInfluenceValueType">
+    <annotation>
+      <documentation>-- Definition --
+A code indicating the nature of the influence of activities in and around the site.</documentation>
+    </annotation>
+    <restriction base="string">
+      <enumeration value="+">
+        <annotation>
+          <documentation>-- Definition --
+The Protected Site is positively influenced by impacts or activities in and around the site.</documentation>
+        </annotation>
+      </enumeration>
+      <enumeration value="0">
+        <annotation>
+          <documentation>-- Definition --
+The Protected Site is neutrally influenced by impacts or activities in and around the site.</documentation>
+        </annotation>
+      </enumeration>
+      <enumeration value="-">
+        <annotation>
+          <documentation>-- Definition --
+The Protected Site is negatively influenced by impacts or activities in and around the site.</documentation>
+        </annotation>
+      </enumeration>
+    </restriction>
+  </simpleType>
+  <simpleType name="GlobalAssessmentValueType">
+    <annotation>
+      <documentation>-- Definition --
+A code indicating the global value of the site for conservation purposes.</documentation>
+    </annotation>
+    <restriction base="string">
+      <enumeration value="excellent">
+        <annotation>
+          <documentation>-- Definition --
+The Site has excellent value for conservation of the habitat concerned in global terms.</documentation>
+        </annotation>
+      </enumeration>
+      <enumeration value="good">
+        <annotation>
+          <documentation>-- Definition --
+The Site has good value for conservation of the habitat concerned in global terms.</documentation>
+        </annotation>
+      </enumeration>
+      <enumeration value="significant">
+        <annotation>
+          <documentation>-- Definition --
+The Site has significant value for conservation of the habitat concerned in global terms.</documentation>
+        </annotation>
+      </enumeration>
+    </restriction>
+  </simpleType>
+  <element name="SiteIdentifierType" substitutionGroup="gml:AbstractObject" type="ps-f:SiteIdentifierTypeType">
+    <annotation>
+      <documentation>-- Definition --
+An identifier for the Protected Site, using some identification scheme. A Site may have several identifiers using different schemes.
+
+-- Description --
+EXAMPLE A site may have a Natura2000 identifier as well as a national identifier.
+
+NOTEIdentifiers are unique within the specified scheme.</documentation>
+    </annotation>
+  </element>
+  <complexType name="SiteIdentifierTypeType">
+    <sequence>
+      <element name="siteIdentifier" type="string">
+        <annotation>
+          <documentation>-- Definition --
+The identifier for the Site.</documentation>
+        </annotation>
+      </element>
+      <element name="siteIdentifierScheme" type="gml:CodeType">
+        <annotation>
+          <documentation>-- Definition --
+The scheme from which the identifier for the Site comes.</documentation>
+        </annotation>
+      </element>
+    </sequence>
+  </complexType>
+  <complexType name="SiteIdentifierTypePropertyType">
+    <sequence>
+      <element ref="ps-f:SiteIdentifierType"/>
+    </sequence>
+  </complexType>
+  <element name="ResponsibleAgency" substitutionGroup="gml:AbstractFeature" type="ps-f:ResponsibleAgencyType">
+    <annotation>
+      <documentation>-- Definition --
+The agency, organisation or body responsible for selecting, describing and designating the protected site.
+
+-- Description --
+NOTE Responsibility for establishing a protected site  allows all interested parties to know who to liaise with over queries or requests for more detailed information on each Area. The responsible body will vary according to the basis of establishment with national governments ultimately responsible for Natura2000 sites, down to voluntary bodies responsible for local designations or quasi-legislative protected sites.</documentation>
+    </annotation>
+  </element>
+  <complexType name="ResponsibleAgencyType">
+    <complexContent>
+      <extension base="gml:AbstractFeatureType">
+        <sequence>
+          <element name="objectIdentifier" type="base:IdentifierPropertyType">
+            <annotation>
+              <documentation>-- Definition --
+A unique identifier for the Responsible Agency.</documentation>
+            </annotation>
+          </element>
+          <element name="responsibleAgencyName" type="gmd:LocalisedCharacterString_PropertyType">
+            <annotation>
+              <documentation>-- Definition --
+The name of the agency responsible for managing the protected site .</documentation>
+            </annotation>
+          </element>
+          <element name="beginLifespanVersion" nillable="true">
+            <annotation>
+              <documentation>-- Definition --
+Date and time at which this version of the spatial object was inserted or changed in the spatial data set.
+
+-- Description --
+NOTE This date is recorded to enable the generation of change only update files.</documentation>
+            </annotation>
+            <complexType>
+              <simpleContent>
+                <extension base="dateTime">
+                  <attribute name="nilReason" type="gml:NilReasonType"/>
+                </extension>
+              </simpleContent>
+            </complexType>
+          </element>
+          <element minOccurs="0" name="endLifespanVersion" nillable="true">
+            <annotation>
+              <documentation>-- Definition --
+Date and time at which this version of the spatial object was superseded or retired in the spatial data set.
+
+-- Description --
+NOTE This date is recorded primarily for those systems which "close" an entry in the spatial data set in the event of an attribute change.</documentation>
+            </annotation>
+            <complexType>
+              <simpleContent>
+                <extension base="dateTime">
+                  <attribute name="nilReason" type="gml:NilReasonType"/>
+                </extension>
+              </simpleContent>
+            </complexType>
+          </element>
+        </sequence>
+      </extension>
+    </complexContent>
+  </complexType>
+  <complexType name="ResponsibleAgencyPropertyType">
+    <sequence minOccurs="0">
+      <element ref="ps-f:ResponsibleAgency"/>
+    </sequence>
+    <attributeGroup ref="gml:AssociationAttributeGroup"/>
+    <attributeGroup ref="gml:OwnershipAttributeGroup"/>
+  </complexType>
+</schema>

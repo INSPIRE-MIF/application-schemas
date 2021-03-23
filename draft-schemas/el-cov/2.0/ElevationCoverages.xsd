@@ -1,0 +1,177 @@
+<?xml version="1.0" encoding="UTF-8"?><schema xmlns="http://www.w3.org/2001/XMLSchema" xmlns:base="urn:x-inspire:specification:gmlas:BaseTypes:3.2" xmlns:el-bas="http://inspire.jrc.ec.europa.eu/schemas/el-bas/2.0" xmlns:el-cov="http://inspire.jrc.ec.europa.eu/schemas/el-cov/2.0" xmlns:gmd="http://www.isotc211.org/2005/gmd" xmlns:gml="http://www.opengis.net/gml/3.2" xmlns:gmlcov="http://www.opengis.net/gmlcov/1.0" elementFormDefault="qualified" targetNamespace="http://inspire.jrc.ec.europa.eu/schemas/el-cov/2.0" version="2.0">
+  <annotation>
+    <appinfo>
+      <gmlProfileSchema xmlns="http://www.opengis.net/gml/3.2">EMPTY</gmlProfileSchema>
+    </appinfo>
+  </annotation>
+  <import namespace="http://inspire.jrc.ec.europa.eu/schemas/el-bas/2.0" schemaLocation="https://inspire.ec.europa.eu/draft-schemas/el-bas/2.0/ElevationBase.xsd"/>
+  <import namespace="http://www.isotc211.org/2005/gmd" schemaLocation="http://schemas.opengis.net/iso/19139/20070417/gmd/gmd.xsd"/>
+  <import namespace="http://www.opengis.net/gml/3.2" schemaLocation="http://schemas.opengis.net/gml/3.2.1/gml.xsd"/>
+  <import namespace="http://www.opengis.net/gmlcov/1.0" schemaLocation="http://schemas.opengis.net/gmlcov/1.0/coverage.xsd"/>
+  <import namespace="urn:x-inspire:specification:gmlas:BaseTypes:3.2" schemaLocation="https://inspire.ec.europa.eu/schemas/base/3.2/BaseTypes.xsd"/>
+  <!--XML Schema document created by ShapeChange-->
+  <element name="ElevationGridCoverage" substitutionGroup="gmlcov:RectifiedGridCoverage" type="el-cov:ElevationGridCoverageType">
+    <annotation>
+      <documentation>-- Name --
+Elevation grid coverage.
+
+-- Definition --
+Continuous coverage which uses a systematic tessellation based on a regular rectified quadrilateral grid to cover its domain, where the elevation property value is usually known for each of the grid points forming this domain.
+
+-- Description --
+SOURCE Adapted from [ISO 19123:2005].
+
+NOTE 1 A coverage is a feature type that acts as a function to return an elevation property value from its range for any direct position within its spatial, temporal or spatiotemporal domain (Adapted from "Coverage" [ISO 19123:2005]). Hence, an elevation coverage is a feature type which assigns elevation property values (range) to the geometric elements forming part of the coverage domain.
+
+NOTE 2 A rectified grid is a grid for which there is an affine transformation between the grid coordinates and the coordinates of an external coordinate reference system.
+
+NOTE 3 Grid coverages employ a systematic tessellation of the domain. The principal advantage of such tessellations is that they support a sequential enumeration of the elements of the domain, which makes data storage and access more efficient.
+
+NOTE 4 An elevation grid coverage is a continuous coverage. It provides a mathematical method to interpolate elevation values for any direct position within its domain extent from the elevation values known for the grid points (domain elements).</documentation>
+    </annotation>
+  </element>
+  <complexType name="ElevationGridCoverageType">
+    <complexContent>
+      <extension base="gmlcov:AbstractDiscreteCoverageType">
+        <sequence>
+          <element name="beginLifespanVersion" nillable="true">
+            <annotation>
+              <documentation>-- Name --
+Begin lifespan version.
+
+-- Definition --
+Date and time at which this version of the spatial object was inserted or changed in the spatial data set.</documentation>
+            </annotation>
+            <complexType>
+              <simpleContent>
+                <extension base="dateTime">
+                  <attribute name="nilReason" type="gml:NilReasonType"/>
+                </extension>
+              </simpleContent>
+            </complexType>
+          </element>
+          <element minOccurs="0" name="endLifespanVersion" nillable="true">
+            <annotation>
+              <documentation>-- Name --
+End lifespan version.
+
+-- Definition --
+Date and time at which this version of the spatial object was superseded or retired in the spatial data set.</documentation>
+            </annotation>
+            <complexType>
+              <simpleContent>
+                <extension base="dateTime">
+                  <attribute name="nilReason" type="gml:NilReasonType"/>
+                </extension>
+              </simpleContent>
+            </complexType>
+          </element>
+          <element name="inspireId" type="base:IdentifierPropertyType">
+            <annotation>
+              <documentation>-- Name --
+Inspire ID.
+
+-- Definition --
+External object identifier of the spatial object.
+
+-- Description --
+NOTE An external object identifier is a unique object identifier published by the responsible body, which may be used by external applications to reference the spatial object. The identifier is an identifier of the spatial object, not an identifier of the real-world phenomenon.</documentation>
+            </annotation>
+          </element>
+          <element maxOccurs="unbounded" name="domainExtent">
+            <annotation>
+              <documentation>-- Name --
+Domain extent.
+
+-- Definition --
+The attribute domainExtent shall contain the extent of the spatiotemporal domain of the coverage.  The data type EX_Extent, is defined in ISO 19103.  Extents may be specified in both space and time. 
+
+-- Description --
+SOURCE [ISO 19123:2005].
+
+NOTE The domain extent shall be specified at least in space by using EX_BoundingPolygon, EX_GeographicBoundingBox or EX_GeographicDescription.  The whole geographic extent of the elevation coverage is affected, including areas where grid points hold nil reason values.</documentation>
+            </annotation>
+            <complexType>
+              <complexContent>
+                <extension base="gml:AbstractMetadataPropertyType">
+                  <sequence minOccurs="0">
+                    <element ref="gmd:EX_Extent"/>
+                  </sequence>
+                  <attributeGroup ref="gml:AssociationAttributeGroup"/>
+                </extension>
+              </complexContent>
+            </complexType>
+          </element>
+          <element name="interpolationType" type="gml:CodeType">
+            <annotation>
+              <documentation>-- Name --
+Interpolation type.
+
+-- Definition --
+Mathematical method which shall be used to evaluate a continuous coverage, i.e. determine the values of the coverage at any direct position within the domain of the coverage.
+
+-- Description --
+EXAMPLE Evaluation of a rectified quadrilateral grid coverage in a certain location involves interpolation of values within a quadrilateral cell (which contains this location) composed of four neighbouring point value pairs (grid cell corners); and possibly involve additional grid points outside the cell.
+
+NOTE The list of possible values for interpolation methods is defined in ISO 19123:2005 - Annex C (Interpolation methods).
+Default value provided in this specification is "bilinear".</documentation>
+            </annotation>
+          </element>
+          <element name="propertyType" type="el-bas:ElevationPropertyTypeValueType">
+            <annotation>
+              <documentation>-- Name --
+Property type.
+
+-- Definition --
+An elevation property which has been measured or calculated.
+
+-- Description --
+NOTE 1 An elevation property is a vertically-constrained dimensional property of an element consisting of an absolute measure referenced to a well-defined surface which is commonly taken as origin (geoid, water level, etc.). It does not include relative elevations of the element referenced to other spatial objects.
+
+EXAMPLE  Height, depth.
+
+NOTE 2 It describes the type of property of the values provided within the elevation coverage.</documentation>
+            </annotation>
+          </element>
+          <element name="surfaceType" type="el-bas:SurfaceTypeValueType">
+            <annotation>
+              <documentation>-- Name --
+Surface type.
+
+-- Definition --
+Attribute indicating the type of elevation surface that the coverage describes in relation to the terrain.</documentation>
+            </annotation>
+          </element>
+          <element name="unitOfMeasure" type="gml:UnitOfMeasureType">
+            <annotation>
+              <documentation>-- Name --
+Unit of measure.
+
+-- Definition --
+Unit of measure used to provide the elevation property values within the range set.</documentation>
+            </annotation>
+          </element>
+          <element name="gridReference" type="gml:ReferenceType">
+            <annotation>
+              <documentation>-- Name --
+Grid reference.
+
+-- Definition --
+The elevation reference to which the measured property values (heights or depths) of the elevation grid coverage are referenced to.</documentation>
+              <appinfo>
+                <targetElement xmlns="http://www.opengis.net/gml/3.2">el-bas:ElevationReference</targetElement>
+              </appinfo>
+            </annotation>
+          </element>
+        </sequence>
+      </extension>
+    </complexContent>
+  </complexType>
+  <complexType name="ElevationGridCoveragePropertyType">
+    <sequence minOccurs="0">
+      <element ref="el-cov:ElevationGridCoverage"/>
+    </sequence>
+    <attributeGroup ref="gml:AssociationAttributeGroup"/>
+    <attributeGroup ref="gml:OwnershipAttributeGroup"/>
+  </complexType>
+</schema>

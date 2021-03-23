@@ -1,0 +1,457 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<schema xmlns="http://www.w3.org/2001/XMLSchema" xmlns:base="urn:x-inspire:specification:gmlas:BaseTypes:3.2" xmlns:bu-base="http://inspire.ec.europa.eu/schemas/bu-base/3.0rc1" xmlns:el-bas="http://inspire.ec.europa.eu/schemas/el-bas/3.0" xmlns:gmd="http://www.isotc211.org/2005/gmd" xmlns:gml="http://www.opengis.net/gml/3.2" xmlns:gn="urn:x-inspire:specification:gmlas:GeographicalNames:3.0" xmlns:sc="http://www.interactive-instruments.de/ShapeChange/AppInfo" targetNamespace="http://inspire.ec.europa.eu/schemas/bu-base/3.0rc1" elementFormDefault="qualified" version="3.0rc1">
+	<import namespace="http://inspire.ec.europa.eu/schemas/el-bas/3.0" schemaLocation="https://inspire.ec.europa.eu/draft-schemas/el-bas/3.0rc1/ElevationBaseTypes.xsd"/>
+	<import namespace="http://www.interactive-instruments.de/ShapeChange/AppInfo" schemaLocation="http://portele.de/ShapeChangeAppinfo.xsd"/>
+	<import namespace="http://www.isotc211.org/2005/gmd" schemaLocation="http://schemas.opengis.net/iso/19139/20070417/gmd/gmd.xsd"/>
+	<import namespace="http://www.opengis.net/gml/3.2" schemaLocation="http://schemas.opengis.net/gml/3.2.1/gml.xsd"/>
+	<import namespace="urn:x-inspire:specification:gmlas:BaseTypes:3.2" schemaLocation="https://inspire.ec.europa.eu/schemas/base/3.2/BaseTypes.xsd"/>
+	<import namespace="urn:x-inspire:specification:gmlas:GeographicalNames:3.0" schemaLocation="https://inspire.ec.europa.eu/schemas/gn/3.0/GeographicalNames.xsd"/>
+	<!--XML Schema document created by ShapeChange-->
+	<element name="HeightAboveGround" type="bu-base:HeightAboveGroundType" substitutionGroup="gml:AbstractObject">
+		<annotation>
+			<documentation>-- Definition --
+This data type includes the height above ground of the real world object and information about how this height was captured.</documentation>
+		</annotation>
+	</element>
+	<complexType name="HeightAboveGroundType">
+		<sequence>
+			<element name="heightReference" type="gml:ReferenceType" nillable="true">
+				<annotation>
+					<documentation>-- Definition --
+Element of the real world object used as the high reference for capturing its height.
+-- Description --
+EXAMPLE: The height of the building has been captured up to the top of building.</documentation>
+					<appinfo>
+						<taggedValue xmlns="http://www.interactive-instruments.de/ShapeChange/AppInfo" tag="obligation">IR</taggedValue>
+					</appinfo>
+				</annotation>
+			</element>
+			<element name="lowReference" type="gml:ReferenceType" nillable="true">
+				<annotation>
+					<documentation>-- Definition --
+Element of the real world object used as the low reference for capturing its height.
+-- Description --
+EXAMPLE: the height of the building has been captured from its the lowest ground point.</documentation>
+				</annotation>
+			</element>
+			<element name="status" type="gml:ReferenceType" nillable="true">
+				<annotation>
+					<documentation>-- Definition --
+The way the height has been captured.</documentation>
+					<appinfo>
+						<taggedValue xmlns="http://www.interactive-instruments.de/ShapeChange/AppInfo" tag="obligation">IR</taggedValue>
+					</appinfo>
+				</annotation>
+			</element>
+			<element name="value" type="gml:LengthType">
+				<annotation>
+					<documentation>-- Definition --
+Value of the height above ground of the real world object.</documentation>
+				</annotation>
+			</element>
+		</sequence>
+	</complexType>
+	<complexType name="HeightAboveGroundPropertyType">
+		<sequence>
+			<element ref="bu-base:HeightAboveGround"/>
+		</sequence>
+	</complexType>
+	<element name="CurrentUse" type="bu-base:CurrentUseType" substitutionGroup="gml:AbstractObject">
+		<annotation>
+			<documentation>-- Definition --
+This data type enables to detail the current use(s) of the real world object.</documentation>
+		</annotation>
+	</element>
+	<complexType name="CurrentUseType">
+		<sequence>
+			<element name="currentUse" type="gml:ReferenceType">
+				<annotation>
+					<documentation>-- Definition --
+The current use or one of the current uses of the real world object.
+-- Description --
+EXAMPLE: trade</documentation>
+					<appinfo>
+						<taggedValue xmlns="http://www.interactive-instruments.de/ShapeChange/AppInfo" tag="obligation">IR</taggedValue>
+					</appinfo>
+				</annotation>
+			</element>
+			<element name="percentage" type="integer">
+				<annotation>
+					<documentation>-- Definition --
+The proportion of the real world object, given as a percentage, devoted to this current use.
+-- Description --
+NOTE: The percentage of use is generally the percentage of floor area dedicated to this given use. If it is not the case, it is recommended to explain what the percentage refers to in metadata (template for additional information)
+EXAMPLE: 30 (if 30% of the building is occupied by trade activity).</documentation>
+				</annotation>
+			</element>
+		</sequence>
+	</complexType>
+	<complexType name="CurrentUsePropertyType">
+		<sequence>
+			<element ref="bu-base:CurrentUse"/>
+		</sequence>
+	</complexType>
+	<element name="DateOfEvent" type="bu-base:DateOfEventType" substitutionGroup="gml:AbstractObject">
+		<annotation>
+			<documentation>-- Definition --
+This data type includes the different possible ways to define the date of an event.</documentation>
+		</annotation>
+	</element>
+	<complexType name="DateOfEventType">
+		<sequence>
+			<element name="anyPoint" nillable="true" minOccurs="0">
+				<annotation>
+					<documentation>-- Definition --
+A date and time of any point of the event, between its beginning and its end.</documentation>
+				</annotation>
+				<complexType>
+					<simpleContent>
+						<extension base="dateTime">
+							<attribute name="nilReason" type="gml:NilReasonType"/>
+						</extension>
+					</simpleContent>
+				</complexType>
+			</element>
+			<element name="beginning" nillable="true" minOccurs="0">
+				<annotation>
+					<documentation>-- Definition --
+Date and time when the event begun.</documentation>
+				</annotation>
+				<complexType>
+					<simpleContent>
+						<extension base="dateTime">
+							<attribute name="nilReason" type="gml:NilReasonType"/>
+						</extension>
+					</simpleContent>
+				</complexType>
+			</element>
+			<element name="end" nillable="true" minOccurs="0">
+				<annotation>
+					<documentation>-- Definition --
+Date and time when the event ended.</documentation>
+				</annotation>
+				<complexType>
+					<simpleContent>
+						<extension base="dateTime">
+							<attribute name="nilReason" type="gml:NilReasonType"/>
+						</extension>
+					</simpleContent>
+				</complexType>
+			</element>
+		</sequence>
+	</complexType>
+	<complexType name="DateOfEventPropertyType">
+		<sequence>
+			<element ref="bu-base:DateOfEvent"/>
+		</sequence>
+	</complexType>
+	<element name="AbstractBuilding" type="bu-base:AbstractBuildingType" abstract="true" substitutionGroup="gml:AbstractFeature">
+		<annotation>
+			<documentation>-- Definition --
+Abstract feature type grouping the common semantic properties of instanciable feature types Building and BuildingPart.</documentation>
+		</annotation>
+	</element>
+	<complexType name="AbstractBuildingType" abstract="true">
+		<complexContent>
+			<extension base="gml:AbstractFeatureType">
+				<sequence>
+					<element name="beginLifespanVersion" nillable="true">
+						<annotation>
+							<documentation>-- Definition --
+Date and time at which this version of the spatial object was inserted or changed in the spatial data set.</documentation>
+						</annotation>
+						<complexType>
+							<simpleContent>
+								<extension base="dateTime">
+									<attribute name="nilReason" type="gml:NilReasonType"/>
+								</extension>
+							</simpleContent>
+						</complexType>
+					</element>
+					<element name="buildingNature" type="gml:ReferenceType" nillable="true" minOccurs="0" maxOccurs="unbounded">
+						<annotation>
+							<documentation>-- Definition --
+Characteristic of the building that makes it generally of interest for mappings applications.
+
+-- Description --
+NOTE 1: the characteristic may be related to the physical aspect and/or to the function of the building.</documentation>
+							<appinfo>
+								<taggedValue xmlns="http://www.interactive-instruments.de/ShapeChange/AppInfo" tag="obligation">IR</taggedValue>
+							</appinfo>
+						</annotation>
+					</element>
+					<element name="conditionOfConstruction" type="gml:ReferenceType" nillable="true">
+						<annotation>
+							<documentation>-- Definition --
+Status of  construction  of the real-world object.</documentation>
+							<appinfo>
+								<taggedValue xmlns="http://www.interactive-instruments.de/ShapeChange/AppInfo" tag="obligation">IR</taggedValue>
+							</appinfo>
+						</annotation>
+					</element>
+					<element name="currentUse" nillable="true" minOccurs="0" maxOccurs="unbounded">
+						<annotation>
+							<documentation>-- Definition --
+Activity hosted by the real world object.
+-- Description --
+NOTE: This attribute addresses mainly the buildings hosting human activities.</documentation>
+							<appinfo>
+								<taggedValue xmlns="http://www.interactive-instruments.de/ShapeChange/AppInfo" tag="obligation">IR</taggedValue>
+							</appinfo>
+						</annotation>
+						<complexType>
+							<sequence>
+								<element ref="bu-base:CurrentUse"/>
+							</sequence>
+							<attribute name="nilReason" type="gml:NilReasonType"/>
+						</complexType>
+					</element>
+					<element name="dateOfConstruction" nillable="true" minOccurs="0">
+						<annotation>
+							<documentation>&lt;font color="#008000"&gt;-&lt;/font&gt;- Definition --
+Date of construction of the real world object.
+-- Definition --
+NOTE: This attribute has multiplicity 0..1 because in case the building is only under project, the date of construction may not exist yet.</documentation>
+						</annotation>
+						<complexType>
+							<sequence>
+								<element ref="bu-base:DateOfEvent"/>
+							</sequence>
+							<attribute name="nilReason" type="gml:NilReasonType"/>
+						</complexType>
+					</element>
+					<element name="dateOfDemolition" nillable="true" minOccurs="0">
+						<annotation>
+							<documentation>-- Definition --
+Date of demolition of the real world object.</documentation>
+						</annotation>
+						<complexType>
+							<sequence>
+								<element ref="bu-base:DateOfEvent"/>
+							</sequence>
+							<attribute name="nilReason" type="gml:NilReasonType"/>
+						</complexType>
+					</element>
+					<element name="dateOfRenovation" nillable="true" minOccurs="0">
+						<annotation>
+							<documentation>-- Definition --
+Date of last major renovation of the real world object.</documentation>
+						</annotation>
+						<complexType>
+							<sequence>
+								<element ref="bu-base:DateOfEvent"/>
+							</sequence>
+							<attribute name="nilReason" type="gml:NilReasonType"/>
+						</complexType>
+					</element>
+					<element name="elevation" nillable="true" minOccurs="0" maxOccurs="unbounded">
+						<annotation>
+							<documentation>-- Definition --
+Vertical-constrained dimensional property of the real world object consisting of an absolute measure referenced to a well-defined surface which is commonly taken as origin (geoid, water level, etc.)
+-- Description --
+Source: adapted from the definition given in the data specification of theme elevation.</documentation>
+						</annotation>
+						<complexType>
+							<sequence>
+								<element ref="bu-base:Elevation"/>
+							</sequence>
+							<attribute name="nilReason" type="gml:NilReasonType"/>
+						</complexType>
+					</element>
+					<element name="endLifespanVersion" nillable="true" minOccurs="0">
+						<annotation>
+							<documentation>-- Definition --
+Date and time at which this version of the spatial object was superseded or retired in the spatial data set.</documentation>
+						</annotation>
+						<complexType>
+							<simpleContent>
+								<extension base="dateTime">
+									<attribute name="nilReason" type="gml:NilReasonType"/>
+								</extension>
+							</simpleContent>
+						</complexType>
+					</element>
+					<element name="externalReference" nillable="true" minOccurs="0" maxOccurs="unbounded">
+						<annotation>
+							<documentation>-- Definition --
+Reference to an external information system containing any piece of information related to the spatial object.
+-- Description --
+EXAMPLE 1: Reference to another spatial data set containing another view on buildings; the externalReference may be used for instance to ensure consistency between 2D and 3D representations of the same buildings
+EXAMPLE 2: Reference to cadastral or dwelling register. The reference to this register may enable to find legal information related to the building, such as the owner(s)or valuation criteria (e.g. type of heating, toilet, kitchen &amp;hellip;)
+EXAMPLE 3: Reference to the system recording the building permits. The reference to the building permits may be used to find detailed information about the building physical and temporal aspects.</documentation>
+						</annotation>
+						<complexType>
+							<sequence>
+								<element ref="bu-base:ExternalReference"/>
+							</sequence>
+							<attribute name="nilReason" type="gml:NilReasonType"/>
+						</complexType>
+					</element>
+					<element name="heightAboveGround" nillable="true" minOccurs="0" maxOccurs="unbounded">
+						<annotation>
+							<documentation>-- Definition --
+Height above ground of the real world object.
+-- Description --
+NOTE: height above ground may be defined as the difference between elevation at a low reference (ground level) and elevation as a high reference (e.g. roof level, top of construction)</documentation>
+						</annotation>
+						<complexType>
+							<sequence>
+								<element ref="bu-base:HeightAboveGround"/>
+							</sequence>
+							<attribute name="nilReason" type="gml:NilReasonType"/>
+						</complexType>
+					</element>
+					<element name="inspireId" type="base:IdentifierPropertyType">
+						<annotation>
+							<documentation>-- Definition --
+External unique object identifier published by the responsible body, which may be used by external applications to reference the spatial object.
+-- Description --
+NOTE 1: External object identifiers are distinct from thematic object identifiers.
+NOTE 2: The voidable version identifier attribute is not part of the unique identifier of a spatial object and may be used to distinguish two versions of the same spatial object.
+NOTE 3: The unique identifier will not change during the life-time of a spatial object.</documentation>
+						</annotation>
+					</element>
+					<element name="name" nillable="true" minOccurs="0" maxOccurs="unbounded">
+						<annotation>
+							<documentation>-- Definition --
+Name of the real world object.
+-- Description --
+Examples:  Big Ben, Eiffel Tower, Sacrada Familia</documentation>
+						</annotation>
+						<complexType>
+							<sequence>
+								<element ref="gn:GeographicalName"/>
+							</sequence>
+							<attribute name="nilReason" type="gml:NilReasonType"/>
+						</complexType>
+					</element>
+					<element name="numberOfDwellings" nillable="true" minOccurs="0">
+						<annotation>
+							<documentation>-- Definition --
+Number of dwellings in the real world object.</documentation>
+						</annotation>
+						<complexType>
+							<simpleContent>
+								<extension base="integer">
+									<attribute name="nilReason" type="gml:NilReasonType"/>
+								</extension>
+							</simpleContent>
+						</complexType>
+					</element>
+					<element name="numberOfBuildingUnits" nillable="true" minOccurs="0">
+						<annotation>
+							<documentation>-- Definition --
+Number of building units in the building. A BuildingUnit is a subdivision of Building with its own lockable access from the outside or from a common area (i.e. not from another BuildingUnit), which is atomic, functionally independent, and may be separately sold, rented out, inherited, etc.
+-- Description --
+BuildingUnit is a feature type aimed at subdividing a whole building or a building part into smaller parts that are treated as seperate entities in daily life. A BuildingUnit is homogeneous, regarding management aspects.
+EXAMPLES:It may be e.g. an apartment in a condominium, a terraced house, or a shop inside a shopping arcade.
+NOTE: According to national regulations, a building unit may be a flat, a cellar, a garage, or set of a flat, a cellar and a garage.</documentation>
+						</annotation>
+						<complexType>
+							<simpleContent>
+								<extension base="integer">
+									<attribute name="nilReason" type="gml:NilReasonType"/>
+								</extension>
+							</simpleContent>
+						</complexType>
+					</element>
+					<element name="numberOfFloorsAboveGround" nillable="true" minOccurs="0">
+						<annotation>
+							<documentation>-- Definition --
+Number of floors above ground of the real world object.</documentation>
+						</annotation>
+						<complexType>
+							<simpleContent>
+								<extension base="integer">
+									<attribute name="nilReason" type="gml:NilReasonType"/>
+								</extension>
+							</simpleContent>
+						</complexType>
+					</element>
+				</sequence>
+			</extension>
+		</complexContent>
+	</complexType>
+	<complexType name="AbstractBuildingPropertyType">
+		<sequence minOccurs="0">
+			<element ref="bu-base:AbstractBuilding"/>
+		</sequence>
+		<attributeGroup ref="gml:AssociationAttributeGroup"/>
+		<attributeGroup ref="gml:OwnershipAttributeGroup"/>
+	</complexType>
+	<element name="Elevation" type="bu-base:ElevationType" substitutionGroup="gml:AbstractObject">
+		<annotation>
+			<documentation>-- Definition --
+This data types includes the elevation of the real world object and information about how this elevation was measured.</documentation>
+		</annotation>
+	</element>
+	<complexType name="ElevationType">
+		<sequence>
+			<element name="elevationReference" type="gml:ReferenceType">
+				<annotation>
+					<documentation>-- Definition --
+Element of the real world object where the elevation was measured.</documentation>
+					<appinfo>
+						<taggedValue xmlns="http://www.interactive-instruments.de/ShapeChange/AppInfo" tag="obligation">IR</taggedValue>
+					</appinfo>
+				</annotation>
+			</element>
+			<element name="elevationReferenceSystem" type="el-bas:VerticalCRSIdentifierPropertyType">
+				<annotation>
+					<documentation>-- Definition --
+
+The vertical coordinate reference system used to measure the elevation.</documentation>
+				</annotation>
+			</element>
+			<element name="value" type="gml:LengthType">
+				<annotation>
+					<documentation>-- Definition --
+Value of the Elevation of the real world object.</documentation>
+				</annotation>
+			</element>
+		</sequence>
+	</complexType>
+	<complexType name="ElevationPropertyType">
+		<sequence>
+			<element ref="bu-base:Elevation"/>
+		</sequence>
+	</complexType>
+	<element name="ExternalReference" type="bu-base:ExternalReferenceType" substitutionGroup="gml:AbstractObject">
+		<annotation>
+			<documentation>-- Definition --
+Reference to an external information system containing any piece of information related to the spatial object.</documentation>
+		</annotation>
+	</element>
+	<complexType name="ExternalReferenceType">
+		<sequence>
+			<element name="informationSystem" type="anyURI">
+				<annotation>
+					<documentation>-- Definition --
+Uniform Resource Identifier of the external information system.</documentation>
+				</annotation>
+			</element>
+			<element name="informationSystemName" type="gmd:PT_FreeText_PropertyType">
+				<annotation>
+					<documentation>-- Definition --
+The name of the external information system.
+-- Description --
+EXAMPLES: Danish Register of Dwellings, Spanish Cadastre.</documentation>
+				</annotation>
+			</element>
+			<element name="reference" type="string">
+				<annotation>
+					<documentation>-- Definition --
+Thematic identifier of the spatial object or of any piece of information related to the spatial object.
+-- Description --
+NOTE: This reference will act as a foreign key to implement the association between the spatial object in the INSPIRE data set and in the external information system.
+EXAMPLE: The cadastral reference of a given building in the national cadastral register.</documentation>
+				</annotation>
+			</element>
+		</sequence>
+	</complexType>
+	<complexType name="ExternalReferencePropertyType">
+		<sequence>
+			<element ref="bu-base:ExternalReference"/>
+		</sequence>
+	</complexType>
+</schema>

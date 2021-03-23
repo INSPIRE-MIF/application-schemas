@@ -1,0 +1,1308 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- edited with XMLSpy v2014 sp1 (x64) (http://www.altova.com) by - - - (Commissione Europea JRC IES) -->
+<!-- THIS SCHEMA IS STILL A BETA VERSION
+26-MAY-2011 1.1.0 GeoportalResource: Added ResourceMetadataLanguage
+26-APR-2011 1.0.1 Conformity element:
+                    Restricted allowed citations to "INSPIRE interoperability of spatial data sets and services", according to the MD regulation,
+                    requirements for the conformity element (page 17 of the MD regulation).
+                  Inspire Themes:
+                    Removed leading blank for German, Bulgarian, Czech and Danish translations
+-->
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns="http://inspire.ec.europa.eu/schemas/geoportal/1.0" xmlns:inspire_common="http://inspire.ec.europa.eu/schemas/common/1.0" xmlns:rdsi="http://inspire.ec.europa.eu/schemas/rdsi/1.0" xmlns:jaxb="http://java.sun.com/xml/ns/jaxb" xmlns:xhtml="http://www.w3.org/1999/xhtml" xmlns:xlink="http://www.w3.org/1999/xlink" targetNamespace="http://inspire.ec.europa.eu/schemas/geoportal/1.0" elementFormDefault="qualified" attributeFormDefault="unqualified" version="1.0.0" jaxb:version="2.0">
+	<xs:annotation>
+		<xs:appinfo>
+			<jaxb:globalBindings typesafeEnumMaxMembers="1000" typesafeEnumMemberName="generateName"/>
+		</xs:appinfo>
+	</xs:annotation>
+	<xs:import namespace="http://inspire.ec.europa.eu/schemas/common/1.0" schemaLocation="../../common/1.0/common.xsd"/>
+	<!--	<xs:import namespace="http://inspire.ec.europa.eu/schemas/rdsi/1.0" schemaLocation="../../../rdsi/portal/1.0/portal.xsd"/>-->
+	<!--	<xs:import namespace="http://www.w3.org/1999/xlink" schemaLocation="http://www.w3.org/1999/xlink.xsd"/>-->
+	<xs:element name="Resource" type="geoportalResource"/>
+	<xs:complexType name="geoportalResource">
+		<xs:sequence>
+			<!--
+			<xs:element name="link" type="xhtml:xhtml.link.type" minOccurs="0" maxOccurs="unbounded"/>
+-->
+			<xs:choice>
+				<xs:element ref="inspire_common:SpatialDataSet"/>
+				<xs:element ref="SpatialDataSetResource"/>
+				<xs:element ref="inspire_common:SpatialDataSetSeries"/>
+				<xs:element ref="SpatialDataSetSeriesResource"/>
+				<xs:element ref="inspire_common:SpatialDataService"/>
+				<xs:element ref="DiscoveryServiceResource"/>
+				<xs:element ref="ViewServiceResource"/>
+				<xs:element ref="ViewServiceLayerResource"/>
+				<xs:element ref="DownloadServiceResource"/>
+				<xs:element ref="DownloadServiceSpatialDataSetResource"/>
+				<xs:element ref="inspire_common:TransformationService"/>
+				<xs:element ref="inspire_common:InvokeService"/>
+				<xs:element ref="inspire_common:OtherService"/>
+				<xs:element ref="PullOperationReportResource"/>
+				<xs:element ref="PullBatchReportResource"/>
+				<xs:element ref="ResourceReportResource"/>
+				<xs:element ref="RemoteFolderResource"/>
+				<xs:element ref="HtmlResource"/>
+				<xs:element ref="PdfResource"/>
+				<xs:element ref="UnknownTypeResource"/>
+				<xs:element ref="InspireResourcesReportResource"/>
+				<xs:element ref="PullReportsListResource"/>
+				<xs:element ref="TopDiscoveryServicesListResource"/>
+				<!--RDSI
+				<xs:element ref="rdsi:FactsAndFiguresReportResource"/>
+-->
+			</xs:choice>
+			<xs:element name="AuditRecord" type="auditRecord" minOccurs="0"/>
+			<xs:element name="ExternalMetadataLocator" type="inspire_common:resourceLocatorType" minOccurs="0" maxOccurs="1"/>
+			<xs:element name="SourceMetadataLocator" type="inspire_common:resourceLocatorType" minOccurs="0"/>
+			<xs:element name="GeoportalMetadataLocator" type="inspire_common:resourceLocatorType"/>
+			<xs:element name="TopAncestorResourceMetadataLocator" type="inspire_common:resourceLocatorType" minOccurs="0"/>
+			<xs:element name="ParentResourceMetadataLocator" type="inspire_common:resourceLocatorType" minOccurs="0"/>
+			<xs:element name="ParentResourceReportMetadataLocator" type="inspire_common:resourceLocatorType" minOccurs="0"/>
+			<xs:element name="SiblingPrevResourceMetadataLocator" type="inspire_common:resourceLocatorType" minOccurs="0"/>
+			<xs:element name="SiblingNextResourceMetadataLocator" type="inspire_common:resourceLocatorType" minOccurs="0"/>
+			<xs:element name="ChildResourceLocator" type="inspire_common:resourceLocatorType" minOccurs="0" maxOccurs="unbounded"/>
+			<xs:element name="GrandChildResourceLocator" type="inspire_common:resourceLocatorType" minOccurs="0" maxOccurs="unbounded"/>
+			<xs:element name="RelatedResourceLocator" type="inspire_common:resourceLocatorType" minOccurs="0" maxOccurs="unbounded"/>
+			<xs:element name="ResourceMetadataLanguage" type="inspire_common:metadataLanguageISO6392B" minOccurs="0"/>
+			<xs:element name="MemberStateCountryCode" type="inspire_common:countryCodes" minOccurs="0"/>
+			<xs:element name="MemberStateDiscoveryServiceResourceLocator" type="inspire_common:resourceLocatorType" minOccurs="0"/>
+			<xs:element name="ResourcePreview" type="resourcePreview" minOccurs="0" maxOccurs="unbounded"/>
+			<xs:element name="LinkedServiceResourceLocator" type="inspire_common:resourceLocatorType" minOccurs="0" maxOccurs="unbounded"/>
+			<xs:element name="ResourceKMLLocator" type="inspire_common:resourceLocatorType" minOccurs="0"/>
+			<!--Error locators-->
+			<xs:element name="SourceValidationErrorsLocator" type="inspire_common:resourceLocatorType" minOccurs="0"/>
+			<xs:element name="TransformationErrorsLocator" type="inspire_common:resourceLocatorType" minOccurs="0"/>
+			<xs:element name="InspireValidationErrorsLocator" type="inspire_common:resourceLocatorType" minOccurs="0"/>
+			<xs:element name="InspireValidationWarningsLocator" type="inspire_common:resourceLocatorType" minOccurs="0"/>
+			<xs:element name="SolrErrorsLocator" type="inspire_common:resourceLocatorType" minOccurs="0"/>
+			<xs:element name="ProcessingErrorsLocator" type="inspire_common:resourceLocatorType" minOccurs="0"/>
+			<xs:element name="ResourceReportLocator" type="inspire_common:resourceLocatorType" minOccurs="0"/>
+			<xs:element name="OriginalRepresentation" type="xs:string" minOccurs="0"/>
+			<xs:element name="SubscriberEmailAddress" type="inspire_common:emailType" minOccurs="0" maxOccurs="unbounded"/>
+			<xs:element name="GeoportalErrorCode" type="geoportalErrorCodeType" minOccurs="0" maxOccurs="unbounded"/>
+			<xs:element name="GeoportalWarningCode" type="geoportalErrorCodeType" minOccurs="0" maxOccurs="unbounded"/>
+			<xs:element name="AuthenticationAndAuthorization" type="authenticationAndAuthorization" minOccurs="0" maxOccurs="unbounded"/>
+		</xs:sequence>
+	</xs:complexType>
+	<!--INSPIRE Geoportal Specific-->
+	<xs:element name="Message" type="xs:string"/>
+	<xs:element name="GeoportalExceptionDocument">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element ref="GeoportalExceptionMessage" maxOccurs="unbounded"/>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="GeoportalExceptionMessage">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element ref="Message"/>
+				<xs:element ref="ExceptionCode"/>
+				<xs:element name="GeoportalErrorCode" type="geoportalErrorCodeType"/>
+				<xs:element name="Argument" type="argument" maxOccurs="unbounded"/>
+				<xs:element name="EA_GUID" type="xs:string">
+					<xs:annotation>
+						<xs:documentation>
+				Enterprise Architect GUID for linking the documentation page
+				</xs:documentation>
+					</xs:annotation>
+				</xs:element>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="ExceptionCode" type="xs:string"/>
+	<xs:complexType name="argument">
+		<xs:sequence>
+			<xs:element name="ArgumentName">
+				<xs:simpleType>
+					<xs:restriction base="xs:string">
+						<xs:enumeration value="Error Message"/>
+						<xs:enumeration value="File Location"/>
+					</xs:restriction>
+				</xs:simpleType>
+			</xs:element>
+			<xs:element name="ArgumentValue" type="xs:string"/>
+		</xs:sequence>
+	</xs:complexType>
+	<!--
+	<xs:complexType name="viewServiceClient">
+		<xs:complexContent>
+			<xs:extension base="inspire_common:viewService">
+				<xs:sequence>
+					<xs:element name="WMSVersion" type="xs:string"/>
+					<xs:element name="WMSType" type="xs:string"/>
+					<xs:element name="LayerLimit" type="xs:byte"/>
+				</xs:sequence>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+-->
+	<!-- Original implementation was changed because of the following Saxon-SA bug:
+http://sourceforge.net/tracker/?func=detail&aid=2076382&group_id=29872&atid=397617 
+	<xs:simpleType name="implementationSpecification">
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="CSW 2.0.2 AP ISO 1.0.0"/>
+			<xs:enumeration value="ISO 19128:2005"/>
+		</xs:restriction>
+	</xs:simpleType>
+-->
+	<xs:simpleType name="implementationSpecification">
+		<xs:restriction base="xs:string"/>
+	</xs:simpleType>
+	<xs:simpleType name="discoveryImplementationSpecification">
+		<xs:restriction base="implementationSpecification">
+			<xs:enumeration value="CSW 2.0.2 AP ISO 1.0.0"/>
+			<xs:enumeration value="OTHER"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="downloadImplementationSpecification">
+		<xs:restriction base="implementationSpecification">
+			<xs:enumeration value="ISO 19142/WFS 2.0"/>
+			<xs:enumeration value="IETF RFC 4287/ATOM"/>
+			<xs:enumeration value="OTHER"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="viewImplementationSpecification">
+		<xs:restriction base="implementationSpecification">
+			<xs:enumeration value="ISO 19128:2005"/>
+			<xs:enumeration value="OGC WMS 1.1.1"/>
+			<xs:enumeration value="OGC WMTS 1.0.0"/>
+			<xs:enumeration value="OTHER"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="discoveryLinkScenario">
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="centralised"/>
+			<xs:enumeration value="client"/>
+			<xs:enumeration value="federated"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="discoveryRecachingFrequency">
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="hourly"/>
+			<xs:enumeration value="daily"/>
+			<xs:enumeration value="weekly"/>
+			<xs:enumeration value="biweekly"/>
+			<xs:enumeration value="monthly"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:complexType name="discoveryServiceResource">
+		<xs:complexContent>
+			<xs:extension base="inspire_common:discoveryService">
+				<xs:sequence>
+					<xs:element name="DiscoveryImplementationSpecification" type="discoveryImplementationSpecification"/>
+					<xs:element name="MaxRecords" type="xs:integer" minOccurs="0"/>
+					<xs:element name="MaxParallelRequests" type="xs:integer" minOccurs="0"/>
+					<xs:element name="CollationDepth" type="xs:integer" minOccurs="0">
+						<xs:annotation>
+							<xs:documentation>Maximum recursion depth performed during the pull operation</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="RecachingFrequency" type="discoveryRecachingFrequency" minOccurs="0"/>
+					<xs:element name="LinkScenario" type="discoveryLinkScenario" minOccurs="0"/>
+					<xs:element name="OGCFilter" type="xs:string" minOccurs="0"/>
+					<xs:element name="VirtualEndpoint" minOccurs="0">
+						<xs:complexType>
+							<xs:sequence>
+								<xs:element name="Alias" type="inspire_common:notEmptyString" minOccurs="0"/>
+								<xs:element name="ResourceTitle" type="inspire_common:notEmptyString" minOccurs="0"/>
+								<xs:element name="ResourceAbstract" type="inspire_common:notEmptyString" minOccurs="0"/>
+								<xs:element name="ResponsibleOrganisation" type="inspire_common:responsibleOrganisation" minOccurs="0"/>
+							</xs:sequence>
+						</xs:complexType>
+					</xs:element>
+				</xs:sequence>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="authenticationAndAuthorization">
+		<xs:choice>
+			<xs:element name="GeoNetworkAuth" type="geoNetworkAuth"/>
+			<xs:element name="HttpBasicAuth" type="httpBasicAuth"/>
+			<xs:element name="HttpProxyAuth" type="httpProxyAuth"/>
+			<xs:element name="ShibbollethAuth" type="shibbollethAuth"/>
+			<xs:element name="EcasAuth" type="ecasAuth"/>
+		</xs:choice>
+	</xs:complexType>
+	<xs:complexType name="authenticationAndAuthorizationMechanism" abstract="true">
+		<xs:sequence>
+			<xs:element name="AuthenticationAndAuthorizationType" type="authenticationAndAuthorizationType"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:simpleType name="authenticationAndAuthorizationType">
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="HTTPBasic"/>
+			<xs:enumeration value="GeoNetwork"/>
+			<xs:enumeration value="HTTPProxy"/>
+			<xs:enumeration value="Shibbolleth"/>
+			<xs:enumeration value="ECAS"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="httpBasicAuthType">
+		<xs:restriction base="authenticationAndAuthorizationType">
+			<xs:enumeration value="HTTPBasic"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="httpProxyAuthType">
+		<xs:restriction base="authenticationAndAuthorizationType">
+			<xs:enumeration value="HTTPProxy"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="geoNetworkAuthType">
+		<xs:restriction base="authenticationAndAuthorizationType">
+			<xs:enumeration value="GeoNetwork"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="shibbollethAuthType">
+		<xs:restriction base="authenticationAndAuthorizationType">
+			<xs:enumeration value="Shibbolleth"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="ecasAuthType">
+		<xs:restriction base="authenticationAndAuthorizationType">
+			<xs:enumeration value="ECAS"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:complexType name="httpBasicAuth_ext">
+		<xs:complexContent>
+			<xs:extension base="authenticationAndAuthorizationMechanism">
+				<xs:sequence>
+					<xs:element name="username" type="xs:string"/>
+					<xs:element name="password" type="xs:string"/>
+				</xs:sequence>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="httpBasicAuth">
+		<xs:complexContent>
+			<xs:restriction base="httpBasicAuth_ext">
+				<xs:sequence>
+					<xs:element name="AuthenticationAndAuthorizationType" type="httpBasicAuthType"/>
+					<xs:element name="username" type="xs:string"/>
+					<xs:element name="password" type="xs:string"/>
+				</xs:sequence>
+			</xs:restriction>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="httpProxyAuth_ext">
+		<xs:complexContent>
+			<xs:extension base="authenticationAndAuthorizationMechanism">
+				<xs:sequence>
+					<xs:element name="username" type="xs:string"/>
+					<xs:element name="password" type="xs:string"/>
+					<xs:element name="proxyURL" type="xs:anyURI"/>
+				</xs:sequence>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="httpProxyAuth">
+		<xs:complexContent>
+			<xs:restriction base="httpProxyAuth_ext">
+				<xs:sequence>
+					<xs:element name="AuthenticationAndAuthorizationType" type="httpProxyAuthType"/>
+					<xs:element name="username" type="xs:string"/>
+					<xs:element name="password" type="xs:string"/>
+					<xs:element name="proxyURL" type="xs:anyURI"/>
+				</xs:sequence>
+			</xs:restriction>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="geoNetworkAuth_ext">
+		<xs:complexContent>
+			<xs:extension base="authenticationAndAuthorizationMechanism">
+				<xs:sequence>
+					<xs:element name="username" type="xs:string"/>
+					<xs:element name="password" type="xs:string"/>
+					<xs:element name="loginURL" type="xs:anyURI"/>
+					<xs:element name="logoutURL" type="xs:anyURI"/>
+				</xs:sequence>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="geoNetworkAuth">
+		<xs:complexContent>
+			<xs:restriction base="geoNetworkAuth_ext">
+				<xs:sequence>
+					<xs:element name="AuthenticationAndAuthorizationType" type="geoNetworkAuthType"/>
+					<xs:element name="username" type="xs:string"/>
+					<xs:element name="password" type="xs:string"/>
+					<xs:element name="loginURL" type="xs:anyURI"/>
+					<xs:element name="logoutURL" type="xs:anyURI"/>
+				</xs:sequence>
+			</xs:restriction>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="shibbollethAuth_ext">
+		<xs:complexContent>
+			<xs:extension base="authenticationAndAuthorizationMechanism">
+				<xs:sequence/>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="shibbollethAuth">
+		<xs:complexContent>
+			<xs:restriction base="shibbollethAuth_ext">
+				<xs:sequence>
+					<xs:element name="AuthenticationAndAuthorizationType" type="shibbollethAuthType"/>
+				</xs:sequence>
+			</xs:restriction>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="ecasAuth_ext">
+		<xs:complexContent>
+			<xs:extension base="authenticationAndAuthorizationMechanism">
+				<xs:sequence>
+					<xs:element name="username" type="xs:string"/>
+					<xs:element name="password" type="xs:string"/>
+					<xs:element name="loginURL" type="xs:anyURI"/>
+					<xs:element name="logoutURL" type="xs:anyURI"/>
+				</xs:sequence>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="ecasAuth">
+		<xs:complexContent>
+			<xs:restriction base="ecasAuth_ext">
+				<xs:sequence>
+					<xs:element name="AuthenticationAndAuthorizationType" type="ecasAuthType"/>
+					<xs:element name="username" type="xs:string"/>
+					<xs:element name="password" type="xs:string"/>
+					<xs:element name="loginURL" type="xs:anyURI"/>
+					<xs:element name="logoutURL" type="xs:anyURI"/>
+				</xs:sequence>
+			</xs:restriction>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:element name="DiscoveryServiceResource" type="discoveryServiceResource"/>
+	<xs:complexType name="downloadServiceResource">
+		<xs:complexContent>
+			<xs:extension base="inspire_common:downloadService">
+				<xs:sequence>
+					<xs:element name="DownloadImplementationSpecification" type="downloadImplementationSpecification"/>
+				</xs:sequence>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:element name="DownloadServiceResource" type="downloadServiceResource"/>
+	<xs:complexType name="downloadServiceSpatialDataSetResource">
+		<xs:complexContent>
+			<xs:extension base="inspire_common:dataset">
+				<xs:sequence>
+					<xs:element name="DownloadImplementationSpecification" type="downloadImplementationSpecification"/>
+					<xs:element name="DownloadServiceResourceTitle" type="xs:string"/>
+					<xs:element name="DownloadServiceResourceAbstract" type="inspire_common:anchorType"/>
+					<xs:element name="SpatialDataMetadataLocator" type="inspire_common:resourceLocatorType" minOccurs="0" maxOccurs="unbounded"/>
+					<xs:element name="SpatialDataSetDownloadLink" type="spatialDataSetDownloadLink" minOccurs="1" maxOccurs="unbounded"/>
+				</xs:sequence>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:element name="DownloadServiceSpatialDataSetResource" type="downloadServiceSpatialDataSetResource"/>
+	<xs:complexType name="spatialDataSetDownloadLink">
+		<xs:sequence>
+			<xs:element name="CoordinateReferenceSystem" type="inspire_common:coordinateReferenceSystem" minOccurs="1" maxOccurs="1"/>
+			<xs:element name="GeographicBoundingBox" type="inspire_common:geographicBoundingBox" minOccurs="1" maxOccurs="1"/>
+			<xs:choice>
+				<xs:element name="SpatialDataSetDownloadResourceLocator" type="downloadServiceSpatialDataSetPart" minOccurs="1" maxOccurs="1"/>
+				<xs:sequence>
+					<xs:element name="MultiPartDownloadDescriptionLocator" type="inspire_common:resourceLocatorType" minOccurs="0" maxOccurs="unbounded"/>
+					<xs:element name="SpatialDataSetPartDownloadResourceLocator" type="downloadServiceSpatialDataSetPart" minOccurs="2" maxOccurs="unbounded"/>
+				</xs:sequence>
+			</xs:choice>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="downloadServiceSpatialDataSetPart">
+		<xs:sequence>
+			<xs:element name="CoordinateReferenceSystem" type="inspire_common:coordinateReferenceSystem" minOccurs="1" maxOccurs="1"/>
+			<xs:element name="GeographicBoundingBox" type="inspire_common:geographicBoundingBox" minOccurs="0" maxOccurs="1"/>
+			<xs:element name="TemporalReference" type="inspire_common:temporalReference" minOccurs="0" maxOccurs="unbounded"/>
+			<xs:element name="DownloadResourceLocator" type="inspire_common:downloadResourceLocatorType" minOccurs="1" maxOccurs="1"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="inspireResourcesReport">
+		<xs:sequence>
+			<xs:element name="MatchedRecordsCount" type="xs:integer" minOccurs="0"/>
+			<xs:element ref="PerResourceTypeCounts"/>
+			<xs:element ref="PerSpatialDataThemeCounts"/>
+			<xs:element ref="PerSpatialDataThemeAnnexICounts"/>
+			<xs:element ref="PerSpatialDataThemeAnnexIICounts"/>
+			<xs:element ref="PerSpatialDataThemeAnnexIIICounts"/>
+			<xs:element ref="PerSpatialDataThemeAnnexCounts"/>
+			<xs:element ref="PerSpatialDataServiceTypeCounts"/>
+			<xs:element ref="PerSpatialDataServiceResourceLocatorConnectionIssueTypeCounts"/>
+			<xs:element ref="PerViewServiceTypeCounts"/>
+			<xs:element name="ViewServiceSourceValidationFailedCount" type="xs:integer"/>
+			<xs:element name="ViewServiceMissingExtCapsCount" type="xs:integer"/>
+			<xs:element name="ViewServiceInspireValidationFailedCount" type="xs:integer"/>
+			<xs:element name="ViewServiceInspireValidationWarningCount" type="xs:integer"/>
+			<xs:element ref="PerDiscoveryServiceTypeCounts"/>
+			<xs:element name="DiscoveryServiceSourceValidationFailedCount" type="xs:integer"/>
+			<xs:element name="DiscoveryServiceMissingExtCapsCount" type="xs:integer"/>
+			<xs:element name="DiscoveryServiceInspireValidationFailedCount" type="xs:integer"/>
+			<xs:element name="DiscoveryServiceInspireValidationWarningCount" type="xs:integer"/>
+			<xs:element ref="PerDownloadServiceTypeCounts"/>
+			<xs:element name="DownloadServiceSourceValidationFailedCount" type="xs:integer"/>
+			<xs:element name="DownloadServiceMissingExtCapsCount" type="xs:integer"/>
+			<xs:element name="DownloadServiceInspireValidationFailedCount" type="xs:integer"/>
+			<xs:element name="DownloadServiceInspireValidationWarningCount" type="xs:integer"/>
+			<xs:element name="ExpectedRecordsCount" type="xs:integer"/>
+			<xs:element name="FoundResourcesCount" type="xs:integer"/>
+			<xs:choice>
+				<xs:annotation>
+					<xs:documentation>For backward compatibility</xs:documentation>
+				</xs:annotation>
+				<xs:element name="SourceFailedValidationCount" type="xs:integer"/>
+				<xs:element name="SourceValidationFailedCount" type="xs:integer"/>
+			</xs:choice>
+			<xs:element name="InspireValidationFailedCount" type="xs:integer"/>
+			<xs:element name="InspireValidationWarningCount" type="xs:integer"/>
+			<xs:element name="ViewServiceNamedLayersCount" type="xs:integer"/>
+			<xs:element name="ViewServiceNamedLayersInspireValidationFailedCount" type="xs:integer"/>
+			<xs:element name="ViewServiceNamedLayersInspireValidationWarningCount" type="xs:integer"/>
+			<xs:element name="DownloadServiceDatasetsCount" type="xs:integer"/>
+			<xs:element name="DownloadServiceDatasetsInspireValidationFailedCount" type="xs:integer"/>
+			<xs:element name="DownloadServiceDatasetsInspireValidationWarningCount" type="xs:integer"/>
+			<xs:element ref="DiscoveryServiceDetail" maxOccurs="unbounded"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:element name="DiscoveryServiceDetail" type="inspireResourcesReportPerDiscoveryServiceDetail"/>
+	<xs:complexType name="inspireResourcesReportPerDiscoveryServiceDetail">
+		<xs:sequence>
+			<xs:element name="MemberStateCountryCode" type="inspire_common:countryCodes" minOccurs="0"/>
+			<xs:element name="DiscoveryServiceVirtualEndpointAlias" type="inspire_common:notEmptyString" minOccurs="0"/>
+			<xs:element name="MemberStateDiscoveryServicePullReportResourceLocator" type="inspire_common:resourceLocatorType" minOccurs="0"/>
+			<xs:element name="MatchedRecordsCount" type="xs:integer" minOccurs="0"/>
+			<xs:element ref="PerResourceTypeCounts"/>
+			<xs:element ref="PerSpatialDataThemeCounts"/>
+			<xs:element ref="PerSpatialDataThemeAnnexICounts"/>
+			<xs:element ref="PerSpatialDataThemeAnnexIICounts"/>
+			<xs:element ref="PerSpatialDataThemeAnnexIIICounts"/>
+			<xs:element ref="PerSpatialDataThemeAnnexCounts"/>
+			<xs:element ref="PerSpatialDataServiceTypeCounts"/>
+			<xs:element ref="PerSpatialDataServiceResourceLocatorConnectionIssueTypeCounts"/>
+			<xs:element ref="PerViewServiceTypeCounts"/>
+			<xs:element name="ViewServiceSourceValidationFailedCount" type="xs:integer"/>
+			<xs:element name="ViewServiceMissingExtCapsCount" type="xs:integer"/>
+			<xs:element name="ViewServiceInspireValidationFailedCount" type="xs:integer"/>
+			<xs:element name="ViewServiceInspireValidationWarningCount" type="xs:integer"/>
+			<xs:element ref="PerDiscoveryServiceTypeCounts"/>
+			<xs:element name="DiscoveryServiceSourceValidationFailedCount" type="xs:integer"/>
+			<xs:element name="DiscoveryServiceMissingExtCapsCount" type="xs:integer"/>
+			<xs:element name="DiscoveryServiceInspireValidationFailedCount" type="xs:integer"/>
+			<xs:element name="DiscoveryServiceInspireValidationWarningCount" type="xs:integer"/>
+			<xs:element ref="PerDownloadServiceTypeCounts"/>
+			<xs:element name="DownloadServiceSourceValidationFailedCount" type="xs:integer"/>
+			<xs:element name="DownloadServiceMissingExtCapsCount" type="xs:integer"/>
+			<xs:element name="DownloadServiceInspireValidationFailedCount" type="xs:integer"/>
+			<xs:element name="DownloadServiceInspireValidationWarningCount" type="xs:integer"/>
+			<xs:element name="ExpectedRecordsCount" type="xs:integer"/>
+			<xs:element name="FoundResourcesCount" type="xs:integer"/>
+			<xs:choice>
+				<xs:element name="SourceValidationFailedCount" type="xs:integer"/>
+				<xs:element name="SourceFailedValidationCount" type="xs:integer">
+					<xs:annotation>
+						<xs:documentation>or backward compatibility</xs:documentation>
+					</xs:annotation>
+				</xs:element>
+			</xs:choice>
+			<xs:element name="InspireValidationFailedCount" type="xs:integer"/>
+			<xs:element name="InspireValidationWarningCount" type="xs:integer"/>
+			<xs:element name="ViewServiceNamedLayersCount" type="xs:integer"/>
+			<xs:element name="ViewServiceNamedLayersInspireValidationFailedCount" type="xs:integer"/>
+			<xs:element name="ViewServiceNamedLayersInspireValidationWarningCount" type="xs:integer"/>
+			<xs:element name="DownloadServiceDatasetsCount" type="xs:integer"/>
+			<xs:element name="DownloadServiceDatasetsInspireValidationFailedCount" type="xs:integer"/>
+			<xs:element name="DownloadServiceDatasetsInspireValidationWarningCount" type="xs:integer"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:element name="InspireResourcesReportResource" type="inspireResourcesReport"/>
+	<xs:complexType name="pullOperationReport">
+		<xs:sequence>
+			<xs:element name="MatchedRecordsCount" type="xs:integer" minOccurs="0"/>
+			<xs:element name="LinkedServicePullOperationReportResourceLocator" type="inspire_common:resourceLocatorType" minOccurs="0" maxOccurs="unbounded"/>
+			<xs:element ref="PerResourceTypeCounts"/>
+			<xs:element ref="PerSpatialDataThemeCounts"/>
+			<xs:element ref="PerSpatialDataThemeAnnexICounts"/>
+			<xs:element ref="PerSpatialDataThemeAnnexIICounts"/>
+			<xs:element ref="PerSpatialDataThemeAnnexIIICounts"/>
+			<xs:element ref="PerSpatialDataThemeAnnexCounts"/>
+			<xs:element ref="PerSpatialDataServiceTypeCounts"/>
+			<xs:element ref="PerSpatialDataServiceResourceLocatorConnectionIssueTypeCounts"/>
+			<xs:element ref="PerViewServiceTypeCounts"/>
+			<xs:element name="ViewServiceSourceValidationFailedCount" type="xs:integer"/>
+			<xs:element name="ViewServiceMissingExtCapsCount" type="xs:integer"/>
+			<xs:element name="ViewServiceInspireValidationFailedCount" type="xs:integer"/>
+			<xs:element name="ViewServiceInspireValidationWarningCount" type="xs:integer"/>
+			<xs:element ref="PerDiscoveryServiceTypeCounts"/>
+			<xs:element name="DiscoveryServiceSourceValidationFailedCount" type="xs:integer"/>
+			<xs:element name="DiscoveryServiceMissingExtCapsCount" type="xs:integer"/>
+			<xs:element name="DiscoveryServiceInspireValidationFailedCount" type="xs:integer"/>
+			<xs:element name="DiscoveryServiceInspireValidationWarningCount" type="xs:integer"/>
+			<xs:element ref="PerDownloadServiceTypeCounts"/>
+			<xs:element name="DownloadServiceSourceValidationFailedCount" type="xs:integer"/>
+			<xs:element name="DownloadServiceMissingExtCapsCount" type="xs:integer"/>
+			<xs:element name="DownloadServiceInspireValidationFailedCount" type="xs:integer"/>
+			<xs:element name="DownloadServiceInspireValidationWarningCount" type="xs:integer"/>
+			<xs:element name="ExpectedRecordsCount" type="xs:integer"/>
+			<xs:element name="FoundResourcesCount" type="xs:integer"/>
+			<xs:element name="SourceValidationFailedCount" type="xs:integer"/>
+			<xs:element name="InspireValidationFailedCount" type="xs:integer"/>
+			<xs:element name="InspireValidationWarningCount" type="xs:integer"/>
+			<xs:element name="ViewServiceNamedLayersCount" type="xs:integer"/>
+			<xs:element name="ViewServiceNamedLayersInspireValidationFailedCount" type="xs:integer"/>
+			<xs:element name="ViewServiceNamedLayersInspireValidationWarningCount" type="xs:integer"/>
+			<xs:element name="DownloadServiceDatasetsCount" type="xs:integer"/>
+			<xs:element name="DownloadServiceDatasetsInspireValidationFailedCount" type="xs:integer"/>
+			<xs:element name="DownloadServiceDatasetsInspireValidationWarningCount" type="xs:integer"/>
+			<xs:element name="GroupSize" type="xs:integer" minOccurs="0"/>
+			<xs:element name="DiscoverMetadataRequestLocator" type="inspire_common:resourceLocatorType" minOccurs="0" maxOccurs="1">
+				<xs:annotation>
+					<xs:documentation>Contains statistical values computed from all PullBatchReports</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="DiscoveryServiceVirtualEndpointAlias" type="inspire_common:notEmptyString" minOccurs="0"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:element name="PullOperationReportResource" type="pullOperationReport"/>
+	<xs:complexType name="perResourceTypeCounts">
+		<xs:sequence>
+			<xs:element name="ResourceCount" maxOccurs="unbounded">
+				<xs:complexType>
+					<xs:choice>
+						<xs:sequence>
+							<xs:element name="FoundResourcesCount" type="xs:integer"/>
+							<xs:element name="InspireValidationFailedCount" type="xs:integer"/>
+							<xs:element name="InspireValidationWarningCount" type="xs:integer"/>
+						</xs:sequence>
+						<xs:sequence>
+							<xs:annotation>
+								<xs:documentation>For backward compatibility</xs:documentation>
+							</xs:annotation>
+							<xs:element name="Count" type="xs:integer"/>
+						</xs:sequence>
+					</xs:choice>
+					<xs:attribute name="resourceType" type="geoportalResourceType" use="required"/>
+				</xs:complexType>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:element name="PerResourceTypeCounts" type="perResourceTypeCounts"/>
+	<xs:complexType name="perErrorTypeCounts">
+		<xs:sequence>
+			<xs:element name="ResourceCount" maxOccurs="unbounded">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element name="FoundResourcesCount" type="xs:integer"/>
+						<xs:element name="InspireValidationFailedCount" type="xs:integer"/>
+						<xs:element name="InspireValidationWarningCount" type="xs:integer"/>
+					</xs:sequence>
+					<xs:attribute name="errorType" type="geoportalErrorCodeType" use="required"/>
+				</xs:complexType>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:element name="PerErrorTypeCounts" type="perErrorTypeCounts"/>
+	<xs:simpleType name="geoportalMetadataElementName">
+		<xs:annotation>
+			<xs:documentation>Geoportal metadata elements</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="RESOURCE_TITLE"/>
+			<xs:enumeration value="RESOURCE_ABSTRACT"/>
+			<xs:enumeration value="RESOURCE_TYPE"/>
+			<xs:enumeration value="RESOURCE_LOCATOR "/>
+			<xs:enumeration value="MANDATORY_KEYWORD "/>
+			<xs:enumeration value="INSPIRE_SPATIAL_DATA_THEME "/>
+			<xs:enumeration value="SERVICE_CATEGORY "/>
+			<xs:enumeration value="TEMPORAL_REFERENCE "/>
+			<xs:enumeration value="CONFORMITY "/>
+			<xs:enumeration value="CONDITIONS_FOR_ACCESS_AND_USE "/>
+			<xs:enumeration value="LIMITATIONS_ON_PUBLIC_ACCESS "/>
+			<xs:enumeration value="RESPONSIBLE_ORGANISATION "/>
+			<xs:enumeration value="METADATA_POINT_OF_CONTACT "/>
+			<xs:enumeration value="METADATA_DATE "/>
+			<xs:enumeration value="METADATA_LANGUAGE "/>
+			<xs:enumeration value="UNIQUE_RESOURCE_IDENTIFIER "/>
+			<xs:enumeration value="GEOGRAPHIC_BOUNDING_BOX "/>
+			<xs:enumeration value="RESOURCE_LANGUAGE "/>
+			<xs:enumeration value="TOPIC_CATEGORY "/>
+			<xs:enumeration value="LINEAGE "/>
+			<xs:enumeration value="COUPLED_RESOURCE "/>
+			<xs:enumeration value="SPATIAL_DATA_SERVICE_TYPE "/>
+			<xs:enumeration value="RESPONSE_LANGUAGE "/>
+			<xs:enumeration value="SUPPORTED_LANGUAGES "/>
+			<xs:enumeration value="LAYERS "/>
+			<xs:enumeration value="DOWNLOAD_DATASETS "/>
+			<xs:enumeration value="LAYER_TITLE "/>
+			<xs:enumeration value="LAYER_ABSTRACT "/>
+			<xs:enumeration value="LAYER_NAME "/>
+			<xs:enumeration value="LAYER_UNIQUE_RESOURCE_IDENTIFIER "/>
+			<xs:enumeration value="LAYER_CRS "/>
+			<xs:enumeration value="LAYER_GEOGRAPHIC_BOUNDING_BOX "/>
+			<xs:enumeration value="LAYER_BOUNDING_BOX "/>
+			<xs:enumeration value="LAYER_STYLES "/>
+			<xs:enumeration value="LAYER_KEYWORD "/>
+			<xs:enumeration value="LAYER_LEGEND_URL "/>
+			<xs:enumeration value="LAYER_DIMENSION_PAIRS "/>
+			<xs:enumeration value="LAYER_MAP_MANDATORY_IMAGE_FORMAT "/>
+			<xs:enumeration value="VIEW_GET_MAP_MANDATORY_IMAGE_FORMAT "/>
+			<xs:enumeration value="VIEW_GET_MAP_OPERATION_METADATA "/>
+			<xs:enumeration value="DISCOVERY_GET_DISCOVERY_METADATA_OPERATION_METADATA "/>
+			<xs:enumeration value="DOWNLOAD_GET_DOWNLOAD_SERVICE_METADATA_OPERATION_METADATA "/>
+			<xs:enumeration value="DOWNLOAD_GET_SPATIAL_DATASET_OPERATION_METADATA "/>
+			<xs:enumeration value="DOWNLOAD_DESCRIBE_SPATIAL_DATA_SET_OPERATION_METADATA "/>
+			<xs:enumeration value="DOWNLOAD_LINK_DOWNLOAD_SERVICE_OPERATION_METADATA "/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="geoportalErrorCodeType">
+		<xs:annotation>
+			<xs:documentation>Geoportal error codes</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="error.geoportal.proxy.error.generic"/>
+			<xs:enumeration value="error.geoportal.proxy.error.solr"/>
+			<xs:enumeration value="error.geoportal.proxy.error.processing"/>
+			<xs:enumeration value="error.geoportal.proxy.error.transformation"/>
+			<xs:enumeration value="error.geoportal.proxy.error.sourcevalidation"/>
+			<xs:enumeration value="error.geoportal.proxy.metadata.element.missing"/>
+			<xs:enumeration value="error.geoportal.proxy.metadata.element.resourcetitle.missing"/>
+			<xs:enumeration value="error.geoportal.proxy.metadata.element.resourceabstract.missing"/>
+			<xs:enumeration value="error.geoportal.proxy.metadata.element.resourcetype.missing"/>
+			<xs:enumeration value="error.geoportal.proxy.metadata.element.resourcelocator.missing"/>
+			<xs:enumeration value="error.geoportal.proxy.metadata.element.inspirespatialdatatheme.missing"/>
+			<xs:enumeration value="error.geoportal.proxy.metadata.element.servicecategory.missing"/>
+			<xs:enumeration value="error.geoportal.proxy.metadata.element.temporalreference.missing"/>
+			<xs:enumeration value="error.geoportal.proxy.metadata.element.conformity.missing"/>
+			<xs:enumeration value="error.geoportal.proxy.metadata.element.conditionsforaccessanduse.missing"/>
+			<xs:enumeration value="error.geoportal.proxy.metadata.element.limitationsonpublicaccess.missing"/>
+			<xs:enumeration value="error.geoportal.proxy.metadata.element.responsibleorganisation.missing"/>
+			<xs:enumeration value="error.geoportal.proxy.metadata.element.metadatapointofcontact.missing"/>
+			<xs:enumeration value="error.geoportal.proxy.metadata.element.metadatadate.missing"/>
+			<xs:enumeration value="error.geoportal.proxy.metadata.element.metadatalanguage.missing"/>
+			<xs:enumeration value="error.geoportal.proxy.metadata.element.uniqueresourceidentifier.missing"/>
+			<xs:enumeration value="error.geoportal.proxy.metadata.element.geographicboundingbox.missing"/>
+			<xs:enumeration value="error.geoportal.proxy.metadata.element.resourcelanguage.missing"/>
+			<xs:enumeration value="error.geoportal.proxy.metadata.element.topiccategory.missing"/>
+			<xs:enumeration value="error.geoportal.proxy.metadata.element.lineage.missing"/>
+			<xs:enumeration value="error.geoportal.proxy.metadata.element.coupledresource.missing"/>
+			<xs:enumeration value="error.geoportal.proxy.metadata.element.spatialdataservicetype.missing"/>
+			<xs:enumeration value="error.geoportal.proxy.metadata.element.responselanguage.missing"/>
+			<xs:enumeration value="error.geoportal.proxy.metadata.element.supportedlanguages.missing"/>
+			<xs:enumeration value="error.geoportal.proxy.metadata.element.layers.missing"/>
+			<xs:enumeration value="error.geoportal.proxy.metadata.element.downloaddatasets.missing"/>
+			<xs:enumeration value="error.geoportal.proxy.metadata.element.layer.title.missing"/>
+			<xs:enumeration value="error.geoportal.proxy.metadata.element.layer.abstract.missing"/>
+			<xs:enumeration value="error.geoportal.proxy.metadata.element.layer.name.missing"/>
+			<xs:enumeration value="error.geoportal.proxy.metadata.element.layer.uniqueresourceidentifier.missing"/>
+			<xs:enumeration value="error.geoportal.proxy.metadata.element.layer.coordinatereferencesystem.missing"/>
+			<xs:enumeration value="error.geoportal.proxy.metadata.element.layer.geographicboundingbox.missing"/>
+			<xs:enumeration value="error.geoportal.proxy.metadata.element.layer.boundingbox.missing"/>
+			<xs:enumeration value="error.geoportal.proxy.metadata.element.layer.styles.missing"/>
+			<xs:enumeration value="error.geoportal.proxy.metadata.element.layer.keyword.missing"/>
+			<xs:enumeration value="error.geoportal.proxy.metadata.element.layer.legendurl.missing"/>
+			<xs:enumeration value="error.geoportal.proxy.metadata.element.layer.dimensionpairs.missing"/>
+			<xs:enumeration value="error.geoportal.proxy.metadata.element.layer.mandatoryimageformat.missing"/>
+			<xs:enumeration value="error.geoportal.proxy.metadata.element.service.network.view.mandatoryimageformat.missing"/>
+			<xs:enumeration value="error.geoportal.proxy.metadata.element.service.network.discovery.getdiscoverymetadataoperationmetadata.missing"/>
+			<xs:enumeration value="error.geoportal.proxy.metadata.element.service.network.download.getdownloadservicemetadataoperationmetadata.missing"/>
+			<xs:enumeration value="error.geoportal.proxy.metadata.element.service.network.download.getspatialdatasetoperationmetadata.missing"/>
+			<xs:enumeration value="error.geoportal.proxy.metadata.element.service.network.download.describespatialdatasetoperationmetadata.missing"/>
+			<xs:enumeration value="error.geoportal.proxy.metadata.element.service.network.download.linkdownloadserviceoperationmetadata.missing"/>
+			<xs:enumeration value="error.geoportal.proxy.metadata.element.service.network.view.getmapmandatoryimageformat.missing"/>
+			<xs:enumeration value="error.geoportal.proxy.metadata.element.service.network.view.getmapoperationmetadata.missing"/>
+			<xs:enumeration value="error.geoportal.proxy.metadata.element.creationdate.multiple"/>
+			<xs:enumeration value="error.geoportal.networkservice.language.defaultnotusedinresponse"/>
+			<xs:enumeration value="error.geoportal.networkservice.language.responselanguagedifferentfromrequested"/>
+			<xs:enumeration value="error.geoportal.discovery.resourcelocator.invalidurl"/>
+			<xs:enumeration value="error.geoportal.discovery.metadata.xmlvalidation"/>
+			<xs:enumeration value="error.geoportal.caching.failure"/>
+			<xs:enumeration value="error.geoportal.resourcelocator.cannotresolve"/>
+			<xs:enumeration value="error.geoportal.proxy.view.layer.metadata"/>
+			<xs:enumeration value="error.geoportal.proxy.service.discovery.validation.failed"/>
+			<xs:enumeration value="error.geoportal.proxy.service.discovery.validation.warning"/>
+			<xs:enumeration value="error.geoportal.proxy.maxdownloadsizereached.warning"/>
+			<xs:enumeration value="error.geoportal.discovery.impl.spec"/>
+			<xs:enumeration value="error.geoportal.discovery.batch.count.found.expected"/>
+			<xs:enumeration value="error.geoportal.discovery.additionalqueryables"/>
+			<xs:enumeration value="error.geoportal.discovery.isoqueryables"/>
+			<xs:enumeration value="error.geoportal.externalservice.error"/>
+			<xs:enumeration value="error.geoportal.view.getmap.blank"/>
+			<xs:enumeration value="error.geoportal.networkservice.view.layer.uri.resource.notfound"/>
+			<xs:enumeration value="error.geoportal.metadata.service.view.uricoupledresource.inconsistent"/>
+			<xs:enumeration value="error.geoportal.metadata.service.view.coupledresourcesuris.inconsistent"/>
+			<xs:enumeration value="error.geoportal.metadata.service.coupledresource.invalid"/>
+			<xs:enumeration value="error.geoportal.service.download.dataset.metadataurl.invalid"/>
+			<xs:enumeration value="error.geoportal.metadata.vs.metadataurl.invalid"/>
+			<xs:enumeration value="error.geoportal.metadata.service.opensearchdescriptiondocumenturl.invalid"/>
+			<xs:enumeration value="error.geoportal.invalidresource"/>
+			<xs:enumeration value="error.geoportal.metadata.service.metadataurl.invalid"/>
+			<xs:enumeration value="error.geoportal.proxy.metadata"/>
+			<xs:enumeration value="error.geoportal.proxy.iso2inspire.failed"/>
+			<xs:enumeration value="error.geoportal.proxy.metadata"/>
+			<xs:enumeration value="error.geoportal.proxy.metadata.resourcetype.missing"/>
+			<xs:enumeration value="error.geoportal.service.locator.multiple"/>
+			<xs:enumeration value="error.geoportal.service.locator.notspecified"/>
+			<xs:enumeration value="error.geoportal.service.locator.novalidfound"/>
+			<xs:enumeration value="error.geoportal.discovery.resourcelocator.forbidden"/>
+			<xs:enumeration value="error.geoportal.discovery.resourcelocator.notfound"/>
+			<xs:enumeration value="error.geoportal.discovery.resourcelocator.unauthorized"/>
+			<xs:enumeration value="error.geoportal.discovery.resourcelocator.httpconnectionfailed"/>
+			<xs:enumeration value="error.geoportal.discovery.resourcelocator.unknownhost"/>
+			<xs:enumeration value="error.geoportal.resourcelocator.timeout"/>
+			<xs:enumeration value="error.geoportal.service.implementation.notsupported"/>
+			<xs:enumeration value="error.geoportal.discovery.missing.inspireextcaps"/>
+			<xs:enumeration value="error.geoportal.service.type.unknown"/>
+			<xs:enumeration value="error.geoportal.view.getmap.ko"/>
+			<xs:enumeration value="error.geoportal.proxy.metadata.resourcetype.unknown"/>
+			<xs:enumeration value="error.geoportal.proxy.service.view.validation.failed"/>
+			<xs:enumeration value="error.geoportal.proxy.service.view.validation.warning"/>
+			<xs:enumeration value="error.geoportal.proxy.view.layer.validation.failed"/>
+			<xs:enumeration value="error.geoportal.proxy.view.layer.validation.warning"/>
+			<xs:enumeration value="error.geoportal.proxy.service.download.validation.warning"/>
+			<xs:enumeration value="error.geoportal.proxy.service.download.validation.failed"/>
+			<xs:enumeration value="error.geoportal.proxy.service.download.spatialobjects.missing"/>
+			<xs:enumeration value="error.geoportal.proxy.download.dataset.validation.failed"/>
+			<xs:enumeration value="error.geoportal.proxy.download.dataset.validation.warning"/>
+			<xs:enumeration value="error.geoportal.proxy.download.dataset.mediatype.unsupported"/>
+			<xs:enumeration value="error.geoportal.proxy.download.dataset.invalid.latlon_string"/>
+			<xs:enumeration value="error.geoportal.proxy.download.dataset.subfeedlink.missing"/>
+			<xs:enumeration value="error.geoportal.proxy.download.dataset.downloadlink.missing"/>
+			<xs:enumeration value="error.geoportal.proxy.mediatype.notrecognized"/>
+			<xs:enumeration value="error.geoportal.xml.missinprolog"/>
+			<xs:enumeration value="error.geoportal.xml.notwellformed"/>
+			<xs:enumeration value="error.geoportal.webservices.geoportalresourcenotfound"/>
+			<xs:enumeration value="error.geoportal.proxy.metadata.element.sds.qualityofservice.missing"/>
+			<!--Generic processing errors-->
+			<!--Specific validation errors -->
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:complexType name="perSpatialDataThemeAnnexICounts">
+		<xs:sequence>
+			<xs:element name="ResourceCount" maxOccurs="unbounded">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element name="FoundResourcesCount" type="xs:integer"/>
+						<xs:element name="InspireValidationFailedCount" type="xs:integer"/>
+						<xs:element name="InspireValidationWarningCount" type="xs:integer"/>
+					</xs:sequence>
+					<xs:attribute name="inspireSpatialDataThemeAnnexI" type="inspire_common:keywordValueInspireThemeAnnexI_eng" use="required"/>
+				</xs:complexType>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:element name="PerSpatialDataThemeAnnexICounts" type="perSpatialDataThemeAnnexICounts"/>
+	<xs:complexType name="perSpatialDataThemeAnnexIICounts">
+		<xs:sequence>
+			<xs:element name="ResourceCount" maxOccurs="unbounded">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element name="FoundResourcesCount" type="xs:integer"/>
+						<xs:element name="InspireValidationFailedCount" type="xs:integer"/>
+						<xs:element name="InspireValidationWarningCount" type="xs:integer"/>
+					</xs:sequence>
+					<xs:attribute name="inspireSpatialDataThemeAnnexII" type="inspire_common:keywordValueInspireThemeAnnexII_eng" use="required"/>
+				</xs:complexType>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:element name="PerSpatialDataThemeAnnexIICounts" type="perSpatialDataThemeAnnexIICounts"/>
+	<xs:complexType name="perSpatialDataThemeAnnexIIICounts">
+		<xs:sequence>
+			<xs:element name="ResourceCount" maxOccurs="unbounded">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element name="FoundResourcesCount" type="xs:integer"/>
+						<xs:element name="InspireValidationFailedCount" type="xs:integer"/>
+						<xs:element name="InspireValidationWarningCount" type="xs:integer"/>
+					</xs:sequence>
+					<xs:attribute name="inspireSpatialDataThemeAnnexIII" type="inspire_common:keywordValueInspireThemeAnnexIII_eng" use="required"/>
+				</xs:complexType>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:element name="PerSpatialDataThemeAnnexIIICounts" type="perSpatialDataThemeAnnexIIICounts"/>
+	<xs:complexType name="perSpatialDataThemeCounts">
+		<xs:sequence>
+			<xs:element name="ResourceCount" maxOccurs="unbounded">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element name="FoundResourcesCount" type="xs:integer"/>
+						<xs:element name="InspireValidationFailedCount" type="xs:integer"/>
+						<xs:element name="InspireValidationWarningCount" type="xs:integer"/>
+					</xs:sequence>
+					<xs:attribute name="inspireSpatialDataTheme" type="inspire_common:keywordValueInspireTheme_eng" use="required"/>
+				</xs:complexType>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:element name="PerSpatialDataThemeCounts" type="perSpatialDataThemeCounts"/>
+	<xs:complexType name="perSpatialDataThemeAnnexCounts">
+		<xs:sequence>
+			<xs:element name="ResourceCount" maxOccurs="unbounded">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element name="FoundResourcesCount" type="xs:integer"/>
+						<xs:element name="InspireValidationFailedCount" type="xs:integer"/>
+						<xs:element name="InspireValidationWarningCount" type="xs:integer"/>
+					</xs:sequence>
+					<xs:attribute name="inspireSpatialDataThemeAnnex" type="spatialDataThemeAnnexType" use="required"/>
+				</xs:complexType>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:element name="PerSpatialDataThemeAnnexCounts" type="perSpatialDataThemeAnnexCounts"/>
+	<xs:simpleType name="connectionIssueType">
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="NoResourceLocatorSpecified"/>
+			<xs:enumeration value="ServiceImplNotSupported"/>
+			<xs:enumeration value="Timeout"/>
+			<xs:enumeration value="ResourceNotFound"/>
+			<xs:enumeration value="ResourceForbidden"/>
+			<xs:enumeration value="ResourceUnauthorized"/>
+			<xs:enumeration value="InvalidUrl"/>
+			<xs:enumeration value="Other"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:element name="PerSpatialDataServiceResourceLocatorConnectionIssueTypeCounts" type="perSpatialDataServiceResourceLocatorConnectionIssueTypeCounts"/>
+	<xs:complexType name="perSpatialDataServiceResourceLocatorConnectionIssueTypeCounts">
+		<xs:sequence>
+			<xs:element name="ResourceCount" maxOccurs="unbounded">
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element name="FoundResourcesCount" type="xs:integer"/>
+					</xs:sequence>
+					<xs:attribute name="ResourceLocatorConnectionIssueType" type="connectionIssueType" use="required"/>
+				</xs:complexType>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="perSpatialDataServiceTypeCounts">
+		<xs:sequence>
+			<xs:element name="ResourceCount" maxOccurs="unbounded">
+				<xs:complexType>
+					<xs:choice>
+						<xs:sequence>
+							<xs:element name="FoundResourcesCount" type="xs:integer"/>
+						</xs:sequence>
+						<xs:sequence>
+							<xs:annotation>
+								<xs:documentation>For backward compatibility</xs:documentation>
+							</xs:annotation>
+							<xs:element name="Count" type="xs:integer"/>
+						</xs:sequence>
+					</xs:choice>
+					<xs:attribute name="spatialDataServiceType" type="inspire_common:spatialDataServiceType" use="required"/>
+				</xs:complexType>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:element name="PerSpatialDataServiceTypeCounts" type="perSpatialDataServiceTypeCounts"/>
+	<xs:complexType name="perViewServiceTypeCounts">
+		<xs:sequence>
+			<xs:element name="ResourceCount" maxOccurs="unbounded">
+				<xs:complexType>
+					<xs:choice>
+						<xs:sequence>
+							<xs:element name="FoundResourcesCount" type="xs:integer"/>
+						</xs:sequence>
+						<xs:sequence>
+							<xs:annotation>
+								<xs:documentation>For backward compatibility</xs:documentation>
+							</xs:annotation>
+							<xs:element name="Count" type="xs:integer"/>
+						</xs:sequence>
+					</xs:choice>
+					<xs:attribute name="viewImplementationSpecification" type="viewImplementationSpecification" use="required"/>
+				</xs:complexType>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:element name="PerViewServiceTypeCounts" type="perViewServiceTypeCounts"/>
+	<xs:complexType name="perDiscoveryServiceTypeCounts">
+		<xs:sequence>
+			<xs:element name="ResourceCount" maxOccurs="unbounded">
+				<xs:complexType>
+					<xs:choice>
+						<xs:sequence>
+							<xs:element name="FoundResourcesCount" type="xs:integer"/>
+						</xs:sequence>
+						<xs:sequence>
+							<xs:annotation>
+								<xs:documentation>For backward compatibility</xs:documentation>
+							</xs:annotation>
+							<xs:element name="Count" type="xs:integer"/>
+						</xs:sequence>
+					</xs:choice>
+					<xs:attribute name="discoveryImplementationSpecification" type="discoveryImplementationSpecification" use="required"/>
+				</xs:complexType>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:element name="PerDiscoveryServiceTypeCounts" type="perDiscoveryServiceTypeCounts"/>
+	<xs:complexType name="perDownloadServiceTypeCounts">
+		<xs:sequence>
+			<xs:element name="ResourceCount" maxOccurs="unbounded">
+				<xs:complexType>
+					<xs:choice>
+						<xs:sequence>
+							<xs:element name="FoundResourcesCount" type="xs:integer"/>
+						</xs:sequence>
+						<xs:sequence>
+							<xs:annotation>
+								<xs:documentation>For backward compatibility</xs:documentation>
+							</xs:annotation>
+							<xs:element name="Count" type="xs:integer"/>
+						</xs:sequence>
+					</xs:choice>
+					<xs:attribute name="downloadImplementationSpecification" type="downloadImplementationSpecification" use="required"/>
+				</xs:complexType>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:element name="PerDownloadServiceTypeCounts" type="perDownloadServiceTypeCounts"/>
+	<xs:element name="PullBatchReportResource" type="pullBatchReport"/>
+	<xs:complexType name="pullBatchReport">
+		<xs:sequence>
+			<xs:element name="MatchedRecordsCount" type="xs:integer"/>
+			<xs:element name="FromRecordNumber" type="xs:integer"/>
+			<xs:element name="ToRecordNumber" type="xs:integer"/>
+			<xs:element name="ExpectedRecordsCount" type="xs:integer"/>
+			<xs:element name="FoundResourcesCount" type="xs:integer"/>
+			<xs:element name="SourceValidationFailedCount" type="xs:integer"/>
+			<xs:element name="InspireValidationFailedCount" type="xs:integer"/>
+			<xs:element name="InspireValidationWarningCount" type="xs:integer"/>
+			<xs:element ref="PerResourceTypeCounts"/>
+			<xs:element ref="PerSpatialDataThemeCounts"/>
+			<xs:element ref="PerSpatialDataThemeAnnexICounts"/>
+			<xs:element ref="PerSpatialDataThemeAnnexIICounts"/>
+			<xs:element ref="PerSpatialDataThemeAnnexIIICounts"/>
+			<xs:element ref="PerSpatialDataThemeAnnexCounts"/>
+			<xs:element ref="PerSpatialDataServiceTypeCounts"/>
+			<xs:element ref="PerSpatialDataServiceResourceLocatorConnectionIssueTypeCounts"/>
+			<xs:element ref="PerViewServiceTypeCounts"/>
+			<xs:element name="ViewServiceSourceValidationFailedCount" type="xs:integer"/>
+			<xs:element name="ViewServiceMissingExtCapsCount" type="xs:integer"/>
+			<xs:element name="ViewServiceInspireValidationFailedCount" type="xs:integer"/>
+			<xs:element name="ViewServiceInspireValidationWarningCount" type="xs:integer"/>
+			<xs:element name="ViewServiceNamedLayersCount" type="xs:integer"/>
+			<xs:element name="ViewServiceNamedLayersInspireValidationFailedCount" type="xs:integer"/>
+			<xs:element name="ViewServiceNamedLayersInspireValidationWarningCount" type="xs:integer"/>
+			<xs:element ref="PerDiscoveryServiceTypeCounts"/>
+			<xs:element name="DiscoveryServiceSourceValidationFailedCount" type="xs:integer"/>
+			<xs:element name="DiscoveryServiceMissingExtCapsCount" type="xs:integer"/>
+			<xs:element name="DiscoveryServiceInspireValidationFailedCount" type="xs:integer"/>
+			<xs:element name="DiscoveryServiceInspireValidationWarningCount" type="xs:integer"/>
+			<xs:element ref="PerDownloadServiceTypeCounts"/>
+			<xs:element name="DownloadServiceSourceValidationFailedCount" type="xs:integer"/>
+			<xs:element name="DownloadServiceMissingExtCapsCount" type="xs:integer"/>
+			<xs:element name="DownloadServiceInspireValidationFailedCount" type="xs:integer"/>
+			<xs:element name="DownloadServiceInspireValidationWarningCount" type="xs:integer"/>
+			<xs:element name="DownloadServiceDatasetsCount" type="xs:integer"/>
+			<xs:element name="DownloadServiceDatasetsInspireValidationFailedCount" type="xs:integer"/>
+			<xs:element name="DownloadServiceDatasetsInspireValidationWarningCount" type="xs:integer"/>
+			<xs:element name="ResourceWithSourceValidationErrorsLocator" type="inspire_common:resourceLocatorType" minOccurs="0" maxOccurs="unbounded"/>
+			<xs:element name="ResourceWithTransformationErrorsLocator" type="inspire_common:resourceLocatorType" minOccurs="0" maxOccurs="unbounded"/>
+			<xs:element name="ResourceWithInspireValidationErrorsLocator" type="inspire_common:resourceLocatorType" minOccurs="0" maxOccurs="unbounded"/>
+			<xs:element name="ResourceWithInspireValidationWarningsLocator" type="inspire_common:resourceLocatorType" minOccurs="0" maxOccurs="unbounded"/>
+			<xs:element name="ResourceWithSolrErrorsLocator" type="inspire_common:resourceLocatorType" minOccurs="0" maxOccurs="unbounded"/>
+			<xs:element name="ResourceWithProcessingErrorsLocator" type="inspire_common:resourceLocatorType" minOccurs="0" maxOccurs="unbounded"/>
+			<xs:element name="DiscoverMetadataRequestLocator" type="inspire_common:resourceLocatorType" minOccurs="0" maxOccurs="1"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="unknownTypeResource">
+		<xs:sequence>
+			<xs:element name="ResourceLocator" type="inspire_common:resourceLocatorType" minOccurs="0" maxOccurs="unbounded"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:element name="UnknownTypeResource" type="unknownTypeResource"/>
+	<xs:complexType name="remoteFolderResource"/>
+	<xs:element name="RemoteFolderResource" type="remoteFolderResource"/>
+	<xs:complexType name="htmlResource"/>
+	<xs:element name="HtmlResource" type="htmlResource"/>
+	<xs:complexType name="pdfResource"/>
+	<xs:element name="PdfResource" type="pdfResource"/>
+	<xs:complexType name="viewServiceResource">
+		<xs:complexContent>
+			<xs:extension base="inspire_common:viewService">
+				<xs:sequence>
+					<xs:element name="ViewImplementationSpecification" type="viewImplementationSpecification"/>
+					<!--
+					<xs:element name="RelatedResources" type="xlink:extended">
+					<xs:complexType><xs:sequence>
+					<xs:element name="Layer" type="xlink:simple"/>
+					</xs:sequence>
+					</xs:complexType>
+					</xs:element>-->
+				</xs:sequence>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:element name="ViewServiceResource" type="viewServiceResource"/>
+	<xs:complexType name="viewServiceLayerResource">
+		<xs:complexContent>
+			<xs:extension base="inspire_common:layer">
+				<xs:sequence>
+					<xs:element name="ViewImplementationSpecification" type="viewImplementationSpecification"/>
+					<xs:element name="GetMapLocator" type="inspire_common:resourceLocatorType"/>
+					<xs:element name="ServiceResourceTitle" type="xs:string"/>
+					<xs:element name="ServiceResourceAbstract" type="xs:string"/>
+					<xs:element name="SpatialDataMetadataLocator" type="inspire_common:resourceLocatorType" minOccurs="0" maxOccurs="unbounded"/>
+					<xs:element name="MandatoryImageFormat" type="inspire_common:mandatoryImageFormatType" minOccurs="1" maxOccurs="unbounded"/>
+					<xs:element name="OtherImageFormat" type="inspire_common:imageFormatType" minOccurs="0" maxOccurs="unbounded"/>
+					<xs:element name="RelatedDataResourceInspireSpatialDataTheme" type="inspire_common:keyword" minOccurs="0" maxOccurs="unbounded"/>
+					<xs:element name="ServiceMaxHeight" type="xs:integer" minOccurs="0">
+						<xs:annotation>
+							<xs:documentation>Max Height for a GetMap request</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="ServiceMaxWidth" type="xs:integer" minOccurs="0">
+						<xs:annotation>
+							<xs:documentation>Max Height for a GetMap request</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="LayerFixedHeight" type="xs:integer" minOccurs="0">
+						<xs:annotation>
+							<xs:documentation>Fixed height for a GetMap request</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="LayerFixedWidth" type="xs:integer" minOccurs="0">
+						<xs:annotation>
+							<xs:documentation>Fixed width for a GetMap request</xs:documentation>
+						</xs:annotation>
+					</xs:element>
+					<xs:element name="GetMapTestRequestLocator" type="inspire_common:resourceLocatorType" minOccurs="0"/>
+				</xs:sequence>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:element name="ViewServiceLayerResource" type="viewServiceLayerResource"/>
+	<xs:element name="SpatialDataSetResource" type="spatialDataSetResource"/>
+	<xs:complexType name="spatialDataSetResource">
+		<xs:complexContent>
+			<xs:extension base="inspire_common:dataset">
+				<xs:sequence>
+					<xs:element name="LayerMetadataLocator" type="inspire_common:resourceLocatorType" minOccurs="0" maxOccurs="unbounded"/>
+					<xs:element name="DownloadServiceDataSetMetadataLocator" type="inspire_common:resourceLocatorType" minOccurs="0" maxOccurs="unbounded"/>
+				</xs:sequence>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:element name="SpatialDataSetSeriesResource" type="spatialDataSetSeriesResource"/>
+	<xs:complexType name="spatialDataSetSeriesResource">
+		<xs:complexContent>
+			<xs:extension base="inspire_common:series">
+				<xs:sequence>
+					<xs:element name="LayerMetadataLocator" type="inspire_common:resourceLocatorType" minOccurs="0" maxOccurs="unbounded"/>
+				</xs:sequence>
+			</xs:extension>
+		</xs:complexContent>
+	</xs:complexType>
+	<xs:complexType name="discoveryServicePullBatchResource">
+		<xs:sequence>
+			<xs:element name="MaxRecords" type="xs:integer"/>
+			<xs:element name="StartPosition" type="xs:integer"/>
+			<xs:element name="SpatialDataSetResourceLocator" type="inspire_common:resourceLocatorType" minOccurs="0" maxOccurs="unbounded"/>
+			<xs:element name="SpatialDataSetSeriesResource" type="inspire_common:resourceLocatorType" minOccurs="0" maxOccurs="unbounded"/>
+			<xs:element name="SpatialDataServiceResourceLocator" type="inspire_common:resourceLocatorType" minOccurs="0" maxOccurs="unbounded"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:element name="DiscoveryServicePullBatchResource" type="discoveryServicePullBatchResource"/>
+	<xs:simpleType name="geoportalResourceType">
+		<xs:annotation>
+			<xs:documentation>Resource types not necessarily foreseen in the INSPIRE Directive</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="dataset"/>
+			<xs:enumeration value="series"/>
+			<xs:enumeration value="service"/>
+			<xs:enumeration value="layer"/>
+			<xs:enumeration value="downloadservicedataset"/>
+			<xs:enumeration value="report"/>
+			<xs:enumeration value="unknown"/>
+			<xs:enumeration value="rdsi_factsfiguresreport"/>
+			<!--RDSI extension-->
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="spatialDataThemeAnnexType">
+		<xs:annotation>
+			<xs:documentation>Resource types not necessarily foreseen in the INSPIRE Directive</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="Annex I"/>
+			<xs:enumeration value="Annex II"/>
+			<xs:enumeration value="Annex III"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:element name="SourceOfRequirement" type="sourceOfRequirement"/>
+	<xs:complexType name="sourceOfRequirement">
+		<xs:sequence>
+			<xs:element name="Specification" type="inspire_common:citation"/>
+			<xs:element name="IntraDocumentLocator" type="intraDocumentLocator" minOccurs="0" maxOccurs="unbounded">
+				<xs:annotation>
+					<xs:documentation>One or more URLs if available</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:element name="ValidationSchema" type="sourceOfRequirement"/>
+	<xs:complexType name="intraDocumentLocator">
+		<xs:sequence>
+			<xs:element name="Description" type="xs:string"/>
+			<xs:element name="Book" type="xs:string" minOccurs="0" maxOccurs="unbounded"/>
+			<xs:element name="Chapter" type="xs:string" minOccurs="0" maxOccurs="unbounded"/>
+			<xs:element name="Section" type="xs:string" minOccurs="0" maxOccurs="unbounded"/>
+			<xs:element name="Subsection" type="xs:string" minOccurs="0" maxOccurs="unbounded"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="validationError">
+		<xs:sequence>
+			<xs:element name="SourceMetadataLocator" type="inspire_common:resourceLocatorType" minOccurs="0"/>
+			<xs:element ref="SourceOfRequirement" minOccurs="0" maxOccurs="unbounded"/>
+			<xs:element ref="GeoportalExceptionMessage" maxOccurs="unbounded"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="validationErrors">
+		<xs:sequence>
+			<xs:element ref="SourceOfRequirement" minOccurs="0" maxOccurs="unbounded"/>
+			<xs:element name="ValidationError" type="validationError" maxOccurs="unbounded"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="sourceValidationError">
+		<xs:sequence>
+			<xs:element ref="ValidationSchema" maxOccurs="unbounded"/>
+			<xs:element name="SourceMetadataLocator" type="inspire_common:resourceLocatorType"/>
+			<xs:element ref="SourceOfRequirement" minOccurs="0" maxOccurs="unbounded"/>
+			<xs:element ref="GeoportalExceptionMessage" maxOccurs="unbounded"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="sourceValidationErrors">
+		<xs:sequence>
+			<xs:element ref="ValidationSchema" maxOccurs="unbounded"/>
+			<xs:element ref="SourceOfRequirement" minOccurs="0" maxOccurs="unbounded"/>
+			<xs:element name="SourceValidationError" type="sourceValidationError" maxOccurs="unbounded"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:element name="ResourceReportResource" type="resourceReport"/>
+	<xs:complexType name="resourceReport">
+		<xs:sequence>
+			<xs:element name="SourceValidationErrors" type="sourceValidationErrors" minOccurs="0"/>
+			<xs:element name="TransformationErrors" type="validationErrors" minOccurs="0"/>
+			<xs:element name="InspireValidationErrors" type="validationErrors" minOccurs="0"/>
+			<xs:element name="InspireValidationWarnings" type="validationErrors" minOccurs="0"/>
+			<xs:element name="ProcessingErrors" type="validationErrors" minOccurs="0"/>
+			<xs:element name="SolrErrors" type="validationErrors" minOccurs="0"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:element name="PullReportsListResource" type="pullReportsList"/>
+	<xs:complexType name="pullReportsList">
+		<xs:sequence>
+			<xs:element name="PullReportResourceLocator" type="inspire_common:resourceLocatorType" minOccurs="0" maxOccurs="unbounded"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:element name="TopDiscoveryServicesListResource" type="topDiscoveryServicesList"/>
+	<xs:complexType name="topDiscoveryServicesList">
+		<xs:sequence>
+			<xs:element name="discoveryServiceResourceLocator" type="inspire_common:resourceLocatorType" minOccurs="0" maxOccurs="unbounded"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="auditRecord">
+		<xs:sequence>
+			<xs:element name="CreationDate" type="xs:dateTime" minOccurs="0"/>
+			<xs:element name="LastUpdateDate" type="xs:dateTime" minOccurs="0"/>
+			<xs:element name="CreatedBy" type="xs:string" minOccurs="0"/>
+			<xs:element name="LastUpdatedBy" type="xs:string" minOccurs="0"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="resourcePreview">
+		<xs:sequence>
+			<xs:element name="ResourcePreviewImageLocator" type="inspire_common:resourceLocatorType"/>
+			<xs:element name="ResourcePreviewImageThumbnailLocator" type="inspire_common:resourceLocatorType"/>
+			<xs:element name="RelatedResourceLocator" type="inspire_common:resourceLocatorType" minOccurs="0"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:complexType name="schedulerReport">
+		<xs:sequence>
+			<xs:element ref="GeoportalExceptionMessage" maxOccurs="unbounded"/>
+			<xs:element ref="DiscoveryServiceSchedulerDetail" maxOccurs="unbounded"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:element name="DiscoveryServiceSchedulerDetail" type="schedulerReportPerDiscoveryServiceDetail"/>
+	<xs:complexType name="schedulerReportPerDiscoveryServiceDetail">
+		<xs:sequence>
+			<xs:element ref="GeoportalExceptionMessage" maxOccurs="unbounded"/>
+			<xs:element name="MemberStateCountryCode" type="inspire_common:countryCodes" minOccurs="0"/>
+			<xs:element name="MemberStateDiscoveryServiceGeoportalMetadataLocator" type="inspire_common:resourceLocatorType"/>
+			<xs:element name="MemberStateDiscoveryServicePullReportResourceLocator" type="inspire_common:resourceLocatorType" minOccurs="0"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:element name="INSPIREResourcesReportsStats">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element ref="PerReportStats" maxOccurs="unbounded"/>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="PerReportStats">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element name="XMLReportURL" type="xs:string" maxOccurs="1"/>
+				<xs:element name="ReportDate" type="xs:date" maxOccurs="1"/>
+				<xs:element name="CountOfDistinctCountryCodes" type="xs:integer" maxOccurs="1"/>
+				<xs:element name="CountOfDistinctTopDiscoveryServices" type="xs:integer" maxOccurs="1"/>
+				<xs:element name="SourceValidationFailedCount" type="xs:integer"/>
+				<xs:element name="SourceValidationFailedRatio" type="xs:double" maxOccurs="1"/>
+				<xs:element name="InspireValidationFailedCount" type="xs:integer"/>
+				<xs:element name="InspireValidationWarningCount" type="xs:integer" minOccurs="0"/>
+				<xs:element name="InspireValidationFailedRatio" type="xs:double" maxOccurs="1"/>
+				<xs:element name="ExpectedRecordsCount" type="xs:integer"/>
+				<xs:element name="FoundResourcesCount" type="xs:integer"/>
+				<xs:element name="CountOfDatasets" type="xs:integer"/>
+				<xs:element name="CountOfSeries" type="xs:integer"/>
+				<xs:element name="CountOfServices" type="xs:integer"/>
+				<xs:element name="CountOfDeclaredDiscoveryServices" type="xs:integer" minOccurs="0"/>
+				<xs:element name="CountOfContactedDiscoveryServices" type="xs:integer" minOccurs="0"/>
+				<xs:element name="CountOfDeclaredViewServices" type="xs:integer" minOccurs="0"/>
+				<xs:element name="CountOfContactedViewServices" type="xs:integer" minOccurs="0"/>
+				<xs:element name="CountOfDeclaredDownloadServices" type="xs:integer" minOccurs="0"/>
+				<xs:element name="CountOfContactedDownloadServices" type="xs:integer" minOccurs="0"/>
+				<xs:element name="ViewServiceNamedLayersCount" type="xs:integer" minOccurs="0"/>
+				<xs:element name="ViewServiceNamedLayersInspireValidationFailedCount" type="xs:integer" minOccurs="0"/>
+				<xs:element name="ViewServiceNamedLayersInspireValidationWarningCount" type="xs:integer" minOccurs="0"/>
+				<xs:element name="DownloadServiceDatasetsCount" type="xs:integer" minOccurs="0"/>
+				<xs:element name="DownloadServiceDatasetsInspireValidationFailedCount" type="xs:integer" minOccurs="0"/>
+				<xs:element name="DownloadServiceDatasetsInspireValidationWarningCount" type="xs:integer" minOccurs="0"/>
+				<xs:element name="InspireSpatialDataThemeAnnexICount" type="xs:integer" minOccurs="0"/>
+				<xs:element name="InspireSpatialDataThemeAnnexIICount" type="xs:integer" minOccurs="0"/>
+				<xs:element name="InspireSpatialDataThemeAnnexIIICount" type="xs:integer" minOccurs="0"/>
+				<xs:element name="PerMemberStateCount" type="MemberStateCountType" maxOccurs="unbounded"/>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	<xs:simpleType name="countValueType">
+		<xs:restriction base="xs:integer"/>
+	</xs:simpleType>
+	<xs:complexType name="MemberStateCountType">
+		<xs:sequence>
+			<xs:element name="MemberStateCountryCode" type="inspire_common:countryCodes"/>
+			<xs:element name="FoundResourcesCount" type="xs:integer"/>
+			<xs:element name="SourceValidationFailedCount" type="xs:integer"/>
+			<xs:element name="SourceValidationFailedRatio" type="xs:double"/>
+			<xs:element name="InspireValidationFailedCount" type="xs:integer"/>
+			<xs:element name="InspireValidationFailedRatio" type="xs:double"/>
+			<xs:element name="InspireValidationWarningCount" type="xs:integer"/>
+			<xs:element name="ViewServiceMissingExtCapsCount" type="xs:integer"/>
+			<xs:element name="InspireSpatialDataThemeAnnexICount" type="xs:integer" minOccurs="0"/>
+			<xs:element name="InspireSpatialDataThemeAnnexIICount" type="xs:integer" minOccurs="0"/>
+			<xs:element name="InspireSpatialDataThemeAnnexIIICount" type="xs:integer" minOccurs="0"/>
+			<xs:element name="CountOfDeclaredDiscoveryServices" type="xs:integer"/>
+			<xs:element name="CountOfContactedDiscoveryServices" type="xs:integer"/>
+			<xs:element name="CountOfConformantDiscoveryServices" type="xs:integer"/>
+			<xs:element name="CountOfDeclaredViewServices" type="xs:integer"/>
+			<xs:element name="CountOfContactedViewServices" type="xs:integer"/>
+			<xs:element name="CountOfConformantViewServices" type="xs:integer"/>
+			<xs:element name="CountOfDeclaredDownloadServices" type="xs:integer"/>
+			<xs:element name="CountOfContactedDownloadServices" type="xs:integer"/>
+			<xs:element name="CountOfConformantDownloadServices" type="xs:integer"/>
+		</xs:sequence>
+	</xs:complexType>
+</xs:schema>

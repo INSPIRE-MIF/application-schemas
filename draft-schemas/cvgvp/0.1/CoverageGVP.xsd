@@ -1,0 +1,268 @@
+<?xml version="1.0" encoding="UTF-8"?><schema xmlns="http://www.w3.org/2001/XMLSchema" xmlns:cvbase="http://inspire.jrc.ec.europa.eu/schemas/cvbase/0.1" xmlns:cvgvp="http://inspire.jrc.ec.europa.eu/schemas/cvgvp/0.1" xmlns:gmd="http://www.isotc211.org/2005/gmd" xmlns:gml="http://www.opengis.net/gml/3.2" xmlns:gmlcov="http://www.opengis.net/gmlcov/1.0" elementFormDefault="qualified" targetNamespace="http://inspire.jrc.ec.europa.eu/schemas/cvgvp/0.1" version="0.1">
+  <annotation>
+    <documentation>-- Definition --
+application schema for coverages with a geometry/value pair representation 
+
+-- Description --
+NOTE	This application schema has been specified to be conceptually consistent with the coverage model used by the OGC Best Practice document 06-188r1 "GML Encoding of Discrete Coverages (interleaved pattern)".</documentation>
+  </annotation>
+  <import namespace="http://inspire.jrc.ec.europa.eu/schemas/cvbase/0.1" schemaLocation="https://inspire.ec.europa.eu/draft-schemas/cvbase/0.1/CoverageBase.xsd"/>
+  <import namespace="http://www.isotc211.org/2005/gmd" schemaLocation="http://schemas.opengis.net/iso/19139/20070417/gmd/gmd.xsd"/>
+  <import namespace="http://www.opengis.net/gml/3.2" schemaLocation="http://schemas.opengis.net/gml/3.2.1/gml.xsd"/>
+  <import namespace="http://www.opengis.net/gmlcov/1.0" schemaLocation="http://schemas.opengis.net/gmlcov/1.0/coverage.xsd"/>
+  <!--XML Schema document created by ShapeChange-->
+  <element name="GeometryValuePair" substitutionGroup="gml:AbstractObject" type="cvgvp:GeometryValuePairType">
+    <annotation>
+      <documentation>-- Name --
+geometry-value pair
+
+-- Definition --
+describes an element of a set that defines the relationships of a discrete coverage
+
+-- Description --
+Each instance consists of two parts: a domain object from the domain of the coverage to which it belongs and a record of feature attribute values from the range of the coverage to which it belongs.</documentation>
+    </annotation>
+  </element>
+  <complexType name="GeometryValuePairType">
+    <sequence>
+      <element name="geometry">
+        <annotation>
+          <documentation>-- Name --
+geometry
+
+-- Definition --
+the domain object</documentation>
+        </annotation>
+        <complexType>
+          <complexContent>
+            <extension base="gml:AbstractMemberType">
+              <sequence minOccurs="0">
+                <element ref="gml:AbstractObject"/>
+              </sequence>
+              <attributeGroup ref="gml:AssociationAttributeGroup"/>
+            </extension>
+          </complexContent>
+        </complexType>
+      </element>
+      <element name="value">
+        <annotation>
+          <documentation>-- Name --
+value
+
+-- Definition --
+holds the record of feature attribute values associated with the domain object in the property "geometry"</documentation>
+        </annotation>
+        <complexType>
+          <complexContent>
+            <extension base="gml:AbstractMemberType">
+              <sequence minOccurs="0">
+                <element ref="gml:AbstractObject"/>
+              </sequence>
+              <attributeGroup ref="gml:AssociationAttributeGroup"/>
+            </extension>
+          </complexContent>
+        </complexType>
+      </element>
+    </sequence>
+  </complexType>
+  <complexType name="GeometryValuePairPropertyType">
+    <sequence>
+      <element ref="cvgvp:GeometryValuePair"/>
+    </sequence>
+  </complexType>
+  <element name="MultiCurveCoverage" substitutionGroup="cvgvp:DiscreteCoverageGeometryValuePairs" type="cvgvp:MultiCurveCoverageType">
+    <annotation>
+      <documentation>-- Name --
+multi curve coverage
+
+-- Definition --
+coverage characterized by a finite spatial domain consisting of curves.
+
+-- Description --
+NOTE	 Often the curves represent features such as roads, railroads or streams. They may be elements of a network.
+
+EXAMPLE	A coverage that assigns a route number, a name, a pavement width and a pavement material type to each segment of a road system.</documentation>
+    </annotation>
+  </element>
+  <complexType name="MultiCurveCoverageType">
+    <complexContent>
+      <extension base="cvgvp:DiscreteCoverageGeometryValuePairsType">
+        <sequence/>
+      </extension>
+    </complexContent>
+  </complexType>
+  <complexType name="MultiCurveCoveragePropertyType">
+    <sequence minOccurs="0">
+      <element ref="cvgvp:MultiCurveCoverage"/>
+    </sequence>
+    <attributeGroup ref="gml:AssociationAttributeGroup"/>
+    <attributeGroup ref="gml:OwnershipAttributeGroup"/>
+  </complexType>
+  <element name="DiscreteCoverageGeometryValuePairs" substitutionGroup="gmlcov:AbstractCoverage" type="cvgvp:DiscreteCoverageGeometryValuePairsType">
+    <annotation>
+      <documentation>-- Name --
+coverage (geometry-value pair representation)
+
+-- Definition --
+coverage which provides the geometry value pairs</documentation>
+    </annotation>
+  </element>
+  <complexType name="DiscreteCoverageGeometryValuePairsType">
+    <complexContent>
+      <extension base="gmlcov:AbstractCoverageType">
+        <sequence>
+          <element maxOccurs="unbounded" name="domainExtent">
+            <annotation>
+              <documentation>-- Name --
+domain extent
+
+-- Definition --
+contains the extent of the domain of the coverage
+
+-- Description --
+NOTE	Extents may be specified in space, time or space-time.</documentation>
+            </annotation>
+            <complexType>
+              <complexContent>
+                <extension base="gml:AbstractMetadataPropertyType">
+                  <sequence minOccurs="0">
+                    <element ref="gmd:EX_Extent"/>
+                  </sequence>
+                  <attributeGroup ref="gml:AssociationAttributeGroup"/>
+                </extension>
+              </complexContent>
+            </complexType>
+          </element>
+          <element maxOccurs="unbounded" minOccurs="0" name="element" type="cvgvp:GeometryValuePairPropertyType">
+            <annotation>
+              <documentation>-- Name --
+alement
+
+-- Definition --
+list of the geometry/value pairs of the coverage</documentation>
+            </annotation>
+          </element>
+        </sequence>
+      </extension>
+    </complexContent>
+  </complexType>
+  <complexType name="DiscreteCoverageGeometryValuePairsPropertyType">
+    <sequence minOccurs="0">
+      <element ref="cvgvp:DiscreteCoverageGeometryValuePairs"/>
+    </sequence>
+    <attributeGroup ref="gml:AssociationAttributeGroup"/>
+    <attributeGroup ref="gml:OwnershipAttributeGroup"/>
+  </complexType>
+  <element name="MultiSolidCoverage" substitutionGroup="cvgvp:DiscreteCoverageGeometryValuePairs" type="cvgvp:MultiSolidCoverageType">
+    <annotation>
+      <documentation>-- Name --
+multi solid coverage
+
+-- Definition --
+coverage whose domain consists of a collection of solids
+
+-- Description --
+NOTE	Solids or their boundaries may be of any shape. Generally, the solids that constitute the domain of a coverage are mutually exclusive and exhaustively partition the extent of the coverage, but this is not required.
+
+EXAMPLE	Buildings in an urban area could be represented as a set of unconnected GM_Solids each with attributes such as building name, address, floor space and number of occupants.</documentation>
+    </annotation>
+  </element>
+  <complexType name="MultiSolidCoverageType">
+    <complexContent>
+      <extension base="cvgvp:DiscreteCoverageGeometryValuePairsType">
+        <sequence/>
+      </extension>
+    </complexContent>
+  </complexType>
+  <complexType name="MultiSolidCoveragePropertyType">
+    <sequence minOccurs="0">
+      <element ref="cvgvp:MultiSolidCoverage"/>
+    </sequence>
+    <attributeGroup ref="gml:AssociationAttributeGroup"/>
+    <attributeGroup ref="gml:OwnershipAttributeGroup"/>
+  </complexType>
+  <element name="MultiTimeInstantCoverage" substitutionGroup="cvgvp:DiscreteCoverageGeometryValuePairs" type="cvgvp:MultiTimeInstantCoverageType">
+    <annotation>
+      <documentation>-- Name --
+multi time instant coverage
+
+-- Definition --
+coverage characterized by a finite domain consisting of time instants
+
+-- Description --
+NOTE	This type provides a representation of the time instant/value pairs, i.e. represents a time series.</documentation>
+    </annotation>
+  </element>
+  <complexType name="MultiTimeInstantCoverageType">
+    <complexContent>
+      <extension base="cvgvp:DiscreteCoverageGeometryValuePairsType">
+        <sequence/>
+      </extension>
+    </complexContent>
+  </complexType>
+  <complexType name="MultiTimeInstantCoveragePropertyType">
+    <sequence minOccurs="0">
+      <element ref="cvgvp:MultiTimeInstantCoverage"/>
+    </sequence>
+    <attributeGroup ref="gml:AssociationAttributeGroup"/>
+    <attributeGroup ref="gml:OwnershipAttributeGroup"/>
+  </complexType>
+  <element name="MultiSurfaceCoverage" substitutionGroup="cvgvp:DiscreteCoverageGeometryValuePairs" type="cvgvp:MultiSurfaceCoverageType">
+    <annotation>
+      <documentation>-- Name --
+multi surface coverage
+
+-- Definition --
+coverage characterized by a finite domain consisting of surfaces
+
+-- Description --
+NOTE	In most cases, the surfaces that constitute the domain of a coverage are mutually exclusive and exhaustively partition the extent of the coverage. Surfaces or their boundaries may be of any shape. The boundaries of component surfaces often correspond to natural phenomena and are highly irregular.
+
+EXAMPLE	A coverage that represents soil types typically has a spatial domain composed of surfaces with irregular boundaries.</documentation>
+    </annotation>
+  </element>
+  <complexType name="MultiSurfaceCoverageType">
+    <complexContent>
+      <extension base="cvgvp:DiscreteCoverageGeometryValuePairsType">
+        <sequence/>
+      </extension>
+    </complexContent>
+  </complexType>
+  <complexType name="MultiSurfaceCoveragePropertyType">
+    <sequence minOccurs="0">
+      <element ref="cvgvp:MultiSurfaceCoverage"/>
+    </sequence>
+    <attributeGroup ref="gml:AssociationAttributeGroup"/>
+    <attributeGroup ref="gml:OwnershipAttributeGroup"/>
+  </complexType>
+  <element name="MultiPointCoverage" substitutionGroup="cvgvp:DiscreteCoverageGeometryValuePairs" type="cvgvp:MultiPointCoverageType">
+    <annotation>
+      <documentation>-- Name --
+multi point coverage
+
+-- Definition --
+coverage characterized by a finite domain consisting of points
+
+-- Description --
+NOTE 1	This type provides a representation of the point/value pairs.
+
+NOTE 2	Generally, the domain is a set of irregularly distributed points. However, the principal use of discrete point coverages is to provide a basis for continuous coverage functions, where the evaluation of the continuous coverage function is accomplished by interpolation between the points of the discrete point coverage. Most interpolation algorithms depend upon a structured pattern of spatial relationships between the points. This requires either that the points in the spatial domain of the discrete point coverage be arranged in a regular way, or that the spatial domain of the continuous coverage be partitioned in a regular way in relation to the points of the discrete point coverage.
+
+EXAMPLE	A set of hydrographic soundings is a discrete point coverage.</documentation>
+    </annotation>
+  </element>
+  <complexType name="MultiPointCoverageType">
+    <complexContent>
+      <extension base="cvgvp:DiscreteCoverageGeometryValuePairsType">
+        <sequence/>
+      </extension>
+    </complexContent>
+  </complexType>
+  <complexType name="MultiPointCoveragePropertyType">
+    <sequence minOccurs="0">
+      <element ref="cvgvp:MultiPointCoverage"/>
+    </sequence>
+    <attributeGroup ref="gml:AssociationAttributeGroup"/>
+    <attributeGroup ref="gml:OwnershipAttributeGroup"/>
+  </complexType>
+</schema>

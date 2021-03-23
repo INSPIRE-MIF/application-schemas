@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?><schema xmlns="http://www.w3.org/2001/XMLSchema" xmlns:gml="http://www.opengis.net/gml/3.2" xmlns:us-net-common-core="http://inspire.ec.europa.eu/schemas/us-net-common-core/3.0" xmlns:us-net-el-core="http://inspire.ec.europa.eu/schemas/us-net-el-core/3.0" elementFormDefault="qualified" targetNamespace="http://inspire.ec.europa.eu/schemas/us-net-el-core/3.0" version="3.0">
+  <annotation>
+    <documentation>-- Definition --
+Electricity network sub-domain.</documentation>
+  </annotation>
+  <import namespace="http://inspire.ec.europa.eu/schemas/us-net-common-core/3.0" schemaLocation="https://inspire.ec.europa.eu/draft-schemas/us-net-common-core/3.0rc1/UtilityNetworksCommonCore.xsd"/>
+  <import namespace="http://www.opengis.net/gml/3.2" schemaLocation="http://schemas.opengis.net/gml/3.2.1/gml.xsd"/>
+  <!--XML Schema document created by ShapeChange-->
+  <element name="ElectricityCable" substitutionGroup="us-net-common-core:Cable" type="us-net-el-core:ElectricityCableType">
+    <annotation>
+      <documentation>-- Name --
+electricity cable
+
+-- Definition --
+A utility link or link sequence used to convey electricity from one location to another.</documentation>
+    </annotation>
+  </element>
+  <complexType name="ElectricityCableType">
+    <complexContent>
+      <extension base="us-net-common-core:CableType">
+        <sequence>
+          <element name="operatingVoltage" nillable="true">
+            <annotation>
+              <documentation>-- Name --
+operating voltage
+
+-- Definition --
+The utilization or operating voltage by the equipment using the electricity.</documentation>
+            </annotation>
+            <complexType>
+              <simpleContent>
+                <extension base="gml:MeasureType">
+                  <attribute name="nilReason" type="gml:NilReasonType"/>
+                </extension>
+              </simpleContent>
+            </complexType>
+          </element>
+          <element name="nominalVoltage" nillable="true">
+            <annotation>
+              <documentation>-- Name --
+nominal voltage
+
+-- Definition --
+The nominal system voltage at the point of supply.</documentation>
+            </annotation>
+            <complexType>
+              <simpleContent>
+                <extension base="gml:MeasureType">
+                  <attribute name="nilReason" type="gml:NilReasonType"/>
+                </extension>
+              </simpleContent>
+            </complexType>
+          </element>
+        </sequence>
+      </extension>
+    </complexContent>
+  </complexType>
+  <complexType name="ElectricityCablePropertyType">
+    <sequence minOccurs="0">
+      <element ref="us-net-el-core:ElectricityCable"/>
+    </sequence>
+    <attributeGroup ref="gml:AssociationAttributeGroup"/>
+    <attributeGroup ref="gml:OwnershipAttributeGroup"/>
+  </complexType>
+</schema>

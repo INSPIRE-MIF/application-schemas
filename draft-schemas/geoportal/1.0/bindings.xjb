@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jxb:bindings version="1.0" xmlns:jxb="http://java.sun.com/xml/ns/jaxb" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+	<jxb:bindings schemaLocation="../../common/1.0/common.xsd" node="//xs:complexType[@name='service']">
+		<jxb:class name="InspireService"/>
+	</jxb:bindings>
+	<jxb:bindings schemaLocation="../../common/1.0/common.xsd" node="//xs:complexType[@name='keyword']">
+		<jxb:class name="InspireKeyword"/>
+	</jxb:bindings>
+	
+	
+	<!--
+	<jxb:bindings schemaLocation="../../common/1.0/common.xsd" node="//xs:complexType[@name='citation']/xs:sequence/xs:element[@name='Title']">
+		<jxb:property name="citationTitle"/>
+	</jxb:bindings>
+	<jxb:bindings schemaLocation="../../common/1.0/common.xsd" node="//xs:complexType[@name='citationConformity']/xs:complexContent/xs:restriction[@base='citation']/xs:sequence/xs:element[@name='Title']">
+		<jxb:property name="citationTitle"/>
+	</jxb:bindings>
+	<jxb:bindings schemaLocation="../../common/1.0/common.xsd" node="//xs:complexType[@name='originatingControlledVocabulary']/xs:complexContent/xs:restriction[@base='citation']/xs:sequence/xs:element[@name='Title']">
+		<jxb:property name="citationTitle"/>
+	</jxb:bindings>
+	<jxb:bindings schemaLocation="../../common/1.0/common.xsd" node="//xs:complexType[@name='originatingControlledVocabularyGemetInspireThemes']/xs:complexContent/xs:restriction[@base='originatingControlledVocabulary']/xs:sequence/xs:element[@name='Title']">
+		<jxb:property name="citationTitle"/>
+	</jxb:bindings>
+	<jxb:bindings schemaLocation="../../common/1.0/common.xsd" node="//xs:complexType[@name='originatingControlledVocabularyMD']/xs:complexContent/xs:restriction[@base='originatingControlledVocabulary']/xs:sequence/xs:element[@name='Title']">
+		<jxb:property name="citationTitle"/>
+	</jxb:bindings>
+	-->
+
+	
+</jxb:bindings>

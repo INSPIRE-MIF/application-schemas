@@ -1,0 +1,114 @@
+<?xml version="1.0" encoding="UTF-8"?><schema xmlns="http://www.w3.org/2001/XMLSchema" xmlns:gml="http://www.opengis.net/gml/3.2" xmlns:sr="http://inspire.jrc.ec.europa.eu/schemas/sr/2.0" xmlns:sr-add="http://inspire.jrc.ec.europa.eu/schemas/sr-add/2.0" elementFormDefault="qualified" targetNamespace="http://inspire.jrc.ec.europa.eu/schemas/sr-add/2.0" version="2.0">
+  <annotation>
+    <documentation>-- Definition --
+Addendum to the core SR schema which contains Marine Administrative Units. These may be moved into the Annex 1 theme Administrative Units, hence they are stored in a separate application schema.</documentation>
+  </annotation>
+  <import namespace="http://inspire.jrc.ec.europa.eu/schemas/sr/2.0" schemaLocation="https://inspire.ec.europa.eu/draft-schemas/sr/2.0/SeaRegions.xsd"/>
+  <import namespace="http://www.opengis.net/gml/3.2" schemaLocation="http://schemas.opengis.net/gml/3.2.1/gml.xsd"/>
+  <!--XML Schema document created by ShapeChange-->
+  <element name="TerritorialSeaArea" substitutionGroup="sr-add:MarineAdministrativeZone" type="sr-add:TerritorialSeaAreaType">
+    <annotation>
+      <documentation>-- Name --
+Territorial Sea Area
+
+-- Definition -- 
+The territorial sea is a belt of water of a defined breadth but not exceeding 12 nautical miles measured seaward from the territorial sea baseline.
+Source: IHO Dictionary, S-32, 5th Edition
+--Description --
+This sovereignty is limited by the customary right of innocent passage through the territorial sea for ships of all states. Passage has to be continuous and expeditious, except in cases of force majeure or distress. Passage is innocent so long as it is not prejudicial to the peace, good order, or security of the coastal state. The meaning of innocent passage is further elaborated in article 19 of the 1982 Law of the Sea Convention.</documentation>
+    </annotation>
+  </element>
+  <complexType name="TerritorialSeaAreaType">
+    <complexContent>
+      <extension base="sr-add:MarineAdministrativeZoneType">
+        <sequence/>
+      </extension>
+    </complexContent>
+  </complexType>
+  <complexType name="TerritorialSeaAreaPropertyType">
+    <sequence minOccurs="0">
+      <element ref="sr-add:TerritorialSeaArea"/>
+    </sequence>
+    <attributeGroup ref="gml:AssociationAttributeGroup"/>
+    <attributeGroup ref="gml:OwnershipAttributeGroup"/>
+  </complexType>
+  <element name="ContiguousZone" substitutionGroup="sr-add:MarineAdministrativeZone" type="sr-add:ContiguousZoneType">
+    <annotation>
+      <documentation>-- Name --
+Marine Contiguous Zone
+
+
+-- Definition --
+A zone contiguous to a coastal State's territorial sea, which may not extend beyond 24 nautical miles from the baselines from which the breadth of the territorial sea is measured. Source: IHO Dictionary,S-32, 5th Edition.
+
+-- Description --
+The contiguous zone is a zone adjacent to the territorial sea. In the contiguous zone a coastal state may exercise the control necessary to prevent and punish infringements of its customs, fiscal, immigration, or sanitary laws and regulations within its territory or territorial sea.</documentation>
+    </annotation>
+  </element>
+  <complexType name="ContiguousZoneType">
+    <complexContent>
+      <extension base="sr-add:MarineAdministrativeZoneType">
+        <sequence/>
+      </extension>
+    </complexContent>
+  </complexType>
+  <complexType name="ContiguousZonePropertyType">
+    <sequence minOccurs="0">
+      <element ref="sr-add:ContiguousZone"/>
+    </sequence>
+    <attributeGroup ref="gml:AssociationAttributeGroup"/>
+    <attributeGroup ref="gml:OwnershipAttributeGroup"/>
+  </complexType>
+  <element abstract="true" name="MarineAdministrativeZone" substitutionGroup="sr:SeaArea" type="sr-add:MarineAdministrativeZoneType">
+    <annotation>
+      <documentation>-- Name --
+Marine Administrative Zone
+
+-- Definition --.
+An abstract sea region defined politically by international treaties and conventions.
+
+-- Description --
+A marine administrative zone is a sea region that is defined for cadastral or administrative purposes.  It is not established for marine management or regulation, that is covered in the Area management/restriction/regulation zones and reporting areas (AM) (INSPIRE Annex III).</documentation>
+    </annotation>
+  </element>
+  <complexType abstract="true" name="MarineAdministrativeZoneType">
+    <complexContent>
+      <extension base="sr:SeaAreaType">
+        <sequence/>
+      </extension>
+    </complexContent>
+  </complexType>
+  <complexType name="MarineAdministrativeZonePropertyType">
+    <sequence minOccurs="0">
+      <element ref="sr-add:MarineAdministrativeZone"/>
+    </sequence>
+    <attributeGroup ref="gml:AssociationAttributeGroup"/>
+    <attributeGroup ref="gml:OwnershipAttributeGroup"/>
+  </complexType>
+  <element name="EEZ" substitutionGroup="sr-add:MarineAdministrativeZone" type="sr-add:EEZType">
+    <annotation>
+      <documentation>-- Name --
+Exclusive Economic Zone
+
+-- Definition --
+Exclusive Economic Zone:An area, not exceeding 200 nautical miles from the baselines from which the breadth of the territorial sea is measured. Source: IHO Dictionary,S-32, 5th Edition.
+
+-- Description -- 
+Under the 1982 Law of the Sea Convention, coastal states are entitled to an exclusive economic zone extending no further than 200 nautical miles from the baselines. In contrast to the continental shelf, an exclusive economic zone must be explicitly proclaimed or installed by the coastal state and includes, besides the seabed and its subsoil, the waters super-adjacent to the seabed.</documentation>
+    </annotation>
+  </element>
+  <complexType name="EEZType">
+    <complexContent>
+      <extension base="sr-add:MarineAdministrativeZoneType">
+        <sequence/>
+      </extension>
+    </complexContent>
+  </complexType>
+  <complexType name="EEZPropertyType">
+    <sequence minOccurs="0">
+      <element ref="sr-add:EEZ"/>
+    </sequence>
+    <attributeGroup ref="gml:AssociationAttributeGroup"/>
+    <attributeGroup ref="gml:OwnershipAttributeGroup"/>
+  </complexType>
+</schema>

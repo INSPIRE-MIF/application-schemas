@@ -1,0 +1,532 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<schema xmlns="http://www.w3.org/2001/XMLSchema" xmlns:am="http://inspire.jrc.ec.europa.eu/schemas/am/3.0" xmlns:elu="http://inspire.jrc.ec.europa.eu/schemas/elu/3.0" xmlns:gml="http://www.opengis.net/gml/3.2" xmlns:omop="http://inspire.jrc.ec.europa.eu/schemas/omop/2.0" xmlns:plu="http://inspire.jrc.ec.europa.eu/schemas/plu/3.0" xmlns:sc="http://www.interactive-instruments.de/ShapeChange/AppInfo" xmlns:so="http://inspire.jrc.ec.europa.eu/schemas/so/3.0" xmlns:so-cont="http://inspire.jrc.ec.europa.eu/schemas/so-cont/3.0" targetNamespace="http://inspire.jrc.ec.europa.eu/schemas/so-cont/3.0" elementFormDefault="qualified" version="3.0">
+	<annotation>
+		<documentation>Soil Contamination Example</documentation>
+	</annotation>
+	<import namespace="http://inspire.jrc.ec.europa.eu/schemas/am/3.0" schemaLocation="http://inspire.jrc.ec.europa.eu/schemas/am/3.0/AreaManagementRestrictionRegulationZone.xsd"/>
+	<import namespace="http://inspire.jrc.ec.europa.eu/schemas/elu/3.0" schemaLocation="http://inspire.jrc.ec.europa.eu/schemas/elu/3.0/ExistingLandUse.xsd"/>
+	<import namespace="http://inspire.jrc.ec.europa.eu/schemas/omop/2.0" schemaLocation="http://inspire.jrc.ec.europa.eu/schemas/omop/2.0/ObservableProperties.xsd"/>
+	<import namespace="http://inspire.jrc.ec.europa.eu/schemas/plu/3.0" schemaLocation="http://inspire.jrc.ec.europa.eu/schemas/plu/3.0/PlannedLandUse.xsd"/>
+	<import namespace="http://inspire.jrc.ec.europa.eu/schemas/so/3.0" schemaLocation="http://inspire.jrc.ec.europa.eu/schemas/so/3.0/Soil.xsd"/>
+	<import namespace="http://www.interactive-instruments.de/ShapeChange/AppInfo" schemaLocation="http://portele.de/ShapeChangeAppinfo.xsd"/>
+	<import namespace="http://www.opengis.net/gml/3.2" schemaLocation="http://schemas.opengis.net/gml/3.2.1/gml.xsd"/>
+	<!--XML Schema document created by ShapeChange-->
+	<element name="GroundwaterProfile" type="so-cont:GroundwaterProfileType" substitutionGroup="gml:AbstractFeature">
+		<annotation>
+			<documentation>-- Name --
+groundwater profile
+
+-- Definition --
+body of groundwater with boundaries in 3 dimensions (surface and depth) characterized by some property (the value of a certain parameter).
+
+-- Description --
+Used in connection to pollution: giving the extent of the groundwater body that is polluted over a threshold value of concentration of a certain pollutant. Generally it is dynamic and dependent on flow rates of the groundwater, the presence of dense soil layers, solubility and adsorption/desorption behaviour of the pollutants.</documentation>
+		</annotation>
+	</element>
+	<complexType name="GroundwaterProfileType">
+		<complexContent>
+			<extension base="gml:AbstractFeatureType">
+				<sequence>
+					<element name="geometry" type="gml:PointPropertyType">
+						<annotation>
+							<documentation>-- Name --
+geometry
+
+-- Definition --
+location of the ground water profile.
+
+-- Description --</documentation>
+						</annotation>
+					</element>
+					<element name="groundwaterDepthRange" type="so:RangeTypePropertyType">
+						<annotation>
+							<documentation>-- Name --
+groundwater depth range
+
+-- Definition --
+depth of the groundwater.
+
+-- Description --</documentation>
+						</annotation>
+					</element>
+					<element name="investigatedChemicalParameter" type="so-cont:InvestigatedChemicalParameterTypePropertyType" maxOccurs="unbounded">
+						<annotation>
+							<documentation>-- Name --
+investigated chemical parameter
+
+-- Definition --
+Chemical parameter for which the exceeding of threshold values for a substantial are is confirmed or rejected.
+
+-- Description --</documentation>
+						</annotation>
+					</element>
+				</sequence>
+			</extension>
+		</complexContent>
+	</complexType>
+	<complexType name="GroundwaterProfilePropertyType">
+		<sequence minOccurs="0">
+			<element ref="so-cont:GroundwaterProfile"/>
+		</sequence>
+		<attributeGroup ref="gml:AssociationAttributeGroup"/>
+		<attributeGroup ref="gml:OwnershipAttributeGroup"/>
+	</complexType>
+	<element name="ContaminatingActivityType" type="so-cont:ContaminatingActivityTypeType" substitutionGroup="gml:AbstractObject">
+		<annotation>
+			<documentation>-- Name --
+contamination activity type
+
+-- Definition --
+classification of contaminating activities.
+
+-- Description --
+Generally the character of the contaminating activities is: emissions, leaking and spills from industrial production, trade and storage, waste handling, defense, fire and transport calamities.</documentation>
+		</annotation>
+	</element>
+	<complexType name="ContaminatingActivityTypeType">
+		<sequence>
+			<element name="contaminatingActivity" type="so-cont:ContaminatingActivitiesValuePropertyType" maxOccurs="unbounded">
+				<annotation>
+					<documentation>-- Name --
+contaminating activity
+
+-- Definition --
+NACE + Soil directive (proposed) + additional
+
+-- Description --</documentation>
+				</annotation>
+			</element>
+			<element name="contaminatingActivityPresence" type="gml:ReferenceType">
+				<annotation>
+					<documentation>-- Name --
+contamination activity presence
+
+-- Definition --
+indicates the time the contaminating activity was/is present on the site.
+
+-- Description --</documentation>
+					<appinfo>
+						<taggedValue xmlns="http://www.interactive-instruments.de/ShapeChange/AppInfo" tag="obligation">technicalGuidance</taggedValue>
+					</appinfo>
+				</annotation>
+			</element>
+			<element name="expectedPollutantName" type="gml:ReferenceType" maxOccurs="unbounded">
+				<annotation>
+					<documentation>-- Name --
+expected pollutant name
+
+-- Definition --
+Chemical parameter expected to be above threshold values. 
+
+-- Description --
+The expectation may rise from the contaminating activity, visual observations or smells on the site, the observed type of waste etc.</documentation>
+					<appinfo>
+						<taggedValue xmlns="http://www.interactive-instruments.de/ShapeChange/AppInfo" tag="obligation">technicalGuidance</taggedValue>
+					</appinfo>
+				</annotation>
+			</element>
+		</sequence>
+	</complexType>
+	<complexType name="ContaminatingActivityTypePropertyType">
+		<sequence>
+			<element ref="so-cont:ContaminatingActivityType"/>
+		</sequence>
+	</complexType>
+	<element name="MeasureTakenType" type="so-cont:MeasureTakenTypeType" substitutionGroup="gml:AbstractObject">
+		<annotation>
+			<documentation>-- Name --
+measure taken type
+
+-- Definition --
+type of measures taken in response to the hazard and risk assessment.
+
+
+-- Description --
+Measures to take away the risk by blocking exposure and dispersion paths, by cleaning, stabilizing or isolation, also temporay safety measures.</documentation>
+		</annotation>
+	</element>
+	<complexType name="MeasureTakenTypeType">
+		<sequence>
+			<element name="measureTaken" type="gml:ReferenceType">
+				<annotation>
+					<documentation>-- Name --
+measure taken
+
+-- Definition --
+Measures taken in response to the hazard and risk assessment.
+
+-- Description --</documentation>
+					<appinfo>
+						<taggedValue xmlns="http://www.interactive-instruments.de/ShapeChange/AppInfo" tag="obligation">technicalGuidance</taggedValue>
+					</appinfo>
+				</annotation>
+			</element>
+			<element name="measureTakenStatus" type="gml:ReferenceType">
+				<annotation>
+					<documentation>-- Name --
+measure taken status
+
+-- Definition --
+status of measures.
+
+-- Description --
+to be taken, in progress, applied.</documentation>
+					<appinfo>
+						<taggedValue xmlns="http://www.interactive-instruments.de/ShapeChange/AppInfo" tag="obligation">technicalGuidance</taggedValue>
+					</appinfo>
+				</annotation>
+			</element>
+		</sequence>
+	</complexType>
+	<complexType name="MeasureTakenTypePropertyType">
+		<sequence>
+			<element ref="so-cont:MeasureTakenType"/>
+		</sequence>
+	</complexType>
+	<element name="InvestigatedChemicalParameterType" type="so-cont:InvestigatedChemicalParameterTypeType" substitutionGroup="gml:AbstractObject">
+		<annotation>
+			<documentation>-- Name --
+investigated chemical parameter type
+
+-- Definition --
+Chemical parameter for which the exceeding of threshold values for a substantial are is confirmed or rejected.
+
+-- Description --
+In main site investigation.</documentation>
+		</annotation>
+	</element>
+	<complexType name="InvestigatedChemicalParameterTypeType">
+		<sequence>
+			<element name="soilSiteChemicalParameterDescription">
+				<annotation>
+					<documentation>-- Name --
+soil site chemical parameter description
+
+-- Definition --
+Identification of chemical parameter.
+
+-- Description --
+Identification of substances by name and wher possible by CAS number. The latter not for mixtures (e.g. mineral oil) or sumparameters  (e.g. PAHs, PCBs) or toxic equivalents (Teq for dioxins and furans, BAP for PAHs.)</documentation>
+				</annotation>
+				<complexType>
+					<complexContent>
+						<extension base="gml:AbstractMemberType">
+							<sequence minOccurs="0">
+								<element ref="omop:ObservableProperty"/>
+							</sequence>
+							<attributeGroup ref="gml:AssociationAttributeGroup"/>
+						</extension>
+					</complexContent>
+				</complexType>
+			</element>
+			<element name="soilSiteChemicalParameterTreshhold">
+				<annotation>
+					<documentation>-- Name --
+soil site chemical parameter treshhold
+
+-- Definition --
+Value of the concentration of a chemical parameter in the soil or in groundwater for which the presence is considered a hazard, generally based on mobility bioavailability and toxicity.
+
+-- Description --
+The threshold value can differ for countries or regions because of different circumstances, priorities, risk assessment modeling.</documentation>
+				</annotation>
+			</element>
+			<element name="soilSiteChemicalParameterScreening">
+				<annotation>
+					<documentation>-- Name --
+soil site chemical parameter screening
+
+-- Definition --
+Value of the concentration of a chemical parameter in the soil or in groundwater which is used in a tiered approach as a trigger to go into a next investigation step.
+
+-- Description --
+Especially going from preliminary investigations to main ste investigations. The values can differ for countries or regions because of different circumstances, priorities, risk assessment modeling.</documentation>
+				</annotation>
+			</element>
+			<element name="soilSiteChemicalParameterBackground">
+				<annotation>
+					<documentation>-- Name --
+soil site chemical parameter background
+
+-- Definition --
+Value of the concentration of a chemical parameter in the soil or in groundwater which is considered common as a natural value (e.g. metals) or from human activities as a background value considered as without consequences. Generally defines the unpolluted state.
+
+-- Description --
+Regionally varying values because of variations in climate, soil type, etc.  There may be custom made procedures to set the value valid for the site and its surroundings.</documentation>
+				</annotation>
+			</element>
+		</sequence>
+	</complexType>
+	<complexType name="InvestigatedChemicalParameterTypePropertyType">
+		<sequence>
+			<element ref="so-cont:InvestigatedChemicalParameterType"/>
+		</sequence>
+	</complexType>
+	<element name="PossiblyContaminatedSoilSite" type="so-cont:PossiblyContaminatedSoilSiteType" substitutionGroup="so:SoilSite">
+		<annotation>
+			<documentation>-- Name --
+possibly contaminated soil site
+
+-- Definition --
+a site with a suspicion of pollution above threshold values which has not been confirmed by a main site investigation with a verdict of the local authority.
+
+-- Description --
+It is always the candidate for further investigations, generally with a tiered approach in which it will remain possibly polluted until after the main site investigation in which hazards may be confirmed or rejected.</documentation>
+		</annotation>
+	</element>
+	<complexType name="PossiblyContaminatedSoilSiteType">
+		<complexContent>
+			<extension base="so:SoilSiteType">
+				<sequence>
+					<element name="localName" nillable="true" minOccurs="0">
+						<annotation>
+							<documentation>-- Name --
+local name
+
+-- Definition --
+name given to the possible contaminated soil site.</documentation>
+						</annotation>
+						<complexType>
+							<simpleContent>
+								<extension base="string">
+									<attribute name="nilReason" type="gml:NilReasonType"/>
+								</extension>
+							</simpleContent>
+						</complexType>
+					</element>
+					<element name="investigationTrigger" type="gml:ReferenceType">
+						<annotation>
+							<documentation>-- Name --
+investigation trigger
+
+-- Definition --
+the type of triggers for which the site is considered polluted and is a candidate for further investigations.
+
+-- Description --
+A site may be entering the stage of possible polluted from soil investigations (.e.g. for building activities), from an systematic inventory of possibly polluting activities, from epidemiology, confirmed civil complaints, recent accidents or known leaking and spills. The reason for starting an investigation into soil contamination may relate to its priority for investigation and measures.</documentation>
+							<appinfo>
+								<taggedValue xmlns="http://www.interactive-instruments.de/ShapeChange/AppInfo" tag="obligation">technicalGuidance</taggedValue>
+							</appinfo>
+						</annotation>
+					</element>
+					<element name="investigationState" type="gml:ReferenceType">
+						<annotation>
+							<documentation>-- Name --
+investigation state
+
+-- Definition --
+status of knowledge about soil pollution presence and levels and risk and dispersion levels.
+
+-- Description --
+Generally a tiered investigation approach may be followed. A possibly polluted site may enter as a site to investigate and undergo preliminary and main site investigations before it sis decide on the verdict polluted or not polluted.</documentation>
+							<appinfo>
+								<taggedValue xmlns="http://www.interactive-instruments.de/ShapeChange/AppInfo" tag="obligation">technicalGuidance</taggedValue>
+							</appinfo>
+						</annotation>
+					</element>
+					<element name="contaminatingActivity" type="so-cont:ContaminatingActivityTypePropertyType">
+						<annotation>
+							<documentation>-- Name --
+contaminating activity
+
+-- Definition --
+historical or current activity on the site in which use, handling and storage of significant amounts of relevant hazardous materials occurs or has occurred and may have lead to soil and/or groundwater pollution, including events (e.g. calamity) with effect on soil and/or groundwater contamination.
+
+-- Description --
+List of industrial and trade activities and specified calamities (eg. according directive 96/82/EC 'Seveso').</documentation>
+						</annotation>
+					</element>
+					<element name="mainInvestigatedChemicalParameter" type="so-cont:InvestigatedChemicalParameterTypePropertyType" maxOccurs="unbounded">
+						<annotation>
+							<documentation>-- Name --
+main investigated chemical parameter
+
+-- Definition --
+main chemical parameter that was observed on the possible contaminated soil site.</documentation>
+						</annotation>
+					</element>
+					<element name="wasteType" type="gml:ReferenceType" nillable="true" minOccurs="0" maxOccurs="unbounded">
+						<annotation>
+							<documentation>-- Name --
+waste type
+
+-- Definition --
+type of waste according to European Waste Catalogue.
+
+-- Description --
+reference to article 1 council directive 75/442/EEC on waste</documentation>
+							<appinfo>
+								<taggedValue xmlns="http://www.interactive-instruments.de/ShapeChange/AppInfo" tag="obligation">technicalGuidance</taggedValue>
+							</appinfo>
+						</annotation>
+					</element>
+					<element name="uses" type="so-cont:GroundwaterProfilePropertyType" minOccurs="0" maxOccurs="unbounded"/>
+				</sequence>
+			</extension>
+		</complexContent>
+	</complexType>
+	<complexType name="PossiblyContaminatedSoilSitePropertyType">
+		<sequence minOccurs="0">
+			<element ref="so-cont:PossiblyContaminatedSoilSite"/>
+		</sequence>
+		<attributeGroup ref="gml:AssociationAttributeGroup"/>
+		<attributeGroup ref="gml:OwnershipAttributeGroup"/>
+	</complexType>
+	<element name="ContaminatingActivitiesValue" type="so-cont:ContaminatingActivitiesValueType" substitutionGroup="gml:AbstractObject">
+		<annotation>
+			<documentation>-- Name --
+contaminating activities value
+
+-- Definition --
+Historical or current activity on the site in which use, handling and storage of significant amounts of relevant hazardous materials occurs or has occurred and may have lead to soil and/or groundwater pollution, including events (e.g. calamity) with effect on soil and/or groundwater contamination.
+
+-- Description --
+Also including now obsolete (industrial and commercial) activities which left a mark on the soil (e.g. city gas works, gas light mantle production). ContaminatingActivitiesValue is a union class (choice) that shall support two possible codelists i.e. either NaceIndustrialActivityValue or OtherContaminatingActivityValue</documentation>
+		</annotation>
+	</element>
+	<complexType name="ContaminatingActivitiesValueType">
+		<choice>
+			<element name="naceIndustrialActivity" type="gml:ReferenceType">
+				<annotation>
+					<documentation>-- Name --
+nace industrial activity
+
+-- Definition --
+Industrial activity according to NACE.
+
+-- Description --</documentation>
+					<appinfo>
+						<taggedValue xmlns="http://www.interactive-instruments.de/ShapeChange/AppInfo" tag="obligation">technicalGuidance</taggedValue>
+					</appinfo>
+				</annotation>
+			</element>
+			<element name="otherContaminatingAvtivity" type="gml:ReferenceType">
+				<annotation>
+					<documentation>-- Name --
+other contaminating activity
+
+-- Definition --
+contaminating activities apart from the Industrial activities according to NACE.</documentation>
+					<appinfo>
+						<taggedValue xmlns="http://www.interactive-instruments.de/ShapeChange/AppInfo" tag="obligation">technicalGuidance</taggedValue>
+					</appinfo>
+				</annotation>
+			</element>
+		</choice>
+	</complexType>
+	<complexType name="ContaminatingActivitiesValuePropertyType">
+		<sequence>
+			<element ref="so-cont:ContaminatingActivitiesValue"/>
+		</sequence>
+	</complexType>
+	<element name="ContaminatedSoilSite" type="so-cont:ContaminatedSoilSiteType" substitutionGroup="am:ManagementRestrictionOrRegulationZone">
+		<annotation>
+			<documentation>-- Name --
+contaminated soil site
+
+-- Definition --
+Site on which manmade substances are present in levels and amounts considered to be a hazard, in soil, groundwater and waste (on or below surface level).
+
+-- Description --
+Site where levels of contaminants in soil or groundwater are or were above applicable threshold values, as concluded from a main site investigation and over a surface or in a volume not to be neglected (up to local regulations and authorities). Irrespective of the current status of management measures or temporary safety measures taken or to be taken after risk assessment.</documentation>
+		</annotation>
+	</element>
+	<complexType name="ContaminatedSoilSiteType">
+		<complexContent>
+			<extension base="am:ManagementRestrictionOrRegulationZoneType">
+				<sequence>
+					<element name="investigatedChemicalParameter" type="so-cont:InvestigatedChemicalParameterTypePropertyType" minOccurs="0" maxOccurs="unbounded">
+						<annotation>
+							<documentation>-- Name --
+investigated chemical parameter
+
+-- Definition --
+Chemical parameter for which the exceeding of threshold values for a substantial are is confirmed or rejected.
+
+-- Description --</documentation>
+						</annotation>
+					</element>
+					<element name="riskAssessmentStage" type="gml:ReferenceType" maxOccurs="unbounded">
+						<annotation>
+							<documentation>-- Name --
+risk assessment stage
+
+-- Definition --
+level of progress in assessment of risk and dispersion of the pollution.
+
+-- Description --
+The presence of hazardous material may pose a risk only when valued objects are exposed on a level considered excessive. The latter level is generally established from toxicology studies. The exposure level depends on the local situation and the land use. The exposed objects may be for instance human, valued nature or drinking water wells.</documentation>
+							<appinfo>
+								<taggedValue xmlns="http://www.interactive-instruments.de/ShapeChange/AppInfo" tag="obligation">technicalGuidance</taggedValue>
+							</appinfo>
+						</annotation>
+					</element>
+					<element name="measureStage" type="gml:ReferenceType">
+						<annotation>
+							<documentation>-- Name --
+measure stage
+
+-- Definition --
+level of progress in the measures taken in response of the hazard and risk assessment.
+
+-- Description --
+Distinguishes between, intended measures, measures in progress and applied measures.</documentation>
+							<appinfo>
+								<taggedValue xmlns="http://www.interactive-instruments.de/ShapeChange/AppInfo" tag="obligation">technicalGuidance</taggedValue>
+							</appinfo>
+						</annotation>
+					</element>
+					<element name="measureTaken" type="so-cont:MeasureTakenTypePropertyType" minOccurs="0" maxOccurs="unbounded">
+						<annotation>
+							<documentation>-- Name --
+measure taken
+
+-- Definition --
+measures taken in response of the hazard and risk assessment.
+
+-- Description --
+Measures with respect to safety, cleaning the soil and groundwater, blocking exposure and dispersion routes, stabilization, isolation, aftercare, generally in connection with redevelopment.</documentation>
+						</annotation>
+					</element>
+					<element name="riskType" type="gml:ReferenceType" maxOccurs="unbounded">
+						<annotation>
+							<documentation>-- Name --
+risk type
+
+-- Definition --
+anticipated or experienced risk resulting from type of pollutant and exposure route.
+
+-- Description --
+Type of exposure routes which give adverse effects on the basis of land use and level, extent and distribution of the pollutants, generally in line with applicable risk assessment models.</documentation>
+							<appinfo>
+								<taggedValue xmlns="http://www.interactive-instruments.de/ShapeChange/AppInfo" tag="obligation">technicalGuidance</taggedValue>
+							</appinfo>
+						</annotation>
+					</element>
+					<element name="riskReceptor" type="gml:ReferenceType" maxOccurs="unbounded">
+						<annotation>
+							<documentation>-- Name --
+risk receptor
+
+-- Definition --
+Entity exposed to the pollution.
+
+-- Description --
+Entity on which adverse effects are taking place, generally in connection with the protection of human health, quality of the environment, natural values, agricultural produce, land and materials as resources.</documentation>
+							<appinfo>
+								<taggedValue xmlns="http://www.interactive-instruments.de/ShapeChange/AppInfo" tag="obligation">technicalGuidance</taggedValue>
+							</appinfo>
+						</annotation>
+					</element>
+				</sequence>
+			</extension>
+		</complexContent>
+	</complexType>
+	<complexType name="ContaminatedSoilSitePropertyType">
+		<sequence minOccurs="0">
+			<element ref="so-cont:ContaminatedSoilSite"/>
+		</sequence>
+		<attributeGroup ref="gml:AssociationAttributeGroup"/>
+		<attributeGroup ref="gml:OwnershipAttributeGroup"/>
+	</complexType>
+</schema>

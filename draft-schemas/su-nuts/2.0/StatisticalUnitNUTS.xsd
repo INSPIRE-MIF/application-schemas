@@ -1,0 +1,151 @@
+<?xml version="1.0" encoding="UTF-8"?><schema xmlns="http://www.w3.org/2001/XMLSchema" xmlns:au="urn:x-inspire:specification:gmlas:AdministrativeUnits:3.0" xmlns:gml="http://www.opengis.net/gml/3.2" xmlns:su-nuts="http://inspire.jrc.ec.europa.eu/schemas/su-nuts/2.0" xmlns:su-vector="http://inspire.jrc.ec.europa.eu/schemas/su-vector/2.0" elementFormDefault="qualified" targetNamespace="http://inspire.jrc.ec.europa.eu/schemas/su-nuts/2.0" version="2.0">
+  <annotation>
+    <documentation>-- Definition --
+Example of INSPIRE compliant view of the NUTS model (produced by Eurostat).</documentation>
+  </annotation>
+  <import namespace="http://inspire.jrc.ec.europa.eu/schemas/su-vector/2.0" schemaLocation="https://inspire.ec.europa.eu/draft-schemas/su-vector/2.0/StatisticalUnitVector.xsd"/>
+  <import namespace="http://www.opengis.net/gml/3.2" schemaLocation="http://schemas.opengis.net/gml/3.2.1/gml.xsd"/>
+  <import namespace="urn:x-inspire:specification:gmlas:AdministrativeUnits:3.0" schemaLocation="https://inspire.ec.europa.eu/schemas/au/3.0/AdministrativeUnits.xsd"/>
+  <!--XML Schema document created by ShapeChange-->
+  <element name="NUTSRegion" substitutionGroup="su-vector:AreaStatisticalUnit" type="su-nuts:NUTSRegionType">
+    <annotation>
+      <documentation>-- Definition --
+Territorial unit for statistics defined in the framework of the Regulation (EC) No 1059/2003 of the European Parliament and of the Council of 26 May 2003.
+
+-- Description --
+NOTE NUTS regions subdivide each Member State into a whole number of territorial units for statistic at NUTS1 level. Each of these is then subdivided into regions at NUTS2 level and these in turn into regions at NUTS3 level.</documentation>
+    </annotation>
+  </element>
+  <complexType name="NUTSRegionType">
+    <complexContent>
+      <extension base="su-vector:AreaStatisticalUnitType">
+        <sequence>
+          <element minOccurs="0" name="tessellation" nillable="true">
+            <annotation>
+              <documentation>-- Definition --
+The tesselation composed of units.</documentation>
+              <appinfo>
+                <reversePropertyName xmlns="http://www.opengis.net/gml/3.2">su-nuts:units</reversePropertyName>
+              </appinfo>
+            </annotation>
+            <complexType>
+              <sequence minOccurs="0">
+                <element ref="su-nuts:NUTSTessellation"/>
+              </sequence>
+              <attributeGroup ref="gml:AssociationAttributeGroup"/>
+              <attributeGroup ref="gml:OwnershipAttributeGroup"/>
+            </complexType>
+          </element>
+        </sequence>
+      </extension>
+    </complexContent>
+  </complexType>
+  <complexType name="NUTSRegionPropertyType">
+    <sequence minOccurs="0">
+      <element ref="su-nuts:NUTSRegion"/>
+    </sequence>
+    <attributeGroup ref="gml:AssociationAttributeGroup"/>
+    <attributeGroup ref="gml:OwnershipAttributeGroup"/>
+  </complexType>
+  <element name="NUTSTessellation" substitutionGroup="su-vector:StatisticalTessellation" type="su-nuts:NUTSTessellationType">
+    <annotation>
+      <documentation>-- Definition --
+A statistical tessellation composed of NUTS regions.
+
+-- Description --
+NOTE level attribute values should be among the NUTSHierarchy CodeList.</documentation>
+    </annotation>
+  </element>
+  <complexType name="NUTSTessellationType">
+    <complexContent>
+      <extension base="su-vector:StatisticalTessellationType">
+        <sequence>
+          <element name="level" type="su-nuts:NUTSCodeType">
+            <annotation>
+              <documentation>-- Definition --
+The level in the hierarchy.</documentation>
+            </annotation>
+          </element>
+        </sequence>
+      </extension>
+    </complexContent>
+  </complexType>
+  <complexType name="NUTSTessellationPropertyType">
+    <sequence minOccurs="0">
+      <element ref="su-nuts:NUTSTessellation"/>
+    </sequence>
+    <attributeGroup ref="gml:AssociationAttributeGroup"/>
+    <attributeGroup ref="gml:OwnershipAttributeGroup"/>
+  </complexType>
+  <simpleType name="NUTSCodeType">
+    <annotation>
+      <documentation>-- Definition --
+The NUTS codes.</documentation>
+    </annotation>
+    <union memberTypes="su-nuts:NUTSCodeEnumerationType su-nuts:NUTSCodeOtherType"/>
+  </simpleType>
+  <simpleType name="NUTSCodeEnumerationType">
+    <annotation>
+      <documentation>-- Definition --
+The NUTS codes.</documentation>
+    </annotation>
+    <restriction base="string">
+      <enumeration value="1stLevel">
+        <annotation>
+          <documentation>-- Definition --
+The first NUTS level.
+
+-- Description --
+Correspond to areas having a population within 3 and 7 millions.
+
+EXAMPLE "Gewesten/Regions" in Belgium; "Länder " in Germany; "Continente", "Região dos Açores" and "Região da Madeira" in Portugal; "Scotland, Wales, Northern Ireland" and "Government Office Regions of England" in the United Kingdom.
+
+SOURCE NUTS Directive (Regulation (EC) No 1059/2003)</documentation>
+        </annotation>
+      </enumeration>
+      <enumeration value="2ndLevel">
+        <annotation>
+          <documentation>-- Definition --
+The second NUTS level.
+
+-- Description --
+Correspond to areas having a population within 800000 and 7 millions.
+
+EXAMPLE "Provincies/Provinces" in Belgium; "Regierungsbezirke" in Germany; "Periferies" in Greece; "Comundidades y ciudades autonomas" in Spain; "Régions" in France; "Regions" in Ireland; "Regioni" in Italy; "Provincies" in the Netherlands; "Länder" in Austria.
+
+SOURCE NUTS Directive (Regulation (EC) No 1059/2003)</documentation>
+        </annotation>
+      </enumeration>
+      <enumeration value="3rdLevel">
+        <annotation>
+          <documentation>-- Definition --
+The third NUTS level.
+
+-- Description --
+Correspond to areas having a population within 150 000 and 800 000.
+
+EXAMPLE "arrondissements" in Belgium; "amtskommuner" in Denmark; "Kreise/kreisfreie Städte" in Germany; "nomoi" in Greece; "provincias" in Spain; "départements" in France; "regional authority regions" in Ireland; "provincie" in Italy; "län" in Sweden; "maakunnat/landskapen" in Finland.
+
+SOURCE NUTS Directive (Regulation (EC) No 1059/2003)</documentation>
+        </annotation>
+      </enumeration>
+      <enumeration value="LAU1">
+        <annotation>
+          <documentation>-- Definition --
+The LAU (Local Administrative Units) first level. Former NUTS level 4.</documentation>
+        </annotation>
+      </enumeration>
+      <enumeration value="LAU2">
+        <annotation>
+          <documentation>-- Definition --
+The LAU (Local Administrative Units) second level. Former NUTS level 5.</documentation>
+        </annotation>
+      </enumeration>
+    </restriction>
+  </simpleType>
+  <simpleType name="NUTSCodeOtherType">
+    <restriction base="string">
+      <pattern value="other: \w{2,}"/>
+    </restriction>
+  </simpleType>
+</schema>

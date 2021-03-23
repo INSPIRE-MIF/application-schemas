@@ -1,0 +1,253 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<schema xmlns="http://www.w3.org/2001/XMLSchema" xmlns:er-b="http://inspire.ec.europa.eu/schemas/er-b/3.0rc3" xmlns:er-s="http://inspire.ec.europa.eu/schemas/er-s/3.0rc3" xmlns:gml="http://www.opengis.net/gml/3.2" xmlns:sc="http://www.interactive-instruments.de/ShapeChange/AppInfo" xmlns:su-core="http://inspire.ec.europa.eu/schemas/su-core/3.0rc3" xmlns:su-vector="http://inspire.ec.europa.eu/schemas/su-vector/3.0rc3" targetNamespace="http://inspire.ec.europa.eu/schemas/er-s/3.0rc3" elementFormDefault="qualified" version="3.0rc3">
+	<annotation>
+		<documentation>-- Name --
+Energy Statistics application schema</documentation>
+	</annotation>
+	<import namespace="http://inspire.ec.europa.eu/schemas/er-b/3.0rc3" schemaLocation="https://inspire.ec.europa.eu/draft-schemas/er-b/3.0rc3/EnergyResourcesBase.xsd"/>
+	<import namespace="http://inspire.ec.europa.eu/schemas/su-core/3.0rc3" schemaLocation="https://inspire.ec.europa.eu/draft-schemas/su-core/3.0rc3/StatisticalUnitCore.xsd"/>
+	<import namespace="http://inspire.ec.europa.eu/schemas/su-vector/3.0rc3" schemaLocation="https://inspire.ec.europa.eu/draft-schemas/su-vector/3.0rc3/StatisticalUnitVector.xsd"/>
+	<import namespace="http://www.interactive-instruments.de/ShapeChange/AppInfo" schemaLocation="http://portele.de/ShapeChangeAppinfo.xsd"/>
+	<import namespace="http://www.opengis.net/gml/3.2" schemaLocation="http://schemas.opengis.net/gml/3.2.1/gml.xsd"/>
+	<!--XML Schema document created by ShapeChange-->
+	<element name="AggregatedResource" type="er-s:AggregatedResourceType" substitutionGroup="er-s:AggregatedEnergy">
+		<annotation>
+			<documentation>-- Name --
+Aggregated resource
+
+-- Definition --
+Statistic restricted to aggregate values on energy resources (and not on Energy Statistics).</documentation>
+		</annotation>
+	</element>
+	<complexType name="AggregatedResourceType">
+		<complexContent>
+			<extension base="er-s:AggregatedEnergyType">
+				<sequence>
+					<element name="resourceClass" type="gml:ReferenceType" nillable="true" minOccurs="0">
+						<annotation>
+							<documentation>-- Name --
+Resource class
+
+-- Definition --
+Type of resource class.
+
+-- Description --
+A particular class within the classification framework.</documentation>
+							<appinfo>
+								<taggedValue xmlns="http://www.interactive-instruments.de/ShapeChange/AppInfo" tag="obligation">technicalGuidance</taggedValue>
+							</appinfo>
+						</annotation>
+					</element>
+					<element name="typeOfResource" type="er-s:ResourceTypePropertyType">
+						<annotation>
+							<documentation>-- Name --
+Type of resource
+
+-- Definition --
+Type of energy resource to which the aggregation is applicable.</documentation>
+						</annotation>
+					</element>
+				</sequence>
+			</extension>
+		</complexContent>
+	</complexType>
+	<complexType name="AggregatedResourcePropertyType">
+		<sequence>
+			<element ref="er-s:AggregatedResource"/>
+		</sequence>
+	</complexType>
+	<element name="AggregatedEnergy" type="er-s:AggregatedEnergyType" abstract="true" substitutionGroup="gml:AbstractObject">
+		<annotation>
+			<documentation>-- Name --
+Aggregated Energy
+
+-- Definition --
+Abstract class intended to aggregate values on energy statistics (energy products, consumption, supply, etc...) and energy resources (fossil fuels, renewables and waste).</documentation>
+		</annotation>
+	</element>
+	<complexType name="AggregatedEnergyType" abstract="true">
+		<sequence>
+			<element name="aggregationPeriod" type="gml:TimePeriodPropertyType">
+				<annotation>
+					<documentation>-- Name --
+Aggregation period
+
+-- Definition --
+A temporal range over which a statistic is calculated. e.g. month, a year.</documentation>
+				</annotation>
+			</element>
+			<element name="label" nillable="true" minOccurs="0">
+				<annotation>
+					<documentation>-- Name --
+label
+
+-- Definition --
+A human readable title for the statistical measure</documentation>
+				</annotation>
+				<complexType>
+					<simpleContent>
+						<extension base="string">
+							<attribute name="nilReason" type="gml:NilReasonType"/>
+						</extension>
+					</simpleContent>
+				</complexType>
+			</element>
+			<element name="measureValue" type="gml:MeasureType">
+				<annotation>
+					<documentation>-- Name --
+Measure value
+
+-- Definition --
+The value for the defined variable.
+
+-- Description --
+NOTE1: for comparing different types of energy resources the unit of measure is tonnes of oil equivalent (toe). Otherwise the commodity units of measure should be applied: 10³ tonnes for solid fossil fuels and oils, m³ for natural gas, GWh (electriciy) and TJ (Heat) for renewables and waste
+
+NOTE2 with regard to energy statistics the unit of measure is defined by the Regulation on Energy Statistics.
+
+EXAMPLE: proved coal reserves by country, wind energy capacity by region, etc...</documentation>
+				</annotation>
+			</element>
+		</sequence>
+	</complexType>
+	<complexType name="AggregatedEnergyPropertyType">
+		<sequence>
+			<element ref="er-s:AggregatedEnergy"/>
+		</sequence>
+	</complexType>
+	<element name="EnergyStatisticalUnit" type="er-s:EnergyStatisticalUnitType" substitutionGroup="su-vector:VectorStatisticalUnit">
+		<annotation>
+			<documentation>-- Name --
+Energy statistical unit
+
+-- Definition --
+Statistical unit for representing energy statistics.</documentation>
+		</annotation>
+	</element>
+	<complexType name="EnergyStatisticalUnitType">
+		<complexContent>
+			<extension base="su-vector:VectorStatisticalUnitType">
+				<sequence>
+					<element name="statisticalValues" nillable="true" minOccurs="0" maxOccurs="unbounded">
+						<annotation>
+							<documentation>-- Name --
+Statistical values
+
+-- Definition --
+The statistical values composing the energy statistic.</documentation>
+						</annotation>
+						<complexType>
+							<sequence>
+								<element ref="er-s:AggregatedEnergy"/>
+							</sequence>
+							<attribute name="nilReason" type="gml:NilReasonType"/>
+						</complexType>
+					</element>
+				</sequence>
+			</extension>
+		</complexContent>
+	</complexType>
+	<complexType name="EnergyStatisticalUnitPropertyType">
+		<sequence minOccurs="0">
+			<element ref="er-s:EnergyStatisticalUnit"/>
+		</sequence>
+		<attributeGroup ref="gml:AssociationAttributeGroup"/>
+		<attributeGroup ref="gml:OwnershipAttributeGroup"/>
+	</complexType>
+	<element name="EnergyStatistic" type="er-s:EnergyStatisticType" substitutionGroup="er-s:AggregatedEnergy">
+		<annotation>
+			<documentation>-- Name --
+Energy statistic.
+
+-- Definition --
+Quantitative, aggregated and representative information taken from the collection and systematic processing of data, produced by the national authorities and the Community authority in the framework of the Regulation on Energy Statistics.</documentation>
+		</annotation>
+	</element>
+	<complexType name="EnergyStatisticType">
+		<complexContent>
+			<extension base="er-s:AggregatedEnergyType">
+				<sequence>
+					<element name="energyProduct" type="gml:ReferenceType">
+						<annotation>
+							<documentation>-- Name --
+Energy product
+
+-- Definition --
+Energy products mean combustible fuels, heat, renewable
+energy, electricity, or any other form of energy.</documentation>
+							<appinfo>
+								<taggedValue xmlns="http://www.interactive-instruments.de/ShapeChange/AppInfo" tag="obligation">technicalGuidance</taggedValue>
+							</appinfo>
+						</annotation>
+					</element>
+					<element name="energyStatisticsAggregate" type="gml:ReferenceType">
+						<annotation>
+							<documentation>-- Name --
+Energy statistics aggregate
+
+-- Definition --
+What the statistic means or represents. Aggregates mean data aggregated at national level on the
+treatment or use of energy products, namely production,
+trade, stocks, transformation, consumption, and structural
+characteristics of the energy system such as installed
+capacities for electricity generation or production capacities
+for oil products.</documentation>
+							<appinfo>
+								<taggedValue xmlns="http://www.interactive-instruments.de/ShapeChange/AppInfo" tag="obligation">technicalGuidance</taggedValue>
+							</appinfo>
+						</annotation>
+					</element>
+				</sequence>
+			</extension>
+		</complexContent>
+	</complexType>
+	<complexType name="EnergyStatisticPropertyType">
+		<sequence>
+			<element ref="er-s:EnergyStatistic"/>
+		</sequence>
+	</complexType>
+	<element name="ResourceType" type="er-s:ResourceTypeType" substitutionGroup="gml:AbstractObject">
+		<annotation>
+			<documentation>-- Name --
+Resource type
+
+-- Definition --
+Choice to specify either a fossil fuel or a renewable or waste resource i.e. the type of resource to which the statistic applies. 
+
+NOTE only one option can be chosen.</documentation>
+		</annotation>
+	</element>
+	<complexType name="ResourceTypeType">
+		<choice>
+			<element name="renewableAndWasteType" type="gml:ReferenceType">
+				<annotation>
+					<documentation>-- Name --
+Renewable and waste type
+
+-- Definition --
+Type of renewable energy and waste.</documentation>
+					<appinfo>
+						<taggedValue xmlns="http://www.interactive-instruments.de/ShapeChange/AppInfo" tag="obligation">technicalGuidance</taggedValue>
+					</appinfo>
+				</annotation>
+			</element>
+			<element name="fossilFuelType" type="gml:ReferenceType">
+				<annotation>
+					<documentation>-- Name --
+Fossil fuel type
+
+-- Definition --
+Type of fossil fuel.</documentation>
+					<appinfo>
+						<taggedValue xmlns="http://www.interactive-instruments.de/ShapeChange/AppInfo" tag="obligation">technicalGuidance</taggedValue>
+					</appinfo>
+				</annotation>
+			</element>
+		</choice>
+	</complexType>
+	<complexType name="ResourceTypePropertyType">
+		<sequence>
+			<element ref="er-s:ResourceType"/>
+		</sequence>
+	</complexType>
+</schema>

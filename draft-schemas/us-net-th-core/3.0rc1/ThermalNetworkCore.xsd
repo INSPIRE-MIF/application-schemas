@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?><schema xmlns="http://www.w3.org/2001/XMLSchema" xmlns:gml="http://www.opengis.net/gml/3.2" xmlns:sc="http://www.interactive-instruments.de/ShapeChange/AppInfo" xmlns:us-net-common-core="http://inspire.ec.europa.eu/schemas/us-net-common-core/3.0" xmlns:us-net-th-core="http://inspire.ec.europa.eu/schemas/us-net-th-core/3.0" elementFormDefault="qualified" targetNamespace="http://inspire.ec.europa.eu/schemas/us-net-th-core/3.0" version="3.0">
+  <annotation>
+    <documentation>-- Definition --
+Thermal network sub-domain.</documentation>
+  </annotation>
+  <import namespace="http://inspire.ec.europa.eu/schemas/us-net-common-core/3.0" schemaLocation="https://inspire.ec.europa.eu/draft-schemas/us-net-common-core/3.0rc1/UtilityNetworksCommonCore.xsd"/>
+  <import namespace="http://www.interactive-instruments.de/ShapeChange/AppInfo" schemaLocation="http://portele.de/ShapeChangeAppinfo.xsd"/>
+  <import namespace="http://www.opengis.net/gml/3.2" schemaLocation="http://schemas.opengis.net/gml/3.2.1/gml.xsd"/>
+  <!--XML Schema document created by ShapeChange-->
+  <element name="ThermalPipe" substitutionGroup="us-net-common-core:Pipe" type="us-net-th-core:ThermalPipeType">
+    <annotation>
+      <documentation>-- Name --
+thermal pipe
+
+-- Definition --
+A pipe used to disseminate heating or cooling from one location to another.</documentation>
+    </annotation>
+  </element>
+  <complexType name="ThermalPipeType">
+    <complexContent>
+      <extension base="us-net-common-core:PipeType">
+        <sequence>
+          <element name="thermalProductType" nillable="true" type="gml:ReferenceType">
+            <annotation>
+              <documentation>-- Name --
+thermal product type
+
+-- Definition --
+The type of thermal product that is conveyed through the thermal pipe.</documentation>
+              <appinfo>
+                <taggedValue xmlns="http://www.interactive-instruments.de/ShapeChange/AppInfo" tag="obligation">technicalGuidance</taggedValue>
+              </appinfo>
+            </annotation>
+          </element>
+        </sequence>
+      </extension>
+    </complexContent>
+  </complexType>
+  <complexType name="ThermalPipePropertyType">
+    <sequence minOccurs="0">
+      <element ref="us-net-th-core:ThermalPipe"/>
+    </sequence>
+    <attributeGroup ref="gml:AssociationAttributeGroup"/>
+    <attributeGroup ref="gml:OwnershipAttributeGroup"/>
+  </complexType>
+</schema>

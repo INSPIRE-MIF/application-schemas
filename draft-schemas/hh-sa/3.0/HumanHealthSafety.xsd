@@ -1,0 +1,537 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- edited with XMLSpy v2014 sp1 (x64) (http://www.altova.com) by Chris Schubert (European Commission DG JRC - IES) -->
+<schema xmlns="http://www.w3.org/2001/XMLSchema" xmlns:au="urn:x-inspire:specification:gmlas:AdministrativeUnits:3.0" xmlns:base="http://inspire.ec.europa.eu/schemas/base/3.3" xmlns:gmd="http://www.isotc211.org/2005/gmd" xmlns:gml="http://www.opengis.net/gml/3.2" xmlns:gn="urn:x-inspire:specification:gmlas:GeographicalNames:3.0" xmlns:hh-sa="http://inspire.ec.europa.eu/draft-schemas/hh-sa/3.0" xmlns:net="urn:x-inspire:specification:gmlas:Network:3.2" xmlns:sc="http://www.interactive-instruments.de/ShapeChange/AppInfo" xmlns:su-core="http://inspire.ec.europa.eu/schemas/su-core/3.0" targetNamespace="http://inspire.ec.europa.eu/draft-schemas/hh-sa/3.0" elementFormDefault="qualified" version="3.0">
+	<annotation>
+		<documentation>-- Name --
+Safety</documentation>
+	</annotation>
+	<import namespace="http://inspire.ec.europa.eu/schemas/base/3.3" schemaLocation="https://inspire.ec.europa.eu/schemas/base/3.3/BaseTypes.xsd"/>
+	<import namespace="http://inspire.ec.europa.eu/schemas/su-core/3.0" schemaLocation="https://inspire.ec.europa.eu/schemas/su-core/3.0/StatisticalUnitCore.xsd"/>
+	<import namespace="http://www.interactive-instruments.de/ShapeChange/AppInfo" schemaLocation="http://portele.de/ShapeChangeAppinfo.xsd"/>
+	<import namespace="http://www.isotc211.org/2005/gmd" schemaLocation="http://schemas.opengis.net/iso/19139/20070417/gmd/gmd.xsd"/>
+	<import namespace="http://www.opengis.net/gml/3.2" schemaLocation="http://schemas.opengis.net/gml/3.2.1/gml.xsd"/>
+	<import namespace="urn:x-inspire:specification:gmlas:AdministrativeUnits:3.0" schemaLocation="https://inspire.ec.europa.eu/schemas/au/3.0/AdministrativeUnits.xsd"/>
+	<import namespace="urn:x-inspire:specification:gmlas:GeographicalNames:3.0" schemaLocation="https://inspire.ec.europa.eu/schemas/gn/3.0/GeographicalNames.xsd"/>
+	<import namespace="urn:x-inspire:specification:gmlas:Network:3.2" schemaLocation="https://inspire.ec.europa.eu/schemas/net/3.2/Network.xsd"/>
+	<!--XML Schema document created by ShapeChange-->
+	<element name="EventConsequence" type="hh-sa:EventConsequenceType" substitutionGroup="gml:AbstractObject">
+		<annotation>
+			<documentation>-- Name --
+event consequence
+-- Definition --
+The harm an event caused for humans, propriety.</documentation>
+		</annotation>
+	</element>
+	<complexType name="EventConsequenceType">
+		<sequence>
+			<element name="value" type="double">
+				<annotation>
+					<documentation>-- Name --
+value
+-- Definition --
+Value of the reported harm of event.</documentation>
+				</annotation>
+			</element>
+			<element name="consequenceType" type="gml:ReferenceType">
+				<annotation>
+					<documentation>-- Name --
+consequence type
+-- Definition --
+Type of consequence caused by an event.</documentation>
+					<appinfo>
+						<taggedValue xmlns="http://www.interactive-instruments.de/ShapeChange/AppInfo" tag="obligation">technicalGuidance</taggedValue>
+					</appinfo>
+				</annotation>
+			</element>
+		</sequence>
+	</complexType>
+	<complexType name="EventConsequencePropertyType">
+		<sequence>
+			<element ref="hh-sa:EventConsequence"/>
+		</sequence>
+	</complexType>
+	<element name="HazardousMaterialRelatedEvent" type="hh-sa:HazardousMaterialRelatedEventType" substitutionGroup="hh-sa:Event">
+		<annotation>
+			<documentation>-- Name --
+hazardous material related event
+-- Definition --
+An event resulted by&lt;b&gt; &lt;/b&gt;substances that have the ability to harm humans, property, or the environment.</documentation>
+		</annotation>
+	</element>
+	<complexType name="HazardousMaterialRelatedEventType">
+		<complexContent>
+			<extension base="hh-sa:EventType">
+				<sequence>
+					<element name="hazardousMaterialType" type="gml:ReferenceType">
+						<annotation>
+							<documentation>-- Name --
+hazardous material type
+-- Definition --
+Type of an event caused by hazardous materials.</documentation>
+							<appinfo>
+								<taggedValue xmlns="http://www.interactive-instruments.de/ShapeChange/AppInfo" tag="obligation">technicalGuidance</taggedValue>
+							</appinfo>
+						</annotation>
+					</element>
+				</sequence>
+			</extension>
+		</complexContent>
+	</complexType>
+	<complexType name="HazardousMaterialRelatedEventPropertyType">
+		<sequence minOccurs="0">
+			<element ref="hh-sa:HazardousMaterialRelatedEvent"/>
+		</sequence>
+		<attributeGroup ref="gml:AssociationAttributeGroup"/>
+		<attributeGroup ref="gml:OwnershipAttributeGroup"/>
+	</complexType>
+	<element name="FireOrExplosionRelatedEvent" type="hh-sa:FireOrExplosionRelatedEventType" substitutionGroup="hh-sa:Event">
+		<annotation>
+			<documentation>-- Name --
+fire or explosion related event
+-- Definition --
+Incident in which fire or explosion harms humans, property or the environment.</documentation>
+		</annotation>
+	</element>
+	<complexType name="FireOrExplosionRelatedEventType">
+		<complexContent>
+			<extension base="hh-sa:EventType">
+				<sequence>
+					<element name="fireOrExplosionType" type="gml:ReferenceType">
+						<annotation>
+							<documentation>-- Name --
+fire or explosion type
+-- Definition --
+Type of fire or explosion related event.</documentation>
+							<appinfo>
+								<taggedValue xmlns="http://www.interactive-instruments.de/ShapeChange/AppInfo" tag="obligation">technicalGuidance</taggedValue>
+							</appinfo>
+						</annotation>
+					</element>
+					<element name="fireOrExplosionLocality" type="hh-sa:FireOrExplosionLocalityTypePropertyType">
+						<annotation>
+							<documentation>-- Name --
+fire or explosion locality
+-- Definition --
+The place where the fire or explosion occurs.</documentation>
+						</annotation>
+					</element>
+				</sequence>
+			</extension>
+		</complexContent>
+	</complexType>
+	<complexType name="FireOrExplosionRelatedEventPropertyType">
+		<sequence minOccurs="0">
+			<element ref="hh-sa:FireOrExplosionRelatedEvent"/>
+		</sequence>
+		<attributeGroup ref="gml:AssociationAttributeGroup"/>
+		<attributeGroup ref="gml:OwnershipAttributeGroup"/>
+	</complexType>
+	<element name="EventInformation" type="hh-sa:EventInformationType" substitutionGroup="gml:AbstractObject">
+		<annotation>
+			<documentation>-- Name --
+event information
+-- Definition --
+All available information about the  event.</documentation>
+		</annotation>
+	</element>
+	<complexType name="EventInformationType">
+		<sequence>
+			<element name="title" type="gmd:PT_FreeText_PropertyType" nillable="true">
+				<annotation>
+					<documentation>-- Name --
+title
+
+-- Definition --
+The commonly known name of the event.</documentation>
+				</annotation>
+			</element>
+			<element name="preventionAndPreparedness" type="gmd:PT_FreeText_PropertyType" nillable="true">
+				<annotation>
+					<documentation>-- Name --
+prevention and preparedness
+-- Definition --
+Textual description how the event can be avoid and/or how the society can be prepared for event.</documentation>
+				</annotation>
+			</element>
+			<element name="lessonsLearned" type="gmd:PT_FreeText_PropertyType" nillable="true">
+				<annotation>
+					<documentation>-- Name --
+lessons learned
+
+-- Definition --
+Experiences learned from an event.</documentation>
+				</annotation>
+			</element>
+			<element name="eventSequences" type="gmd:PT_FreeText_PropertyType" nillable="true">
+				<annotation>
+					<documentation>-- Name --
+event sequence
+
+-- Definition --
+Textual description of the event process.</documentation>
+				</annotation>
+			</element>
+			<element name="environmentalDamage" type="gmd:PT_FreeText_PropertyType" nillable="true">
+				<annotation>
+					<documentation>-- Name --
+environmental damage
+
+-- Definition --
+Textual description of the damage on the environment the caused.</documentation>
+				</annotation>
+			</element>
+		</sequence>
+	</complexType>
+	<complexType name="EventInformationPropertyType">
+		<sequence>
+			<element ref="hh-sa:EventInformation"/>
+		</sequence>
+	</complexType>
+	<element name="NaturalHazardRelatedEvent" type="hh-sa:NaturalHazardRelatedEventType" substitutionGroup="hh-sa:Event">
+		<annotation>
+			<documentation>-- Name --
+natural hazard related event
+-- Definition --
+A natural incident resulting in a negative effect on humans, property or the environment.</documentation>
+		</annotation>
+	</element>
+	<complexType name="NaturalHazardRelatedEventType">
+		<complexContent>
+			<extension base="hh-sa:EventType">
+				<sequence>
+					<element name="naturalHazardType" type="gml:ReferenceType">
+						<annotation>
+							<documentation>-- Name --
+Natural hazard type
+
+-- Definition --
+Type of  an event released by a natural hazard.</documentation>
+							<appinfo>
+								<taggedValue xmlns="http://www.interactive-instruments.de/ShapeChange/AppInfo" tag="obligation">technicalGuidance</taggedValue>
+							</appinfo>
+						</annotation>
+					</element>
+				</sequence>
+			</extension>
+		</complexContent>
+	</complexType>
+	<complexType name="NaturalHazardRelatedEventPropertyType">
+		<sequence minOccurs="0">
+			<element ref="hh-sa:NaturalHazardRelatedEvent"/>
+		</sequence>
+		<attributeGroup ref="gml:AssociationAttributeGroup"/>
+		<attributeGroup ref="gml:OwnershipAttributeGroup"/>
+	</complexType>
+	<element name="TrafficRelatedEvent" type="hh-sa:TrafficRelatedEventType" substitutionGroup="hh-sa:Event">
+		<annotation>
+			<documentation>-- Name --
+traffic related event
+-- Definition --
+An unintentional event arising by a traffic facility along a traffic network harming humans, property or the environment.</documentation>
+		</annotation>
+	</element>
+	<complexType name="TrafficRelatedEventType">
+		<complexContent>
+			<extension base="hh-sa:EventType">
+				<sequence>
+					<element name="trafficType" type="gml:ReferenceType">
+						<annotation>
+							<documentation>-- Name --
+traffic type
+
+-- Definition --
+Type of a traffic related event.</documentation>
+							<appinfo>
+								<taggedValue xmlns="http://www.interactive-instruments.de/ShapeChange/AppInfo" tag="obligation">technicalGuidance</taggedValue>
+							</appinfo>
+						</annotation>
+					</element>
+					<element name="trafficRelatedEventInformation" type="gmd:PT_FreeText_PropertyType" nillable="true">
+						<annotation>
+							<documentation>-- Name --
+traffic related event information
+-- Definition --
+Textual description of the traffic related event.</documentation>
+						</annotation>
+					</element>
+					<element name="involvedIn" type="net:NetworkReferencePropertyType" minOccurs="0" maxOccurs="unbounded">
+						<annotation>
+							<documentation>-- Definition --
+Part of the the newtork involved in the event.</documentation>
+						</annotation>
+					</element>
+				</sequence>
+			</extension>
+		</complexContent>
+	</complexType>
+	<complexType name="TrafficRelatedEventPropertyType">
+		<sequence minOccurs="0">
+			<element ref="hh-sa:TrafficRelatedEvent"/>
+		</sequence>
+		<attributeGroup ref="gml:AssociationAttributeGroup"/>
+		<attributeGroup ref="gml:OwnershipAttributeGroup"/>
+	</complexType>
+	<element name="Event" type="hh-sa:EventType" substitutionGroup="gml:AbstractFeature">
+		<annotation>
+			<documentation>-- Name --
+event
+-- Definition --
+Unintentional or intentional accident or incident harming  or damaging humans, properties or the environment.</documentation>
+		</annotation>
+	</element>
+	<complexType name="EventType">
+		<complexContent>
+			<extension base="gml:AbstractFeatureType">
+				<sequence>
+					<element name="inspireId" type="base:IdentifierPropertyType">
+						<annotation>
+							<documentation>-- Name --
+INSPIRE identifier
+
+-- Definition --
+External unique object identifier published by the responsible body, which may be used by external applications to reference the spatial object.
+-- Description --
+NOTE 1: External object identifiers are distinct from thematic object identifiers.
+NOTE 2: The voidable version identifier attribute is not part of the unique identifier of a spatial object and may be used to distinguish two versions of the same spatial object.
+NOTE 3: The unique identifier will not change during the life-time of a spatial object.</documentation>
+						</annotation>
+					</element>
+					<element name="isIntentional" nillable="true">
+						<annotation>
+							<documentation>-- Name --
+is intentional
+
+-- Definition --
+If an intentional event is an incident instigated by a person purposely to harm other humans, property, or the environment or not.</documentation>
+						</annotation>
+						<complexType>
+							<simpleContent>
+								<extension base="boolean">
+									<attribute name="nilReason" type="gml:NilReasonType"/>
+								</extension>
+							</simpleContent>
+						</complexType>
+					</element>
+					<element name="isMajor" nillable="true">
+						<annotation>
+							<documentation>-- Name --
+is major
+-- Definition --
+More than 4 fatalities or more than 10 injured
+or more than 2 million euro damage.</documentation>
+						</annotation>
+						<complexType>
+							<simpleContent>
+								<extension base="boolean">
+									<attribute name="nilReason" type="gml:NilReasonType"/>
+								</extension>
+							</simpleContent>
+						</complexType>
+					</element>
+					<element name="startTime" type="dateTime">
+						<annotation>
+							<documentation>-- Name --
+event start time
+-- Definition --
+Start time for the event.</documentation>
+						</annotation>
+					</element>
+					<element name="endTime" type="dateTime" minOccurs="0">
+						<annotation>
+							<documentation>-- Name --
+event end time
+-- Definition --
+Normally the end of the state of emergency.</documentation>
+						</annotation>
+					</element>
+					<element name="causeOfEvent" type="gmd:PT_FreeText_PropertyType" nillable="true" minOccurs="0" maxOccurs="unbounded">
+						<annotation>
+							<documentation>-- Name --
+cause of event
+-- Definition --
+A factor starting an event.</documentation>
+						</annotation>
+					</element>
+					<element name="eventDescription" type="gmd:PT_FreeText_PropertyType" nillable="true">
+						<annotation>
+							<documentation>-- Name --
+event description
+-- Definition --
+Textual description on the most important attribute of the Event.</documentation>
+						</annotation>
+					</element>
+					<element name="sourceReference" minOccurs="0" maxOccurs="unbounded">
+						<annotation>
+							<documentation>-- Name --
+source reference
+-- Definition --
+Reference to source, document, report etc.</documentation>
+						</annotation>
+						<complexType>
+							<complexContent>
+								<extension base="gml:AbstractMetadataPropertyType">
+									<sequence>
+										<element ref="gmd:CI_Citation"/>
+									</sequence>
+								</extension>
+							</complexContent>
+						</complexType>
+					</element>
+					<element name="locationUnit" type="hh-sa:LocationUnitTypePropertyType">
+						<annotation>
+							<documentation>-- Name --
+location unit
+-- Definition --
+Unit representing event location.</documentation>
+						</annotation>
+					</element>
+					<element name="beginLifespanVersion" nillable="true">
+						<annotation>
+							<documentation>-- Name --
+begin lifespan version
+-- Definition --
+Date and time at which this version of the spatial object was inserted or changed in the spatial data set.</documentation>
+						</annotation>
+						<complexType>
+							<simpleContent>
+								<extension base="dateTime">
+									<attribute name="nilReason" type="gml:NilReasonType"/>
+								</extension>
+							</simpleContent>
+						</complexType>
+					</element>
+					<element name="endLifespanVersion" nillable="true" minOccurs="0">
+						<annotation>
+							<documentation>-- Name --
+end lifespan version
+-- Definition --
+Date and time at which this version of the spatial object was superseded or retired in the spatial data set.</documentation>
+						</annotation>
+						<complexType>
+							<simpleContent>
+								<extension base="dateTime">
+									<attribute name="nilReason" type="gml:NilReasonType"/>
+								</extension>
+							</simpleContent>
+						</complexType>
+					</element>
+					<element name="consequence" type="hh-sa:EventConsequencePropertyType" minOccurs="0" maxOccurs="unbounded">
+						<annotation>
+							<documentation>-- Definition --
+Consequences caused by an event</documentation>
+						</annotation>
+					</element>
+					<element name="aggregation" type="hh-sa:EventPropertyType" minOccurs="0">
+						<annotation>
+							<documentation>-- Definition --
+The multi event composed by more than one event.</documentation>
+						</annotation>
+					</element>
+					<element name="additionalInformation" type="hh-sa:EventInformationPropertyType" minOccurs="0">
+						<annotation>
+							<documentation>-- Definition --
+All available information associated to an  event.</documentation>
+						</annotation>
+					</element>
+				</sequence>
+			</extension>
+		</complexContent>
+	</complexType>
+	<complexType name="EventPropertyType">
+		<sequence minOccurs="0">
+			<element ref="hh-sa:Event"/>
+		</sequence>
+		<attributeGroup ref="gml:AssociationAttributeGroup"/>
+		<attributeGroup ref="gml:OwnershipAttributeGroup"/>
+	</complexType>
+	<element name="LocationUnitType" type="hh-sa:LocationUnitTypeType" substitutionGroup="gml:AbstractObject">
+		<annotation>
+			<documentation>-- Name --
+location unit type
+-- Definition --
+Type Unit that represents event location.</documentation>
+		</annotation>
+	</element>
+	<complexType name="LocationUnitTypeType">
+		<choice>
+			<element name="geometry" type="gml:GeometryPropertyType">
+				<annotation>
+					<documentation>-- Name -- 
+geometry
+
+-- Definition --
+geometry.</documentation>
+				</annotation>
+			</element>
+			<element name="geographicalName" type="gn:GeographicalNamePropertyType">
+				<annotation>
+					<documentation>-- Name --
+geographical name
+
+-- Definition --
+Geographical name.</documentation>
+				</annotation>
+			</element>
+			<element name="administrativeUnit">
+				<annotation>
+					<documentation>-- Name --
+administrative unit
+
+-- Definition --
+Administrative unit.</documentation>
+				</annotation>
+				<complexType>
+					<complexContent>
+						<extension base="gml:AbstractMemberType">
+							<sequence minOccurs="0">
+								<element ref="au:AdministrativeUnit"/>
+							</sequence>
+							<attributeGroup ref="gml:AssociationAttributeGroup"/>
+						</extension>
+					</complexContent>
+				</complexType>
+			</element>
+		</choice>
+	</complexType>
+	<complexType name="LocationUnitTypePropertyType">
+		<sequence>
+			<element ref="hh-sa:LocationUnitType"/>
+		</sequence>
+	</complexType>
+	<element name="FireOrExplosionLocalityType" type="hh-sa:FireOrExplosionLocalityTypeType" substitutionGroup="gml:AbstractObject">
+		<annotation>
+			<documentation>-- Name --
+fire or explosion locality type
+-- Definition --
+Characteristics of the place where the fire or explosion occurs.</documentation>
+		</annotation>
+	</element>
+	<complexType name="FireOrExplosionLocalityTypeType">
+		<sequence>
+			<element name="inBuilding" type="boolean">
+				<annotation>
+					<documentation>-- Name --
+in building
+-- Definition --
+If the fire or explosion event was released within a building.</documentation>
+				</annotation>
+			</element>
+			<element name="buildingUse" type="gml:ReferenceType">
+				<annotation>
+					<documentation>-- Name --
+building use
+-- Definition --
+A value showing the type of use of the building.</documentation>
+					<appinfo>
+						<taggedValue xmlns="http://www.interactive-instruments.de/ShapeChange/AppInfo" tag="obligation">technicalGuidance</taggedValue>
+					</appinfo>
+				</annotation>
+			</element>
+		</sequence>
+	</complexType>
+	<complexType name="FireOrExplosionLocalityTypePropertyType">
+		<sequence>
+			<element ref="hh-sa:FireOrExplosionLocalityType"/>
+		</sequence>
+	</complexType>
+</schema>

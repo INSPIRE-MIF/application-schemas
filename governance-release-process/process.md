@@ -8,7 +8,7 @@ The process to update/change INSPIRE schemas varies depending on the type of cha
 
 [to be moved and extended below] A release plan for the INSPIRE schemas, which complements this document, will be provided shortly. This will detail the frequency of releases of the endorsed changes and the exact target dates of such releases – for example, twice per year in January and July. In addition to the scheduled releases, hotfix releases of the schemas, i.e. releases that fix critical bugs, might be released at any time. Each release will be accompanied by a clear changelog listing and explaining the changes made.
 
-![alt text](https://github.com/INSPIRE-MIF/application-schemas/blob/main/governance-release-process/workflow_v3.png?raw=true)
+<img src="https://github.com/INSPIRE-MIF/application-schemas/blob/main/governance-release-process/workflow_v3.png?raw=true" width="800">
 
 The first actor involved in the governance process is the **change proposer**, i.e. the person, organisation or group of people/organisations that submits a change proposal. The change proposer shall outline the need for the change in a schema, explaining if this is needed because of a bug or because the current version does not fit specific use cases (to be adequately described). The change proposer shall then describe the proposed change and explain whether it would have an impact on the Technical Guidance documents (TG) and/or on the Implementing Rules (IR). The change proposal shall be described be opening a new issue in the [issue tracker](https://github.com/INSPIRE-MIF/application-schemas/issues) of this repository.
 

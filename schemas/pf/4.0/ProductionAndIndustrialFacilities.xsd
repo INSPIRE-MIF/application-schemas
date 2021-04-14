@@ -113,7 +113,7 @@ Spatial property of the spatial object with a value that is a vector geometry ty
 This is the secondary geometry property for the Production Facility and it is set as an optional property to identify the location area for the Facility. It is intended, if available, to furnish a more detailed spatial information in addition to the basic mandatory geometry.</documentation>
             </annotation>
           </element>
-          <element minOccurs="0" name="riverBasinDistrict">
+          <element name="riverBasinDistrict" type="gml:ReferenceType" minOccurs="0" maxOccurs="1">
             <annotation>
               <documentation>-- Definition -- 
 Code identifier and/or name assigned to the basin district of a watercourse. 

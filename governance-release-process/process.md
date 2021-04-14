@@ -32,3 +32,5 @@ The release of the endorsed changes to the INSPIRE schemas happens twice a year 
 In addition to the scheduled releases, hotfix releases of the schemas, i.e. releases that fix critical bugs, might be released at any time.
 
 All the releases, including a full changelog listing the changes made, are published (and will remain available) in the [Releases](https://github.com/INSPIRE-MIF/application-schemas/releases) page of this repository. After each release, the INSPIRE schemas at https://inspire.ec.europa.eu/schemas are updated accordingly.
+
+Each release will be identified by a sequential number, but the versioning of the INSPIRE schemas will be managed separately.

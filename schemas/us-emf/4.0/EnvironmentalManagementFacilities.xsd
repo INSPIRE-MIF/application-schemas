@@ -4,7 +4,7 @@
   <import namespace="http://www.isotc211.org/2005/gmd" schemaLocation="http://schemas.opengis.net/iso/19139/20070417/gmd/gmd.xsd"/>
   <import namespace="http://www.opengis.net/gml/3.2" schemaLocation="http://schemas.opengis.net/gml/3.2.1/gml.xsd"/>
   <!--XML Schema document created by ShapeChange-->
-  <element name="EnvironmentalManagementFacility" substitutionGroup="act-core:ActivityComplex">
+  <element name="EnvironmentalManagementFacility" substitutionGroup="act-core:ActivityComplex" type="us-emf:EnvironmentalManagementFacilityType">
     <annotation>
       <documentation>-- Name --
 environmental management facility
@@ -113,24 +113,29 @@ The status of the Environmental Management Facility, such as operational or deco
               </appinfo>
             </annotation>
           </element>
-          <element maxOccurs="unbounded" minOccurs="0" name="parentFacility" nillable="true">
-            <annotation>
-              <documentation>-- Name --
-parent facility
-
--- Definition --
-A parent facility, i.e., a facility to which this facility belongs.
-
--- Description --
-A facility may belong to multiple other facilities.</documentation>
-            </annotation>
-          </element>
+          <element name="parentFacility" nillable="true" minOccurs="0" maxOccurs="unbounded">
+<annotation>
+<documentation>...</documentation>
+</annotation>
+<complexType>
+<complexContent>
+<extension base="gml:AbstractMemberType">
+<sequence minOccurs="0">
+<element ref="us-emf:EnvironmentalManagementFacility"/>
+</sequence>
+<attributeGroup ref="gml:AssociationAttributeGroup"/>
+</extension>
+</complexContent>
+</complexType>
+</element>
         </sequence>
       </extension>
     </complexContent>
   </complexType>
   <complexType name="EnvironmentalManagementFacilityPropertyType">
-    <sequence minOccurs="0"/>
+    <sequence minOccurs="0">
+      <element ref="us-emf:EnvironmentalManagementFacility"/>
+    </sequence>
     <attributeGroup ref="gml:AssociationAttributeGroup"/>
     <attributeGroup ref="gml:OwnershipAttributeGroup"/>
   </complexType>

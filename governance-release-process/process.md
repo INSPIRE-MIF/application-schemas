@@ -26,8 +26,8 @@ If no objection is raised by MIG members during the two-week time window, or if 
 
 The release of the endorsed changes to the INSPIRE schemas happens twice a year and it is scheduled to take place by **January 31** and **July 31**. This means that:
 
-* all the changes endorsed by the MIG (either after the two-week scrutiny or during the MIG meeting in June) between February and July will be included in the release published on July 31;
-* all the changes endorsed by the MIG (either after the two-week scrutiny or during the MIG meeting in November) between August and January will be included in the release published on January 31.
+* all the changes endorsed by the MIG (either after the two-week scrutiny or during the MIG meeting in June) between February and July will be included in the release published by July 31;
+* all the changes endorsed by the MIG (either after the two-week scrutiny or during the MIG meeting in November) between August and January will be included in the release published by January 31.
 
 In addition to the scheduled releases, hotfix releases of the schemas, i.e. releases that fix critical bugs, might be released at any time.
 

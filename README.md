@@ -11,7 +11,7 @@ The official location of the INSPIRE XML schemas — to be used within the INSPI
 
 ## Governance and release process
 
-Change proposals to the current version of the schemas can be proposed and discussed in the issue tracker of this repository. These change proposals are then subject to the specific governance and release process, whose workflow and actors involved are detailed in [this document](https://github.com/INSPIRE-MIF/application-schemas/blob/main/governance-release-process/process.md).
+Change proposals to the current version of the schemas can be proposed and discussed in the issue tracker of this repository. These change proposals are then subject to the specific governance and release process, whose workflow and actors involved are detailed in [this document](/governance-release-process/process.md).
 
 ## Code of Conduct
 

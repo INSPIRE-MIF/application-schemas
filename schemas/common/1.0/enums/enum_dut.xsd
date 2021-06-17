@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!-- edited with XMLSpy v2011 sp1 (http://www.altova.com) by - - (European Commission DG JRC IES) -->
-<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns="http://inspire.ec.europa.eu/schemas/common/1.0" targetNamespace="http://inspire.ec.europa.eu/schemas/common/1.0" elementFormDefault="qualified" attributeFormDefault="unqualified" version="1.0.1">
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns="http://inspire.ec.europa.eu/schemas/common/1.0" targetNamespace="http://inspire.ec.europa.eu/schemas/common/1.0" elementFormDefault="qualified" attributeFormDefault="unqualified" version="1.0.2">
 	<xs:complexType name="inspireTheme_dut">
 		<xs:complexContent>
 			<xs:restriction base="inspireTheme">
@@ -19,7 +19,7 @@
 								<xs:enumeration value="Energiebronnen"/>
 								<xs:enumeration value="Faciliteiten voor landbouw en aquacultuur"/>
 								<xs:enumeration value="Faciliteiten voor productie en industrie"/>
-								<xs:enumeration value="Gebieden met natuurrisico'es"/>
+								<xs:enumeration value="Gebieden met natuurrisico's"/>
 								<xs:enumeration value="Gebiedsbeheer, gebieden waar beperkingen gelden, gereguleerde gebieden en rapportage-eenheden"/>
 								<xs:enumeration value="Gebouwen"/>
 								<xs:enumeration value="Geografisch rastersysteem"/>

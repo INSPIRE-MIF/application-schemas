@@ -1,5 +1,4 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!-- edited with XMLSpy v2019 rel. 3 (x64) (http://www.altova.com) by Katharina Schleidt (DataCove e.U.) -->
 <schema xmlns="http://www.w3.org/2001/XMLSchema" xmlns:gml="http://www.opengis.net/gml/3.2" xmlns:om="http://www.opengis.net/om/2.0" xmlns:omor="http://inspire.ec.europa.eu/schemas/omor/3.0" xmlns:omso="http://inspire.ec.europa.eu/schemas/omso/3.0" xmlns:wml2="http://www.opengis.net/waterml/2.0" targetNamespace="http://inspire.ec.europa.eu/schemas/omso/3.0" elementFormDefault="qualified" version="3.0">
 	<annotation>
 		<documentation>-- Definition --
@@ -193,6 +192,7 @@ TimeLocationValue Triple
 A triple set of Time, location, value (measurement). For example, at a point along a trajectory.</documentation>
 		</annotation>
 	</element>
+	<!-- edited by K. Schleidt (DataCove e.U.) -->
 	<complexType name="TimeLocationValueTripleType">
 		<complexContent>
 			<extension base="wml2:MeasureTVPType">

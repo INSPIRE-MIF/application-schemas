@@ -183,7 +183,7 @@ A ProfileObservatation is an Observation representing  the measurement of a prop
 		<attributeGroup ref="gml:AssociationAttributeGroup"/>
 		<attributeGroup ref="gml:OwnershipAttributeGroup"/>
 	</complexType>
-	<element name="TimeLocationValueTriple" type="omso:TimeLocationValueTripleType" substitutionGroup="wml2:MeasurementTVP">
+	<element name="TimeLocationValueTriple" type="omso:TimeLocationValueTripleType" substitutionGroup="wml2:TimeValuePair">
 		<annotation>
 			<documentation>-- Name --
 TimeLocationValue Triple
@@ -195,7 +195,7 @@ A triple set of Time, location, value (measurement). For example, at a point alo
 	<!-- edited by K. Schleidt (DataCove e.U.) -->
 	<complexType name="TimeLocationValueTripleType">
 		<complexContent>
-			<extension base="wml2:MeasureTVPType">
+			<extension base="wml2:TimeValuePairType">
 				<sequence>
 					<element name="location" type="gml:PointPropertyType">
 						<annotation>

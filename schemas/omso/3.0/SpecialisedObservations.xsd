@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!-- edited with XMLSpy v2019 rel. 3 (x64) (http://www.altova.com) by Katharina Schleidt (DataCove e.U.) -->
+<schema xmlns="http://www.w3.org/2001/XMLSchema" xmlns:gml="http://www.opengis.net/gml/3.2" xmlns:om="http://www.opengis.net/om/2.0" xmlns:omor="http://inspire.ec.europa.eu/schemas/omor/3.0" xmlns:omso="http://inspire.ec.europa.eu/schemas/omso/3.0" xmlns:wml2="http://www.opengis.net/waterml/2.0" targetNamespace="http://inspire.ec.europa.eu/schemas/omso/3.0" elementFormDefault="qualified" version="3.0">
 	<annotation>
 		<documentation>-- Definition --
 Application schema for specialist types of Observations</documentation>
@@ -183,7 +183,7 @@ A ProfileObservatation is an Observation representing  the measurement of a prop
 		<attributeGroup ref="gml:AssociationAttributeGroup"/>
 		<attributeGroup ref="gml:OwnershipAttributeGroup"/>
 	</complexType>
-	<element name="TimeLocationValueTriple" type="omso:TimeLocationValueTripleType" substitutionGroup="wml2:MeasurementTVP">
+	<element name="TimeLocationValueTriple" type="omso:TimeLocationValueTripleType" substitutionGroup="wml2:TimeValuePair">
 		<annotation>
 			<documentation>-- Name --
 TimeLocationValue Triple
@@ -194,7 +194,7 @@ A triple set of Time, location, value (measurement). For example, at a point alo
 	</element>
 	<complexType name="TimeLocationValueTripleType">
 		<complexContent>
-			<extension base="wml2:MeasureTVPType">
+			<extension base="wml2:TimeValuePairType">
 				<sequence>
 					<element name="location" type="gml:PointPropertyType">
 						<annotation>

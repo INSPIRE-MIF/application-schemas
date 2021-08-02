@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?><schema xmlns="http://www.w3.org/2001/XMLSchema" xmlns:base="http://inspire.ec.europa.eu/schemas/base/3.3" xmlns:ge="http://inspire.ec.europa.eu/schemas/ge-core/4.0" xmlns:gmd="http://www.isotc211.org/2005/gmd" xmlns:gml="http://www.opengis.net/gml/3.2" xmlns:gmlcov="http://www.opengis.net/gmlcov/1.0" xmlns:omop="http://inspire.ec.europa.eu/schemas/omop/3.0" xmlns:ompr="http://inspire.ec.europa.eu/schemas/ompr/3.0" xmlns:ps="http://inspire.ec.europa.eu/schemas/ps/4.0" xmlns:sc="http://www.interactive-instruments.de/ShapeChange/AppInfo" xmlns:so="http://inspire.ec.europa.eu/schemas/so/4.0" xmlns:spec="http://www.opengis.net/samplingSpecimen/2.0" elementFormDefault="qualified" targetNamespace="http://inspire.ec.europa.eu/schemas/so/4.0" version="4.0">
+<?xml version="1.0" encoding="UTF-8"?><schema xmlns="http://www.w3.org/2001/XMLSchema" xmlns:base="http://inspire.ec.europa.eu/schemas/base/3.3" xmlns:ge="http://inspire.ec.europa.eu/schemas/ge-core/4.0" xmlns:gmd="http://www.isotc211.org/2005/gmd" xmlns:gml="http://www.opengis.net/gml/3.2" xmlns:gmlcov="http://www.opengis.net/gmlcov/1.0" xmlns:om="http://www.opengis.net/om/2.0" xmlns:omop="http://inspire.ec.europa.eu/schemas/omop/3.0" xmlns:ompr="http://inspire.ec.europa.eu/schemas/ompr/3.0" xmlns:ps="http://inspire.ec.europa.eu/schemas/ps/4.0" xmlns:sc="http://www.interactive-instruments.de/ShapeChange/AppInfo" xmlns:so="http://inspire.ec.europa.eu/schemas/so/4.0" xmlns:spec="http://www.opengis.net/samplingSpecimen/2.0" elementFormDefault="qualified" targetNamespace="http://inspire.ec.europa.eu/schemas/so/4.0" version="4.0.2">
   <annotation>
     <documentation>Soil model</documentation>
   </annotation>
@@ -11,6 +11,7 @@
   <import namespace="http://www.isotc211.org/2005/gmd" schemaLocation="http://schemas.opengis.net/iso/19139/20070417/gmd/gmd.xsd"/>
   <import namespace="http://www.opengis.net/gml/3.2" schemaLocation="http://schemas.opengis.net/gml/3.2.1/gml.xsd"/>
   <import namespace="http://www.opengis.net/gmlcov/1.0" schemaLocation="http://schemas.opengis.net/gmlcov/1.0/coverage.xsd"/>
+  <import namespace="http://www.opengis.net/om/2.0" schemaLocation="http://schemas.opengis.net/om/2.0/observation.xsd"/>
   <import namespace="http://www.opengis.net/samplingSpecimen/2.0" schemaLocation="http://schemas.opengis.net/samplingSpecimen/2.0/specimen.xsd"/>
   <!--XML Schema document created by ShapeChange-->
   <element name="DerivedProfilePresenceInSoilBody" substitutionGroup="gml:AbstractGML" type="so:DerivedProfilePresenceInSoilBodyType">
@@ -536,6 +537,15 @@ Date and time at which this version of the spatial object was superseded or reti
               </simpleContent>
             </complexType>
           </element>
+          <element maxOccurs="unbounded" minOccurs="0" name="profileElementObservation" nillable="true" type="om:OM_ObservationPropertyType">
+            <annotation>
+              <documentation>-- Name --
+profile element observation
+
+-- Definition --
+Observation of a soil property for characterizing the profile element (layer or horizon).</documentation>
+            </annotation>
+          </element>
           <element name="isPartOf" type="so:SoilProfilePropertyType">
             <annotation>
               <documentation>-- Definition --
@@ -762,30 +772,38 @@ A spatial representation of soil information becomes spatially explicit by delin
             </annotation>
           </element>
           <element maxOccurs="unbounded" minOccurs="0" name="isBasedOnSoilDerivedObject" nillable="true">
+
             <annotation>
               <documentation>-- Definition --
 Link to a soil derived object on whose properties the derived value is based.
+
 -- Description --
 A soil derived object can be created based on the properties of one or more other soil derived objects. If this information shall not be included or does not apply, the association can be empty.</documentation>
+
             </annotation>
             <complexType>
               <sequence minOccurs="0">
                 <element ref="so:SoilDerivedObject"/>
+
               </sequence>
               <attributeGroup ref="gml:AssociationAttributeGroup"/>
               <attributeGroup ref="gml:OwnershipAttributeGroup"/>
             </complexType>
           </element>
           <element maxOccurs="unbounded" minOccurs="0" name="isBasedOnObservedSoilProfile" nillable="true">
+
             <annotation>
               <documentation>-- Definition --
 Link to an observed soil profile on whose properties the derived value is based.
+
 -- Description --
 A soil derived object can be created based on the soil properties of one or more observed soil profiles. If this information shall not be included or does not apply, the association can be empty.</documentation>
+
             </annotation>
             <complexType>
               <sequence minOccurs="0">
                 <element ref="so:ObservedSoilProfile"/>
+
               </sequence>
               <attributeGroup ref="gml:AssociationAttributeGroup"/>
               <attributeGroup ref="gml:OwnershipAttributeGroup"/>
@@ -795,16 +813,31 @@ A soil derived object can be created based on the soil properties of one or more
             <annotation>
               <documentation>-- Definition --
 Link to a soil body on whose properties the derived value is based.
+
 -- Description --
 A soil derived object can be created based on the soil properties of one or more soil bodies. If this information shall not be included or does not apply, the association can be empty.</documentation>
+
             </annotation>
             <complexType>
               <sequence minOccurs="0">
                 <element ref="so:SoilBody"/>
+
               </sequence>
               <attributeGroup ref="gml:AssociationAttributeGroup"/>
               <attributeGroup ref="gml:OwnershipAttributeGroup"/>
             </complexType>
+          </element>
+          
+          <!-- SM July 2021 - added maxOccurs="unbounded" minOccurs="1"  -->
+          
+          <element maxOccurs="unbounded" minOccurs="1" name="soilDerivedObjectObservation" nillable="true" type="om:OM_ObservationPropertyType">
+            <annotation>
+              <documentation>-- Name --
+soil derived object observation
+
+-- Definition --
+Observation of a soil property for characterizing the soil derived object.</documentation>
+            </annotation>
           </element>
         </sequence>
       </extension>
@@ -1297,6 +1330,15 @@ A profile element is always part of a soil profile.</documentation>
               </complexContent>
             </complexType>
           </element>
+          <element maxOccurs="unbounded" minOccurs="0" name="soilProfileObservation" nillable="true" type="om:OM_ObservationPropertyType">
+            <annotation>
+              <documentation>-- Name --
+soil profile observation
+
+-- Definition --
+Observation of a soil property for characterizing the soil profile.</documentation>
+            </annotation>
+          </element>
         </sequence>
       </extension>
     </complexContent>
@@ -1464,6 +1506,15 @@ A soil site with a specific investigation purpose can be observed on several loc
               <attributeGroup ref="gml:AssociationAttributeGroup"/>
               <attributeGroup ref="gml:OwnershipAttributeGroup"/>
             </complexType>
+          </element>
+          <element maxOccurs="unbounded" minOccurs="0" name="soilSiteObservation" nillable="true" type="om:OM_ObservationPropertyType">
+            <annotation>
+              <documentation>-- Name --
+soil site observation
+
+-- Definition --
+Observation of a soil property for characterizing the soil site.</documentation>
+            </annotation>
           </element>
         </sequence>
       </extension>

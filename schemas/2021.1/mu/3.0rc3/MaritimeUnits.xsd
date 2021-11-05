@@ -2,7 +2,7 @@
 <!-- edited with XMLSpy v2014 sp1 (x64) (http://www.altova.com) by Chris Schubert (European Commission DG JRC - IES) -->
 <schema xmlns="http://www.w3.org/2001/XMLSchema" xmlns:au="urn:x-inspire:specification:gmlas:AdministrativeUnits:3.0" xmlns:base="http://inspire.ec.europa.eu/schemas/base/3.3" xmlns:gmd="http://www.isotc211.org/2005/gmd" xmlns:gml="http://www.opengis.net/gml/3.2" xmlns:gn="urn:x-inspire:specification:gmlas:GeographicalNames:3.0" xmlns:mu="http://inspire.ec.europa.eu/schemas/mu" xmlns:sr="http://inspire.ec.europa.eu/schemas/sr/3.0" targetNamespace="http://inspire.ec.europa.eu/schemas/mu" elementFormDefault="qualified" version="3.0rc1">
 
-	<import namespace="http://inspire.ec.europa.eu/schemas/base/3.3" schemaLocation="https://inspire.ec.europa.eu/schemas/base/3.3/BaseTypes.xsd"/>
+	<import namespace="http://inspire.ec.europa.eu/schemas/base/3.3" schemaLocation="https://inspire.ec.europa.eu/schemas/2021.1/base/3.3/BaseTypes.xsd"/>
 	<import namespace="http://inspire.ec.europa.eu/schemas/sr/3.0" schemaLocation="https://inspire.ec.europa.eu/draft-schemas/sr/3.0rc4/SeaRegions.xsd"/>
 
 	<import namespace="http://www.isotc211.org/2005/gmd" schemaLocation="http://schemas.opengis.net/iso/19139/20070417/gmd/gmd.xsd"/>

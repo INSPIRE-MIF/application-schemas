@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?><schema xmlns="http://www.w3.org/2001/XMLSchema" xmlns:base="urn:x-inspire:specification:gmlas:BaseTypes:3.2" xmlns:gml="http://www.opengis.net/gml/3.2" xmlns:stat="urn:x-inspire:specification:gmlas:StatisticalUnits:0.0" elementFormDefault="qualified" targetNamespace="urn:x-inspire:specification:gmlas:StatisticalUnits:0.0" version="0.0">
-  <import namespace="urn:x-inspire:specification:gmlas:BaseTypes:3.2" schemaLocation="https://inspire.ec.europa.eu/schemas/base/3.2/BaseTypes.xsd"/>
+  <import namespace="urn:x-inspire:specification:gmlas:BaseTypes:3.2" schemaLocation="https://inspire.ec.europa.eu/schemas/2021.1/base/3.2/BaseTypes.xsd"/>
   <import namespace="http://www.opengis.net/gml/3.2" schemaLocation="http://schemas.opengis.net/gml/3.2.1/gml.xsd"/>
   <!--XML Schema document created by ShapeChange-->
   <element name="NUTSRegion" substitutionGroup="gml:AbstractFeature" type="stat:NUTSRegionType">

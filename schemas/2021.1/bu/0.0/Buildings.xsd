@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?><schema xmlns="http://www.w3.org/2001/XMLSchema" xmlns:bui="urn:x-inspire:specification:gmlas:Buildings:0.0" xmlns:gml="http://www.opengis.net/gml/3.2" xmlns:tn-a="urn:x-inspire:specification:gmlas:AirTransportNetwork:3.0" elementFormDefault="qualified" targetNamespace="urn:x-inspire:specification:gmlas:Buildings:0.0" version="0.0">
   <import namespace="http://www.opengis.net/gml/3.2" schemaLocation="http://schemas.opengis.net/gml/3.2.1/gml.xsd"/>
-  <import namespace="urn:x-inspire:specification:gmlas:AirTransportNetwork:3.0" schemaLocation="https://inspire.ec.europa.eu/schemas/tn-a/3.0/AirTransportNetwork.xsd"/>
+  <import namespace="urn:x-inspire:specification:gmlas:AirTransportNetwork:3.0" schemaLocation="https://inspire.ec.europa.eu/schemas/2021.1/tn-a/3.0/AirTransportNetwork.xsd"/>
   <!--XML Schema document created by ShapeChange-->
   <element name="Building" substitutionGroup="gml:AbstractFeature" type="bui:BuildingType">
     <annotation>

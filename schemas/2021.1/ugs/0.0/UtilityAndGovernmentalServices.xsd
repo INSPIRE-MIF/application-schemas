@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?><schema xmlns="http://www.w3.org/2001/XMLSchema" xmlns:gml="http://www.opengis.net/gml/3.2" xmlns:hy-p="urn:x-inspire:specification:gmlas:HydroPhysicalWaters:3.0" xmlns:ugs="urn:x-inspire:specification:gmlas:UtilityAndGovernmentalServices:0.0" elementFormDefault="qualified" targetNamespace="urn:x-inspire:specification:gmlas:UtilityAndGovernmentalServices:0.0" version="0.0">
-  <import namespace="urn:x-inspire:specification:gmlas:HydroPhysicalWaters:3.0" schemaLocation="https://inspire.ec.europa.eu/schemas/hy-p/3.0/HydroPhysicalWaters.xsd"/>
+  <import namespace="urn:x-inspire:specification:gmlas:HydroPhysicalWaters:3.0" schemaLocation="https://inspire.ec.europa.eu/schemas/2021.1/hy-p/3.0/HydroPhysicalWaters.xsd"/>
   <import namespace="http://www.opengis.net/gml/3.2" schemaLocation="http://schemas.opengis.net/gml/3.2.1/gml.xsd"/>
   <!--XML Schema document created by ShapeChange-->
   <element name="Pipe" substitutionGroup="hy-p:ManMadeObject" type="ugs:PipeType">

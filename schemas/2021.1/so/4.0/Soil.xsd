@@ -2,11 +2,11 @@
   <annotation>
     <documentation>Soil model</documentation>
   </annotation>
-  <import namespace="http://inspire.ec.europa.eu/schemas/base/3.3" schemaLocation="https://inspire.ec.europa.eu/schemas/base/3.3/BaseTypes.xsd"/>
-  <import namespace="http://inspire.ec.europa.eu/schemas/ge-core/4.0" schemaLocation="https://inspire.ec.europa.eu/schemas/ge-core/4.0/GeologyCore.xsd"/>
-  <import namespace="http://inspire.ec.europa.eu/schemas/omop/3.0" schemaLocation="https://inspire.ec.europa.eu/schemas/omop/3.0/ObservableProperties.xsd"/>
-  <import namespace="http://inspire.ec.europa.eu/schemas/ompr/3.0" schemaLocation="https://inspire.ec.europa.eu/schemas/ompr/3.0/Processes.xsd"/>
-  <import namespace="http://inspire.ec.europa.eu/schemas/ps/4.0" schemaLocation="https://inspire.ec.europa.eu/schemas/ps/4.0/ProtectedSites.xsd"/>
+  <import namespace="http://inspire.ec.europa.eu/schemas/base/3.3" schemaLocation="https://inspire.ec.europa.eu/schemas/2021.1/base/3.3/BaseTypes.xsd"/>
+  <import namespace="http://inspire.ec.europa.eu/schemas/ge-core/4.0" schemaLocation="https://inspire.ec.europa.eu/schemas/2021.1/ge-core/4.0/GeologyCore.xsd"/>
+  <import namespace="http://inspire.ec.europa.eu/schemas/omop/3.0" schemaLocation="https://inspire.ec.europa.eu/schemas/2021.1/omop/3.0/ObservableProperties.xsd"/>
+  <import namespace="http://inspire.ec.europa.eu/schemas/ompr/3.0" schemaLocation="https://inspire.ec.europa.eu/schemas/2021.1/ompr/3.0/Processes.xsd"/>
+  <import namespace="http://inspire.ec.europa.eu/schemas/ps/4.0" schemaLocation="https://inspire.ec.europa.eu/schemas/2021.1/ps/4.0/ProtectedSites.xsd"/>
   <import namespace="http://www.interactive-instruments.de/ShapeChange/AppInfo" schemaLocation="http://portele.de/ShapeChangeAppinfo.xsd"/>
   <import namespace="http://www.isotc211.org/2005/gmd" schemaLocation="http://schemas.opengis.net/iso/19139/20070417/gmd/gmd.xsd"/>
   <import namespace="http://www.opengis.net/gml/3.2" schemaLocation="http://schemas.opengis.net/gml/3.2.1/gml.xsd"/>

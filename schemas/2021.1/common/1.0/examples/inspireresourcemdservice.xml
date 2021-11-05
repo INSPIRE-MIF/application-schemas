@@ -6,7 +6,7 @@
                   Inspire Themes:
                     Removed leading blank for German, Bulgarian, Czech and Danish translations
 -->
-<SpatialDataService xmlns="http://inspire.ec.europa.eu/schemas/common/1.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="https://inspire.ec.europa.eu/schemas/common/1.0 http://inspire.ec.europa.eu/schemas/common/1.0/common.xsd">
+<SpatialDataService xmlns="http://inspire.ec.europa.eu/schemas/common/1.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://inspire.ec.europa.eu/schemas/common/1.0 https://inspire.ec.europa.eu/schemas/2021.1/common/1.0/common.xsd">
 <!--31-JAN-2011 INSPIRE schema updated to 0.19 (Removed language dependent schema implementations)-->
 	<ResourceTitle>Europe Mapping Service based on the Image2000 European mosaic (multispectral)</ResourceTitle>
 	<ResourceAbstract>Map Service of a European Mosaic. The mosaic is a harmonised dataset and is based on the individual orthorectified scenes from the Image 2000 project. This service covers the Landsat 7 multispectral bands 3, 2 and 1.</ResourceAbstract>

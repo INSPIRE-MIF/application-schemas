@@ -3,10 +3,10 @@
     <documentation>-- Definition --&#13;
 This package defines the types that are used on the air transport subtheme.</documentation>
   </annotation>
-  <import namespace="urn:x-inspire:specification:gmlas:Network:3.2" schemaLocation="https://inspire.ec.europa.eu/schemas/net/3.2/Network.xsd"/>
-  <import namespace="urn:x-inspire:specification:gmlas:CommonTransportElements:3.0" schemaLocation="https://inspire.ec.europa.eu/schemas/tn/3.0/CommonTransportElements.xsd"/>
+  <import namespace="urn:x-inspire:specification:gmlas:Network:3.2" schemaLocation="https://inspire.ec.europa.eu/schemas/2021.1/net/3.2/Network.xsd"/>
+  <import namespace="urn:x-inspire:specification:gmlas:CommonTransportElements:3.0" schemaLocation="https://inspire.ec.europa.eu/schemas/2021.1/tn/3.0/CommonTransportElements.xsd"/>
   <import namespace="http://www.opengis.net/gml/3.2" schemaLocation="http://schemas.opengis.net/gml/3.2.1/gml.xsd"/>
-  <import namespace="urn:x-inspire:specification:gmlas:Buildings:0.0" schemaLocation="https://inspire.ec.europa.eu/schemas/bu/0.0/Buildings.xsd"/>
+  <import namespace="urn:x-inspire:specification:gmlas:Buildings:0.0" schemaLocation="https://inspire.ec.europa.eu/schemas/2021.1/bu/0.0/Buildings.xsd"/>
   <!--XML Schema document created by ShapeChange-->
   <element name="StandardInstrumentDeparture" substitutionGroup="tn-a:ProcedureLink" type="tn-a:StandardInstrumentDepartureType">
     <annotation>

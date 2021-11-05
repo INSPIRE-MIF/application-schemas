@@ -7,7 +7,7 @@
                     Removed leading blank for German, Bulgarian, Czech and Danish translations
 17-MAR-2011 Changed alias inspire_com to inspire_common
 -->
-<inspire_geoportal:Resource xmlns:inspire_geoportal="http://inspire.ec.europa.eu/schemas/geoportal/1.0" xmlns:inspire_common="http://inspire.ec.europa.eu/schemas/common/1.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="https://inspire.ec.europa.eu/schemas/geoportal/1.0 ../geoportal.xsd">
+<inspire_geoportal:Resource xmlns:inspire_geoportal="http://inspire.ec.europa.eu/schemas/geoportal/1.0" xmlns:inspire_common="http://inspire.ec.europa.eu/schemas/common/1.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="https://inspire.ec.europa.eu/schemas/2021.1/geoportal/1.0 ../geoportal.xsd">
 	<inspire_common:ViewService>
 		<inspire_common:ResourceTitle>Geoimage_1m</inspire_common:ResourceTitle>
 		<inspire_common:ResourceAbstract>This service provides starting from October 2010 middle resolution orthoimagery of Austria and is intended to support open Data communities such as openstreetmap.org in creating new or enhancing free spatial data. This service is provided for the time being, there is no guarantee for long-term availability.</inspire_common:ResourceAbstract>

@@ -6,7 +6,7 @@
                   Inspire Themes:
                     Removed leading blank for German, Bulgarian, Czech and Danish translations
 -->
-<SpatialDataSetSeries xmlns="http://inspire.ec.europa.eu/schemas/common/1.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="https://inspire.ec.europa.eu/schemas/common/1.0 http://inspire.ec.europa.eu/schemas/common/1.0/common.xsd">
+<SpatialDataSetSeries xmlns="http://inspire.ec.europa.eu/schemas/common/1.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://inspire.ec.europa.eu/schemas/common/1.0 https://inspire.ec.europa.eu/schemas/2021.1/common/1.0/common.xsd">
 	<ResourceTitle>EDGAR V4.1 Activity Data</ResourceTitle>
 	<ResourceAbstract>The Emissions Database for Global Atmospheric Research (EDGAR) provides global past and present day Human Activity Data classified following the EDGAR Source Categories classification</ResourceAbstract>
 	<ResourceType>series</ResourceType>

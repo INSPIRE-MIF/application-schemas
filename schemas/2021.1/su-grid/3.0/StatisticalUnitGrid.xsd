@@ -8,8 +8,8 @@ Statistical Units Grid
 -- Definition --
 Package containing classes to represent statistical grids.</documentation>
 	</annotation>
-	<import namespace="http://inspire.ec.europa.eu/schemas/base/3.3" schemaLocation="https://inspire.ec.europa.eu/schemas/base/3.3/BaseTypes.xsd"/>
-	<import namespace="http://inspire.ec.europa.eu/schemas/su-core/3.0" schemaLocation="https://inspire.ec.europa.eu/schemas/su-core/3.0/StatisticalUnitCore.xsd"/>
+	<import namespace="http://inspire.ec.europa.eu/schemas/base/3.3" schemaLocation="https://inspire.ec.europa.eu/schemas/2021.1/base/3.3/BaseTypes.xsd"/>
+	<import namespace="http://inspire.ec.europa.eu/schemas/su-core/3.0" schemaLocation="https://inspire.ec.europa.eu/schemas/2021.1/su-core/3.0/StatisticalUnitCore.xsd"/>
 	<import namespace="http://www.opengis.net/gml/3.2" schemaLocation="http://schemas.opengis.net/gml/3.2.1/gml.xsd"/>
 	<!--XML Schema document created by ShapeChange-->
 	<element name="StatisticalGrid" type="su-grid:StatisticalGridType" substitutionGroup="gml:AbstractFeature">

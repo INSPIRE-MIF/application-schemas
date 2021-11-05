@@ -12,7 +12,7 @@ Version 3.0 of SeaRegions.xsd will therefore be published together with the upda
 The following changes will be made when publishing version 3.0 of the SeaRegions.xsd schema:
 
 1.
-<import namespace="urn:x-inspire:specification:gmlas:HydroPhysicalWaters:3.0" schemaLocation="https://inspire.ec.europa.eu/schemas/hy-p/3.0/HydroPhysicalWaters.xsd"/>
+<import namespace="urn:x-inspire:specification:gmlas:HydroPhysicalWaters:3.0" schemaLocation="https://inspire.ec.europa.eu/schemas/2021.1/hy-p/3.0/HydroPhysicalWaters.xsd"/>
 
 will be updated to the namespace and schemaLocation of the updated "Hydro - Physical Waters" schema.
 

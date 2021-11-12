@@ -1,6 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!-- edited with XMLSpy v2011 sp1 (http://www.altova.com) by - - (European Commission DG JRC IES) -->
 <xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns="http://inspire.ec.europa.eu/schemas/common/1.0" targetNamespace="http://inspire.ec.europa.eu/schemas/common/1.0" elementFormDefault="qualified" attributeFormDefault="unqualified" version="1.0.2">
+	<!-- v1.0.2 of this schema released in INSPIRE schema release v.2021.2.
+	 Change performed: Corrected typo in the Dutch INSPIRE theme enumerations XSD - breaking change - bugfix.
+	 See https://github.com/INSPIRE-MIF/helpdesk-validator/releases/v2021.2 -->
 	<xs:complexType name="inspireTheme_dut">
 		<xs:complexContent>
 			<xs:restriction base="inspireTheme">

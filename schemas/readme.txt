@@ -1,48 +1,26 @@
 W3C Schema for INSPIRE
 
-Directory structure
-+
-  readme.txt                                                          This file
-  -- common
-    -- 1.0                                                            Version 1.0
-      -- common.xsd                                                   Top schema file for http://inspire.ec.europa.eu/schemas/common/1.0
-      -- network.xsd                                                  Definition of types for extended capabilities of OGC Services
-      -- examples                                                     Sample documents
-        -- inspireresourcemddataset.xml                               Sample dataset
-        -- inspireresourcemdseries.xml                                Sample dataset series
-        -- inspireresourcemdservice.xml                               Sample service
-      -- enums                                                        Folder for translations of enumerations
-        -- enum_bul.xsd                                               Enumerations for Bulgarian language
-        -- enum_....xsd                                               Enumerations for ... language
-  -- inspire_ds                                                       Root folder for schema documents for INSPIRE Discovery Service based on OGC CSW 2.0.2
-    -- 1.0                                                            http://inspire.ec.europa.eu/schemas/inspire_ds/1.0
-      -- inspire_ds.xsd                                               Top schema file
-      -- bindings.xjb                                                 JAXB Binding file
-      -- examples                                                     Sample documents
-        -- CSW_INSPIREGeoportalCapabilities_InspireSchema_nocsw.xml
-  -- inspire_vs                                                       Root folder for schema documents for INSPIRE View Service based on ISO 19128 (OGC WMS 1.3) http://inspire.ec.europa.eu/schemas/inspire_vs
-    -- 1.0                                                            http://inspire.ec.europa.eu/schemas/inspire_vs/1.0
-      -- inspire_vs.xsd                                               All-components schema file
-      -- examples                                                     Sample documents
-        -- wms_geoimage.xml
-        -- WMS_Image2000GetCapabilities_InspireSchema.xml
-  -- inspire_vs_ows11                                                 Root folder for schema documents for INSPIRE View Service based on OGC OWS 1.1 like WMTS 1.0
-    -- 1.0                                                            http://inspire.ec.europa.eu/schemas/inspire_vs_ows11/1.0
-      -- inspire_vs_ows_11.xsd                                        All-components schema file
-      -- examples                                                     Sample documents
-        -- WMTS_CapsMarek.xml
-  -- inspire_dls                                                      Root folder for schema documents for INSPIRE Download Service based on OGC OWS 1.1 like WFS 2.0 and for datatypes used in Atom and OpenSearch extension elements
-    -- 1.0                                                            http://inspire.ec.europa.eu/schemas/inspire_vs_ows11/1.0
-      -- inspire_vs_ows_11.xsd                                        All-components schema file
-      -- bindings.xjb                                                 JAXB binding file
-      -- examples                                                     Sample documents
-        -- WFS20_Caps_Scenario1_brief.xml                             Example of WFS 2.0 with INSPIRE Extended Capabilities Scenario 1 (brief)
-        -- WFS20_Caps_Scenario2_long.xml                              Example of WFS 2.0 with INSPIRE Extended Capabilities Scenario 2 (long)
-
-      
-
       
 Change log
+
+INSPIRE schema release v.2021.2 - 15/11/2021 (https://github.com/INSPIRE-MIF/helpdesk-validator/releases/v2021.2)
+
+Schema	Version	Change description	Change type
+======	=======	====================================================================================================	==================================================
+PF	v4.0.1	Added type and maxOccurs to riverBasinDistrict	non breaking change - bugfix
+
+US-emf	v4.0.1	Added type to 'EnvironmentalManagementFacility' + missing parts in 'parentFacility'	non breaking change - bugfix
+
+SO	v4.0.2	Added missing associations to OM_Observation + soilDerivedObjectObservation from 1 to [1..*]	breaking change - bugfix + enhancement
+
+omso	v3.0.1	Changed TimeLocationValueTriple type from wml2:TimeValuePair to wml2:MeasurementTVP	breaking change - bugfix
+
+common	v1.0.2	Corrected typo in the Dutch INSPIRE theme enumerations XSD	breaking change - bugfix
+
+GE_gp	v4.0.1	Added type and nilReason to the distributioninfo	non breaking change - bugfix
+
+
+Previous changes
 
 Date        NS          Ver.   Description
 =========== =========== ====== =================================================================================================================================================================
@@ -96,3 +74,45 @@ Date        NS          Ver.   Description
             common       0.14   Created schema files for all languages
             common       0.13   Added translations for all conformity citations 
             all          0.12   Introduced extended capabilities for WMS, OWS, CSW
+			
+			
+			
+			
+Directory structure
++
+  readme.txt                                                          This file
+  -- common
+    -- 1.0                                                            Version 1.0
+      -- common.xsd                                                   Top schema file for http://inspire.ec.europa.eu/schemas/common/1.0
+      -- network.xsd                                                  Definition of types for extended capabilities of OGC Services
+      -- examples                                                     Sample documents
+        -- inspireresourcemddataset.xml                               Sample dataset
+        -- inspireresourcemdseries.xml                                Sample dataset series
+        -- inspireresourcemdservice.xml                               Sample service
+      -- enums                                                        Folder for translations of enumerations
+        -- enum_bul.xsd                                               Enumerations for Bulgarian language
+        -- enum_....xsd                                               Enumerations for ... language
+  -- inspire_ds                                                       Root folder for schema documents for INSPIRE Discovery Service based on OGC CSW 2.0.2
+    -- 1.0                                                            http://inspire.ec.europa.eu/schemas/inspire_ds/1.0
+      -- inspire_ds.xsd                                               Top schema file
+      -- bindings.xjb                                                 JAXB Binding file
+      -- examples                                                     Sample documents
+        -- CSW_INSPIREGeoportalCapabilities_InspireSchema_nocsw.xml
+  -- inspire_vs                                                       Root folder for schema documents for INSPIRE View Service based on ISO 19128 (OGC WMS 1.3) http://inspire.ec.europa.eu/schemas/inspire_vs
+    -- 1.0                                                            http://inspire.ec.europa.eu/schemas/inspire_vs/1.0
+      -- inspire_vs.xsd                                               All-components schema file
+      -- examples                                                     Sample documents
+        -- wms_geoimage.xml
+        -- WMS_Image2000GetCapabilities_InspireSchema.xml
+  -- inspire_vs_ows11                                                 Root folder for schema documents for INSPIRE View Service based on OGC OWS 1.1 like WMTS 1.0
+    -- 1.0                                                            http://inspire.ec.europa.eu/schemas/inspire_vs_ows11/1.0
+      -- inspire_vs_ows_11.xsd                                        All-components schema file
+      -- examples                                                     Sample documents
+        -- WMTS_CapsMarek.xml
+  -- inspire_dls                                                      Root folder for schema documents for INSPIRE Download Service based on OGC OWS 1.1 like WFS 2.0 and for datatypes used in Atom and OpenSearch extension elements
+    -- 1.0                                                            http://inspire.ec.europa.eu/schemas/inspire_vs_ows11/1.0
+      -- inspire_vs_ows_11.xsd                                        All-components schema file
+      -- bindings.xjb                                                 JAXB binding file
+      -- examples                                                     Sample documents
+        -- WFS20_Caps_Scenario1_brief.xml                             Example of WFS 2.0 with INSPIRE Extended Capabilities Scenario 1 (brief)
+        -- WFS20_Caps_Scenario2_long.xml                              Example of WFS 2.0 with INSPIRE Extended Capabilities Scenario 2 (long)

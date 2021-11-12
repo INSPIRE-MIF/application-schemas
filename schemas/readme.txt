@@ -5,19 +5,19 @@ Change log
 
 INSPIRE schema release v.2021.2 - 15/11/2021 (https://github.com/INSPIRE-MIF/helpdesk-validator/releases/v2021.2)
 
-Schema	Version	Change description	Change type
+Schema	Version	Change description											Change type
 ======	=======	====================================================================================================	==================================================
-PF	v4.0.1	Added type and maxOccurs to riverBasinDistrict	non breaking change - bugfix
+PF	v4.0.1	Added type and maxOccurs to riverBasinDistrict								non breaking change - bugfix
 
-US-emf	v4.0.1	Added type to 'EnvironmentalManagementFacility' + missing parts in 'parentFacility'	non breaking change - bugfix
+US-emf	v4.0.1	Added type to 'EnvironmentalManagementFacility' + missing parts in 'parentFacility'			non breaking change - bugfix
 
-SO	v4.0.2	Added missing associations to OM_Observation + soilDerivedObjectObservation from 1 to [1..*]	breaking change - bugfix + enhancement
+SO	v4.0.2	Added missing associations to OM_Observation + soilDerivedObjectObservation from 1 to [1..*]		breaking change - bugfix + enhancement
 
-omso	v3.0.1	Changed TimeLocationValueTriple type from wml2:TimeValuePair to wml2:MeasurementTVP	breaking change - bugfix
+omso	v3.0.1	Changed TimeLocationValueTriple type from wml2:TimeValuePair to wml2:MeasurementTVP			breaking change - bugfix
 
-common	v1.0.2	Corrected typo in the Dutch INSPIRE theme enumerations XSD	breaking change - bugfix
+common	v1.0.2	Corrected typo in the Dutch INSPIRE theme enumerations XSD						breaking change - bugfix
 
-GE_gp	v4.0.1	Added type and nilReason to the distributioninfo	non breaking change - bugfix
+GE_gp	v4.0.1	Added type and nilReason to the distributioninfo							non breaking change - bugfix
 
 
 Previous changes

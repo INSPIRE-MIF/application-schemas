@@ -5,6 +5,9 @@
   <import namespace="http://www.opengis.net/gml/3.2" schemaLocation="http://schemas.opengis.net/gml/3.2.1/gml.xsd"/>
   <!--XML Schema document created by ShapeChange-->
   <element name="EnvironmentalManagementFacility" substitutionGroup="act-core:ActivityComplex" type="us-emf:EnvironmentalManagementFacilityType">
+    <!-- v4.0.1 of this schema released in INSPIRE schema release v.2021.2.
+	 Change performed: Added type to 'EnvironmentalManagementFacility' + missing parts in 'parentFacility' - non breaking change - bugfix.
+	 See https://github.com/INSPIRE-MIF/helpdesk-validator/releases/v2021.2 -->
     <annotation>
       <documentation>-- Name --
 environmental management facility

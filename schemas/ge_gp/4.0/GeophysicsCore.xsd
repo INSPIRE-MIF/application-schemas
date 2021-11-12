@@ -9,6 +9,9 @@
 	<!--XML Schema document created by ShapeChange-->
 	<!--Oct 2021: bugfixed the distributionInfo element -see https://github.com/INSPIRE-MIF/application-schemas/issues/17 -->
 	<element name="Campaign" substitutionGroup="ge_gp:GeophObjectSet" type="ge_gp:CampaignType">
+		<!-- v4.0.1 of this schema released in INSPIRE schema release v.2021.2.
+	 	     Change performed: Added type and nilReason to the distributioninfo - non breaking change - bugfix.
+	 	     See https://github.com/INSPIRE-MIF/helpdesk-validator/releases/v2021.2 -->s
 		<annotation>
 			<documentation>-- Definition --
 Geophysical activity extending over a limited time range and limited area for producing similar geophysical measurements, processing results or models.

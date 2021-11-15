@@ -1,13 +1,16 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<schema xmlns="http://www.w3.org/2001/XMLSchema" xmlns:base="http://inspire.ec.europa.eu/schemas/base/3.3" xmlns:base2="http://inspire.ec.europa.eu/schemas/base2/2.0" xmlns:ge_gp="http://inspire.ec.europa.eu/schemas/ge_gp/4.0" xmlns:gmd="http://www.isotc211.org/2005/gmd" xmlns:gml="http://www.opengis.net/gml/3.2" xmlns:sams="http://www.opengis.net/samplingSpatial/2.0" xmlns:sc="http://www.interactive-instruments.de/ShapeChange/AppInfo" elementFormDefault="qualified" targetNamespace="http://inspire.ec.europa.eu/schemas/ge_gp/4.0" version="4.0">
+<schema xmlns="http://www.w3.org/2001/XMLSchema" xmlns:base="http://inspire.ec.europa.eu/schemas/base/3.3" xmlns:base2="http://inspire.ec.europa.eu/schemas/base2/2.0" xmlns:ge_gp="http://inspire.ec.europa.eu/schemas/ge_gp/4.0" xmlns:gmd="http://www.isotc211.org/2005/gmd" xmlns:gml="http://www.opengis.net/gml/3.2" xmlns:sams="http://www.opengis.net/samplingSpatial/2.0" xmlns:sc="http://www.interactive-instruments.de/ShapeChange/AppInfo" elementFormDefault="qualified" targetNamespace="http://inspire.ec.europa.eu/schemas/ge_gp/4.0" version="4.0.1">
 	<import namespace="http://inspire.ec.europa.eu/schemas/base/3.3" schemaLocation="https://inspire.ec.europa.eu/schemas/base/3.3/BaseTypes.xsd"/>
 	<import namespace="http://inspire.ec.europa.eu/schemas/base2/2.0" schemaLocation="https://inspire.ec.europa.eu/schemas/base2/2.0/BaseTypes2.xsd"/>
 	<import namespace="http://www.interactive-instruments.de/ShapeChange/AppInfo" schemaLocation="http://portele.de/ShapeChangeAppinfo.xsd"/>
 	<import namespace="http://www.isotc211.org/2005/gmd" schemaLocation="http://schemas.opengis.net/iso/19139/20070417/gmd/gmd.xsd"/>
 	<import namespace="http://www.opengis.net/gml/3.2" schemaLocation="http://schemas.opengis.net/gml/3.2.1/gml.xsd"/>
 	<import namespace="http://www.opengis.net/samplingSpatial/2.0" schemaLocation="http://schemas.opengis.net/samplingSpatial/2.0/spatialSamplingFeature.xsd"/>
-	<!--XML Schema document created by ShapeChange-->
+	<!-- v4.0.1 of this schema released in INSPIRE schema release v.2021.2.
+	     Change performed: Added type and nilReason to the distributioninfo - non breaking change - bugfix.
+	     See https://github.com/INSPIRE-MIF/helpdesk-validator/releases/v2021.2 -->
 	<element name="Campaign" substitutionGroup="ge_gp:GeophObjectSet" type="ge_gp:CampaignType">
+
 		<annotation>
 			<documentation>-- Definition --
 Geophysical activity extending over a limited time range and limited area for producing similar geophysical measurements, processing results or models.
@@ -222,6 +225,13 @@ Distribution metadata
 -- Description --
 Data providers may use external services to provide information on a geophysical measurement. Links to the access points, description of ordering procedures or external services can be added in distributionInfo, that is an ISO MD_Distributor record.</documentation>
 						</annotation>
+<!--SM-Oct 2021 added type for the distributioninfo element -->
+						<complexType>
+							<sequence>
+								<element ref="gmd:MD_Distributor"/>
+							</sequence>
+							<attribute name="nilReason" type="gml:NilReasonType"/>
+						</complexType>						
 					</element>
 					<element maxOccurs="unbounded" name="largerWork" nillable="true">
 						<annotation>
@@ -317,6 +327,15 @@ Distribution metadata
 -- Description --
 Data providers may use external services to provide access to data or information on a survey. Links to the access points, description of ordering procedures, fees can be added in distributionInfo that is an ISO MD_Distributor record.</documentation>
 						</annotation>
+<!--SM-Oct 2021 added type for the distributioninfo element -->
+						<complexType>
+							<sequence>
+								<element ref="gmd:MD_Distributor"/>
+							</sequence>
+							<attribute name="nilReason" type="gml:NilReasonType"/>
+						</complexType>
+												
+						
 					</element>
 					<element maxOccurs="unbounded" name="projectedGeometry" type="gml:GeometryPropertyType">
 						<annotation>

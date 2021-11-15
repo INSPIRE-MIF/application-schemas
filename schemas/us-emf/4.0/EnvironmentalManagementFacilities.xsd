@@ -1,10 +1,13 @@
-<?xml version="1.0" encoding="UTF-8"?><schema xmlns="http://www.w3.org/2001/XMLSchema" xmlns:act-core="http://inspire.ec.europa.eu/schemas/act-core/4.0" xmlns:gmd="http://www.isotc211.org/2005/gmd" xmlns:gml="http://www.opengis.net/gml/3.2" xmlns:us-emf="http://inspire.ec.europa.eu/schemas/us-emf/4.0" xmlns:sc="http://www.interactive-instruments.de/ShapeChange/AppInfo" elementFormDefault="qualified" targetNamespace="http://inspire.ec.europa.eu/schemas/us-emf/4.0" version="4.0">
+<?xml version="1.0" encoding="UTF-8"?><schema xmlns="http://www.w3.org/2001/XMLSchema" xmlns:act-core="http://inspire.ec.europa.eu/schemas/act-core/4.0" xmlns:gmd="http://www.isotc211.org/2005/gmd" xmlns:gml="http://www.opengis.net/gml/3.2" xmlns:us-emf="http://inspire.ec.europa.eu/schemas/us-emf/4.0" xmlns:sc="http://www.interactive-instruments.de/ShapeChange/AppInfo" elementFormDefault="qualified" targetNamespace="http://inspire.ec.europa.eu/schemas/us-emf/4.0" version="4.0.1">
   <import namespace="http://inspire.ec.europa.eu/schemas/act-core/4.0" schemaLocation="https://inspire.ec.europa.eu/schemas/act-core/4.0/ActivityComplex_Core.xsd"/>
   <import namespace="http://www.interactive-instruments.de/ShapeChange/AppInfo" schemaLocation="http://portele.de/ShapeChangeAppinfo.xsd"/>
   <import namespace="http://www.isotc211.org/2005/gmd" schemaLocation="http://schemas.opengis.net/iso/19139/20070417/gmd/gmd.xsd"/>
   <import namespace="http://www.opengis.net/gml/3.2" schemaLocation="http://schemas.opengis.net/gml/3.2.1/gml.xsd"/>
   <!--XML Schema document created by ShapeChange-->
-  <element name="EnvironmentalManagementFacility" substitutionGroup="act-core:ActivityComplex">
+  <element name="EnvironmentalManagementFacility" substitutionGroup="act-core:ActivityComplex" type="us-emf:EnvironmentalManagementFacilityType">
+    <!-- v4.0.1 of this schema released in INSPIRE schema release v.2021.2.
+	 Change performed: Added type to 'EnvironmentalManagementFacility' + missing parts in 'parentFacility' - non breaking change - bugfix.
+	 See https://github.com/INSPIRE-MIF/helpdesk-validator/releases/v2021.2 -->
     <annotation>
       <documentation>-- Name --
 environmental management facility
@@ -113,24 +116,29 @@ The status of the Environmental Management Facility, such as operational or deco
               </appinfo>
             </annotation>
           </element>
-          <element maxOccurs="unbounded" minOccurs="0" name="parentFacility" nillable="true">
-            <annotation>
-              <documentation>-- Name --
-parent facility
-
--- Definition --
-A parent facility, i.e., a facility to which this facility belongs.
-
--- Description --
-A facility may belong to multiple other facilities.</documentation>
-            </annotation>
-          </element>
+          <element name="parentFacility" nillable="true" minOccurs="0" maxOccurs="unbounded">
+<annotation>
+<documentation>...</documentation>
+</annotation>
+<complexType>
+<complexContent>
+<extension base="gml:AbstractMemberType">
+<sequence minOccurs="0">
+<element ref="us-emf:EnvironmentalManagementFacility"/>
+</sequence>
+<attributeGroup ref="gml:AssociationAttributeGroup"/>
+</extension>
+</complexContent>
+</complexType>
+</element>
         </sequence>
       </extension>
     </complexContent>
   </complexType>
   <complexType name="EnvironmentalManagementFacilityPropertyType">
-    <sequence minOccurs="0"/>
+    <sequence minOccurs="0">
+      <element ref="us-emf:EnvironmentalManagementFacility"/>
+    </sequence>
     <attributeGroup ref="gml:AssociationAttributeGroup"/>
     <attributeGroup ref="gml:OwnershipAttributeGroup"/>
   </complexType>

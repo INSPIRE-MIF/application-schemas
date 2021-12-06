@@ -74,7 +74,7 @@ NOTE 2 The domain extent shall be specified at least in space by using EX_Boundi
               </complexContent>
             </complexType>
           </element>
-          <element name="endLifespanVersion" nillable="true">
+          <element minOccurs="0" name="endLifespanVersion" nillable="true">
             <annotation>
               <documentation>-- Name --
 end lifespan version

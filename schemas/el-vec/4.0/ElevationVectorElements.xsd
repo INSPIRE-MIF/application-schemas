@@ -358,7 +358,7 @@ Date and time at which this version of the spatial object was inserted or change
               </simpleContent>
             </complexType>
           </element>
-          <element name="endLifespanVersion" nillable="true">
+          <element minOccurs="0" name="endLifespanVersion" nillable="true">
             <annotation>
               <documentation>-- Name --
 end lifespan version

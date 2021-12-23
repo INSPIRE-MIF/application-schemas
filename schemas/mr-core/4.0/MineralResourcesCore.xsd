@@ -238,7 +238,9 @@ The source or reference for the Earth Resource.</documentation>
             <complexType>
               <complexContent>
                 <extension base="gml:AbstractMemberType">
-                  <sequence/>
+                   <sequence minOccurs="0">
+                    <element ref="base2:DocumentCitation"/>
+                  </sequence>
                   <attributeGroup ref="gml:AssociationAttributeGroup"/>
                 </extension>
               </complexContent>
@@ -631,7 +633,9 @@ Allows citing mine plans etc.</documentation>
             <complexType>
               <complexContent>
                 <extension base="gml:AbstractMemberType">
-                  <sequence/>
+                 <sequence minOccurs="0">
+                    <element ref="base2:DocumentCitation"/>
+                  </sequence>
                   <attributeGroup ref="gml:AssociationAttributeGroup"/>
                 </extension>
               </complexContent>
@@ -1017,7 +1021,9 @@ The reference for the OreMeasure values.</documentation>
         <complexType>
           <complexContent>
             <extension base="gml:AbstractMemberType">
-              <sequence/>
+              <sequence minOccurs="0">
+                    <element ref="base2:DocumentCitation"/>
+                  </sequence>
               <attributeGroup ref="gml:AssociationAttributeGroup"/>
             </extension>
           </complexContent>

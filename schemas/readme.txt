@@ -7,7 +7,7 @@ INSPIRE schema release v.2022.1 - 31/01/2022 (https://github.com/INSPIRE-MIF/hel
 
 Schema	Version	Change description	Change type
 ======	=======	====================================================================================================	==================================================
-common	v1.0.3	Updated common.xsd in order to add Croatian language + Added a related enum_hrv.xsd non breaking change - bugfix
+common	v1.0.2	Updated common.xsd in order to add Croatian language + Added a related enum_hrv.xsd non breaking change - bugfix
 
 
 INSPIRE schema release v.2021.2 - 15/11/2021 (https://github.com/INSPIRE-MIF/helpdesk-validator/releases/v2021.2)

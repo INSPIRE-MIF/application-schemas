@@ -1,8 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns="http://inspire.ec.europa.eu/schemas/common/1.0" xmlns:jaxb="http://java.sun.com/xml/ns/jaxb" targetNamespace="http://inspire.ec.europa.eu/schemas/common/1.0" elementFormDefault="qualified" attributeFormDefault="unqualified" version="1.0.2" jaxb:version="2.0">
-<!-- v1.0.2 of this schema released in INSPIRE schema release v.2022.1.
- Change performed: Added Croatian language - non breaking change.
- See https://github.com/INSPIRE-MIF/helpdesk-validator/releases/v2022.1 -->
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns="http://inspire.ec.europa.eu/schemas/common/1.0" xmlns:jaxb="http://java.sun.com/xml/ns/jaxb" targetNamespace="http://inspire.ec.europa.eu/schemas/common/1.0" elementFormDefault="qualified" attributeFormDefault="unqualified" version="1.0.1" jaxb:version="2.0">
 <!--
 26-APR-2011 1.0.1 Conformity element:
                     Restricted allowed citations to "INSPIRE interoperability of spatial data sets and services", according to the MD regulation,
@@ -34,7 +31,6 @@
 	<xs:include schemaLocation="enums/enum_ger.xsd"/>
 	<xs:include schemaLocation="enums/enum_gle.xsd"/>
 	<xs:include schemaLocation="enums/enum_gre.xsd"/>
-	<xs:include schemaLocation="enums/enum_hrv.xsd"/>
 	<xs:include schemaLocation="enums/enum_hun.xsd"/>
 	<xs:include schemaLocation="enums/enum_ita.xsd"/>
 	<xs:include schemaLocation="enums/enum_lav.xsd"/>
@@ -745,7 +741,6 @@ the resource, and/or access related services.</xs:documentation>
 			<xs:enumeration value="fre"/>
 			<xs:enumeration value="ger"/>
 			<xs:enumeration value="gre"/>
-			<xs:enumeration value="hrv"/>
 			<xs:enumeration value="hun"/>
 			<xs:enumeration value="gle"/>
 			<xs:enumeration value="ita"/>
@@ -1277,8 +1272,6 @@ the resource, and/or access related services.</xs:documentation>
 			<xs:enumeration value="de-AT"/>
 			<xs:enumeration value="el"/>
 			<xs:enumeration value="el-GR"/>
-			<xs:enumeration value="hr"/>
-			<xs:enumeration value="hr-HR"/>
 			<xs:enumeration value="hu"/>
 			<xs:enumeration value="hu-HU"/>
 			<xs:enumeration value="ga"/>

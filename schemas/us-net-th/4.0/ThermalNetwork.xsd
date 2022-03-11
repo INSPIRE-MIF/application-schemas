@@ -23,7 +23,7 @@ A pipe used to disseminate heating or cooling from one location to another.</doc
     <complexContent>
       <extension base="us-net-common:PipeType">
         <sequence>
-          <element name="thermalProductType" nillable="true">
+          <element name="thermalProductType" type="gml:ReferenceType" nillable="true">
             <annotation>
               <documentation>-- Name --
 thermal product type

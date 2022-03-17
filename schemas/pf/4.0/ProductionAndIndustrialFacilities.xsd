@@ -295,7 +295,7 @@ The state or condition of the installation, with regard to its functional and op
               <attribute name="nilReason" type="gml:NilReasonType"/>
             </complexType>
           </element>
-          <element name="type" nillable="true">
+          <element name="type" nillable="true" type="gml:ReferenceType">
             <annotation>
               <documentation>-- Definition --
 Special kind of an installation, denoting the operative function which has to be performed.
@@ -421,7 +421,7 @@ The state or condition of the installation part, with regard to the functional a
               <attribute name="nilReason" type="gml:NilReasonType"/>
             </complexType>
           </element>
-          <element name="type" nillable="true">
+          <element name="type" nillable="true" type="gml:ReferenceType">
             <annotation>
               <documentation>-- Definition --
 Special kind of an installation part, denoting the operative function which has to be performed.

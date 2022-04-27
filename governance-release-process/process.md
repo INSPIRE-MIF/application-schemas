@@ -46,7 +46,7 @@ The versioning of the INSPIRE schemas will depend on the specific type of schema
    
 #### Management of schema location URL
 
-New **bugfix and minor versions will not trigger a change in the schema location URL**, meaning that particular attention shall be paid to breaking changes that might impact existing implementations.
+New bugfix and minor versions **will not trigger a change in the schema location URL**, meaning that particular attention shall be paid to breaking changes that might impact existing implementations.
 
 Versioning of the schema location URLs will be applied to deprecated versions. 
 

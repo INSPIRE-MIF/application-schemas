@@ -39,10 +39,10 @@ All the releases, including a full changelog listing the changes made, are publi
 
 Each release will be identified by a sequential number, but the versioning of the INSPIRE schemas will be managed separately.
 
-The versioning will depend on the specific type of schema update (major, minor, bugfix) and will follow rules specified below:
+The versioning of the INSPIRE schemas will depend on the specific type of schema update (major, minor, bugfix) and will follow rules specified below:
    * a new major version (e.g. v4.x --> v5.0), which is not backwards-compatible, i.e. existing data valid according to the older schema will no longer be valid according to the newer schema. Examples for non-backwards compatible changes include e.g. adding or removing mandatory properties or changing the types or names of existing properties;
    * a new minor version (e.g. v4.0.x --> v4.1), which is backwards-compatible, i.e. existing data valid according to the older schema will remain valid also according to the newer schema. Examples for backwards compatible changes include e.g. adding optional properties to existing types or adding new types;
-   * a new bugfix version (e.g. v4.0 --> 4.0.1), which fixes an error in the schema. Bugfix versions are usually not backwards-compatible.
+   * a new bugfix version (e.g. v4.0 --> v4.0.1), which fixes an error in the schema. Bugfix versions are usually not backwards-compatible.
    
 #### Management of schema location URL
 

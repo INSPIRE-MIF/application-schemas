@@ -35,4 +35,17 @@ In addition to the scheduled releases, hotfix releases of the schemas, i.e. rele
 
 All the releases, including a full changelog listing the changes made, are published (and will remain available) in the [Releases](https://github.com/INSPIRE-MIF/application-schemas/releases) page of this repository. After each release, the INSPIRE schemas at https://inspire.ec.europa.eu/schemas are updated accordingly.
 
+## Schema versioning
+
 Each release will be identified by a sequential number, but the versioning of the INSPIRE schemas will be managed separately.
+
+The versioning will depend on the specific type of schema update (major, minor, bugfix) and will follow rules specified below:
+   * a new major version (e.g. v4.x --> v5.0), which is not backwards-compatible, i.e. existing data valid according to the older schema will no longer be valid according to the newer schema. Examples for non-backwards compatible changes include e.g. adding or removing mandatory properties or changing the types or names of existing properties;
+   * a new minor version (e.g. v4.0.x --> v4.1), which is backwards-compatible, i.e. existing data valid according to the older schema will remain valid also according to the newer schema. Examples for backwards compatible changes include e.g. adding optional properties to existing types or adding new types;
+   * a new bugfix version (e.g. v4.0 --> 4.0.1), which fixes an error in the schema. Bugfix versions are usually not backwards-compatible.
+   
+#### Management of schema location URL
+
+New **bugfix and minor versions will not trigger a change in the schema location URL**, meaning that particular attention shall be paid to breaking changes that might impact existing implementations.
+Versioning of the schema location URLs will be applied to deprecated versions. 
+For example, schema versions prior to release 2021.2 are contained in the 2021.1 folder and are available at [https://inspire.ec.europa.eu/schemas/2021.1/](https://inspire.ec.europa.eu/schemas/2021.1/). This folder is a screenshot of the whole schema repository prior to release 2021.2 and therefore preserves schemas dependencies. In case of breaking changes, such old versions folders can be temporarily used to preserve the validity of existing implementations while the process of updating to latest schema version is in progress. 

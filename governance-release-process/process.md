@@ -47,5 +47,7 @@ The versioning of the INSPIRE schemas will depend on the specific type of schema
 #### Management of schema location URL
 
 New **bugfix and minor versions will not trigger a change in the schema location URL**, meaning that particular attention shall be paid to breaking changes that might impact existing implementations.
+
 Versioning of the schema location URLs will be applied to deprecated versions. 
-For example, schema versions prior to release 2021.2 are contained in the 2021.1 folder and are available at [https://inspire.ec.europa.eu/schemas/2021.1/](https://inspire.ec.europa.eu/schemas/2021.1/). This folder is a screenshot of the whole schema repository prior to release 2021.2 and therefore preserves schemas dependencies. In case of breaking changes, such old versions folders can be temporarily used to preserve the validity of existing implementations while the process of updating to latest schema version is in progress. 
+
+For example, schema versions prior to release 2021.2 are contained in the 2021.1 folder and are available at [https://inspire.ec.europa.eu/schemas/2021.1/](https://inspire.ec.europa.eu/schemas/2021.1/). The 2021.1 folder is a screenshot of the whole schema repository prior to release 2021.2 and therefore preserves schemas dependencies. In case of breaking changes, such old versions folders can be temporarily used to preserve the validity of existing implementations while the process of updating to latest schema version is in progress. 

@@ -1,7 +1,10 @@
-<?xml version="1.0" encoding="UTF-8"?><schema xmlns="http://www.w3.org/2001/XMLSchema" xmlns:act-core="http://inspire.ec.europa.eu/schemas/act-core/4.0" xmlns:base="http://inspire.ec.europa.eu/schemas/base/3.3" xmlns:base2="http://inspire.ec.europa.eu/schemas/base2/2.0" xmlns:bu-base="http://inspire.ec.europa.eu/schemas/bu-base/4.0" xmlns:bu-core2d="http://inspire.ec.europa.eu/schemas/bu-core2d/4.0" xmlns:gml="http://www.opengis.net/gml/3.2" xmlns:pf="http://inspire.ec.europa.eu/schemas/pf/4.0" xmlns:sc="http://www.interactive-instruments.de/ShapeChange/AppInfo" elementFormDefault="qualified" targetNamespace="http://inspire.ec.europa.eu/schemas/pf/4.0" version="4.0.1">
+<?xml version="1.0" encoding="UTF-8"?><schema xmlns="http://www.w3.org/2001/XMLSchema" xmlns:act-core="http://inspire.ec.europa.eu/schemas/act-core/4.0" xmlns:base="http://inspire.ec.europa.eu/schemas/base/3.3" xmlns:base2="http://inspire.ec.europa.eu/schemas/base2/2.0" xmlns:bu-base="http://inspire.ec.europa.eu/schemas/bu-base/4.0" xmlns:bu-core2d="http://inspire.ec.europa.eu/schemas/bu-core2d/4.0" xmlns:gml="http://www.opengis.net/gml/3.2" xmlns:pf="http://inspire.ec.europa.eu/schemas/pf/4.0" xmlns:sc="http://www.interactive-instruments.de/ShapeChange/AppInfo" elementFormDefault="qualified" targetNamespace="http://inspire.ec.europa.eu/schemas/pf/4.0" version="4.0.2">
+  <!-- v4.0.2 of this schema released in INSPIRE schema release v.2022.2.
+       Change performed: Added type to ‘type’ element in ProductionInstallation and ProductionInstallationPart - breaking change - bugfix
+       See https://github.com/INSPIRE-MIF/application-schemas/releases/tag/2022.2 -->
   <!-- v4.0.1 of this schema released in INSPIRE schema release v.2021.2.
-       Change performed: Added type and maxOccurs to riverBasinDistrict - non breaking change - bugfix
-       See https://github.com/INSPIRE-MIF/helpdesk-validator/releases/v2021.2 -->
+       Change performed: Added type and maxOccurs to riverBasinDistrict - non-breaking change - bugfix
+       See https://github.com/INSPIRE-MIF/application-schemas/releases/tag/2021.2 -->
   <annotation>
     <documentation>-- Name --
 Production And Industrial Facilities - Core</documentation>
@@ -295,7 +298,7 @@ The state or condition of the installation, with regard to its functional and op
               <attribute name="nilReason" type="gml:NilReasonType"/>
             </complexType>
           </element>
-          <element name="type" nillable="true">
+          <element name="type" nillable="true" type="gml:ReferenceType">
             <annotation>
               <documentation>-- Definition --
 Special kind of an installation, denoting the operative function which has to be performed.
@@ -421,7 +424,7 @@ The state or condition of the installation part, with regard to the functional a
               <attribute name="nilReason" type="gml:NilReasonType"/>
             </complexType>
           </element>
-          <element name="type" nillable="true">
+          <element name="type" nillable="true" type="gml:ReferenceType">
             <annotation>
               <documentation>-- Definition --
 Special kind of an installation part, denoting the operative function which has to be performed.

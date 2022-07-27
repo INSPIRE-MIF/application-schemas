@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?><schema xmlns="http://www.w3.org/2001/XMLSchema" xmlns:base="http://inspire.ec.europa.eu/schemas/base/3.3" xmlns:el-bas="http://inspire.ec.europa.eu/schemas/el-bas/4.0" xmlns:el-tin="http://inspire.ec.europa.eu/schemas/el-tin/4.0" xmlns:gml="http://www.opengis.net/gml/3.2" elementFormDefault="qualified" targetNamespace="http://inspire.ec.europa.eu/schemas/el-tin/4.0" version="4.0">
+<?xml version="1.0" encoding="UTF-8"?><schema xmlns="http://www.w3.org/2001/XMLSchema" xmlns:base="http://inspire.ec.europa.eu/schemas/base/3.3" xmlns:el-bas="http://inspire.ec.europa.eu/schemas/el-bas/4.0" xmlns:el-tin="http://inspire.ec.europa.eu/schemas/el-tin/4.0" xmlns:gml="http://www.opengis.net/gml/3.2" elementFormDefault="qualified" targetNamespace="http://inspire.ec.europa.eu/schemas/el-tin/4.0" version="4.0.1">
   <!-- v4.0.1 of this schema released in INSPIRE schema release v.2022.2.
        Change performed: Set ‘endLifespanVersion’ multiplicity to [0..1] - non-breaking change - bugfix
        See https://github.com/INSPIRE-MIF/application-schemas/releases/tag/2022.2 -->

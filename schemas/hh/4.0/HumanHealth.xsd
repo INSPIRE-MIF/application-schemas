@@ -558,13 +558,25 @@ Value of the measured disease indicator.</documentation>
       <element ref="hh:DiseaseMeasure"/>
     </sequence>
   </complexType>
+  
+  
   <element name="EnvHealthDeterminantMeasure" substitutionGroup="gml:AbstractFeature" type="hh:EnvHealthDeterminantMeasureType">
     <annotation>
       <documentation>-- Name --
 environmental health determinant measure
 
 -- Definition --
-A raw measurement performed at some place that is of interest for human health determinant analysis.</documentation>
+A raw measurement performed at some place that is of interest for human health determinant analysis.
+
+ <!--SM 19/06/2020 description and example added -->   
+-- Description --
+the measurement of interest for human health determinant analysis must be provided either as:
+- a measure - i.e. a ( 'value' + uom) pair -  using the measure attribute;
+- a category of measure, using the category attribute, when the (value + uom) pair would not fit the provision of the measurement of the health determinant.
+
+EXAMPLE for the category attribute: the noise contour maps and the strategic noise maps in the Directive 2002/49/EC(Environmental Noise Directive) relating to the assessment and management of environmental noise.
+In these cases, the measure of the determinant (i.e. the noise levels in a certain area) is provided by means of a db range (e.g. 50-54) relating to a specific sound level indicator (e.g. Lden or Lnight).      
+      </documentation>
     </annotation>
   </element>
   <complexType name="EnvHealthDeterminantMeasureType">
@@ -665,15 +677,34 @@ The time when the information will stop being used.</documentation>
               </simpleContent>
             </complexType>
           </element>
-          <element name="measure" type="gml:MeasureType">
+         
+          <!--SM 19/06/2020 changed the multiplicity of the measure attribute from [1] to [0..1] -->   
+          
+          <element name="measure" type="gml:MeasureType" minOccurs="0" maxOccurs="1">
             <annotation>
               <documentation>-- Name --
 Measure
 
 -- Definition --
-The measure</documentation>
+The measure of the environmental health determinant</documentation>
             </annotation>
           </element>
+          <!--SM 19/06/2020 added the category attribute --> 
+          
+          <element name="category" type="gml:ReferenceType" minOccurs="0" maxOccurs="1">
+
+            <annotation>
+              <documentation>-- Name --
+                category
+                
+                -- Definition --
+                The category of environmental health determinant measure</documentation>
+              <appinfo>
+                <taggedValue xmlns="http://www.interactive-instruments.de/ShapeChange/AppInfo" tag="obligation">technicalGuidance</taggedValue>
+              </appinfo>
+            </annotation>
+          </element>
+                 
         </sequence>
       </extension>
     </complexContent>
@@ -685,6 +716,102 @@ The measure</documentation>
     <attributeGroup ref="gml:AssociationAttributeGroup"/>
     <attributeGroup ref="gml:OwnershipAttributeGroup"/>
   </complexType>
+  
+  <!--SM 19/06/2020 added the EnvHealthDeterminantNoiseMeasure feature type - It specialises the EnvHealthDeterminantMeasure feature type for the noise determinant -->
+  
+  <element name="EnvHealthDeterminantNoiseMeasure" type="hh:EnvHealthDeterminantNoiseMeasureType" substitutionGroup="hh:EnvHealthDeterminantMeasure">
+    <annotation>
+      <documentation>-- Name --
+        environmental health determinant noise measure 
+        
+        -- Definition --
+        A noise measurement that is of interest for human health determinant analysis</documentation>
+    </annotation>
+  </element>
+  
+  <complexType name="EnvHealthDeterminantNoiseMeasureType">
+    <complexContent>
+      <extension base="hh:EnvHealthDeterminantMeasureType">
+        <sequence>
+          <element name="source" type="gml:ReferenceType">
+            <annotation>
+              <documentation>-- Name --
+                source
+                
+                -- Definition --
+                The noise source type.</documentation>
+              <appinfo>
+                <taggedValue xmlns="http://www.interactive-instruments.de/ShapeChange/AppInfo" tag="obligation">technicalGuidance</taggedValue>
+              </appinfo>
+            </annotation>
+          </element>
+        </sequence>
+      </extension>
+    </complexContent>
+  </complexType>
+  <complexType name="EnvHealthDeterminantNoiseMeasurePropertyType">
+    <sequence minOccurs="0">
+      <element ref="hh:EnvHealthDeterminantNoiseMeasure"/>
+    </sequence>
+    <attributeGroup ref="gml:AssociationAttributeGroup"/>
+    <attributeGroup ref="gml:OwnershipAttributeGroup"/>
+  </complexType>
+  
+  <!--SM 19/06/2020 added the EnvHealthDeterminantConcentrationMeasure feature type - It specialises the EnvHealthDeterminantMeasure feature type for the concentration determinant -->
+  
+  <element name="EnvHealthDeterminantConcentrationMeasure" type="hh:EnvHealthDeterminantConcentrationMeasureType" substitutionGroup="hh:EnvHealthDeterminantMeasure">
+    <annotation>
+      <documentation>-- Name --
+        environmental health determinant concentration measure 
+        
+        -- Definition --
+        A concentration measurement that is of interest for human health determinant analysis</documentation>
+    </annotation>
+  </element>
+    
+  <complexType name="EnvHealthDeterminantConcentrationMeasureType">
+    <complexContent>
+      <extension base="hh:EnvHealthDeterminantMeasureType">
+        <sequence>
+          <element name="component" type="gml:ReferenceType">
+            <annotation>
+              <documentation>-- Name --
+                component
+                
+                -- Definition --
+                The component whose concentration is measured</documentation>
+              <appinfo>
+                <taggedValue xmlns="http://www.interactive-instruments.de/ShapeChange/AppInfo" tag="obligation">technicalGuidance</taggedValue>
+              </appinfo>
+            </annotation>
+          </element>
+          <element name="media" type="gml:ReferenceType">
+            <annotation>
+              <documentation>-- Name --
+                media
+                
+                -- Definition --
+                The media in which the concentration is measured</documentation>
+              <appinfo>
+                <taggedValue xmlns="http://www.interactive-instruments.de/ShapeChange/AppInfo" tag="obligation">technicalGuidance</taggedValue>
+              </appinfo>
+            </annotation>
+          </element>
+        </sequence>
+      </extension>
+    </complexContent>
+  </complexType>
+  <complexType name="EnvHealthDeterminantConcentrationMeasurePropertyType">
+    <sequence minOccurs="0">
+      <element ref="hh:EnvHealthDeterminantConcentrationMeasure"/>
+    </sequence>
+    <attributeGroup ref="gml:AssociationAttributeGroup"/>
+    <attributeGroup ref="gml:OwnershipAttributeGroup"/>
+  </complexType>
+  
+ 
+ 
+  
   <element name="EnvHealthDeterminantStatisticalData" substitutionGroup="hh:HealthStatisticalData" type="hh:EnvHealthDeterminantStatisticalDataType">
     <annotation>
       <documentation>-- Name --

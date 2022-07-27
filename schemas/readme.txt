@@ -3,23 +3,35 @@ W3C Schema for INSPIRE
       
 Change log
 
+INSPIRE schema release v.2022.2 - 01/08/2022 (https://github.com/INSPIRE-MIF/helpdesk-validator/releases/v2022.2)
+
+Schema		Version	Change description																					Change type
+==========	=======	================================================================================================	==================================================
+PF			v4.0.2	Added type to ‘type’ element in ProductionInstallation and ProductionInstallationPart				breaking change - bugfix
+us-net-th 	v4.0.1	Added type to 'thermalProductType' element															breaking change - bugfix
+inspire_vs	v1.0.2	SLD capabilities schema import added to inspire_vs.xsd schema										non-breaking change - bugfix
+EL			v4.0.1	Set ‘endLifespanVersion’ multiplicity to [0..1] In ElevationGridCoverage, ElevationTIN and 			non-breaking change - bugfix
+					ElevationVectorElements application schemas 
+MR			v4.0.1	Added type to ‘sourceReference ‘element																breaking change - bugfix
+
+
 INSPIRE schema release v.2022.1 - 31/01/2022 (https://github.com/INSPIRE-MIF/helpdesk-validator/releases/v2022.1)
 
-Schema	Version	Change description	Change type
+Schema	Version	Change description																						Change type
 ======	=======	====================================================================================================	==================================================
-common	v1.0.2	Updated common.xsd in order to add Croatian language + Added a related enum_hrv.xsd non breaking change - bugfix
+common	v1.0.2	Updated common.xsd in order to add Croatian language + Added a related enum_hrv.xsd 					non-breaking change - bugfix
 
 
 INSPIRE schema release v.2021.2 - 15/11/2021 (https://github.com/INSPIRE-MIF/helpdesk-validator/releases/v2021.2)
 
-Schema	Version	Change description	Change type
+Schema	Version	Change description																						Change type
 ======	=======	====================================================================================================	==================================================
-PF	v4.0.1	Added type and maxOccurs to riverBasinDistrict	non breaking change - bugfix
-US-emf	v4.0.1	Added type to 'EnvironmentalManagementFacility' + missing parts in 'parentFacility'	non breaking change - bugfix
-SO	v4.0.2	Added missing associations to OM_Observation + soilDerivedObjectObservation from 1 to [1..*]	breaking change - bugfix + enhancement
-omso	v3.0.1	Changed TimeLocationValueTriple type from wml2:TimeValuePair to wml2:MeasurementTVP	breaking change - bugfix
-common	v1.0.2	Corrected typo in the Dutch INSPIRE theme enumerations XSD	breaking change - bugfix
-GE_gp	v4.0.1	Added type and nilReason to the distributioninfo	non breaking change - bugfix
+PF		v4.0.1	Added type and maxOccurs to riverBasinDistrict															non-breaking change - bugfix
+US-emf	v4.0.1	Added type to 'EnvironmentalManagementFacility' + missing parts in 'parentFacility'						non-breaking change - bugfix
+SO		v4.0.2	Added missing associations to OM_Observation + soilDerivedObjectObservation from 1 to [1..*]			breaking change - bugfix + enhancement
+omso	v3.0.1	Changed TimeLocationValueTriple type from wml2:TimeValuePair to wml2:MeasurementTVP						breaking change - bugfix
+common	v1.0.2	Corrected typo in the Dutch INSPIRE theme enumerations XSD												breaking change - bugfix
+GE_gp	v4.0.1	Added type and nilReason to the distributioninfo														non-breaking change - bugfix
 
 Previous changes
 

@@ -1,4 +1,7 @@
-<?xml version="1.0" encoding="UTF-8"?><schema xmlns="http://www.w3.org/2001/XMLSchema" xmlns:base="http://inspire.ec.europa.eu/schemas/base/3.3" xmlns:el-bas="http://inspire.ec.europa.eu/schemas/el-bas/4.0" xmlns:el-vec="http://inspire.ec.europa.eu/schemas/el-vec/4.0" xmlns:gmd="http://www.isotc211.org/2005/gmd" xmlns:gml="http://www.opengis.net/gml/3.2" xmlns:gn="http://inspire.ec.europa.eu/schemas/gn/4.0" xmlns:hy-p="http://inspire.ec.europa.eu/schemas/hy-p/4.0" xmlns:sc="http://www.interactive-instruments.de/ShapeChange/AppInfo" elementFormDefault="qualified" targetNamespace="http://inspire.ec.europa.eu/schemas/el-vec/4.0" version="4.0">
+<?xml version="1.0" encoding="UTF-8"?><schema xmlns="http://www.w3.org/2001/XMLSchema" xmlns:base="http://inspire.ec.europa.eu/schemas/base/3.3" xmlns:el-bas="http://inspire.ec.europa.eu/schemas/el-bas/4.0" xmlns:el-vec="http://inspire.ec.europa.eu/schemas/el-vec/4.0" xmlns:gmd="http://www.isotc211.org/2005/gmd" xmlns:gml="http://www.opengis.net/gml/3.2" xmlns:gn="http://inspire.ec.europa.eu/schemas/gn/4.0" xmlns:hy-p="http://inspire.ec.europa.eu/schemas/hy-p/4.0" xmlns:sc="http://www.interactive-instruments.de/ShapeChange/AppInfo" elementFormDefault="qualified" targetNamespace="http://inspire.ec.europa.eu/schemas/el-vec/4.0" version="4.0.1">
+   <!-- v4.0.1 of this schema released in INSPIRE schema release v.2022.2.
+       Change performed: Set ‘endLifespanVersion’ multiplicity to [0..1] - non-breaking change - bugfix
+       See https://github.com/INSPIRE-MIF/application-schemas/releases/tag/2022.2 -->
   <annotation>
     <documentation>-- Name --
 elevation - vector elements
@@ -358,7 +361,7 @@ Date and time at which this version of the spatial object was inserted or change
               </simpleContent>
             </complexType>
           </element>
-          <element name="endLifespanVersion" nillable="true">
+          <element minOccurs="0" name="endLifespanVersion" nillable="true">
             <annotation>
               <documentation>-- Name --
 end lifespan version

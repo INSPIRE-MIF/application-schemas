@@ -559,7 +559,7 @@ Specifies the piezometric state of the GroundwaterBody water table</documentatio
               <attribute name="nilReason" type="gml:NilReasonType"/>
             </complexType>
           </element>
-          <element name="beginLifespanVersion" type="dateTime">
+          <element name="beginLifespanVersion" nillable="true" type="dateTime">
             <annotation>
               <documentation>-- Name --
 Begin Life Span Version
@@ -567,7 +567,7 @@ Begin Life Span Version
 Date and time at which this version of the spatial object was inserted or changed in the spatial data set.</documentation>
             </annotation>
           </element>
-          <element minOccurs="0" name="endLifespanVersion" type="dateTime">
+          <element minOccurs="0" name="endLifespanVersion" nillable="true" type="dateTime">
             <annotation>
               <documentation>-- Name --
 End Life Span Version
@@ -698,7 +698,7 @@ Description
 The description of the HydrogeologicalObject.</documentation>
             </annotation>
           </element>
-          <element name="beginLifespanVersion" type="dateTime">
+          <element name="beginLifespanVersion" nillable="true" type="dateTime">
             <annotation>
               <documentation>-- Name --
 Begin Life Span Version
@@ -706,7 +706,7 @@ Begin Life Span Version
 Date and time at which this version of the spatial object was inserted or changed in the spatial data set.</documentation>
             </annotation>
           </element>
-          <element minOccurs="0" name="endLifespanVersion" type="dateTime">
+          <element minOccurs="0" name="endLifespanVersion" nillable="true" type="dateTime">
             <annotation>
               <documentation>-- Name --
 End Life Span Version
@@ -756,7 +756,7 @@ Examples of manmade hydrogeological objects are: well, groundwater intake, groun
     <complexContent>
       <extension base="ge_hg:HydrogeologicalObjectType">
         <sequence>
-          <element name="validFrom" type="dateTime">
+            <element name="validFrom" nillable="true" type="dateTime">
             <annotation>
               <documentation>-- Name --
 Valid From
@@ -767,7 +767,7 @@ Official date and time the hydrogeological object was/will be legally establishe
 NOTE This is the date and time the register reference can be used in legal acts.</documentation>
             </annotation>
           </element>
-          <element minOccurs="0" name="validTo" type="dateTime">
+            <element minOccurs="0" name="validTo" nillable="true" type="dateTime">
             <annotation>
               <documentation>-- Name --
 Valid To
@@ -1008,7 +1008,7 @@ The approximate thickness of the HydrogeologicalUnit.</documentation>
               <attribute name="nilReason" type="gml:NilReasonType"/>
             </complexType>
           </element>
-          <element name="beginLifespanVersion" type="dateTime">
+          <element name="beginLifespanVersion" nillable="true" type="dateTime">
             <annotation>
               <documentation>-- Name --
 Begin Life Span Version
@@ -1016,7 +1016,7 @@ Begin Life Span Version
 Date and time at which this version of the spatial object was inserted or changed in the spatial data set.</documentation>
             </annotation>
           </element>
-          <element minOccurs="0" name="endLifespanVersion" type="dateTime">
+          <element minOccurs="0" name="endLifespanVersion" nillable="true" type="dateTime">
             <annotation>
               <documentation>-- Name --
 End Life Span Version

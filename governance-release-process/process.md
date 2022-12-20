@@ -6,7 +6,9 @@ This document describes the approach to be adopted for the management of changes
 
 The process to update/change INSPIRE schemas varies depending on the type of change proposed and its foreseen impact. Based on this, different scenarios are envisaged. They are all captured in the flowchart below and described in the following. An overview of all the labels can be found on https://github.com/INSPIRE-MIF/application-schemas/labels.
 
-<img src="workflow.png?raw=true" width="800" alt="Workflow">
+<p align="center">
+ <img src="workflow.png?raw=true" width="800" align="center" alt="Workflow">
+</p>
 
 The first actor involved in the governance process is the **change proposer**, i.e. the person, organisation or group of people/organisations that submits a change proposal. The change proposer shall outline the need for the change in a schema, explaining if this is needed because of a bug or because the current version does not fit specific use cases (to be adequately described). The change proposer shall then describe the proposed change and explain whether it would have an impact on the Technical Guidance documents (TG) and/or on the Implementing Rules (IR). The GitHub labels _impact on TG_ and _impact on IR_ are used in such cases. The change proposal shall be described by opening a new issue in the [issue tracker](https://github.com/INSPIRE-MIF/application-schemas/issues) of this repository. Note: in contrast to the process for the TGs, no impact is expected on neither the validator nor the registry of a change to the schemas. The validator simply uses the latest approved version of the schemas, and there is no direct relation between the schemas and the registry.
 

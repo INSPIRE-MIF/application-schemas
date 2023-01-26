@@ -47,6 +47,8 @@
 	<xs:include schemaLocation="enums/enum_slv.xsd"/>
 	<xs:include schemaLocation="enums/enum_spa.xsd"/>
 	<xs:include schemaLocation="enums/enum_swe.xsd"/>
+	<xs:include schemaLocation="enums/enum_ice.xsd"/>
+	<xs:include schemaLocation="enums/enum_nor.xsd"/>
 	<xs:element name="SpatialDataService" type="service"/>
 	<xs:element name="SpatialDataSet" type="dataset"/>
 	<xs:element name="SpatialDataSetSeries" type="series"/>
@@ -759,6 +761,8 @@ the resource, and/or access related services.</xs:documentation>
 			<xs:enumeration value="slv"/>
 			<xs:enumeration value="spa"/>
 			<xs:enumeration value="swe"/>
+			<xs:enumeration value="ice"/>
+			<xs:enumeration value="nor"/>
 		</xs:restriction>
 	</xs:simpleType>
 	<xs:simpleType name="languageISO6392B">
@@ -1305,6 +1309,10 @@ the resource, and/or access related services.</xs:documentation>
 			<xs:enumeration value="es-ES"/>
 			<xs:enumeration value="sv"/>
 			<xs:enumeration value="sv-SE"/>
+			<xs:enumeration value="is"/>
+			<xs:enumeration value="is-IS"/>			
+			<xs:enumeration value="no"/>
+			<xs:enumeration value="no-NO"/>
 		</xs:restriction>
 	</xs:simpleType>
 	<xs:complexType name="languageElement" abstract="true">

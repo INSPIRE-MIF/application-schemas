@@ -8,7 +8,9 @@
   <import namespace="http://www.opengis.net/gml/3.2" schemaLocation="http://schemas.opengis.net/gml/3.2.1/gml.xsd"/>
   <import namespace="http://www.opengis.net/gmlcov/1.0" schemaLocation="http://schemas.opengis.net/gmlcov/1.0/coverage.xsd"/>
   <import namespace="http://www.opengis.net/swe/2.0" schemaLocation="http://schemas.opengis.net/sweCommon/2.0/swe.xsd"/>
-  <!--XML Schema document created by ShapeChange-->
+<!-- v4.0.1 of this schema released in INSPIRE schema release v.2023.1.
+       Change performed: Added missing nillable attribute to some elements - non-breaking change - bugfix
+       See https://github.com/INSPIRE-MIF/application-schemas/releases/tag/2023.1 -->
   <element name="ActiveWell" substitutionGroup="ge_hg:HydrogeologicalObjectManMade" type="ge_hg:ActiveWellType">
     <annotation>
       <documentation>-- Name --

@@ -1,5 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns="http://inspire.ec.europa.eu/schemas/common/1.0" xmlns:jaxb="http://java.sun.com/xml/ns/jaxb" targetNamespace="http://inspire.ec.europa.eu/schemas/common/1.0" elementFormDefault="qualified" attributeFormDefault="unqualified" version="1.0.2" jaxb:version="2.0">
+<!-- v1.0.3 of this schema released in INSPIRE schema release v.2023.1.
+ Change performed: Added Norwegian and Icelandic languages - non breaking change.
+ See https://github.com/INSPIRE-MIF/helpdesk-validator/releases/v2023.1 -->
 <!-- v1.0.2 of this schema released in INSPIRE schema release v.2022.1.
  Change performed: Added Croatian language - non breaking change.
  See https://github.com/INSPIRE-MIF/helpdesk-validator/releases/v2022.1 -->

@@ -561,21 +561,35 @@ Specifies the piezometric state of the GroundwaterBody water table</documentatio
               <attribute name="nilReason" type="gml:NilReasonType"/>
             </complexType>
           </element>
-          <element name="beginLifespanVersion" nillable="true" type="dateTime">
+          <element name="beginLifespanVersion" nillable="true">
             <annotation>
               <documentation>-- Name --
 Begin Life Span Version
 -- Definition --
 Date and time at which this version of the spatial object was inserted or changed in the spatial data set.</documentation>
             </annotation>
+            <complexType>
+              <simpleContent>
+                <extension base="dateTime">
+                  <attribute name="nilReason" type="gml:NilReasonType"/>
+                </extension>
+              </simpleContent>
+            </complexType>
           </element>
-          <element minOccurs="0" name="endLifespanVersion" nillable="true" type="dateTime">
+          <element minOccurs="0" name="endLifespanVersion" nillable="true">
             <annotation>
               <documentation>-- Name --
 End Life Span Version
 -- Definition --
 Date and time at which this version of the spatial object was superseded or retired in the spatial data set.</documentation>
             </annotation>
+            <complexType>
+              <simpleContent>
+                <extension base="dateTime">
+                  <attribute name="nilReason" type="gml:NilReasonType"/>
+                </extension>
+              </simpleContent>
+            </complexType>
           </element>
           <element maxOccurs="unbounded" minOccurs="0" name="hydrogeologicalObjectNatural" nillable="true">
             <annotation>
@@ -700,21 +714,35 @@ Description
 The description of the HydrogeologicalObject.</documentation>
             </annotation>
           </element>
-          <element name="beginLifespanVersion" nillable="true" type="dateTime">
+          <element name="beginLifespanVersion" nillable="true">
             <annotation>
               <documentation>-- Name --
 Begin Life Span Version
 -- Definition --
 Date and time at which this version of the spatial object was inserted or changed in the spatial data set.</documentation>
             </annotation>
+            <complexType>
+              <simpleContent>
+                <extension base="dateTime">
+                  <attribute name="nilReason" type="gml:NilReasonType"/>
+                </extension>
+              </simpleContent>
+            </complexType>
           </element>
-          <element minOccurs="0" name="endLifespanVersion" nillable="true" type="dateTime">
+          <element minOccurs="0" name="endLifespanVersion" nillable="true">
             <annotation>
               <documentation>-- Name --
 End Life Span Version
 -- Definition --
 Date and time at which this version of the spatial object was superseded or retired in the spatial data set.</documentation>
             </annotation>
+            <complexType>
+              <simpleContent>
+                <extension base="dateTime">
+                  <attribute name="nilReason" type="gml:NilReasonType"/>
+                </extension>
+              </simpleContent>
+            </complexType>
           </element>
           <element minOccurs="0" name="aquifer" nillable="true">
             <annotation>
@@ -758,7 +786,7 @@ Examples of manmade hydrogeological objects are: well, groundwater intake, groun
     <complexContent>
       <extension base="ge_hg:HydrogeologicalObjectType">
         <sequence>
-            <element name="validFrom" nillable="true" type="dateTime">
+            <element name="validFrom" nillable="true">
             <annotation>
               <documentation>-- Name --
 Valid From
@@ -768,8 +796,15 @@ Official date and time the hydrogeological object was/will be legally establishe
 -- Description --
 NOTE This is the date and time the register reference can be used in legal acts.</documentation>
             </annotation>
+              <complexType>
+                <simpleContent>
+                  <extension base="dateTime">
+                    <attribute name="nilReason" type="gml:NilReasonType"/>
+                  </extension>
+                </simpleContent>
+              </complexType>
           </element>
-            <element minOccurs="0" name="validTo" nillable="true" type="dateTime">
+            <element minOccurs="0" name="validTo" nillable="true">
             <annotation>
               <documentation>-- Name --
 Valid To
@@ -779,6 +814,13 @@ Date and time at which the hydrogeological object legally ceased/will cease to b
 -- Description --
 NOTE This is the date and time the register reference can no longer be used in legal acts.</documentation>
             </annotation>
+              <complexType>
+                <simpleContent>
+                  <extension base="dateTime">
+                    <attribute name="nilReason" type="gml:NilReasonType"/>
+                  </extension>
+                </simpleContent>
+              </complexType>
           </element>
           <element name="statusCode" nillable="true" type="gml:ReferenceType">
             <annotation>
@@ -1010,21 +1052,35 @@ The approximate thickness of the HydrogeologicalUnit.</documentation>
               <attribute name="nilReason" type="gml:NilReasonType"/>
             </complexType>
           </element>
-          <element name="beginLifespanVersion" nillable="true" type="dateTime">
+          <element name="beginLifespanVersion" nillable="true">
             <annotation>
               <documentation>-- Name --
 Begin Life Span Version
 -- Definition --
 Date and time at which this version of the spatial object was inserted or changed in the spatial data set.</documentation>
             </annotation>
+            <complexType>
+              <simpleContent>
+                <extension base="dateTime">
+                  <attribute name="nilReason" type="gml:NilReasonType"/>
+                </extension>
+              </simpleContent>
+            </complexType>
           </element>
-          <element minOccurs="0" name="endLifespanVersion" nillable="true" type="dateTime">
+          <element minOccurs="0" name="endLifespanVersion" nillable="true">
             <annotation>
               <documentation>-- Name --
 End Life Span Version
 -- Definition --
 Date and time at which this version of the spatial object was superseded or retired in the spatial data set.</documentation>
             </annotation>
+            <complexType>
+              <simpleContent>
+                <extension base="dateTime">
+                  <attribute name="nilReason" type="gml:NilReasonType"/>
+                </extension>
+              </simpleContent>
+            </complexType>
           </element>
           <element maxOccurs="unbounded" minOccurs="0" name="geologicStructure" nillable="true">
             <annotation>

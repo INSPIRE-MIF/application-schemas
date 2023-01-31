@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?><schema xmlns="http://www.w3.org/2001/XMLSchema" xmlns:base="http://inspire.ec.europa.eu/schemas/base/3.3" xmlns:ef="http://inspire.ec.europa.eu/schemas/ef/4.0" xmlns:ge="http://inspire.ec.europa.eu/schemas/ge-core/4.0" xmlns:ge_hg="http://inspire.ec.europa.eu/schemas/ge_hg/4.0" xmlns:gmd="http://www.isotc211.org/2005/gmd" xmlns:gml="http://www.opengis.net/gml/3.2" xmlns:gmlcov="http://www.opengis.net/gmlcov/1.0" xmlns:omso="http://inspire.ec.europa.eu/schemas/omso/3.0" xmlns:sc="http://www.interactive-instruments.de/ShapeChange/AppInfo" xmlns:swe="http://www.opengis.net/swe/2.0" elementFormDefault="qualified" targetNamespace="http://inspire.ec.europa.eu/schemas/ge_hg/4.0" version="4.0">
+<?xml version="1.0" encoding="UTF-8"?><schema xmlns="http://www.w3.org/2001/XMLSchema" xmlns:base="http://inspire.ec.europa.eu/schemas/base/3.3" xmlns:ef="http://inspire.ec.europa.eu/schemas/ef/4.0" xmlns:ge="http://inspire.ec.europa.eu/schemas/ge-core/4.0" xmlns:ge_hg="http://inspire.ec.europa.eu/schemas/ge_hg/4.0" xmlns:gmd="http://www.isotc211.org/2005/gmd" xmlns:gml="http://www.opengis.net/gml/3.2" xmlns:gmlcov="http://www.opengis.net/gmlcov/1.0" xmlns:omso="http://inspire.ec.europa.eu/schemas/omso/3.0" xmlns:sc="http://www.interactive-instruments.de/ShapeChange/AppInfo" xmlns:swe="http://www.opengis.net/swe/2.0" elementFormDefault="qualified" targetNamespace="http://inspire.ec.europa.eu/schemas/ge_hg/4.0" version="4.0.1">
   <import namespace="http://inspire.ec.europa.eu/schemas/base/3.3" schemaLocation="https://inspire.ec.europa.eu/schemas/base/3.3/BaseTypes.xsd"/>
   <import namespace="http://inspire.ec.europa.eu/schemas/ef/4.0" schemaLocation="https://inspire.ec.europa.eu/schemas/ef/4.0/EnvironmentalMonitoringFacilities.xsd"/>
   <import namespace="http://inspire.ec.europa.eu/schemas/ge-core/4.0" schemaLocation="https://inspire.ec.europa.eu/schemas/ge-core/4.0/GeologyCore.xsd"/>
@@ -8,7 +8,9 @@
   <import namespace="http://www.opengis.net/gml/3.2" schemaLocation="http://schemas.opengis.net/gml/3.2.1/gml.xsd"/>
   <import namespace="http://www.opengis.net/gmlcov/1.0" schemaLocation="http://schemas.opengis.net/gmlcov/1.0/coverage.xsd"/>
   <import namespace="http://www.opengis.net/swe/2.0" schemaLocation="http://schemas.opengis.net/sweCommon/2.0/swe.xsd"/>
-  <!--XML Schema document created by ShapeChange-->
+<!-- v4.0.1 of this schema released in INSPIRE schema release v.2023.1.
+       Change performed: Added missing nillable attribute to some elements - non-breaking change - bugfix
+       See https://github.com/INSPIRE-MIF/application-schemas/releases/tag/2023.1 -->
   <element name="ActiveWell" substitutionGroup="ge_hg:HydrogeologicalObjectManMade" type="ge_hg:ActiveWellType">
     <annotation>
       <documentation>-- Name --
@@ -559,7 +561,7 @@ Specifies the piezometric state of the GroundwaterBody water table</documentatio
               <attribute name="nilReason" type="gml:NilReasonType"/>
             </complexType>
           </element>
-          <element name="beginLifespanVersion" type="dateTime">
+          <element name="beginLifespanVersion" nillable="true" type="dateTime">
             <annotation>
               <documentation>-- Name --
 Begin Life Span Version
@@ -567,7 +569,7 @@ Begin Life Span Version
 Date and time at which this version of the spatial object was inserted or changed in the spatial data set.</documentation>
             </annotation>
           </element>
-          <element minOccurs="0" name="endLifespanVersion" type="dateTime">
+          <element minOccurs="0" name="endLifespanVersion" nillable="true" type="dateTime">
             <annotation>
               <documentation>-- Name --
 End Life Span Version
@@ -698,7 +700,7 @@ Description
 The description of the HydrogeologicalObject.</documentation>
             </annotation>
           </element>
-          <element name="beginLifespanVersion" type="dateTime">
+          <element name="beginLifespanVersion" nillable="true" type="dateTime">
             <annotation>
               <documentation>-- Name --
 Begin Life Span Version
@@ -706,7 +708,7 @@ Begin Life Span Version
 Date and time at which this version of the spatial object was inserted or changed in the spatial data set.</documentation>
             </annotation>
           </element>
-          <element minOccurs="0" name="endLifespanVersion" type="dateTime">
+          <element minOccurs="0" name="endLifespanVersion" nillable="true" type="dateTime">
             <annotation>
               <documentation>-- Name --
 End Life Span Version
@@ -756,7 +758,7 @@ Examples of manmade hydrogeological objects are: well, groundwater intake, groun
     <complexContent>
       <extension base="ge_hg:HydrogeologicalObjectType">
         <sequence>
-          <element name="validFrom" type="dateTime">
+            <element name="validFrom" nillable="true" type="dateTime">
             <annotation>
               <documentation>-- Name --
 Valid From
@@ -767,7 +769,7 @@ Official date and time the hydrogeological object was/will be legally establishe
 NOTE This is the date and time the register reference can be used in legal acts.</documentation>
             </annotation>
           </element>
-          <element minOccurs="0" name="validTo" type="dateTime">
+            <element minOccurs="0" name="validTo" nillable="true" type="dateTime">
             <annotation>
               <documentation>-- Name --
 Valid To
@@ -1008,7 +1010,7 @@ The approximate thickness of the HydrogeologicalUnit.</documentation>
               <attribute name="nilReason" type="gml:NilReasonType"/>
             </complexType>
           </element>
-          <element name="beginLifespanVersion" type="dateTime">
+          <element name="beginLifespanVersion" nillable="true" type="dateTime">
             <annotation>
               <documentation>-- Name --
 Begin Life Span Version
@@ -1016,7 +1018,7 @@ Begin Life Span Version
 Date and time at which this version of the spatial object was inserted or changed in the spatial data set.</documentation>
             </annotation>
           </element>
-          <element minOccurs="0" name="endLifespanVersion" type="dateTime">
+          <element minOccurs="0" name="endLifespanVersion" nillable="true" type="dateTime">
             <annotation>
               <documentation>-- Name --
 End Life Span Version

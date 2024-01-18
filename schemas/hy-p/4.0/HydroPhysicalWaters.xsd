@@ -175,7 +175,7 @@ Date and time at which this version of the spatial object was superseded or reti
               </simpleContent>
             </complexType>
           </element>
-          <element name="geometry" type="gml:SurfacePropertyType">
+          <element name="geometry" type="gml:GeometryPropertyType">
             <annotation>
               <documentation>-- Definition --
 The geometry of the drainage basin, as a surface.</documentation>

@@ -914,17 +914,18 @@ Uses the codelist "UtilityNetworkTypeValue" to describe the possible utility net
               </appinfo>
             </annotation>
           </element>
-          <element maxOccurs="unbounded" name="authorityRole" type="gml:ReferenceType">
+          <element maxOccurs="unbounded" name="authorityRole">
             <annotation>
               <documentation>-- Name --
 authority role
 
 -- Definition --
 Parties authorized to manage a utility network, such as maintainers, operators or owners.</documentation>
-              <appinfo>
-                <targetElement xmlns="http://www.opengis.net/gml/3.2">base2:RelatedParty</targetElement>
-              </appinfo>
-            </annotation>
+         <complexType>
+            <sequence>
+              <element ref="base2:RelatedParty"/>
+            </sequence>
+         </complexType>
           </element>
           <element maxOccurs="unbounded" minOccurs="0" name="utilityFacilityReference" nillable="true">
             <annotation>

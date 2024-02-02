@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?><schema xmlns="http://www.w3.org/2001/XMLSchema" xmlns:base="http://inspire.ec.europa.eu/schemas/base/3.3" xmlns:gmd="http://www.isotc211.org/2005/gmd" xmlns:gml="http://www.opengis.net/gml/3.2" xmlns:gn="http://inspire.ec.europa.eu/schemas/gn/4.0" xmlns:hy="http://inspire.ec.europa.eu/schemas/hy/4.0" xmlns:hy-p="http://inspire.ec.europa.eu/schemas/hy-p/4.0" elementFormDefault="qualified" targetNamespace="http://inspire.ec.europa.eu/schemas/hy-p/4.0" version="4.0">
+<?xml version="1.0" encoding="UTF-8"?><schema xmlns="http://www.w3.org/2001/XMLSchema" xmlns:base="http://inspire.ec.europa.eu/schemas/base/3.3" xmlns:gmd="http://www.isotc211.org/2005/gmd" xmlns:gml="http://www.opengis.net/gml/3.2" xmlns:gn="http://inspire.ec.europa.eu/schemas/gn/4.0" xmlns:hy="http://inspire.ec.europa.eu/schemas/hy/4.0" xmlns:hy-p="http://inspire.ec.europa.eu/schemas/hy-p/4.0" elementFormDefault="qualified" targetNamespace="http://inspire.ec.europa.eu/schemas/hy-p/4.0" version="4.1">
   <annotation>
     <documentation>-- Definition --
 The 'PhysicalWaters' application schema is concerned primarily with the 'mapping' Use Case</documentation>
@@ -8,7 +8,9 @@ The 'PhysicalWaters' application schema is concerned primarily with the 'mapping
   <import namespace="http://inspire.ec.europa.eu/schemas/hy/4.0" schemaLocation="https://inspire.ec.europa.eu/schemas/hy/4.0/HydroBase.xsd"/>
   <import namespace="http://www.isotc211.org/2005/gmd" schemaLocation="http://schemas.opengis.net/iso/19139/20070417/gmd/gmd.xsd"/>
   <import namespace="http://www.opengis.net/gml/3.2" schemaLocation="http://schemas.opengis.net/gml/3.2.1/gml.xsd"/>
-  <!--XML Schema document created by ShapeChange-->
+  <!-- v4.1 of this schema released in INSPIRE schema release v.2024.1.
+       Change performed: Changed the data type of the geometry attribute of the DrainageBasin feature type from "GM_Surface" to "GM_Object" and add a geometry constraint (The geometry attribute has to be of type GM_Surface or GM_MultiSurface.). - non-breaking change - Amendment 1089/2010
+       See https://github.com/INSPIRE-MIF/application-schemas/releases/tag/2024.1 -->
   <element name="Crossing" substitutionGroup="hy-p:ManMadeObject" type="hy-p:CrossingType">
     <annotation>
       <documentation>-- Definition --

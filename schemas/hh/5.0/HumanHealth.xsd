@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?><schema xmlns="http://www.w3.org/2001/XMLSchema" xmlns:gmd="http://www.isotc211.org/2005/gmd" xmlns:gml="http://www.opengis.net/gml/3.2" xmlns:hh="http://inspire.ec.europa.eu/schemas/hh/4.0" xmlns:sc="http://www.interactive-instruments.de/ShapeChange/AppInfo" xmlns:su-core="http://inspire.ec.europa.eu/schemas/su-core/4.0" elementFormDefault="qualified" targetNamespace="http://inspire.ec.europa.eu/schemas/hh/4.0" version="4.0">
+<?xml version="1.0" encoding="UTF-8"?><schema xmlns="http://www.w3.org/2001/XMLSchema" xmlns:gmd="http://www.isotc211.org/2005/gmd" xmlns:gml="http://www.opengis.net/gml/3.2" xmlns:hh="http://inspire.ec.europa.eu/schemas/hh/5.0" xmlns:sc="http://www.interactive-instruments.de/ShapeChange/AppInfo" xmlns:su-core="http://inspire.ec.europa.eu/schemas/su-core/4.0" elementFormDefault="qualified" targetNamespace="http://inspire.ec.europa.eu/schemas/hh/5.0" version="5.0">
   <annotation>
     <documentation>-- Name --
 Human Health</documentation>
@@ -7,7 +7,9 @@ Human Health</documentation>
   <import namespace="http://www.interactive-instruments.de/ShapeChange/AppInfo" schemaLocation="http://portele.de/ShapeChangeAppinfo.xsd"/>
   <import namespace="http://www.isotc211.org/2005/gmd" schemaLocation="http://schemas.opengis.net/iso/19139/20070417/gmd/gmd.xsd"/>
   <import namespace="http://www.opengis.net/gml/3.2" schemaLocation="http://schemas.opengis.net/gml/3.2.1/gml.xsd"/>
-  <!--XML Schema document created by ShapeChange-->
+  <!-- v5.0 of this schema released in INSPIRE schema release v.2024.1.
+       Change performed: Added new attributes and feature types, removed some data types - breaking change - Amendment 1089/2010
+       See https://github.com/INSPIRE-MIF/application-schemas/releases/tag/2024.1 -->
   <element name="Age" substitutionGroup="gml:AbstractObject" type="hh:AgeType">
     <annotation>
       <documentation>-- Name --
@@ -387,29 +389,6 @@ Type of biological material or body compartment that is sampled to determine or 
       <element ref="hh:BiomarkerType"/>
     </sequence>
   </complexType>
-  <element name="Concentration" type="hh:ConcentrationType">
-    <annotation>
-      <documentation>-- Name --
-concentration measure
-
--- Definition --
-A measure of concentration of a specified component in a specified media.</documentation>
-    </annotation>
-  </element>
-  <complexType name="ConcentrationType">
-    <complexContent>
-      <extension base="gml:MeasureType">
-        <sequence/>
-      </extension>
-    </complexContent>
-  </complexType>
-  <complexType name="ConcentrationPropertyType">
-    <sequence minOccurs="0">
-      <element ref="hh:Concentration"/>
-    </sequence>
-    <attributeGroup ref="gml:AssociationAttributeGroup"/>
-    <attributeGroup ref="gml:OwnershipAttributeGroup"/>
-  </complexType>
   <element name="Disease" substitutionGroup="hh:HealthStatisticalData" type="hh:DiseaseType">
     <annotation>
       <documentation>-- Name --
@@ -698,7 +677,11 @@ The measure of the environmental health determinant</documentation>
                 category
                 
                 -- Definition --
-                The category of environmental health determinant measure</documentation>
+                The category of environmental health determinant measure
+                
+                -- Description--
+                EXAMPLE: the requirements for the noise contour maps and the strategic noise maps in the Directive 2002/49/EC, relating to the assessment and management of environmental noise (the Environmental Noise Directive – END). In these cases, the noise levels in a certain area (in the specific ‘noise contour’) is to be provided by means of a db range (e.g. 50-54) relating to a specific sound level indicator (e.g. Lden or Lnight).
+              </documentation>
               <appinfo>
                 <taggedValue xmlns="http://www.interactive-instruments.de/ShapeChange/AppInfo" tag="obligation">technicalGuidance</taggedValue>
               </appinfo>
@@ -739,7 +722,11 @@ The measure of the environmental health determinant</documentation>
                 source
                 
                 -- Definition --
-                The noise source type.</documentation>
+                The noise source type.
+                
+                --Description--
+                EXAMPLE: Road traffic, rail traffic, air traffic, industrial activity, etc.
+              </documentation>
               <appinfo>
                 <taggedValue xmlns="http://www.interactive-instruments.de/ShapeChange/AppInfo" tag="obligation">technicalGuidance</taggedValue>
               </appinfo>
@@ -756,9 +743,6 @@ The measure of the environmental health determinant</documentation>
     <attributeGroup ref="gml:AssociationAttributeGroup"/>
     <attributeGroup ref="gml:OwnershipAttributeGroup"/>
   </complexType>
-  
-  <!--SM 19/06/2020 added the EnvHealthDeterminantConcentrationMeasure feature type - It specialises the EnvHealthDeterminantMeasure feature type for the concentration determinant -->
-  
   <element name="EnvHealthDeterminantConcentrationMeasure" type="hh:EnvHealthDeterminantConcentrationMeasureType" substitutionGroup="hh:EnvHealthDeterminantMeasure">
     <annotation>
       <documentation>-- Name --
@@ -779,7 +763,10 @@ The measure of the environmental health determinant</documentation>
                 component
                 
                 -- Definition --
-                The component whose concentration is measured</documentation>
+                The component whose concentration is measured
+                -- Description --
+                EXAMPLE: SO2 (in ambient air), lead (in drinking water), benzo-a-pyrene (in indoor air), ragweed pollens (in ambient air), etc.
+              </documentation>
               <appinfo>
                 <taggedValue xmlns="http://www.interactive-instruments.de/ShapeChange/AppInfo" tag="obligation">technicalGuidance</taggedValue>
               </appinfo>
@@ -791,7 +778,11 @@ The measure of the environmental health determinant</documentation>
                 media
                 
                 -- Definition --
-                The media in which the concentration is measured</documentation>
+                The media in which the concentration is measured
+              
+              --Description--
+              EXAMPLE: ambient air (e.g. measuring SO2), drinking water (e.g. measuring lead), indoor air (e.g. measuring benzo-a-pyrene), ambient air (e.g. measuring ragweed pollens).
+              </documentation>
               <appinfo>
                 <taggedValue xmlns="http://www.interactive-instruments.de/ShapeChange/AppInfo" tag="obligation">technicalGuidance</taggedValue>
               </appinfo>
@@ -1035,29 +1026,6 @@ Statistical unit to which health statistical data refers.</documentation>
     <attributeGroup ref="gml:AssociationAttributeGroup"/>
     <attributeGroup ref="gml:OwnershipAttributeGroup"/>
   </complexType>
-  <element name="NoiseMeasure" type="hh:NoiseMeasureType">
-    <annotation>
-      <documentation>-- Name --
-noise measure
-
--- Definition --
-A measure of noise intensity.</documentation>
-    </annotation>
-  </element>
-  <complexType name="NoiseMeasureType">
-    <complexContent>
-      <extension base="gml:MeasureType">
-        <sequence/>
-      </extension>
-    </complexContent>
-  </complexType>
-  <complexType name="NoiseMeasurePropertyType">
-    <sequence minOccurs="0">
-      <element ref="hh:NoiseMeasure"/>
-    </sequence>
-    <attributeGroup ref="gml:AssociationAttributeGroup"/>
-    <attributeGroup ref="gml:OwnershipAttributeGroup"/>
-  </complexType>
   <element name="ReferencePeriodType" substitutionGroup="gml:AbstractObject" type="hh:ReferencePeriodTypeType">
     <annotation>
       <documentation>-- Name --
@@ -1093,96 +1061,5 @@ End of reference period.</documentation>
     <sequence>
       <element ref="hh:ReferencePeriodType"/>
     </sequence>
-  </complexType>
-  <element name="UomConcentration" type="hh:UomConcentrationType">
-    <annotation>
-      <documentation>-- Name --
-Unit of measure for concentration
-
--- Definition --
-A unit of measure for concentration of a specified component within a specified media.</documentation>
-    </annotation>
-  </element>
-  <complexType name="UomConcentrationType">
-    <complexContent>
-      <extension base="gml:UnitOfMeasureType">
-        <sequence>
-          <element name="component" type="gml:ReferenceType">
-            <annotation>
-              <documentation>-- Name --
-component
--- Definition --
-The component whose concentration is measured.
-
--- Description --
-EXAMPLE: SO2 in ambient air, lead in drinking water, benzo-a-pyrene in indoor air, ragweed pollens in ambient air.</documentation>
-              <appinfo>
-                <taggedValue xmlns="http://www.interactive-instruments.de/ShapeChange/AppInfo" tag="obligation">technicalGuidance</taggedValue>
-              </appinfo>
-            </annotation>
-          </element>
-          <element name="media" type="gml:ReferenceType">
-            <annotation>
-              <documentation>-- Name --
-media
--- Definition --
-The media in which the concentration is measured.
-
--- Description --
-EXAMPLE: SO2 in ambient air, lead in drinking water, benzo-a-pyrene in indoor air, ragweed pollens in ambient air.</documentation>
-              <appinfo>
-                <taggedValue xmlns="http://www.interactive-instruments.de/ShapeChange/AppInfo" tag="obligation">technicalGuidance</taggedValue>
-              </appinfo>
-            </annotation>
-          </element>
-        </sequence>
-      </extension>
-    </complexContent>
-  </complexType>
-  <complexType name="UomConcentrationPropertyType">
-    <sequence minOccurs="0">
-      <element ref="hh:UomConcentration"/>
-    </sequence>
-    <attributeGroup ref="gml:AssociationAttributeGroup"/>
-    <attributeGroup ref="gml:OwnershipAttributeGroup"/>
-  </complexType>
-  <element name="UomNoise" type="hh:UomNoiseType">
-    <annotation>
-      <documentation>-- Name --
-noise unit of measure
-
--- Definition --
-A unit of measure for noise intensity.</documentation>
-    </annotation>
-  </element>
-  <complexType name="UomNoiseType">
-    <complexContent>
-      <extension base="gml:UnitOfMeasureType">
-        <sequence>
-          <element name="source" type="gml:ReferenceType">
-            <annotation>
-              <documentation>-- Name --
-noise source type
-
--- Definition --
-The noise source type.
-
--- Description --
-EXAMPLE: Road traffic, rail traffic, air traffic, industrial activity, etc.</documentation>
-              <appinfo>
-                <taggedValue xmlns="http://www.interactive-instruments.de/ShapeChange/AppInfo" tag="obligation">technicalGuidance</taggedValue>
-              </appinfo>
-            </annotation>
-          </element>
-        </sequence>
-      </extension>
-    </complexContent>
-  </complexType>
-  <complexType name="UomNoisePropertyType">
-    <sequence minOccurs="0">
-      <element ref="hh:UomNoise"/>
-    </sequence>
-    <attributeGroup ref="gml:AssociationAttributeGroup"/>
-    <attributeGroup ref="gml:OwnershipAttributeGroup"/>
   </complexType>
 </schema>

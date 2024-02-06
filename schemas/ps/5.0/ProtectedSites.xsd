@@ -59,7 +59,7 @@ The geometry defining the boundary of the Protected Site.
 The geometry may be determined by a wide range of methods, including surveying, digitisation or visual reference to natural features or cadastral boundaries and may be defined by the legal document that creates the protected area. The geometry included in a data set that uses this data model is stored as a fixed geometry by coordinates, not by reference to natural, cadastral or administrative boundaries, although it may originally have been defined from these.</documentation>
             </annotation>
           </element>
-          <element name="inspireID" type="base:IdentifierPropertyType">
+          <element name="inspireId" type="base:IdentifierPropertyType">
             <annotation>
               <documentation>-- Definition --
 External object identifier of the protected site.

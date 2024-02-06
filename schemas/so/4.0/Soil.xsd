@@ -1,15 +1,15 @@
-<?xml version="1.0" encoding="UTF-8"?><schema xmlns="http://www.w3.org/2001/XMLSchema" xmlns:base="http://inspire.ec.europa.eu/schemas/base/3.3" xmlns:ge="http://inspire.ec.europa.eu/schemas/ge-core/4.0" xmlns:gmd="http://www.isotc211.org/2005/gmd" xmlns:gml="http://www.opengis.net/gml/3.2" xmlns:gmlcov="http://www.opengis.net/gmlcov/1.0" xmlns:om="http://www.opengis.net/om/2.0" xmlns:omop="http://inspire.ec.europa.eu/schemas/omop/3.0" xmlns:ompr="http://inspire.ec.europa.eu/schemas/ompr/3.0" xmlns:ps="http://inspire.ec.europa.eu/schemas/ps/4.0" xmlns:sc="http://www.interactive-instruments.de/ShapeChange/AppInfo" xmlns:so="http://inspire.ec.europa.eu/schemas/so/4.0" xmlns:spec="http://www.opengis.net/samplingSpecimen/2.0" elementFormDefault="qualified" targetNamespace="http://inspire.ec.europa.eu/schemas/so/4.0" version="4.0.2">
+<?xml version="1.0" encoding="UTF-8"?><schema xmlns="http://www.w3.org/2001/XMLSchema" xmlns:base="http://inspire.ec.europa.eu/schemas/base/4.0" xmlns:ge="http://inspire.ec.europa.eu/schemas/ge-core/4.0" xmlns:gmd="http://www.isotc211.org/2005/gmd" xmlns:gml="http://www.opengis.net/gml/3.2" xmlns:gmlcov="http://www.opengis.net/gmlcov/1.0" xmlns:om="http://www.opengis.net/om/2.0" xmlns:omop="http://inspire.ec.europa.eu/schemas/omop/4.0" xmlns:ompr="http://inspire.ec.europa.eu/schemas/ompr/3.0" xmlns:ps="http://inspire.ec.europa.eu/schemas/ps/5.0" xmlns:sc="http://www.interactive-instruments.de/ShapeChange/AppInfo" xmlns:so="http://inspire.ec.europa.eu/schemas/so/4.0" xmlns:spec="http://www.opengis.net/samplingSpecimen/2.0" elementFormDefault="qualified" targetNamespace="http://inspire.ec.europa.eu/schemas/so/4.0" version="4.0.2">
   <!-- v4.0.2 of this schema released in INSPIRE schema release v.2021.2.
 	 Change performed: Added missing associations to OM_Observation + soilDerivedObjectObservation from 1 to [1..*] - breaking change - bugfix + enhancement. The versioning considers the v4.0.1 of the schema in draft repository.
 	 See https://github.com/INSPIRE-MIF/helpdesk-validator/releases/v2021.2 -->
   <annotation>
     <documentation>Soil model</documentation>
   </annotation>
-  <import namespace="http://inspire.ec.europa.eu/schemas/base/3.3" schemaLocation="https://inspire.ec.europa.eu/schemas/base/3.3/BaseTypes.xsd"/>
+  <import namespace="http://inspire.ec.europa.eu/schemas/base/4.0" schemaLocation="https://inspire.ec.europa.eu/schemas/base/4.0/BaseTypes.xsd"/>
   <import namespace="http://inspire.ec.europa.eu/schemas/ge-core/4.0" schemaLocation="https://inspire.ec.europa.eu/schemas/ge-core/4.0/GeologyCore.xsd"/>
-  <import namespace="http://inspire.ec.europa.eu/schemas/omop/3.0" schemaLocation="https://inspire.ec.europa.eu/schemas/omop/3.0/ObservableProperties.xsd"/>
+  <import namespace="http://inspire.ec.europa.eu/schemas/omop/4.0" schemaLocation="https://inspire.ec.europa.eu/schemas/omop/4.0/ObservableProperties.xsd"/>
   <import namespace="http://inspire.ec.europa.eu/schemas/ompr/3.0" schemaLocation="https://inspire.ec.europa.eu/schemas/ompr/3.0/Processes.xsd"/>
-  <import namespace="http://inspire.ec.europa.eu/schemas/ps/4.0" schemaLocation="https://inspire.ec.europa.eu/schemas/ps/4.0/ProtectedSites.xsd"/>
+  <import namespace="http://inspire.ec.europa.eu/schemas/ps/5.0" schemaLocation="https://inspire.ec.europa.eu/schemas/ps/5.0/ProtectedSites.xsd"/>
   <import namespace="http://www.interactive-instruments.de/ShapeChange/AppInfo" schemaLocation="http://portele.de/ShapeChangeAppinfo.xsd"/>
   <import namespace="http://www.isotc211.org/2005/gmd" schemaLocation="http://schemas.opengis.net/iso/19139/20070417/gmd/gmd.xsd"/>
   <import namespace="http://www.opengis.net/gml/3.2" schemaLocation="http://schemas.opengis.net/gml/3.2.1/gml.xsd"/>

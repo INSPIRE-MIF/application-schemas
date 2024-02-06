@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?><schema xmlns="http://www.w3.org/2001/XMLSchema" xmlns:base="http://inspire.ec.europa.eu/schemas/base/3.3" xmlns:gml="http://www.opengis.net/gml/3.2" xmlns:gn="http://inspire.ec.europa.eu/schemas/gn/4.0" xmlns:hy="http://inspire.ec.europa.eu/schemas/hy/4.0" xmlns:hy-p="http://inspire.ec.europa.eu/schemas/hy-p/4.0" xmlns:omop="http://inspire.ec.europa.eu/schemas/omop/3.0" xmlns:omor="http://inspire.ec.europa.eu/schemas/omor/3.0" xmlns:sc="http://www.interactive-instruments.de/ShapeChange/AppInfo" xmlns:sr="http://inspire.ec.europa.eu/schemas/sr/4.0" elementFormDefault="qualified" targetNamespace="http://inspire.ec.europa.eu/schemas/sr/4.0" version="4.0.1">
+<?xml version="1.0" encoding="UTF-8"?><schema xmlns="http://www.w3.org/2001/XMLSchema" xmlns:base="http://inspire.ec.europa.eu/schemas/base/4.0" xmlns:gml="http://www.opengis.net/gml/3.2" xmlns:gn="http://inspire.ec.europa.eu/schemas/gn/4.0" xmlns:hy="http://inspire.ec.europa.eu/schemas/hy/4.0" xmlns:hy-p="http://inspire.ec.europa.eu/schemas/hy-p/5.0" xmlns:omop="http://inspire.ec.europa.eu/schemas/omop/4.0" xmlns:omor="http://inspire.ec.europa.eu/schemas/omor/3.0" xmlns:sc="http://www.interactive-instruments.de/ShapeChange/AppInfo" xmlns:sr="http://inspire.ec.europa.eu/schemas/sr/4.0" elementFormDefault="qualified" targetNamespace="http://inspire.ec.europa.eu/schemas/sr/4.0" version="4.0.1">
   <annotation>
     <documentation>-- Name --
 Sea Regions Application Schema
@@ -33,11 +33,11 @@ Both biotic and physical parameters and indicators are important in the classifi
 &amp;bull; tidal zones
 &amp;bull; wavesrequired</documentation>
   </annotation>
-  <import namespace="http://inspire.ec.europa.eu/schemas/base/3.3" schemaLocation="https://inspire.ec.europa.eu/schemas/base/3.3/BaseTypes.xsd"/>
+  <import namespace="http://inspire.ec.europa.eu/schemas/base/4.0" schemaLocation="https://inspire.ec.europa.eu/schemas/base/4.0/BaseTypes.xsd"/>
   <import namespace="http://inspire.ec.europa.eu/schemas/gn/4.0" schemaLocation="https://inspire.ec.europa.eu/schemas/gn/4.0/GeographicalNames.xsd"/>
-  <import namespace="http://inspire.ec.europa.eu/schemas/hy-p/4.0" schemaLocation="https://inspire.ec.europa.eu/schemas/hy-p/4.0/HydroPhysicalWaters.xsd"/>
+  <import namespace="http://inspire.ec.europa.eu/schemas/hy-p/5.0" schemaLocation="https://inspire.ec.europa.eu/schemas/hy-p/5.0/HydroPhysicalWaters.xsd"/>
   <import namespace="http://inspire.ec.europa.eu/schemas/hy/4.0" schemaLocation="https://inspire.ec.europa.eu/schemas/hy/4.0/HydroBase.xsd"/>
-  <import namespace="http://inspire.ec.europa.eu/schemas/omop/3.0" schemaLocation="https://inspire.ec.europa.eu/schemas/omop/3.0/ObservableProperties.xsd"/>
+  <import namespace="http://inspire.ec.europa.eu/schemas/omop/4.0" schemaLocation="https://inspire.ec.europa.eu/schemas/omop/4.0/ObservableProperties.xsd"/>
   <import namespace="http://inspire.ec.europa.eu/schemas/omor/3.0" schemaLocation="https://inspire.ec.europa.eu/schemas/omor/3.0/ObservationReferences.xsd"/>
   <import namespace="http://www.interactive-instruments.de/ShapeChange/AppInfo" schemaLocation="http://portele.de/ShapeChangeAppinfo.xsd"/>
   <import namespace="http://www.opengis.net/gml/3.2" schemaLocation="http://schemas.opengis.net/gml/3.2.1/gml.xsd"/>

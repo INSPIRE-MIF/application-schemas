@@ -1,10 +1,10 @@
-<?xml version="1.0" encoding="UTF-8"?><schema xmlns="http://www.w3.org/2001/XMLSchema" xmlns:gml="http://www.opengis.net/gml/3.2" xmlns:net="http://inspire.ec.europa.eu/schemas/net/4.0" xmlns:tn="http://inspire.ec.europa.eu/schemas/tn/4.0" xmlns:tn-a="http://inspire.ec.europa.eu/schemas/tn-a/4.0" xmlns:bu-base="http://inspire.ec.europa.eu/schemas/bu-base/4.0" elementFormDefault="qualified" targetNamespace="http://inspire.ec.europa.eu/schemas/tn-a/4.0" version="4.1">
+<?xml version="1.0" encoding="UTF-8"?><schema xmlns="http://www.w3.org/2001/XMLSchema" xmlns:gml="http://www.opengis.net/gml/3.2" xmlns:net="http://inspire.ec.europa.eu/schemas/net/4.0" xmlns:tn="http://inspire.ec.europa.eu/schemas/tn/5.0" xmlns:tn-a="http://inspire.ec.europa.eu/schemas/tn-a/4.0" xmlns:bu-base="http://inspire.ec.europa.eu/schemas/bu-base/4.0" elementFormDefault="qualified" targetNamespace="http://inspire.ec.europa.eu/schemas/tn-a/4.0" version="4.1">
   <annotation>
     <documentation>-- Definition --
 This package defines the types that are used on the air transport subtheme.</documentation>
   </annotation>
   <import namespace="http://inspire.ec.europa.eu/schemas/net/4.0" schemaLocation="https://inspire.ec.europa.eu/schemas/net/4.0/Network.xsd"/>
-  <import namespace="http://inspire.ec.europa.eu/schemas/tn/4.0" schemaLocation="https://inspire.ec.europa.eu/schemas/tn/4.0/CommonTransportElements.xsd"/>
+  <import namespace="http://inspire.ec.europa.eu/schemas/tn/5.0" schemaLocation="https://inspire.ec.europa.eu/schemas/tn/5.0/CommonTransportElements.xsd"/>
   <import namespace="http://inspire.ec.europa.eu/schemas/bu-base/4.0" schemaLocation="https://inspire.ec.europa.eu/schemas/bu-base/4.0/BuildingsBase.xsd"/>
   <import namespace="http://www.opengis.net/gml/3.2" schemaLocation="http://schemas.opengis.net/gml/3.2.1/gml.xsd"/>
   <!-- v4.1 of this schema released in INSPIRE schema release v.2024.1.

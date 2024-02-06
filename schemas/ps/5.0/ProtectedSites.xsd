@@ -5,7 +5,9 @@
   <import namespace="http://www.isotc211.org/2005/gmd" schemaLocation="http://schemas.opengis.net/iso/19139/20070417/gmd/gmd.xsd"/>
   <import namespace="http://www.opengis.net/gml/3.2" schemaLocation="http://schemas.opengis.net/gml/3.2.1/gml.xsd"/>
   <!-- v5.0 of this schema released in INSPIRE schema release v.2024.1.
-       Change performed: Fixed typo in inspireId, added new attribute and moved attributes to data type - breaking change - Amendment 1089/2010
+       Change performed:
+	    - Fixed typo in inspireId, added new attribute and moved attributes to data type - breaking change - Amendment 1089/2010
+		- Removed enumeration from schema and changed encoding of the attributes that refer to enumerations - breaking change - Amendment 1089/2010
        See https://github.com/INSPIRE-MIF/application-schemas/releases/tag/2024.1 -->
   <element name="DesignationType" substitutionGroup="gml:AbstractObject" type="ps:DesignationTypeType">
     <annotation>
@@ -148,7 +150,7 @@ NOTE 2 It is recommended that the language of the name (part of the Geographical
               <attribute name="nilReason" type="gml:NilReasonType"/>
             </complexType>
           </element>
-          <element maxOccurs="unbounded" name="siteProtectionClassification" nillable="true">
+          <element maxOccurs="unbounded" name="siteProtectionClassification" nillable="true" type="gml:ReferenceType">
             <annotation>
               <documentation>-- Definition --
 The classification of the protected site based on the purpose for protection.
@@ -156,13 +158,6 @@ The classification of the protected site based on the purpose for protection.
 -- Description --
 The site may have more than one classification.</documentation>
             </annotation>
-            <complexType>
-              <simpleContent>
-                <extension base="ps:ProtectionClassificationValueType">
-                  <attribute name="nilReason" type="gml:NilReasonType"/>
-                </extension>
-              </simpleContent>
-            </complexType>
           </element>
         </sequence>
       </extension>
@@ -175,54 +170,4 @@ The site may have more than one classification.</documentation>
     <attributeGroup ref="gml:AssociationAttributeGroup"/>
     <attributeGroup ref="gml:OwnershipAttributeGroup"/>
   </complexType>
-  <simpleType name="ProtectionClassificationValueType">
-    <annotation>
-      <documentation>-- Definition --
-The protected site classification based on the purpose of protection.</documentation>
-    </annotation>
-    <restriction base="string">
-      <enumeration value="natureConservation">
-        <annotation>
-          <documentation>-- Definition --
-The Protected Site is protected for the maintenance of biological diversity.</documentation>
-        </annotation>
-      </enumeration>
-      <enumeration value="archaeological">
-        <annotation>
-          <documentation>-- Definition --
-The Protected Site is protected for the maintenance of archaeological heritage.</documentation>
-        </annotation>
-      </enumeration>
-      <enumeration value="cultural">
-        <annotation>
-          <documentation>-- Definition --
-The Protected Site is protected for the maintenance of cultural heritage.</documentation>
-        </annotation>
-      </enumeration>
-      <enumeration value="ecological">
-        <annotation>
-          <documentation>-- Definition --
-The Protected Site is protected for the maintenance of ecological stability.</documentation>
-        </annotation>
-      </enumeration>
-      <enumeration value="landscape">
-        <annotation>
-          <documentation>-- Definition --
-The Protected Site is protected for the maintenance of landscape characteristics.</documentation>
-        </annotation>
-      </enumeration>
-      <enumeration value="environment">
-        <annotation>
-          <documentation>-- Definition --
-The Protected Site is protected for the maintenance of environmental stability.</documentation>
-        </annotation>
-      </enumeration>
-      <enumeration value="geological">
-        <annotation>
-          <documentation>-- Definition --
-The Protected Site is protected for the maintenance of geological characteristics.</documentation>
-        </annotation>
-      </enumeration>
-    </restriction>
-  </simpleType>
 </schema>

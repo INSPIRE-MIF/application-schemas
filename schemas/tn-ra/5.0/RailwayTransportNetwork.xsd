@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?><schema xmlns="http://www.w3.org/2001/XMLSchema" xmlns:gml="http://www.opengis.net/gml/3.2" xmlns:net="http://inspire.ec.europa.eu/schemas/net/4.0" xmlns:tn="http://inspire.ec.europa.eu/schemas/tn/4.0" xmlns:tn-ra="http://inspire.ec.europa.eu/schemas/tn-ra/4.0" xmlns:tn-ro="http://inspire.ec.europa.eu/schemas/tn-ro/4.0" elementFormDefault="qualified" targetNamespace="http://inspire.ec.europa.eu/schemas/tn-ra/4.0" version="4.0">
+<?xml version="1.0" encoding="UTF-8"?><schema xmlns="http://www.w3.org/2001/XMLSchema" xmlns:gml="http://www.opengis.net/gml/3.2" xmlns:net="http://inspire.ec.europa.eu/schemas/net/4.0" xmlns:tn="http://inspire.ec.europa.eu/schemas/tn/4.0" xmlns:tn-ra="http://inspire.ec.europa.eu/schemas/tn-ra/5.0" xmlns:tn-ro="http://inspire.ec.europa.eu/schemas/tn-ro/4.0" elementFormDefault="qualified" targetNamespace="http://inspire.ec.europa.eu/schemas/tn-ra/5.0" version="5.0">
   <annotation>
     <documentation>-- Definition --
 This package defines the types that are used on the rail subtheme</documentation>
@@ -7,7 +7,9 @@ This package defines the types that are used on the rail subtheme</documentation
   <import namespace="http://inspire.ec.europa.eu/schemas/tn-ro/4.0" schemaLocation="https://inspire.ec.europa.eu/schemas/tn-ro/4.0/RoadTransportNetwork.xsd"/>
   <import namespace="http://inspire.ec.europa.eu/schemas/tn/4.0" schemaLocation="https://inspire.ec.europa.eu/schemas/tn/4.0/CommonTransportElements.xsd"/>
   <import namespace="http://www.opengis.net/gml/3.2" schemaLocation="http://schemas.opengis.net/gml/3.2.1/gml.xsd"/>
-  <!--XML Schema document created by ShapeChange-->
+  <!-- v5.0 of this schema released in INSPIRE schema release v.2024.1.
+       Change performed: Removed enumerations from schema and changed encoding of the attributes that refer to enumerations - breaking change - Amendment 1089/2010
+       See https://github.com/INSPIRE-MIF/application-schemas/releases/tag/2024.1 -->
   <element name="DesignSpeed" substitutionGroup="tn:TransportProperty" type="tn-ra:DesignSpeedType">
     <annotation>
       <documentation>-- Definition --
@@ -35,32 +37,6 @@ The specification of the maximum speed to which a railway line is designed for.<
     <attributeGroup ref="gml:AssociationAttributeGroup"/>
     <attributeGroup ref="gml:OwnershipAttributeGroup"/>
   </complexType>
-  <simpleType name="MinMaxTrackValueType">
-    <annotation>
-      <documentation>-- Definition --
-Values to indicate whether number of tracks are counted as the maximum, minimum or average number.</documentation>
-    </annotation>
-    <restriction base="string">
-      <enumeration value="average">
-        <annotation>
-          <documentation>-- Definition --
-The number of tracks is the average value for a given part of the railway network.</documentation>
-        </annotation>
-      </enumeration>
-      <enumeration value="maximum">
-        <annotation>
-          <documentation>-- Definition --
-The number of tracks is the maximum value for a given part of the railway network.</documentation>
-        </annotation>
-      </enumeration>
-      <enumeration value="minimum">
-        <annotation>
-          <documentation>-- Definition --
-The number of tracks is the minimum value for a given part of the railway network.</documentation>
-        </annotation>
-      </enumeration>
-    </restriction>
-  </simpleType>
   <element name="NominalTrackGauge" substitutionGroup="tn:TransportProperty" type="tn-ra:NominalTrackGaugeType">
     <annotation>
       <documentation>-- Definition --
@@ -84,18 +60,11 @@ A single value that identifies the track gauge.</documentation>
               </simpleContent>
             </complexType>
           </element>
-          <element minOccurs="0" name="nominalGaugeCategory" nillable="true">
+          <element minOccurs="0" name="nominalGaugeCategory" nillable="true" type="gml:ReferenceType">
             <annotation>
               <documentation>-- Definition --
 Provision of the gauge of a railway track as a fuzzy category with respect to the European standard nominal gauge.</documentation>
             </annotation>
-            <complexType>
-              <simpleContent>
-                <extension base="tn-ra:TrackGaugeCategoryValueType">
-                  <attribute name="nilReason" type="gml:NilReasonType"/>
-                </extension>
-              </simpleContent>
-            </complexType>
           </element>
         </sequence>
       </extension>
@@ -121,7 +90,7 @@ This is dependent on the resolution of the data.</documentation>
     <complexContent>
       <extension base="tn:TransportPropertyType">
         <sequence>
-          <element name="minMaxNumberOfTracks" nillable="true">
+          <element name="minMaxNumberOfTracks" nillable="true" type="gml:ReferenceType">
             <annotation>
               <documentation>-- Definition --
 Indicates whether the number of tracks are counted as minimum or maximum value.
@@ -129,13 +98,6 @@ Indicates whether the number of tracks are counted as minimum or maximum value.
 -- Description --
 NOTE This attribute only applies when the value in numberOfTracks is not an exact value.</documentation>
             </annotation>
-            <complexType>
-              <simpleContent>
-                <extension base="tn-ra:MinMaxTrackValueType">
-                  <attribute name="nilReason" type="gml:NilReasonType"/>
-                </extension>
-              </simpleContent>
-            </complexType>
           </element>
           <element name="numberOfTracks" type="integer">
             <annotation>
@@ -487,39 +449,4 @@ DEFINTION Railway yard: An area crossed by a number of parallel railway tracks (
     <attributeGroup ref="gml:AssociationAttributeGroup"/>
     <attributeGroup ref="gml:OwnershipAttributeGroup"/>
   </complexType>
-  <simpleType name="TrackGaugeCategoryValueType">
-    <annotation>
-      <documentation>-- Definition --
-The possible categories of railways concerning its nominal track gauge.</documentation>
-    </annotation>
-    <restriction base="string">
-      <enumeration value="broad">
-        <annotation>
-          <documentation>-- Definition --
-The nominal track gauge property is broader than the standard one.</documentation>
-        </annotation>
-      </enumeration>
-      <enumeration value="standard">
-        <annotation>
-          <documentation>-- Definition --
-The nominal track gauge property is equal to the European standard (1435 millimetres).</documentation>
-        </annotation>
-      </enumeration>
-      <enumeration value="narrow">
-        <annotation>
-          <documentation>-- Definition --
-The nominal track gauge property is narrower than the standard one.</documentation>
-        </annotation>
-      </enumeration>
-      <enumeration value="notApplicable">
-        <annotation>
-          <documentation>-- Definition --
-The definition of a nominal track gauge property is not applicable to the type of railway transport.
-
--- Description --
-EXAMPLE Monorail.</documentation>
-        </annotation>
-      </enumeration>
-    </restriction>
-  </simpleType>
 </schema>

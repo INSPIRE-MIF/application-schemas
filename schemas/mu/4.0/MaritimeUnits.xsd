@@ -1,11 +1,13 @@
-<?xml version="1.0" encoding="UTF-8"?><schema xmlns="http://www.w3.org/2001/XMLSchema" xmlns:au="http://inspire.ec.europa.eu/schemas/au/4.0" xmlns:base="http://inspire.ec.europa.eu/schemas/base/3.3" xmlns:gmd="http://www.isotc211.org/2005/gmd" xmlns:gml="http://www.opengis.net/gml/3.2" xmlns:gn="http://inspire.ec.europa.eu/schemas/gn/4.0" xmlns:mu="http://inspire.ec.europa.eu/schemas/mu/3.0" xmlns:sc="http://www.interactive-instruments.de/ShapeChange/AppInfo" elementFormDefault="qualified" targetNamespace="http://inspire.ec.europa.eu/schemas/mu/3.0" version="3.0">
+<?xml version="1.0" encoding="UTF-8"?><schema xmlns="http://www.w3.org/2001/XMLSchema" xmlns:au="http://inspire.ec.europa.eu/schemas/au/4.0" xmlns:base="http://inspire.ec.europa.eu/schemas/base/3.3" xmlns:gmd="http://www.isotc211.org/2005/gmd" xmlns:gml="http://www.opengis.net/gml/3.2" xmlns:gn="http://inspire.ec.europa.eu/schemas/gn/4.0" xmlns:mu="http://inspire.ec.europa.eu/schemas/mu/4.0" xmlns:sc="http://www.interactive-instruments.de/ShapeChange/AppInfo" elementFormDefault="qualified" targetNamespace="http://inspire.ec.europa.eu/schemas/mu/4.0" version="4.0">
   <import namespace="http://inspire.ec.europa.eu/schemas/au/4.0" schemaLocation="https://inspire.ec.europa.eu/schemas/au/4.0/AdministrativeUnits.xsd"/>
   <import namespace="http://inspire.ec.europa.eu/schemas/base/3.3" schemaLocation="https://inspire.ec.europa.eu/schemas/base/3.3/BaseTypes.xsd"/>
   <import namespace="http://inspire.ec.europa.eu/schemas/gn/4.0" schemaLocation="https://inspire.ec.europa.eu/schemas/gn/4.0/GeographicalNames.xsd"/>
   <import namespace="http://www.interactive-instruments.de/ShapeChange/AppInfo" schemaLocation="http://portele.de/ShapeChangeAppinfo.xsd"/>
   <import namespace="http://www.isotc211.org/2005/gmd" schemaLocation="http://schemas.opengis.net/iso/19139/20070417/gmd/gmd.xsd"/>
   <import namespace="http://www.opengis.net/gml/3.2" schemaLocation="http://schemas.opengis.net/gml/3.2.1/gml.xsd"/>
-  <!--XML Schema document created by ShapeChange-->
+  <!-- v4.0 of this schema released in INSPIRE schema release v.2024.1.
+       Change performed: Changed encoding of the attributes that refer to enumerations - breaking change - Amendment 1089/2010
+       See https://github.com/INSPIRE-MIF/application-schemas/releases/tag/2024.1 -->
   <element name="Baseline" substitutionGroup="gml:AbstractFeature" type="mu:BaselineType">
     <annotation>
       <documentation>-- Name --
@@ -192,7 +194,7 @@ External object identifier of the spatial object.
 NOTE An external object identifier is a unique object identifier published by the responsible body, which may be used by external applications to reference the spatial object. The identifier is an identifier of the spatial object, not an identifier of the real-world phenomenon.</documentation>
             </annotation>
           </element>
-          <element name="legalStatus" nillable="true">
+          <element name="legalStatus" nillable="true" type="gml:ReferenceType">
             <annotation>
               <documentation>-- Name --
 legal status
@@ -203,15 +205,8 @@ Legal status of this maritime boundary.
 -- Description --
 NOTE The legal status is considered in terms of political agreement or disagreement of the maritime boundary.</documentation>
             </annotation>
-            <complexType>
-              <simpleContent>
-                <extension base="au:LegalStatusValueType">
-                  <attribute name="nilReason" type="gml:NilReasonType"/>
-                </extension>
-              </simpleContent>
-            </complexType>
           </element>
-          <element name="technicalStatus" nillable="true">
+          <element name="technicalStatus" nillable="true" type="gml:ReferenceType">
             <annotation>
               <documentation>-- Name --
 technical status
@@ -222,13 +217,6 @@ The technical status of the maritime boundary.
 -- Description --
 NOTE The technical status of the maritime boundary is considered in terms of its topological matching or not-matching with the borders of maritime zones separated by this boundary. Edge-matched means that the same set of coordinates is used.</documentation>
             </annotation>
-            <complexType>
-              <simpleContent>
-                <extension base="au:TechnicalStatusValueType">
-                  <attribute name="nilReason" type="gml:NilReasonType"/>
-                </extension>
-              </simpleContent>
-            </complexType>
           </element>
         </sequence>
       </extension>

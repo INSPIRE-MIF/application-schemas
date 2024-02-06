@@ -1,11 +1,13 @@
-<?xml version="1.0" encoding="UTF-8"?><schema xmlns="http://www.w3.org/2001/XMLSchema" xmlns:base="http://inspire.ec.europa.eu/schemas/base/3.3" xmlns:base2="http://inspire.ec.europa.eu/schemas/base2/2.0" xmlns:ef="http://inspire.ec.europa.eu/schemas/ef/4.0" xmlns:gml="http://www.opengis.net/gml/3.2" xmlns:gmlcov="http://www.opengis.net/gmlcov/1.0" xmlns:nz-core="http://inspire.ec.europa.eu/schemas/nz-core/4.0" xmlns:sc="http://www.interactive-instruments.de/ShapeChange/AppInfo" elementFormDefault="qualified" targetNamespace="http://inspire.ec.europa.eu/schemas/nz-core/4.0" version="4.0">
+<?xml version="1.0" encoding="UTF-8"?><schema xmlns="http://www.w3.org/2001/XMLSchema" xmlns:base="http://inspire.ec.europa.eu/schemas/base/3.3" xmlns:base2="http://inspire.ec.europa.eu/schemas/base2/2.0" xmlns:ef="http://inspire.ec.europa.eu/schemas/ef/4.0" xmlns:gml="http://www.opengis.net/gml/3.2" xmlns:gmlcov="http://www.opengis.net/gmlcov/1.0" xmlns:nz-core="http://inspire.ec.europa.eu/schemas/nz-core/5.0" xmlns:sc="http://www.interactive-instruments.de/ShapeChange/AppInfo" elementFormDefault="qualified" targetNamespace="http://inspire.ec.europa.eu/schemas/nz-core/5.0" version="5.0">
   <import namespace="http://inspire.ec.europa.eu/schemas/base/3.3" schemaLocation="https://inspire.ec.europa.eu/schemas/base/3.3/BaseTypes.xsd"/>
   <import namespace="http://inspire.ec.europa.eu/schemas/base2/2.0" schemaLocation="https://inspire.ec.europa.eu/schemas/base2/2.0/BaseTypes2.xsd"/>
   <import namespace="http://inspire.ec.europa.eu/schemas/ef/4.0" schemaLocation="https://inspire.ec.europa.eu/schemas/ef/4.0/EnvironmentalMonitoringFacilities.xsd"/>
   <import namespace="http://www.interactive-instruments.de/ShapeChange/AppInfo" schemaLocation="http://portele.de/ShapeChangeAppinfo.xsd"/>
   <import namespace="http://www.opengis.net/gml/3.2" schemaLocation="http://schemas.opengis.net/gml/3.2.1/gml.xsd"/>
   <import namespace="http://www.opengis.net/gmlcov/1.0" schemaLocation="http://schemas.opengis.net/gmlcov/1.0/coverage.xsd"/>
-  <!--XML Schema document created by ShapeChange-->
+  <!-- v5.0 of this schema released in INSPIRE schema release v.2024.1.
+       Change performed: Removed enumeration from schema and changed encoding of the attributes that refer to enumerations - breaking change - Amendment 1089/2010
+       See https://github.com/INSPIRE-MIF/application-schemas/releases/tag/2024.1 -->
   <element abstract="true" name="AbstractExposedElement" substitutionGroup="gml:AbstractFeature" type="nz-core:AbstractExposedElementType">
     <annotation>
       <documentation>-- Definition --
@@ -119,7 +121,7 @@ Date and time at which this version of the spatial object was inserted or change
               </simpleContent>
             </complexType>
           </element>
-          <element name="determinationMethod" type="nz-core:DeterminationMethodValueType">
+          <element name="determinationMethod" type="gml:ReferenceType">
             <annotation>
               <documentation>-- Definition --
 Specifies if the hazard area result is delineated after modelling or determined after interpretation.</documentation>
@@ -388,29 +390,6 @@ The hazard which is considered for the creation of the risk zone object.</docume
     <attributeGroup ref="gml:AssociationAttributeGroup"/>
     <attributeGroup ref="gml:OwnershipAttributeGroup"/>
   </complexType>
-  <simpleType name="DeterminationMethodValueType">
-    <annotation>
-      <documentation>-- Definition --
-An enumeration to describe the method used to define the area of hazard or risk.
-
--- Description --
-There are several ways to delineate the perimeter of a hazard or a risk : to model it, or to assess it indirectly</documentation>
-    </annotation>
-    <restriction base="string">
-      <enumeration value="modelling">
-        <annotation>
-          <documentation>-- Definition --
-The area has been computed according to a model.</documentation>
-        </annotation>
-      </enumeration>
-      <enumeration value="indirectDetermination">
-        <annotation>
-          <documentation>-- Definition --
-The area has been defined by interpretation of available data and/or information.</documentation>
-        </annotation>
-      </enumeration>
-    </restriction>
-  </simpleType>
   <element name="ExposedElement" substitutionGroup="nz-core:AbstractExposedElement" type="nz-core:ExposedElementType">
     <annotation>
       <documentation>-- Definition --

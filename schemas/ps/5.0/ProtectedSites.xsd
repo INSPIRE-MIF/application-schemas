@@ -1,9 +1,12 @@
-<?xml version="1.0" encoding="UTF-8"?><schema xmlns="http://www.w3.org/2001/XMLSchema" xmlns:base="http://inspire.ec.europa.eu/schemas/base/3.3" xmlns:gmd="http://www.isotc211.org/2005/gmd" xmlns:gml="http://www.opengis.net/gml/3.2" xmlns:gn="http://inspire.ec.europa.eu/schemas/gn/4.0" xmlns:ps="http://inspire.ec.europa.eu/schemas/ps/4.0" elementFormDefault="qualified" targetNamespace="http://inspire.ec.europa.eu/schemas/ps/4.0" version="4.0">
+<?xml version="1.0" encoding="UTF-8"?><schema xmlns="http://www.w3.org/2001/XMLSchema" xmlns:base="http://inspire.ec.europa.eu/schemas/base/3.3" xmlns:base2="http://inspire.ec.europa.eu/schemas/base2/2.0" xmlns:gmd="http://www.isotc211.org/2005/gmd" xmlns:gml="http://www.opengis.net/gml/3.2" xmlns:gn="http://inspire.ec.europa.eu/schemas/gn/4.0" xmlns:ps="http://inspire.ec.europa.eu/schemas/ps/5.0" elementFormDefault="qualified" targetNamespace="http://inspire.ec.europa.eu/schemas/ps/5.0" version="5.0">
   <import namespace="http://inspire.ec.europa.eu/schemas/base/3.3" schemaLocation="https://inspire.ec.europa.eu/schemas/base/3.3/BaseTypes.xsd"/>
+  <import namespace="http://inspire.ec.europa.eu/schemas/base2/2.0" schemaLocation="https://inspire.ec.europa.eu/schemas/base2/2.0/BaseTypes2.xsd"/>
   <import namespace="http://inspire.ec.europa.eu/schemas/gn/4.0" schemaLocation="https://inspire.ec.europa.eu/schemas/gn/4.0/GeographicalNames.xsd"/>
   <import namespace="http://www.isotc211.org/2005/gmd" schemaLocation="http://schemas.opengis.net/iso/19139/20070417/gmd/gmd.xsd"/>
   <import namespace="http://www.opengis.net/gml/3.2" schemaLocation="http://schemas.opengis.net/gml/3.2.1/gml.xsd"/>
-  <!--XML Schema document created by ShapeChange-->
+  <!-- v5.0 of this schema released in INSPIRE schema release v.2024.1.
+       Change performed: Fixed typo in inspireId, added new attribute and moved attributes to data type - breaking change - Amendment 1089/2010
+       See https://github.com/INSPIRE-MIF/application-schemas/releases/tag/2024.1 -->
   <element name="DesignationType" substitutionGroup="gml:AbstractObject" type="ps:DesignationTypeType">
     <annotation>
       <documentation>-- Definition --
@@ -29,6 +32,38 @@ The actual Site designation.</documentation>
           <documentation>-- Definition --
 The percentage of the site that falls under the designation. This is used in particular for the IUCN categorisation. If a value is not provided for this attribute, it is assumed to be 100%</documentation>
         </annotation>
+      </element>
+      <element name="legalFoundationDate" nillable="true">
+        <annotation>
+          <documentation>-- Definition --
+            The date that the protected site was legally created. This is the date that the real world object was created, not the date that its representation in an information system was created.
+            
+            -- Description --
+            NOTE In the case of Natura2000 sites, a protected site may go through several different stages (for example, proposed as SCI, confirmed as SCI, designated as SAC). A new version of the site is created for each of these different stages (because there is a change in the designation), and the new version should have the date on which the new stage was legally assigned as the legalFoundationDate (for example, when designated as a SAC, the version for the SAC would have the designation date as the legalFoundationDate).</documentation>
+        </annotation>
+        <complexType>
+          <simpleContent>
+            <extension base="date">
+              <attribute name="nilReason" type="gml:NilReasonType"/>
+            </extension>
+          </simpleContent>
+        </complexType>
+      </element>
+      <element name="legalFoundationDocument" nillable="true">
+        <annotation>
+          <documentation>-- Definition --
+            A URL or text citation referencing the legal act that created the Protected Site.</documentation>
+        </annotation>
+        <complexType>
+          <complexContent>
+            <extension base="gml:AbstractMetadataPropertyType">
+              <sequence>
+                <element ref="gmd:CI_Citation"/>
+              </sequence>
+              <attribute name="nilReason" type="gml:NilReasonType"/>
+            </extension>
+          </complexContent>
+        </complexType>
       </element>
     </sequence>
   </complexType>
@@ -68,36 +103,17 @@ External object identifier of the protected site.
 NOTE An external object identifier is a unique object identifier published by the responsible body, which may be used by external applications to reference the spatial object. The identifier is an identifier of the spatial object, not an identifier of the real-world phenomenon.</documentation>
             </annotation>
           </element>
-          <element name="legalFoundationDate" nillable="true">
+          <element maxOccurs="unbounded" minOccurs="0" name="thematicId" nillable="true">
             <annotation>
               <documentation>-- Definition --
-The date that the protected site was legally created. This is the date that the real world object was created, not the date that its representation in an information system was created.
-
--- Description --
-NOTE In the case of Natura2000 sites, a protected site may go through several different stages (for example, proposed as SCI, confirmed as SCI, designated as SAC). A new version of the site is created for each of these different stages (because there is a change in the designation), and the new version should have the date on which the new stage was legally assigned as the legalFoundationDate (for example, when designated as a SAC, the version for the SAC would have the designation date as the legalFoundationDate).</documentation>
+                Thematic object identifier.
+                -- Description --</documentation>
             </annotation>
             <complexType>
-              <simpleContent>
-                <extension base="dateTime">
-                  <attribute name="nilReason" type="gml:NilReasonType"/>
-                </extension>
-              </simpleContent>
-            </complexType>
-          </element>
-          <element name="legalFoundationDocument" nillable="true">
-            <annotation>
-              <documentation>-- Definition --
-A URL or text citation referencing the legal act that created the Protected Site.</documentation>
-            </annotation>
-            <complexType>
-              <complexContent>
-                <extension base="gml:AbstractMetadataPropertyType">
-                  <sequence>
-                    <element ref="gmd:CI_Citation"/>
-                  </sequence>
-                  <attribute name="nilReason" type="gml:NilReasonType"/>
-                </extension>
-              </complexContent>
+              <sequence>
+                <element ref="base2:ThematicIdentifier"/>
+              </sequence>
+              <attribute name="nilReason" type="gml:NilReasonType"/>
             </complexType>
           </element>
           <element maxOccurs="unbounded" name="siteDesignation" nillable="true">

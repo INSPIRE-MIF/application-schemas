@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?><schema xmlns="http://www.w3.org/2001/XMLSchema" xmlns:act-core="http://inspire.ec.europa.eu/schemas/act-core/4.0" xmlns:base="http://inspire.ec.europa.eu/schemas/base/3.3" xmlns:base2="http://inspire.ec.europa.eu/schemas/base2/2.0" xmlns:gmd="http://www.isotc211.org/2005/gmd" xmlns:gml="http://www.opengis.net/gml/3.2" xmlns:net="http://inspire.ec.europa.eu/schemas/net/4.0" xmlns:sc="http://www.interactive-instruments.de/ShapeChange/AppInfo" xmlns:us-govserv="http://inspire.ec.europa.eu/schemas/us-govserv/4.0" xmlns:us-net-common="http://inspire.ec.europa.eu/schemas/us-net-common/4.0" elementFormDefault="qualified" targetNamespace="http://inspire.ec.europa.eu/schemas/us-net-common/4.0" version="4.0.1">
+<?xml version="1.0" encoding="UTF-8"?><schema xmlns="http://www.w3.org/2001/XMLSchema" xmlns:act-core="http://inspire.ec.europa.eu/schemas/act-core/4.0" xmlns:base="http://inspire.ec.europa.eu/schemas/base/3.3" xmlns:base2="http://inspire.ec.europa.eu/schemas/base2/2.0" xmlns:gmd="http://www.isotc211.org/2005/gmd" xmlns:gml="http://www.opengis.net/gml/3.2" xmlns:net="http://inspire.ec.europa.eu/schemas/net/4.0" xmlns:sc="http://www.interactive-instruments.de/ShapeChange/AppInfo" xmlns:us-govserv="http://inspire.ec.europa.eu/schemas/us-govserv/4.0" xmlns:us-net-common="http://inspire.ec.europa.eu/schemas/us-net-common/5.0" elementFormDefault="qualified" targetNamespace="http://inspire.ec.europa.eu/schemas/us-net-common/5.0" version="5.0">
   <annotation>
     <documentation>-- Name --
 common utility network elements
@@ -14,8 +14,10 @@ Common Utility Network Elements</documentation>
   <import namespace="http://www.interactive-instruments.de/ShapeChange/AppInfo" schemaLocation="http://portele.de/ShapeChangeAppinfo.xsd"/>
   <import namespace="http://www.isotc211.org/2005/gmd" schemaLocation="http://schemas.opengis.net/iso/19139/20070417/gmd/gmd.xsd"/>
   <import namespace="http://www.opengis.net/gml/3.2" schemaLocation="http://schemas.opengis.net/gml/3.2.1/gml.xsd"/>
-  <!-- v4.0.1 of this schema released in INSPIRE schema release v.2024.1.
-       Change performed: Defined datatype for the authorityRole attribute - breaking change
+    <!-- v5.0 of this schema released in INSPIRE schema release v.2024.1.
+       Change performed:
+	    - Changed encoding of the attributes that refer to enumerations - breaking change - Amendment 1089/2010
+	    - Defined datatype for the authorityRole attribute - breaking change
        See https://github.com/INSPIRE-MIF/application-schemas/releases/tag/2024.1 -->
   <element name="Appurtenance" substitutionGroup="us-net-common:UtilityNode" type="us-net-common:AppurtenanceType">
     <annotation>
@@ -513,7 +515,7 @@ The time from which the utility network element no longer exists in the real wor
               </simpleContent>
             </complexType>
           </element>
-          <element name="verticalPosition" nillable="true">
+          <element name="verticalPosition" nillable="true" type="gml:ReferenceType">
             <annotation>
               <documentation>-- Name --
 vertical position
@@ -524,13 +526,6 @@ Vertical position of the utility object relative to ground.</documentation>
                 <taggedValue xmlns="http://www.interactive-instruments.de/ShapeChange/AppInfo" tag="obligation">implementingRule</taggedValue>
               </appinfo>
             </annotation>
-            <complexType>
-              <simpleContent>
-                <extension base="base:VerticalPositionValueType">
-                  <attribute name="nilReason" type="gml:NilReasonType"/>
-                </extension>
-              </simpleContent>
-            </complexType>
           </element>
           <element minOccurs="0" name="utilityFacilityReference" nillable="true">
             <annotation>
@@ -645,7 +640,7 @@ The time from which the utility network element no longer exists in the real wor
               </simpleContent>
             </complexType>
           </element>
-          <element name="verticalPosition" nillable="true">
+          <element name="verticalPosition" nillable="true" type="gml:ReferenceType">
             <annotation>
               <documentation>-- Name --
 vertical position
@@ -656,13 +651,6 @@ Vertical position of the utility object relative to ground.</documentation>
                 <taggedValue xmlns="http://www.interactive-instruments.de/ShapeChange/AppInfo" tag="obligation">implementingRule</taggedValue>
               </appinfo>
             </annotation>
-            <complexType>
-              <simpleContent>
-                <extension base="base:VerticalPositionValueType">
-                  <attribute name="nilReason" type="gml:NilReasonType"/>
-                </extension>
-              </simpleContent>
-            </complexType>
           </element>
           <element minOccurs="0" name="utilityFacilityReference" nillable="true">
             <annotation>
@@ -781,7 +769,7 @@ The time from which the utility network element no longer exists in the real wor
               </simpleContent>
             </complexType>
           </element>
-          <element name="verticalPosition" nillable="true">
+          <element name="verticalPosition" nillable="true" type="gml:ReferenceType">
             <annotation>
               <documentation>-- Name --
 vertical position
@@ -792,13 +780,6 @@ Vertical position of the utility object relative to ground.</documentation>
                 <taggedValue xmlns="http://www.interactive-instruments.de/ShapeChange/AppInfo" tag="obligation">implementingRule</taggedValue>
               </appinfo>
             </annotation>
-            <complexType>
-              <simpleContent>
-                <extension base="base:VerticalPositionValueType">
-                  <attribute name="nilReason" type="gml:NilReasonType"/>
-                </extension>
-              </simpleContent>
-            </complexType>
           </element>
           <element minOccurs="0" name="utilityFacilityReference" nillable="true">
             <annotation>
@@ -1054,7 +1035,7 @@ The time from which the utility network element no longer exists in the real wor
               </simpleContent>
             </complexType>
           </element>
-          <element name="verticalPosition" nillable="true">
+          <element name="verticalPosition" nillable="true" type="gml:ReferenceType">
             <annotation>
               <documentation>-- Name --
 vertical position
@@ -1065,13 +1046,6 @@ Vertical position of the utility object relative to ground.</documentation>
                 <taggedValue xmlns="http://www.interactive-instruments.de/ShapeChange/AppInfo" tag="obligation">implementingRule</taggedValue>
               </appinfo>
             </annotation>
-            <complexType>
-              <simpleContent>
-                <extension base="base:VerticalPositionValueType">
-                  <attribute name="nilReason" type="gml:NilReasonType"/>
-                </extension>
-              </simpleContent>
-            </complexType>
           </element>
           <element minOccurs="0" name="utilityFacilityReference" nillable="true">
             <annotation>
@@ -1190,7 +1164,7 @@ The time from which the utility network element no longer exists in the real wor
               </simpleContent>
             </complexType>
           </element>
-          <element name="verticalPosition" nillable="true">
+          <element name="verticalPosition" nillable="true" type="gml:ReferenceType">
             <annotation>
               <documentation>-- Name --
 vertical position
@@ -1201,13 +1175,6 @@ Vertical position of the utility object relative to ground.</documentation>
                 <taggedValue xmlns="http://www.interactive-instruments.de/ShapeChange/AppInfo" tag="obligation">implementingRule</taggedValue>
               </appinfo>
             </annotation>
-            <complexType>
-              <simpleContent>
-                <extension base="base:VerticalPositionValueType">
-                  <attribute name="nilReason" type="gml:NilReasonType"/>
-                </extension>
-              </simpleContent>
-            </complexType>
           </element>
           <element minOccurs="0" name="utilityFacilityReference" nillable="true">
             <annotation>

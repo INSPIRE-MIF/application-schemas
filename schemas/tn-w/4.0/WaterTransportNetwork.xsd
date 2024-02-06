@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?><schema xmlns="http://www.w3.org/2001/XMLSchema" xmlns:gml="http://www.opengis.net/gml/3.2" xmlns:net="http://inspire.ec.europa.eu/schemas/net/4.0" xmlns:tn="http://inspire.ec.europa.eu/schemas/tn/4.0" xmlns:tn-w="http://inspire.ec.europa.eu/schemas/tn-w/4.0" elementFormDefault="qualified" targetNamespace="http://inspire.ec.europa.eu/schemas/tn-w/4.0" version="4.0">
+<?xml version="1.0" encoding="UTF-8"?><schema xmlns="http://www.w3.org/2001/XMLSchema" xmlns:gml="http://www.opengis.net/gml/3.2" xmlns:net="http://inspire.ec.europa.eu/schemas/net/4.0" xmlns:tn="http://inspire.ec.europa.eu/schemas/tn/4.0" xmlns:tn-w="http://inspire.ec.europa.eu/schemas/tn-w/4.0" elementFormDefault="qualified" targetNamespace="http://inspire.ec.europa.eu/schemas/tn-w/4.0" version="4.1">
   <annotation>
     <documentation>-- Definition --
 This package defines the types that are used on the water transport subtheme.</documentation>
@@ -6,7 +6,9 @@ This package defines the types that are used on the water transport subtheme.</d
   <import namespace="http://inspire.ec.europa.eu/schemas/net/4.0" schemaLocation="https://inspire.ec.europa.eu/schemas/net/4.0/Network.xsd"/>
   <import namespace="http://inspire.ec.europa.eu/schemas/tn/4.0" schemaLocation="https://inspire.ec.europa.eu/schemas/tn/4.0/CommonTransportElements.xsd"/>
   <import namespace="http://www.opengis.net/gml/3.2" schemaLocation="http://schemas.opengis.net/gml/3.2.1/gml.xsd"/>
-  <!--XML Schema document created by ShapeChange-->
+  <!-- v4.1 of this schema released in INSPIRE schema release v.2024.1.
+       Change performed: Removed “abstract” stereotype for the TrafficSeparationScheme feature type. - non-breaking change - Amendment 1089/2010
+       See https://github.com/INSPIRE-MIF/application-schemas/releases/tag/2024.1 -->
   <element name="Beacon" substitutionGroup="tn:TransportPoint" type="tn-w:BeaconType">
     <annotation>
       <documentation>-- Definition --
@@ -364,7 +366,7 @@ Restriction on vehicles on a water transport element.</documentation>
     <attributeGroup ref="gml:AssociationAttributeGroup"/>
     <attributeGroup ref="gml:OwnershipAttributeGroup"/>
   </complexType>
-  <element abstract="true" name="TrafficSeparationScheme" substitutionGroup="gml:AbstractFeature" type="tn-w:TrafficSeparationSchemeType">
+  <element name="TrafficSeparationScheme" substitutionGroup="gml:AbstractFeature" type="tn-w:TrafficSeparationSchemeType">
     <annotation>
       <documentation>-- Definition --
 A scheme which aims at reducing the risk of collision in congested and/or converging areas by separating traffic moving in opposite, or nearly opposite, directions.

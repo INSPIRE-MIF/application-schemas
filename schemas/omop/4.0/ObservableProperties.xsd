@@ -1,11 +1,13 @@
-<?xml version="1.0" encoding="UTF-8"?><schema xmlns="http://www.w3.org/2001/XMLSchema" xmlns:gml="http://www.opengis.net/gml/3.2" xmlns:omop="http://inspire.ec.europa.eu/schemas/omop/3.0" xmlns:sc="http://www.interactive-instruments.de/ShapeChange/AppInfo" elementFormDefault="qualified" targetNamespace="http://inspire.ec.europa.eu/schemas/omop/3.0" version="3.0">
+<?xml version="1.0" encoding="UTF-8"?><schema xmlns="http://www.w3.org/2001/XMLSchema" xmlns:gml="http://www.opengis.net/gml/3.2" xmlns:omop="http://inspire.ec.europa.eu/schemas/omop/4.0" xmlns:sc="http://www.interactive-instruments.de/ShapeChange/AppInfo" elementFormDefault="qualified" targetNamespace="http://inspire.ec.europa.eu/schemas/omop/4.0" version="4.0">
   <annotation>
     <documentation>-- Definition --
 Application Schema for Observable Properties</documentation>
   </annotation>
   <import namespace="http://www.interactive-instruments.de/ShapeChange/AppInfo" schemaLocation="http://portele.de/ShapeChangeAppinfo.xsd"/>
   <import namespace="http://www.opengis.net/gml/3.2" schemaLocation="http://schemas.opengis.net/gml/3.2.1/gml.xsd"/>
-  <!--XML Schema document created by ShapeChange-->
+  <!-- v4.0 of this schema released in INSPIRE schema release v.2024.1.
+       Change performed: Removed enumeration from schema and changed encoding of the attributes that refer to enumerations - breaking change - Amendment 1089/2010
+       See https://github.com/INSPIRE-MIF/application-schemas/releases/tag/2024.1 -->
   <element abstract="true" name="AbstractObservableProperty" substitutionGroup="gml:AbstractGML" type="omop:AbstractObservablePropertyType">
     <annotation>
       <documentation>-- Name --
@@ -57,7 +59,7 @@ The value ('Red') of the constraint ('colour') can be any string, although it ma
     <complexContent>
       <extension base="omop:ConstraintType">
         <sequence>
-          <element name="comparison" type="omop:ComparisonOperatorValueType">
+          <element name="comparison" type="gml:ReferenceType">
             <annotation>
               <documentation>-- Name --
 comparison
@@ -84,70 +86,6 @@ The value of the property that is constrained e.g. 'blue' (if the constrained pr
       <element ref="omop:CategoryConstraint"/>
     </sequence>
   </complexType>
-  <simpleType name="ComparisonOperatorValueType">
-    <annotation>
-      <documentation>-- Name --
-ComparisonOperatorValue
--- Definition --
-An enumeration of  comparison operators (e.g. greater than)</documentation>
-    </annotation>
-    <restriction base="string">
-      <enumeration value="equalTo">
-        <annotation>
-          <documentation>-- Name --
-equalTo
-
--- Definition --
-Exactly equal to</documentation>
-        </annotation>
-      </enumeration>
-      <enumeration value="notEqualTo">
-        <annotation>
-          <documentation>-- Name --
-notEqualTo
-
--- Definition --
-Not exactly equal to</documentation>
-        </annotation>
-      </enumeration>
-      <enumeration value="lessThan">
-        <annotation>
-          <documentation>-- Name --
-lessThan
-
--- Definition --
-Less than</documentation>
-        </annotation>
-      </enumeration>
-      <enumeration value="greaterThan">
-        <annotation>
-          <documentation>-- Name --
-greaterThan
-
--- Definition --
-Greater Than</documentation>
-        </annotation>
-      </enumeration>
-      <enumeration value="lessThanOrEqualTo">
-        <annotation>
-          <documentation>-- Name --
-lessThanOrEqualTo
-
--- Definition --
-Less than or exactly equal to</documentation>
-        </annotation>
-      </enumeration>
-      <enumeration value="greaterThanOrEqualTo">
-        <annotation>
-          <documentation>-- Name --
-greaterThanOrEqualTo
-
--- Definition --
-Greater than or exactly equal to</documentation>
-        </annotation>
-      </enumeration>
-    </restriction>
-  </simpleType>
   <element name="CompositeObservableProperty" substitutionGroup="omop:AbstractObservableProperty" type="omop:CompositeObservablePropertyType">
     <annotation>
       <documentation>-- Name --
@@ -338,7 +276,7 @@ The start and end bounding values of a numerical range (e.g. start &gt;=50, end 
   </element>
   <complexType name="RangeBoundsType">
     <sequence>
-      <element name="startComparison" type="omop:ComparisonOperatorValueType">
+      <element name="startComparison" type="gml:ReferenceType">
         <annotation>
           <documentation>-- Name --
 startComparison
@@ -356,7 +294,7 @@ rangeStart
 The lower limit of the range.</documentation>
         </annotation>
       </element>
-      <element name="endComparison" type="omop:ComparisonOperatorValueType">
+      <element name="endComparison" type="gml:ReferenceType">
         <annotation>
           <documentation>-- Name --
 endComparison
@@ -451,7 +389,7 @@ value
 The numerical value of the property that is constrained</documentation>
             </annotation>
           </element>
-          <element name="comparison" type="omop:ComparisonOperatorValueType">
+          <element name="comparison" type="gml:ReferenceType">
             <annotation>
               <documentation>-- Name --
 comparison

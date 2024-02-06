@@ -194,7 +194,7 @@ External object identifier of the spatial object.
 NOTE An external object identifier is a unique object identifier published by the responsible body, which may be used by external applications to reference the spatial object. The identifier is an identifier of the spatial object, not an identifier of the real-world phenomenon.</documentation>
             </annotation>
           </element>
-          <element name="origin" nillable="true">
+          <element name="origin" nillable="true" type="gml:ReferenceType">
             <annotation>
               <documentation>-- Definition --
 Origin of the drainage basin.
@@ -204,13 +204,6 @@ EXAMPLE Natural, man-made, etc.
 
 NOTE A polder is a drainage basin of man-made origin.</documentation>
             </annotation>
-            <complexType>
-              <simpleContent>
-                <extension base="hy-p:OriginValueType">
-                  <attribute name="nilReason" type="gml:NilReasonType"/>
-                </extension>
-              </simpleContent>
-            </complexType>
           </element>
           <element maxOccurs="unbounded" minOccurs="0" name="containsBasin" nillable="true" type="gml:ReferenceType">
             <annotation>
@@ -580,7 +573,7 @@ External object identifier of the spatial object.
 NOTE An external object identifier is a unique object identifier published by the responsible body, which may be used by external applications to reference the spatial object. The identifier is an identifier of the spatial object, not an identifier of the real-world phenomenon.</documentation>
             </annotation>
           </element>
-          <element name="origin" nillable="true">
+          <element name="origin" nillable="true" type="gml:ReferenceType">
             <annotation>
               <documentation>-- Definition --
 Origin of the land-water boundary.
@@ -588,13 +581,6 @@ Origin of the land-water boundary.
 -- Description --
 EXAMPLE Natural, man-made, etc.; a sea defence is a land-water boundary of man-made origin.</documentation>
             </annotation>
-            <complexType>
-              <simpleContent>
-                <extension base="hy-p:OriginValueType">
-                  <attribute name="nilReason" type="gml:NilReasonType"/>
-                </extension>
-              </simpleContent>
-            </complexType>
           </element>
           <element name="waterLevelCategory" nillable="true" type="gml:ReferenceType">
             <annotation>
@@ -775,29 +761,6 @@ NOTE The object is captured at a scale of this level of detail; rules apply for 
     <attributeGroup ref="gml:AssociationAttributeGroup"/>
     <attributeGroup ref="gml:OwnershipAttributeGroup"/>
   </complexType>
-  <simpleType name="OriginValueType">
-    <annotation>
-      <documentation>-- Definition --
-An enumeration type specifying a set of hydrographic 'origin' categories (natural, man-made) for various hydrographic objects.</documentation>
-    </annotation>
-    <restriction base="string">
-      <enumeration value="natural">
-        <annotation>
-          <documentation>-- Definition --
-An indication that a spatial object is natural.</documentation>
-        </annotation>
-      </enumeration>
-      <enumeration value="manMade">
-        <annotation>
-          <documentation>-- Definition --
-An indication that a spatial object is man-made.
-
--- Description --
-SOURCE [DFDD].</documentation>
-        </annotation>
-      </enumeration>
-    </restriction>
-  </simpleType>
   <element name="Rapids" substitutionGroup="hy-p:FluvialPoint" type="hy-p:RapidsType">
     <annotation>
       <documentation>-- Definition --
@@ -1229,7 +1192,7 @@ Provides 'local' name for the type of surface water.
 EXAMPLE Canal, channel, ditch, etc.</documentation>
             </annotation>
           </element>
-          <element name="origin" nillable="true">
+          <element name="origin" nillable="true" type="gml:ReferenceType">
             <annotation>
               <documentation>-- Definition --
 Origin of the surface water.
@@ -1243,13 +1206,6 @@ NOTE 1 Natural surface waters are natural watercourses (e.g. rivers, streams) an
 
 NOTE 2 A man-made surface water is a surface water entirely created by man for drainage, storage or transportation purpose, this includes canals, ditches and reservoirs.</documentation>
             </annotation>
-            <complexType>
-              <simpleContent>
-                <extension base="hy-p:OriginValueType">
-                  <attribute name="nilReason" type="gml:NilReasonType"/>
-                </extension>
-              </simpleContent>
-            </complexType>
           </element>
           <element name="persistence" nillable="true" type="gml:ReferenceType">
             <annotation>

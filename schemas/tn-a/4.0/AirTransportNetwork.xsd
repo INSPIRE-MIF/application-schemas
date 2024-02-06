@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?><schema xmlns="http://www.w3.org/2001/XMLSchema" xmlns:gml="http://www.opengis.net/gml/3.2" xmlns:net="http://inspire.ec.europa.eu/schemas/net/4.0" xmlns:tn="http://inspire.ec.europa.eu/schemas/tn/4.0" xmlns:tn-a="http://inspire.ec.europa.eu/schemas/tn-a/4.0" xmlns:bu-base="http://inspire.ec.europa.eu/schemas/bu-base/4.0" elementFormDefault="qualified" targetNamespace="http://inspire.ec.europa.eu/schemas/tn-a/4.0" version="4.0">
+<?xml version="1.0" encoding="UTF-8"?><schema xmlns="http://www.w3.org/2001/XMLSchema" xmlns:gml="http://www.opengis.net/gml/3.2" xmlns:net="http://inspire.ec.europa.eu/schemas/net/4.0" xmlns:tn="http://inspire.ec.europa.eu/schemas/tn/4.0" xmlns:tn-a="http://inspire.ec.europa.eu/schemas/tn-a/4.0" xmlns:bu-base="http://inspire.ec.europa.eu/schemas/bu-base/4.0" elementFormDefault="qualified" targetNamespace="http://inspire.ec.europa.eu/schemas/tn-a/4.0" version="4.1">
   <annotation>
     <documentation>-- Definition --
 This package defines the types that are used on the air transport subtheme.</documentation>
@@ -7,7 +7,9 @@ This package defines the types that are used on the air transport subtheme.</doc
   <import namespace="http://inspire.ec.europa.eu/schemas/tn/4.0" schemaLocation="https://inspire.ec.europa.eu/schemas/tn/4.0/CommonTransportElements.xsd"/>
   <import namespace="http://inspire.ec.europa.eu/schemas/bu-base/4.0" schemaLocation="https://inspire.ec.europa.eu/schemas/bu-base/4.0/BuildingsBase.xsd"/>
   <import namespace="http://www.opengis.net/gml/3.2" schemaLocation="http://schemas.opengis.net/gml/3.2.1/gml.xsd"/>
-  <!--XML Schema document created by ShapeChange-->
+  <!-- v4.1 of this schema released in INSPIRE schema release v.2024.1.
+       Change performed: Changed the datatype for the "controlTowers" association of the AerodromeNode feature type. - non-breaking change - Amendment 1089/2010
+       See https://github.com/INSPIRE-MIF/application-schemas/releases/tag/2024.1 -->
   <element name="AerodromeArea" substitutionGroup="tn:TransportArea" type="tn-a:AerodromeAreaType">
     <annotation>
       <documentation>-- Definition --
@@ -109,13 +111,9 @@ SOURCE [AIXM5.0].</documentation>
               </simpleContent>
             </complexType>
           </element>
-		  <element maxOccurs="unbounded" minOccurs="0" name="controlTowers" nillable="true" type="gml:ReferenceType">
+          <element maxOccurs="unbounded" minOccurs="0" name="controlTowers" nillable="true" type="bu-base:BuildingPropertyType">
             <annotation>
-              <documentation>-- Definition --
-The set of control towers belonging to an aerodrome (airport/heliport).</documentation>
-              <appinfo>
-                <targetElement xmlns="http://www.opengis.net/gml/3.2">bu-base:AbstractConstruction</targetElement>
-              </appinfo>
+              <documentation>-- Name -- control towers -- Definition -- The set of control towers belonging to an aerodrome (airport/heliport).</documentation>
             </annotation>
           </element>
         </sequence>

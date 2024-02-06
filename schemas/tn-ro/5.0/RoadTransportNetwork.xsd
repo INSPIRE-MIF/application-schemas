@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?><schema xmlns="http://www.w3.org/2001/XMLSchema" xmlns:gml="http://www.opengis.net/gml/3.2" xmlns:gn="http://inspire.ec.europa.eu/schemas/gn/4.0" xmlns:net="http://inspire.ec.europa.eu/schemas/net/4.0" xmlns:tn="http://inspire.ec.europa.eu/schemas/tn/4.0" xmlns:tn-ro="http://inspire.ec.europa.eu/schemas/tn-ro/4.0" elementFormDefault="qualified" targetNamespace="http://inspire.ec.europa.eu/schemas/tn-ro/4.0" version="4.0">
+<?xml version="1.0" encoding="UTF-8"?><schema xmlns="http://www.w3.org/2001/XMLSchema" xmlns:gml="http://www.opengis.net/gml/3.2" xmlns:gn="http://inspire.ec.europa.eu/schemas/gn/4.0" xmlns:net="http://inspire.ec.europa.eu/schemas/net/4.0" xmlns:tn="http://inspire.ec.europa.eu/schemas/tn/4.0" xmlns:tn-ro="http://inspire.ec.europa.eu/schemas/tn-ro/5.0" elementFormDefault="qualified" targetNamespace="http://inspire.ec.europa.eu/schemas/tn-ro/5.0" version="5.0">
   <annotation>
     <documentation>-- Definition --
 This package defines the types that are used on the road subtheme.</documentation>
@@ -7,7 +7,9 @@ This package defines the types that are used on the road subtheme.</documentatio
   <import namespace="http://inspire.ec.europa.eu/schemas/net/4.0" schemaLocation="https://inspire.ec.europa.eu/schemas/net/4.0/Network.xsd"/>
   <import namespace="http://inspire.ec.europa.eu/schemas/tn/4.0" schemaLocation="https://inspire.ec.europa.eu/schemas/tn/4.0/CommonTransportElements.xsd"/>
   <import namespace="http://www.opengis.net/gml/3.2" schemaLocation="http://schemas.opengis.net/gml/3.2.1/gml.xsd"/>
-  <!--XML Schema document created by ShapeChange-->
+  <!-- v5.0 of this schema released in INSPIRE schema release v.2024.1.
+       Change performed: Removed enumerations from schema and changed encoding of the attributes that refer to enumerations - breaking change - Amendment 1089/2010
+       See https://github.com/INSPIRE-MIF/application-schemas/releases/tag/2024.1 -->
   <element name="ERoad" substitutionGroup="tn:TransportLinkSet" type="tn-ro:ERoadType">
     <annotation>
       <documentation>-- Definition --
@@ -89,7 +91,7 @@ SOURCE Adapted from [GDF, EuroRoadS].</documentation>
     <complexContent>
       <extension base="tn:TransportPropertyType">
         <sequence>
-          <element name="functionalClass" type="tn-ro:FunctionalRoadClassValueType">
+          <element name="functionalClass" type="gml:ReferenceType">
             <annotation>
               <documentation>-- Definition --
 Functional rank of the road link in the road network.
@@ -109,147 +111,6 @@ NOTE Where functional classification systems are used that have fewer classes/ra
     <attributeGroup ref="gml:AssociationAttributeGroup"/>
     <attributeGroup ref="gml:OwnershipAttributeGroup"/>
   </complexType>
-  <simpleType name="FunctionalRoadClassValueType">
-    <annotation>
-      <documentation>-- Definition --
-Values for the functional road classification. This classification is based on the importance of the role that the road performs in the road network. 
-
--- Description --
-SOURCE Adapted from [GDF, EuroRoadS].</documentation>
-    </annotation>
-    <restriction base="string">
-      <enumeration value="mainRoad">
-        <annotation>
-          <documentation>-- Definition --
-The most important roads in a given network. 
-
--- Description --
-SOURCE [GDF], [Euroroads].</documentation>
-        </annotation>
-      </enumeration>
-      <enumeration value="firstClass">
-        <annotation>
-          <documentation>-- Definition --
-The second most important roads in a given network.
-
--- Description --
-SOURCE [Euroroads].</documentation>
-        </annotation>
-      </enumeration>
-      <enumeration value="secondClass">
-        <annotation>
-          <documentation>-- Definition --
-The third most important roads in a given network.
-
--- Description --
-SOURCE [Euroroads].</documentation>
-        </annotation>
-      </enumeration>
-      <enumeration value="thirdClass">
-        <annotation>
-          <documentation>-- Definition --
-The fourth most important roads in a given network.
-
--- Description --
-SOURCE [Euroroads].</documentation>
-        </annotation>
-      </enumeration>
-      <enumeration value="fourthClass">
-        <annotation>
-          <documentation>-- Definition --
-The fifth most important roads in a given network.
-
--- Description --
-SOURCE [Euroroads].</documentation>
-        </annotation>
-      </enumeration>
-      <enumeration value="fifthClass">
-        <annotation>
-          <documentation>-- Definition --
-The sixth most important roads in a given network.
-
--- Description --
-SOURCE [Euroroads].</documentation>
-        </annotation>
-      </enumeration>
-      <enumeration value="sixthClass">
-        <annotation>
-          <documentation>-- Definition --
-The seventh most important roads in a given network.
-
--- Description --
-SOURCE [Euroroads].</documentation>
-        </annotation>
-      </enumeration>
-      <enumeration value="seventhClass">
-        <annotation>
-          <documentation>-- Definition --
-The eighth most important roads in a given network.
-
--- Description --
-SOURCE [Euroroads].</documentation>
-        </annotation>
-      </enumeration>
-      <enumeration value="eighthClass">
-        <annotation>
-          <documentation>-- Definition --
-The ninth most important roads in a given network.
-
--- Description --
-SOURCE [Euroroads].</documentation>
-        </annotation>
-      </enumeration>
-      <enumeration value="ninthClass">
-        <annotation>
-          <documentation>-- Definition --
-The least important roads in a given network.
-
--- Description --
-SOURCE [GDF]
-
-NOTE The farthest ways in the forest road network. It has no regular maintenance. [NVDB] [Euroroads].</documentation>
-        </annotation>
-      </enumeration>
-    </restriction>
-  </simpleType>
-  <simpleType name="MinMaxLaneValueType">
-    <annotation>
-      <documentation>-- Definition --
-Values to indicate whether number of lanes are counted as the maximum, minimum or average number.
-
--- Description --
-SOURCE Adapted from [Euroroads].</documentation>
-    </annotation>
-    <restriction base="string">
-      <enumeration value="maximum">
-        <annotation>
-          <documentation>-- Definition --
-The number of lanes is the maximum value for a given part of the road network.
-
--- Description --
-SOURCE Adapted from [Euroroads].</documentation>
-        </annotation>
-      </enumeration>
-      <enumeration value="minimum">
-        <annotation>
-          <documentation>-- Definition --
-The number of lanes is the minimum value for a given part of the road network.
-
--- Description --
-SOURCE [Euroroads].</documentation>
-        </annotation>
-      </enumeration>
-      <enumeration value="average">
-        <annotation>
-          <documentation>-- Definition --
-The number of lanes is the average value for a given part of the road network.
-
--- Description --
-SOURCE [Euroroads].</documentation>
-        </annotation>
-      </enumeration>
-    </restriction>
-  </simpleType>
   <element name="NumberOfLanes" substitutionGroup="tn:TransportProperty" type="tn-ro:NumberOfLanesType">
     <annotation>
       <documentation>-- Definition --
@@ -274,7 +135,7 @@ NOTE When the value for this attribute is 'both', numberOfLanes contains the sum
 NOTE This attribute only applies when the property is associated with a road link or road link sequence.</documentation>
             </annotation>
           </element>
-          <element minOccurs="0" name="minMaxNumberOfLanes" nillable="true">
+          <element minOccurs="0" name="minMaxNumberOfLanes" nillable="true" type="gml:ReferenceType">
             <annotation>
               <documentation>-- Definition --
 Indicates if the number of lanes is counted as minimum or maximum value.
@@ -284,13 +145,6 @@ SOURCE [Euroroads].
 
 NOTE This attribute only applies when the value in numberOfLanes is not an exact value.</documentation>
             </annotation>
-            <complexType>
-              <simpleContent>
-                <extension base="tn-ro:MinMaxLaneValueType">
-                  <attribute name="nilReason" type="gml:NilReasonType"/>
-                </extension>
-              </simpleContent>
-            </complexType>
           </element>
           <element name="numberOfLanes" type="integer">
             <annotation>
@@ -654,7 +508,7 @@ NOTE This attribute only applies when the property is associated with a road lin
               </simpleContent>
             </complexType>
           </element>
-          <element name="speedLimitMinMaxType" type="tn-ro:SpeedLimitMinMaxValueType">
+          <element name="speedLimitMinMaxType" type="gml:ReferenceType">
             <annotation>
               <documentation>-- Definition --
 Indicates if the speed limit is maximum or minimum and if it is recommended.
@@ -733,50 +587,6 @@ SOURCE Adapted from [Euroroads].</documentation>
     <attributeGroup ref="gml:AssociationAttributeGroup"/>
     <attributeGroup ref="gml:OwnershipAttributeGroup"/>
   </complexType>
-  <simpleType name="SpeedLimitMinMaxValueType">
-    <annotation>
-      <documentation>-- Definition --
-Possible values to indicate the nature of a speed limit.</documentation>
-    </annotation>
-    <restriction base="string">
-      <enumeration value="maximum">
-        <annotation>
-          <documentation>-- Definition --
-Speed limit is a maximum value
-
--- Description --
-SOURCE [Euroroads].</documentation>
-        </annotation>
-      </enumeration>
-      <enumeration value="minimum">
-        <annotation>
-          <documentation>-- Definition --
-Speed limit is a minimum value
-
--- Description --
-SOURCE [Euroroads].</documentation>
-        </annotation>
-      </enumeration>
-      <enumeration value="recommendedMaximum">
-        <annotation>
-          <documentation>-- Definition --
-Speed limit is a recommended maximum value
-
--- Description --
-SOURCE [Euroroads].</documentation>
-        </annotation>
-      </enumeration>
-      <enumeration value="recommendedMinimum">
-        <annotation>
-          <documentation>-- Definition --
-Speed limit is a recommended minimum value
-
--- Description --
-SOURCE [Euroroads].</documentation>
-        </annotation>
-      </enumeration>
-    </restriction>
-  </simpleType>
   <element name="VehicleTrafficArea" substitutionGroup="tn:TransportArea" type="tn-ro:VehicleTrafficAreaType">
     <annotation>
       <documentation>-- Definition --

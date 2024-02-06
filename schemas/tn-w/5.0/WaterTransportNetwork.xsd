@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?><schema xmlns="http://www.w3.org/2001/XMLSchema" xmlns:gml="http://www.opengis.net/gml/3.2" xmlns:net="http://inspire.ec.europa.eu/schemas/net/4.0" xmlns:tn="http://inspire.ec.europa.eu/schemas/tn/4.0" xmlns:tn-w="http://inspire.ec.europa.eu/schemas/tn-w/4.0" elementFormDefault="qualified" targetNamespace="http://inspire.ec.europa.eu/schemas/tn-w/4.0" version="4.1">
+<?xml version="1.0" encoding="UTF-8"?><schema xmlns="http://www.w3.org/2001/XMLSchema" xmlns:gml="http://www.opengis.net/gml/3.2" xmlns:net="http://inspire.ec.europa.eu/schemas/net/4.0" xmlns:tn="http://inspire.ec.europa.eu/schemas/tn/4.0" xmlns:tn-w="http://inspire.ec.europa.eu/schemas/tn-w/5.0" elementFormDefault="qualified" targetNamespace="http://inspire.ec.europa.eu/schemas/tn-w/5.0" version="5.0">
   <annotation>
     <documentation>-- Definition --
 This package defines the types that are used on the water transport subtheme.</documentation>
@@ -6,8 +6,10 @@ This package defines the types that are used on the water transport subtheme.</d
   <import namespace="http://inspire.ec.europa.eu/schemas/net/4.0" schemaLocation="https://inspire.ec.europa.eu/schemas/net/4.0/Network.xsd"/>
   <import namespace="http://inspire.ec.europa.eu/schemas/tn/4.0" schemaLocation="https://inspire.ec.europa.eu/schemas/tn/4.0/CommonTransportElements.xsd"/>
   <import namespace="http://www.opengis.net/gml/3.2" schemaLocation="http://schemas.opengis.net/gml/3.2.1/gml.xsd"/>
-  <!-- v4.1 of this schema released in INSPIRE schema release v.2024.1.
-       Change performed: Removed “abstract” stereotype for the TrafficSeparationScheme feature type. - non-breaking change - Amendment 1089/2010
+  <!-- v5.0 of this schema released in INSPIRE schema release v.2024.1.
+       Change performed:
+	    - Removed “abstract” stereotype for the TrafficSeparationScheme feature type. - non-breaking change - Amendment 1089/2010
+	    - Removed enumerations from schema and changed encoding of the attributes that refer to enumerations - breaking change - Amendment 1089/2010
        See https://github.com/INSPIRE-MIF/application-schemas/releases/tag/2024.1 -->
   <element name="Beacon" substitutionGroup="tn:TransportPoint" type="tn-w:BeaconType">
     <annotation>
@@ -67,7 +69,7 @@ Classification of an inland waterway according to CEMT (European Conference of M
     <complexContent>
       <extension base="tn:TransportPropertyType">
         <sequence>
-          <element name="CEMTClass" type="tn-w:CEMTClassValueType">
+          <element name="CEMTClass" type="gml:ReferenceType">
             <annotation>
               <documentation>-- Definition --
 Value indicating the classification of an Inland waterway according to CEMT (European Conference of Ministers of Transport).</documentation>
@@ -84,74 +86,6 @@ Value indicating the classification of an Inland waterway according to CEMT (Eur
     <attributeGroup ref="gml:AssociationAttributeGroup"/>
     <attributeGroup ref="gml:OwnershipAttributeGroup"/>
   </complexType>
-  <simpleType name="CEMTClassValueType">
-    <annotation>
-      <documentation>-- Definition --
-Inland waterway classification according to CEMT (European Conference of Ministers of Transport) Resolution No.92/2.</documentation>
-    </annotation>
-    <restriction base="string">
-      <enumeration value="I">
-        <annotation>
-          <documentation>-- Definition --
-Inland waterway belonging to CEMT-class I, defined by the European Conference of Ministers of Transport, Resolution No.92/2 - Table 1.</documentation>
-        </annotation>
-      </enumeration>
-      <enumeration value="II">
-        <annotation>
-          <documentation>-- Definition --
-Inland waterway belonging to CEMT-class II, defined by the European Conference of Ministers of Transport, Resolution No.92/2 - Table 1.</documentation>
-        </annotation>
-      </enumeration>
-      <enumeration value="III">
-        <annotation>
-          <documentation>-- Definition --
-Inland waterway belonging to CEMT-class III, defined by the European Conference of Ministers of Transport, Resolution No.92/2 - Table 1.</documentation>
-        </annotation>
-      </enumeration>
-      <enumeration value="IV">
-        <annotation>
-          <documentation>-- Definition --
-Inland waterway belonging to CEMT-class IV, defined by the European Conference of Ministers of Transport, Resolution No.92/2 - Table 1.</documentation>
-        </annotation>
-      </enumeration>
-      <enumeration value="Va">
-        <annotation>
-          <documentation>-- Definition --
-Inland waterway belonging to CEMT-class Va, defined by the European Conference of Ministers of Transport, Resolution No.92/2 - Table 1.</documentation>
-        </annotation>
-      </enumeration>
-      <enumeration value="Vb">
-        <annotation>
-          <documentation>-- Definition --
-Inland waterway belonging to CEMT-class Vb, defined by the European Conference of Ministers of Transport, Resolution No.92/2 - Table 1.</documentation>
-        </annotation>
-      </enumeration>
-      <enumeration value="VIa">
-        <annotation>
-          <documentation>-- Definition --
-Inland waterway belonging to CEMT-class VIa, defined by the European Conference of Ministers of Transport, Resolution No.92/2 - Table 1.</documentation>
-        </annotation>
-      </enumeration>
-      <enumeration value="VIb">
-        <annotation>
-          <documentation>-- Definition --
-Inland waterway belonging to CEMT-class VIb, defined by the European Conference of Ministers of Transport, Resolution No.92/2 - Table 1.</documentation>
-        </annotation>
-      </enumeration>
-      <enumeration value="VIc">
-        <annotation>
-          <documentation>-- Definition --
-Inland waterway belonging to CEMT-class VIc, defined by the European Conference of Ministers of Transport, Resolution No.92/2 - Table 1.</documentation>
-        </annotation>
-      </enumeration>
-      <enumeration value="VII">
-        <annotation>
-          <documentation>-- Definition --
-Inland waterway belonging to CEMT-class VII, defined by the European Conference of Ministers of Transport, Resolution No.92/2 - Table 1.</documentation>
-        </annotation>
-      </enumeration>
-    </restriction>
-  </simpleType>
   <element name="ConditionOfWaterFacility" substitutionGroup="tn:ConditionOfFacility" type="tn-w:ConditionOfWaterFacilityType">
     <annotation>
       <documentation>-- Definition --

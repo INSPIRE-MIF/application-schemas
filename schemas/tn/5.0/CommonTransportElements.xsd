@@ -9,7 +9,9 @@ This package defines the types that are common for all transport networks subthe
   <import namespace="http://www.isotc211.org/2005/gmd" schemaLocation="http://schemas.opengis.net/iso/19139/20070417/gmd/gmd.xsd"/>
   <import namespace="http://www.opengis.net/gml/3.2" schemaLocation="http://schemas.opengis.net/gml/3.2.1/gml.xsd"/>
   <!-- v5.0 of this schema released in INSPIRE schema release v.2024.1.
-       Change performed: Changed encoding of the attributes that refer to enumerations - breaking change - Amendment 1089/2010
+       Change performed:
+	    - Changed encoding of the attributes that refer to enumerations - breaking change - Amendment 1089/2010
+		- Removed enumeration from schema and changed encoding of the attributes that refer to enumerations - breaking change - Amendment 1089/2010
        See https://github.com/INSPIRE-MIF/application-schemas/releases/tag/2024.1 -->
   <element name="AccessRestriction" substitutionGroup="tn:TransportProperty" type="tn:AccessRestrictionType">
     <annotation>
@@ -517,7 +519,7 @@ EXAMPLE All road transport can be considered one mode of transport for some appl
 External object identifier of the spatial object.</documentation>
             </annotation>
           </element>
-          <element name="typeOfTransport" type="tn:TransportTypeValueType">
+          <element name="typeOfTransport" type="gml:ReferenceType">
             <annotation>
               <documentation>-- Definition --
 Type of transport network, based on the type of infrastructure the network uses.</documentation>
@@ -720,44 +722,7 @@ The time from which the transport property no longer exists in the real world.</
     <attributeGroup ref="gml:AssociationAttributeGroup"/>
     <attributeGroup ref="gml:OwnershipAttributeGroup"/>
   </complexType>
-  <simpleType name="TransportTypeValueType">
-    <annotation>
-      <documentation>-- Definition --
-Possible types on transport networks.</documentation>
-    </annotation>
-    <restriction base="string">
-      <enumeration value="air">
-        <annotation>
-          <documentation>-- Definition --
-The transport network consists of transport by air.</documentation>
-        </annotation>
-      </enumeration>
-      <enumeration value="cable">
-        <annotation>
-          <documentation>-- Definition --
-The transport network consists of transport by cable.</documentation>
-        </annotation>
-      </enumeration>
-      <enumeration value="rail">
-        <annotation>
-          <documentation>-- Definition --
-The transport network consists of transport by rail.</documentation>
-        </annotation>
-      </enumeration>
-      <enumeration value="road">
-        <annotation>
-          <documentation>-- Definition --
-The transport network consists of transport by road.</documentation>
-        </annotation>
-      </enumeration>
-      <enumeration value="water">
-        <annotation>
-          <documentation>-- Definition --
-The transport network consists of transport by water.</documentation>
-        </annotation>
-      </enumeration>
-    </restriction>
-  </simpleType>
+  
   <element name="VerticalPosition" substitutionGroup="tn:TransportProperty" type="tn:VerticalPositionType">
     <annotation>
       <documentation>-- Definition --

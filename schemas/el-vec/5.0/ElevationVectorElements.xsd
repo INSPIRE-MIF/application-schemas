@@ -222,7 +222,7 @@ NOTE 1 The attribute propertyType is equal to 'height' in the case of contour li
     <complexContent>
       <extension base="el-vec:ElevationVectorObjectType">
         <sequence>
-          <element name="contourLineType" nillable="true">
+          <element name="contourLineType" nillable="true" type="gml:ReferenceType">
             <annotation>
               <documentation>-- Name --
 contour line type
@@ -233,13 +233,6 @@ The type of contour line with regard to the normal contour vertical interval (if
 -- Description --
 NOTE This attribute is often applicable to contour lines describing the relief of a land-based area. For depth contours describing the floor of a water body is not always applicable.</documentation>
             </annotation>
-            <complexType>
-              <simpleContent>
-                <extension base="el-vec:ContourLineTypeValueType">
-                  <attribute name="nilReason" type="gml:NilReasonType"/>
-                </extension>
-              </simpleContent>
-            </complexType>
           </element>
           <element name="downRight" nillable="true">
             <annotation>
@@ -291,47 +284,6 @@ Value of the elevation property of the spatial object referred to a specific ver
     <attributeGroup ref="gml:AssociationAttributeGroup"/>
     <attributeGroup ref="gml:OwnershipAttributeGroup"/>
   </complexType>
-  <simpleType name="ContourLineTypeValueType">
-    <annotation>
-      <documentation>-- Name --
-contour line type value
-
--- Definition --
-List of possible categories of contour lines based on the equidistance parameter of the data set.</documentation>
-    </annotation>
-    <restriction base="string">
-      <enumeration value="master">
-        <annotation>
-          <documentation>-- Name --
-master
-
--- Definition --
-Contour at a vertical distance which is multiple to the equidistance parameter (corresponding to a certain multiple of the normal contour vertical interval) associated with the nominal scale.</documentation>
-        </annotation>
-      </enumeration>
-      <enumeration value="ordinary">
-        <annotation>
-          <documentation>-- Name --
-ordinary
-
--- Definition --
-Contour at the equidistance parameter (corresponding to the normal contour vertical interval) associated with the nominal scale, and which is not a master contour.</documentation>
-        </annotation>
-      </enumeration>
-      <enumeration value="auxiliary">
-        <annotation>
-          <documentation>-- Name --
-auxiliary
-
--- Definition --
-A supplementary contour &amp;ndash; not corresponding to the normal contour vertical interval &amp;ndash; estimated or interpolated from surrounding contours, used in areas where there is insufficient height information for elevation mapping purposes or to control the creation of a digital elevation model. 
-
--- Description --
-NOTE This term is equivalent to the value 'intermediate' used in some Member States.</documentation>
-        </annotation>
-      </enumeration>
-    </restriction>
-  </simpleType>
   <element abstract="true" name="ElevationVectorObject" substitutionGroup="gml:AbstractFeature" type="el-vec:ElevationVectorObjectType">
     <annotation>
       <documentation>-- Name --

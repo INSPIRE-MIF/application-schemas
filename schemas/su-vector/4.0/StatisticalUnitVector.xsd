@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?><schema xmlns="http://www.w3.org/2001/XMLSchema" xmlns:au="http://inspire.ec.europa.eu/schemas/au/4.0" xmlns:base="http://inspire.ec.europa.eu/schemas/base/3.3" xmlns:base2="http://inspire.ec.europa.eu/schemas/base2/2.0" xmlns:gmd="http://www.isotc211.org/2005/gmd" xmlns:gml="http://www.opengis.net/gml/3.2" xmlns:gn="http://inspire.ec.europa.eu/schemas/gn/4.0" xmlns:sc="http://www.interactive-instruments.de/ShapeChange/AppInfo" xmlns:su-core="http://inspire.ec.europa.eu/schemas/su-core/4.0" xmlns:su-vector="http://inspire.ec.europa.eu/schemas/su-vector/4.0" elementFormDefault="qualified" targetNamespace="http://inspire.ec.europa.eu/schemas/su-vector/4.0" version="4.0">
+<?xml version="1.0" encoding="UTF-8"?><schema xmlns="http://www.w3.org/2001/XMLSchema" xmlns:au="http://inspire.ec.europa.eu/schemas/au/4.0" xmlns:base="http://inspire.ec.europa.eu/schemas/base/3.3" xmlns:base2="http://inspire.ec.europa.eu/schemas/base2/2.0" xmlns:gmd="http://www.isotc211.org/2005/gmd" xmlns:gml="http://www.opengis.net/gml/3.2" xmlns:gn="http://inspire.ec.europa.eu/schemas/gn/4.0" xmlns:sc="http://www.interactive-instruments.de/ShapeChange/AppInfo" xmlns:su-core="http://inspire.ec.europa.eu/schemas/su-core/4.0" xmlns:su-vector="http://inspire.ec.europa.eu/schemas/su-vector/4.0" elementFormDefault="qualified" targetNamespace="http://inspire.ec.europa.eu/schemas/su-vector/4.0" version="4.1">
   <annotation>
     <documentation>-- Name --
 Statistical Units Vector
@@ -14,7 +14,9 @@ Package containing classes to represent statistical units with vector geometries
   <import namespace="http://www.interactive-instruments.de/ShapeChange/AppInfo" schemaLocation="http://portele.de/ShapeChangeAppinfo.xsd"/>
   <import namespace="http://www.isotc211.org/2005/gmd" schemaLocation="http://schemas.opengis.net/iso/19139/20070417/gmd/gmd.xsd"/>
   <import namespace="http://www.opengis.net/gml/3.2" schemaLocation="http://schemas.opengis.net/gml/3.2.1/gml.xsd"/>
-  <!--XML Schema document created by ShapeChange-->
+  <!-- v4.1 of this schema released in INSPIRE schema release v.2024.1.
+       Change performed: Added a new attribute “statisticalUnitType” to the VectorStatisticalUnit feature type - non-breaking change - Amendment 1089/2010
+       See https://github.com/INSPIRE-MIF/application-schemas/releases/tag/2024.1 -->
   <element name="AreaStatisticalUnit" substitutionGroup="su-vector:VectorStatisticalUnit" type="su-vector:AreaStatisticalUnitType">
     <annotation>
       <documentation>-- Name --
@@ -496,6 +498,11 @@ Geographical name
 
 -- Definition --
 Possible geographical names of the object.</documentation>
+            </annotation>
+          </element>
+          <element maxOccurs="unbounded" minOccurs="0" name="statisticalUnitType" type="gml:ReferenceType">
+            <annotation>
+              <documentation>-- Name -- Statistical unit type -- Definition -- Type of territorial unit used for dissemination purposes.</documentation>
             </annotation>
           </element>
           <element name="beginLifespanVersion" nillable="true">

@@ -1,9 +1,11 @@
-<?xml version="1.0" encoding="UTF-8"?><schema xmlns="http://www.w3.org/2001/XMLSchema" xmlns:base="http://inspire.ec.europa.eu/schemas/base/3.3" xmlns:base2="http://inspire.ec.europa.eu/schemas/base2/2.0" xmlns:ef="http://inspire.ec.europa.eu/schemas/ef/4.0" xmlns:gml="http://www.opengis.net/gml/3.2" elementFormDefault="qualified" xmlns:om="http://www.opengis.net/om/2.0" targetNamespace="http://inspire.ec.europa.eu/schemas/ef/4.0" version="4.0">
-  <import namespace="http://inspire.ec.europa.eu/schemas/base/3.3" schemaLocation="https://inspire.ec.europa.eu/schemas/base/3.3/BaseTypes.xsd"/>
+<?xml version="1.0" encoding="UTF-8"?><schema xmlns="http://www.w3.org/2001/XMLSchema" xmlns:base="http://inspire.ec.europa.eu/schemas/base/4.0" xmlns:base2="http://inspire.ec.europa.eu/schemas/base2/2.0" xmlns:ef="http://inspire.ec.europa.eu/schemas/ef/4.0" xmlns:gml="http://www.opengis.net/gml/3.2" elementFormDefault="qualified" xmlns:om="http://www.opengis.net/om/2.0" targetNamespace="http://inspire.ec.europa.eu/schemas/ef/4.0" version="4.1">
+  <import namespace="http://inspire.ec.europa.eu/schemas/base/4.0" schemaLocation="https://inspire.ec.europa.eu/schemas/base/4.0/BaseTypes.xsd"/>
   <import namespace="http://inspire.ec.europa.eu/schemas/base2/2.0" schemaLocation="https://inspire.ec.europa.eu/schemas/base2/2.0/BaseTypes2.xsd"/>
   <import namespace="http://www.opengis.net/gml/3.2" schemaLocation="http://schemas.opengis.net/gml/3.2.1/gml.xsd"/>
   <import namespace="http://www.opengis.net/om/2.0" schemaLocation="http://schemas.opengis.net/om/2.0/observation.xsd"/>
-  <!--XML Schema document created by ShapeChange-->
+  <!-- v4.1 of this schema released in INSPIRE schema release v.2024.1.
+       Change performed: Added a new attribute "thematicId" to the spatial object type AbstractMonitoringObject. - non-breaking change - Amendment 1089/2010
+       See https://github.com/INSPIRE-MIF/application-schemas/releases/tag/2024.1 -->
   <element abstract="true" name="AbstractMonitoringFeature" substitutionGroup="ef:AbstractMonitoringObject" type="ef:AbstractMonitoringFeatureType">
     <annotation>
       <documentation>-- Name --
@@ -82,6 +84,18 @@ An abstract base class for environmental monitoring objects.</documentation>
               <documentation>-- Definition --
 External object identifier.</documentation>
             </annotation>
+          </element>
+          <element maxOccurs="unbounded" minOccurs="0" name="thematicId" nillable="true">
+            <annotation>
+              <documentation>-- Definition -- Plain text denotation of the
+                AbstractMonitoringObject.</documentation>
+            </annotation>
+            <complexType>
+              <sequence>
+                <element ref="base2:ThematicIdentifier"/>
+              </sequence>
+              <attribute name="nilReason" type="gml:NilReasonType"/>
+            </complexType>
           </element>
           <element maxOccurs="unbounded" minOccurs="0" name="name" nillable="true">
             <annotation>

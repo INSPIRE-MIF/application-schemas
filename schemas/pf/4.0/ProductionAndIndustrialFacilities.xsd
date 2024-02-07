@@ -1,4 +1,7 @@
-<?xml version="1.0" encoding="UTF-8"?><schema xmlns="http://www.w3.org/2001/XMLSchema" xmlns:act-core="http://inspire.ec.europa.eu/schemas/act-core/4.0" xmlns:base="http://inspire.ec.europa.eu/schemas/base/3.3" xmlns:base2="http://inspire.ec.europa.eu/schemas/base2/2.0" xmlns:bu-base="http://inspire.ec.europa.eu/schemas/bu-base/4.0" xmlns:bu-core2d="http://inspire.ec.europa.eu/schemas/bu-core2d/4.0" xmlns:gml="http://www.opengis.net/gml/3.2" xmlns:pf="http://inspire.ec.europa.eu/schemas/pf/4.0" xmlns:sc="http://www.interactive-instruments.de/ShapeChange/AppInfo" elementFormDefault="qualified" targetNamespace="http://inspire.ec.europa.eu/schemas/pf/4.0" version="4.0.2">
+<?xml version="1.0" encoding="UTF-8"?><schema xmlns="http://www.w3.org/2001/XMLSchema" xmlns:act-core="http://inspire.ec.europa.eu/schemas/act-core/4.0" xmlns:base="http://inspire.ec.europa.eu/schemas/base/4.0" xmlns:base2="http://inspire.ec.europa.eu/schemas/base2/2.0" xmlns:bu-base="http://inspire.ec.europa.eu/schemas/bu-base/4.0" xmlns:bu-core2d="http://inspire.ec.europa.eu/schemas/bu-core2d/4.0" xmlns:gml="http://www.opengis.net/gml/3.2" xmlns:pf="http://inspire.ec.europa.eu/schemas/pf/4.0" xmlns:sc="http://www.interactive-instruments.de/ShapeChange/AppInfo" elementFormDefault="qualified" targetNamespace="http://inspire.ec.europa.eu/schemas/pf/4.0" version="4.0.2">
+  <!-- v4.1 of this schema released in INSPIRE schema release v.2024.1.
+       Change performed: Changed the definition of the ProductionInstallation feature type. - non-breaking change - Amendment 1089/2010
+       See https://github.com/INSPIRE-MIF/application-schemas/releases/tag/2024.1 -->
   <!-- v4.0.2 of this schema released in INSPIRE schema release v.2022.2.
        Change performed: Added type to ‘type’ element in ProductionInstallation and ProductionInstallationPart - breaking change - bugfix
        See https://github.com/INSPIRE-MIF/application-schemas/releases/tag/2022.2 -->
@@ -10,7 +13,7 @@
 Production And Industrial Facilities - Core</documentation>
   </annotation>
   <import namespace="http://inspire.ec.europa.eu/schemas/act-core/4.0" schemaLocation="https://inspire.ec.europa.eu/schemas/act-core/4.0/ActivityComplex_Core.xsd"/>
-  <import namespace="http://inspire.ec.europa.eu/schemas/base/3.3" schemaLocation="https://inspire.ec.europa.eu/schemas/base/3.3/BaseTypes.xsd"/>
+  <import namespace="http://inspire.ec.europa.eu/schemas/base/4.0" schemaLocation="https://inspire.ec.europa.eu/schemas/base/4.0/BaseTypes.xsd"/>
   <import namespace="http://inspire.ec.europa.eu/schemas/base2/2.0" schemaLocation="https://inspire.ec.europa.eu/schemas/base2/2.0/BaseTypes2.xsd"/>
   <import namespace="http://inspire.ec.europa.eu/schemas/bu-base/4.0" schemaLocation="https://inspire.ec.europa.eu/schemas/bu-base/4.0/BuildingsBase.xsd"/>
   <import namespace="http://inspire.ec.europa.eu/schemas/bu-core2d/4.0" schemaLocation="https://inspire.ec.europa.eu/schemas/bu-core2d/4.0/BuildingsCore2D.xsd"/>
@@ -213,7 +216,18 @@ The state or condition of the facility, with regard to the functional and operat
 production installation
 
 -- Definition --
-A technical unit, such as machinery,  apparatus, devices or equipment placed in position or connected for use.
+A stationary technical
+unit, such as machinery, apparatus, devices or equipment placed in position or connected
+for use, within which one or more activities listed in Annex I to Regulation (EC) No
+166/2006 of the European Parliament and of the Council (1) and in Annex I or in Part 1
+of Annex VII to Directive 2010/75/EU of the European Parliament and of the Council (2)
+are carried out, and any other directly associated activities which have a technical
+connection with the activities listed and which could have an effect on emissions and
+pollution. (1) Commission Regulation (EC) No 166/2006 of 18 January 2006 concerning the
+establishment of a European Pollutant Release and Transfer Register and amending Council
+Directives 91/689/EEC and 96/61/EC (OJ L 33, 4.2.2006, p. 1). (2) Directive 2010/75/EU
+of the European Parliament and of the Council of 24 November 2010 on industrial
+emissions (integrated pollution prevention and control) (OJ L 334, 17.12.2010, p. 17).
 
 -- Description --
 Stationary technical unit part of a facility where one or more activities are carried out, and any other directly associated activities which have a technical connection to the activities carried out on that site and which could have an effect on the environment.

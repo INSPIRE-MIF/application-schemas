@@ -3,7 +3,7 @@ W3C Schema for INSPIRE
       
 Change log
 
-INSPIRE schema release v.2024.1 - 31/01/2022 (https://github.com/INSPIRE-MIF/application-schemas/releases/tag/2023.1)
+INSPIRE schema release v.2024.1 - 31/01/2022 (https://github.com/INSPIRE-MIF/application-schemas/releases/tag/2024.1)
 
 Schema            Change description                                                                                                           Version    Change type
 =======           ================================================================================================                             =======    ====================================

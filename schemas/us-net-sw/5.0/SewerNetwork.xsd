@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?><schema xmlns="http://www.w3.org/2001/XMLSchema" xmlns:gml="http://www.opengis.net/gml/3.2" xmlns:sc="http://www.interactive-instruments.de/ShapeChange/AppInfo" xmlns:us-net-common="http://inspire.ec.europa.eu/schemas/us-net-common/5.0" xmlns:us-net-sw="http://inspire.ec.europa.eu/schemas/us-net-sw/4.0" elementFormDefault="qualified" targetNamespace="http://inspire.ec.europa.eu/schemas/us-net-sw/4.0" version="4.0">
+<?xml version="1.0" encoding="UTF-8"?><schema xmlns="http://www.w3.org/2001/XMLSchema" xmlns:gml="http://www.opengis.net/gml/3.2" xmlns:sc="http://www.interactive-instruments.de/ShapeChange/AppInfo" xmlns:us-net-common="http://inspire.ec.europa.eu/schemas/us-net-common/5.0" xmlns:us-net-sw="http://inspire.ec.europa.eu/schemas/us-net-sw/5.0" elementFormDefault="qualified" targetNamespace="http://inspire.ec.europa.eu/schemas/us-net-sw/5.0" version="5.0">
   <annotation>
     <documentation>-- Name --
 sewer utility network
@@ -9,7 +9,9 @@ Sewer network sub-domain.</documentation>
   <import namespace="http://inspire.ec.europa.eu/schemas/us-net-common/5.0" schemaLocation="https://inspire.ec.europa.eu/schemas/us-net-common/5.0/UtilityNetworksCommon.xsd"/>
   <import namespace="http://www.interactive-instruments.de/ShapeChange/AppInfo" schemaLocation="http://portele.de/ShapeChangeAppinfo.xsd"/>
   <import namespace="http://www.opengis.net/gml/3.2" schemaLocation="http://schemas.opengis.net/gml/3.2.1/gml.xsd"/>
-  <!--XML Schema document created by ShapeChange-->
+    <!-- v5.0 of this schema released in INSPIRE schema release v.2024.1.1
+       Change performed: Updated the version of the imported us-net-common schema (from 4.0 to 5.0) - breaking change - Amendment 1089/2010
+       See https://github.com/INSPIRE-MIF/application-schemas/releases/tag/2024.1.1 -->
   <element name="SewerPipe" substitutionGroup="us-net-common:Pipe" type="us-net-sw:SewerPipeType">
     <annotation>
       <documentation>-- Name --

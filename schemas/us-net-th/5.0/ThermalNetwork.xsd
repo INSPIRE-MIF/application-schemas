@@ -1,4 +1,7 @@
-<?xml version="1.0" encoding="UTF-8"?><schema xmlns="http://www.w3.org/2001/XMLSchema" xmlns:gml="http://www.opengis.net/gml/3.2" xmlns:sc="http://www.interactive-instruments.de/ShapeChange/AppInfo" xmlns:us-net-common="http://inspire.ec.europa.eu/schemas/us-net-common/5.0" xmlns:us-net-th="http://inspire.ec.europa.eu/schemas/us-net-th/4.0" elementFormDefault="qualified" targetNamespace="http://inspire.ec.europa.eu/schemas/us-net-th/4.0" version="4.0.1">
+<?xml version="1.0" encoding="UTF-8"?><schema xmlns="http://www.w3.org/2001/XMLSchema" xmlns:gml="http://www.opengis.net/gml/3.2" xmlns:sc="http://www.interactive-instruments.de/ShapeChange/AppInfo" xmlns:us-net-common="http://inspire.ec.europa.eu/schemas/us-net-common/5.0" xmlns:us-net-th="http://inspire.ec.europa.eu/schemas/us-net-th/5.0" elementFormDefault="qualified" targetNamespace="http://inspire.ec.europa.eu/schemas/us-net-th/5.0" version="5.0">
+  <!-- v5.0 of this schema released in INSPIRE schema release v.2024.1.1
+       Change performed: Updated the version of the imported us-net-common schema (from 4.0 to 5.0) - breaking change - Amendment 1089/2010
+       See https://github.com/INSPIRE-MIF/application-schemas/releases/tag/2024.1.1 -->
   <!-- v4.0.1 of this schema released in INSPIRE schema release v.2022.2.
        Change performed: Added type to 'thermalProductType' element - breaking change - bugfix
        See https://github.com/INSPIRE-MIF/application-schemas/releases/tag/2022.2 -->

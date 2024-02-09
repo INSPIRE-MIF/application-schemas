@@ -3,10 +3,22 @@ W3C Schema for INSPIRE
       
 Change log
 
+INSPIRE schema release v.2024.1.1 - 09/02/2022 (https://github.com/INSPIRE-MIF/application-schemas/releases/tag/2024.1.1)
+
+Schema            Change description                                                                                                           Version    Change type
+===============   ===========================================================================================================================  =======    ====================================
+[us-govserv]      Updated the version of the imported us-net-common schema (from 4.0 to 5.0)                                                   v5.0       breaking change  Amendment 1089/2010
+[us-net-el]       Updated the version of the imported us-net-common schema (from 4.0 to 5.0)                                                   v5.0       breaking change  Amendment 1089/2010
+[us-net-ogc]      Updated the version of the imported us-net-common schema (from 4.0 to 5.0)                                                   v5.0       breaking change  Amendment 1089/2010
+[us-net-sw]       Updated the version of the imported us-net-common schema (from 4.0 to 5.0)                                                   v5.0       breaking change  Amendment 1089/2010
+[us-net-th]       Updated the version of the imported us-net-common schema (from 4.0 to 5.0)                                                   v5.0       breaking change  Amendment 1089/2010
+[us-net-wa]       Updated the version of the imported us-net-common schema (from 4.0 to 5.0)                                                   v5.0       breaking change  Amendment 1089/2010
+
+
 INSPIRE schema release v.2024.1 - 31/01/2022 (https://github.com/INSPIRE-MIF/application-schemas/releases/tag/2024.1)
 
 Schema            Change description                                                                                                           Version    Change type
-=======           ================================================================================================                             =======    ====================================
+===============   ===========================================================================================================================  =======    ====================================
 [hh]              Added new attributes to the EnvHealthDeterminantMeasure feature type, added new feature types, and removed some data types.  v5.0       breaking change  Amendment 1089/2010
 [ps]              Fixed typo in inspireId, added a new attribute, and moved attributes to data type.                                           v5.0       breaking change  Amendment 1089/2010
                   Removed enumeration from the schema and changed the encoding of the attributes that refer to enumerations                                           

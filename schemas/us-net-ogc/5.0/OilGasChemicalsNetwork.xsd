@@ -1,4 +1,5 @@
-<?xml version="1.0" encoding="UTF-8"?><schema xmlns="http://www.w3.org/2001/XMLSchema" xmlns:gml="http://www.opengis.net/gml/3.2" xmlns:sc="http://www.interactive-instruments.de/ShapeChange/AppInfo" xmlns:us-net-common="http://inspire.ec.europa.eu/schemas/us-net-common/5.0" xmlns:us-net-ogc="http://inspire.ec.europa.eu/schemas/us-net-ogc/5.0" elementFormDefault="qualified" targetNamespace="http://inspire.ec.europa.eu/schemas/us-net-ogc/5.0" version="454
+<?xml version="1.0" encoding="UTF-8"?><schema xmlns="http://www.w3.org/2001/XMLSchema" xmlns:gml="http://www.opengis.net/gml/3.2" xmlns:sc="http://www.interactive-instruments.de/ShapeChange/AppInfo" xmlns:us-net-common="http://inspire.ec.europa.eu/schemas/us-net-common/5.0" xmlns:us-net-ogc="http://inspire.ec.europa.eu/schemas/us-net-ogc/5.0" elementFormDefault="qualified" targetNamespace="http://inspire.ec.europa.eu/schemas/us-net-ogc/5.0" version="5.0">
+  <annotation>
     <documentation>-- Name --
 oil, gas &amp; chemicals utility network
 

@@ -2,3 +2,5 @@
 .project
 # Markdown -> HTML preview
 .*.md.html
+
+*.dtd

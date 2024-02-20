@@ -3,7 +3,63 @@ W3C Schema for INSPIRE
       
 Change log
 
-INSPIRE schema release v.2023.1 - 31/01/2023 (https://github.com/INSPIRE-MIF/helpdesk-validator/releases/v2023.1)
+INSPIRE schema release v.2024.1.1 - 09/02/2022 (https://github.com/INSPIRE-MIF/application-schemas/releases/tag/2024.1.1)
+
+Schema            Change description                                                                                                           Version    Change type
+===============   ===========================================================================================================================  =======    ====================================
+[us-govserv]      Updated the version of the imported us-net-common schema (from 4.0 to 5.0)                                                   v5.0       breaking change  Amendment 1089/2010
+[us-net-el]       Updated the version of the imported us-net-common schema (from 4.0 to 5.0)                                                   v5.0       breaking change  Amendment 1089/2010
+[us-net-ogc]      Updated the version of the imported us-net-common schema (from 4.0 to 5.0)                                                   v5.0       breaking change  Amendment 1089/2010
+[us-net-sw]       Updated the version of the imported us-net-common schema (from 4.0 to 5.0)                                                   v5.0       breaking change  Amendment 1089/2010
+[us-net-th]       Updated the version of the imported us-net-common schema (from 4.0 to 5.0)                                                   v5.0       breaking change  Amendment 1089/2010
+[us-net-wa]       Updated the version of the imported us-net-common schema (from 4.0 to 5.0)                                                   v5.0       breaking change  Amendment 1089/2010
+
+
+INSPIRE schema release v.2024.1 - 31/01/2022 (https://github.com/INSPIRE-MIF/application-schemas/releases/tag/2024.1)
+
+Schema            Change description                                                                                                           Version    Change type
+===============   ===========================================================================================================================  =======    ====================================
+[hh]              Added new attributes to the EnvHealthDeterminantMeasure feature type, added new feature types, and removed some data types.  v5.0       breaking change  Amendment 1089/2010
+[ps]              Fixed typo in inspireId, added a new attribute, and moved attributes to data type.                                           v5.0       breaking change  Amendment 1089/2010
+                  Removed enumeration from the schema and changed the encoding of the attributes that refer to enumerations                                           
+[us-net-common]   Defined datatype for the authorityRole attribute                                                                             v5.0       breaking change
+                  Change encoding of the attributes that refer to enumerations                                                                            breaking change  Amendment 1089/2010
+[hyp]             Changed the data type of the geometry attribute of the DrainageBasin feature type                                            v5.0       non-breaking change   Amendment 1089/2010
+                  Removed enumeration from schema and changed encoding of the attributes that refer to enumerations    breaking change 
+[lcv]             Added association role to the LandCoverUnit feature type                                                                     v5.0       breaking change  Amendment 1089/2010
+[tn-w]            Removed the “abstract” stereotype for the TrafficSeparationScheme feature type                                               v5.0       non-breaking change
+                  Removed enumerations from schema and changed encoding of the attributes that refer to enumerations                                      breaking change  Amendment 1089/2010
+[su-vector]       Added a new attribute “statisticalUnitType” to the VectorStatisticalUnit feature type                                        v4.1       non-breaking change  Amendment 1089/2010
+[plu]             Fixed the typo in the attribute "backgroudMapURI" of the data type BackgroundMapValue                                        v4.0.1     breaking change  Amendment 1089/2010
+[ef]              Added a new attribute "thematicId" to the spatial object type AbstractMonitoringObject.                                      v4.1       non-breaking change  Amendment 1089/2010
+[pf]              Changed the definition of the ProductionInstallation feature type                                                            v4.1       non-breaking change  Amendment 1089/2010
+[tn-a]            Changed the datatype for the "controlTowers" association of the AerodromeNode feature type                                   v4.1       non-breaking change  Amendment 1089/2010
+[ad]              Changed the datatype for the "building" association of the Address feature type                                              v4.1       non-breaking change  Amendment 1089/2010
+[sr]              Changed the stereotype of the ShoreSegment object from featureType to dataType                                               v4.0.1     breaking change  Amendment 1089/2010
+
+Converted enumerations into codelists                                                                                                                     breaking change  Amendment 1089/2010.
+Below are the involved schemas:
+BaseTypes.xsd                Removed VerticalPositionValue enumeration from BaseTypes schema                                                   v4.0
+HydroPhysicalWaters.xsd      Removed enumeration from schema and changed encoding of the attributes that refer to enumerations                 v5.0
+UtilityNetworksCommon.xsd    Changed encoding of the attributes that refer to enumerations                                                     v5.0
+ObservableProperties.xsd     Removed enumeration from schema and changed encoding of the attributes that refer to enumerations                 v4.0
+AdministrativeUnits.xsd      Removed enumeration from schema and changed encoding of the attributes that refer to enumerations                 v5.0
+MaritimeUnits.xsd            Changed encoding of the attributes that refer to enumerations                                                     v4.0
+ElevationBaseTypes.xsd       Removed enumeration from schema                                                                                   v5.0
+ElevationGridCoverage.xsd    Changed encoding of the attributes that refer to enumerations                                                     v5.0
+ElevationTin.xsd             Changed encoding of the attributes that refer to enumerations                                                     v5.0
+ElevationVectorElements.xsd  Removed enumeration from schema and changed encoding of the attributes that refer to enumerations                 v5.0
+NaturalRiskZonesCore.xsd     Removed enumeration from schema and changed encoding of the attributes that refer to enumerations                 v5.0
+ProtectedSites.xsd           Removed enumeration from schema and changed encoding of the attributes that refer to enumerations                 v5.0
+CommonTransportElements.xsd  Removed enumeration from schema and changed encoding of the attributes that refer to enumerations                 v5.0
+RailwayTransportNetwork.xsd  Removed enumerations from schema and changed encoding of the attributes that refer to enumerations                v5.0
+RoadTransportNetwork.xsd     Removed enumerations from schema and changed encoding of the attributes that refer to enumerations                v5.0
+WaterTransportNetwork.xsd    Removed enumerations from schema and changed encoding of the attributes that refer to enumerations                v5.0
+
+
+
+
+INSPIRE schema release v.2023.1 - 31/01/2023 (https://github.com/INSPIRE-MIF/application-schemas/releases/tag/2023.1)
 
 Schema      Version  Change description                                                                                Change type
 ==========  =======  ================================================================================================  ==================================================
@@ -13,7 +69,7 @@ ge_hg       v4.0.1   Added missing nillable attribute to some elements          
 
 
 
-INSPIRE schema release v.2022.2 - 01/08/2022 (https://github.com/INSPIRE-MIF/helpdesk-validator/releases/v2022.2)
+INSPIRE schema release v.2022.2 - 01/08/2022 (https://github.com/INSPIRE-MIF/application-schemas/releases/tag/2022.2)
 
 Schema      Version  Change description                                                                                Change type
 ==========  =======  ================================================================================================  ==================================================
@@ -25,14 +81,14 @@ EL          v4.0.1   Set ‘endLifespanVersion’ multiplicity to [0..1] In Elev
 MR          v4.0.1   Added type to ‘sourceReference ‘element                                                           breaking change - bugfix
 
 
-INSPIRE schema release v.2022.1 - 31/01/2022 (https://github.com/INSPIRE-MIF/helpdesk-validator/releases/v2022.1)
+INSPIRE schema release v.2022.1 - 31/01/2022 (https://github.com/INSPIRE-MIF/application-schemas/releases/tag/2022.1)
 
 Schema  Version  Change description                                                                                   Change type
 ======  =======  ==================================================================================================== ==================================================
 common  v1.0.2   Updated common.xsd in order to add Croatian language + Added a related enum_hrv.xsd                  non-breaking change - bugfix
 
 
-INSPIRE schema release v.2021.2 - 15/11/2021 (https://github.com/INSPIRE-MIF/helpdesk-validator/releases/v2021.2)
+INSPIRE schema release v.2021.2 - 15/11/2021 (https://github.com/INSPIRE-MIF/application-schemas/releases/tag/2021.2)
 
 Schema  Version  Change description                                                                                   Change type
 ======  =======  ==================================================================================================== ==================================================

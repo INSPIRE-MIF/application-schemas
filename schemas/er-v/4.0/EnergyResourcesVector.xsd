@@ -1,10 +1,10 @@
-<?xml version="1.0" encoding="UTF-8"?><schema xmlns="http://www.w3.org/2001/XMLSchema" xmlns:am="http://inspire.ec.europa.eu/schemas/am/4.0" xmlns:base="http://inspire.ec.europa.eu/schemas/base/4.0" xmlns:base2="http://inspire.ec.europa.eu/schemas/base2/2.0" xmlns:er-b="http://inspire.ec.europa.eu/schemas/er-b/4.0" xmlns:er-v="http://inspire.ec.europa.eu/schemas/er-v/4.0" xmlns:gml="http://www.opengis.net/gml/3.2" xmlns:gn="http://inspire.ec.europa.eu/schemas/gn/4.0" xmlns:sc="http://www.interactive-instruments.de/ShapeChange/AppInfo" elementFormDefault="qualified" targetNamespace="http://inspire.ec.europa.eu/schemas/er-v/4.0" version="4.0">
+<?xml version="1.0" encoding="UTF-8"?><schema xmlns="http://www.w3.org/2001/XMLSchema" xmlns:am="http://inspire.ec.europa.eu/schemas/am/4.0" xmlns:base="http://inspire.ec.europa.eu/schemas/base/3.3" xmlns:base2="http://inspire.ec.europa.eu/schemas/base2/2.0" xmlns:er-b="http://inspire.ec.europa.eu/schemas/er-b/4.0" xmlns:er-v="http://inspire.ec.europa.eu/schemas/er-v/4.0" xmlns:gml="http://www.opengis.net/gml/3.2" xmlns:gn="http://inspire.ec.europa.eu/schemas/gn/4.0" xmlns:sc="http://www.interactive-instruments.de/ShapeChange/AppInfo" elementFormDefault="qualified" targetNamespace="http://inspire.ec.europa.eu/schemas/er-v/4.0" version="4.0">
   <annotation>
     <documentation>-- Name --
 Energy Resources Vector application schema</documentation>
   </annotation>
   <import namespace="http://inspire.ec.europa.eu/schemas/am/4.0" schemaLocation="https://inspire.ec.europa.eu/schemas/am/4.0/AreaManagementRestrictionRegulationZone.xsd"/>
-  <import namespace="http://inspire.ec.europa.eu/schemas/base/4.0" schemaLocation="https://inspire.ec.europa.eu/schemas/base/4.0/BaseTypes.xsd"/>
+  <import namespace="http://inspire.ec.europa.eu/schemas/base/3.3" schemaLocation="https://inspire.ec.europa.eu/schemas/base/3.3/BaseTypes.xsd"/>
   <import namespace="http://inspire.ec.europa.eu/schemas/base2/2.0" schemaLocation="https://inspire.ec.europa.eu/schemas/base2/2.0/BaseTypes2.xsd"/>
   <import namespace="http://inspire.ec.europa.eu/schemas/er-b/4.0" schemaLocation="https://inspire.ec.europa.eu/schemas/er-b/4.0/EnergyResourcesBase.xsd"/>
   <import namespace="http://inspire.ec.europa.eu/schemas/gn/4.0" schemaLocation="https://inspire.ec.europa.eu/schemas/gn/4.0/GeographicalNames.xsd"/>

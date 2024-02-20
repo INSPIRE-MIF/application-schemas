@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?><schema xmlns="http://www.w3.org/2001/XMLSchema" xmlns:base="http://inspire.ec.europa.eu/schemas/base/4.0" xmlns:cvbase="http://inspire.ec.europa.eu/schemas/cvbase/1.0" xmlns:el-bas="http://inspire.ec.europa.eu/schemas/el-bas/5.0" xmlns:el-cov="http://inspire.ec.europa.eu/schemas/el-cov/5.0" xmlns:gmd="http://www.isotc211.org/2005/gmd" xmlns:gml="http://www.opengis.net/gml/3.2" xmlns:gmlcov="http://www.opengis.net/gmlcov/1.0" elementFormDefault="qualified" targetNamespace="http://inspire.ec.europa.eu/schemas/el-cov/5.0" version="5.0">
+<?xml version="1.0" encoding="UTF-8"?><schema xmlns="http://www.w3.org/2001/XMLSchema" xmlns:base="http://inspire.ec.europa.eu/schemas/base/3.3" xmlns:cvbase="http://inspire.ec.europa.eu/schemas/cvbase/1.0" xmlns:el-bas="http://inspire.ec.europa.eu/schemas/el-bas/4.0" xmlns:el-cov="http://inspire.ec.europa.eu/schemas/el-cov/5.0" xmlns:gmd="http://www.isotc211.org/2005/gmd" xmlns:gml="http://www.opengis.net/gml/3.2" xmlns:gmlcov="http://www.opengis.net/gmlcov/1.0" elementFormDefault="qualified" targetNamespace="http://inspire.ec.europa.eu/schemas/el-cov/5.0" version="5.0">
   <!-- v5.0 of this schema released in INSPIRE schema release v.2024.1.
        Change performed: Changed encoding of the attributes that refer to enumerations - breaking change - Amendment 1089/2010
        See https://github.com/INSPIRE-MIF/application-schemas/releases/tag/2024.1 -->
@@ -15,9 +15,9 @@ Elevation - Grid Coverage application schema.</documentation>
       <gmlProfileSchema xmlns="http://www.opengis.net/gml/3.2">EMPTY</gmlProfileSchema>
     </appinfo>
   </annotation>
-  <import namespace="http://inspire.ec.europa.eu/schemas/base/4.0" schemaLocation="https://inspire.ec.europa.eu/schemas/base/4.0/BaseTypes.xsd"/>
+  <import namespace="http://inspire.ec.europa.eu/schemas/base/3.3" schemaLocation="https://inspire.ec.europa.eu/schemas/base/3.3/BaseTypes.xsd"/>
   <import namespace="http://inspire.ec.europa.eu/schemas/cvbase/1.0" schemaLocation="https://inspire.ec.europa.eu/schemas/cvbase/1.0/CoverageBase.xsd"/>
-  <import namespace="http://inspire.ec.europa.eu/schemas/el-bas/5.0" schemaLocation="https://inspire.ec.europa.eu/schemas/el-bas/5.0/ElevationBaseTypes.xsd"/>
+  <import namespace="http://inspire.ec.europa.eu/schemas/el-bas/4.0" schemaLocation="https://inspire.ec.europa.eu/schemas/el-bas/4.0/ElevationBaseTypes.xsd"/>
   <import namespace="http://www.isotc211.org/2005/gmd" schemaLocation="http://schemas.opengis.net/iso/19139/20070417/gmd/gmd.xsd"/>
   <import namespace="http://www.opengis.net/gml/3.2" schemaLocation="http://schemas.opengis.net/gml/3.2.1/gml.xsd"/>
   <import namespace="http://www.opengis.net/gmlcov/1.0" schemaLocation="http://schemas.opengis.net/gmlcov/1.0/coverage.xsd"/>

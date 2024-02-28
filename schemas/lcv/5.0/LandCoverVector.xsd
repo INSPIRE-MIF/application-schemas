@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?><schema xmlns="http://www.w3.org/2001/XMLSchema" xmlns:base="http://inspire.ec.europa.eu/schemas/base/4.0" xmlns:gmd="http://www.isotc211.org/2005/gmd" xmlns:gml="http://www.opengis.net/gml/3.2" xmlns:lcn="http://inspire.ec.europa.eu/schemas/lcn/4.0" xmlns:lcv="http://inspire.ec.europa.eu/schemas/lcv/5.0" xmlns:sc="http://www.interactive-instruments.de/ShapeChange/AppInfo" elementFormDefault="qualified" targetNamespace="http://inspire.ec.europa.eu/schemas/lcv/5.0" version="5.0">
+<?xml version="1.0" encoding="UTF-8"?><schema xmlns="http://www.w3.org/2001/XMLSchema" xmlns:base="http://inspire.ec.europa.eu/schemas/base/4.0" xmlns:gmd="http://www.isotc211.org/2005/gmd" xmlns:gml="http://www.opengis.net/gml/3.2" xmlns:lcn="http://inspire.ec.europa.eu/schemas/lcn/5.0" xmlns:lcv="http://inspire.ec.europa.eu/schemas/lcv/5.0" xmlns:sc="http://www.interactive-instruments.de/ShapeChange/AppInfo" elementFormDefault="qualified" targetNamespace="http://inspire.ec.europa.eu/schemas/lcv/5.0" version="5.0">
   <annotation>
     <documentation>application schema for Land Cover Vector</documentation>
   </annotation>

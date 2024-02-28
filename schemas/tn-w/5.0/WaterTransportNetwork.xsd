@@ -1,9 +1,9 @@
-<?xml version="1.0" encoding="UTF-8"?><schema xmlns="http://www.w3.org/2001/XMLSchema" xmlns:gml="http://www.opengis.net/gml/3.2" xmlns:net="http://inspire.ec.europa.eu/schemas/net/4.0" xmlns:tn="http://inspire.ec.europa.eu/schemas/tn/5.0" xmlns:tn-w="http://inspire.ec.europa.eu/schemas/tn-w/5.0" elementFormDefault="qualified" targetNamespace="http://inspire.ec.europa.eu/schemas/tn-w/5.0" version="5.0">
+<?xml version="1.0" encoding="UTF-8"?><schema xmlns="http://www.w3.org/2001/XMLSchema" xmlns:gml="http://www.opengis.net/gml/3.2" xmlns:net="http://inspire.ec.europa.eu/schemas/net/5.0" xmlns:tn="http://inspire.ec.europa.eu/schemas/tn/5.0" xmlns:tn-w="http://inspire.ec.europa.eu/schemas/tn-w/5.0" elementFormDefault="qualified" targetNamespace="http://inspire.ec.europa.eu/schemas/tn-w/5.0" version="5.0">
   <annotation>
     <documentation>-- Definition --
 This package defines the types that are used on the water transport subtheme.</documentation>
   </annotation>
-  <import namespace="http://inspire.ec.europa.eu/schemas/net/4.0" schemaLocation="https://inspire.ec.europa.eu/schemas/net/4.0/Network.xsd"/>
+  <import namespace="http://inspire.ec.europa.eu/schemas/net/5.0" schemaLocation="https://inspire.ec.europa.eu/schemas/net/5.0/Network.xsd"/>
   <import namespace="http://inspire.ec.europa.eu/schemas/tn/5.0" schemaLocation="https://inspire.ec.europa.eu/schemas/tn/5.0/CommonTransportElements.xsd"/>
   <import namespace="http://www.opengis.net/gml/3.2" schemaLocation="http://schemas.opengis.net/gml/3.2.1/gml.xsd"/>
   <!-- v5.0 of this schema released in INSPIRE schema release v.2024.1.

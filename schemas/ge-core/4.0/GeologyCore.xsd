@@ -60,14 +60,22 @@ External object identifier of the spatial object.</documentation>
               <documentation>The downhole geometry of the borehole</documentation>
             </annotation>
           </element>
-          <element name="boreholeLength" nillable="true" type="swe:QuantityPropertyType">
+          <element name="boreholeLength" nillable="true">
             <annotation>
-              <documentation>-- Definition --
-The distance along a borehole.
-
--- Description --
-This will be determined by the data provider (ie, "length" can have different sources, like drillers measurement, loggers measurement, survey).</documentation>
+              <documentation>-- Definition -- The distance along a borehole. -- Description -- This
+                will be determined by the data provider (ie, "length" can have different sources,
+                like drillers measurement, loggers measurement, survey).</documentation>
             </annotation>
+            <complexType>
+              <complexContent>
+                <extension base="gml:AbstractMemberType">
+                  <sequence>
+                    <element ref="swe:Quantity"/>
+                  </sequence>
+                  <attribute name="nilReason" type="gml:NilReasonType"/>
+                </extension>
+              </complexContent>
+            </complexType>
           </element>
           <element name="elevation" nillable="true">
             <annotation>

@@ -3,6 +3,21 @@ W3C Schema for INSPIRE
       
 Change log
 
+INSPIRE schema release v.2024.1.3 - 28/02/2022 (https://github.com/INSPIRE-MIF/application-schemas/releases/tag/2024.1.3)
+
+Schema            Change description                                                                                                           Version    Change type
+===============   ===========================================================================================================================  =======    ====================================
+[lcn]             Updated to version 5.0 and changed the imported BaseTypes schema                                                             v5.0       non-breaking change
+[net]             Updated to version 5.0 and changed the imported BaseTypes schema                                                             v5.0       non-breaking change
+[lcv]             Updated the version of the imported lcn schema (from 4.0 to 5.0)                                                   
+[tn]              Updated the version of the imported net schema (from 4.0 to 5.0)                                                   
+[tn-ra]           Updated the version of the imported net schema (from 4.0 to 5.0)                                                   
+[tn-ro]           Updated the version of the imported net schema (from 4.0 to 5.0)                                                   
+[tn-w]            Updated the version of the imported net schema (from 4.0 to 5.0)
+[us-govserv]      Updated the version of the imported net schema (from 4.0 to 5.0)
+[us-net-common]   Updated the version of the imported net schema (from 4.0 to 5.0)
+
+
 INSPIRE schema release v.2024.1.2 - 21/02/2022 (https://github.com/INSPIRE-MIF/application-schemas/releases/tag/2024.1.2)
 
 Schema            Change description                                                                                                           Version    Change type

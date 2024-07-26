@@ -3,14 +3,14 @@ W3C Schema for INSPIRE
       
 Change log
 
-INSPIRE schema release v.2024.2 - 31/07/2022 (https://github.com/INSPIRE-MIF/application-schemas/releases/tag/2024.2)
+INSPIRE schema release v.2024.2 - 31/07/2024 (https://github.com/INSPIRE-MIF/application-schemas/releases/tag/2024.2)
 
 Schema            Change description                                                                                                           Version    Change type
 ===============   ===========================================================================================================================  =======    ====================================
 [ge-core]         Added missing nilReason property to the boreholeLength element                                                               v4.0.1     non-breaking change
 
 
-INSPIRE schema release v.2024.1.3 - 28/02/2022 (https://github.com/INSPIRE-MIF/application-schemas/releases/tag/2024.1.3)
+INSPIRE schema release v.2024.1.3 - 28/02/2024 (https://github.com/INSPIRE-MIF/application-schemas/releases/tag/2024.1.3)
 
 Schema            Change description                                                                                                           Version    Change type
 ===============   ===========================================================================================================================  =======    ====================================
@@ -25,7 +25,7 @@ Schema            Change description                                            
 [us-net-common]   Updated the version of the imported net schema (from 4.0 to 5.0)
 
 
-INSPIRE schema release v.2024.1.2 - 21/02/2022 (https://github.com/INSPIRE-MIF/application-schemas/releases/tag/2024.1.2)
+INSPIRE schema release v.2024.1.2 - 21/02/2024 (https://github.com/INSPIRE-MIF/application-schemas/releases/tag/2024.1.2)
 
 Schema            Change description                                                                                                           Version    Change type
 ===============   ===========================================================================================================================  =======    ====================================
@@ -33,7 +33,7 @@ Schema            Change description                                            
 [us-xx]           Fixed typos in some US schemas                                                 
 
 
-INSPIRE schema release v.2024.1.1 - 09/02/2022 (https://github.com/INSPIRE-MIF/application-schemas/releases/tag/2024.1.1)
+INSPIRE schema release v.2024.1.1 - 09/02/2024 (https://github.com/INSPIRE-MIF/application-schemas/releases/tag/2024.1.1)
 
 Schema            Change description                                                                                                           Version    Change type
 ===============   ===========================================================================================================================  =======    ====================================
@@ -45,7 +45,7 @@ Schema            Change description                                            
 [us-net-wa]       Updated the version of the imported us-net-common schema (from 4.0 to 5.0)                                                   v5.0       breaking change  Amendment 1089/2010
 
 
-INSPIRE schema release v.2024.1 - 31/01/2022 (https://github.com/INSPIRE-MIF/application-schemas/releases/tag/2024.1)
+INSPIRE schema release v.2024.1 - 31/01/2024 (https://github.com/INSPIRE-MIF/application-schemas/releases/tag/2024.1)
 
 Schema            Change description                                                                                                           Version    Change type
 ===============   ===========================================================================================================================  =======    ====================================

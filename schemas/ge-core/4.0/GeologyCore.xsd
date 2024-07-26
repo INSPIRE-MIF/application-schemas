@@ -5,7 +5,9 @@
   <import namespace="http://www.interactive-instruments.de/ShapeChange/AppInfo" schemaLocation="http://portele.de/ShapeChangeAppinfo.xsd"/>
   <import namespace="http://www.opengis.net/gml/3.2" schemaLocation="http://schemas.opengis.net/gml/3.2.1/gml.xsd"/>
   <import namespace="http://www.opengis.net/swe/2.0" schemaLocation="http://schemas.opengis.net/sweCommon/2.0/swe.xsd"/>
-  <!--XML Schema document created by ShapeChange-->
+  <!-- v4.0.1 of this schema released in INSPIRE schema release v.2024.2.
+       Change performed: Added missing nilReason property to the boreholeLength element. - non-breaking change
+       See https://github.com/INSPIRE-MIF/application-schemas/releases/tag/2024.2 -->
   <element name="AnthropogenicGeomorphologicFeature" substitutionGroup="ge:GeomorphologicFeature" type="ge:AnthropogenicGeomorphologicFeatureType">
     <annotation>
       <documentation>-- Definition --
@@ -60,14 +62,22 @@ External object identifier of the spatial object.</documentation>
               <documentation>The downhole geometry of the borehole</documentation>
             </annotation>
           </element>
-          <element name="boreholeLength" nillable="true" type="swe:QuantityPropertyType">
+          <element name="boreholeLength" nillable="true">
             <annotation>
-              <documentation>-- Definition --
-The distance along a borehole.
-
--- Description --
-This will be determined by the data provider (ie, "length" can have different sources, like drillers measurement, loggers measurement, survey).</documentation>
+              <documentation>-- Definition -- The distance along a borehole. -- Description -- This
+                will be determined by the data provider (ie, "length" can have different sources,
+                like drillers measurement, loggers measurement, survey).</documentation>
             </annotation>
+            <complexType>
+              <complexContent>
+                <extension base="gml:AbstractMemberType">
+                  <sequence>
+                    <element ref="swe:Quantity"/>
+                  </sequence>
+                  <attribute name="nilReason" type="gml:NilReasonType"/>
+                </extension>
+              </complexContent>
+            </complexType>
           </element>
           <element name="elevation" nillable="true">
             <annotation>

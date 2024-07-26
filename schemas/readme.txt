@@ -3,6 +3,13 @@ W3C Schema for INSPIRE
       
 Change log
 
+INSPIRE schema release v.2024.2 - 31/07/2022 (https://github.com/INSPIRE-MIF/application-schemas/releases/tag/2024.2)
+
+Schema            Change description                                                                                                           Version    Change type
+===============   ===========================================================================================================================  =======    ====================================
+[ge-core]         Added missing nilReason property to the boreholeLength element                                                               v4.0.1     non-breaking change
+
+
 INSPIRE schema release v.2024.1.3 - 28/02/2022 (https://github.com/INSPIRE-MIF/application-schemas/releases/tag/2024.1.3)
 
 Schema            Change description                                                                                                           Version    Change type

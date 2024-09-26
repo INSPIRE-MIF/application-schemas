@@ -82,7 +82,7 @@ Identification of the maintenance authority.</documentation>
               <complexContent>
                 <extension base="gml:AbstractMetadataPropertyType">
                   <sequence>
-                    <element ref="gmd:CI_Citation"/>
+                    <element ref="gmd:CI_ResponsibleParty"/>
                   </sequence>
                 </extension>
               </complexContent>
@@ -158,7 +158,7 @@ Identification of the owning authority.</documentation>
               <complexContent>
                 <extension base="gml:AbstractMetadataPropertyType">
                   <sequence>
-                    <element ref="gmd:CI_Citation"/>
+                    <element ref="gmd:CI_ResponsibleParty"/>
                   </sequence>
                 </extension>
               </complexContent>

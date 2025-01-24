@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?><schema xmlns="http://www.w3.org/2001/XMLSchema" xmlns:base="http://inspire.ec.europa.eu/schemas/base/4.0" xmlns:el-bas="http://inspire.ec.europa.eu/schemas/el-bas/5.0" elementFormDefault="qualified" targetNamespace="http://inspire.ec.europa.eu/schemas/el-bas/5.0" version="5.0">
+  <annotation>
+    <documentation>-- Name -- elevation - base types
+
+-- Definition --
+Elevation - Base Types application schema.</documentation>
+    <appinfo>
+      <gmlProfileSchema xmlns="http://www.opengis.net/gml/3.2">EMPTY</gmlProfileSchema>
+    </appinfo>
+  </annotation>
+  <import namespace="http://inspire.ec.europa.eu/schemas/base/4.0" schemaLocation="https://inspire.ec.europa.eu/schemas/base/4.0/BaseTypes.xsd"/>
+  <!-- v5.0 of this schema released in INSPIRE schema release v.2024.1.
+       Change performed: Removed enumerations from schema - breaking change - Amendment 1089/2010
+       See https://github.com/INSPIRE-MIF/application-schemas/releases/tag/2024.1 -->
+</schema>

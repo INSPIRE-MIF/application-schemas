@@ -6,11 +6,11 @@ Statistical Units Vector
 -- Definition --
 Package containing classes to represent statistical units with vector geometries.</documentation>
   </annotation>
-  <import namespace="http://inspire.ec.europa.eu/schemas/au/4.0" schemaLocation="https://inspire.ec.europa.eu/schemas/au/4.0/AdministrativeUnits.xsd"/>
-  <import namespace="http://inspire.ec.europa.eu/schemas/base/3.3" schemaLocation="https://inspire.ec.europa.eu/schemas/base/3.3/BaseTypes.xsd"/>
-  <import namespace="http://inspire.ec.europa.eu/schemas/base2/2.0" schemaLocation="https://inspire.ec.europa.eu/schemas/base2/2.0/BaseTypes2.xsd"/>
-  <import namespace="http://inspire.ec.europa.eu/schemas/gn/4.0" schemaLocation="https://inspire.ec.europa.eu/schemas/gn/4.0/GeographicalNames.xsd"/>
-  <import namespace="http://inspire.ec.europa.eu/schemas/su-core/4.0" schemaLocation="https://inspire.ec.europa.eu/schemas/su-core/4.0/StatisticalUnitCore.xsd"/>
+  <import namespace="http://inspire.ec.europa.eu/schemas/au/4.0" schemaLocation="https://inspire.ec.europa.eu/schemas/2024.2/au/4.0/AdministrativeUnits.xsd"/>
+  <import namespace="http://inspire.ec.europa.eu/schemas/base/3.3" schemaLocation="https://inspire.ec.europa.eu/schemas/2024.2/base/3.3/BaseTypes.xsd"/>
+  <import namespace="http://inspire.ec.europa.eu/schemas/base2/2.0" schemaLocation="https://inspire.ec.europa.eu/schemas/2024.2/base2/2.0/BaseTypes2.xsd"/>
+  <import namespace="http://inspire.ec.europa.eu/schemas/gn/4.0" schemaLocation="https://inspire.ec.europa.eu/schemas/2024.2/gn/4.0/GeographicalNames.xsd"/>
+  <import namespace="http://inspire.ec.europa.eu/schemas/su-core/4.0" schemaLocation="https://inspire.ec.europa.eu/schemas/2024.2/su-core/4.0/StatisticalUnitCore.xsd"/>
   <import namespace="http://www.interactive-instruments.de/ShapeChange/AppInfo" schemaLocation="http://portele.de/ShapeChangeAppinfo.xsd"/>
   <import namespace="http://www.isotc211.org/2005/gmd" schemaLocation="http://schemas.opengis.net/iso/19139/20070417/gmd/gmd.xsd"/>
   <import namespace="http://www.opengis.net/gml/3.2" schemaLocation="http://schemas.opengis.net/gml/3.2.1/gml.xsd"/>

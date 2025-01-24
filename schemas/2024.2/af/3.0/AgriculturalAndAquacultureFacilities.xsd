@@ -6,7 +6,7 @@
 
 core model, harmonised toward the the core general faciclity model.</documentation>
 	</annotation>
-	<import namespace="http://inspire.ec.europa.eu/schemas/act-core/3.0" schemaLocation="https://inspire.ec.europa.eu/schemas/act-core/3.0/ActivityComplex_Core.xsd"/>
+	<import namespace="http://inspire.ec.europa.eu/schemas/act-core/3.0" schemaLocation="https://inspire.ec.europa.eu/schemas/2024.2/act-core/3.0/ActivityComplex_Core.xsd"/>
 	<import namespace="http://www.opengis.net/gml/3.2" schemaLocation="http://schemas.opengis.net/gml/3.2.1/gml.xsd"/>
 	<!--XML Schema document created by ShapeChange-->
 	<element name="FarmAnimalSpecies" type="af:FarmAnimalSpeciesType" substitutionGroup="gml:AbstractObject">

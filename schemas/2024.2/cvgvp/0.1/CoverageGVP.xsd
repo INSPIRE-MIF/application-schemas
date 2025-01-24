@@ -8,7 +8,7 @@ application schema for coverages with a geometry/value pair representation
 -- Description --
 NOTE	This application schema has been specified to be conceptually consistent with the coverage model used by the OGC Best Practice document 06-188r1 "GML Encoding of Discrete Coverages (interleaved pattern)".</documentation>
 	</annotation>
-	<import namespace="http://inspire.ec.europa.eu/schemas/cvbase/1.0" schemaLocation="https://inspire.ec.europa.eu/schemas/cvbase/1.0/CoverageBase.xsd"/>
+	<import namespace="http://inspire.ec.europa.eu/schemas/cvbase/1.0" schemaLocation="https://inspire.ec.europa.eu/schemas/2024.2/cvbase/1.0/CoverageBase.xsd"/>
 	<import namespace="http://www.isotc211.org/2005/gmd" schemaLocation="http://schemas.opengis.net/iso/19139/20070417/gmd/gmd.xsd"/>
 	<import namespace="http://www.opengis.net/gml/3.2" schemaLocation="http://schemas.opengis.net/gml/3.2.1/gml.xsd"/>
 	<import namespace="http://www.opengis.net/gmlcov/1.0" schemaLocation="http://schemas.opengis.net/gmlcov/1.0/coverage.xsd"/>

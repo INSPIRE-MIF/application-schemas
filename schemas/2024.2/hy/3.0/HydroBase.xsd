@@ -6,13 +6,13 @@ This package provides base classes used to identify real-world objects. These id
 -- Description --&#13;
 EXAMPLE: A real-world object identified as the 'Rhine' may be realised through a Network view (as a set of links and nodes), a Physical Waters view (as a Watercourse), and a reporting view (as a WFDRiver).</documentation>
   </annotation>
-  <import namespace="urn:x-inspire:specification:gmlas:GeographicalNames:3.0" schemaLocation="https://inspire.ec.europa.eu/schemas/gn/3.0/GeographicalNames.xsd"/>
-  <import namespace="urn:x-inspire:specification:gmlas:HydroNetwork:3.0" schemaLocation="https://inspire.ec.europa.eu/schemas/hy-n/3.0/HydroNetwork.xsd"/>
-  <import namespace="urn:x-inspire:specification:gmlas:WaterFrameworkDirective:0.0" schemaLocation="https://inspire.ec.europa.eu/schemas/wfd/0.0/WaterFrameworkDirective.xsd"/>
-  <import namespace="urn:x-inspire:specification:gmlas:LandCover:0.0" schemaLocation="https://inspire.ec.europa.eu/schemas/lc/0.0/LandCover.xsd"/>
-  <import namespace="urn:x-inspire:specification:gmlas:HydroPhysicalWaters:3.0" schemaLocation="https://inspire.ec.europa.eu/schemas/hy-p/3.0/HydroPhysicalWaters.xsd"/>
-  <import namespace="urn:x-inspire:specification:gmlas:NaturalRiskZones:0.0" schemaLocation="https://inspire.ec.europa.eu/schemas/nz/0.0/NaturalRiskZones.xsd"/>
-  <import namespace="urn:x-inspire:specification:gmlas:SeaRegions:0.0" schemaLocation="https://inspire.ec.europa.eu/schemas/sr/0.0/SeaRegions.xsd"/>
+  <import namespace="urn:x-inspire:specification:gmlas:GeographicalNames:3.0" schemaLocation="https://inspire.ec.europa.eu/schemas/2024.2/gn/3.0/GeographicalNames.xsd"/>
+  <import namespace="urn:x-inspire:specification:gmlas:HydroNetwork:3.0" schemaLocation="https://inspire.ec.europa.eu/schemas/2024.2/hy-n/3.0/HydroNetwork.xsd"/>
+  <import namespace="urn:x-inspire:specification:gmlas:WaterFrameworkDirective:0.0" schemaLocation="https://inspire.ec.europa.eu/schemas/2024.2/wfd/0.0/WaterFrameworkDirective.xsd"/>
+  <import namespace="urn:x-inspire:specification:gmlas:LandCover:0.0" schemaLocation="https://inspire.ec.europa.eu/schemas/2024.2/lc/0.0/LandCover.xsd"/>
+  <import namespace="urn:x-inspire:specification:gmlas:HydroPhysicalWaters:3.0" schemaLocation="https://inspire.ec.europa.eu/schemas/2024.2/hy-p/3.0/HydroPhysicalWaters.xsd"/>
+  <import namespace="urn:x-inspire:specification:gmlas:NaturalRiskZones:0.0" schemaLocation="https://inspire.ec.europa.eu/schemas/2024.2/nz/0.0/NaturalRiskZones.xsd"/>
+  <import namespace="urn:x-inspire:specification:gmlas:SeaRegions:0.0" schemaLocation="https://inspire.ec.europa.eu/schemas/2024.2/sr/0.0/SeaRegions.xsd"/>
   <import namespace="http://www.opengis.net/gml/3.2" schemaLocation="http://schemas.opengis.net/gml/3.2.1/gml.xsd"/>
   <!--XML Schema document created by ShapeChange-->
   <complexType name="HydroObjectPropertyType">

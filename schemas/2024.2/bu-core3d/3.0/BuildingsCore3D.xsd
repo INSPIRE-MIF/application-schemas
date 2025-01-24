@@ -8,7 +8,7 @@ Building 3D
 -- Definition --
 The 3D application schema for INSPIRE theme buildings.</documentation>
 	</annotation>
-	<import namespace="http://inspire.ec.europa.eu/schemas/bu-base/3.0" schemaLocation="https://inspire.ec.europa.eu/schemas/bu-base/3.0/BuildingsBase.xsd"/>
+	<import namespace="http://inspire.ec.europa.eu/schemas/bu-base/3.0" schemaLocation="https://inspire.ec.europa.eu/schemas/2024.2/bu-base/3.0/BuildingsBase.xsd"/>
 	<import namespace="http://www.interactive-instruments.de/ShapeChange/AppInfo" schemaLocation="http://portele.de/ShapeChangeAppinfo.xsd"/>
 	<import namespace="http://www.opengis.net/gml/3.2" schemaLocation="http://schemas.opengis.net/gml/3.2.1/gml.xsd"/>
 	<!--XML Schema document created by ShapeChange-->

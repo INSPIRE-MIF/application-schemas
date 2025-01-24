@@ -3,7 +3,7 @@
     <documentation>-- Definition --&#13;
 The Reporting application schema contains spatial objects associated with reporting under European environmental directives. It satisfies the requirements of the 'reporting' Use Case. The emphasis is on the Water Framework Directive.</documentation>
   </annotation>
-  <import namespace="urn:x-inspire:specification:gmlas:HydroBase:3.0" schemaLocation="https://inspire.ec.europa.eu/schemas/hy/3.0/HydroBase.xsd"/>
-  <import namespace="urn:x-inspire:specification:gmlas:WaterFrameworkDirective:0.0" schemaLocation="https://inspire.ec.europa.eu/schemas/wfd/0.0/WaterFrameworkDirective.xsd"/>
+  <import namespace="urn:x-inspire:specification:gmlas:HydroBase:3.0" schemaLocation="https://inspire.ec.europa.eu/schemas/2024.2/hy/3.0/HydroBase.xsd"/>
+  <import namespace="urn:x-inspire:specification:gmlas:WaterFrameworkDirective:0.0" schemaLocation="https://inspire.ec.europa.eu/schemas/2024.2/wfd/0.0/WaterFrameworkDirective.xsd"/>
   <!--XML Schema document created by ShapeChange-->
 </schema>

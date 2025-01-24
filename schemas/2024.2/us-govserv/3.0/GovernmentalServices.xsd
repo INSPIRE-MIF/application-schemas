@@ -1,17 +1,17 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!-- edited with XMLSpy v2014 sp1 (x64) (http://www.altova.com) by Chris Schubert (European Commission DG JRC - IES) -->
 <schema xmlns="http://www.w3.org/2001/XMLSchema" xmlns:act-core="http://inspire.ec.europa.eu/schemas/act-core/3.0" xmlns:ad="urn:x-inspire:specification:gmlas:Addresses:3.0" xmlns:au="urn:x-inspire:specification:gmlas:AdministrativeUnits:3.0" xmlns:base="http://inspire.ec.europa.eu/schemas/base/3.3" xmlns:base2="http://inspire.ec.europa.eu/schemas/base2/1.0" xmlns:bu-core2d="http://inspire.ec.europa.eu/schemas/bu-core2d/3.0" xmlns:gml="http://www.opengis.net/gml/3.2" xmlns:gn="urn:x-inspire:specification:gmlas:GeographicalNames:3.0" xmlns:net="urn:x-inspire:specification:gmlas:Network:3.2" xmlns:sc="http://www.interactive-instruments.de/ShapeChange/AppInfo" xmlns:us-govserv="http://inspire.ec.europa.eu/schemas/us-govserv/3.0" xmlns:us-net-common="http://inspire.ec.europa.eu/schemas/us-net-common/3.0" targetNamespace="http://inspire.ec.europa.eu/schemas/us-govserv/3.0" elementFormDefault="qualified" version="3.0">
-	<import namespace="http://inspire.ec.europa.eu/schemas/bu-core2d/3.0" schemaLocation="https://inspire.ec.europa.eu/schemas/bu-core2d/3.0/BuildingsCore2D.xsd"/>
-	<import namespace="http://inspire.ec.europa.eu/schemas/act-core/3.0" schemaLocation="https://inspire.ec.europa.eu/schemas/act-core/3.0/ActivityComplex_Core.xsd"/>
-	<import namespace="http://inspire.ec.europa.eu/schemas/base/3.3" schemaLocation="https://inspire.ec.europa.eu/schemas/base/3.3/BaseTypes.xsd"/>
-	<import namespace="http://inspire.ec.europa.eu/schemas/base2/1.0" schemaLocation="https://inspire.ec.europa.eu/schemas/base2/1.0/BaseTypes2.xsd"/>
-	<import namespace="http://inspire.ec.europa.eu/schemas/us-net-common/3.0" schemaLocation="https://inspire.ec.europa.eu/schemas/us-net-common/3.0/UtilityNetworksCommon.xsd"/>
+	<import namespace="http://inspire.ec.europa.eu/schemas/bu-core2d/3.0" schemaLocation="https://inspire.ec.europa.eu/schemas/2024.2/bu-core2d/3.0/BuildingsCore2D.xsd"/>
+	<import namespace="http://inspire.ec.europa.eu/schemas/act-core/3.0" schemaLocation="https://inspire.ec.europa.eu/schemas/2024.2/act-core/3.0/ActivityComplex_Core.xsd"/>
+	<import namespace="http://inspire.ec.europa.eu/schemas/base/3.3" schemaLocation="https://inspire.ec.europa.eu/schemas/2024.2/base/3.3/BaseTypes.xsd"/>
+	<import namespace="http://inspire.ec.europa.eu/schemas/base2/1.0" schemaLocation="https://inspire.ec.europa.eu/schemas/2024.2/base2/1.0/BaseTypes2.xsd"/>
+	<import namespace="http://inspire.ec.europa.eu/schemas/us-net-common/3.0" schemaLocation="https://inspire.ec.europa.eu/schemas/2024.2/us-net-common/3.0/UtilityNetworksCommon.xsd"/>
 	<import namespace="http://www.interactive-instruments.de/ShapeChange/AppInfo" schemaLocation="http://portele.de/ShapeChangeAppinfo.xsd"/>
 	<import namespace="http://www.opengis.net/gml/3.2" schemaLocation="http://schemas.opengis.net/gml/3.2.1/gml.xsd"/>
-	<import namespace="urn:x-inspire:specification:gmlas:Addresses:3.0" schemaLocation="https://inspire.ec.europa.eu/schemas/ad/3.0/Addresses.xsd"/>
-	<import namespace="urn:x-inspire:specification:gmlas:AdministrativeUnits:3.0" schemaLocation="https://inspire.ec.europa.eu/schemas/au/3.0/AdministrativeUnits.xsd"/>
-	<import namespace="urn:x-inspire:specification:gmlas:GeographicalNames:3.0" schemaLocation="https://inspire.ec.europa.eu/schemas/gn/3.0/GeographicalNames.xsd"/>
-	<import namespace="urn:x-inspire:specification:gmlas:Network:3.2" schemaLocation="https://inspire.ec.europa.eu/schemas/net/3.2/Network.xsd"/>
+	<import namespace="urn:x-inspire:specification:gmlas:Addresses:3.0" schemaLocation="https://inspire.ec.europa.eu/schemas/2024.2/ad/3.0/Addresses.xsd"/>
+	<import namespace="urn:x-inspire:specification:gmlas:AdministrativeUnits:3.0" schemaLocation="https://inspire.ec.europa.eu/schemas/2024.2/au/3.0/AdministrativeUnits.xsd"/>
+	<import namespace="urn:x-inspire:specification:gmlas:GeographicalNames:3.0" schemaLocation="https://inspire.ec.europa.eu/schemas/2024.2/gn/3.0/GeographicalNames.xsd"/>
+	<import namespace="urn:x-inspire:specification:gmlas:Network:3.2" schemaLocation="https://inspire.ec.europa.eu/schemas/2024.2/net/3.2/Network.xsd"/>
 	<!--XML Schema document created by ShapeChange-->
 	<element name="GovernmentalService" type="us-govserv:GovernmentalServiceType" substitutionGroup="gml:AbstractFeature">
 		<annotation>

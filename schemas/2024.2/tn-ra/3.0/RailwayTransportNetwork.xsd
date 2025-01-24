@@ -3,9 +3,9 @@
     <documentation>-- Definition --&#13;
 This package defines the types that are used on the rail subtheme</documentation>
   </annotation>
-  <import namespace="urn:x-inspire:specification:gmlas:Network:3.2" schemaLocation="https://inspire.ec.europa.eu/schemas/net/3.2/Network.xsd"/>
-  <import namespace="urn:x-inspire:specification:gmlas:CommonTransportElements:3.0" schemaLocation="https://inspire.ec.europa.eu/schemas/tn/3.0/CommonTransportElements.xsd"/>
-  <import namespace="urn:x-inspire:specification:gmlas:RoadTransportNetwork:3.0" schemaLocation="https://inspire.ec.europa.eu/schemas/tn-ro/3.0/RoadTransportNetwork.xsd"/>
+  <import namespace="urn:x-inspire:specification:gmlas:Network:3.2" schemaLocation="https://inspire.ec.europa.eu/schemas/2024.2/net/3.2/Network.xsd"/>
+  <import namespace="urn:x-inspire:specification:gmlas:CommonTransportElements:3.0" schemaLocation="https://inspire.ec.europa.eu/schemas/2024.2/tn/3.0/CommonTransportElements.xsd"/>
+  <import namespace="urn:x-inspire:specification:gmlas:RoadTransportNetwork:3.0" schemaLocation="https://inspire.ec.europa.eu/schemas/2024.2/tn-ro/3.0/RoadTransportNetwork.xsd"/>
   <import namespace="http://www.opengis.net/gml/3.2" schemaLocation="http://schemas.opengis.net/gml/3.2.1/gml.xsd"/>
   <!--XML Schema document created by ShapeChange-->
   <element name="DesignSpeed" substitutionGroup="tn:TransportProperty" type="tn-ra:DesignSpeedType">

@@ -5,7 +5,7 @@
 		<documentation>-- Definition --
 Application schema for specialist types of Observations</documentation>
 	</annotation>
-	<import namespace="http://inspire.ec.europa.eu/schemas/omor/2.0" schemaLocation="https://inspire.ec.europa.eu/schemas/omor/2.0/ObservationReferences.xsd"/>
+	<import namespace="http://inspire.ec.europa.eu/schemas/omor/2.0" schemaLocation="https://inspire.ec.europa.eu/schemas/2024.2/omor/2.0/ObservationReferences.xsd"/>
 	<import namespace="http://www.opengis.net/gml/3.2" schemaLocation="http://schemas.opengis.net/gml/3.2.1/gml.xsd"/>
 	<import namespace="http://www.opengis.net/om/2.0" schemaLocation="http://schemas.opengis.net/om/2.0/observation.xsd"/>
 	<import namespace="http://www.opengis.net/waterml/2.0" schemaLocation="https://inspire.ec.europa.eu/draft-schemas/waterml/2.0rfc/waterml2.xsd"/>

@@ -3,12 +3,12 @@
     <documentation>-- Definition --&#13;
 The 'PhysicalWaters' application schema is concerned primarily with the 'mapping' Use Case</documentation>
   </annotation>
-  <import namespace="urn:x-inspire:specification:gmlas:HydroBase:3.0" schemaLocation="https://inspire.ec.europa.eu/schemas/hy/3.0/HydroBase.xsd"/>
-  <import namespace="urn:x-inspire:specification:gmlas:BaseTypes:3.2" schemaLocation="https://inspire.ec.europa.eu/schemas/base/3.2/BaseTypes.xsd"/>
+  <import namespace="urn:x-inspire:specification:gmlas:HydroBase:3.0" schemaLocation="https://inspire.ec.europa.eu/schemas/2024.2/hy/3.0/HydroBase.xsd"/>
+  <import namespace="urn:x-inspire:specification:gmlas:BaseTypes:3.2" schemaLocation="https://inspire.ec.europa.eu/schemas/2024.2/base/3.2/BaseTypes.xsd"/>
   <import namespace="http://www.opengis.net/gml/3.2" schemaLocation="http://schemas.opengis.net/gml/3.2.1/gml.xsd"/>
-  <import namespace="urn:x-inspire:specification:gmlas:GeographicalNames:3.0" schemaLocation="https://inspire.ec.europa.eu/schemas/gn/3.0/GeographicalNames.xsd"/>
+  <import namespace="urn:x-inspire:specification:gmlas:GeographicalNames:3.0" schemaLocation="https://inspire.ec.europa.eu/schemas/2024.2/gn/3.0/GeographicalNames.xsd"/>
   <import namespace="http://www.isotc211.org/2005/gmd" schemaLocation="http://schemas.opengis.net/iso/19139/20070417/gmd/gmd.xsd"/>
-  <import namespace="urn:x-inspire:specification:gmlas:LandCover:0.0" schemaLocation="https://inspire.ec.europa.eu/schemas/lc/0.0/LandCover.xsd"/>
+  <import namespace="urn:x-inspire:specification:gmlas:LandCover:0.0" schemaLocation="https://inspire.ec.europa.eu/schemas/2024.2/lc/0.0/LandCover.xsd"/>
   <!--XML Schema document created by ShapeChange-->
   <element name="RiverBasin" substitutionGroup="hy-p:DrainageBasin" type="hy-p:RiverBasinType">
     <annotation>

@@ -12,8 +12,8 @@ Elevation - TIN application schema.</documentation>
       <gmlProfileSchema xmlns="http://www.opengis.net/gml/3.2">EMPTY</gmlProfileSchema>
     </appinfo>
   </annotation>
-  <import namespace="http://inspire.ec.europa.eu/schemas/base/3.3" schemaLocation="https://inspire.ec.europa.eu/schemas/base/3.3/BaseTypes.xsd"/>
-  <import namespace="http://inspire.ec.europa.eu/schemas/el-bas/4.0" schemaLocation="https://inspire.ec.europa.eu/schemas/el-bas/4.0/ElevationBaseTypes.xsd"/>
+  <import namespace="http://inspire.ec.europa.eu/schemas/base/3.3" schemaLocation="https://inspire.ec.europa.eu/schemas/2024.2/base/3.3/BaseTypes.xsd"/>
+  <import namespace="http://inspire.ec.europa.eu/schemas/el-bas/4.0" schemaLocation="https://inspire.ec.europa.eu/schemas/2024.2/el-bas/4.0/ElevationBaseTypes.xsd"/>
   <import namespace="http://www.opengis.net/gml/3.2" schemaLocation="http://schemas.opengis.net/gml/3.2.1/gml.xsd"/>
   <!--XML Schema document created by ShapeChange-->
   <element name="ElevationTIN" substitutionGroup="gml:AbstractFeature" type="el-tin:ElevationTINType">

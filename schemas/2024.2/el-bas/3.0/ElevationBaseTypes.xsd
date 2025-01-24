@@ -11,7 +11,7 @@ Elevation - Base Types application schema.</documentation>
 			<gmlProfileSchema xmlns="http://www.opengis.net/gml/3.2">EMPTY</gmlProfileSchema>
 		</appinfo>
 	</annotation>
-	<import namespace="http://inspire.ec.europa.eu/schemas/base/3.3" schemaLocation="https://inspire.ec.europa.eu/schemas/base/3.3/BaseTypes.xsd"/>
+	<import namespace="http://inspire.ec.europa.eu/schemas/base/3.3" schemaLocation="https://inspire.ec.europa.eu/schemas/2024.2/base/3.3/BaseTypes.xsd"/>
 	<!--XML Schema document created by ShapeChange-->
 	<simpleType name="ElevationPropertyTypeValueType">
 		<annotation>

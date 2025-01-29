@@ -1,52 +1,61 @@
-<?xml version="1.0" encoding="UTF-8"?><schema xmlns="http://www.w3.org/2001/XMLSchema" xmlns:gml="http://www.opengis.net/gml/3.2" xmlns:gn="http://inspire.ec.europa.eu/schemas/gn/4.0" xmlns:hy="http://inspire.ec.europa.eu/schemas/hy/5.0" xmlns:hy-n="http://inspire.ec.europa.eu/schemas/hy-n/4.0" xmlns:hy-p="http://inspire.ec.europa.eu/schemas/hy-p/5.0" xmlns:sr="http://inspire.ec.europa.eu/schemas/sr/4.0" elementFormDefault="qualified" targetNamespace="http://inspire.ec.europa.eu/schemas/hy/5.0" version="5.0">
+<?xml version="1.0" encoding="UTF-8"?>
+<schema xmlns="http://www.w3.org/2001/XMLSchema" xmlns:gml="http://www.opengis.net/gml/3.2"
+  xmlns:gn="http://inspire.ec.europa.eu/schemas/gn/4.0"
+  xmlns:hy="http://inspire.ec.europa.eu/schemas/hy/5.0"
+  xmlns:hy-n="http://inspire.ec.europa.eu/schemas/hy-n/5.0"
+  xmlns:hy-p="http://inspire.ec.europa.eu/schemas/hy-p/5.0"
+  xmlns:sr="http://inspire.ec.europa.eu/schemas/sr/4.0" elementFormDefault="qualified"
+  targetNamespace="http://inspire.ec.europa.eu/schemas/hy/5.0" version="5.1">
+  
+  <!-- v5.1 of this schema released in INSPIRE schema release v.2025.1.
+	 Change performed: imported v5 of HydroNetwork.xsd -  non breaking change -->
+  
   <annotation>
-    <documentation>-- Definition --
-This package provides base classes used to identify real-world objects. These identities may be used to provide implicit semantic associations between different 'implementation views'.
-
--- Description --
-EXAMPLE: A real-world object identified as the 'Rhine' may be realised through a Network view (as a set of links and nodes), a Physical Waters view (as a Watercourse), and a reporting view (as a WFDRiver).</documentation>
+    <documentation>-- Definition -- This package provides base classes used to identify real-world
+      objects. These identities may be used to provide implicit semantic associations between
+      different 'implementation views'. -- Description -- EXAMPLE: A real-world object identified as
+      the 'Rhine' may be realised through a Network view (as a set of links and nodes), a Physical
+      Waters view (as a Watercourse), and a reporting view (as a WFDRiver).</documentation>
   </annotation>
-  <import namespace="http://inspire.ec.europa.eu/schemas/gn/4.0" schemaLocation="https://inspire.ec.europa.eu/schemas/gn/4.0/GeographicalNames.xsd"/>
-  <import namespace="http://inspire.ec.europa.eu/schemas/hy-n/4.0" schemaLocation="https://inspire.ec.europa.eu/schemas/hy-n/4.0/HydroNetwork.xsd"/>
-  <import namespace="http://inspire.ec.europa.eu/schemas/hy-p/5.0" schemaLocation="https://inspire.ec.europa.eu/schemas/hy-p/5.0/HydroPhysicalWaters.xsd"/>
-  <import namespace="http://inspire.ec.europa.eu/schemas/sr/4.0" schemaLocation="https://inspire.ec.europa.eu/schemas/sr/4.0/SeaRegions.xsd"/>
-  <import namespace="http://www.opengis.net/gml/3.2" schemaLocation="http://schemas.opengis.net/gml/3.2.1/gml.xsd"/>
+  <import namespace="http://inspire.ec.europa.eu/schemas/gn/4.0"
+    schemaLocation="https://inspire.ec.europa.eu/schemas/gn/4.0/GeographicalNames.xsd"/>
+  <import namespace="http://inspire.ec.europa.eu/schemas/hy-n/5.0"
+    schemaLocation="https://inspire.ec.europa.eu/schemas/hy-n/5.0/HydroNetwork.xsd"/>
+  <import namespace="http://inspire.ec.europa.eu/schemas/hy-p/5.0"
+    schemaLocation="https://inspire.ec.europa.eu/schemas/hy-p/5.0/HydroPhysicalWaters.xsd"/>
+  <import namespace="http://inspire.ec.europa.eu/schemas/sr/4.0"
+    schemaLocation="https://inspire.ec.europa.eu/schemas/sr/4.0/SeaRegions.xsd"/>
+  <import namespace="http://www.opengis.net/gml/3.2"
+    schemaLocation="http://schemas.opengis.net/gml/3.2.1/gml.xsd"/>
   <!-- v5.0 of this schema released in INSPIRE schema release v.2024.1.2.
        Change performed: Updated to version 5.0 since this schema imports the hy-p schema that was updated to version 5 - non-breaking change - Amendment 1089/2010
        See https://github.com/INSPIRE-MIF/application-schemas/releases/tag/2024.1.2 -->
-  <element name="HydroIdentifier" substitutionGroup="gml:AbstractObject" type="hy:HydroIdentifierType">
+  <element name="HydroIdentifier" substitutionGroup="gml:AbstractObject"
+    type="hy:HydroIdentifierType">
     <annotation>
-      <documentation>-- Definition --
-A hydrographic thematic identifier.
-
--- Description --
-NOTE May be used to hold a national hydrological identification code.</documentation>
+      <documentation>-- Definition -- A hydrographic thematic identifier. -- Description -- NOTE May
+        be used to hold a national hydrological identification code.</documentation>
     </annotation>
   </element>
   <complexType name="HydroIdentifierType">
     <sequence>
       <element minOccurs="0" name="classificationScheme" type="string">
         <annotation>
-          <documentation>-- Definition --
-A description of the identification scheme (National, European, etc.) being used.</documentation>
+          <documentation>-- Definition -- A description of the identification scheme (National,
+            European, etc.) being used.</documentation>
         </annotation>
       </element>
       <element name="localId" type="string">
         <annotation>
-          <documentation>-- Definition --
-A local identifier, assigned by some authority.
-
--- Description --
-NOTE It will often be a national hydrographic identifier.</documentation>
+          <documentation>-- Definition -- A local identifier, assigned by some authority. --
+            Description -- NOTE It will often be a national hydrographic identifier.</documentation>
         </annotation>
       </element>
       <element name="namespace" type="string">
         <annotation>
-          <documentation>-- Definition --
-An indicator of the scope for the local identifier.
-
--- Description --
-NOTE In the case of a national hydrographic identifier it should be a two-letter country code as per ISO 3166-1-Alpha-2.</documentation>
+          <documentation>-- Definition -- An indicator of the scope for the local identifier. --
+            Description -- NOTE In the case of a national hydrographic identifier it should be a
+            two-letter country code as per ISO 3166-1-Alpha-2.</documentation>
         </annotation>
       </element>
     </sequence>

@@ -2,6 +2,14 @@ W3C Schema for INSPIRE
 
       
 Change log
+INSPIRE schema release v.2025.1 - 31/01/2025 (https://github.com/INSPIRE-MIF/application-schemas/releases/tag/2025.1)
+
+Schema            Change description                                                                                                           Version    Change type
+===============   ===========================================================================================================================  =======    ====================================
+[hy-n]            Updated to version 5.0 - changed version of the imported HydroBase and Network schemas                                        v5.0      non-breaking change
+[hy]              Updated the version of the imported HydroNetwork schema (from 4.0 to 5.0)                                                     v5.1      non-breaking change
+[am]              Changed the multiplicity of the specializedZoneType element to 0..*                                                           v4.1      non-breaking change
+
 
 INSPIRE schema release v.2024.2 - 31/07/2024 (https://github.com/INSPIRE-MIF/application-schemas/releases/tag/2024.2)
 
